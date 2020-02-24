@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Principia - Home</title>
+		<base href="<?=$basepath ?>">
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	</head>

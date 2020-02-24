@@ -36,7 +36,7 @@ if ($log) {
 
 
 function pageheader() {
-	global $userdata, $log;
+	global $userdata, $log, $basepath;
 
 	require('lib/layout/header.php');
 }

@@ -2,3 +2,5 @@ ErrorDocument 404 /404.php
 
 RewriteEngine On
 RewriteRule ^apZodIaL1/xx.php$ /internal_login.php
+
+RewriteRule ^user/(.+)$ /user.php?name=$1 [L]

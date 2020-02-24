@@ -12,7 +12,6 @@ function type_to_cat($type) {
 		case 'custom':		return 1;
 		case 'adventure':	return 2;
 		case 'puzzle':		return 3;
-		case 'jupiter':		return '';
 	}
 }
 

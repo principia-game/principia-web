@@ -13,7 +13,7 @@ if ($newsid) {
 			<h2>{$newsdata['title']}</h2>
 			<p>{$newsdata['text']}</p>
 			<p><em>Published on the $time (GMT)</em></p>
-		HTML;
+HTML;
 	} else {
 		header("Location: ".$newsdata['redirect']);
 	}

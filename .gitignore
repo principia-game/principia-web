@@ -1,2 +1,4 @@
 conf/config.php
 assets/css/style.css
+assets/css/style.css.map
+*.plvl

@@ -3,4 +3,10 @@ ErrorDocument 404 /404.php
 RewriteEngine On
 RewriteRule ^apZodIaL1/xx.php$ /internal_login.php
 
+RewriteRule ^apZodIaL1/xxxxxx.php$ /get_level.php
+RewriteRule ^apZodIaL1/xxxxx.php$ /get_level.php
+RewriteRule ^apZodIaL1/x.php$ /get_level.php
+ 
+php_value display_errors 1
+
 RewriteRule ^user/(.+)$ /user.php?name=$1 [L]

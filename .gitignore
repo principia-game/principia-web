@@ -1,4 +1,10 @@
+## User-generated files
 conf/config.php
+levels/
+
+## SCSS caches
 assets/css/style.css
 assets/css/style.css.map
-*.plvl
+
+## Featured stuff
+featured/main.py

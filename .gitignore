@@ -1,6 +1,7 @@
 ## User-generated files
 conf/config.php
 levels/
+packages/
 
 ## SCSS caches
 assets/css/style.css
@@ -8,3 +9,6 @@ assets/css/style.css.map
 
 ## Featured stuff
 featured/main.py
+
+## forum
+forum/

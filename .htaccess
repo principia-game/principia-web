@@ -1,11 +1,15 @@
 ErrorDocument 404 /404.php
 
 RewriteEngine On
+## Internal pages (rewritten to give more descriptive filenames)
+# Login
 RewriteRule ^apZodIaL1/xx.php$ /internal_login.php
-
-RewriteRule ^apZodIaL1/xxxxxx.php$ /get_level.php
-RewriteRule ^apZodIaL1/xxxxx.php$ /get_level.php
+# Get level file
 RewriteRule ^apZodIaL1/x.php$ /get_level.php
+# Get package file
+RewriteRule ^apZodIaL1/xxxx.php$ /get_package.php
+# Get package levels
+RewriteRule ^apZodIaL1/xxxxx.php$ /get_level.php
 
 RewriteRule ^apZodIaL1/get_feature.php$ /featured/fl.cache
 

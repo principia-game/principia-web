@@ -15,6 +15,14 @@ function type_to_cat($type) {
 	}
 }
 
+function cat_to_type($cat) {
+	switch ($cat) {
+		case 1:		return 'custom';
+		case 2:		return 'adventure';
+		case 3:		return 'puzzle';
+	}
+}
+
 /**
  * Create a level box.
  *

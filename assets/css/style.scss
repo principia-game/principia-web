@@ -168,3 +168,65 @@ form.reglog {
 	font-weight: bold;
 }
 
+// Play & Edit buttons \\
+.play {
+    display: inline-block;
+    color: #454;
+    font-weight: bold;
+    margin:0;
+    background-color:#ded;
+    border: none;
+	margin-right: .5em;
+	padding: 10px 20px;
+
+	&:hover {
+		box-shadow: 0 0px 4px #666;
+	}
+}
+
+.play-edit {
+    background-color: #dde;
+}
+
+.lvl-box {
+    margin-top: 1em;
+    position: relative;
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+	min-height: 340px;
+
+	.img {
+		width: 45%;
+		position: absolute;
+		overflow: hidden;
+
+		overflow-y: auto;
+		overflow-x: hidden;
+		white-space: nowrap;
+		max-height: 280px;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.info {
+		width: 50%;
+		left: 45%;
+		float: left;
+		margin-left: 1em;
+		padding: 1em;
+		position: relative;
+		background-color:#fafafa;
+	}
+}
+
+.lvl-data {
+	background-color: #fff;
+	
+	p {
+		margin:0;
+		padding:1em;
+	}
+}

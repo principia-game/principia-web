@@ -6,7 +6,6 @@ $lid = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 $level = fetch("SELECT l.*, u.id u_id, u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
-// TODO: Get platform from database.
 // TODO: Implement disabling the edit button (from enabling/disabling derivates).
 // TODO: Increment views and downloads.
 ?>
@@ -14,7 +13,7 @@ $level = fetch("SELECT l.*, u.id u_id, u.name u_name FROM levels l JOIN users u 
 <span class="misc">
 	  <?=userlink($level, 'u_') ?>
 	- <?=ucfirst(cat_to_type($level['cat'])) ?> level
-	- <?=date('M j, Y')?> from Android</span>
+	- <?=date('M j, Y')?> from <?=$level['platform'] ?></span>
 <div class="lvl-box">
 	<div class="info">
 		<div id="buttons">

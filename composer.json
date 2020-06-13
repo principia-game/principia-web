@@ -1,7 +1,8 @@
 {
     "minimum-stability": "dev",
     "require": {
-        "kaitai-io/kaitai_struct_php_runtime": "dev-master"
+        "kaitai-io/kaitai_struct_php_runtime": "dev-master",
+        "genert/bbcode": "dev-master"
     },
     "repositories": [
         {

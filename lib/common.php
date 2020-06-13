@@ -5,6 +5,8 @@ if (!file_exists('conf/config.php')) {
 
 require('conf/config.php');
 
+require('vendor/autoload.php');
+
 require('lib/level.php');
 require('lib/mysql.php');
 require('lib/user.php');

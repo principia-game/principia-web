@@ -2,7 +2,6 @@
 require('lib/common.php');
 
 // Kaitai runtime & data
-require('vendor/autoload.php');
 require('lib/kaitai/plvl.php');
 
 // Load level.

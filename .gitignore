@@ -12,3 +12,7 @@ featured/main.py
 
 ## forum
 forum/
+
+## Composer
+vendor/
+composer.lock

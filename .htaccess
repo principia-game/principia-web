@@ -15,5 +15,7 @@ RewriteRule ^apZodIaL1/xxxxx.php$ /get_level.php
 
 RewriteRule ^apZodIaL1/get_feature.php$ /featured/fl.cache
 
-RewriteRule ^user/([0-9])$ /user.php?id=$1 [L]
+RewriteRule ^user/([0-9]+)$ /user.php?id=$1 [L]
 RewriteRule ^user/(.+)$ /user.php?name=$1 [L]
+
+RewriteRule ^level/([0-9]+)$ /level.php?id=$1 [L]

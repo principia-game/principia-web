@@ -1,0 +1,12 @@
+{
+    "minimum-stability": "dev",
+    "require": {
+        "kaitai-io/kaitai_struct_php_runtime": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:kaitai-io/kaitai_struct_php_runtime.git"
+        }
+    ]
+}

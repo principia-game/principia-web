@@ -23,6 +23,14 @@ function cat_to_type($cat) {
 	}
 }
 
+function catConvert($cat) {
+	switch ((int)$cat) {
+		case 0:		return 3;
+		case 1:		return 2;
+		case 2:		return 1;
+	}
+}
+
 /**
  * Create a level box.
  *
@@ -41,4 +49,20 @@ function level($lvl) {
 	<a class="user" href="user.php?id={$lvl['u_id']}"><span class="t_user">{$lvl['u_name']}</span></a>
 </div>
 HTML;
+}
+
+/**
+ * Extract the platform from a user agent string.
+ * This is supposed to be used for getting the platform a level was uploaded from.
+ *
+ * @param string $ua User agent
+ * @return string Platform.
+ */
+function extractPlatform($ua) {
+	preg_match('/\((\w+)\)/', $ua, $matches);
+	if (isset($matches[1])) {
+		return $matches[1];
+	} else {
+		throw new Exception('No platform found (input is probably garbled)');
+	}
 }

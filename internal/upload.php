@@ -1,4 +1,5 @@
 <?php
+chdir('../');
 require('lib/common.php');
 
 // Kaitai runtime & data

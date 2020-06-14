@@ -3,17 +3,19 @@ ErrorDocument 404 /404.php
 RewriteEngine On
 ## Internal pages (rewritten to give more descriptive filenames)
 # Login
-RewriteRule ^apZodIaL1/xx.php$ /internal_login.php
+RewriteRule ^apZodIaL1/xx.php$ /internal/login.php
 # Get level file
-RewriteRule ^apZodIaL1/x.php$ /get_level.php
+RewriteRule ^apZodIaL1/x.php$ /internal/get_level.php
 # Edit level
-RewriteRule ^apZodIaL1/xxx.php$ /get_level.php
+RewriteRule ^apZodIaL1/xxx.php$ /internal/get_level.php
 # Get package file
-RewriteRule ^apZodIaL1/xxxx.php$ /get_package.php
+RewriteRule ^apZodIaL1/xxxx.php$ /internal/get_package.php
 # Get package levels
-RewriteRule ^apZodIaL1/xxxxx.php$ /get_level.php
-
+RewriteRule ^apZodIaL1/xxxxx.php$ /internal/get_level.php
+# Featured levels
 RewriteRule ^apZodIaL1/get_feature.php$ /featured/fl.cache
+# Principia Version Code
+RewriteRule ^principia-version-code$ /internal/principia-version-code
 
 RewriteRule ^user/([0-9]+)$ /user.php?id=$1 [L]
 RewriteRule ^user/(.+)$ /user.php?name=$1 [L]

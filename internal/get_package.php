@@ -1,4 +1,5 @@
 <?php
+chdir('../');
 $pkg = isset($_GET['i']) ? (int)$_GET['i'] : null;
 $pkgpath = sprintf('packages/%s.ppkg', $pkg);
 

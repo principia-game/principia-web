@@ -1,4 +1,5 @@
 <?php
+chdir('../');
 $level = isset($_GET['i']) ? (int)$_GET['i'] : null;
 $levelpath = sprintf('levels/%s.plvl', $level);
 

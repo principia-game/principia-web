@@ -6,11 +6,14 @@ $lid = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 $level = fetch("SELECT l.*, u.id u_id, u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
+query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
+$level['views']++;
+
 $bbCode = new \Genert\BBCode\BBCode();
 $bbCode->addLinebreakParser();
 
 // TODO: Implement disabling the edit button (from enabling/disabling derivates).
-// TODO: Increment views and downloads.
+// TODO: Increment downloads.
 ?>
 <h1><?=$level['title'] ?></h1>
 <span class="misc">

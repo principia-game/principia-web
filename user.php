@@ -14,11 +14,10 @@ if (isset($_GET['id'])) {
 $levels = query("SELECT l.id id,l.title title,u.id u_id,u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.author = ? ORDER BY l.id DESC",
 	[$userpagedata['id']]);
 
-printf('<h2>%s</h2>', $userpagedata['name']);
+$twig = twigloader();
+echo $twig->render('user.php', [
+	'name' => $userpagedata['name'],
+	'levels' => fetchArray($levels)
+]);
 
-while ($record = $levels->fetch()) {
-	echo level($record) . ' ';
-}
-
-echo '<br><br>';
 pagefooter();

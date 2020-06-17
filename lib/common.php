@@ -7,8 +7,10 @@ require('conf/config.php');
 
 require('vendor/autoload.php');
 
+require('lib/layout.php');
 require('lib/level.php');
 require('lib/mysql.php');
+require('lib/twig.php');
 require('lib/user.php');
 
 date_default_timezone_set('GMT');

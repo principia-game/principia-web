@@ -28,3 +28,11 @@ function result($query,$params = []) {
 	$res = query($query,$params);
 	return $res->fetchColumn();
 }
+
+function fetchArray($query) {
+	$out = [];
+	while ($record = $query->fetch()) {
+		$out[] = $record;
+	}
+	return $out;
+}

@@ -5,3 +5,6 @@ $user = '';
 $pass = '';
 
 $basepath = '/';
+
+$tplCache = 'templates/cache';
+$tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**

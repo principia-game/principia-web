@@ -14,6 +14,8 @@ RewriteRule ^apZodIaL1/xxxx.php$ /internal/get_package.php
 RewriteRule ^apZodIaL1/xxxxx.php$ /internal/get_level.php
 # Featured levels
 RewriteRule ^apZodIaL1/get_feature.php$ /featured/fl.cache
+# Upload
+RewriteRule ^upload.php$ /internal/upload.php
 # Principia Version Code
 RewriteRule ^principia-version-code$ /internal/principia-version-code
 

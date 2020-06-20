@@ -170,12 +170,12 @@ form.reglog {
 
 // Play & Edit buttons \\
 .play {
-    display: inline-block;
-    color: #454;
-    font-weight: bold;
-    margin:0;
-    background-color:#ded;
-    border: none;
+	display: inline-block;
+	color: #454;
+	font-weight: bold;
+	margin:0;
+	background-color:#ded;
+	border: none;
 	margin-right: .5em;
 	padding: 10px 20px;
 
@@ -185,15 +185,20 @@ form.reglog {
 }
 
 .play-edit {
-    background-color: #dde;
+	background-color: #dde;
+}
+
+.likemsg {
+	display: inline-block;
+	margin-right: 1em;
 }
 
 .lvl-box {
-    margin-top: 1em;
-    position: relative;
-    clear: both;
-    width: 100%;
-    overflow: hidden;
+	margin-top: 1em;
+	position: relative;
+	clear: both;
+	width: 100%;
+	overflow: hidden;
 	min-height: 340px;
 
 	.img {

@@ -1,8 +1,9 @@
--- Adminer 4.7.6 MySQL dump
+-- Adminer 4.7.7 MySQL dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
+SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 CREATE TABLE `levels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -11,12 +12,19 @@ CREATE TABLE `levels` (
   `description` text NOT NULL,
   `author` int(11) NOT NULL DEFAULT '1',
   `time` int(11) NOT NULL DEFAULT '0',
+  `likes` int(11) NOT NULL DEFAULT '0',
   `derivates` tinyint(4) NOT NULL DEFAULT '0',
   `hidden` tinyint(4) NOT NULL DEFAULT '0',
   `views` int(11) NOT NULL DEFAULT '0',
   `downloads` int(11) NOT NULL DEFAULT '0',
   `platform` varchar(128) NOT NULL DEFAULT 'Samsung Smart Fridge',
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `likes` (
+  `user` int(11) NOT NULL,
+  `level` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -44,4 +52,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2020-06-08 17:55:50
+-- 2020-06-20 12:38:38

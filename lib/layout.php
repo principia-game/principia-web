@@ -1,7 +1,7 @@
 <?php
 
 function twigloader() {
-	global $tplCache, $tplNoCache;
+	global $tplCache, $tplNoCache, $userdata, $log;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -11,6 +11,9 @@ function twigloader() {
 	]);
 	// Add principia-web specific extension
 	$twig->addExtension(new PrincipiaExtension());
+
+	$twig->addGlobal('userdata', $userdata);
+	$twig->addGlobal('log', $log);
 
 	return $twig;
 }

@@ -8,6 +8,12 @@
 		<div id="buttons">
 			<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
 			<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
+			{% if log %}
+				{% if not has_liked %}
+					<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
+				{% endif %}
+				<span class="likemsg">{{ level.likes }} players liked this.</span>
+			{% endif %}
 		</div>
 		<p>{{ level.description | raw }}</p>
 	</div>

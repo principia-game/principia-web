@@ -1,0 +1,10 @@
+<h2>Top rated levels</h2>
+<p><em>These are the top{% if levels|length >= 50 %} 50{% endif %} rated levels of all time.</em></p>
+
+{% for level in levels %}
+	{{ level(level) }}
+{% else %}
+	There are no levels. You could create one!
+{% endfor %}
+
+<br><br>

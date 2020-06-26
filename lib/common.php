@@ -3,6 +3,8 @@ if (!file_exists('conf/config.php')) {
 	die('Please read the installing instructions in the README file.');
 }
 
+$start = microtime(true);
+
 require('conf/config.php');
 
 require('vendor/autoload.php');
@@ -46,6 +48,8 @@ function pageheader() {
 }
 
 function pagefooter() {
+	global $start;
+
 	require('lib/layout/footer.php');
 }
 

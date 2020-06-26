@@ -1,11 +1,11 @@
 <?php
 
-function twigloader() {
+function twigloader($subfolder = '') {
 	global $tplCache, $tplNoCache, $userdata, $log;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
-	$loader = new \Twig\Loader\FilesystemLoader('templates');
+	$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
 	$twig = new \Twig\Environment($loader, [
 		'cache' => $doCache,
 	]);
@@ -18,3 +18,7 @@ function twigloader() {
 	return $twig;
 }
 
+function comments($cmnts, $id) {
+	$twig = twigloader('components');
+	return $twig->render('comment.php', ['cmnts' => $cmnts, 'id' => $id]);
+}

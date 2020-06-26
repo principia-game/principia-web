@@ -104,6 +104,10 @@ div.level {
 		text-decoration: none;
 		//uwu
 	}
+	.likes {
+		float: right;
+		text-align: right;
+	}
 }
 
 .comments {
@@ -125,6 +129,15 @@ div.level {
 			float: right;
 		}
 	}
+}
+
+.comment-input {
+	width: 96%;
+	margin: 4px;
+	padding-bottom: 4px;
+	border: 1px solid #bbb;
+	padding: 3px;
+	min-height: 40px;
 }
 
 // Buttons for the Latest Levels page \\

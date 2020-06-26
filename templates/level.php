@@ -12,8 +12,8 @@
 				{% if not has_liked %}
 					<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
 				{% endif %}
-				<span class="likemsg">{{ level.likes }} players liked this.</span>
 			{% endif %}
+			<span class="likemsg">{{ level.likes }} players liked this.</span>
 		</div>
 		<p>{{ level.description | raw }}</p>
 	</div>
@@ -28,3 +28,7 @@
 		Level ID: {{ level.id }}
 	</p>
 </div>
+
+<h2>Comments</h2>
+{{ comments(comments, level.id) }}
+<br>

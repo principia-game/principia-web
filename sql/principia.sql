@@ -5,6 +5,17 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `level` int(11) NOT NULL,
+  `author` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `deleted` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 CREATE TABLE `levels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cat` tinyint(4) NOT NULL DEFAULT '1',
@@ -52,4 +63,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
--- 2020-06-20 12:38:38
+-- 2020-06-28 11:55:48

@@ -31,6 +31,13 @@ function catConvert($cat) {
 	}
 }
 
+function cmtTypeToNum($type) {
+	switch ($type) {
+		case 'level':	return 1;
+		case 'news':	return 2;
+	}
+}
+
 /**
  * Create a level box.
  *

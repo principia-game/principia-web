@@ -1,6 +1,6 @@
 <form action="/_post_comment.php" method="POST">
 	<input type="hidden" name="id" value="{{ id }}">
-	<input type="hidden" name="t" value="lvl">
+	<input type="hidden" name="t" value="{{ type }}">
 	<textarea name="comment" class="comment-input"></textarea>
 	<br><input type="submit" value="Post" {% if not log%}disabled{% endif %}></input>
 	{% if not log %}You need to login to comment.{% endif %}

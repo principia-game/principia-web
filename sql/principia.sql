@@ -7,6 +7,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` tinyint(4) NOT NULL DEFAULT '1',
   `level` int(11) NOT NULL,
   `author` int(11) NOT NULL,
   `time` int(11) NOT NULL,

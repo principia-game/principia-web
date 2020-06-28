@@ -25,7 +25,7 @@ $bbCode = new \Genert\BBCode\BBCode();
 $bbCode->addLinebreakParser();
 $level['description'] = $bbCode->convertToHtml($level['description']);
 
-$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.level = ? ORDER BY c.time DESC", [$lid]);
+$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
 
 // TODO: Implement disabling the edit button (from enabling/disabling derivates).
 // TODO: Increment downloads.

@@ -30,5 +30,5 @@
 </div>
 
 <h2>Comments</h2>
-{{ comments(comments, level.id) }}
+{{ comments(comments, 'level', level.id) }}
 <br>

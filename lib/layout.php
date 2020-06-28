@@ -18,7 +18,7 @@ function twigloader($subfolder = '') {
 	return $twig;
 }
 
-function comments($cmnts, $id) {
+function comments($cmnts, $type, $id) {
 	$twig = twigloader('components');
-	return $twig->render('comment.php', ['cmnts' => $cmnts, 'id' => $id]);
+	return $twig->render('comment.php', ['cmnts' => $cmnts, 'type' => $type, 'id' => $id]);
 }

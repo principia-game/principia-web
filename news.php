@@ -12,10 +12,13 @@ if ($newsid) {
 	if (!isset($newsdata['redirect'])) {
 		$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
 
+		$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
+
 		echo $twig->render('news.php', [
 			'newsid' => $newsid,
 			'news' => $newsdata,
-			'time' => $time
+			'time' => $time,
+			'comments' => $comments
 		]);
 	} else {
 		header("Location: ".$newsdata['redirect']);

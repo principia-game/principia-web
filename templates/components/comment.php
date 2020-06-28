@@ -2,7 +2,8 @@
 	<input type="hidden" name="id" value="{{ id }}">
 	<input type="hidden" name="t" value="lvl">
 	<textarea name="comment" class="comment-input"></textarea>
-	<br><input type="submit" value="Post"></input>
+	<br><input type="submit" value="Post" {% if not log%}disabled{% endif %}></input>
+	{% if not log %}You need to login to comment.{% endif %}
 </form>
 <div class="comments">
 	{% for cmnt in cmnts %}

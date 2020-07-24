@@ -1,11 +1,28 @@
 <?php
 require('lib/common.php');
 
-pageheader();
-
 $newsid = (isset($_GET['id']) ? $_GET['id'] : 0);
 
+if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 1) {
+	if (isset($_POST['ApOsTaL'])) {
+		query("INSERT INTO news (title, text, time, author_userid) VALUES (?,?,?,?)",
+			[$_POST['title'], $_POST['text'], time(), $userdata['id']]);
+
+		$insertid = result("SELECT LAST_INSERT_ID()");
+		header("Location: ./news.php?id=$insertid");
+	}
+
+	$twig = twigloader('admin');
+
+	pageheader();
+	echo $twig->render('news_add.php');
+	pagefooter();
+	die();
+}
+
 $twig = twigloader();
+
+pageheader();
 
 if ($newsid) {
 	$newsdata = fetch("SELECT * FROM news WHERE id = ?", [$newsid]);

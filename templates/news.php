@@ -7,7 +7,8 @@
 	{{ comments(comments, 'news', news.id) }}
 	<br>
 {% else %}
-	<h2>Latest News</h2>
+	<h2 class="header">Latest News
+		{% if userdata.powerlevel > 1 %}<a href="news.php?new">New</a>{% endif %}</h2>
 	<ul>
 		{% for new in news %}
 			<li><a href="news.php?id={{ new.id }}">{{ new.title }}</li>

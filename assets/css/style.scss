@@ -61,6 +61,10 @@ ul.menu {
 		background-color:#fff;
 	}
 
+	a.download {
+		color: #20aa20;
+	}
+
 	li {
 		list-style-type: none;
 		float: left;
@@ -242,9 +246,26 @@ form.reglog {
 
 .lvl-data {
 	background-color: #fff;
-	
+
 	p {
 		margin:0;
 		padding:1em;
 	}
+}
+
+.dl {
+	border-collapse: collapse;
+
+	td {
+		border: 1px solid black;
+		padding: 7px;
+	}
+}
+
+.noborder {
+	border: 0;
+}
+
+.center {
+	text-align: center;
 }

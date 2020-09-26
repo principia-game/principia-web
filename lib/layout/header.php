@@ -14,7 +14,8 @@
 				<li><a href="selected.php" class="btn">Selected</a></li>
 				<li><a href="top.php" class="btn">Top</a></li>
 				<li><a href="latest.php" class="btn">New</a></li>
-				<li><a href="chat.php" class="btn">Chat</a></li>
+				<!--<li><a href="chat.php" class="btn">Chat</a></li>-->
+				<li><a href="download.php" class="btn download">Download</a></li>
 			</ul>
 			<ul class="menu right">
 				<li><em><?=($log ? userlink($userdata) : '<a href="login.php">Login</a>') ?></em></li>

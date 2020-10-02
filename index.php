@@ -1,6 +1,5 @@
 <?php
 require('lib/common.php');
-pageheader();
 
 $newsdata = query("SELECT * FROM news ORDER BY id DESC LIMIT 5");
 
@@ -18,5 +17,3 @@ echo $twig->render('index.php', [
 	'custom_levels' => fetchArray($latestcustom),
 	'adventure_levels' => fetchArray($latestadvent)
 ]);
-
-pagefooter();

@@ -1,6 +1,5 @@
 <?php
 require('lib/common.php');
-pageheader();
 
 $type = (isset($_GET['type']) ? $_GET['type'] : 'all');
 
@@ -12,5 +11,3 @@ echo $twig->render('latest.php', [
 	'type' => $type,
 	'levels' => fetchArray($levels)
 ]);
-
-pagefooter();

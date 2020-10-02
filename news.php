@@ -14,15 +14,11 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 1) {
 
 	$twig = twigloader('admin');
 
-	pageheader();
 	echo $twig->render('news_add.php');
-	pagefooter();
 	die();
 }
 
 $twig = twigloader();
-
-pageheader();
 
 if ($newsid) {
 	$newsdata = fetch("SELECT * FROM news WHERE id = ?", [$newsid]);
@@ -48,5 +44,3 @@ if ($newsid) {
 		'news' => fetchArray($newsdata)
 	]);
 }
-
-pagefooter();

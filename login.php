@@ -11,9 +11,5 @@ if (isset($_POST['action'])) {
 	header('Location: ./');
 }
 
-pageheader();
-
 $twig = twigloader();
 echo $twig->render('login.php');
-
-pagefooter();

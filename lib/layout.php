@@ -1,7 +1,7 @@
 <?php
 
 function twigloader($subfolder = '') {
-	global $tplCache, $tplNoCache, $userdata, $log;
+	global $tplCache, $tplNoCache, $userdata, $log, $basepath;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -14,6 +14,7 @@ function twigloader($subfolder = '') {
 
 	$twig->addGlobal('userdata', $userdata);
 	$twig->addGlobal('log', $log);
+	$twig->addGlobal('basepath', $basepath);
 
 	return $twig;
 }

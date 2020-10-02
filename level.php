@@ -31,8 +31,6 @@ $comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users
 // TODO: Increment downloads.
 $twig = twigloader();
 
-pageheader();
-
 echo $twig->render('level.php', [
 	'lid' => $lid,
 	'level' => $level,
@@ -40,5 +38,3 @@ echo $twig->render('level.php', [
 	'bbCode' => $bbCode,
 	'comments' => fetchArray($comments)
 ]);
-
-pagefooter();

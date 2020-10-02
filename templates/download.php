@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 <h2>Download Principia</h2>
 
 <table class="dl">
@@ -22,3 +25,4 @@
 </table>
 
 <p>For older versions please see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/edit?usp=sharing" target="_blank">Bithack Game Archive Index</a>.</p>
+	{% endblock %}

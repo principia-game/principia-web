@@ -22,11 +22,5 @@ if (isset($_POST['action'])) {
 	}
 }
 
-pageheader();
-
-echo $error;
-
 $twig = twigloader();
-echo $twig->render('register.php');
-
-pagefooter();
+echo $twig->render('register.php', ['error' => $error]);

@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 <h2>Latest levels</h2>
 <div class="latest-buttons">
 	<a {% if type == 'custom' %}class="sel"{% endif %} href="latest.php?type=custom">Custom</a>
@@ -13,3 +16,4 @@
 {% endfor %}
 
 <br><br>
+	{% endblock %}

@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Principia - Home</title>
-		<base href="<?=$basepath ?>">
+		<title>Principia - {% block title %}Home{% endblock %}</title>
+		<base href="{{ basepath }}">
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	</head>
@@ -18,7 +18,14 @@
 				<li><a href="download.php" class="btn download">Download</a></li>
 			</ul>
 			<ul class="menu right">
-				<li><em><?=($log ? userlink($userdata) : '<a href="login.php">Login</a>') ?></em></li>
+				<li><em>{{ log ? userlink(userdata) : '<a href="login.php">Login</a>' }}</em></li>
 			</ul>
 		</div>
-		<div class="home content">
+		<div class="home content">{% block content %}{% endblock %}</div>
+		<div class="footer">
+			<a href="about">About</a>
+			{# - <?php printf("%dKB used @ %1.3f secs", memory_get_usage(false) / 1024, microtime(true) - $start) ?><br> #}
+		</div>
+		<script type="text/javascript" src="assets/base.js"></script>
+	</body>
+</html>

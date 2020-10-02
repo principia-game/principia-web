@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 {% if newsid %}
 	<h2>{{ news.title }}</h2>
 	<p><em>Published on the {{ time }} (GMT)</em></p>
@@ -17,3 +20,4 @@
 		{% endfor %}
 	<ul>
 {% endif %}
+	{% endblock %}

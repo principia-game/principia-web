@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 <h2>{{ name }}</h2>
 
 {% for level in levels %}
@@ -7,3 +10,4 @@
 {% endfor %}
 
 <br><br>
+	{% endblock %}

@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 {% if just_registered %}
 	<div class="header_message">You've been successfully registered!</div>
 {% endif %}
@@ -39,3 +42,4 @@
 {% endfor %}
 </div>
 <br>
+	{% endblock %}

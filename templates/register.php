@@ -1,3 +1,8 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
+<div class="header_message">{{ error }}</div>
+
 <h2>Register</h2>
 
 <form class="reglog" method="POST">
@@ -19,3 +24,4 @@
 
 	<p><input type="submit" class="submit" name="action" value="Register"></p>
 </form>
+	{% endblock %}

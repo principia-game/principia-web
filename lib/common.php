@@ -39,17 +39,3 @@ if ($log) {
 	// This should be the place for default options for logged out users,
 	// but at the moment, it's empty.
 }
-
-
-function pageheader() {
-	global $userdata, $log, $basepath;
-
-	require('lib/layout/header.php');
-}
-
-function pagefooter() {
-	global $start;
-
-	require('lib/layout/footer.php');
-}
-

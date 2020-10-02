@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 <h2>New news article</h2>
 
 <form action="/news.php?new=1" method="POST">
@@ -8,3 +11,4 @@
 
 	<p><input type="submit" value="Post"></input></p>
 </form>
+	{% endblock %}

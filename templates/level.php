@@ -1,3 +1,6 @@
+{% extends "_layout.php" %}
+
+	{% block content %}
 <h1>{{ level.title }}</h1>
 <span class="misc">
 	  {{ userlink(level, 'u_') }}
@@ -32,3 +35,4 @@
 <h2>Comments</h2>
 {{ comments(comments, 'level', level.id) }}
 <br>
+	{% endblock %}

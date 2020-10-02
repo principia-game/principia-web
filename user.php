@@ -1,6 +1,5 @@
 <?php
 include('lib/common.php');
-pageheader();
 
 if (isset($_GET['id'])) {
 	$userpagedata = fetch("SELECT * FROM users WHERE id = ?", [$_GET['id']]);
@@ -19,5 +18,3 @@ echo $twig->render('user.php', [
 	'name' => $userpagedata['name'],
 	'levels' => fetchArray($levels)
 ]);
-
-pagefooter();

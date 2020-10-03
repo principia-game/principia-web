@@ -14,7 +14,7 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 1) {
 
 	$twig = twigloader('admin');
 
-	echo $twig->render('news_add.php');
+	echo $twig->render('news_add.twig');
 	die();
 }
 
@@ -27,7 +27,7 @@ if ($newsid) {
 
 		$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
 
-		echo $twig->render('news.php', [
+		echo $twig->render('news.twig', [
 			'newsid' => $newsid,
 			'news' => $newsdata,
 			'time' => $time,
@@ -39,7 +39,7 @@ if ($newsid) {
 } else {
 	$newsdata = query("SELECT id,title FROM news ORDER BY id DESC");
 
-	echo $twig->render('news.php', [
+	echo $twig->render('news.twig', [
 		'newsid' => $newsid,
 		'news' => fetchArray($newsdata)
 	]);

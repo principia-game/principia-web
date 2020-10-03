@@ -11,7 +11,7 @@ $justRegistered = (isset($_GET['rd']) ? true : false);
 
 $twig = twigloader();
 
-echo $twig->render('index.php', [
+echo $twig->render('index.twig', [
 	'just_registered' => $justRegistered,
 	'news' => fetchArray($newsdata),
 	'custom_levels' => fetchArray($latestcustom),

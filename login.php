@@ -12,4 +12,4 @@ if (isset($_POST['action'])) {
 }
 
 $twig = twigloader();
-echo $twig->render('login.php');
+echo $twig->render('login.twig');

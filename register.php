@@ -23,4 +23,4 @@ if (isset($_POST['action'])) {
 }
 
 $twig = twigloader();
-echo $twig->render('register.php', ['error' => $error]);
+echo $twig->render('register.twig', ['error' => $error]);

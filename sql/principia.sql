@@ -25,7 +25,7 @@ CREATE TABLE `levels` (
   `author` int(11) NOT NULL DEFAULT '1',
   `time` int(11) NOT NULL DEFAULT '0',
   `likes` int(11) NOT NULL DEFAULT '0',
-  `derivates` tinyint(4) NOT NULL DEFAULT '0',
+  `derivatives` tinyint(4) NOT NULL DEFAULT '0',
   `hidden` tinyint(4) NOT NULL DEFAULT '0',
   `views` int(11) NOT NULL DEFAULT '0',
   `downloads` int(11) NOT NULL DEFAULT '0',

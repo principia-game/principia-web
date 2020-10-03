@@ -10,7 +10,9 @@
 	<div class="info">
 		<div id="buttons">
 			<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
-			<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
+			{% if level.derivatives %}
+				<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
+			{% endif %}
 			{% if log %}
 				{% if not has_liked %}
 					<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>

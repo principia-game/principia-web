@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}Download{% endblock %}
+
 	{% block content %}
 <h2>Download Principia</h2>
 

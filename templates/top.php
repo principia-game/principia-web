@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}Top rated levels{% endblock %}
+
 	{% block content %}
 <h2>Top rated levels</h2>
 <p><em>These are the top{% if levels|length >= 50 %} 50{% endif %} rated levels of all time.</em></p>

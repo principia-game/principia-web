@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}Login{% endblock %}
+
 	{% block content %}
 <h2>Login</h2>
 <form class="reglog" method="POST">

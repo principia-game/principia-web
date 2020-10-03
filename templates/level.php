@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}{{ level.title }}{% endblock %}
+
 	{% block content %}
 <h1>{{ level.title }}</h1>
 <span class="misc">

@@ -14,7 +14,7 @@ $levels = query("SELECT l.id id,l.title title,u.id u_id,u.name u_name FROM level
 	[$userpagedata['id']]);
 
 $twig = twigloader();
-echo $twig->render('user.php', [
+echo $twig->render('user.twig', [
 	'name' => $userpagedata['name'],
 	'levels' => fetchArray($levels)
 ]);

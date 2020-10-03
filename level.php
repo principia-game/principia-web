@@ -30,7 +30,7 @@ $comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users
 // TODO: Increment downloads.
 $twig = twigloader();
 
-echo $twig->render('level.php', [
+echo $twig->render('level.twig', [
 	'lid' => $lid,
 	'level' => $level,
 	'has_liked' => $hasLiked,

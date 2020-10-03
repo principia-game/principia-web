@@ -21,5 +21,5 @@ function twigloader($subfolder = '') {
 
 function comments($cmnts, $type, $id) {
 	$twig = twigloader('components');
-	return $twig->render('comment.php', ['cmnts' => $cmnts, 'type' => $type, 'id' => $id]);
+	return $twig->render('comment.twig', ['cmnts' => $cmnts, 'type' => $type, 'id' => $id]);
 }

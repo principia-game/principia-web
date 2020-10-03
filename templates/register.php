@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}Register{% endblock %}
+
 	{% block content %}
 <div class="header_message">{{ error }}</div>
 

@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}New news article{% endblock %}
+
 	{% block content %}
 <h2>New news article</h2>
 

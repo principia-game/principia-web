@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}News{% endblock %}
+
 	{% block content %}
 {% if newsid %}
 	<h2>{{ news.title }}</h2>

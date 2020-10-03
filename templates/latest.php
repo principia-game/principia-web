@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}Latest levels{% endblock %}
+
 	{% block content %}
 <h2>Latest levels</h2>
 <div class="latest-buttons">

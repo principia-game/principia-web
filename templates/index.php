@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}Home{% endblock %}
+
 	{% block content %}
 {% if just_registered %}
 	<div class="header_message">You've been successfully registered!</div>

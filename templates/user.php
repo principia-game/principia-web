@@ -1,5 +1,7 @@
 {% extends "_layout.php" %}
 
+{% block title %}{{ name }}{% endblock %}
+
 	{% block content %}
 <h2>{{ name }}</h2>
 

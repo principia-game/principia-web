@@ -11,5 +11,11 @@ if (isset($_POST['action'])) {
 	header('Location: ./');
 }
 
+if (isset($_POST['logout'])) {
+	setcookie('user', '');
+	setcookie('passenc', '');
+	header('Location: ./');
+}
+
 $twig = twigloader();
 echo $twig->render('login.twig');

@@ -21,5 +21,8 @@
 	This user doesn't have any uploaded levels.
 {% endfor %}
 
+{% set le_url = 'user.php?id=' ~ id ~ '&page=%s' %}
+{{ pagination(level_count, glob_lpp, le_url, page) }}
+
 <br><br>
 	{% endblock %}

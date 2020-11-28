@@ -1,7 +1,7 @@
 <?php
 
 function twigloader($subfolder = '') {
-	global $tplCache, $tplNoCache, $userdata, $log, $basepath;
+	global $tplCache, $tplNoCache, $userdata, $log, $basepath, $lpp;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -15,6 +15,7 @@ function twigloader($subfolder = '') {
 	$twig->addGlobal('userdata', $userdata);
 	$twig->addGlobal('log', $log);
 	$twig->addGlobal('basepath', $basepath);
+	$twig->addGlobal('glob_lpp', $lpp);
 
 	return $twig;
 }
@@ -22,4 +23,9 @@ function twigloader($subfolder = '') {
 function comments($cmnts, $type, $id) {
 	$twig = twigloader('components');
 	return $twig->render('comment.twig', ['cmnts' => $cmnts, 'type' => $type, 'id' => $id]);
+}
+
+function pagination($levels, $lpp, $url, $current) {
+	$twig = twigloader('components');
+	return $twig->render('pagination.twig', ['levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current]);
 }

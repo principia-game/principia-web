@@ -269,3 +269,22 @@ form.reglog {
 .center {
 	text-align: center;
 }
+
+// Pagination \\
+.pagination {
+	margin-top: 1em;
+	font-size: 14pt;
+
+	&:before {
+		content: "Pages: ";
+	}
+
+	span {
+		font-weight: bold;
+		margin-right: 5px;
+
+		a {
+			color: #0000ff;
+		}
+	}
+}

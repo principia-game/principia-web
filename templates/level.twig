@@ -3,6 +3,11 @@
 {% block title %}{{ level.title }}{% endblock %}
 
 	{% block content %}
+{% if already_entered %}
+	<div class="header_message">You've already entered this level into the <b>{{ contest_entered }}</b> contest.</div>
+{% elseif contest_entered %}
+	<div class="header_message">Your level has been successfully entered into the <b>{{ contest_entered }}</b> contest!</div>
+{% endif %}
 <h1>{{ level.title }}</h1>
 <span class="misc">
 	  {{ userlink(level, 'u_') }}
@@ -34,6 +39,15 @@
 		Downloads: {{ level.downloads }}
 		Level ID: {{ level.id }}
 	</p>
+	{% if userdata.id == level.author %}
+		<form method="POST" style="display:inline-block;">
+			<p>Add to contest:
+			<select name="addtocontest" onchange="this.form.submit()">
+				<option value="-1" selected>- None selected -</option>
+				{% for contest in contests %}<option value="{{ contest.id }}">{{ contest.title }}</option>{% endfor %}
+			</select></p>
+		</form>
+	{% endif %}
 </div>
 
 <h2>Comments</h2>

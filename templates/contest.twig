@@ -1,0 +1,35 @@
+{% extends "_layout.twig" %}
+
+{% block title %}{{ contest.title }}{% endblock %}
+
+	{% block content %}
+<h1>{{ contest.title }}</h1>
+
+<img src="{{ contest.image }}" style="float: right;max-width: 50%;">
+
+<p>{{ contest.description | raw }}</p>
+
+<h2>Entries</h2>
+{% for level in levels %}
+	{% set ranking = '' %}
+	{% if not contest.active and not level.ranking == 0 %}
+		{% if level.ranking == 8 %}
+			{% set ranking = 'WINNER' %}
+		{% elseif level.ranking == 6 %}
+			{% set ranking = '2ND PLACE' %}
+		{% elseif level.ranking == 4 %}
+			{% set ranking = '3RD PLACE' %}
+		{% elseif level.ranking == 2 %}
+			{% set ranking = 'HIGHLIGHTED' %}
+		{% endif %}
+	{% endif %}
+
+	{{ level(level, ranking) }}
+{% else %}
+	There are no entries yet. You could submit one!
+{% endfor %}
+
+<h2>Comments</h2>
+{{ comments(comments, 'contest', contest.id) }}
+<br>
+	{% endblock %}

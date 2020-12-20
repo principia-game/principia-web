@@ -35,6 +35,7 @@ function cmtTypeToNum($type) {
 	switch ($type) {
 		case 'level':	return 1;
 		case 'news':	return 2;
+		case 'contest':	return 3;
 	}
 }
 
@@ -44,12 +45,15 @@ function cmtTypeToNum($type) {
  * @param array $lvl Level information. For an example list of fields, check $lvl_example.
  * @return string Created level box.
  */
-function level($lvl) {
+function level($lvl, $featuredtext = '') {
+	// TODO: rewrite this entire function...
+	$featured = ($featuredtext ? '<span class="featured small">'.$featuredtext.'</span>' : '');
 	return <<<HTML
 <div class="level" id="l-{$lvl['id']}">
 	<a class="lvlbox_top" href="level.php?id={$lvl['id']}">
 		<div>
 			<img src="assets/placeholder.png" id="icon">
+			$featured
 			<span>{$lvl['title']}</span>
 		</div>
 	</a>

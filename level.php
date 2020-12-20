@@ -5,6 +5,14 @@ $lid = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 $level = fetch("SELECT l.*, u.id u_id, u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
+if (isset($_POST['addtocontest'])) {
+	$contestEntered = result("SELECT title FROM contests WHERE id = ?", [$_POST['addtocontest']]);
+	$alreadyEntered = (result("SELECT COUNT(*) FROM contests_entries WHERE contest = ? AND level = ?", [$_POST['addtocontest'], $lid]) ? true : false);
+	if ($contestEntered && !$alreadyEntered) {
+		query("INSERT INTO contests_entries (contest, level) VALUES (?, ?)", [$_POST['addtocontest'], $lid]);
+	}
+}
+
 if ($log) {
 	$hasLiked = result("SELECT COUNT(*) FROM likes WHERE user = ? AND level = ?", [$userdata['id'], $lid]) == 1 ? true : false;
 	if (isset($_GET['vote'])) {
@@ -25,6 +33,8 @@ $bbCode = new \Genert\BBCode\BBCode();
 $bbCode->addLinebreakParser();
 $level['description'] = $bbCode->convertToHtml($level['description']);
 
+$contests = query("SELECT id,title,active FROM contests WHERE active = 1");
+
 $comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
 
 // TODO: Increment downloads.
@@ -35,5 +45,8 @@ echo $twig->render('level.twig', [
 	'level' => $level,
 	'has_liked' => $hasLiked,
 	'bbCode' => $bbCode,
+	'contests' => fetchArray($contests),
+	'contest_entered' => (isset($contestEntered) ? $contestEntered : null),
+	'already_entered' => (isset($alreadyEntered) ? $alreadyEntered : false),
 	'comments' => fetchArray($comments)
 ]);

@@ -6,6 +6,7 @@ packages/
 ## SCSS caches
 assets/css/style.css
 assets/css/style.css.map
+assets/css/.sass-cache
 
 ## Featured stuff
 featured/main.py

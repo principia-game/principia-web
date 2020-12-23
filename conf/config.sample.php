@@ -10,3 +10,6 @@ $tplCache = 'templates/cache';
 $tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
 
 $lpp = 20;
+
+// Stub function to put special information in the footer.
+function customInfo() { }

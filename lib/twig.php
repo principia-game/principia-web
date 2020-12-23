@@ -6,7 +6,8 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFunction('level', 'level', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('userlink', 'userlink', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('comments', 'comments', ['is_safe' => ['html']]),
-			new \Twig\TwigFunction('pagination', 'pagination', ['is_safe' => ['html']])
+			new \Twig\TwigFunction('pagination', 'pagination', ['is_safe' => ['html']]),
+			new \Twig\TwigFunction('custom_info', 'customInfo', ['is_safe' => ['html']])
 		];
 	}
 	public function getFilters() {

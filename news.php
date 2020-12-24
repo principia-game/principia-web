@@ -23,6 +23,9 @@ if ($newsid) {
 	if (!isset($newsdata['redirect'])) {
 		$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
 
+		$markdown = new Parsedown();
+		$newsdata['text'] = $markdown->text($newsdata['text']);
+
 		$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
 
 		echo $twig->render('news.twig', [

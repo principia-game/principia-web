@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
 	die("no user specified");
 }
 
-$page = (isset($_GET['page']) ? $_GET['page'] : 1);
+$page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? $_GET['page'] : 1);
 $forceuser = isset($_GET['forceuser']);
 
 $limit = sprintf("LIMIT %s,%s", (($page - 1) * $lpp), $lpp);

@@ -29,3 +29,8 @@ function pagination($levels, $lpp, $url, $current) {
 	$twig = twigloader('components');
 	return $twig->render('pagination.twig', ['levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current]);
 }
+
+function error($title, $message) {
+	$twig = twigloader();
+	return $twig->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
+}

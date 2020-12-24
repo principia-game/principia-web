@@ -1,5 +1,4 @@
 <?php
 require('lib/common.php');
 
-$twig = twigloader();
-echo $twig->render('404.twig');
+echo error('404', "The requested page wasn't found.");

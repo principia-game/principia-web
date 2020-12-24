@@ -1,0 +1,8 @@
+{% extends "_layout.twig" %}
+
+{% block title %}{{ err_title }}{% endblock %}
+
+	{% block content %}
+<h2 style="margin-top:20px;font-size:3.0em;text-align:center;">{{ err_title }}</h2>
+<p style="text-align:center;">{{ err_message }}</p>
+	{% endblock %}

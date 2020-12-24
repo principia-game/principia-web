@@ -17,6 +17,19 @@ require('lib/user.php');
 
 date_default_timezone_set('GMT');
 
+$ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);
+if ($ipban) {
+	http_response_code(403);
+
+	printf(
+		"<p>Your IP adress has been banned.</p>".
+		"<p><strong>Reason:</strong> %s</p>".
+		"<p>If you believe this is in error, send an email to %s to appeal.</p>",
+	$ipban['reason'], $_SERVER['SERVER_ADMIN']);
+
+	die();
+}
+
 // Authentication code.
 if (!empty($_COOKIE['user']) || !empty($_COOKIE['passenc'])) {
 	$pass_db = result("SELECT password FROM users WHERE id = ?", [$_COOKIE['user']]);

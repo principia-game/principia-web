@@ -34,6 +34,12 @@ CREATE TABLE `contests_entries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+CREATE TABLE `ipbans` (
+  `ip` varchar(16) NOT NULL DEFAULT '0.0.0.0',
+  `reason` varchar(255) NOT NULL DEFAULT '<em>No reason specified</em>'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 CREATE TABLE `levels` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `cat` tinyint(4) NOT NULL DEFAULT 1,

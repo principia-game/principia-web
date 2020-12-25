@@ -1,9 +1,9 @@
 <?php
 include('lib/common.php');
 
-if (isset($_POST['action'])) {
-	$error = '';
+$error = '';
 
+if (isset($_POST['action'])) {
 	$name = (isset($_POST['name']) ? $_POST['name'] : null);
 	$mail = (isset($_POST['mail']) ? $_POST['mail'] : null);
 	$pass = (isset($_POST['pass']) ? $_POST['pass'] : null);

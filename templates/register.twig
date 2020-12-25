@@ -3,7 +3,9 @@
 {% block title %}Register{% endblock %}
 
 	{% block content %}
-<div class="header_message">{{ error }}</div>
+{% if error %}
+	<div class="header_message">{{ error }}</div>
+{% endif %}
 
 <h2>Register</h2>
 

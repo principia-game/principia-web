@@ -10,6 +10,9 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 	$logindata = fetch("SELECT id, password FROM users WHERE name = ?", [$_POST['username']]);
 
 	if (password_verify($_POST['password'], $logindata['password'])) {
+		setcookie('user', $logindata['id'], 2147483647, '/');
+		setcookie('passenc', base64_encode($_POST['password']), 2147483647, '/');
+
 		echo '100'; // Logged in successfully
 	} else {
 		echo '103'; // Invalid username or password

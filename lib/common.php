@@ -31,7 +31,7 @@ if ($ipban) {
 }
 
 // Authentication code.
-if (!empty($_COOKIE['user']) || !empty($_COOKIE['passenc'])) {
+if (isset($_COOKIE['user']) || isset($_COOKIE['passenc'])) {
 	$pass_db = result("SELECT password FROM users WHERE id = ?", [$_COOKIE['user']]);
 
 	if (password_verify(base64_decode($_COOKIE['passenc']), $pass_db)) {

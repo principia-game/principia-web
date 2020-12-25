@@ -24,8 +24,8 @@
 	],
 	"gettingstarted_list": [
 		{
-			"name": "Principia Wiki Archive (archive.org)",
-			"link": "https://web.archive.org/web/20161006204515/http://wiki.principiagame.com/wiki/Main_Page"
+			"name": "Principia Wiki Archive",
+			"link": "https://principia-preservation-project.github.io/Wiki-archive/"
 		}
 	]
 }

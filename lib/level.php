@@ -52,7 +52,7 @@ function level($lvl, $featuredtext = '') {
 <div class="level" id="l-{$lvl['id']}">
 	<a class="lvlbox_top" href="level.php?id={$lvl['id']}">
 		<div>
-			<img src="internal/get_thumb.php?i={$lvl['id']}" id="icon">
+			<img src="levels/thumbs/{$lvl['id']}.jpg" id="icon">
 			$featured
 			<span>{$lvl['title']}</span>
 		</div>

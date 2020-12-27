@@ -2,6 +2,7 @@
 conf/config.php
 levels/
 packages/
+templates/cache/
 
 ## SCSS caches
 assets/css/style.css

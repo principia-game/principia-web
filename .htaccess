@@ -28,7 +28,6 @@ RewriteRule ^level/([0-9]+)$ /level.php?id=$1 [L]
 # Restrict some stuff normal people shouldn't touch
 RewriteRule ^(.git) - [F,L]
 RewriteRule ^(conf) - [F,L]
-RewriteRule ^(featured) - [F,L]
 RewriteRule ^(lib) - [F,L]
 RewriteRule ^(sql) - [F,L]
 RewriteRule ^(templates) - [F,L]

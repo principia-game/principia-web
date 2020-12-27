@@ -5,6 +5,7 @@ $thumbpath = sprintf('levels/thumbs/%s.jpg', $thumb);
 
 if (!$thumb || !file_exists($thumbpath)) {
 	echo readfile('assets/placeholder.png');
+	die();
 }
 
 echo readfile($thumbpath);

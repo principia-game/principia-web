@@ -1,0 +1,11 @@
+{% extends "_layout.twig" %}
+
+{% block title %}Chat{% endblock %}
+
+	{% block content %}
+<h2>Chat</h2>
+<p>Welcome to the Principia chat. Please use the <a href="forum/">forum</a> for bigger discussions and questions.</p>
+
+{{ comments(comments, 'chat', '1') }}
+<br>
+	{% endblock %}

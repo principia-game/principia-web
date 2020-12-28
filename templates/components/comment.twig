@@ -4,7 +4,7 @@
 	<textarea name="comment" class="comment-input"></textarea>
 	<br><input type="submit" value="Post" {% if not log%}disabled{% endif %}></input>
 	{% if not log %}You need to login to comment.{% endif %}
-</form>
+</form><br>
 <div class="comments">
 	{% for cmnt in cmnts %}
 		<div class="comment-entry" id="comment-67712">

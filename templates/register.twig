@@ -10,6 +10,8 @@
 <h2>Register</h2>
 
 <form class="reglog" method="POST">
+	<input type="hidden" name="uwu" value="{{ current_captcha.id }}">
+
 	<p>
 		<span>Username:</span>
 		<input type="text" name="name" size="25" maxlength="25">
@@ -24,6 +26,12 @@
 	</p><p>
 		<span>Password again:</span>
 		<input type="password" name="pass2" size="25" maxlength="32">
+	</p>
+
+	<p>
+		<span>Security question:</span>
+		<input type="text" name="jupiter" size="25" maxlength="32">
+		<em>{{ current_captcha.question }}</em>
 	</p>
 
 	<p><input type="submit" class="submit" name="action" value="Register"></p>

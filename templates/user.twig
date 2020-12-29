@@ -8,7 +8,7 @@
 {% if userdata.id == id and not forceuser %}
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
-<p><a href="javascript:document.logout.submit()">Log out</a></p>
+<p><a href="user.php?id={{ id }}&darkmode">Toggle hacky dark mode</a> (Experimental!) | <a href="javascript:document.logout.submit()">Log out</a></p>
 
 <form action="login.php" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">

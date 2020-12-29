@@ -18,6 +18,13 @@ $levels = query("SELECT l.id id,l.title title,u.id u_id,u.name u_name FROM level
 	[$userpagedata['id']]);
 $count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ?", [$userpagedata['id']]);
 
+if ($log && isset($_GET['darkmode'])) {
+	$newopt = ($userdata['darkmode'] ? 0 : 1);
+
+	query("UPDATE users SET darkmode = ? WHERE id = ?", [$newopt, $userdata['id']]);
+	$userdata['darkmode'] = $newopt;
+}
+
 $twig = twigloader();
 echo $twig->render('user.twig', [
 	'id' => $_GET['id'],

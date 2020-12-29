@@ -5,6 +5,7 @@
 		<title>Principia - {% block title %}Home{% endblock %}</title>
 		<base href="{{ basepath }}">
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
+		{% if userdata.darkmode %}<link rel="stylesheet" href="assets/css/darkmodehack.css" type="text/css">{% endif %}
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	</head>
 	<body>

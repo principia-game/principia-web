@@ -16,4 +16,4 @@ if (!$nType = cmtTypeToNum($type)) {
 query("INSERT INTO comments (type, level, author, time, message) VALUES (?,?,?,?,?)",
 	[$nType, $id, $userdata['id'], time(), $message]);
 
-header('Location: /'.$type.'.php?id='.$id);
+redirect(sprintf('/%s.php?id=%s', $type, $id));

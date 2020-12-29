@@ -1,6 +1,14 @@
 <?php
 include('lib/common.php');
 
+if (isset($_POST['logout'])) {
+	setcookie('user', '');
+	setcookie('passenc', '');
+	redirect('./');
+}
+
+if ($log) redirect('./');
+
 if (isset($_POST['action'])) {
 	$logindata = fetch("SELECT id,password FROM users WHERE name = ?", [$_POST['name']]);
 
@@ -8,13 +16,7 @@ if (isset($_POST['action'])) {
 		setcookie('user', $logindata['id'], 2147483647);
 		setcookie('passenc', base64_encode($_POST['pass']), 2147483647);
 	}
-	header('Location: ./');
-}
-
-if (isset($_POST['logout'])) {
-	setcookie('user', '');
-	setcookie('passenc', '');
-	header('Location: ./');
+	redirect('./');
 }
 
 $twig = twigloader();

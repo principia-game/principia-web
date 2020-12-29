@@ -8,6 +8,12 @@ if (!$log) {
 	die('not logged in');
 }
 
+// rate-limit uploading to once every 10 minutes
+$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
+if (time() - $latestLevelTime < 10*60) {
+	die('be gentle to the servers :\'(');
+}
+
 // Kaitai runtime & data
 require('lib/kaitai/plvl.php');
 

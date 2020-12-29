@@ -6,8 +6,7 @@ $lid = (isset($_GET['id']) ? $_GET['id'] : 0);
 $level = fetch("SELECT l.*, u.id u_id, u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level) {
-	echo error('404', "The requested level wasn't found.");
-	die();
+	error('404', "The requested level wasn't found.");
 }
 
 if (isset($_POST['addtocontest'])) {

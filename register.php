@@ -1,6 +1,8 @@
 <?php
 include('lib/common.php');
 
+if ($log) redirect('./');
+
 $error = '';
 
 if (isset($_POST['action'])) {
@@ -21,7 +23,7 @@ if (isset($_POST['action'])) {
 	if ($error == '') {
 		query("INSERT INTO users (name, password, email) VALUES (?,?,?)", [$name,password_hash($pass, PASSWORD_DEFAULT), $mail]);
 
-		header('Location: ./?rd');
+		redirect('./?rd');
 	}
 }
 

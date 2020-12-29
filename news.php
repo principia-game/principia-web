@@ -11,7 +11,7 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 1) {
 			[$_POST['title'], $_POST['text'], time(), $userdata['id']]);
 
 		$insertid = result("SELECT LAST_INSERT_ID()");
-		header("Location: ./news.php?id=$insertid");
+		redirect("./news.php?id=$insertid");
 	}
 
 	echo $twig->render('admin_news_add.twig');
@@ -20,6 +20,11 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 1) {
 
 if ($newsid) {
 	$newsdata = fetch("SELECT * FROM news WHERE id = ?", [$newsid]);
+
+	if (!$newsdata) {
+		error('404', "The requested news article wasn't found.");
+	}
+
 	if (!isset($newsdata['redirect'])) {
 		$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
 
@@ -35,7 +40,7 @@ if ($newsid) {
 			'comments' => $comments
 		]);
 	} else {
-		header("Location: ".$newsdata['redirect']);
+		redirect($newsdata['redirect']);
 	}
 } else {
 	$newsdata = query("SELECT id,title FROM news ORDER BY id DESC");

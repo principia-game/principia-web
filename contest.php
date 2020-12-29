@@ -5,6 +5,10 @@ $contestid = (isset($_GET['id']) ? $_GET['id'] : 0);
 
 $contest = fetch("SELECT * FROM contests WHERE id = ?", [$contestid]);
 
+if (!$contest) {
+	error('404', "The requested contest wasn't found.");
+}
+
 $bbCode = new \Genert\BBCode\BBCode();
 $bbCode->addLinebreakParser();
 $contest['description'] = $bbCode->convertToHtml($contest['description']);

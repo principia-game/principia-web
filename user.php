@@ -6,8 +6,7 @@ if (isset($_GET['id'])) {
 } else if (isset($_GET['name'])) {
 	$userpagedata = fetch("SELECT * FROM users WHERE name = ?", [$_GET['name']]);
 } else {
-	// todo: we should have a error function
-	die("no user specified");
+	error('404', "No user specified.");
 }
 
 $page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? $_GET['page'] : 1);
@@ -27,7 +26,7 @@ if ($log && isset($_GET['darkmode'])) {
 
 $twig = twigloader();
 echo $twig->render('user.twig', [
-	'id' => $_GET['id'],
+	'id' => $userpagedata['id'],
 	'name' => $userpagedata['name'],
 	'levels' => fetchArray($levels),
 	'forceuser' => $forceuser,

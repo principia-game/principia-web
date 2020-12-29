@@ -32,5 +32,11 @@ function pagination($levels, $lpp, $url, $current) {
 
 function error($title, $message) {
 	$twig = twigloader();
-	return $twig->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
+	echo $twig->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
+	die();
+}
+
+function redirect($url) {
+	header(sprintf('Location: %s', $url));
+	die();
 }

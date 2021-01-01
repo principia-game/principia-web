@@ -12,11 +12,14 @@ header('Content-Type: application/json');
 
 echo '{ "levels_with_no_thumbs": [';
 
-$levelcount = result("SELECT COUNT(*) FROM levels");
+$lastlevel = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1");
 
-for ($i = 1; $i <= $levelcount; $i++)
-	if (!file_exists(sprintf('levels/thumbs/%s.jpg', $i)))
+$levels = [];
+for ($i = 1; $i <= $lastlevel; $i++) {
+	if (!file_exists(sprintf('levels/thumbs/%s.jpg', $i))) {
 		$levels[] = $i;
+	}
+}
 
 $out = '';
 foreach ($levels as $level) {

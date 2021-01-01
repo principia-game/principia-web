@@ -14,6 +14,9 @@ $lpp = 20;
 // Disable this if you don't have a sense of humor.
 $iHaveASenseOfHumor = true;
 
+// Redirect all non-internal pages to https.
+$https = true;
+
 // principia-web's CAPTCHA system relies on a list of security questions. It's highly recommended to change these.
 // The answer checking is case-insensitive, but it has to be written in all lowercase here.
 $captcha = [

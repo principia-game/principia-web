@@ -7,6 +7,12 @@ $start = microtime(true);
 
 require('conf/config.php');
 
+// Redirect all non-internal pages to https if https is enabled.
+if ($https && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_NAME'], 'internal') === false) {
+	header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
+	die();
+}
+
 require('vendor/autoload.php');
 
 require('lib/layout.php');

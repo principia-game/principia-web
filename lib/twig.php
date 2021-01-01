@@ -7,7 +7,8 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFunction('userlink', 'userlink', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('comments', 'comments', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('pagination', 'pagination', ['is_safe' => ['html']]),
-			new \Twig\TwigFunction('custom_info', 'customInfo', ['is_safe' => ['html']])
+			new \Twig\TwigFunction('custom_info', 'customInfo', ['is_safe' => ['html']]),
+			new \Twig\TwigFunction('is_android_webview', 'isAndroidWebview', ['is_safe' => ['html']])
 		];
 	}
 	public function getFilters() {

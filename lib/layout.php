@@ -40,3 +40,10 @@ function redirect($url) {
 	header(sprintf('Location: %s', $url));
 	die();
 }
+
+/**
+ * Is the useragent Principia's android webview useragent?
+ */
+function isAndroidWebview() {
+	return strpos($_SERVER['HTTP_USER_AGENT'], 'Principia WebView') !== false;
+}

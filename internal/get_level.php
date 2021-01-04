@@ -1,5 +1,7 @@
 <?php
 chdir('../');
+include('lib/common.php');
+
 $level = isset($_GET['i']) ? (int)$_GET['i'] : null;
 $levelpath = sprintf('levels/%s.plvl', $level);
 
@@ -9,5 +11,7 @@ if (!$level || !file_exists($levelpath)) {
 	echo readfile('internal/null.plvl');
 	die();
 }
+
+query("UPDATE levels SET downloads = downloads + '1' WHERE id = ?", [$level]);
 
 echo readfile($levelpath);

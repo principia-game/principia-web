@@ -1,7 +1,7 @@
 <?php
 
 function twigloader($subfolder = '') {
-	global $tplCache, $tplNoCache, $userdata, $log, $basepath, $lpp;
+	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $basepath, $lpp;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -13,6 +13,7 @@ function twigloader($subfolder = '') {
 	$twig->addExtension(new PrincipiaExtension());
 
 	$twig->addGlobal('userdata', $userdata);
+	$twig->addGlobal('notification_count', $notificationCount);
 	$twig->addGlobal('log', $log);
 	$twig->addGlobal('basepath', $basepath);
 	$twig->addGlobal('glob_lpp', $lpp);

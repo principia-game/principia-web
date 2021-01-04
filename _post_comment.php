@@ -16,4 +16,11 @@ if (!$nType = cmtTypeToNum($type)) {
 query("INSERT INTO comments (type, level, author, time, message) VALUES (?,?,?,?,?)",
 	[$nType, $id, $userdata['id'], time(), $message]);
 
+if ($type == 'level') {
+	$leveldata = fetch("SELECT id, author FROM levels WHERE id = ?", [$id]);
+
+	query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
+		[1, $leveldata['id'], $leveldata['author'], $userdata['id']]);
+}
+
 redirect(sprintf('/%s.php?id=%s', $type, $id));

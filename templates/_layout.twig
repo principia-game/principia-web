@@ -22,7 +22,16 @@
 				<li><a href="search.php" class="btn"><img src="assets/icons/search.svg" class="search"></a></li>
 			</ul>
 			<ul class="menu right">
-				<li><em>{{ log ? userlink(userdata) : '<a href="login.php">Login</a>' }}</em></li>
+				<li><em>
+					{% if log %}
+						{{ userlink(userdata) }}
+						{% if notification_count > 0 %}
+							<span class="notifs">[{{ notification_count }}]</span>
+						{% endif %}
+					{% else %}
+						<a href="login.php">Login</a>
+					{% endif %}
+				</em></li>
 			</ul>
 		</div>
 		<div class="home content">{% block content %}{% endblock %}</div>

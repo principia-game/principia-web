@@ -54,6 +54,7 @@ if (isset($_COOKIE['user']) || isset($_COOKIE['passenc'])) {
 
 if ($log) {
 	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$_COOKIE['user']]);
+	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 } else {
 	// This should be the place for default options for logged out users,
 	// but at the moment, it's empty.

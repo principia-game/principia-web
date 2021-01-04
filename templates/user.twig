@@ -13,6 +13,15 @@
 <form action="login.php" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">
 </form>
+
+<h3>Notifications</h3>
+<ul>
+	{% for notif in notifs %}
+		<li>{{ notif | raw }}</li>
+	{% else %}
+		<li>No new notifications!</li>
+	{% endfor %}
+</ul>
 {% endif %}
 
 {% for level in levels %}

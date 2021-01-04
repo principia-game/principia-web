@@ -9,15 +9,8 @@ if (!$level) {
 	error('404', "The requested level wasn't found.");
 }
 
-if (isset($_POST['addtocontest'])) {
-	$contestEntered = result("SELECT title FROM contests WHERE id = ?", [$_POST['addtocontest']]);
-	$alreadyEntered = (result("SELECT COUNT(*) FROM contests_entries WHERE contest = ? AND level = ?", [$_POST['addtocontest'], $lid]) ? true : false);
-	if ($contestEntered && !$alreadyEntered) {
-		query("INSERT INTO contests_entries (contest, level) VALUES (?, ?)", [$_POST['addtocontest'], $lid]);
-	}
-}
-
 if ($log) {
+	// like
 	$hasLiked = result("SELECT COUNT(*) FROM likes WHERE user = ? AND level = ?", [$userdata['id'], $lid]) == 1 ? true : false;
 	if (isset($_GET['vote'])) {
 		if (!$hasLiked) {
@@ -26,6 +19,18 @@ if ($log) {
 		}
 		die();
 	}
+
+	// add to contest
+	if (isset($_POST['addtocontest'])) {
+		$contestEntered = result("SELECT title FROM contests WHERE id = ?", [$_POST['addtocontest']]);
+		$alreadyEntered = (result("SELECT COUNT(*) FROM contests_entries WHERE contest = ? AND level = ?", [$_POST['addtocontest'], $lid]) ? true : false);
+		if ($contestEntered && !$alreadyEntered) {
+			query("INSERT INTO contests_entries (contest, level) VALUES (?, ?)", [$_POST['addtocontest'], $lid]);
+		}
+	}
+
+	// remove notifications
+	query("DELETE FROM notifications WHERE level = ? AND recipient = ?", [$level['id'], $userdata['id']]);
 }
 
 if (!isset($hasLiked)) $hasLiked = false;

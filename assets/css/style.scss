@@ -47,6 +47,12 @@ ul.menu {
 	&.right li {
 		float: right;
 		font-style: italic;
+		padding-right: 4px;
+
+		.notifs {
+			color: #20aa20;
+			font-weight: bold;
+		}
 	}
 
 	a {
@@ -75,6 +81,8 @@ ul.menu {
 		margin-left: 10px;
 		margin-right: 10px;
 	}
+
+
 }
 
 .header a {

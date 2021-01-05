@@ -33,8 +33,7 @@ if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$nextId.plvl")) {
 	die("let's look for some chips instead");
 }
 
-// TODO: Some way to check who is uploading the level. For the time being, every level is uploaded by user ID 1.
-query("INSERT INTO levels (cat, title, description, author, time, derivatives, hidden, platform) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+query("INSERT INTO levels (cat, title, description, author, time, derivatives, locked, platform) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
 	[catConvert($level->type()), $level->name(), $level->descr(), $userdata['id'], time(), $level->allowDerivatives(), $level->visibility(), $platform]);
 
 // Print the ID of the uploaded level. This is required to display the "Level published!" box.

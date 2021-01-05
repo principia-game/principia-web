@@ -29,6 +29,13 @@ if ($log) {
 		}
 	}
 
+	// toggle lock
+	if (isset($_GET['togglelock']) && ($level['author'] == $userdata['id'] || $userdata['powerlevel'] > 1)) {
+		$lock = ($level['locked'] ? 0 : 1);
+		query("UPDATE levels SET locked = ? WHERE id = ?", [$lock, $lid]);
+		$level['locked'] = $lock;
+	}
+
 	// remove notifications
 	query("DELETE FROM notifications WHERE level = ? AND recipient = ?", [$level['id'], $userdata['id']]);
 }
@@ -45,7 +52,6 @@ $contests = query("SELECT id,title,active FROM contests WHERE active = 1");
 
 $comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
 
-// TODO: Increment downloads.
 $twig = twigloader();
 
 echo $twig->render('level.twig', [

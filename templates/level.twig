@@ -15,22 +15,31 @@
 	- {{ level.time | date('M j, Y') }} from {{ level.platform }}</span>
 <div class="lvl-box">
 	<div class="info">
-		<div id="buttons">
-			<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
-			{% if level.derivatives %}
-				<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
-			{% endif %}
-			{% if log %}
-				{% if not has_liked %}
-					<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
+		{% if not level.locked %}
+			<div id="buttons">
+				<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
+				{% if level.derivatives %}
+					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
 				{% endif %}
-			{% endif %}
-			<span class="likemsg">{{ level.likes }} players liked this.</span>
-		</div>
+				{% if log %}
+					{% if not has_liked %}
+						<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
+					{% endif %}
+				{% endif %}
+				<span class="likemsg">{{ level.likes }} players liked this.</span>
+			</div>
+		{% else %}
+			<p><em>This level has been locked. It will not be visible outside of this level page.</em></p>
+		{% endif %}
 		<p>{{ level.description | raw }}</p>
+
 	</div>
 	<div class="img">
-		<img src="levels/thumbs/{{ level.id }}.jpg">
+		{% if not level.locked %}
+			<img src="levels/thumbs/{{ level.id }}.jpg">
+		{% else %}
+			<img src="assets/locked_thumb.svg">
+		{% endif %}
 	</div>
 </div>
 <div class="lvl-data">
@@ -38,6 +47,9 @@
 		Views: {{ level.views }}
 		Downloads: {{ level.downloads }}
 		Level ID: {{ level.id }}
+		{% if userdata.id == level.author or userdata.powerlevel > 1 %}
+			| <em><a href="level.php?id={{ lid }}&togglelock">{% if level.locked %}Unlock level{% else %}Lock level{% endif %}</a></em>
+		{% endif %}
 	</p>
 	{% if userdata.id == level.author and contests %}
 		<form method="POST" style="display:inline-block;">

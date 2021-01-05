@@ -49,11 +49,12 @@ function cmtTypeToNum($type) {
 function level($lvl, $featuredtext = '') {
 	// TODO: rewrite this entire function...
 	$featured = ($featuredtext ? '<span class="featured small">'.$featuredtext.'</span>' : '');
+	$img = (!$lvl['locked'] ? "levels/thumbs/{$lvl['id']}.jpg" : 'assets/locked_thumb.svg');
 	return <<<HTML
 <div class="level" id="l-{$lvl['id']}">
 	<a class="lvlbox_top" href="level.php?id={$lvl['id']}">
 		<div>
-			<img src="levels/thumbs/{$lvl['id']}.jpg" id="icon">
+			<img src="$img" id="icon">
 			$featured
 			<span>{$lvl['title']}</span>
 		</div>

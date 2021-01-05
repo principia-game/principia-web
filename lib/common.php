@@ -58,4 +58,6 @@ if ($log) {
 } else {
 	// This should be the place for default options for logged out users,
 	// but at the moment, it's empty.
+	// Oh, here's some stuff!
+	$userdata['powerlevel'] = 1;
 }

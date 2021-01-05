@@ -1,0 +1,15 @@
+{% extends "_layout.twig" %}
+
+{% block title %}Locked Levels{% endblock %}
+
+	{% block content %}
+<h2>Locked Levels</h2>
+
+{% for level in levels %}
+	{{ level(level) }}
+{% else %}
+	No levels have been locked. Yay...?
+{% endfor %}
+
+<br><br>
+	{% endblock %}

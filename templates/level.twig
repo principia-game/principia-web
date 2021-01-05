@@ -39,7 +39,7 @@
 		Downloads: {{ level.downloads }}
 		Level ID: {{ level.id }}
 	</p>
-	{% if userdata.id == level.author %}
+	{% if userdata.id == level.author and contests %}
 		<form method="POST" style="display:inline-block;">
 			<p>Add to contest:
 			<select name="addtocontest" onchange="this.form.submit()">

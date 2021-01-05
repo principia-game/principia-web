@@ -38,9 +38,8 @@ if (!isset($hasLiked)) $hasLiked = false;
 query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
 $level['views']++;
 
-$bbCode = new \Genert\BBCode\BBCode();
-$bbCode->addLinebreakParser();
-$level['description'] = $bbCode->convertToHtml($level['description']);
+$markdown = new Parsedown();
+$level['description'] = $markdown->text($level['description']);
 
 $contests = query("SELECT id,title,active FROM contests WHERE active = 1");
 
@@ -53,7 +52,6 @@ echo $twig->render('level.twig', [
 	'lid' => $lid,
 	'level' => $level,
 	'has_liked' => $hasLiked,
-	'bbCode' => $bbCode,
 	'contests' => fetchArray($contests),
 	'contest_entered' => (isset($contestEntered) ? $contestEntered : null),
 	'already_entered' => (isset($alreadyEntered) ? $alreadyEntered : false),

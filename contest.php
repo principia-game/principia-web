@@ -9,9 +9,8 @@ if (!$contest) {
 	error('404', "The requested contest wasn't found.");
 }
 
-$bbCode = new \Genert\BBCode\BBCode();
-$bbCode->addLinebreakParser();
-$contest['description'] = $bbCode->convertToHtml($contest['description']);
+$markdown = new Parsedown();
+$contest['description'] = $markdown->text($contest['description']);
 
 $levels = query("SELECT ce.*, l.id id,l.title title,u.id u_id,u.name u_name FROM contests_entries ce JOIN levels l ON ce.level = l.id JOIN users u ON l.author = u.id WHERE ce.contest = ? ORDER BY ce.ranking DESC, l.id DESC", [$contestid]);
 

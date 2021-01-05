@@ -3,6 +3,9 @@
 {% block title %}{{ name }}{% endblock %}
 
 	{% block content %}
+{% if markread %}
+	<div class="header_message">Marked all notifications as read.</div>
+{% endif %}
 <h2>{{ name }}</h2>
 
 {% if userdata.id == id and not forceuser %}
@@ -21,6 +24,9 @@
 	{% else %}
 		<li>No new notifications!</li>
 	{% endfor %}
+	{% if notifs %}
+		<br><li><a href="user.php?id={{ id }}&markread">Mark all as read</a></li>
+	{% endif %}
 </ul>
 {% endif %}
 

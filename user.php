@@ -26,6 +26,11 @@ if ($userdata['id'] == $userpagedata['id']) {
 		$userdata['darkmode'] = $newopt;
 	}
 
+	if (isset($_GET['markread'])) {
+		query("DELETE FROM notifications WHERE recipient = ?", [$userdata['id']]);
+		$notificationCount = 0;
+	}
+
 	$notifsdata = query("SELECT n.*, l.id l_id, l.title l_title, u.id u_id, u.name u_name FROM notifications n JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id WHERE n.recipient = ?", [$userpagedata['id']]);
 
 	$notifications = [];
@@ -42,5 +47,6 @@ echo $twig->render('user.twig', [
 	'forceuser' => $forceuser,
 	'page' => $page,
 	'level_count' => $count,
-	'notifs' => (isset($notifications) ? $notifications : [])
+	'notifs' => (isset($notifications) ? $notifications : []),
+	'markread' => (isset($_GET['markread']) ? true : false)
 ]);

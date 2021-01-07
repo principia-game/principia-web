@@ -1,0 +1,33 @@
+{% extends "_layout.twig" %}
+
+{% block title %}{{ pkg.title }}{% endblock %}
+
+	{% block content %}
+<h1>{{ pkg.title }}</h1>
+<span class="misc">
+	  {{ userlink(pkg, 'u_') }}
+	- Package
+	- {{ pkg.time | date('M j, Y') }}</span>
+<div class="lvl-box">
+	<div class="info">
+		<div id="buttons">
+			<a class="play" href="principia://play/pkg/db/{{ id }}">Play</a>
+		</div>
+		<p>{{ pkg.description | raw }}</p>
+	</div>
+	<div class="img">
+		<img src="assets/package_thumb.svg">
+	</div>
+</div>
+<div class="lvl-data">
+	<p>
+		Views: {{ pkg.views }}
+		Downloads: {{ pkg.downloads }}
+		Package ID: {{ pkg.id }}
+	</p>
+</div>
+
+<h2>Comments</h2>
+{{ comments(comments, 'package', pkg.id) }}
+<br>
+	{% endblock %}

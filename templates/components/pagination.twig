@@ -4,7 +4,7 @@
 		{% for page in 1..pages %}
 			<span>
 				{% if page != current %}
-					<a href="{{ url | format(page) }}">{{ page }}</a>
+					<a href="{{ url | format(page) }}"> {{ page }} </a>
 				{% else %}
 					{{ page }}
 				{% endif %}

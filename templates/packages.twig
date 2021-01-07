@@ -1,0 +1,17 @@
+{% extends "_layout.twig" %}
+
+{% block title %}{% endblock %}
+
+	{% block content %}
+<h2>Packages</h2>
+
+{% for package in packages %}
+	{{ level(package, '', true) }}
+{% else %}
+	No packages.
+{% endfor %}
+
+{{ pagination(package_count, glob_lpp, 'packages.php?page=%s', page) }}
+
+<br><br>
+	{% endblock %}

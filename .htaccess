@@ -7,12 +7,14 @@ RewriteEngine On
 RewriteRule ^apZodIaL1/xx.php$ /internal/login.php
 # Get level file
 RewriteRule ^apZodIaL1/x.php$ /internal/get_level.php
-# Edit level
+# Open level in sandbox
 RewriteRule ^apZodIaL1/xxx.php$ /internal/get_level.php
 # Get package file
 RewriteRule ^apZodIaL1/xxxx.php$ /internal/get_package.php
 # Get package levels
 RewriteRule ^apZodIaL1/xxxxx.php$ /internal/get_package_level.php
+# Edit level
+RewriteRule ^apZodIaL1/xxxxxx.php$ /internal/get_level.php
 # Featured levels
 RewriteRule ^apZodIaL1/get_feature.php$ /featured/fl.cache
 # Upload

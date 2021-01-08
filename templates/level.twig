@@ -18,7 +18,9 @@
 		{% if not level.locked %}
 			<div id="buttons">
 				<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
-				{% if level.derivatives %}
+				{% if level.author == userdata.id %}
+					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit</a>
+				{% elseif level.derivatives %}
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
 				{% endif %}
 				{% if log %}
@@ -39,6 +41,9 @@
 			<img src="levels/thumbs/{{ level.id }}.jpg">
 		{% else %}
 			<img src="assets/locked_thumb.svg">
+		{% endif %}
+		{% if level.revision > 1 %}
+			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
 		{% endif %}
 	</div>
 </div>

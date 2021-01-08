@@ -5,12 +5,12 @@ require('lib/common.php');
 #include('upload_debug.php');
 
 if (!$log) {
-	die('not logged in');
+	die('-100');
 }
 
-// rate-limit uploading to once every 10 minutes
+// rate-limit uploading to once every 5 minutes
 $latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
-if (time() - $latestLevelTime < 10*60) {
+if (time() - $latestLevelTime < 5*60 && $userdata['powerlevel'] < 2) {
 	die('be gentle to the servers :\'(');
 }
 
@@ -26,16 +26,51 @@ try {
 
 $platform = extractPlatform($_SERVER['HTTP_USER_AGENT']);
 
-$nextId = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1") + 1;
+if ($level->communityId()) { // level has a non-noll community_id, assume we're updating a level
+	$cid = $level->communityId();
 
-// Move uploaded level file to the levels directory.
-if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$nextId.plvl")) {
-	die("let's look for some chips instead");
+	// get some level info we need
+	$leveldata = fetch("SELECT cat, author, revision, locked, platform FROM levels WHERE id = ?", [$cid]);
+
+	// additional checks to prevent someone from accidentally overwriting a level unintentionally.
+	// this might need to be tweaked as
+	if (!$leveldata
+		|| catConvert($level->type()) != $leveldata['cat']
+		|| $userdata['id'] != $leveldata['author']
+		|| $leveldata['locked']
+		|| $platform != $leveldata['platform']) { // This might be too much.
+		// Throw an error and die, emulates the official community site's behavior of an incorrect community id (malicious or not)
+		die('-101');
+	}
+
+	// back up previous revision level ...
+	rename("levels/$cid.plvl", sprintf('levels/backup/%s.plvl.bak.%s', $cid, $leveldata['revision']));
+	// ... and thumb
+	if (file_exists("levels/thumb/$cid.jpg")) {
+		rename("levels/thumb/$cid.jpg", sprintf('levels/thumb/backup/%s.jpg.bak.%s', $cid, $leveldata['revision']));
+	}
+
+	// Move uploaded level file to the levels directory.
+	if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$cid.plvl")) {
+		die("let's look for some chips instead");
+	}
+
+	query("UPDATE levels SET title = ?, description = ?, derivatives = ?, locked = ?, revision = revision + 1, revision_time = ? WHERE id = ?",
+		[$level->name(), $level->descr(), $level->allowDerivatives(), $level->visibility(), time(), $cid]);
+
+	// Print the ID of the uploaded level. This is required to display the "Level published!" box.
+	print($cid);
+} else { // level has a noll community_id, assume we're uploading a new level
+	$nextId = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1") + 1;
+
+	// Move uploaded level file to the levels directory.
+	if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$nextId.plvl")) {
+		die("let's look for some chips instead");
+	}
+
+	query("INSERT INTO levels (cat, title, description, author, time, derivatives, locked, platform) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+		[catConvert($level->type()), $level->name(), $level->descr(), $userdata['id'], time(), $level->allowDerivatives(), $level->visibility(), $platform]);
+
+	// Print the ID of the uploaded level. This is required to display the "Level published!" box.
+	print($nextId);
 }
-
-query("INSERT INTO levels (cat, title, description, author, time, derivatives, locked, platform) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-	[catConvert($level->type()), $level->name(), $level->descr(), $userdata['id'], time(), $level->allowDerivatives(), $level->visibility(), $platform]);
-
-// Print the ID of the uploaded level. This is required to display the "Level published!" box.
-print($nextId);
-

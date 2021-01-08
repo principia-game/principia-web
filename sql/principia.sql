@@ -47,6 +47,8 @@ CREATE TABLE `levels` (
   `description` text NOT NULL,
   `author` int(11) NOT NULL DEFAULT 1,
   `time` int(11) NOT NULL DEFAULT 0,
+  `revision` int(11) NOT NULL DEFAULT 1,
+  `revision_time` int(11) NOT NULL DEFAULT 0,
   `likes` int(11) NOT NULL DEFAULT 0,
   `derivatives` tinyint(4) NOT NULL DEFAULT 0,
   `locked` tinyint(4) NOT NULL DEFAULT 0,

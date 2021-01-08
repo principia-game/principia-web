@@ -254,6 +254,17 @@ form.reglog {
 		img {
 			width: 100%;
 		}
+
+		.revision {
+			color: #000;
+			font-size: .8em;
+			font-weight: bold;
+			background-color: rgba(200, 255, 200, .5);
+			padding:4px;
+			position: absolute;
+			top: 0%;
+			left: 0%;
+		}
 	}
 
 	.info {

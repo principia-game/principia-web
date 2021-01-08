@@ -8,7 +8,7 @@
 <div class="comments">
 	{% for cmnt in cmnts %}
 		<div class="comment-entry" id="comment-67712">
-			<span class="date">{{ cmnt.date | date('M j, Y') }}</span>
+			<span class="date">{{ cmnt.time | date('M j, Y') }}</span>
 			{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message }}</span>
 		</div>
 	{% endfor %}

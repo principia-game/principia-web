@@ -73,4 +73,17 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 
 	// Print the ID of the uploaded level. This is required to display the "Level published!" box.
 	print($nextId);
+
+	// if we got a webhook url, send level info to discord webhook
+	if ($webhook) {
+		$webhookdata = [
+			'id' => $nextId,
+			'name' => $level->name(),
+			'description' => $level->descr(),
+			'u_id' => $userdata['id'],
+			'u_name' => $userdata['name']
+		];
+
+		newLevelHook($webhookdata);
+	}
 }

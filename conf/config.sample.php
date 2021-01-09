@@ -17,6 +17,9 @@ $iHaveASenseOfHumor = true;
 // Redirect all non-internal pages to https.
 $https = true;
 
+// URL to Discord webhook for new level uploads. Leave blank to disable this.
+$webhook = '';
+
 // principia-web's CAPTCHA system relies on a list of security questions. It's highly recommended to change these.
 // The answer checking is case-insensitive, but it has to be written in all lowercase here.
 $captcha = [

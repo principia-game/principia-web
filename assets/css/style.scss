@@ -149,12 +149,25 @@ div.level {
 		&:nth-child(odd)  { background-color: #f5f5f5; }
 		&:nth-child(even) { background-color: #e8e8e8; }
 
+		&.deleted {
+			background-color: #ffcccc;
+
+			&:after {
+				content: "(deleted comment)";
+				color: #333;
+				font-style: italic;
+			}
+		}
+
 		p {
 			margin: 0;
 			margin-bottom: .1em;
 		}
-		span.date {
+		span.date, span.delete {
 			float: right;
+		}
+		span.delete {
+			margin-left: 5px;
 		}
 	}
 }

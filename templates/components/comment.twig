@@ -7,9 +7,21 @@
 </form><br>
 <div class="comments">
 	{% for cmnt in cmnts %}
-		<div class="comment-entry" id="comment-67712">
-			<span class="date">{{ cmnt.time | date('M j, Y') }}</span>
-			{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message }}</span>
-		</div>
+		{% if not cmnt.deleted or userdata.powerlevel > 1 %}
+			<div class="comment-entry {% if cmnt.deleted %}deleted{% endif %}" id="comment-{{ cmnt.id }}">
+				<span class="delete">
+					<a href="javascript:document.remove{{ cmnt.id }}.submit()" style="color:red">X</a>
+					<form action="_post_comment.php" method="post" name="remove{{ cmnt.id }}">
+						<input type="hidden" name="id" value="{{ id }}">
+						<input type="hidden" name="t" value="{{ type }}">
+						<input type="hidden" name="del" value="yes">
+						<input type="hidden" name="cmnt" value="{{ cmnt.id }}">
+					</form>
+				</span>
+				<span class="date">{{ cmnt.time | date('M j, Y') }}</span>
+
+				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message }}</span>
+			</div>
+		{% endif %}
 	{% endfor %}
 </div>

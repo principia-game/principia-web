@@ -52,6 +52,7 @@ function level($lvl, $featuredtext = '', $pkg = false) {
 	$featured = ($featuredtext ? '<span class="featured small">'.$featuredtext.'</span>' : '');
 	$img = (!$pkg ? (!$lvl['locked'] ? "levels/thumbs/{$lvl['id']}.jpg" : 'assets/locked_thumb.svg') : 'assets/package_thumb.svg');
 	$page = (!$pkg ? "level.php" : "package.php");
+	$userlink = userlink($lvl, 'u_');
 	return <<<HTML
 <div class="level" id="l-{$lvl['id']}">
 	<a class="lvlbox_top" href="$page?id={$lvl['id']}">
@@ -61,7 +62,7 @@ function level($lvl, $featuredtext = '', $pkg = false) {
 			<span>{$lvl['title']}</span>
 		</div>
 	</a>
-	<a class="user" href="user.php?id={$lvl['u_id']}"><span class="t_user">{$lvl['u_name']}</span></a>
+	$userlink
 </div>
 HTML;
 }

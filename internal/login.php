@@ -7,10 +7,16 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 		die('102');
 	}
 
-	$logindata = fetch("SELECT id, password FROM users WHERE name = ?", [$_POST['username']]);
+	$logindata = fetch("SELECT id, name, password FROM users WHERE name = ?", [$_POST['username']]);
 
 	if (password_verify($_POST['password'], $logindata['password'])) {
+		//header("X-Principia-User-Id: ".$logindata['id']);
+		//header("X-Principia-Username: ".$logindata['name']);
 		//header("X-Principia-Unread: 9999999999999999999999999");
+
+		if (function_exists('nothingSpecial')) {
+			nothingSpecial();
+		}
 
 		setcookie('user', $logindata['id'], 2147483647, '/');
 		setcookie('passenc', base64_encode($_POST['password']), 2147483647, '/');

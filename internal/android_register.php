@@ -21,5 +21,5 @@ if (result("SELECT COUNT(*) FROM users WHERE name = ?", [$name])) die('112'); //
 if (preg_match('/[a-zA-Z0-9_]+$/', $name)) die('113'); // "The username contains invalid characters."
 
 // All possible invalid credentials have been checked, it should be successful now.
-query("INSERT INTO users (name, password, email) VALUES (?,?,?)", [$name,password_hash($pass, PASSWORD_DEFAULT), $mail]);
+query("INSERT INTO users (name, password, email, joined) VALUES (?,?,?,?)", [$name,password_hash($pass, PASSWORD_DEFAULT), $mail, time()]);
 die('110');

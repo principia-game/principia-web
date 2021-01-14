@@ -1,7 +1,7 @@
 <?php
 
 function twigloader($subfolder = '') {
-	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $basepath, $lpp;
+	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $basepath, $lpp, $forum;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -17,6 +17,7 @@ function twigloader($subfolder = '') {
 	$twig->addGlobal('log', $log);
 	$twig->addGlobal('basepath', $basepath);
 	$twig->addGlobal('glob_lpp', $lpp);
+	$twig->addGlobal('glob_forum', $forum);
 
 	return $twig;
 }
@@ -46,5 +47,5 @@ function redirect($url) {
  * Is the useragent Principia's android webview useragent?
  */
 function isAndroidWebview() {
-	return strpos($_SERVER['HTTP_USER_AGENT'], 'Principia WebView') !== false;
+	return (strpos($_SERVER['HTTP_USER_AGENT'], 'Principia WebView') !== false);
 }

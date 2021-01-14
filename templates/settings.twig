@@ -1,0 +1,84 @@
+{% extends "_layout.twig" %}
+
+{% block title %}Settings{% endblock %}
+
+	{% block content %}
+<form action="settings.php" method="post">
+<h2>Settings</h2>
+
+<h3>Credentials</h3>
+<table class="settings">
+	<tr>
+		<td class="a">Username</td>
+		<td class="b">{{ userdata.name }}</td>
+	</tr>
+	<tr>
+		<td class="a">Email address</td>
+		<td class="b">{{ userdata.email }}</td>
+	</tr>
+	<tr>
+		<td class="a">Password</td>
+		<td class="b">********</td>
+	</tr>
+</table>
+
+<h3>Customize your profile</h3>
+<table class="settings">
+	{% if userdata.powerlevel > 2 %}
+	<tr>
+		<td class="a">Title</td>
+		<td class="b"><input type="text" name="title" size="45" maxlength="256" value="{{ userdata.title }}"></td>
+	</tr>
+	<tr>
+		<td class="a">Custom color</td>
+		<td class="b"><input type="color" name="customcolor" value="#{{ userdata.customcolor | default('0000aa') }}"></td>
+	</tr>
+	{% endif %}
+	<!--<tr>
+		<td class="a">Avatar</td>
+		<td class="b"><input type="file" name="avatar" size="40"></td>
+	</tr>-->
+	<tr>
+		<td class="a">
+			About
+			<br><em>Introduce yourself! Markdown allowed.</em>
+		</td>
+		<td class="b"><textarea name="about" rows="5" cols="80" wrap="virtual">{{ userdata.about }}</textarea></td>
+	</tr>
+	<tr>
+		<td class="a">Location</td>
+		<td class="b"><input type="text" name="location" size="45" maxlength="128" value="{{ userdata.location }}"></td>
+	</tr>
+	{% if glob_forum %}
+	<tr>
+		<td class="a">Forum signature</td>
+		<td class="b"><textarea name="signature" rows="5" cols="80" wrap="virtual">{{ userdata.signature }}</textarea></td>
+	</tr>
+	{% else %}
+	<input type="hidden" name="signature" value="{{ userdata.signature }}">
+	{% endif %}
+</table>
+
+<h3>Options</h3>
+<table class="settings">
+	<tr>
+		<td class="a">Hacky dark mode <br><em>(Experimental!)</em></td>
+		<td class="b">
+			<label><input type="radio" name="darkmode" value="0" {% if not userdata.darkmode %}checked{% endif %} {% if is_android_webview() %}disabled{% endif %}>Disabled </label>
+			<label><input type="radio" name="darkmode" value="1" {% if userdata.darkmode %}checked{% endif %} {% if is_android_webview() %}disabled{% endif %}>Enabled </label>
+			{% if is_android_webview %}<br><em>Sorry, but dark mode is currently not compatible with Principia Android's webview!</em>{% endif %}
+		</td>
+	<tr>
+		<td class="a">Timezone</td>
+		<td class="b">
+			<select name="timezone">
+				{% for timezone in timezones %}
+					<option value="{{ timezone }}" {% if userdata.timezone == timezone %}selected{% endif %}>{{ timezone }}</option>
+				{% endfor %}
+			</select>
+		</td>
+	</tr>
+</table>
+<input type="hidden" name="magic" value="please change my settings :)">
+<input type="submit" name="action" value="Save Changes">
+	{% endblock %}

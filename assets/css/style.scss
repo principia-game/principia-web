@@ -335,3 +335,28 @@ form.reglog {
 		}
 	}
 }
+
+// Settings \\
+
+.settings {
+	width: 100%;
+	border-collapse: collapse;
+
+	.a {
+		text-align: center;
+		width: 300px;
+
+	}
+
+	.a, .b {
+		border-bottom: 1px solid #ccc;
+		padding: 5px;
+
+	}
+
+	tr {
+		&:nth-child(odd)  { background-color: #f5f5f5; }
+		&:nth-child(even) { background-color: #e8e8e8; }
+	}
+
+}

@@ -22,8 +22,6 @@ require('lib/mysql.php');
 require('lib/twig.php');
 require('lib/user.php');
 
-date_default_timezone_set('GMT');
-
 $ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);
 if ($ipban) {
 	http_response_code(403);
@@ -56,9 +54,11 @@ if (isset($_COOKIE['user']) || isset($_COOKIE['passenc'])) {
 if ($log) {
 	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$_COOKIE['user']]);
 	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
+
+	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $_SERVER['REMOTE_ADDR'], $userdata['id']]);
 } else {
-	// This should be the place for default options for logged out users,
-	// but at the moment, it's empty.
-	// Oh, here's some stuff!
 	$userdata['powerlevel'] = 1;
+	$userdata['timezone'] = 'Europe/Stockholm'; // I'm a self-centered egomaniac! Time itself centers around me!
 }
+
+date_default_timezone_set($userdata['timezone']);

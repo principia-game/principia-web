@@ -17,7 +17,7 @@ $forceuser = isset($_GET['forceuser']);
 $limit = sprintf("LIMIT %s,%s", (($page - 1) * $lpp), $lpp);
 $levels = query("SELECT l.id id,l.title title,l.locked locked,u.id u_id,u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.author = ? AND l.locked = 0 ORDER BY l.id DESC $limit",
 	[$userpagedata['id']]);
-$count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ?", [$userpagedata['id']]);
+$count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.locked = 0", [$userpagedata['id']]);
 
 // Personal user page stuff
 if ($userdata['id'] == $userpagedata['id']) {
@@ -45,10 +45,13 @@ $twig = twigloader();
 echo $twig->render('user.twig', [
 	'id' => $userpagedata['id'],
 	'name' => $userpagedata['name'],
+	'userpagedata' => $userpagedata,
 	'levels' => fetchArray($levels),
 	'forceuser' => $forceuser,
 	'page' => $page,
 	'level_count' => $count,
 	'notifs' => (isset($notifications) ? $notifications : []),
-	'markread' => (isset($_GET['markread']) ? true : false)
+	'markread' => (isset($_GET['markread']) ? true : false),
+	'edited' => (isset($_GET['edited']) ? true : false),
+
 ]);

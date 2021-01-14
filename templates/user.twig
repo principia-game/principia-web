@@ -5,13 +5,15 @@
 	{% block content %}
 {% if markread %}
 	<div class="header_message">Marked all notifications as read.</div>
+{% elseif edited %}
+	<div class="header_message">Settings successfully saved!</div>
 {% endif %}
 <h2>{{ name }}</h2>
 
 {% if userdata.id == id and not forceuser %}
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
-<p><a href="user.php?id={{ id }}&darkmode">Toggle hacky dark mode</a> (Experimental!) | <a href="javascript:document.logout.submit()">Log out</a></p>
+<p><a href="settings.php">Edit my settings</a> | <a href="javascript:document.logout.submit()">Log out</a></p>
 
 <form action="login.php" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">
@@ -28,7 +30,10 @@
 		<br><li><a href="user.php?id={{ id }}&markread">Mark all as read</a></li>
 	{% endif %}
 </ul>
-{% endif %}
+{% else %}
+<div class="user_about">
+	{{ userpagedata.about }}
+</div>
 
 {% for level in levels %}
 	{{ level(level) }}
@@ -40,4 +45,5 @@
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
 <br><br>
+{% endif %}
 	{% endblock %}

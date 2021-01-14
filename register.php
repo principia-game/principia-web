@@ -19,10 +19,10 @@ if (isset($_POST['action'])) {
 	if (!isset($pass2) || $pass != $pass2) $error .= "The passwords don't match. ";
 	if (result("SELECT COUNT(*) FROM users WHERE name = ?", [$name])) $error .= "Username has already been taken.";
 	if (!in_array($captchaAnswer, $captcha[$captchaId]['answer'])) $error .= "Wrong security question answer.";
-	if (preg_match('/[a-zA-Z0-9_]+$/', $name)) $error .= "Username contains invalid characters (Only alphanumeric and underscore allowed)";
+	if (!preg_match('/[a-zA-Z0-9_]+$/', $name)) $error .= "Username contains invalid characters (Only alphanumeric and underscore allowed)";
 
 	if ($error == '') {
-		query("INSERT INTO users (name, password, email) VALUES (?,?,?)", [$name,password_hash($pass, PASSWORD_DEFAULT), $mail]);
+		query("INSERT INTO users (name, password, email, joined) VALUES (?,?,?,?)", [$name,password_hash($pass, PASSWORD_DEFAULT), $mail, time()]);
 
 		redirect('./?rd');
 	}

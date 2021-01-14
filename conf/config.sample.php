@@ -4,6 +4,8 @@ $db   = 'principia';
 $user = '';
 $pass = '';
 
+$db_forum = 'principia_forum';
+
 $basepath = '/';
 
 $tplCache = 'templates/cache';
@@ -34,3 +36,17 @@ $captcha = [
 
 // Stub function to put special information in the footer.
 function customInfo() { }
+
+
+/// GENERAL FORUM STUFF
+
+$forum = true; // Enable forum-related stuff
+
+$trashid = 2; // Designates the id for your trash forum.
+
+// Random forum descriptions.
+// It will be replacing the value %%%RANDOM%%% in the forum description.
+$randdesc = [
+	"Value1",
+	"Value2"
+];

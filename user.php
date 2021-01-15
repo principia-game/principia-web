@@ -20,7 +20,7 @@ $levels = query("SELECT l.id id,l.title title,l.locked locked,u.id u_id,u.name u
 $count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.locked = 0", [$userpagedata['id']]);
 
 // Personal user page stuff
-if ($userdata['id'] == $userpagedata['id']) {
+if ($userdata['id'] == $userpagedata['id'] && !$forceuser) {
 	if ($log && isset($_GET['darkmode'])) {
 		$newopt = ($userdata['darkmode'] ? 0 : 1);
 
@@ -38,6 +38,12 @@ if ($userdata['id'] == $userpagedata['id']) {
 	$notifications = [];
 	while ($notifdata = $notifsdata->fetch()) {
 		$notifications[] = sprintf('%s commented on your level <a href="level.php?id=%s">%s</a>.', userlink($notifdata, 'u_'), $notifdata['l_id'], $notifdata['l_title']);
+	}
+} else { // general profile details stuff
+	if ($userpagedata['about']) {
+		$markdown = new Parsedown();
+		$markdown->setSafeMode(true);
+		$userpagedata['about'] = $markdown->text($userpagedata['about']);
 	}
 }
 

@@ -4,7 +4,7 @@ require('lib/common.php');
 if (isset($_POST['magic'])) {
 	$title			= $_POST['title'] ? $_POST['title'] : null;
 	$customcolor	= strtolower($_POST['customcolor']) != '0000aa' ? $_POST['customcolor'] : null;
-	$about			= $_POST['about'] ? $_POST['location'] : null;
+	$about			= $_POST['about'] ? $_POST['about'] : null;
 	$location		= $_POST['location'] ? $_POST['location'] : null;
 	$signature		= $_POST['signature'] ? $_POST['signature'] : null;
 	$darkmode		= $_POST['darkmode'] ? 1 : 0; // clamp it for good measure

@@ -58,7 +58,9 @@ if ($log) {
 	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $_SERVER['REMOTE_ADDR'], $userdata['id']]);
 } else {
 	$userdata['powerlevel'] = 1;
-	$userdata['timezone'] = 'Europe/Stockholm'; // I'm a self-centered egomaniac! Time itself centers around me!
 }
+
+if (!$log || !$userdata['timezone'])
+	$userdata['timezone'] = 'Europe/Stockholm'; // I'm a self-centered egomaniac! Time itself centers around me!
 
 date_default_timezone_set($userdata['timezone']);

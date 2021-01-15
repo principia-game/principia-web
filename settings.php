@@ -2,13 +2,13 @@
 require('lib/common.php');
 
 if (isset($_POST['magic'])) {
-
-	$customcolor	= $_POST['customcolor'];
-	$about			= $_POST['about'];
-	$location		= $_POST['location'];
-	$signature		= $_POST['signature'];
-	$darkmode		= ($_POST['darkmode'] ? 1 : 0); // clamp it for good measure
-	$timezone		= $_POST['timezone']; // should I maybe check timezone? ehh...
+	$title			= $_POST['title'] ? $_POST['title'] : null;
+	$customcolor	= strtolower($_POST['customcolor']) != '0000aa' ? $_POST['customcolor'] : null;
+	$about			= $_POST['about'] ? $_POST['location'] : null;
+	$location		= $_POST['location'] ? $_POST['location'] : null;
+	$signature		= $_POST['signature'] ? $_POST['signature'] : null;
+	$darkmode		= $_POST['darkmode'] ? 1 : 0; // clamp it for good measure
+	$timezone		= $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null;
 
 	// check custom color
 	$customcolor = ltrim($customcolor, '#');
@@ -17,8 +17,8 @@ if (isset($_POST['magic'])) {
 		$customcolor = $userdata['customcolor'];
 	}
 
-	query("UPDATE users SET customcolor = ?, about = ?, location = ?, darkmode = ?, timezone = ?, signature = ? WHERE id = ?",
-		[$customcolor, $about, $location, $darkmode, $timezone, $signature, $userdata['id']]);
+	query("UPDATE users SET title = ?, customcolor = ?, about = ?, location = ?, darkmode = ?, timezone = ?, signature = ? WHERE id = ?",
+		[$title, $customcolor, $about, $location, $darkmode, $timezone, $signature, $userdata['id']]);
 
 	redirect(sprintf("user.php?id=%s&edited", $userdata['id']));
 }

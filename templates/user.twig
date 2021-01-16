@@ -8,12 +8,12 @@
 {% elseif edited %}
 	<div class="header_message">Settings successfully saved!</div>
 {% endif %}
-<h2>{{ name }}</h2>
+<h2>{{ name }} {% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}</h2>
 
 {% if userdata.id == id and not forceuser %}
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
-<p><a href="settings.php">Edit my settings</a> | <a href="javascript:document.logout.submit()">Log out</a></p>
+<p><a href="settings.php">Edit my settings</a> | <a href="user.php?id={{ id }}&forceuser">View user page as viewer</a> | <a href="javascript:document.logout.submit()">Log out</a></p>
 
 <form action="login.php" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">

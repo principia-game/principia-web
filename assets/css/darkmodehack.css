@@ -5,6 +5,6 @@ body {
 img {
     filter: invert(1) !important;
 }
-.btn img {
+.btn img, .sdsd {
     filter: invert(0) !important;
 }

@@ -22,6 +22,11 @@
 					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit</a>
 				{% elseif level.derivatives %}
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
+				{% elseif userdata.powerlevel > 1 %}
+					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit*</a>
+				{% endif %}
+				{% if userdata.powerlevel > 2 and not level.author == userdata.id %}
+					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit (Admin)</a>
 				{% endif %}
 				{% if log %}
 					{% if not has_liked %}

@@ -36,9 +36,8 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 	// this might need to be tweaked as
 	if (!$leveldata
 		|| catConvert($level->type()) != $leveldata['cat']
-		|| $userdata['id'] != $leveldata['author']
-		|| $leveldata['locked']
-		|| $platform != $leveldata['platform']) { // This might be too much.
+		|| ($userdata['id'] != $leveldata['author'] && $userdata['powerlevel'] < 3)
+		|| $leveldata['locked']) {
 		// Throw an error and die, emulates the official community site's behavior of an incorrect community id (malicious or not)
 		die('-101');
 	}

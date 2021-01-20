@@ -6,7 +6,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 
 
 $where = ($type != 'all' ? "WHERE l.cat = ".type_to_cat($type).' AND locked = 0' : 'WHERE locked = 0');
 $limit = sprintf("LIMIT %s,%s", (($page - 1) * $lpp), $lpp);
-$levels = query("SELECT l.id id,l.title title,l.locked locked,u.id u_id,u.name u_name FROM levels l JOIN users u ON l.author = u.id $where ORDER BY l.id DESC $limit");
+$levels = query("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id $where ORDER BY l.id DESC $limit");
 $count = result("SELECT COUNT(*) FROM levels l $where");
 
 $twig = twigloader();

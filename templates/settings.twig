@@ -29,6 +29,8 @@
 		<td class="a">Title</td>
 		<td class="b"><input type="text" name="title" size="45" maxlength="256" value="{{ userdata.title }}"></td>
 	</tr>
+	{% endif %}
+	{% if userdata.powerlevel > 1 %}
 	<tr>
 		<td class="a">Custom color</td>
 		<td class="b"><input type="color" name="customcolor" value="#{{ userdata.customcolor | default('0000aa') }}"></td>

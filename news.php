@@ -31,7 +31,7 @@ if ($newsid) {
 		$markdown = new Parsedown();
 		$newsdata['text'] = $markdown->text($newsdata['text']);
 
-		$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
+		$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
 
 		echo $twig->render('news.twig', [
 			'newsid' => $newsid,

@@ -3,7 +3,7 @@ require('lib/common.php');
 
 $lid = (isset($_GET['id']) ? $_GET['id'] : 0);
 
-$level = fetch("SELECT l.*, u.id u_id, u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
+$level = fetch("SELECT $userfields l.* FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level) {
 	error('404', "The requested level wasn't found.");
@@ -50,7 +50,7 @@ $level['description'] = $markdown->text($level['description']);
 
 $contests = query("SELECT id,title,active FROM contests WHERE active = 1");
 
-$comments = query("SELECT c.*,u.id u_id,u.name u_name FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
+$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
 
 $twig = twigloader();
 

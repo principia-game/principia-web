@@ -22,6 +22,8 @@ require('lib/mysql.php');
 require('lib/twig.php');
 require('lib/user.php');
 
+$userfields = userfields();
+
 $ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);
 if ($ipban) {
 	http_response_code(403);

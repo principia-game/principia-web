@@ -15,7 +15,7 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 
 $forceuser = isset($_GET['forceuser']);
 
 $limit = sprintf("LIMIT %s,%s", (($page - 1) * $lpp), $lpp);
-$levels = query("SELECT l.id id,l.title title,l.locked locked,u.id u_id,u.name u_name FROM levels l JOIN users u ON l.author = u.id WHERE l.author = ? AND l.locked = 0 ORDER BY l.id DESC $limit",
+$levels = query("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.author = ? AND l.locked = 0 ORDER BY l.id DESC $limit",
 	[$userpagedata['id']]);
 $count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.locked = 0", [$userpagedata['id']]);
 
@@ -33,7 +33,7 @@ if ($userdata['id'] == $userpagedata['id'] && !$forceuser) {
 		$notificationCount = 0;
 	}
 
-	$notifsdata = query("SELECT n.*, l.id l_id, l.title l_title, u.id u_id, u.name u_name FROM notifications n JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id WHERE n.recipient = ?", [$userpagedata['id']]);
+	$notifsdata = query("SELECT $userfields n.*, l.id l_id, l.title l_title FROM notifications n JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id WHERE n.recipient = ?", [$userpagedata['id']]);
 
 	$notifications = [];
 	while ($notifdata = $notifsdata->fetch()) {

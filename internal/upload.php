@@ -18,11 +18,11 @@ if (time() - $latestLevelTime < 5*60 && $userdata['powerlevel'] < 2) {
 require('lib/kaitai/plvl.php');
 
 // Load level.
-try {
+//try {
 	$level = Plvl::fromFile($_FILES['xFxIax']['tmp_name']);
-} catch (Kaitai\Struct\Error\KaitaiError $e) {
-	die('garbled level or garbled kaitai');
-}
+//} catch (Kaitai\Struct\Error\KaitaiError $e) {
+//	die('garbled level or garbled kaitai');
+//}
 
 $platform = extractPlatform($_SERVER['HTTP_USER_AGENT']);
 
@@ -39,6 +39,7 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 		|| ($userdata['id'] != $leveldata['author'] && $userdata['powerlevel'] < 3)
 		|| $leveldata['locked']) {
 		// Throw an error and die, emulates the official community site's behavior of an incorrect community id (malicious or not)
+		trigger_error(sprintf('%s tried to upload a level with an invalid community id (%s)', $userdata['name'], $cid), E_USER_NOTICE);
 		die('-101');
 	}
 

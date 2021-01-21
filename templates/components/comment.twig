@@ -9,6 +9,7 @@
 	{% for cmnt in cmnts %}
 		{% if not cmnt.deleted or userdata.powerlevel > 1 %}
 			<div class="comment-entry {% if cmnt.deleted %}deleted{% endif %}" id="comment-{{ cmnt.id }}">
+				{% if userdata.powerlevel > 1 %}
 				<span class="delete">
 					<a href="javascript:document.remove{{ cmnt.id }}.submit()" style="color:red">X</a>
 					<form action="_post_comment.php" method="post" name="remove{{ cmnt.id }}">
@@ -18,6 +19,7 @@
 						<input type="hidden" name="cmnt" value="{{ cmnt.id }}">
 					</form>
 				</span>
+				{% endif %}
 				<span class="date">{{ cmnt.time | date('M j, Y') }}</span>
 
 				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message }}</span>

@@ -3,7 +3,7 @@ chdir('../');
 include('lib/common.php');
 
 $level = isset($_GET['i']) ? (int)$_GET['i'] : null;
-$levelpath = sprintf('levels/%s.plvl', $level);
+$levelpath = sprintf('levels/%d.plvl', $level);
 
 if (!$level || !file_exists($levelpath)) {
 	// Temporarily disabled due to package problems

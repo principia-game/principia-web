@@ -15,7 +15,7 @@ $pass = (isset($_POST['email']) ? $_POST['email'] : null);
 //       code 118 is useless to us as we're not checking your license
 
 if (!isset($name)) die('111'); // 111 is a generic "something went wrong!" code.
-if (!isset($mail)) die('115'); // "This email is invalid."
+if (!isset($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL)) die('115'); // "This email is invalid."
 if (!isset($pass) || strlen($pass) < 6) die('114'); // "The password is invalid."
 if (result("SELECT COUNT(*) FROM users WHERE name = ?", [$name])) die('112'); // "This username is already taken."
 if (preg_match('/[a-zA-Z0-9_]+$/', $name)) die('113'); // "The username contains invalid characters."

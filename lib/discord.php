@@ -27,7 +27,7 @@ $exampleWebhookData = [
 ];
 
 function newLevelHook($level) {
-	global $webhook;
+	global $webhook, $domain;
 
 	// dirty description truncating
 	if (strlen($level['description']) > 500) {
@@ -42,23 +42,23 @@ function newLevelHook($level) {
 		"embeds": [{
 			"title": "%s",
 			"description": "%s",
-			"url": "https://principia-web.tk/level.php?id=%s",
+			"url": "%s/level.php?id=%s",
 			"timestamp": "%s",
 			"color": 13056,
 			"footer": {
 				"text": "New uploaded levels"
 			},
 			"thumbnail": {
-				"url": "https://principia-web.tk/levels/thumbs/%s.jpg"
+				"url": "%s/levels/thumbs/%s.jpg"
 			},
 			"author": {
 				"name": "%s",
-				"url": "https://principia-web.tk/user.php?id=%s"
+				"url": "%s/user.php?id=%s"
 			}
 		}]
 	}
 JSON
-	, $level['name'], $level['description'], $level['id'], date(DATE_ISO8601), $level['id'], $level['u_name'], $level['u_id']), true);
+	, $level['name'], $level['description'], $domain, $level['id'], date(DATE_ISO8601), $domain, $level['id'], $level['u_name'], $domain, $level['u_id']), true);
 
 	discordmsg($msg, $webhook);
 }

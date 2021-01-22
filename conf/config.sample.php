@@ -19,6 +19,9 @@ $iHaveASenseOfHumor = true;
 // Redirect all non-internal pages to https.
 $https = true;
 
+// Website domain.
+$domain = 'https://example.org';
+
 // URL to Discord webhook for new level uploads. Leave blank to disable this.
 $webhook = '';
 

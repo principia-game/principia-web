@@ -37,6 +37,12 @@ $captcha = [
 	]
 ];
 
+// Email stuff. Uncomment to enable
+//$email['host'] = '';
+//$email['port'] = '';
+//$email['username'] = '';
+//$email['password'] = '';
+
 // Stub function to put special information in the footer.
 function customInfo() { }
 

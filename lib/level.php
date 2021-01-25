@@ -36,6 +36,7 @@ function cmtTypeToNum($type) {
 		case 'level':	return 1;
 		case 'news':	return 2;
 		case 'contest':	return 3;
+		case 'user':	return 4;
 		case 'chat':	return 5;
 		case 'package':	return 6;
 	}

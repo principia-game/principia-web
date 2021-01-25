@@ -80,7 +80,7 @@ DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
+  `level` int(11) DEFAULT NULL,
   `recipient` int(11) NOT NULL,
   `sender` int(11) NOT NULL,
   PRIMARY KEY (`id`)

@@ -33,17 +33,30 @@ if ($userdata['id'] == $userpagedata['id'] && !$forceuser) {
 		$notificationCount = 0;
 	}
 
-	$notifsdata = query("SELECT $userfields n.*, l.id l_id, l.title l_title FROM notifications n JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id WHERE n.recipient = ?", [$userpagedata['id']]);
+	$notifsdata = query("SELECT $userfields n.*, l.id l_id, l.title l_title FROM notifications n LEFT JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id WHERE n.recipient = ?", [$userdata['id']]);
 
 	$notifications = [];
 	while ($notifdata = $notifsdata->fetch()) {
-		$notifications[] = sprintf('%s commented on your level <a href="level.php?id=%s">%s</a>.', userlink($notifdata, 'u_'), $notifdata['l_id'], $notifdata['l_title']);
+		switch ($notifdata['type']) {
+			case 1:
+				$notifications[] = sprintf('%s commented on your level <a href="level.php?id=%s">%s</a>.', userlink($notifdata, 'u_'), $notifdata['l_id'], $notifdata['l_title']);
+			break;
+			case 2:
+				$notifications[] = sprintf('%s commented on your <a href="user.php?id=%s&forceuser">user page</a>.', userlink($notifdata, 'u_'), $userdata['id']);
+			break;
+		}
 	}
 } else { // general profile details stuff
 	if ($userpagedata['about']) {
 		$markdown = new Parsedown();
 		$markdown->setSafeMode(true);
 		$userpagedata['about'] = $markdown->text($userpagedata['about']);
+	}
+
+	$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$userpagedata['id']]);
+
+	if ($userpagedata['id'] == $userdata['id']) {
+		query("DELETE FROM notifications WHERE type = 2 AND recipient = ?", [$userdata['id']]);
 	}
 }
 
@@ -59,5 +72,5 @@ echo $twig->render('user.twig', [
 	'notifs' => (isset($notifications) ? $notifications : []),
 	'markread' => (isset($_GET['markread']) ? true : false),
 	'edited' => (isset($_GET['edited']) ? true : false),
-
+	'comments' => (isset($comments) ? $comments : null)
 ]);

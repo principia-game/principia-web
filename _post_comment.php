@@ -21,11 +21,21 @@ if (!$doDelete) {
 	query("INSERT INTO comments (type, level, author, time, message) VALUES (?,?,?,?,?)",
 		[$nType, $id, $userdata['id'], time(), $message]);
 
-	if ($type == 'level') {
-		$leveldata = fetch("SELECT id, author FROM levels WHERE id = ?", [$id]);
+	switch ($type) {
+		case 'level':
+			$leveldata = fetch("SELECT id, author FROM levels WHERE id = ?", [$id]);
 
-		query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
-			[1, $leveldata['id'], $leveldata['author'], $userdata['id']]);
+			if ($userdata['id'] == $leveldata['author']) break;
+
+			query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
+				[1, $leveldata['id'], $leveldata['author'], $userdata['id']]);
+		break;
+		case 'user':
+			if ($userdata['id'] == $id) break;
+
+			query("INSERT INTO notifications (type, recipient, sender) VALUES (?,?,?)",
+				[2, $id, $userdata['id']]);
+		break;
 	}
 } else {
 	if (!$cmntId) die('params pls');
@@ -39,4 +49,4 @@ if (!$doDelete) {
 	query("UPDATE comments SET deleted = ? WHERE id = ?", [$deleted, $cmntId]);
 }
 
-redirect(sprintf('/%s.php?id=%s', $type, $id));
+redirect(sprintf('/%s.php?id=%s%s', $type, $id, ($type == 'user' ? '&forceuser' : '')));

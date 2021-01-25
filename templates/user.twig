@@ -45,6 +45,8 @@
 {% set le_url = 'user.php?id=' ~ id ~ '&page=%s' %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
-<br><br>
+<h2>Comments</h2>
+{{ comments(comments, 'user', id) }}
+<br>
 {% endif %}
 	{% endblock %}

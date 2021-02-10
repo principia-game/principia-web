@@ -1,0 +1,7 @@
+{% extends "_layout.twig" %}
+
+{% block title %}{{ pagetitle }}{% endblock %}
+
+	{% block content %}
+{{ source('markdown/' ~ file) | markdown }}
+	{% endblock %}

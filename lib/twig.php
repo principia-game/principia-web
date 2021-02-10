@@ -14,6 +14,10 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 	public function getFilters() {
 		return [
 			new \Twig\TwigFilter('cat_to_type', 'cat_to_type'),
+			new \Twig\TwigFilter('markdown', function ($text) {
+				$markdown = new Parsedown();
+				return $markdown->text($text);
+			}, ['is_safe' => ['html']])
 		];
 	}
 }

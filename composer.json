@@ -4,12 +4,13 @@
         "kaitai-io/kaitai_struct_php_runtime": "dev-master",
         "twig/twig": "^3.0",
         "erusev/parsedown": "9999999-dev",
-        "phpmailer/phpmailer": "dev-master"
+        "phpmailer/phpmailer": "dev-master",
+        "nelexa/zip": "^1.0"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url":  "git@github.com:kaitai-io/kaitai_struct_php_runtime.git"
+            "url":  "https://github.com/principia-preservation-project/kaitai_struct_php_runtime"
         }
     ]
 }

@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Return HTML code for an userlink, including stuff like custom colors
+ *
+ * @param array $user User array containing user fields. Retrieve this from the database using userfields().
+ * @param string $pre $user key prefix.
+ * @return string Userlink HTML code.
+ */
 function userlink($user, $pre = '') {
 	if ($user[$pre.'id'] == 1) {
 		$user[$pre.'name'] = '<span style="color:#D60270">ROll</span><span style="color:#9B4F96">er</span><span style="color:#0038A8">ozxa</span>';
@@ -14,6 +21,11 @@ function userlink($user, $pre = '') {
 HTML;
 }
 
+/**
+ * Get list of SQL SELECT fields for userlinks.
+ *
+ * @return string String to put inside a SQL statement.
+ */
 function userfields() {
 	$fields = ['id', 'name', 'customcolor'];
 

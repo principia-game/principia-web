@@ -2,6 +2,13 @@
 
 // Functions related to Discord webhook stuff.
 
+/**
+ * Function to trigger a Discord webhook.
+ *
+ * @param json $msg JSON payload
+ * @param string $webhook Webhook URL
+ * @return mixed Response from Discord.
+ */
 function discordmsg($msg, $webhook) {
 	if ($webhook != "") {
 		$ch = curl_init($webhook);
@@ -26,6 +33,11 @@ $exampleWebhookData = [
 	'u_name' => 'ROllerozxa'
 ];
 
+/**
+ * Trigger the new level webhook.
+ *
+ * @param array $level Level array with the necessary data.
+ */
 function newLevelHook($level) {
 	global $webhook, $domain;
 

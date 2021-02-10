@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Twig loader, initializes Twig with standard configurations and extensions.
+ *
+ * @param string $subfolder Subdirectory to use in the templates/ directory.
+ * @return \Twig\Environment Twig object.
+ */
 function twigloader($subfolder = '') {
 	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $basepath, $lpp, $forum;
 

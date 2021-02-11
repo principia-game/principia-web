@@ -3,8 +3,12 @@
 {% block title %}Login{% endblock %}
 
 	{% block content %}
+{% if error %}
+	<div class="header_message">{{ error }}</div>
+{% endif %}
+
 <h2>Login</h2>
-<form class="reglog" method="POST">
+<form class="reglog" method="POST" action="login.php">
 	<p>
 		<span>Username:</span>
 		<input type="text" name="name" size="25" maxlength="25">

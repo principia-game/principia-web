@@ -20,7 +20,7 @@ $levels = query("SELECT $userfields l.id id,l.title title,l.locked locked FROM l
 $count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.locked = 0", [$userpagedata['id']]);
 
 // Personal user page stuff
-if ($userdata['id'] == $userpagedata['id'] && !$forceuser) {
+if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceuser) {
 	if ($log && isset($_GET['darkmode'])) {
 		$newopt = ($userdata['darkmode'] ? 0 : 1);
 
@@ -55,7 +55,7 @@ if ($userdata['id'] == $userpagedata['id'] && !$forceuser) {
 
 	$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$userpagedata['id']]);
 
-	if ($userpagedata['id'] == $userdata['id']) {
+	if (isset($userdata['id']) && $userpagedata['id'] == $userdata['id']) {
 		query("DELETE FROM notifications WHERE type = 2 AND recipient = ?", [$userdata['id']]);
 	}
 }

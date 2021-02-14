@@ -100,6 +100,15 @@ CREATE TABLE `packages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+DROP TABLE IF EXISTS `passwordresets`;
+CREATE TABLE `passwordresets` (
+  `id` varchar(64) NOT NULL,
+  `user` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `active` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,

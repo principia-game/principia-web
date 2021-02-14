@@ -36,6 +36,10 @@
 	{{ userpagedata.about | raw }}
 </div>
 
+{% if userdata.powerlevel > 2 %}
+	<p><a href="resetpassword.php?grf={{ id }}">Generate password reset for user</a></p>
+{% endif %}
+
 {% for level in levels %}
 	{{ level(level) }}
 {% else %}

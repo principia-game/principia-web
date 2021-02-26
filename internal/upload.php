@@ -46,8 +46,8 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 	// back up previous revision level ...
 	rename("levels/$cid.plvl", sprintf('levels/backup/%s.plvl.bak.%s', $cid, $leveldata['revision']));
 	// ... and thumb
-	if (file_exists("levels/thumb/$cid.jpg")) {
-		rename("levels/thumb/$cid.jpg", sprintf('levels/thumb/backup/%s.jpg.bak.%s', $cid, $leveldata['revision']));
+	if (file_exists("levels/thumbs/$cid.jpg")) {
+		rename("levels/thumbs/$cid.jpg", sprintf('levels/thumbs/backup/%s.jpg.bak.%s', $cid, $leveldata['revision']));
 	}
 
 	// Move uploaded level file to the levels directory.

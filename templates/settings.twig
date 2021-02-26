@@ -66,9 +66,10 @@
 	<tr>
 		<td class="a">Hacky dark mode <br><em>(Experimental!)</em></td>
 		<td class="b">
-			<label><input type="radio" name="darkmode" value="0" {% if not userdata.darkmode %}checked{% endif %} {% if is_android_webview() %}disabled{% endif %}>Disabled </label>
-			<label><input type="radio" name="darkmode" value="1" {% if userdata.darkmode %}checked{% endif %} {% if is_android_webview() %}disabled{% endif %}>Enabled </label>
-			{% if is_android_webview %}<br><em>Sorry, but dark mode is currently not compatible with Principia Android's webview!</em>{% endif %}
+			<label><input type="radio" name="darkmode" value="0" {% if not userdata.darkmode %}checked{% endif %} {#{% if is_android_webview() %}#}disabled{#{% endif %}#}>Disabled </label>
+			<label><input type="radio" name="darkmode" value="1" {% if userdata.darkmode %}checked{% endif %} {#{% if is_android_webview() %}#}disabled{#{% endif %}#}>Enabled </label>
+			{#{% if is_android_webview %}<br><em>Sorry, but dark mode is currently not compatible with Principia Android's webview!</em>{% endif %}#}
+			<br><em>Dark mode has been temporarily disabled. A better one is in the works, stay tuned!</em>
 		</td>
 	<tr>
 		<td class="a">Timezone</td>

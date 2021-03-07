@@ -19,6 +19,9 @@ $iHaveASenseOfHumor = true;
 // Redirect all non-internal pages to https.
 $https = true;
 
+// Cookie token name. Don't change this too often as it'll invalidate old logins!
+$cookieName = 'token';
+
 // Website domain.
 $domain = 'https://example.org';
 

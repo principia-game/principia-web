@@ -76,7 +76,6 @@ CREATE TABLE `news` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` int(11) NOT NULL,
@@ -87,7 +86,6 @@ CREATE TABLE `notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `packages`;
 CREATE TABLE `packages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(128) NOT NULL DEFAULT 'A package',
@@ -100,7 +98,6 @@ CREATE TABLE `packages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS `passwordresets`;
 CREATE TABLE `passwordresets` (
   `id` varchar(64) NOT NULL,
   `user` int(11) NOT NULL,
@@ -115,6 +112,7 @@ CREATE TABLE `users` (
   `password` varchar(256) NOT NULL,
   `email` varchar(256) NOT NULL,
   `ip` varchar(15) NOT NULL DEFAULT '999.999.999.999',
+  `token` varchar(40) DEFAULT NULL,
   `joined` int(11) NOT NULL DEFAULT 0,
   `lastview` int(11) NOT NULL DEFAULT 0,
   `lastpost` int(11) NOT NULL DEFAULT 0,

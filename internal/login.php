@@ -7,7 +7,7 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 		die('102');
 	}
 
-	$logindata = fetch("SELECT id, name, password FROM users WHERE name = ?", [$_POST['username']]);
+	$logindata = fetch("SELECT id, name, password, token FROM users WHERE name = ?", [$_POST['username']]);
 
 	if (password_verify($_POST['password'], $logindata['password'])) {
 		//header("X-Principia-User-Id: ".$logindata['id']);
@@ -18,8 +18,7 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 			nothingSpecial();
 		}
 
-		setcookie('user', $logindata['id'], 2147483647, '/');
-		setcookie('passenc', base64_encode($_POST['password']), 2147483647, '/');
+		setcookie($cookieName, $logindata['token'], 2147483647, '/');
 
 		echo '100'; // Logged in successfully
 	} else {

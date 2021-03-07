@@ -23,7 +23,9 @@ if (isset($_POST['action'])) {
 	if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) $error .= "Email isn't valid. ";
 
 	if ($error == '') {
-		query("INSERT INTO users (name, password, email, joined) VALUES (?,?,?,?)", [$name,password_hash($pass, PASSWORD_DEFAULT), $mail, time()]);
+		$token = bin2hex(random_bytes(20));
+		query("INSERT INTO users (name, password, email, token, joined) VALUES (?,?,?,?,?)",
+			[$name,password_hash($pass, PASSWORD_DEFAULT), $mail, $token, time()]);
 
 		redirect('./?rd');
 	}

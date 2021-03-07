@@ -18,30 +18,37 @@ require('vendor/autoload.php');
 require('lib/discord.php');
 require('lib/layout.php');
 require('lib/level.php');
+require('lib/misc.php');
 require('lib/mysql.php');
 require('lib/twig.php');
 require('lib/user.php');
 
 $userfields = userfields();
 
-$ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);
-if ($ipban) {
-	http_response_code(403);
+if (!isCli()) {
+	$ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);
+	if ($ipban) {
+		http_response_code(403);
 
-	printf(
-		"<p>Your IP adress has been banned.</p>".
-		"<p><strong>Reason:</strong> %s</p>".
-		"<p>If you believe this is in error, send an email to %s to appeal.</p>",
-	$ipban['reason'], $_SERVER['SERVER_ADMIN']);
+		printf(
+			"<p>Your IP adress has been banned.</p>".
+			"<p><strong>Reason:</strong> %s</p>".
+			"<p>If you believe this is in error, send an email to %s to appeal.</p>",
+		$ipban['reason'], $_SERVER['SERVER_ADMIN']);
 
-	die();
+		die();
+	}
 }
 
-// Authentication code.
-if (isset($_COOKIE['user']) || isset($_COOKIE['passenc'])) {
-	$pass_db = result("SELECT password FROM users WHERE id = ?", [$_COOKIE['user']]);
+// Unset legacy authentication cookies for security purposes. This will hopefully delete it from browsers and clients.
+if (isset($_COOKIE['user']))	setcookie('user', 'DEPRECATED', 1);
+if (isset($_COOKIE['passenc'])) setcookie('passenc', 'DEPRECATED', 1);
 
-	if (password_verify(base64_decode($_COOKIE['passenc']), $pass_db)) {
+// Authentication code.
+if (isset($_COOKIE[$cookieName])) {
+	$id = result("SELECT id FROM users WHERE token = ?", [$_COOKIE[$cookieName]]);
+
+	if ($id) {
 		// Valid password cookie.
 		$log = true;
 	} else {
@@ -54,7 +61,7 @@ if (isset($_COOKIE['user']) || isset($_COOKIE['passenc'])) {
 }
 
 if ($log) {
-	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$_COOKIE['user']]);
+	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$id]);
 	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 
 	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $_SERVER['REMOTE_ADDR'], $userdata['id']]);

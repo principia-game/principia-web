@@ -1,24 +1,36 @@
 {% extends "_layout.twig" %}
 
-{% block title %}Download{% endblock %}
+{% block title %}Downloads{% endblock %}
 
 	{% block content %}
-<h2>Download Principia</h2>
+<h2>Downloads</h2>
+
+<p>For uploading and playing levels you will need to download and install a mod to make the game connect to principia-web.</p>
 
 <table class="dl">
 	<tr>
-		<td class="center"><img src="assets/icons/windows.svg" height=32></td>
-		<td><em>1.5.1</em></td>
-		<td><a href="https://archive.org/download/principia-windows-installer-151/principia-x86.exe">Download</a></td>
-		<td></td>
+		<td class="center"><img src="assets/icons/windows.svg" height=32> <br>Windows</td>
+		<td>
+			<p><em>(If you don't already have 1.5.1, you can download it <a href="https://archive.org/download/principia-windows-installer-151/principia-x86.exe">here</a>.)</em></p>
+
+			<p><a href="https://drive.google.com/file/d/1iwlczbHMnSks7dEUVdmxwPDK7N9_NxW5/view?usp=sharing">Download the cURL mod for 1.5.1.</a></p>
+
+			<p>This patches the game's cURL library to redirect connections to principia-web. For installing, please see the included README file.</p>
+		</td>
 	</tr>
 	<tr>
-		<td class="center"><img src="assets/icons/android.svg" height=32></td>
-		<td><em>1.5.1</em></td>
-		<td><a href="https://archive.org/download/principia-android-game-archive/Principia.7z/Principia_1.5.1.apk">Download</a></td>
-		<td><em>Enable installation from untrusted sources if you haven't already.</em></td>
+		<td class="center"><img src="assets/icons/android.svg" height=32> <br>Android</td>
+		<td>
+			<p><a href="https://drive.google.com/file/d/1CUD_lv6DuOiBxOkan1Sohoyh_dsFwHAH/view?usp=sharing">Download the principia-web mod for Android.</a></p>
+
+			<p><strong>Since this APK is signed using a different key from the original APK, you will need to uninstall the original one. You shouldn't lose any game data, but make a backup just in case.</strong></p>
+
+			<p>This modded APK not only renames strings to point to principia-web, but also removes Facebook analytics and fixes the SFX Emitter bug.</p>
+		</td>
 	</tr>
 </table>
 
-<p>For older versions please see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/edit?usp=sharing" target="_blank">Bithack Game Archive Index</a>.</p>
+<p><em>1.5.1.1 coming soon... Stay tuned!</em></p>
+
+<p>If you fancy something else, see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/edit?usp=sharing" target="_blank">Bithack Game Archive Index</a>.</p>
 	{% endblock %}

@@ -7,6 +7,18 @@
 	<div class="header_message">You've been successfully registered!</div>
 {% endif %}
 
+{% if not log %}
+<div class="skit">
+	<h1>Welcome to principia-web!</h1>
+
+	<p>Principia-web is an unofficial community site replacement for the game Principia, as the official community site was shut down in early 2018.</p>
+
+	<p>To be able to play and upload levels, you will need to <a href="download.php">install a mod</a>, available on both Windows and Android, that allows the game to connect to principia-web.</p>
+
+	<p>What are you waiting for? <a href="register.php">Register now!</a></p>
+</div>
+{% endif %}
+
 <h2 class="header">Latest news <a href="news.php">More</a></h2>
 <ul>
 	{% for new in news %}

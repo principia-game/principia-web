@@ -25,6 +25,9 @@ $cookieName = 'token';
 // Website domain.
 $domain = 'https://example.org';
 
+// Discord server link. If blank will disable Discord link.
+$invite = '';
+
 // URL to Discord webhook for new level uploads. Leave blank to disable this.
 $webhook = '';
 

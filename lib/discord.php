@@ -72,5 +72,5 @@ function newLevelHook($level) {
 JSON
 	, $level['name'], $level['description'], $domain, $level['id'], date(DATE_ISO8601), $domain, $level['id'], $level['u_name'], $domain, $level['u_id']), true);
 
-	discordmsg($msg, $webhook);
+	$response = discordmsg($msg, $webhook);
 }

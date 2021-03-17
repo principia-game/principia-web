@@ -15,13 +15,9 @@ if ($https && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_NAME'], 'inte
 
 require('vendor/autoload.php');
 
-require('lib/discord.php');
-require('lib/layout.php');
-require('lib/level.php');
-require('lib/misc.php');
-require('lib/mysql.php');
-require('lib/twig.php');
-require('lib/user.php');
+foreach (glob("lib/*.php") as $file) {
+	require_once($file);
+}
 
 $userfields = userfields();
 

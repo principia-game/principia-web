@@ -46,6 +46,7 @@ query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
 $level['views']++;
 
 $markdown = new Parsedown();
+$markdown->setSafeMode(true);
 $level['description'] = $markdown->text($level['description']);
 
 $contests = query("SELECT id,title,active FROM contests WHERE active = 1");

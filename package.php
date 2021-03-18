@@ -13,6 +13,7 @@ query("UPDATE packages SET views = views + '1' WHERE id = ?", [$lid]);
 $pkg['views']++;
 
 $markdown = new Parsedown();
+$markdown->setSafeMode(true);
 $pkg['description'] = $markdown->text($pkg['description']);
 
 $comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 6 AND c.level = ? ORDER BY c.time DESC", [$lid]);

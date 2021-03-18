@@ -6,17 +6,15 @@ if (!file_exists('conf/config.php')) {
 $start = microtime(true);
 
 require('conf/config.php');
-
-// Redirect all non-internal pages to https if https is enabled.
-if ($https && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_NAME'], 'internal') === false) {
-	header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
-	die();
-}
-
 require('vendor/autoload.php');
-
 foreach (glob("lib/*.php") as $file) {
 	require_once($file);
+}
+
+// Redirect all non-internal pages to https if https is enabled.
+if (!isCli() && $https && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_NAME'], 'internal') === false) {
+	header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
+	die();
 }
 
 $userfields = userfields();

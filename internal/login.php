@@ -18,7 +18,7 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 			nothingSpecial();
 		}
 
-		setcookie($cookieName, $logindata['token'], 2147483647, '/');
+		setcookie($cookieName, $logindata['token'], time() + 3600*24*365, '/');
 
 		echo '100'; // Logged in successfully
 	} else {

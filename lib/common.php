@@ -35,8 +35,8 @@ if (!isCli()) {
 }
 
 // Unset legacy authentication cookies for security purposes. This will hopefully delete it from browsers and clients.
-if (isset($_COOKIE['user']))	setcookie('user', 'DEPRECATED', 1);
-if (isset($_COOKIE['passenc'])) setcookie('passenc', 'DEPRECATED', 1);
+if (isset($_COOKIE['user']))	setcookie('user', 'DEPRECATED', 1, '/');
+if (isset($_COOKIE['passenc'])) setcookie('passenc', 'DEPRECATED', 1, '/');
 
 // Authentication code.
 if (isset($_COOKIE[$cookieName])) {

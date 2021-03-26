@@ -53,6 +53,11 @@ $contests = query("SELECT id,title,active FROM contests WHERE active = 1");
 
 $comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
 
+$derivatives = query("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.locked = 0 ORDER BY l.id DESC LIMIT 4", [$lid]);
+if ($level['parent']) {
+	$parentLevel = fetch("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.locked = 0", [$level['parent']]);
+}
+
 $twig = twigloader();
 
 echo $twig->render('level.twig', [
@@ -62,5 +67,7 @@ echo $twig->render('level.twig', [
 	'contests' => fetchArray($contests),
 	'contest_entered' => (isset($contestEntered) ? $contestEntered : null),
 	'already_entered' => (isset($alreadyEntered) ? $alreadyEntered : false),
-	'comments' => fetchArray($comments)
+	'comments' => fetchArray($comments),
+	'derivatives' => fetchArray($derivatives),
+	'parentlevel' => (isset($parentLevel) ? $parentLevel : null)
 ]);

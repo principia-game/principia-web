@@ -74,6 +74,18 @@
 	{% endif %}
 </div>
 
+{% if derivatives %}
+	<h2>Derivatives</h2>
+	{% for derivative in derivatives %}
+		{{ level(derivative) }}
+	{% endfor %}
+{% endif %}
+
+{% if parentlevel %}
+	<h2>Parent</h2>
+	{{ level(parentlevel) }}
+{% endif %}
+
 <h2>Comments</h2>
 {{ comments(comments, 'level', level.id) }}
 <br>

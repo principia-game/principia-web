@@ -22,7 +22,7 @@
 				{% endif %}
 				<span class="date">{{ cmnt.time | date('M j, Y') }}</span>
 
-				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message }}</span>
+				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message | escape | replace({'\n':'<br>'}) | raw }}</span>
 			</div>
 		{% endif %}
 	{% endfor %}

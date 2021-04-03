@@ -8,9 +8,9 @@
  * @return string Userlink HTML code.
  */
 function userlink($user, $pre = '') {
-	if ($user[$pre.'id'] == 1) {
-		$user[$pre.'name'] = '<span style="color:#D60270">ROll</span><span style="color:#9B4F96">er</span><span style="color:#0038A8">ozxa</span>';
-	}
+	//if ($user[$pre.'id'] == 1) {
+	//	$user[$pre.'name'] = '<span style="color:#D60270">ROll</span><span style="color:#9B4F96">er</span><span style="color:#0038A8">ozxa</span>';
+	//}
 
 	if ($user[$pre.'customcolor']) {
 		$user[$pre.'name'] = sprintf('<span style="color:#%s">%s</span>', $user[$pre.'customcolor'], $user[$pre.'name']);

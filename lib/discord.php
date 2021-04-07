@@ -1,34 +1,13 @@
 <?php
-
 // Functions related to Discord webhook stuff.
 
-/**
- * Function to trigger a Discord webhook.
- *
- * @param json $msg JSON payload
- * @param string $webhook Webhook URL
- * @return mixed Response from Discord.
- */
-function discordmsg($msg, $webhook) {
-	if ($webhook != "") {
-		$ch = curl_init($webhook);
-		$msg = "payload_json=" . urlencode(json_encode($msg))."";
-
-		if (isset($ch)) {
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $msg);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$result = curl_exec($ch);
-			curl_close($ch);
-			return $result;
-		}
-	}
-}
+use \DiscordWebhooks\Client;
+use \DiscordWebhooks\Embed;
 
 $exampleWebhookData = [
 	'id' => 1,
 	'name' => 'not so smiley man',
-	'description' => "finally\\n\\nnot so smiley man",
+	'description' => "finally\n\nnot so smiley man",
 	'u_id' => 1,
 	'u_name' => 'ROllerozxa'
 ];
@@ -47,30 +26,20 @@ function newLevelHook($level) {
 		$level['description'] = substr($level['description'], 0, strpos($level['description'], "\n")) . '...';
 	}
 
-	$level['description'] = str_replace("\n", "\\n", $level['description']);
+	$webhook = new Client($webhook);
+	$mbd = new Embed();
 
-	$msg = json_decode(sprintf(<<<JSON
-	{
-		"embeds": [{
-			"title": "%s",
-			"description": "%s",
-			"url": "%s/level.php?id=%s",
-			"timestamp": "%s",
-			"color": 13056,
-			"footer": {
-				"text": "New uploaded levels"
-			},
-			"thumbnail": {
-				"url": "%s/levels/thumbs/%s.jpg"
-			},
-			"author": {
-				"name": "%s",
-				"url": "%s/user.php?id=%s"
-			}
-		}]
-	}
-JSON
-	, $level['name'], $level['description'], $domain, $level['id'], date(DATE_ISO8601), $domain, $level['id'], $level['u_name'], $domain, $level['u_id']), true);
+	$mbd->title($level['name'])
+		->description($level['description'])
+		->url(sprintf("%s/level.php?id=%s", $domain, $level['id']))
+		->timestamp(date(DATE_ISO8601))
+		->color(13056)
+		->footer("New uploaded levels")
+		->thumbnail(sprintf("%s/levels/thumbs/%s.jpg", $domain, $level['id']))
+		->author(
+			$level['u_name'],
+			sprintf("%s/user.php?id=%s", $domain, $level['u_id'])
+		);
 
-	$response = discordmsg($msg, $webhook);
+	$webhook->embed($mbd)->send();
 }

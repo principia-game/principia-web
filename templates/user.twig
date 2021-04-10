@@ -55,7 +55,12 @@
 	This user doesn't have any uploaded levels.
 {% endfor %}
 
-{% set le_url = 'user.php?id=' ~ id ~ '&page=%s' %}
+{% if userdata.id == id %}
+	{% set forceuser = "&forceuser" %}
+{% else %}
+	{% set forceuser = "" %}
+{% endif %}
+{% set le_url = 'user.php?id=' ~ id ~ '&page=%s' ~ forceuser %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
 <h2>Comments</h2>

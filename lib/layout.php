@@ -45,6 +45,11 @@ function error($title, $message) {
 	die();
 }
 
+function level($level, $featured = '', $pkg = false) {
+	$twig = twigloader('components');
+	return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'pkg' => $pkg]);
+}
+
 function redirect($url) {
 	header(sprintf('Location: %s', $url));
 	die();

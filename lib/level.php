@@ -43,33 +43,6 @@ function cmtTypeToNum($type) {
 }
 
 /**
- * Create a level box.
- *
- * @param array $lvl Level information. For an example list of fields, check $lvl_example.
- * @return string Created level box.
- */
-function level($lvl, $featuredtext = '', $pkg = false) {
-	// TODO: rewrite this entire function...
-	$featured = ($featuredtext ? '<span class="featured small">'.$featuredtext.'</span>' : '');
-	$img = (!$pkg ? (!$lvl['locked'] ? "levels/thumbs/{$lvl['id']}.jpg" : 'assets/locked_thumb.svg') : 'assets/package_thumb.svg');
-	$page = (!$pkg ? "level.php" : "package.php");
-	$userlink = userlink($lvl, 'u_');
-	$levelname = htmlspecialchars($lvl['title']);
-	return <<<HTML
-<div class="level" id="l-{$lvl['id']}">
-	<a class="lvlbox_top" href="$page?id={$lvl['id']}">
-		<div>
-			<img src="$img" id="icon">
-			$featured
-			<span>{$levelname}</span>
-		</div>
-	</a>
-	$userlink
-</div>
-HTML;
-}
-
-/**
  * Extract the platform from a user agent string.
  * This is supposed to be used for getting the platform a level was uploaded from.
  *

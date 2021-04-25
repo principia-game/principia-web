@@ -1,0 +1,28 @@
+{% if not pkg %}
+	{% if not level.locked %}
+		{% set img = "levels/thumbs/" ~ level.id ~ ".jpg" %}
+	{% else %}
+		{% set img = "assets/locked_thumb.svg" %}
+	{% endif %}
+{% else %}
+	{% set img = "assets/package_thumb.svg" %}
+{% endif %}
+
+{% if pkg %}
+	{% set page = "package.php" %}
+{% else %}
+	{% set page = "level.php" %}
+{% endif %}
+
+<div class="level" id="l-{{ level.id }}">
+	<a class="lvlbox_top" href="{{ page }}?id={{ level.id }}">
+		<div>
+			<img src="{{ img }}" id="icon">
+			{% if featured %}
+				<span class="featured small">{{ featured }}</span>
+			{% endif %}
+			<span>{{ level.title }}</span>
+		</div>
+	</a>
+	{{ userlink(level, 'u_') }}
+</div>

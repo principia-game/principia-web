@@ -17,7 +17,8 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFilter('markdown', function ($text) {
 				$markdown = new Parsedown();
 				return $markdown->text($text);
-			}, ['is_safe' => ['html']])
+			}, ['is_safe' => ['html']]),
+			new \Twig\TwigFilter('relative_time', 'relativeTime')
 		];
 	}
 }

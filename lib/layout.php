@@ -50,6 +50,17 @@ function level($level, $featured = '', $pkg = false) {
 	return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'pkg' => $pkg]);
 }
 
+function relativeTime($time) {
+	$relativeTime = new \RelativeTime\RelativeTime([
+		'language' => '\RelativeTime\Languages\English',
+		'separator' => ', ',
+		'suffix' => true,
+		'truncate' => 1,
+	]);
+
+	return $relativeTime->timeAgo($time);
+}
+
 function redirect($url) {
 	header(sprintf('Location: %s', $url));
 	die();

@@ -33,7 +33,7 @@
 	{% if userdata.powerlevel > 1 %}
 	<tr>
 		<td class="a">Custom color</td>
-		<td class="b"><input type="color" name="customcolor" value="#{{ userdata.customcolor | default('0000aa') }}"></td>
+		<td class="b"><input name="customcolor" value="{{ userdata.customcolor | default('0000aa') }}" data-jscolor="{}"></td>
 	</tr>
 	{% endif %}
 	<!--<tr>
@@ -85,3 +85,9 @@
 <input type="hidden" name="magic" value="please change my settings :)">
 <input type="submit" name="action" value="Save Changes">
 	{% endblock %}
+
+{% block custom_footer %}
+	{% if userdata.powerlevel > 1 %}
+		<script src="assets/js/jscolor.min.js"></script>
+	{% endif %}
+{% endblock %}

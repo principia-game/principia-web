@@ -20,6 +20,7 @@ vendor/
 composer.lock
 
 ## misc.
+assets/js/jscolor.min.js
 adminer/
 assets/icon_ppp.png
 internal/upload_debug.php

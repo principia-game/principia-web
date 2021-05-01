@@ -7,12 +7,12 @@ if (isset($_POST['magic'])) {
 	$about			= $_POST['about'] ? $_POST['about'] : null;
 	$location		= $_POST['location'] ? $_POST['location'] : null;
 	$signature		= $_POST['signature'] ? $_POST['signature'] : null;
-	$darkmode		= $_POST['darkmode'] ? 1 : 0; // clamp it for good measure
+	$darkmode		= isset($_POST['darkmode']) ? 1 : 0; // clamp it for good measure
 	$timezone		= $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null;
 
 	// check custom color
 	$customcolor = ltrim($customcolor, '#');
-	if (!preg_match('/^([A-Fa-f0-9]{6})$/', $_POST['customcolor'])) {
+	if (!preg_match('/([A-Fa-f0-9]{6})/', $_POST['customcolor'])) {
 		// reset if invalid
 		$customcolor = $userdata['customcolor'];
 	}

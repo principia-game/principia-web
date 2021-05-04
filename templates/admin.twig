@@ -1,0 +1,16 @@
+{% extends "_layout.twig" %}
+
+{% block title %}{% endblock %}
+
+	{% block content %}
+<h2>Admin panel</h2>
+
+<p>various bells and whistles for super special people</p>
+
+{% if glob_forum %}
+<h4>Forum-specific admin pages</h4>
+<ul>
+<li><a href="forum/manageforums.php">Manage forums</a></li>
+<li><a href="forum/editgroups.php">Manage groups</a></li></ul>
+{% endif %}
+	{% endblock %}

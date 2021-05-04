@@ -15,6 +15,10 @@
 
 <p><a href="settings.php">Edit my settings</a> | <a href="user.php?id={{ id }}&forceuser">View user page as viewer</a> | <a href="javascript:document.logout.submit()">Log out</a></p>
 
+{% if userdata.powerlevel > 2 %}
+<p><a href="admin.php">Admin panel</a></p>
+{% endif %}
+
 <form action="login.php" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">
 </form>

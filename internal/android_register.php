@@ -1,6 +1,6 @@
 <?php
 chdir('../');
-include('lib/common.php');
+require('lib/common.php');
 
 if (!isset($_POST['signature']) || !isset($_POST['userdata'])) die('nah');
 

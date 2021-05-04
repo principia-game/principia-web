@@ -1,5 +1,5 @@
 <?php
-include('lib/common.php');
+require('lib/common.php');
 
 if (isset($_GET['id'])) {
 	$userpagedata = fetch("SELECT * FROM users WHERE id = ?", [$_GET['id']]);

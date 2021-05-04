@@ -1,5 +1,5 @@
 <?php
-include('lib/common.php');
+require('lib/common.php');
 
 if ($log) redirect('./');
 

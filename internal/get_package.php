@@ -1,6 +1,6 @@
 <?php
 chdir('../');
-include('lib/common.php');
+require('lib/common.php');
 
 $pkg = isset($_GET['i']) ? (int)$_GET['i'] : null;
 $pkgpath = sprintf('packages/%d.ppkg', $pkg);

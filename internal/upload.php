@@ -2,7 +2,7 @@
 chdir('../');
 require('lib/common.php');
 
-#include('upload_debug.php');
+#require('upload_debug.php');
 
 if (!$log) {
 	die('-100');

@@ -3,10 +3,12 @@ if (!file_exists('conf/config.php')) {
 	die('Please read the installing instructions in the README file.');
 }
 
-$start = microtime(true);
+// load profiler first
+require_once('lib/profiler.php');
+$profiler = new Profiler();
 
-require('conf/config.php');
-require('vendor/autoload.php');
+require_once('conf/config.php');
+require_once('vendor/autoload.php');
 foreach (glob("lib/*.php") as $file) {
 	require_once($file);
 }

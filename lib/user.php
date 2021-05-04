@@ -1,5 +1,7 @@
 <?php
 
+if (!isset($acmlm)) {
+
 /**
  * Return HTML code for an userlink, including stuff like custom colors
  *
@@ -35,4 +37,6 @@ function userfields() {
 	}
 
 	return $out;
+}
+
 }

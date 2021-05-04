@@ -19,7 +19,8 @@ if (!isCli() && $https && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_N
 	die();
 }
 
-$userfields = userfields();
+if (!isset($acmlm))
+	$userfields = userfields();
 
 if (!isCli()) {
 	$ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);

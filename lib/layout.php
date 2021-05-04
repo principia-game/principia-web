@@ -6,15 +6,25 @@
  * @param string $subfolder Subdirectory to use in the templates/ directory.
  * @return \Twig\Environment Twig object.
  */
-function twigloader($subfolder = '') {
+function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $basepath, $lpp, $forum, $invite;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
-	$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
-	$twig = new \Twig\Environment($loader, [
-		'cache' => $doCache,
-	]);
+	if (!isset($customloader)) {
+		$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
+	} else {
+		$loader = $customloader();
+	}
+
+	if (!isset($customenv)) {
+		$twig = new \Twig\Environment($loader, [
+			'cache' => $doCache,
+		]);
+	} else {
+		$twig = $customenv($loader, $doCache);
+	}
+
 	// Add principia-web specific extension
 	$twig->addExtension(new PrincipiaExtension());
 

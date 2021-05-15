@@ -3,5 +3,5 @@
 {% block title %}{{ pagetitle }}{% endblock %}
 
 	{% block content %}
-{{ source('markdown/' ~ file) | markdown }}
+{{ source('markdown/' ~ file) | markdown_unsafe }}
 	{% endblock %}

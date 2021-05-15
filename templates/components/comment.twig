@@ -3,7 +3,11 @@
 	<input type="hidden" name="t" value="{{ type }}">
 	<textarea name="comment" class="comment-input"></textarea>
 	<br><input type="submit" value="Post" {% if not log%}disabled{% endif %}></input>
-	{% if not log %}You need to login to comment.{% endif %}
+	{% if not log %}
+		You need to login to comment.
+	{% else %}
+		<em style="padding-left:10px">Inline markdown supported.</em>
+	{% endif %}
 </form><br>
 <div class="comments">
 	{% for cmnt in cmnts %}
@@ -22,7 +26,7 @@
 				{% endif %}
 				<span class="date" title="{{ cmnt.time | date('Y-m-d H:i:s') }}">{{ cmnt.time | relative_time }}</span>
 
-				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message | escape | replace({'\n':'<br>'}) | raw }}</span>
+				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
 			</div>
 		{% endif %}
 	{% endfor %}

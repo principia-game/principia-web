@@ -3,6 +3,7 @@ conf/config.php
 levels/
 packages/
 templates/cache/
+level_archive/
 
 ## SCSS caches
 assets/css/style.css

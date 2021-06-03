@@ -14,6 +14,12 @@ if (!$doDelete) {
 	if (!$message) die('params pls');
 	//if (result("SELECT COUNT(*) FROM levels WHERE id = ?", [$id]) != 1) die('valid level pls');
 
+	// rate-limit commenting to 10 times every 30 minutes. it should be fair enough to not prevent legitimate use
+	$recentCommentCount = result("SELECT COUNT(*) FROM comments WHERE author = ? AND time > ?", [$userdata['id'], time() - (30 * 60)]);
+	if ($recentCommentCount > 10) {
+		die('Please wait a while until commenting again.');
+	}
+
 	if (!$nType = cmtTypeToNum($type)) {
 		die('valid type pls');
 	}

@@ -42,8 +42,10 @@ if ($log) {
 
 if (!isset($hasLiked)) $hasLiked = false;
 
-query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
-$level['views']++;
+if ($log) {
+	query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
+	$level['views']++;
+}
 
 $markdown = new Parsedown();
 $markdown->setSafeMode(true);

@@ -366,3 +366,41 @@ form.reglog {
 	display: block;
 	text-align: center;
 }
+
+
+/// Generic text aligns \\\
+
+.left	{ text-align: left; }
+.center	{ text-align: center; }
+.right	{ text-align: right; }
+
+.clear_right { clear: right; }
+
+
+/// User page \\\
+.user_about {
+	margin-bottom: 1em;
+}
+
+.user_stats {
+	margin-right: 20px;
+	margin-left: 10px;
+	border: 1px solid black;
+	width: 300px;
+	float: right;
+
+	.topthing {
+		background: #55b4cc;
+		padding: 7px;
+	}
+
+	.row {
+		border-top: 1px solid black;
+		padding: 10px;
+		display: block;
+
+		.pad {
+			float: right;
+		}
+	}
+}

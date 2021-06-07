@@ -8,9 +8,10 @@
 {% elseif edited %}
 	<div class="header_message">Settings successfully saved!</div>
 {% endif %}
-<h2>{{ name }} {% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}</h2>
 
 {% if userdata.id == id and not forceuser %}
+<h2>{{ name }}</h2>
+
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
 <p><a href="settings.php">Edit my settings</a> | <a href="user.php?id={{ id }}&forceuser">View user page as viewer</a> | <a href="javascript:document.logout.submit()">Log out</a></p>
@@ -44,14 +45,43 @@
 	{% endif %}
 </ul>
 {% else %}
-<div class="user_about" style="margin-bottom: 1em;">
+<div class="user_stats">
+	<div class="topthing"><b>General information</b></div>
+	{% if glob_forum %}
+		<div class="row">
+			<b>Forum Threads</b>: {{ userpagedata.threads }}
+			<span class="pad"><b>Forum Posts</b>: {{ userpagedata.posts }}</span>
+		</div>
+	{% endif %}
+	<div class="row">
+		<b>Registered on</b>: {{ userpagedata.joined | date('Y-m-d H:i:s') }}
+	</div>
+	<div class="row">
+		<b>Last view</b>: {{ userpagedata.lastview | relative_time }}
+	</div>
+</div>
+<h2>{{ name }} {% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}</h2>
+
+<div class="user_about">
 	<h3>About this user</h3>
 	{{ userpagedata.about | raw }}
 </div>
 
-{% if userdata.powerlevel > 2 %}
-	<p><a href="resetpassword.php?grf={{ id }}">Generate password reset for user</a></p>
-{% endif %}
+<p class="clear_right">
+	{% if glob_forum %}
+		<a href="forum/forum.php?user={{ id }}">View threads</a>
+		&bull; <a href="forum/thread.php?user={{ id }}">Show posts</a>
+		{% if log %}
+			{% if not userdata.id == id %}
+				&bull; <a href="forum/sendprivate.php?uid={{ id }}">Send private message</a>
+			{% endif %}
+			{% if userdata.powerlevel > 2 %}
+				&bull; <a href="resetpassword.php?grf={{ id }}">Generate password reset for user</a>
+				&bull; <a href="forum/editperms.php?uid={{ id }}">Edit forum permissions</a>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+</p>
 
 {% for level in levels %}
 	{{ level(level) }}

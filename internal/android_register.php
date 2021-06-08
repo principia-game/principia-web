@@ -10,7 +10,6 @@ $name = (isset($_POST['username']) ? $_POST['username'] : null);
 $mail = (isset($_POST['password']) ? $_POST['password'] : null);
 $pass = (isset($_POST['email']) ? $_POST['email'] : null);
 
-// TODO: code 116 - This email is already in use.
 // TODO: code 117 - This email has been banned.
 //       code 118 is useless to us as we're not checking your license
 
@@ -19,6 +18,8 @@ if (!isset($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL)) die('115'); // "
 if (!isset($pass) || strlen($pass) < 6) die('114'); // "The password is invalid."
 if (result("SELECT COUNT(*) FROM users WHERE name = ?", [$name])) die('112'); // "This username is already taken."
 if (!preg_match('/[a-zA-Z0-9_]+$/', $name)) die('113'); // "The username contains invalid characters."
+if (result("SELECT COUNT(*) FROM users WHERE email = ?", [$mail])) die('116'); // "This email is already in use."
+if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$_SERVER['REMOTE_ADDR']])) die('111'); // Just give the generic "something went wrong!" code.
 
 // All possible invalid credentials have been checked, it should be successful now.
 register($name, $pass, $mail);

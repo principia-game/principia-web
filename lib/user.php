@@ -1,7 +1,5 @@
 <?php
 
-if (!isset($acmlm)) {
-
 /**
  * Return HTML code for an userlink, including stuff like custom colors
  *
@@ -22,6 +20,8 @@ function userlink($user, $pre = '') {
 		<a class="user" href="user.php?id={$user[$pre.'id']}"><span class="t_user">{$user[$pre.'name']}</span></a>
 HTML;
 }
+
+if (!isset($acmlm)) {
 
 /**
  * Get list of SQL SELECT fields for userlinks.

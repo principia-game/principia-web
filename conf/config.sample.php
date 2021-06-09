@@ -55,7 +55,7 @@ function customInfo() { }
 
 /// GENERAL FORUM STUFF
 
-$forum = true; // Enable forum-related stuff
+$forumEnabled = true; // Enable forum-related stuff
 
 $trashid = 2; // Designates the id for your trash forum.
 

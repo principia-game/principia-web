@@ -27,3 +27,5 @@ assets/icon_ppp.png
 internal/upload_debug.php
 templates/_template.twig
 lol.php
+gource.log
+

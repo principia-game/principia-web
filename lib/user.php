@@ -8,6 +8,8 @@
  * @return string Userlink HTML code.
  */
 function userlink($user, $pre = '') {
+	global $acmlm;
+
 	//if ($user[$pre.'id'] == 1) {
 	//	$user[$pre.'name'] = '<span style="color:#D60270">ROll</span><span style="color:#9B4F96">er</span><span style="color:#0038A8">ozxa</span>';
 	//}
@@ -16,8 +18,10 @@ function userlink($user, $pre = '') {
 		$user[$pre.'name'] = sprintf('<span style="color:#%s">%s</span>', $user[$pre.'customcolor'], $user[$pre.'name']);
 	}
 
+	$htmlrelpathfuckery = (isset($acmlm) ? '../' : '');
+
 	return <<<HTML
-		<a class="user" href="user.php?id={$user[$pre.'id']}"><span class="t_user">{$user[$pre.'name']}</span></a>
+		<a class="user" href="{$htmlrelpathfuckery}user.php?id={$user[$pre.'id']}"><span class="t_user">{$user[$pre.'name']}</span></a>
 HTML;
 }
 

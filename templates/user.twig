@@ -14,7 +14,12 @@
 
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
-<p><a href="settings.php">Edit my settings</a> | <a href="user.php?id={{ id }}&forceuser">View user page as viewer</a> | <a href="javascript:document.logout.submit()">Log out</a></p>
+<p><a href="settings.php">Edit my settings</a>
+{% if glob_forum %}
+	&bull; <a href="forum/private.php">View my private messages</a>
+{% endif %}
+&bull; <a href="user.php?id={{ id }}&forceuser">View user page as viewer</a>
+&bull; <a href="javascript:document.logout.submit()">Log out</a></p>
 
 {% if userdata.powerlevel > 2 %}
 <p><a href="admin.php">Admin panel</a></p>

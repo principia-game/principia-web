@@ -7,7 +7,6 @@ $levelpath = sprintf('levels/%d.plvl', $level);
 
 if ($level > 1000000) { // Level loading overriding for the community archive
 	$levelpath_archive = sprintf('level_archive/levels/%d.plvl', $level - 1000000);
-	print($levelpath_archive);
 	if (file_exists($levelpath_archive)) {
 		echo readfile($levelpath_archive);
 		die();

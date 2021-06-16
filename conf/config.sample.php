@@ -52,6 +52,7 @@ $captcha = [
 // Stub function to put special information in the footer.
 function customInfo() { }
 
+$levelArchive = false;
 
 /// GENERAL FORUM STUFF
 

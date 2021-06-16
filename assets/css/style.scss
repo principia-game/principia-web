@@ -367,6 +367,42 @@ form.reglog {
 	text-align: center;
 }
 
+// Community level archive page specific styles\\
+
+.cummunity-levelz {
+	margin: 0;
+	li {
+		list-style-type: none;
+		margin: 0;
+		margin-bottom: 10px;
+
+		span {
+			background-color: #ddd;
+			display: inline-block;
+			font-weight: bold;
+			padding: 10px 20px;
+			width: 700px;
+			word-break: break-all;
+		}
+
+		a {
+			background-color: #ded;
+			border: none;
+			color: #454;
+			display: inline-block;
+			font-weight: bold;
+			margin: 0;
+			margin-right: 0.5em;
+			padding: 10px 20px;
+			width: 100px;
+			text-align: center;
+
+			&:hover {
+				box-shadow: 0 0px 4px #666;
+			}
+		}
+	}
+}
 
 /// Generic text aligns \\\
 

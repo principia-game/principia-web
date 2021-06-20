@@ -23,6 +23,8 @@ function register($name, $pass, $mail, $sendWelcomeEmail = true) {
 HTML
 		, $name));
 	}
+
+	return $token;
 }
 
 /**

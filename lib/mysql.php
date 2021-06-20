@@ -8,7 +8,7 @@ $options = [
 try {
 	$sql = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass, $options);
 } catch (\PDOException $e) {
-	die('Database error 1F');
+	die("Error - Can't connect to database. Please try again later.");
 }
 
 function query($query,$params = []) {

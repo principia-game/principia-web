@@ -50,7 +50,13 @@ function pagination($levels, $lpp, $url, $current) {
 }
 
 function error($title, $message) {
-	$twig = twigloader();
+	global $acmlm;
+
+	if ($acmlm)
+		$twig = _twigloader();
+	else
+		$twig = twigloader();
+
 	echo $twig->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
 	die();
 }

@@ -44,6 +44,9 @@ if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceu
 			case 2:
 				$notifications[] = sprintf('%s commented on your <a href="user.php?id=%s&forceuser">user page</a>.', userlink($notifdata, 'u_'), $userdata['id']);
 			break;
+			case 3:
+				$notifications[] = sprintf('%s sent you a private message: <a href="forum/showprivate.php?id=%s">Read</a>', userlink($notifdata, 'u_'), $notifdata['level']);
+			break;
 		}
 	}
 } else { // general profile details stuff

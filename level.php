@@ -36,6 +36,11 @@ if ($log) {
 		$level['locked'] = $lock;
 	}
 
+	// rerun webhook
+	if (isset($_GET['rerunhook']) && $userdata['powerlevel'] > 2) {
+		newLevelHook($level);
+	}
+
 	// remove notifications
 	query("DELETE FROM notifications WHERE type = 1 AND level = ? AND recipient = ?", [$level['id'], $userdata['id']]);
 }

@@ -38,7 +38,15 @@ if ($log) {
 
 	// rerun webhook
 	if (isset($_GET['rerunhook']) && $userdata['powerlevel'] > 2) {
-		newLevelHook($level);
+		$webhookdata = [
+			'id' => $level['id'],
+			'name' => $level['title'],
+			'description' => $level['description'],
+			'u_id' => $level['u_id'],
+			'u_name' => $level['u_name']
+		];
+
+		newLevelHook($webhookdata);
 	}
 
 	// remove notifications

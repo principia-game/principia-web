@@ -8,12 +8,6 @@ if (!$log) {
 	die('-100');
 }
 
-// rate-limit uploading to once every 5 minutes
-$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
-if (time() - $latestLevelTime < 5*60 && $userdata['powerlevel'] < 2) {
-	die('be gentle to the servers :\'(');
-}
-
 // Kaitai runtime & data
 require('lib/kaitai/plvl.php');
 
@@ -61,6 +55,13 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 	// Print the ID of the uploaded level. This is required to display the "Level published!" box.
 	print($cid);
 } else { // level has a noll community_id, assume we're uploading a new level
+	// rate-limit new level uploading to once every 5 minutes
+	$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
+	if (time() - $latestLevelTime < 5*60 && $userdata['powerlevel'] < 2) {
+		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
+		die('-103');
+	}
+
 	$nextId = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1") + 1;
 
 	// Move uploaded level file to the levels directory.

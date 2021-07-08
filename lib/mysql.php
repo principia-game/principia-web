@@ -36,3 +36,8 @@ function fetchArray($query) {
 	}
 	return $out;
 }
+
+function insertId() {
+	global $sql;
+	return $sql->lastInsertId();
+}

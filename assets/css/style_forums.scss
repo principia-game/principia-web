@@ -32,6 +32,15 @@ table.c1 {
 	tr.n1, td.n1 { background: #f5f5f5; }
 	tr.n2, td.n2 { background: #ebebeb; }
 	tr.n3, td.n3 { background: #d4d4d4; }
+
+	.delete {
+		font-weight:900;
+		display: inline-block;
+		margin-left: 6px;
+		margin-right: 6px;
+		font-size: 18px;
+		color: red;
+	}
 }
 
 .pagelist {
@@ -92,11 +101,4 @@ table.c1 {
 .wbreak { word-break: break-word; }
 .fullwidth { width: 100% !important; }
 
-.delete {
-	font-weight:900;
-	display: inline-block;
-	margin-left: 6px;
-	margin-right: 6px;
-	font-size: 18px;
-	color: red;
-}
+

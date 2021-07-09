@@ -1,0 +1,102 @@
+/// forum specific styling uwu \\\
+
+table.c1 {
+	border: #000000 1px solid;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	width: 100%;
+
+	tr.h, tr.c {
+		text-align: center;
+	}
+
+	tr.h {
+		background: #3367aa;
+		color: #ffffff;
+	}
+
+	tr.c {
+		background: #55b4cc;
+	}
+
+	td.b {
+		border: #000000 1px solid;
+		padding: 5px;
+	}
+
+	td.nb {
+		padding: 1px;
+		border: 0px none;
+	}
+
+	tr.n1, td.n1 { background: #f5f5f5; }
+	tr.n2, td.n2 { background: #ebebeb; }
+	tr.n3, td.n3 { background: #d4d4d4; }
+}
+
+.pagelist {
+	margin-left: 4px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+
+.posttoolbar button {
+	height: 2em;
+	width: 2em;
+	padding: 0 1px 2px;
+}
+
+.threadpost {
+	.topbar_1 {
+		border-bottom: 0 !important;
+		min-width: 180px;
+		text-align: center;
+		height: 24px;
+	}
+
+	.sidebar {
+		border-top: 0 !important;
+		text-align: center;
+	}
+
+	.mainbar {
+		p {
+			margin-top: 0;
+		}
+		table {
+			border: #000000 1px solid;
+			border-spacing: 0px;
+			border-collapse: collapse;
+		}
+		th {
+			background: #3367aa;
+			font-size: 1em;
+			color: #ffffff;
+		}
+		td, th {
+			border: #000000 1px solid;
+			padding: 5px;
+		}
+		.siggy {
+			border-top: 1px solid black;
+			font-size: 10pt;
+			margin-top: 3em;
+		}
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.autowidth { width: auto !important; }
+.wbreak { word-break: break-word; }
+.fullwidth { width: 100% !important; }
+
+.delete {
+	font-weight:900;
+	display: inline-block;
+	margin-left: 6px;
+	margin-right: 6px;
+	font-size: 18px;
+	color: red;
+}

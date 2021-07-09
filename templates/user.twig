@@ -77,7 +77,7 @@
 		<a href="forum/forum.php?user={{ id }}">View threads</a>
 		&bull; <a href="forum/thread.php?user={{ id }}">Show posts</a>
 		{% if log %}
-			{% if not userdata.id == id %}
+			{% if userdata.id != id %}
 				&bull; <a href="forum/sendprivate.php?uid={{ id }}">Send private message</a>
 			{% endif %}
 			{% if userdata.powerlevel > 2 %}

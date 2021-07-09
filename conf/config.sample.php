@@ -4,8 +4,6 @@ $db   = 'principia';
 $user = '';
 $pass = '';
 
-$db_forum = 'principia_forum';
-
 $basepath = '/';
 
 $tplCache = 'templates/cache';

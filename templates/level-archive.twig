@@ -9,9 +9,13 @@
 
 <p>If you'd like to download the entire archive yourself and keep it locally, a full download of the community level archive can be found <a href="https://archive.org/details/principia-community-level-archive">here</a>.</p>
 
-<p>To search through the list of levels, use your browser's built-in search function (Ctrl+F or 'Find in page').</p>
+<p>To search through the list of levels, use your browser's built-in search function (Ctrl+F or 'Find in page'). A better search system is planned.</p>
 
-{{ llcache | raw }}
+{% if log %}
+	{{ llcache | raw }}
+{% else %}
+	<br><br><p><em>You are not logged in. Please log in to be able to browse the Community Level Archive on principia-web.</em></p><br><br>
+{% endif %}
 
 {#
 <ul class="cummunity-levelz">

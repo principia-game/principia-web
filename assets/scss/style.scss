@@ -1,3 +1,4 @@
+
 body {
 	background-color: #f0f0f0;
 	font-family: "Roboto", "Arial", sans-serif;
@@ -10,6 +11,7 @@ body {
 }
 
 a {
+	color: #0000ff;
 	text-decoration: none;
 }
 
@@ -43,6 +45,14 @@ ul.menu {
 	line-height: 32px;
 	text-align: center;
 
+	li {
+		list-style-type: none;
+		float: left;
+		overflow: hidden;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
 	&.right li {
 		float: right;
 		font-style: italic;
@@ -60,9 +70,10 @@ ul.menu {
 		font-size: 1.1em;
 		font-weight: bold;
 		text-decoration: none;
-	}
-	a.btn:hover {
-		background-color: #fff;
+
+		&:hover {
+			background-color: #fff;
+		}
 	}
 
 	a.download {
@@ -71,14 +82,6 @@ ul.menu {
 
 	img.search {
 		vertical-align: middle;
-	}
-
-	li {
-		list-style-type: none;
-		float: left;
-		overflow: hidden;
-		margin-left: 10px;
-		margin-right: 10px;
 	}
 }
 
@@ -107,7 +110,7 @@ div.level {
 	margin-bottom: 10px;
 
 	a.lvlbox_top {
-		color: #000;
+		color: black;
 		font-size: 14pt;
 		text-decoration: none;
 
@@ -328,10 +331,6 @@ form.reglog {
 	span {
 		font-weight: bold;
 		margin-right: 5px;
-
-		a {
-			color: #0000ff;
-		}
 	}
 }
 
@@ -344,20 +343,17 @@ form.reglog {
 	.a {
 		text-align: center;
 		width: 300px;
-
 	}
 
 	.a, .b {
 		border-bottom: 1px solid #ccc;
 		padding: 5px;
-
 	}
 
 	tr {
 		&:nth-child(odd)  { background-color: #f5f5f5; }
 		&:nth-child(even) { background-color: #e8e8e8; }
 	}
-
 }
 
 // Welcome Thing on Index \\
@@ -427,7 +423,7 @@ form.reglog {
 	float: right;
 
 	.topthing {
-		background: #55b4cc;
+		background: #3367aa;
 		padding: 7px;
 	}
 

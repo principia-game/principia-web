@@ -6,9 +6,8 @@ templates/cache/
 level_archive/
 
 ## SCSS caches
-assets/css/style.css
-assets/css/style.css.map
-assets/css/.sass-cache
+assets/css/
+assets/scss/.sass-cache
 
 ## Featured stuff
 featured/main.py

@@ -5,7 +5,7 @@
 		<title>{% block title %}Home{% endblock %} - principia-web</title>
 		<base href="{{ basepath }}">
 		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
-		{#{% if userdata.darkmode and not is_android_webview() %}<link rel="stylesheet" href="assets/css/darkmodehack.css" type="text/css">{% endif %}#}
+		{% if userdata.darkmode %}<link rel="stylesheet" href="assets/css/darkmode.css" type="text/css">{% endif %}
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>

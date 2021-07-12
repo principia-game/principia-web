@@ -1,0 +1,183 @@
+
+body {
+	background-color: #0F0F0F;
+	color: white;
+}
+
+a {
+	color: #ffff00;
+}
+
+.top, .footer {
+	background-color: #111;
+	border-bottom: 1px solid #333;
+	border-top: 1px solid #333;
+}
+
+ul.menu {
+	a {
+		color: #ddd;
+
+		&:hover {
+			background-color: #000;
+		}
+	}
+}
+
+.header_message {
+	border-bottom: 1px solid #333;
+}
+
+div.level {
+	background-color: #000;
+
+	a.lvlbox_top {
+		color: white;
+	}
+}
+
+.comments {
+	.comment-entry {
+		border-bottom: 1px solid #333;
+
+		&:nth-child(odd)  { background-color: #0a0a0a; }
+		&:nth-child(even) { background-color: #171717; }
+
+		&.deleted {
+			background-color: #861c1c;
+
+			&:after {
+				color: #eee;
+			}
+		}
+	}
+}
+
+.latest-buttons a {
+	border: 2px outset white;
+	color: white;
+
+	&:hover {
+		border: 2px inset white;
+		background-color: #222;
+	}
+	&.sel {
+		background-color: #003333;
+
+		&:hover {
+			border: 2px inset white;
+			background-color: #114444;
+		}
+	}
+}
+
+.t_user {
+	color: #6464e2;
+}
+
+.lvl-box {
+	.info {
+		background-color: #050505;
+
+		.play {
+			background-color: #608060;
+			color: #eee;
+
+			&:hover {
+				box-shadow: 0 0px 4px #fff;
+			}
+		}
+
+		.play-edit {
+			background-color: #636383;
+		}
+	}
+}
+
+.lvl-data {
+	background-color: #000;
+}
+
+.dl {
+	td {
+		border: 1px solid black;
+	}
+}
+
+.settings {
+	.a, .b {
+		border-bottom: 1px solid #333;
+	}
+
+	tr {
+		&:nth-child(odd)  { background-color: #0a0a0a; }
+		&:nth-child(even) { background-color: #171717; }
+	}
+}
+
+.cummunity-levelz {
+	li {
+		span {
+			background-color: #222;
+		}
+
+		a {
+			background-color: #608060;
+			color: #eee;
+
+			&:hover {
+				box-shadow: 0 0px 4px #fff;
+			}
+		}
+	}
+}
+
+.user_stats {
+	border: 1px solid white;
+	.row {
+		border-top: 1px solid white;
+	}
+}
+
+/// _style_forums \\\
+
+table.c1 {
+	border: 1px solid white;
+
+	td.b {
+		border: 1px solid white;
+	}
+
+	tr.n1, td.n1 { background-color: #0a0a0a; }
+	tr.n2, td.n2 { background-color: #141414; }
+	tr.n3, td.n3 { background-color: #2b2b2b; }
+}
+
+.threadpost {
+	.mainbar {
+		td, th, table {
+			border: 1px solid white;
+		}
+		.siggy {
+			border-top: 1px solid white;
+		}
+	}
+}
+
+.top_forum {
+	margin-top: -1px;
+}
+
+/// Generic form element overrides \\\
+
+textarea, input[type=text], input[type=password] {
+	background-color: #0f0f0f;
+	border: 2px solid #aaa;
+	color: white;
+}
+
+/// Invert icons \\\
+
+.search, .sdsd {
+	filter: invert(1);
+}

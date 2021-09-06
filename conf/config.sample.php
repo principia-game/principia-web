@@ -14,6 +14,9 @@ $lpp = 20;
 // Disable this if you don't have a sense of humor.
 $iHaveASenseOfHumor = true;
 
+// Should dark mode be default?
+$darkModeDefault = true;
+
 // Redirect all non-internal pages to https.
 $https = true;
 

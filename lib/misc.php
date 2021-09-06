@@ -8,9 +8,10 @@ function isCli() {
 }
 
 function register($name, $pass, $mail, $sendWelcomeEmail = true) {
+	global $darkModeDefault;
 	$token = bin2hex(random_bytes(20));
-	query("INSERT INTO users (name, password, email, token, joined) VALUES (?,?,?,?,?)",
-		[$name,password_hash($pass, PASSWORD_DEFAULT), $mail, $token, time()]);
+	query("INSERT INTO users (name, password, email, token, joined, darkmode) VALUES (?,?,?,?,?,?)",
+		[$name,password_hash($pass, PASSWORD_DEFAULT), $mail, $token, time(), ($darkModeDefault ? 1 : 0)]);
 
 	if ($sendWelcomeEmail) {
 		sendMail($mail, 'Welcome to principia-web!', sprintf(<<<HTML

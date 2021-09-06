@@ -64,6 +64,7 @@ if ($log) {
 	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $_SERVER['REMOTE_ADDR'], $userdata['id']]);
 } else {
 	$userdata['powerlevel'] = 1;
+	$userdata['darkmode'] = $darkModeDefault;
 }
 
 if (!$log || !$userdata['timezone'])

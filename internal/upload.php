@@ -42,6 +42,11 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 	// ... and thumb
 	if (file_exists("levels/thumbs/$cid.jpg")) {
 		rename("levels/thumbs/$cid.jpg", sprintf('levels/thumbs/backup/%s.jpg.bak.%s', $cid, $leveldata['revision']));
+
+		// ... and low thumb
+		if (file_exists("levels/thumbs/low/$cid.jpg")) {
+			rename("levels/thumbs/low/$cid.jpg", sprintf('levels/thumbs/backup/%s.low.jpg.bak.%s', $cid, $leveldata['revision']));
+		}
 	}
 
 	// Move uploaded level file to the levels directory.

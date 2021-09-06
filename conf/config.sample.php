@@ -44,6 +44,9 @@ $captcha = [
 	]
 ];
 
+// List of UA fragments to block.
+$blockedUA = [];
+
 // Email stuff. Uncomment to enable
 //$email['host'] = '';
 //$email['port'] = '';

@@ -13,6 +13,17 @@ foreach (glob("lib/*.php") as $file) {
 	require_once($file);
 }
 
+if (!empty($blockedUA)) {
+	foreach ($blockedUA as $bl) {
+		if (str_contains($_SERVER['HTTP_USER_AGENT'], $bl)) {
+			http_response_code(403);
+			echo '403';
+			die();
+		}
+	}
+}
+
+
 // Redirect all non-internal pages to https if https is enabled.
 if (!isCli() && $https && !isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_NAME'], 'internal') === false) {
 	header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);

@@ -49,6 +49,12 @@ if ($log) {
 		newLevelHook($webhookdata);
 	}
 
+	// delete level thumbnails
+	if (isset($_GET['delthumb']) && $userdata['powerlevel'] > 2) {
+		unlink("levels/thumbs/$lid.jpg");
+		unlink("levels/thumbs/low/$lid.jpg");
+	}
+
 	// remove notifications
 	query("DELETE FROM notifications WHERE type = 1 AND level = ? AND recipient = ?", [$level['id'], $userdata['id']]);
 }

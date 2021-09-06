@@ -25,7 +25,7 @@ if (!empty($blockedUA)) {
 
 
 // Redirect all non-internal pages to https if https is enabled.
-if (!isCli() && $https && !isset($_SERVER['HTTPS']) && $_SERVER["HTTPS"] != "on" && strpos($_SERVER['SCRIPT_NAME'], 'internal') === false) {
+if (!isCli() && $https && !isset($_SERVER['HTTPS']) && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
 	header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
 	die();
 }

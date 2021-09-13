@@ -47,6 +47,16 @@ if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceu
 			case 3:
 				$notifications[] = sprintf('%s sent you a private message: <a href="forum/showprivate.php?id=%s">Read</a>', userlink($notifdata, 'u_'), $notifdata['level']);
 			break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+			case 16:
+				$notifications[] = sprintf(
+					'%s mentioned you in a %s comment: <a href="%s.php?id=%s">Read</a>',
+				userlink($notifdata, 'u_'), cmtNumToType($notifdata['type'] - 10), cmtNumToType($notifdata['type'] - 10), $notifdata['level']);
+			break;
 		}
 	}
 } else { // general profile details stuff
@@ -61,6 +71,8 @@ if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceu
 	if (isset($userdata['id']) && $userpagedata['id'] == $userdata['id']) {
 		query("DELETE FROM notifications WHERE type = 2 AND recipient = ?", [$userdata['id']]);
 	}
+
+	clearMentions('user', $userpagedata['id']);
 }
 
 $twig = twigloader();

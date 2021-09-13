@@ -12,6 +12,8 @@ if (!$pkg) {
 query("UPDATE packages SET views = views + '1' WHERE id = ?", [$lid]);
 $pkg['views']++;
 
+clearMentions('package', $lid);
+
 $markdown = new Parsedown();
 $markdown->setSafeMode(true);
 $pkg['description'] = $markdown->text($pkg['description']);

@@ -42,3 +42,11 @@ function gitCommit($trim = true) {
 	else
 		return rtrim($commit);
 }
+
+function clearMentions($type, $id) {
+	global $log, $userdata;
+
+	if ($log) {
+		query("DELETE FROM notifications WHERE type = ? AND level = ? AND recipient = ?", [cmtTypeToNum($type) + 10, $id, $userdata['id']]);
+	}
+}

@@ -57,6 +57,7 @@ if ($log) {
 
 	// remove notifications
 	query("DELETE FROM notifications WHERE type = 1 AND level = ? AND recipient = ?", [$level['id'], $userdata['id']]);
+	clearMentions('level', $level['id']);
 }
 
 if (!isset($hasLiked)) $hasLiked = false;

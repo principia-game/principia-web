@@ -26,6 +26,8 @@ if ($newsid) {
 	}
 
 	if (!isset($newsdata['redirect'])) {
+		clearMentions('news', $newsid);
+
 		$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
 
 		$markdown = new Parsedown();

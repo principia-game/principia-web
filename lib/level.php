@@ -35,6 +35,17 @@ function cmtTypeToNum($type) {
 	};
 }
 
+function cmtNumToType($num) {
+	return match ($num) {
+		1 => 'level',
+		2 => 'news',
+		3 => 'contest',
+		4 => 'user',
+		5 => 'chat',
+		6 => 'package'
+	};
+}
+
 /**
  * Extract the platform from a user agent string.
  * This is supposed to be used for getting the platform a level was uploaded from.

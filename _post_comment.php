@@ -43,6 +43,15 @@ if (!$doDelete) {
 				[2, $id, $userdata['id']]);
 		break;
 	}
+
+	preg_match('/@([A-Za-z0-9_-]+)/', $message, $matches);
+	if (isset($matches[1])) {
+		$mentionedUser = result("SELECT id FROM users WHERE name = ?", [$matches[1]]);
+		if ($mentionedUser) {
+			query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
+				[$nType + 10, $id, $mentionedUser, $userdata['id']]);
+		}
+	}
 } else {
 	if (!$cmntId) die('params pls');
 	if ($userdata['powerlevel'] < 2) die('perms pls');

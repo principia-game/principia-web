@@ -9,6 +9,8 @@ if (!$contest) {
 	error('404', "The requested contest wasn't found.");
 }
 
+clearMentions('contest', $contestid);
+
 $markdown = new Parsedown();
 $contest['description'] = $markdown->text($contest['description']);
 

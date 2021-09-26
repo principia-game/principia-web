@@ -9,6 +9,9 @@
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
+		{% if is_android_webview() %}
+			<div style="background-color:#ae1313;color:white;padding:10px;font-weight:bold;margin:5px">You are using principia-web on a platform that is being deprecated sometime in the future.</div>
+		{% endif %}
 		<div class="top">
 			<a href="./"><img class="picon" src="assets/icon.png"/></a>
 			<ul class="menu left">

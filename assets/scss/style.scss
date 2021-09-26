@@ -15,6 +15,10 @@ a {
 	text-decoration: none;
 }
 
+p {
+	line-height: 1.4;
+}
+
 .top, .footer {
 	background-color: #eee;
 	border-bottom: 1px solid #ccc;
@@ -141,11 +145,12 @@ div.level {
 
 .comments {
 	.comment-entry {
-		padding: 8px;
+		padding: 7px 8px;
 		border-bottom: 1px solid #ccc;
 		overflow-wrap: break-word;
 		max-height: 130px;
 		overflow: auto;
+		line-height: 1.4;
 
 		&:nth-child(odd)  { background-color: #f5f5f5; }
 		&:nth-child(even) { background-color: #e8e8e8; }

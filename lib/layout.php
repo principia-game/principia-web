@@ -62,7 +62,8 @@ function error($title, $message) {
 }
 
 function level($level, $featured = '', $pkg = false) {
-	return hitCache($level, function () use ($level, $featured, $pkg) {
+	global $cache;
+	return $cache->hit($level, function () use ($level, $featured, $pkg) {
 		$twig = twigloader('components');
 		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'pkg' => $pkg]);
 	});

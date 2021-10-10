@@ -62,16 +62,10 @@ function error($title, $message) {
 }
 
 function level($level, $featured = '', $pkg = false) {
-	$twig = twigloader('components');
-	$hash = sha1(var_export($level, true));
-	$cached = result("SELECT content FROM cache WHERE hash = ?", [$hash]);
-	if ($cached) {
-		return $cached;
-	} else {
-		$content = $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'pkg' => $pkg]);
-		query("INSERT INTO cache (hash, content) VALUES (?,?)", [$hash, $content]);
-		return $content;
-	}
+	return hitCache($level, function () use ($level, $featured, $pkg) {
+		$twig = twigloader('components');
+		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'pkg' => $pkg]);
+	});
 }
 
 function relativeTime($time) {

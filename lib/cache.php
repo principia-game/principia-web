@@ -2,7 +2,7 @@
 
 class Cache {
 	private $enabled = false;
-	private $memcached;
+	public $memcached;
 
 	function __construct($memcachedServers) {
 		if (!empty($memcachedServers)) {
@@ -14,7 +14,7 @@ class Cache {
 		}
 	}
 
-	public function hit($fingerprint, $uncachedContent) {
+	public function hit($fingerprint, $uncachedContent, $expire = 0) {
 		if ($this->enabled) {
 			return $this->hitMem($fingerprint, $uncachedContent);
 		} else {
@@ -32,6 +32,25 @@ class Cache {
 			$content = $uncachedContent();
 			$this->memcached->set($hash, $content);
 			return $content;
+		}
+	}
+
+	// Low-level wrapper functions
+	public function get($key) {
+		if ($this->enabled) {
+			$this->memcached->get($key);
+		}
+	}
+
+	public function set($key, $value, $expiration = 0) {
+		if ($this->enabled) {
+			$this->memcached->set($key, $value, $expiration);
+		}
+	}
+
+	public function delete($key) {
+		if ($this->enabled) {
+			$this->memcached->delete($key);
 		}
 	}
 }

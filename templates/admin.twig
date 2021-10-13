@@ -5,6 +5,25 @@
 	{% block content %}
 <h2>Admin panel</h2>
 
+<h3>Memcached Statistics</h3>
+
+<table class="c1">
+	<tr class="h">
+		<td class="b h" width="70">Cluster</td>
+		<td class="b h">Uptime</td>
+		<td class="b h">Read</td>
+		<td class="b h">Write</td>
+	</tr>
+	{% for server in memcached_stats %}
+		<tr>
+			<td class="b center">#1</td>
+			<td class="b">{{ (server.uptime / 3600) | round(2) }} hours</td>
+			<td class="b">{{ (server.bytes_read / 1000000) | round(2) }} MB</td>
+			<td class="b">{{ (server.bytes_write / 1000000) | round(2) }} MB</td>
+		</tr>
+	{% endfor %}
+</table>
+
 <p>various bells and whistles for super special people</p>
 
 <h4>Admin pages</h4>

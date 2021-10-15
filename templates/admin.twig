@@ -40,6 +40,35 @@
 	{% endfor %}
 </table>
 
+<h3>User statistics</h3>
+
+<table class="fullwidth">
+	<tr>
+		<td class="nb" style="width:50%; vertical-align:top;">
+			<table class="c1">
+				<tr class="h"><td class="b" colspan="2">Latest registered users</td></tr>
+				{% for user in latest_registered_users %}
+					<tr>
+						<td class="b">{{ userlink(user) }}</td>
+						<td class="b">{{ user.joined | date() }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</td>
+		<td class="nb" style="width:50%; vertical-align:top;">
+			<table class="c1">
+				<tr class="h"><td class="b" colspan="2">Latest seen users</td></tr>
+				{% for user in latest_seen_users %}
+					<tr>
+						<td class="b">{{ userlink(user) }}</td>
+						<td class="b">{{ user.lastview | relative_time }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</td>
+	</tr>
+</table>
+
 <p>various bells and whistles for super special people</p>
 
 <h4>Admin pages</h4>

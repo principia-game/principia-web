@@ -16,13 +16,13 @@ class Cache {
 
 	public function hit($fingerprint, $uncachedContent, $expire = 0) {
 		if ($this->enabled) {
-			return $this->hitMem($fingerprint, $uncachedContent);
+			return $this->hitMem($fingerprint, $uncachedContent, $expire);
 		} else {
 			return $uncachedContent();
 		}
 	}
 
-	private function hitMem($fingerprint, $uncachedContent) {
+	private function hitMem($fingerprint, $uncachedContent, $expire = 0) {
 		// TODO: Switch to xxHash when PHP 8.1 releases.
 		$hash = sha1(var_export($fingerprint, true));
 		$cached = $this->memcached->get($hash);
@@ -30,7 +30,7 @@ class Cache {
 			return $cached;
 		} else {
 			$content = $uncachedContent();
-			$this->memcached->set($hash, $content);
+			$this->memcached->set($hash, $content, $expire);
 			return $content;
 		}
 	}

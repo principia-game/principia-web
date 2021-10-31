@@ -69,6 +69,21 @@
 	</tr>
 </table>
 
+<h3>Numberz</h3>
+
+<table class="c1">
+	<tr class="h">
+		{% for thing in things_to_count %}
+			<td class="b h" width=100>{{ thing | title }}</td>
+		{% endfor %}
+	</tr>
+	<tr>
+		{% for thing in things_to_count %}
+			<td class="b">{{ count[thing] }}</td>
+		{% endfor %}
+	</tr>
+</table>
+
 <p>various bells and whistles for super special people</p>
 
 <h4>Admin pages</h4>

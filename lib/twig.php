@@ -41,7 +41,9 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 				return $markdown->text($text);
 			}, ['is_safe' => ['html']]),
 
-			new \Twig\TwigFilter('relative_time', 'relativeTime')
+			new \Twig\TwigFilter('relative_time', 'relativeTime'),
+
+			new \Twig\TwigFilter('cmt_num_to_type', 'cmtNumToType')
 		];
 	}
 }

@@ -84,7 +84,21 @@
 	</tr>
 </table>
 
-<p>various bells and whistles for super special people</p>
+<h3>Latest comments</h3>
+<div class="comments">
+	{% for cmnt in latest_comments %}
+		<div class="comment-entry{% if cmnt.deleted %} deleted{% endif %}" id="comment-{{ cmnt.id }}">
+			<p>
+				{{ userlink(cmnt, 'u_') }}
+				commented on <a href="{{ cmnt.type | cmt_num_to_type }}.php?id={{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
+				<span class="date">{{ cmnt.time | relative_time }}</span>
+			</p>
+			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
+		</div>
+	{% endfor %}
+</div>
+
+<h3>various bells and whistles for super special people</h3>
 
 <h4>Admin pages</h4>
 <ul>

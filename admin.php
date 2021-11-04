@@ -17,6 +17,8 @@ foreach ($thingsToCount as $thing) {
 }
 $count = fetch($query);
 
+$latestComments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id ORDER BY c.time DESC LIMIT 7");
+
 $memcachedStats['dummy-server.lol'] = ['offline' => true];
 
 $twig = twigloader();
@@ -26,4 +28,5 @@ echo $twig->render('admin.twig', [
 	'latest_seen_users' => $latestSeenUsers,
 	'things_to_count' => $thingsToCount,
 	'count' => $count,
+	'latest_comments' => $latestComments
 ]);

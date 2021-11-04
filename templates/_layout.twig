@@ -3,25 +3,25 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{% block title %}Home{% endblock %} - principia-web</title>
-		<base href="{{ basepath }}">
-		<link rel="stylesheet" href="assets/css/style.css" type="text/css">
-		{% if userdata.darkmode %}<link rel="stylesheet" href="assets/css/darkmode.css" type="text/css">{% endif %}
+		<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
+		{% if userdata.darkmode %}<link rel="stylesheet" href="/assets/css/darkmode.css" type="text/css">{% endif %}
 		<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+		{% if acmlm %}<script src="assets/js/tools.js"></script>{% endif %}
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
 		{% if is_android_webview() %}
 			<div style="background-color:#ae1313;color:white;padding:10px;font-weight:bold;margin:5px">You are using principia-web on a platform that is being deprecated sometime in the future.</div>
 		{% endif %}
 		<div class="top">
-			<a href="./"><img class="picon" src="assets/icon.png"/></a>
+			<a href="/"><img class="picon" src="/assets/icon.png"/></a>
 			<ul class="menu left">
-				<li><a href="popular.php" class="btn">Popular</a></li>
-				<li><a href="top.php" class="btn">Top</a></li>
-				<li><a href="latest.php" class="btn">New</a></li>
-				<li><a href="chat.php" class="btn">Chat</a></li>
-				{% if glob_forum %}<li><a href="forum/" class="btn">Forum</a></li>{% endif %}
-				<li><a href="contests.php" class="btn">Contests</a></li>
-				<li><a href="search.php" class="btn"><img src="assets/icons/search.svg" class="search"></a></li>
+				<li><a href="/popular.php" class="btn">Popular</a></li>
+				<li><a href="/top.php" class="btn">Top</a></li>
+				<li><a href="/latest.php" class="btn">New</a></li>
+				<li><a href="/chat.php" class="btn">Chat</a></li>
+				{% if glob_forum %}<li><a href="/forum/" class="btn">Forum</a></li>{% endif %}
+				<li><a href="/contests.php" class="btn">Contests</a></li>
+				<li><a href="/search.php" class="btn"><img src="/assets/icons/search.svg" class="search"></a></li>
 			</ul>
 			<ul class="menu right">
 				<li><em>
@@ -31,23 +31,41 @@
 							<span class="notifs">[{{ notification_count }}]</span>
 						{% endif %}
 					{% else %}
-						<a href="login.php">Login</a>
+						<a href="/login.php">Login</a>
 					{% endif %}
 				</em></li>
 			</ul>
 		</div>
-		<div class="home content">
+		{% if acmlm %}
+		<div class="top top_forum">
+			<ul class="menu left">
+				<li><a href="/forum/" class="btn">Forum</a></li>
+				<li><a href="activeusers.php" class="btn">Active users</a></li>
+				<li><a href="thread.php?time=86400" class="btn">Latest posts</a></li>
+				{% if log %}
+					<li><a href="private.php" class="btn">Private messages</a></li>
+				{% endif %}
+			</ul>
+			{% if log %}
+				<ul class="menu right">
+					<li><a href="./?action=markread&fid=all">Mark all forums read</a></li>
+				</ul>
+			{% endif %}
+		</div>
+		{% block precontent %}{% endblock %}<br>
+		{% endif %}
+		<div class="home content{% if acmlm %} forum{% endif %}">
 			{% block content %}{% endblock %}
 		</div>
 		<div class="footer">
-			<a href="about.php">About</a>
+			<a href="/about.php">About</a>
 			{{ custom_info() }}
 			<br>
 			Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a>,
 			on commit <a href="https://github.com/principia-preservation-project/principia-web/commit/{{ git_commit(false) }}">{{ git_commit() }}</a><br>
 			{{ profiler_stats() }}
 		</div>
-		<script type="text/javascript" src="assets/base.js"></script>
+		<script type="text/javascript" src="/assets/base.js"></script>
 		{% block custom_footer %}{% endblock %}
 	</body>
 </html>

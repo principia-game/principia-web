@@ -7,7 +7,7 @@
  * @return \Twig\Environment Twig object.
  */
 function twigloader($subfolder = '', $customloader = null, $customenv = null) {
-	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $basepath, $lpp, $forumEnabled, $invite;
+	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $lpp, $forumEnabled, $invite;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -31,7 +31,6 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('userdata', $userdata);
 	$twig->addGlobal('notification_count', $notificationCount);
 	$twig->addGlobal('log', $log);
-	$twig->addGlobal('basepath', $basepath);
 	$twig->addGlobal('glob_lpp', $lpp);
 	$twig->addGlobal('glob_forum', $forumEnabled);
 	$twig->addGlobal('discord_invite', $invite);

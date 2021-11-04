@@ -4,8 +4,6 @@ $db   = 'principia';
 $user = '';
 $pass = '';
 
-$basepath = '/';
-
 $tplCache = 'templates/cache';
 $tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
 
@@ -13,9 +11,6 @@ $tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
 $memcachedServers = [];
 
 $lpp = 20;
-
-// Disable this if you don't have a sense of humor.
-$iHaveASenseOfHumor = true;
 
 // Should dark mode be default?
 $darkModeDefault = true;

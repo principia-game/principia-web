@@ -5,10 +5,10 @@
 	{% block content %}
 <h2>Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}</h2>
 <div class="latest-buttons">
-	<a {% if type == 'custom' %}class="sel"{% endif %} href="latest.php?type=custom">Custom</a>
-	<a {% if type == 'adventure' %}class="sel"{% endif %} href="latest.php?type=adventure">Adventure</a>
-	<a {% if type == 'puzzle' %}class="sel"{% endif %} href="latest.php?type=puzzle">Puzzle</a>
-	<a {% if type == 'all' %}class="sel"{% endif %} href="latest.php">All</a>
+	<a {% if type == 'custom' %}class="sel"{% endif %} href="/latest.php?type=custom">Custom</a>
+	<a {% if type == 'adventure' %}class="sel"{% endif %} href="/latest.php?type=adventure">Adventure</a>
+	<a {% if type == 'puzzle' %}class="sel"{% endif %} href="/latest.php?type=puzzle">Puzzle</a>
+	<a {% if type == 'all' %}class="sel"{% endif %} href="/latest.php">All</a>
 </div>
 
 {% for level in levels %}
@@ -18,9 +18,9 @@
 {% endfor %}
 
 {% if type == 'all' %}
-	{% set le_url = 'latest.php?page=%s' %}
+	{% set le_url = '/latest.php?page=%s' %}
 {% else %}
-	{% set le_url = 'latest.php?type=' ~ type ~ '&page=%s' %}
+	{% set le_url = '/latest.php?type=' ~ type ~ '&page=%s' %}
 {% endif %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 

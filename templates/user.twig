@@ -14,26 +14,26 @@
 
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
-<p><a href="settings.php">Edit my settings</a>
+<p><a href="/settings.php">Edit my settings</a>
 {% if glob_forum %}
-	&bull; <a href="forum/private.php">View my private messages</a>
+	&bull; <a href="/forum/private.php">View my private messages</a>
 {% endif %}
-&bull; <a href="user.php?id={{ id }}&forceuser">View user page as viewer</a>
+&bull; <a href="/user.php?id={{ id }}&forceuser">View user page as viewer</a>
 &bull; <a href="javascript:document.logout.submit()">Log out</a></p>
 
 {% if userdata.powerlevel > 2 %}
-<p><a href="admin.php">Admin panel</a></p>
+<p><a href="/admin.php">Admin panel</a></p>
 {% endif %}
 
-<form action="login.php" method="post" name="logout">
+<form action="/login.php" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">
 </form>
 
 <h3>Links</h3>
 
 <ul>
-	<li><a href="download.php">Download principia-web mods</a></li>
-	<li><a href="level-archive.php">Browse the Community Level Archive</a></li>
+	<li><a href="/download.php">Download principia-web mods</a></li>
+	<li><a href="/level-archive.php">Browse the Community Level Archive</a></li>
 	{% if discord_invite %}
 		<li><a href="{{ discord_invite }}">Unofficial Principia Discord Server</a></li>
 	{% endif %}
@@ -47,7 +47,7 @@
 		<li>No new notifications!</li>
 	{% endfor %}
 	{% if notifs %}
-		<br><li><a href="user.php?id={{ id }}&markread">Mark all as read</a></li>
+		<br><li><a href="/user.php?id={{ id }}&markread">Mark all as read</a></li>
 	{% endif %}
 </ul>
 {% else %}
@@ -66,7 +66,7 @@
 		<b>Last view</b>: {{ userpagedata.lastview | relative_time }}
 	</div>
 </div>
-<h2>{{ name }} {% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}</h2>
+<h2>{{ name }} {% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="/assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}</h2>
 
 <div class="user_about">
 	<h3>About this user</h3>
@@ -75,15 +75,15 @@
 
 <p class="clear_right">
 	{% if glob_forum %}
-		<a href="forum/forum.php?user={{ id }}">View threads</a>
-		&bull; <a href="forum/thread.php?user={{ id }}">Show posts</a>
+		<a href="/forum/forum.php?user={{ id }}">View threads</a>
+		&bull; <a href="/forum/thread.php?user={{ id }}">Show posts</a>
 		{% if log %}
 			{% if userdata.id != id %}
-				&bull; <a href="forum/sendprivate.php?uid={{ id }}">Send private message</a>
+				&bull; <a href="/forum/sendprivate.php?uid={{ id }}">Send private message</a>
 			{% endif %}
 			{% if userdata.powerlevel > 2 %}
-				&bull; <a href="resetpassword.php?grf={{ id }}">Generate password reset for user</a>
-				&bull; <a href="forum/editperms.php?uid={{ id }}">Edit forum permissions</a>
+				&bull; <a href="/resetpassword.php?grf={{ id }}">Generate password reset for user</a>
+				&bull; <a href="/forum/editperms.php?uid={{ id }}">Edit forum permissions</a>
 			{% endif %}
 		{% endif %}
 	{% endif %}
@@ -100,7 +100,7 @@
 {% else %}
 	{% set forceuser = "" %}
 {% endif %}
-{% set le_url = 'user.php?id=' ~ id ~ '&page=%s' ~ forceuser %}
+{% set le_url = '/user.php?id=' ~ id ~ '&page=%s' ~ forceuser %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
 <h2>Comments</h2>

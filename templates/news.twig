@@ -13,10 +13,10 @@
 	<br>
 {% else %}
 	<h2 class="header">Latest News
-		{% if userdata.powerlevel > 2 %}<a href="news.php?new">New</a>{% endif %}</h2>
+		{% if userdata.powerlevel > 2 %}<a href="/news.php?new">New</a>{% endif %}</h2>
 	<ul>
 		{% for new in news %}
-			<li><a href="news.php?id={{ new.id }}">{{ new.title }}</li>
+			<li><a href="/news.php?id={{ new.id }}">{{ new.title }}</li>
 		{% else %}
 			<li>No news.</li>
 		{% endfor %}

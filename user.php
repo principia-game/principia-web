@@ -39,13 +39,13 @@ if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceu
 	while ($notifdata = $notifsdata->fetch()) {
 		switch ($notifdata['type']) {
 			case 1:
-				$notifications[] = sprintf('%s commented on your level <a href="level.php?id=%s">%s</a>.', userlink($notifdata, 'u_'), $notifdata['l_id'], $notifdata['l_title']);
+				$notifications[] = sprintf('%s commented on your level <a href="/level.php?id=%s">%s</a>.', userlink($notifdata, 'u_'), $notifdata['l_id'], $notifdata['l_title']);
 			break;
 			case 2:
-				$notifications[] = sprintf('%s commented on your <a href="user.php?id=%s&forceuser">user page</a>.', userlink($notifdata, 'u_'), $userdata['id']);
+				$notifications[] = sprintf('%s commented on your <a href="/user.php?id=%s&forceuser">user page</a>.', userlink($notifdata, 'u_'), $userdata['id']);
 			break;
 			case 3:
-				$notifications[] = sprintf('%s sent you a private message: <a href="forum/showprivate.php?id=%s">Read</a>', userlink($notifdata, 'u_'), $notifdata['level']);
+				$notifications[] = sprintf('%s sent you a private message: <a href="/forum/showprivate.php?id=%s">Read</a>', userlink($notifdata, 'u_'), $notifdata['level']);
 			break;
 			case 11:
 			case 12:
@@ -54,7 +54,7 @@ if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceu
 			case 15:
 			case 16:
 				$notifications[] = sprintf(
-					'%s mentioned you in a %s comment: <a href="%s.php?id=%s">Read</a>',
+					'%s mentioned you in a %s comment: <a href="/%s.php?id=%s">Read</a>',
 				userlink($notifdata, 'u_'), cmtNumToType($notifdata['type'] - 10), cmtNumToType($notifdata['type'] - 10), $notifdata['level']);
 			break;
 		}

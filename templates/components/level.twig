@@ -1,17 +1,17 @@
 {% if not pkg %}
 	{% if not level.locked %}
-		{% set img = "levels/thumbs/low/" ~ level.id ~ ".jpg" %}
+		{% set img = "/levels/thumbs/low/" ~ level.id ~ ".jpg" %}
 	{% else %}
-		{% set img = "assets/locked_thumb.svg" %}
+		{% set img = "/assets/locked_thumb.svg" %}
 	{% endif %}
 {% else %}
-	{% set img = "assets/package_thumb.svg" %}
+	{% set img = "/assets/package_thumb.svg" %}
 {% endif %}
 
 {% if pkg %}
-	{% set page = "package.php" %}
+	{% set page = "/package.php" %}
 {% else %}
-	{% set page = "level.php" %}
+	{% set page = "/level.php" %}
 {% endif %}
 
 <div class="level" id="l-{{ level.id }}">

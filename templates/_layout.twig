@@ -40,15 +40,15 @@
 		<div class="top top_forum">
 			<ul class="menu left">
 				<li><a href="/forum/" class="btn">Forum</a></li>
-				<li><a href="activeusers.php" class="btn">Active users</a></li>
-				<li><a href="thread.php?time=86400" class="btn">Latest posts</a></li>
+				<li><a href="/forum/activeusers.php" class="btn">Active users</a></li>
+				<li><a href="/forum/thread.php?time=86400" class="btn">Latest posts</a></li>
 				{% if log %}
-					<li><a href="private.php" class="btn">Private messages</a></li>
+					<li><a href="/forum/private.php" class="btn">Private messages</a></li>
 				{% endif %}
 			</ul>
 			{% if log %}
 				<ul class="menu right">
-					<li><a href="./?action=markread&fid=all">Mark all forums read</a></li>
+					<li><a href="/forum/?action=markread&fid=all">Mark all forums read</a></li>
 				</ul>
 			{% endif %}
 		</div>

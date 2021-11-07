@@ -90,7 +90,7 @@
 		<div class="comment-entry{% if cmnt.deleted %} deleted{% endif %}" id="comment-{{ cmnt.id }}">
 			<p>
 				{{ userlink(cmnt, 'u_') }}
-				commented on <a href="{{ cmnt.type | cmt_num_to_type }}.php?id={{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
+				commented on <a href="/{{ cmnt.type | cmt_num_to_type }}.php?id={{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
 				<span class="date">{{ cmnt.time | relative_time }}</span>
 			</p>
 			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
@@ -102,14 +102,14 @@
 
 <h4>Admin pages</h4>
 <ul>
-<li><a href="news.php?new">New news post</a></li>
-<li><a href="viewlocked.php">View locked levels</a></li>
+<li><a href="/news.php?new">New news post</a></li>
+<li><a href="/viewlocked.php">View locked levels</a></li>
 </ul>
 
 {% if glob_forum %}
 <h4>Forum-specific admin pages</h4>
 <ul>
-<li><a href="forum/manageforums.php">Manage forums</a></li>
-<li><a href="forum/editgroups.php">Manage groups</a></li></ul>
+<li><a href="/forum/manageforums.php">Manage forums</a></li>
+<li><a href="/forum/editgroups.php">Manage groups</a></li></ul>
 {% endif %}
 	{% endblock %}

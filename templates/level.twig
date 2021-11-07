@@ -45,9 +45,9 @@
 	</div>
 	<div class="img">
 		{% if not level.locked %}
-			<img src="levels/thumbs/{{ level.id }}.jpg">
+			<img src="/levels/thumbs/{{ level.id }}.jpg">
 		{% else %}
-			<img src="assets/locked_thumb.svg">
+			<img src="/assets/locked_thumb.svg">
 		{% endif %}
 		{% if level.revision > 1 %}
 			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
@@ -60,7 +60,7 @@
 		Downloads: {{ level.downloads }}
 		Level ID: {{ level.id }}
 		{% if userdata.id == level.author or userdata.powerlevel > 1 %}
-			| <em><a href="level.php?id={{ lid }}&togglelock">{% if level.locked %}Unlock level{% else %}Lock level{% endif %}</a></em>
+			| <em><a href="/level.php?id={{ lid }}&togglelock">{% if level.locked %}Unlock level{% else %}Lock level{% endif %}</a></em>
 		{% endif %}
 	</p>
 	{% if userdata.id == level.author and contests %}

@@ -35,7 +35,7 @@ if (isset($_POST['action'])) {
 		query("UPDATE users SET password = ? WHERE id = ?", [password_hash($pass, PASSWORD_DEFAULT), $resetdata['user']]);
 		query("UPDATE passwordresets SET active = 0 WHERE id = ?", [$id]);
 
-		redirect('login.php?resetted');
+		redirect('/login.php?resetted');
 	}
 }
 

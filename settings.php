@@ -20,7 +20,7 @@ if (isset($_POST['magic'])) {
 	query("UPDATE users SET title = ?, customcolor = ?, about = ?, location = ?, darkmode = ?, timezone = ?, signature = ? WHERE id = ?",
 		[$title, $customcolor, $about, $location, $darkmode, $timezone, $signature, $userdata['id']]);
 
-	redirect(sprintf("user.php?id=%s&edited", $userdata['id']));
+	redirect(sprintf("/user.php?id=%s&edited", $userdata['id']));
 }
 
 $timezones = [];

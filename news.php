@@ -11,7 +11,7 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 2) {
 			[$_POST['title'], $_POST['text'], time(), $userdata['id']]);
 
 		$insertid = result("SELECT LAST_INSERT_ID()");
-		redirect("./news.php?id=$insertid");
+		redirect("/news.php?id=$insertid");
 	}
 
 	echo $twig->render('admin_news_add.twig');

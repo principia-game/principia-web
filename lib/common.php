@@ -13,7 +13,7 @@ foreach (glob("lib/*.php") as $file) {
 	require_once($file);
 }
 
-if (!empty($blockedUA)) {
+if (!empty($blockedUA) && isset($_SERVER['HTTP_USER_AGENT'])) {
 	foreach ($blockedUA as $bl) {
 		if (str_contains($_SERVER['HTTP_USER_AGENT'], $bl)) {
 			http_response_code(403);
@@ -22,7 +22,6 @@ if (!empty($blockedUA)) {
 		}
 	}
 }
-
 
 // Redirect all non-internal pages to https if https is enabled.
 if (!isCli() && $https && !isset($_SERVER['HTTPS']) && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {

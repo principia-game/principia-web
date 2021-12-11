@@ -4,7 +4,8 @@ function type_to_cat($type) {
 	return match ($type) {
 		'custom'	=> 1,
 		'adventure'	=> 2,
-		'puzzle'	=> 3
+		'puzzle'	=> 3,
+		default 	=> 99, // Fallback option: none
 	};
 }
 

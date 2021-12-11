@@ -43,7 +43,8 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 
 			new \Twig\TwigFilter('relative_time', 'relativeTime'),
 
-			new \Twig\TwigFilter('cmt_num_to_type', 'cmtNumToType')
+			new \Twig\TwigFilter('cmt_num_to_type', 'cmtNumToType'),
+	
 		];
 	}
 }

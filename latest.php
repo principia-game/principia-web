@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-$type = (isset($_GET['type']) ? $_GET['type'] : 'all');
+$type = (isset($_GET['type']) && type_to_cat($_GET['type']) != 99 ? $_GET['type'] : 'all');
 $page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? $_GET['page'] : 1);
 
 $where = ($type != 'all' ? "WHERE l.cat = ".type_to_cat($type).' AND locked = 0' : 'WHERE locked = 0');

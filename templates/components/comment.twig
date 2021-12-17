@@ -1,14 +1,10 @@
-<form action="/_post_comment.php" method="POST">
+{% if log and userdata.powerlevel > 0 %}<form action="/_post_comment.php" method="POST">
 	<input type="hidden" name="id" value="{{ id }}">
 	<input type="hidden" name="t" value="{{ type }}">
 	<textarea name="comment" class="comment-input" required></textarea>
-	<br><input type="submit" value="Post" {% if not log%}disabled{% endif %}></input>
-	{% if not log %}
-		You need to login to comment.
-	{% else %}
-		<em style="padding-left:10px">Inline markdown supported.</em>
-	{% endif %}
-</form><br>
+	<br><input type="submit" value="Post" ></input>
+	<em style="padding-left:10px">Inline markdown supported.</em>
+</form><br>{% endif %}
 <div class="comments">
 	{% for cmnt in cmnts %}
 		{% if not cmnt.deleted or userdata.powerlevel > 1 %}

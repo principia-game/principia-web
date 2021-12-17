@@ -10,7 +10,7 @@ if (isset($_POST['action'])) {
 	$mail = (isset($_POST['mail']) ? $_POST['mail'] : null);
 	$pass = (isset($_POST['pass']) ? $_POST['pass'] : null);
 	$pass2 = (isset($_POST['pass2']) ? $_POST['pass2'] : null);
-	$captchaId = (isset($_POST['uwu']) ? $_POST['uwu'] : null);
+	$captchaId = (isset($_POST['uwu']) && isset($captcha[$_POST['uwu']]) ? $_POST['uwu'] : null);
 	$captchaAnswer = (isset($_POST['jupiter']) ? $_POST['jupiter'] : null);
 
 	if (!isset($name)) $error .= 'Blank username. ';

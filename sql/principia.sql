@@ -7,6 +7,15 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+CREATE TABLE `bans` (
+  `user` int(10) unsigned NOT NULL,
+  `banner` int(10) unsigned NOT NULL,
+  `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  `old` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` tinyint(4) NOT NULL DEFAULT 1,

@@ -4,7 +4,7 @@ require('lib/common.php');
 
 #require('upload_debug.php');
 
-if (!$log) {
+if (!$log || $userdata['powerlevel'] == 0) {
 	die('-100');
 }
 

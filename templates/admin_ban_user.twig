@@ -1,0 +1,29 @@
+{% extends "_layout.twig" %}
+
+{% if unban %}
+	{% set action = "unban" %}
+{% else %}
+	{% set action = "ban" %}
+{% endif %}
+
+{% block title %}{{ action | title }} User{% endblock %}
+
+	{% block content %}
+<h2>{{ action | title }} User</h2>
+
+<p>You are going to be {{ action }}ning {{ userlink(banuserdata) }}.</p>
+
+{% if action == "ban" %}
+	<form class="reglog" method="POST" action="/_ban_user.php?id={{ banuserdata.id }}">
+		<p>
+			<span>Reason:</span>
+			<input type="text" name="reason" placeholder="Specify a reason (Optional, but preferred.)" size="60">
+		</p>
+		<p><input type="submit" class="submit" name="action" value="Ban User"></p>
+	</form>
+{% else %}
+	<form class="reglog" method="POST" action="/_ban_user.php?id={{ banuserdata.id }}">
+		<p><input type="submit" class="submit" name="action" value="Unban User"></p>
+	</form>
+{% endif %}
+	{% endblock %}

@@ -9,6 +9,7 @@ $cmntId = isset($_POST['cmnt']) ? $_POST['cmnt'] : false;
 
 if (!$log) die('login pls');
 if (!$type || !$id) die('params pls');
+if ($userdata['powerlevel'] < 1) die('you have been banned');
 
 if (!$doDelete) {
 	if (!$message) die('params pls');

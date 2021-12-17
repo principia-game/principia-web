@@ -7,10 +7,25 @@
 	<div class="header_message">Marked all notifications as read.</div>
 {% elseif edited %}
 	<div class="header_message">Settings successfully saved!</div>
+{% elseif justbanned == "ban" %}
+	<div class="header_message">Successfully banned this user.</div>
+{% elseif justbanned == "unban" %}
+	<div class="header_message">Successfully unbanned this user.</div>
 {% endif %}
 
 {% if userdata.id == id and not forceuser %}
 <h2>{{ name }}</h2>
+
+{% if userdata.powerlevel == 0 %}
+<div class="banner b-red userban">
+	Your account has been banned.
+	{% if userdata.banreason %}
+		<br><br>Reason: {{ userdata.banreason }}
+	{% else %}
+		<br><br>No reason was provided.
+	{% endif %}
+</div>
+{% endif %}
 
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
@@ -66,7 +81,9 @@
 		<b>Last view</b>: {{ userpagedata.lastview | relative_time }}
 	</div>
 </div>
-<h2>{{ name }} {% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="/assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}</h2>
+<h2>{{ name }}
+	{% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="/assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}
+	{% if userpagedata.powerlevel < 1 %}<img class="sdsd" src="/assets/icons/gavel.svg" height="16" title="User has been banned.">{% endif %}</h2>
 
 <div class="user_about">
 	<h3>About this user</h3>
@@ -84,6 +101,9 @@
 			{% if userdata.powerlevel > 2 %}
 				&bull; <a href="/resetpassword.php?grf={{ id }}">Generate password reset for user</a>
 				&bull; <a href="/forum/editperms.php?uid={{ id }}">Edit forum permissions</a>
+			{% endif %}
+			{% if userdata.powerlevel > 1 %}
+				&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 1 %}Unb{% else %}B{% endif %}an user</a>
 			{% endif %}
 		{% endif %}
 	{% endif %}

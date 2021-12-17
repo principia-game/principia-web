@@ -16,7 +16,7 @@ if ($action == "Ban User") {
 
 	redirect(sprintf("/user.php?id=%s&justbanned=ban", $id));
 } elseif ($action == "Unban User") {
-	query("UPDATE bans SET old = 1 WHERE user = ? AND old = NULL", [$id]);
+	query("UPDATE bans SET old = 1 WHERE user = ? AND old = 0", [$id]);
 	query("UPDATE users SET powerlevel = 1 WHERE id = ?", [$id]);
 
 	redirect(sprintf("/user.php?id=%s&justbanned=unban", $id));

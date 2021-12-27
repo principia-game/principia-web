@@ -19,6 +19,13 @@
 </div>
 {% endif %}
 
+<h2 class="center">Featured levels</h2>
+{% for featured_level in featured_levels %}
+	{{ level(featured_level) }}
+{% else %}
+	There are no featured levels. How sad. :'(
+{% endfor %}
+
 <h2 class="header">Latest news <a href="/news.php">More</a></h2>
 <ul>
 	{% for new in news %}

@@ -45,6 +45,13 @@ CREATE TABLE `contests_entries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+CREATE TABLE `featured` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `level` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 CREATE TABLE `ipbans` (
   `ip` varchar(16) NOT NULL DEFAULT '0.0.0.0',
   `reason` varchar(255) NOT NULL DEFAULT '<em>No reason specified</em>'

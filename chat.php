@@ -1,9 +1,11 @@
 <?php
 require('lib/common.php');
 
-clearMentions('chat', 1);
+$id = (isset($_GET['id']) ? $_GET['id'] : 1);
 
-$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 5 ORDER BY c.time DESC LIMIT 50");
+clearMentions('chat', $id);
+
+$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 5 AND c.level = ? ORDER BY c.time DESC LIMIT 50", [$id]);
 
 $twig = twigloader();
-echo $twig->render('chat.twig', ['comments' => $comments]);
+echo $twig->render('chat.twig', ['id' => $id, 'comments' => $comments]);

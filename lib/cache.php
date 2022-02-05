@@ -23,8 +23,8 @@ class Cache {
 	}
 
 	private function hitMem($fingerprint, $uncachedContent, $expire = 0) {
-		// TODO: Switch to xxHash when PHP 8.1 releases.
-		$hash = sha1(var_export($fingerprint, true));
+		$hash = hash("xxh128", var_export($fingerprint, true));
+		print($hash);
 		$cached = $this->memcached->get($hash);
 		if ($cached) {
 			return $cached;

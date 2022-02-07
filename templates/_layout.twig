@@ -59,7 +59,7 @@
 		{% endif %}
 		<div class="home content{% if acmlm %} forum{% endif %}">
 			{% block content %}{% endblock %}
-		</div>
+		</div>{% if acmlm %}<br>{% endif %}
 		<div class="footer">
 			<a href="/about.php">About</a>
 			{{ custom_info() }}

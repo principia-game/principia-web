@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{% block title %}Home{% endblock %} - principia-web</title>
-		<link rel="stylesheet" href="/assets/css/style.css" type="text/css">
-		{% if userdata.darkmode %}<link rel="stylesheet" href="/assets/css/darkmode.css" type="text/css">{% endif %}
-		{% if acmlm %}<script src="assets/js/tools.js"></script>{% endif %}
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/assets/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css" type="text/css">
+		{% if acmlm %}<script defer src="/assets/js/tools.js"></script>{% endif %}
+		<script defer src="/assets/base.js"></script>
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
 		{% if userdata.powerlevel == 0 %}
@@ -67,7 +68,6 @@
 			on commit <a href="https://github.com/principia-preservation-project/principia-web/commit/{{ git_commit(false) }}">{{ git_commit() }}</a><br>
 			{{ profiler_stats() }}
 		</div>
-		<script type="text/javascript" src="/assets/base.js"></script>
 		{% block custom_footer %}{% endblock %}
 	</body>
 </html>

@@ -125,6 +125,8 @@ ul.menu {
 
 	img.search {
 		vertical-align: middle;
+		width: 18px;
+		height: 18px;
 	}
 }
 
@@ -486,4 +488,4 @@ form.reglog {
 }
 
 /// Forums \\\
-@import "_style_forums"
+@import "_style_forums";

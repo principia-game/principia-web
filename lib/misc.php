@@ -35,7 +35,11 @@ HTML
  * @return void
  */
 function gitCommit($trim = true) {
-	$commit = file_get_contents('.git/refs/heads/master');
+	global $acmlm;
+
+	$prefix = ($acmlm ? '../' : '');
+
+	$commit = file_get_contents($prefix.'.git/refs/heads/master');
 
 	if ($trim)
 		return substr($commit, 0, 7);

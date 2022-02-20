@@ -37,19 +37,19 @@ class Cache {
 	// Low-level wrapper functions
 	public function get($key) {
 		if ($this->enabled) {
-			$this->memcached->get($key);
+			return $this->memcached->get($key);
 		}
 	}
 
 	public function set($key, $value, $expiration = 0) {
 		if ($this->enabled) {
-			$this->memcached->set($key, $value, $expiration);
+			return $this->memcached->set($key, $value, $expiration);
 		}
 	}
 
 	public function delete($key) {
 		if ($this->enabled) {
-			$this->memcached->delete($key);
+			return $this->memcached->delete($key);
 		}
 	}
 }

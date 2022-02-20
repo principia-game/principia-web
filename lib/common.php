@@ -39,9 +39,8 @@ if (!isCli()) {
 
 		printf(
 			"<p>Your IP adress has been banned.</p>".
-			"<p><strong>Reason:</strong> %s</p>".
-			"<p>If you believe this is in error, send an email to %s to appeal.</p>",
-		$ipban['reason'], $_SERVER['SERVER_ADMIN']);
+			"<p><strong>Reason:</strong> %s</p>",
+		$ipban['reason']);
 
 		die();
 	}

@@ -27,7 +27,7 @@ if (!empty($blockedUA) && isset($_SERVER['HTTP_USER_AGENT'])) {
 if (!isCli() && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
 	// Redirect all non-internal pages on the old domain to new domain if old domain is defined.
 	if (isset($oldDomain) && $_SERVER['HTTP_HOST'] == $oldDomain) {
-		header("Location: https://" . $domain . $_SERVER["REQUEST_URI"], true, 301);
+		header("Location: " . $domain . $_SERVER["REQUEST_URI"], true, 301);
 		die();
 	}
 

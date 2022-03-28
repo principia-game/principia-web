@@ -23,10 +23,19 @@ if (!empty($blockedUA) && isset($_SERVER['HTTP_USER_AGENT'])) {
 	}
 }
 
-// Redirect all non-internal pages to https if https is enabled.
-if (!isCli() && $https && !isset($_SERVER['HTTPS']) && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
-	header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
-	die();
+// Do redirects if this is a non-internal
+if (!isCli() && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
+	// Redirect all non-internal pages on the old domain to new domain if old domain is defined.
+	if (isset($oldDomain) && $_SERVER['HTTP_HOST'] == $oldDomain) {
+		header("Location: https://" . $domain . $_SERVER["REQUEST_URI"], true, 301);
+		die();
+	}
+
+	// Redirect all non-internal pages to https if https is enabled.
+	if ($https && !isset($_SERVER['HTTPS'])) {
+		header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
+		die();
+	}
 }
 
 if (!isset($acmlm))

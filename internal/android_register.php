@@ -4,11 +4,11 @@ require('lib/common.php');
 
 if (!isset($_POST['signature']) || !isset($_POST['userdata'])) die('nah');
 
-$name = (isset($_POST['username']) ? $_POST['username'] : null);
+$name = $_POST['username'] ?? null;
 // Yes... These variables are mixed up. This is intentional because Emil, in his infinite wisdom,
 //		  thought that putting the password in 'email' and email in 'password' was a good idea.
-$mail = (isset($_POST['password']) ? $_POST['password'] : null);
-$pass = (isset($_POST['email']) ? $_POST['email'] : null);
+$mail = $_POST['password'] ?? null;
+$pass = $_POST['email'] ?? null;
 
 // TODO: code 117 - This email has been banned.
 //       code 118 is useless to us as we're not checking your license

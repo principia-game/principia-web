@@ -6,12 +6,12 @@ if ($log) redirect('./');
 $error = '';
 
 if (isset($_POST['action'])) {
-	$name = (isset($_POST['name']) ? $_POST['name'] : null);
-	$mail = (isset($_POST['mail']) ? $_POST['mail'] : null);
-	$pass = (isset($_POST['pass']) ? $_POST['pass'] : null);
-	$pass2 = (isset($_POST['pass2']) ? $_POST['pass2'] : null);
+	$name = $_POST['name'] ?? null;
+	$mail = $_POST['mail'] ?? null;
+	$pass = $_POST['pass'] ?? null;
+	$pass2 = $_POST['pass2'] ?? null;
 	$captchaId = (isset($_POST['uwu']) && isset($captcha[$_POST['uwu']]) ? $_POST['uwu'] : null);
-	$captchaAnswer = (isset($_POST['jupiter']) ? $_POST['jupiter'] : null);
+	$captchaAnswer = $_POST['jupiter'] ?? null;
 
 	if (!isset($name)) $error .= 'Blank username. ';
 	if (!isset($mail)) $error .= 'Blank email. ';

@@ -16,6 +16,6 @@ $twig = twigloader();
 echo $twig->render('search.twig', [
 	'query' => $query,
 	'page' => $page,
-	'levels' => (isset($levels) ? $levels : ''),
-	'level_count' => (isset($count) ? $count : '')
+	'levels' => $levels ?? '',
+	'level_count' => $count ?? ''
 ]);

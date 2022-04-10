@@ -84,9 +84,9 @@ echo $twig->render('user.twig', [
 	'forceuser' => $forceuser,
 	'page' => $page,
 	'level_count' => $count,
-	'notifs' => (isset($notifications) ? $notifications : []),
+	'notifs' => $notifications ?? [],
 	'markread' => (isset($_GET['markread']) ? true : false),
 	'edited' => (isset($_GET['edited']) ? true : false), // TODO: merge these three stuffs into one variable
-	'comments' => (isset($comments) ? $comments : null),
-	'justbanned' => (isset($_GET['justbanned']) ? $_GET['justbanned'] : null)
+	'comments' => $comments ?? null,
+	'justbanned' => $_GET['justbanned'] ?? null
 ]);

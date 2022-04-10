@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-$lid = (isset($_GET['id']) ? $_GET['id'] : 0);
+$lid = $_GET['id'] ?? 0;
 
 $pkg = fetch("SELECT $userfields p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$lid]);
 

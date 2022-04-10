@@ -3,8 +3,8 @@ require('lib/common.php');
 
 if ($userdata['powerlevel'] < 2) error('403', "You shouldn't be here, get out!");
 
-$id = (isset($_GET['id']) ? $_GET['id'] : null);
-$action = (isset($_POST['action']) ? $_POST['action'] : null);
+$id = $_GET['id'] ?? null;
+$action = $_POST['action'] ?? null;
 
 $banuserdata = fetch("SELECT id, name, customcolor, powerlevel FROM users WHERE id = ?", [$_GET['id']]);
 

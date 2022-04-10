@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-$contestid = (isset($_GET['id']) ? $_GET['id'] : 0);
+$contestid = $_GET['id'] ?? 0;
 
 $contest = fetch("SELECT * FROM contests WHERE id = ?", [$contestid]);
 

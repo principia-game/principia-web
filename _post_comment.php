@@ -1,11 +1,11 @@
 <?php
 require('lib/common.php');
 
-$id = isset($_POST['id']) ? $_POST['id'] : null;
-$type = isset($_POST['t']) ? $_POST['t'] : null;
-$message = isset($_POST['comment']) ? $_POST['comment'] : null;
+$id = $_POST['id'] ?? null;
+$type = $_POST['t'] ?? null;
+$message = $_POST['comment'] ?? null;
 $doDelete = isset($_POST['del']) ? true : false;
-$cmntId = isset($_POST['cmnt']) ? $_POST['cmnt'] : false;
+$cmntId = $_POST['cmnt'] ?? false;
 
 if (!$log) die('login pls');
 if (!$type || !$id) die('params pls');

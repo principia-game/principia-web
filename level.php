@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-$lid = (isset($_GET['id']) ? $_GET['id'] : 0);
+$lid = $_GET['id'] ?? 0;
 
 $level = fetch("SELECT $userfields l.* FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
@@ -87,9 +87,9 @@ echo $twig->render('level.twig', [
 	'level' => $level,
 	'has_liked' => $hasLiked,
 	'contests' => fetchArray($contests),
-	'contest_entered' => (isset($contestEntered) ? $contestEntered : null),
-	'already_entered' => (isset($alreadyEntered) ? $alreadyEntered : false),
+	'contest_entered' => $contestEntered ?? null,
+	'already_entered' => $alreadyEntered ?? false,
 	'comments' => fetchArray($comments),
-	'derivatives' => fetchArray($derivatives),
-	'parentlevel' => (isset($parentLevel) ? $parentLevel : null)
+	'derivatives' => $derivatives,
+	'parentlevel' => $parentLevel ?? null
 ]);

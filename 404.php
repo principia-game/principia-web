@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-$error = (isset($_GET['error']) ? $_GET['error'] : 404);
+$error = $_GET['error'] ?? 404;
 
 switch ($error) {
 	case 403:

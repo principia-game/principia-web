@@ -1,10 +1,10 @@
 <?php
 require('lib/common.php');
 
-$id = (isset($_GET['id']) ? $_GET['id'] : null);
+$id = $_GET['id'] ?? null;
 
 if (isset($_GET['grf']) && $userdata['powerlevel'] > 2) {
-	$generateResetFor = (isset($_GET['grf']) ? $_GET['grf'] : null);
+	$generateResetFor = $_GET['grf'] ?? null;
 
 	if ($generateResetFor) {
 		$tok = bin2hex(random_bytes(32));
@@ -26,8 +26,8 @@ if (!$resetdata['active']) error('403', "Your password has already been reset by
 $error = '';
 
 if (isset($_POST['action'])) {
-	$pass = (isset($_POST['pass']) ? $_POST['pass'] : null);
-	$pass2 = (isset($_POST['pass2']) ? $_POST['pass2'] : null);
+	$pass = $_POST['pass'] ?? null;
+	$pass2 = $_POST['pass2'] ?? null;
 
 	if ($pass != $pass2) $error .= "Passwords aren't identical.";
 

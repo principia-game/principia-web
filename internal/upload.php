@@ -74,7 +74,7 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 		die("let's look for some chips instead");
 	}
 
-	$parent = ($level->parentId() ? $level->parentId() : null);
+	$parent = $level->parentId() ?? null;
 
 	query("INSERT INTO levels (cat, title, description, author, time, derivatives, locked, platform, parent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
 		[catConvert($level->type()), $level->name(), $level->descr(), $userdata['id'], time(), $level->allowDerivatives(), $level->visibility(), $platform, $parent]);

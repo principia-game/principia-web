@@ -15,9 +15,16 @@ if (!$doDelete) {
 	if (!$message) die('params pls');
 	//if (result("SELECT COUNT(*) FROM levels WHERE id = ?", [$id]) != 1) die('valid level pls');
 
-	// rate-limit commenting to 10 times every 30 minutes. it should be fair enough to not prevent legitimate use
-	$recentCommentCount = result("SELECT COUNT(*) FROM comments WHERE author = ? AND time > ?", [$userdata['id'], time() - (30 * 60)]);
-	if ($recentCommentCount > 10) {
+	// rate-limit one user to only being able to comment 5 times every 10 minutes. it should be fair enough to not prevent legitimate use
+	$recentCommentCountUser = result("SELECT COUNT(*) FROM comments WHERE author = ? AND time > ?", [$userdata['id'], time() - (10 * 60)]);
+	if ($recentCommentCountUser > 5) {
+		die('Please wait a while until commenting again.');
+	}
+
+	// also rate-limit globally to only allow 30 comments every 15 minutes, should be high enough to not hinder actual comments
+	//   (principia-web gets, on an extremely liberal overcalculation over its entire existence, 1 comment per hour)
+	$recentCommentCount = result("SELECT COUNT(*) FROM comments WHERE time > ?", [time() - (15 * 60)]);
+	if ($recentCommentCount > 30) {
 		die('Please wait a while until commenting again.');
 	}
 

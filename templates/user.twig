@@ -16,7 +16,7 @@
 {% if userdata.id == id and not forceuser %}
 <h2>{{ name }}</h2>
 
-{% if userdata.powerlevel == 0 %}
+{% if userdata.powerlevel < 0 %}
 <div class="banner b-red userban">
 	Your account has been banned.
 	{% if userdata.banreason %}
@@ -83,7 +83,7 @@
 </div>
 <h2>{{ name }}
 	{% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="/assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}
-	{% if userpagedata.powerlevel < 1 %}<img class="sdsd" src="/assets/icons/gavel.svg" height="16" title="User has been banned.">{% endif %}</h2>
+	{% if userpagedata.powerlevel < 0 %}<img class="sdsd" src="/assets/icons/gavel.svg" height="16" title="User has been banned.">{% endif %}</h2>
 
 <div class="user_about">
 	<h3>About this user</h3>
@@ -103,7 +103,7 @@
 				&bull; <a href="/forum/editperms.php?uid={{ id }}">Edit forum permissions</a>
 			{% endif %}
 			{% if userdata.powerlevel > 1 %}
-				&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 1 %}Unb{% else %}B{% endif %}an user</a>
+				&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>
 			{% endif %}
 		{% endif %}
 	{% endif %}

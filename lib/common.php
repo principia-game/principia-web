@@ -79,13 +79,13 @@ if ($log) {
 	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$id]);
 	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 
-	if ($userdata['powerlevel'] == 0) {
+	if ($userdata['powerlevel'] < 0) {
 		$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$id]);
 	}
 
 	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $_SERVER['REMOTE_ADDR'], $userdata['id']]);
 } else {
-	$userdata['powerlevel'] = 1;
+	$userdata['powerlevel'] = 0;
 	$userdata['darkmode'] = $darkModeDefault;
 }
 

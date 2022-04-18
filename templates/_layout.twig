@@ -11,7 +11,7 @@
 		<script defer src="/assets/base.js"></script>
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
-		{% if userdata.powerlevel == 0 %}
+		{% if userdata.powerlevel < 0 %}
 			<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
 		{% endif %}
 		{% if is_android_webview() %}

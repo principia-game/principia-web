@@ -12,7 +12,7 @@ if ($action == "Ban User") {
 	$reason = (isset($_POST['reason']) && !empty($_POST['reason']) ? $_POST['reason'] : '(No reason specified)');
 
 	query("INSERT INTO bans (user, banner, reason, time) VALUES (?,?,?,?)", [$id, $userdata['id'], $reason, time()]);
-	query("UPDATE users SET powerlevel = 0 WHERE id = ?", [$id]);
+	query("UPDATE users SET powerlevel = -1 WHERE id = ?", [$id]);
 
 	redirect(sprintf("/user.php?id=%s&justbanned=ban", $id));
 } elseif ($action == "Unban User") {
@@ -25,5 +25,5 @@ if ($action == "Ban User") {
 $twig = twigloader();
 echo $twig->render('admin_ban_user.twig', [
 	'banuserdata' => $banuserdata,
-	'unban' => $banuserdata['powerlevel'] < 1
+	'unban' => $banuserdata['powerlevel'] < 0
 ]);

@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 5.5.5-10.5.11-MariaDB dump
+-- Adminer 4.8.1 MySQL 10.7.3-MariaDB dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -12,7 +12,7 @@ CREATE TABLE `bans` (
   `banner` int(10) unsigned NOT NULL,
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `time` int(10) unsigned NOT NULL,
-  `old` tinyint(1) DEFAULT NOT NULL DEFAULT 0
+  `old` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -23,7 +23,7 @@ CREATE TABLE `comments` (
   `author` int(11) NOT NULL,
   `time` int(11) NOT NULL,
   `message` text NOT NULL,
-  `deleted` tinyint(4) NOT NULL DEFAULT 0,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -132,17 +132,15 @@ CREATE TABLE `users` (
   `email` varchar(256) NOT NULL,
   `ip` varchar(15) NOT NULL DEFAULT '999.999.999.999',
   `token` varchar(40) DEFAULT NULL,
-  `joined` int(11) unsigned NOT NULL DEFAULT 0,
-  `lastview` int(11) unsigned NOT NULL DEFAULT 0,
-  `lastpost` int(11) unsigned NOT NULL DEFAULT 0,
+  `joined` int(10) unsigned NOT NULL DEFAULT 0,
+  `lastview` int(10) unsigned NOT NULL DEFAULT 0,
+  `lastpost` int(10) unsigned NOT NULL DEFAULT 0,
   `darkmode` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `avatar` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `powerlevel` tinyint(4) NOT NULL DEFAULT 1,
   `group_id` tinyint(4) NOT NULL DEFAULT 3 COMMENT 'Legacy Acmlmboard-related group ID field.',
-  `levels` int(11) unsigned NOT NULL DEFAULT 0,
-  `comments` int(11) unsigned NOT NULL DEFAULT 0,
-  `posts` int(11) unsigned NOT NULL DEFAULT 0,
-  `threads` int(11) unsigned NOT NULL DEFAULT 0,
+  `posts` int(10) unsigned NOT NULL DEFAULT 0,
+  `threads` int(10) unsigned NOT NULL DEFAULT 0,
   `customcolor` varchar(6) DEFAULT NULL,
   `title` varchar(256) DEFAULT NULL,
   `timezone` varchar(256) DEFAULT NULL,
@@ -153,4 +151,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
--- 2021-07-09 19:52:37
+-- 2022-04-17 18:45:35

@@ -1,6 +1,8 @@
 <?php
 require('lib/common.php');
 
+needsLogin();
+
 if (isset($_POST['magic'])) {
 	$title			= $_POST['title'] ?? null;
 	$customcolor	= strtolower($_POST['customcolor']) != '#0000aa' ? $_POST['customcolor'] : null;

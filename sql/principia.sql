@@ -138,7 +138,6 @@ CREATE TABLE `users` (
   `darkmode` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `avatar` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `powerlevel` tinyint(4) NOT NULL DEFAULT 1,
-  `group_id` tinyint(4) NOT NULL DEFAULT 3 COMMENT 'Legacy Acmlmboard-related group ID field.',
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `threads` int(10) unsigned NOT NULL DEFAULT 0,
   `customcolor` varchar(6) DEFAULT NULL,

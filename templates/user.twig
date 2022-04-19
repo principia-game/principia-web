@@ -100,7 +100,6 @@
 			{% endif %}
 			{% if userdata.powerlevel > 2 %}
 				&bull; <a href="/resetpassword.php?grf={{ id }}">Generate password reset for user</a>
-				&bull; <a href="/forum/editperms.php?uid={{ id }}">Edit forum permissions</a>
 			{% endif %}
 			{% if userdata.powerlevel > 1 %}
 				&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>

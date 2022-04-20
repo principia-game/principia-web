@@ -90,6 +90,6 @@ echo $twig->render('level.twig', [
 	'contest_entered' => $contestEntered ?? null,
 	'already_entered' => $alreadyEntered ?? false,
 	'comments' => fetchArray($comments),
-	'derivatives' => $derivatives,
+	'derivatives' => fetchArray($derivatives),
 	'parentlevel' => $parentLevel ?? null
 ]);

@@ -1,7 +1,7 @@
 <?php
 
 class Cache {
-	private $enabled = false;
+	public $enabled = false;
 	public $memcached;
 
 	function __construct($memcachedServers) {

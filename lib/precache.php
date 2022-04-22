@@ -24,10 +24,16 @@ class PreCache {
 	 * Run all potential precache actions.
 	 */
 	private function runPreCache() {
-		// Cache #1: Test
+		// Cache #1: IP bans
 		$this->preCacheAction(1, function ($cache) {
-			$cache->set('testkey', 'lol');
+			$ipbans = query("SELECT * FROM ipbans");
+
+			while ($ipban = $ipbans->fetch()) {
+				$cache->set('ipb_'.$ipban['ip'], $ipban['reason']);
+			}
 		});
+
+
 	}
 
 	/**
@@ -43,4 +49,4 @@ class PreCache {
 	}
 }
 
-//$precache = new PreCache($cache);
+$precache = new PreCache($cache);

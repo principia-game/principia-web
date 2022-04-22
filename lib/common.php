@@ -36,6 +36,7 @@ if (!isCli() && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
 		header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
 		die();
 	}
+
 	$ipaddr = $_SERVER['REMOTE_ADDR'];
 }
 
@@ -43,14 +44,19 @@ if (!isset($acmlm))
 	$userfields = userfields();
 
 if (!isCli()) {
-	$ipban = fetch("SELECT * FROM ipbans WHERE ? LIKE ip", [$_SERVER['REMOTE_ADDR']]);
+	if ($cache->enabled) { // Speedy memcachelez
+		$ipban = $cache->get('ipb_'.$ipaddr);
+	} else { // Fallback
+		$ipban = result("SELECT reason FROM ipbans WHERE ? LIKE ip", [$ipaddr]);
+	}
+
 	if ($ipban) {
 		http_response_code(403);
 
 		printf(
-			"<p>Your IP adress has been banned.</p>".
+			"<p>Your IP address has been banned.</p>".
 			"<p><strong>Reason:</strong> %s</p>",
-		$ipban['reason']);
+		($ipban != 'N/A' ? $ipban : '<em>No reason specified</em>'));
 
 		die();
 	}

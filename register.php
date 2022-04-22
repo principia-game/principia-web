@@ -40,7 +40,7 @@ if (isset($_POST['action'])) {
 	if (result("SELECT COUNT(*) FROM users WHERE email = ?", [$mail]))
 		$error .= "You've already registered an account using this email address. ";
 
-	if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$_SERVER['REMOTE_ADDR']]))
+	if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
 		$error .= "Creating multiple accounts (alts) aren't allowed. ";
 
 	if ($error == '') {

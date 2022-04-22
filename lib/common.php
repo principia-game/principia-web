@@ -36,6 +36,7 @@ if (!isCli() && !str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
 		header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
 		die();
 	}
+	$ipaddr = $_SERVER['REMOTE_ADDR'];
 }
 
 if (!isset($acmlm))
@@ -83,7 +84,7 @@ if ($log) {
 		$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$id]);
 	}
 
-	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $_SERVER['REMOTE_ADDR'], $userdata['id']]);
+	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $ipaddr, $userdata['id']]);
 } else {
 	$userdata['powerlevel'] = 0;
 	$userdata['darkmode'] = $darkModeDefault;

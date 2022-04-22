@@ -31,7 +31,7 @@ if (!preg_match('/[a-zA-Z0-9_]+$/', $name))
 if (result("SELECT COUNT(*) FROM users WHERE email = ?", [$mail]))
 	die('116'); // "This email is already in use."
 
-if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$_SERVER['REMOTE_ADDR']]))
+if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
 	die('111'); // Just give the generic "something went wrong!" code.
 
 // All possible invalid credentials have been checked, it should be successful now.

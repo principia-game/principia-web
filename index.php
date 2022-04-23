@@ -4,7 +4,7 @@ require('lib/common.php');
 // Cache all index page queries for 1 hour unless explicitly flushed.
 
 $newsdata = $cache->hit('idx_news', function () {
-	return fetchArray(query("SELECT * FROM news ORDER BY id DESC LIMIT 5"));
+	return fetchArray(query("SELECT id, title FROM news ORDER BY id DESC LIMIT 5"));
 });
 
 $latestquery = "SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.cat = %d AND l.locked = 0 ORDER BY l.id DESC LIMIT 4";

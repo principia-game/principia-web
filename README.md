@@ -2,7 +2,7 @@
 Open source reimplementation of Principia's community site.
 
 ## Setting up
-1. Get Apache with PHP and MariaDB up and running. While substituting with Nginx and/or MySQL would also work, only Apache and MariaDB is supported.
+1. Get nginx with PHP and MariaDB up and running.
 1. Import the database dump in the `sql` folder.
 1. Copy the `conf/config.sample.php` file to `conf/config.php` and fill in your database credentials.
 1. Run `composer update` with Composer to download dependencies.
@@ -28,6 +28,9 @@ Where `http://principia-web.uwu` is your own site. **HTTPS does <u>not</u> work 
 You're mainly on your own. Decompile the game using [Apktool](https://ibotpeaches.github.io/Apktool/) and change all occurences in the Smali code of `http://principiagame.com` to your own site.
 
 You will also need to edit the native libraries to replace any occurences. Doing it manually is a pain, so for the Android community site mod, [a script was written to automatically do it](https://gist.github.com/rollerozxa/dc882179249520bade66a0f5bfddb99e). It might need some edits to suit your needs though.
+
+### Optional: memcached
+principia-web makes use of memcached to off-load the primary database. To enable it please set up (a) memcached server(s), install the `php-memcached` extension and set the server details in `$memcachedServers`, one array item for each server.
 
 ### Optional: Featured levels list
 The Principia client has a selection of featured levels on the main menu. By default principia-web has placeholder data, but you can edit this by cloning [Featured List Creator](https://github.com/principia-preservation-project/featured-list-creator), and moving the `main.py` source file into `featured/`. Edit the `featured/data/data.json` to replace the placeholders with real levels.

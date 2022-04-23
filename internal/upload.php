@@ -18,7 +18,7 @@ require('lib/kaitai/plvl.php');
 //	die('garbled level or garbled kaitai');
 //}
 
-$platform = extractPlatform($_SERVER['HTTP_USER_AGENT']);
+$platform = extractPlatform($useragent);
 
 if ($level->communityId()) { // level has a non-noll community_id, assume we're updating a level
 	$cid = $level->communityId();

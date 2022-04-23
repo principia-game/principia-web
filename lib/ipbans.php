@@ -11,3 +11,25 @@ function ipBan($ip, $reason = 'N/A') {
 	query("INSERT INTO ipbans (ip,reason) VALUES (?,?)", [$ip, $reason]);
 	$cache->set('ipb_'.$ip, $reason);
 }
+
+function showIpBanMsg($reason) {
+	global $appealmsg;
+	http_response_code(403);
+	printf(<<<HTML
+		<style>
+		body {
+			background-color: #640000;
+			color: #ffdfdf;
+			font-family: sans-serif;
+			font-size: 16pt;
+			margin: auto;
+			max-width: 500px;
+			padding-top: 100px;
+		}
+		</style>
+		<p>Your IP address has been banned.</p>
+		<p><strong>Reason:</strong> %s</p>
+		<p>%s</p>
+HTML, ($reason != 'N/A' ? $reason : '<em>No reason specified</em>'), $appealmsg);
+	die();
+}

@@ -95,3 +95,6 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 		newLevelHook($webhookdata);
 	}
 }
+
+// Latest levels has most likely changed, invalidate index cache.
+$cachectrl->invIndex();

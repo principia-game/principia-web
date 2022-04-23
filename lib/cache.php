@@ -52,6 +52,16 @@ class Cache {
 			return $this->memcached->delete($key);
 		}
 	}
+
+	/**
+	 * Delete a key that is a hashed fingerprint created with Cache::hitMem.
+	 */
+	public function deleteHash($fingerprint) {
+		if ($this->enabled) {
+			$hash = hash("xxh128", var_export($fingerprint, true));
+			$this->memcached->delete($hash);
+		}
+	}
 }
 
 $cache = new Cache($memcachedServers);

@@ -64,7 +64,24 @@ function level($level, $featured = '', $pkg = false) {
 	global $cache;
 	return $cache->hit($level, function () use ($level, $featured, $pkg) {
 		$twig = twigloader('components');
-		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'pkg' => $pkg]);
+
+		if (!$pkg) {
+			if (!$level['locked']) {
+				$img = "levels/thumbs/low/".$level['id'].".jpg";
+			} else {
+				$img = "assets/locked_thumb.svg";
+			}
+		} else {
+			$img = "assets/package_thumb.svg";
+		}
+
+		if ($pkg) {
+			$page = 'package.php';
+		} else {
+			$page = 'level.php';
+		}
+
+		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'img' => $img, 'page' => $page]);
 	});
 }
 

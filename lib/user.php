@@ -16,9 +16,9 @@ function userlink($user, $pre = '') {
 		$user[$pre.'name'] = sprintf('<span style="color:#%s">%s</span>', $user[$pre.'customcolor'], $user[$pre.'name']);
 	}
 
-	return <<<HTML
-		<a class="user" href="/user.php?id={$user[$pre.'id']}"><span class="t_user">{$user[$pre.'name']}</span></a>
-HTML;
+	return sprintf(
+		'<a class="user" href="/user.php?id=%d"><span class="t_user">%s</span></a>',
+	$user[$pre.'id'], $user[$pre.'name']);
 }
 
 if (!isset($acmlm)) {

@@ -105,5 +105,6 @@ function redirect($url) {
  * Is the useragent Principia's android webview useragent?
  */
 function isAndroidWebview() {
+	global $useragent;
 	return str_contains($useragent, 'Principia WebView');
 }

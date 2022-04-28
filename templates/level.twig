@@ -1,6 +1,6 @@
 {% extends "_layout.twig" %}
 
-{% block title %}{{ level.title }}{% endblock %}
+{% set title = level.title %}
 
 	{% block content %}
 {% if already_entered %}

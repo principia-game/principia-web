@@ -2,11 +2,11 @@
 
 {% if unban %}
 	{% set action = "unban" %}
+	{% set title = "Unban User" %}
 {% else %}
 	{% set action = "ban" %}
+	{% set title = "Ban User" %}
 {% endif %}
-
-{% block title %}{{ action | title }} User{% endblock %}
 
 	{% block content %}
 <h2>{{ action | title }} User</h2>

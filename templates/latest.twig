@@ -1,6 +1,10 @@
 {% extends "_layout.twig" %}
 
-{% block title %}Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}{% endblock %}
+{% if page == 1 %}
+	{% set title = "Latest levels" %}
+{% else %}
+	{% set title = "Latest levels (Page " ~ page ~ ")" %}
+{% endif %}
 
 	{% block content %}
 <h2>Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}</h2>

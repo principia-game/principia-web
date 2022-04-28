@@ -1,6 +1,6 @@
 {% extends "_layout.twig" %}
 
-{% block title %}{{ contest.title }}{% endblock %}
+{% set title = contest.title %}
 
 	{% block content %}
 <h1>{{ contest.title }}</h1>

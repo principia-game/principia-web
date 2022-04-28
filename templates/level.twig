@@ -1,6 +1,8 @@
 {% extends "_layout.twig" %}
 
 {% set title = level.title %}
+{% set description = level.description %}
+{% set image = domain ~ "/levels/thumbs/" ~ lid ~ ".jpg" %}
 
 	{% block content %}
 {% if already_entered %}

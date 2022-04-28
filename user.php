@@ -60,12 +60,6 @@ if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceu
 		}
 	}
 } else { // general profile details stuff
-	if ($userpagedata['about']) {
-		$markdown = new Parsedown();
-		$markdown->setSafeMode(true);
-		$userpagedata['about'] = $markdown->text($userpagedata['about']);
-	}
-
 	$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$userpagedata['id']]);
 
 	if (isset($userdata['id']) && $userpagedata['id'] == $userdata['id']) {

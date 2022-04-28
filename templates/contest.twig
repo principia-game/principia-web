@@ -7,7 +7,7 @@
 
 <img src="{{ contest.image }}" style="float: right;max-width: 50%;">
 
-<p>{{ contest.description | raw }}</p>
+<p>{{ contest.description | markdown_unsafe }}</p>
 
 <h2>Entries</h2>
 {% for level in levels %}

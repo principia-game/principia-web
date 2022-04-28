@@ -42,7 +42,7 @@
 		{% else %}
 			<p><em>This level has been locked. It will not be visible outside of this level page.</em></p>
 		{% endif %}
-		<p>{{ level.description | raw }}</p>
+		<p>{{ level.description | markdown }}</p>
 
 	</div>
 	<div class="img">

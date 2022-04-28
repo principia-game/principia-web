@@ -6,7 +6,7 @@
 {% if newsid %}
 	<h2>{{ news.title }}</h2>
 	<p><em>Published on the {{ time }}</em></p>
-	<p>{{ news.text | raw }}</p>
+	<p>{{ news.text | markdown_unsafe }}</p>
 
 	<h2>Comments</h2>
 	{{ comments(comments, 'news', news.id) }}

@@ -7,9 +7,9 @@ Open source reimplementation of Principia's community site.
 1. Copy the `conf/config.sample.php` file to `conf/config.php` and fill in your database credentials.
 1. Run `composer update` with Composer to download dependencies.
 1. Compile the SCSS stylesheet `assets/css/style.scss` into `assets/css/style.css`.
-1. Make the `levels/` and `templates/cache/` directories writeable by Apache.
+1. Make the `levels/` and `templates/cache/` directories writeable by PHP.
 
-You will also need to enable .htaccess files (referred to as `AllowOverride` in the Apache config), as that usually isn't enabled by default anymore in Apache.
+Right now, a default nginx site configuration is not available although this may change in the future if there is demand for it.
 
 ### Connecting with the game
 #### Windows (and Linux)

@@ -14,7 +14,8 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFunction('git_commit', 'gitCommit'),
 			new \Twig\TwigFunction('profiler_stats', function () use ($profiler) {
 				$profiler->getStats();
-			})
+			}),
+			new \Twig\TwigFunction('custom_header', 'customHeader'),
 		];
 	}
 	public function getFilters() {
@@ -44,7 +45,7 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFilter('relative_time', 'relativeTime'),
 
 			new \Twig\TwigFilter('cmt_num_to_type', 'cmtNumToType'),
-	
+
 		];
 	}
 }

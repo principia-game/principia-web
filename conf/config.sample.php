@@ -60,6 +60,9 @@ $appealmsg = "If you believe this was in error, please hug a plushie and then se
 // Stub function to put special information in the footer.
 function customInfo() { }
 
+// Stub function to put special information in the header.
+function customHeader() { }
+
 $levelArchive = false;
 
 /// GENERAL FORUM STUFF

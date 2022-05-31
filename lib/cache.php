@@ -8,9 +8,7 @@ class Cache {
 		if (!empty($memcachedServers)) {
 			$this->enabled = true;
 			$this->memcached = new Memcached();
-			foreach ($memcachedServers as $memcachedServer) {
-				$this->memcached->addServer($memcachedServer, 11211);
-			}
+			$this->memcached->addServers($memcachedServers);
 		}
 	}
 

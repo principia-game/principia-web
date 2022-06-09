@@ -49,6 +49,14 @@ table.c1 {
 	margin-bottom: 4px;
 }
 
+.breadcrumb {
+	margin: 3px;
+
+	.actions {
+		float: right;
+	}
+}
+
 .posttoolbar button {
 	height: 2em;
 	width: 2em;

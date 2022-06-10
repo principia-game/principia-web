@@ -20,6 +20,7 @@ if (!isCli()) {
 	// Shorter variables for common $_SERVER values.
 	$ipaddr = $_SERVER['REMOTE_ADDR'];
 	$useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
+	$uri = $_SERVER['REQUEST_URI'] ?? null;
 
 	// UA-based bans, for retarded and identifiable scripts
 	if (!empty($blockedUA) && $useragent) {
@@ -36,13 +37,13 @@ if (!isCli()) {
 	if (!str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
 		// Redirect all non-internal pages on the old domain to new domain if old domain is defined.
 		if (isset($oldDomain) && $_SERVER['HTTP_HOST'] == $oldDomain) {
-			header("Location: " . $domain . $_SERVER["REQUEST_URI"], true, 301);
+			header("Location: ".$domain.$uri, true, 301);
 			die();
 		}
 
 		// Redirect all non-internal pages to https if https is enabled.
 		if ($https && !isset($_SERVER['HTTPS'])) {
-			header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], true, 301);
+			header("Location: https://".$_SERVER["HTTP_HOST"].$uri, true, 301);
 			die();
 		}
 	}
@@ -60,6 +61,7 @@ if (!isCli()) {
 	// Dummy values for CLI usage
 	$ipaddr = '127.0.0.1';
 	$useragent = 'principia-web/cli (sexy, like PHP)';
+	$uri = '/';
 }
 
 // Unset legacy authentication cookies for security purposes. This will hopefully delete it from browsers and clients.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title>{{ title }} - principia-web</title>
@@ -10,11 +10,13 @@
 		{% if acmlm %}<script defer src="/forum/assets/js/tools.js"></script>{% endif %}
 		<script defer src="/assets/base.js"></script>
 
-		<meta property="og:site_name" content="principia-web">
 		<meta property="og:title" content="{{ title }} - principia-web">
-		{% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
 		{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
-
+		{% if description %}<meta property="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
+		<meta property="og:description" content="{{ description }}">{% endif %}
+		<meta property="og:site_name" content="principia-web">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="{{ domain }}{{ uri }}">
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
 		{{ custom_header() | raw }}
@@ -33,7 +35,7 @@
 				<li><a href="/search.php" class="btn"><img src="/assets/icons/search.svg" class="search"></a></li>
 			</ul>
 			<ul class="menu right">
-				<li><em>
+				<li>
 					{% if log %}
 						{{ userlink(userdata) }}
 						{% if notification_count > 0 %}
@@ -42,7 +44,7 @@
 					{% else %}
 						<a href="/login.php">Login</a>
 					{% endif %}
-				</em></li>
+				</li>
 			</ul>
 		</div>
 		{% if acmlm %}

@@ -1,6 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = name %}
+{% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
 
 	{% block content %}
 {% if markread %}

@@ -1,6 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = "Principia Community Level Archive" %}
+{% set description = "All currently archived levels from the official Principia community site available to be played on principia-web. (Login required)" %}
 
 	{% block content %}
 <h2>Principia Community Level Archive</h2>
@@ -14,7 +15,7 @@
 {% if log %}
 	{{ llcache | raw }}
 {% else %}
-	<br><br><p><em>You are not logged in. Please log in to be able to browse the Community Level Archive on principia-web.</em></p><br><br>
+	<br><br><p><em>You are not logged in. Please <a href="/login.php">log in</a> to be able to browse the Community Level Archive on principia-web.</em></p><br><br>
 {% endif %}
 
 {#

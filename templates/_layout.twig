@@ -12,7 +12,7 @@
 
 		<meta property="og:title" content="{{ title }} - principia-web">
 		{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
-		{% if description %}<meta property="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
+		{% if description %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
 		<meta property="og:description" content="{{ description }}">{% endif %}
 		<meta property="og:site_name" content="principia-web">
 		<meta property="og:type" content="website">

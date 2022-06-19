@@ -25,7 +25,7 @@ if (!isset($pass) || strlen($pass) < 6)
 if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name)]))
 	die('112'); // "This username is already taken."
 
-if (!preg_match('/[a-zA-Z0-9_]+$/', $name))
+if (!preg_match('/^[a-zA-Z0-9\-_]+$/', $name))
 	die('113'); // "The username contains invalid characters."
 
 if (result("SELECT COUNT(*) FROM users WHERE email = ?", [$mail]))

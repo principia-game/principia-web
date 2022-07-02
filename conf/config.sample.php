@@ -70,10 +70,3 @@ $levelArchive = false;
 $forumEnabled = true; // Enable forum-related stuff
 
 $trashid = 2; // Designates the id for your trash forum.
-
-// Random forum descriptions.
-// It will be replacing the value %%%RANDOM%%% in the forum description.
-$randdesc = [
-	"Value1",
-	"Value2"
-];

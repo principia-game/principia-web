@@ -66,9 +66,14 @@ table.c1 {
 .threadpost {
 	.topbar_1 {
 		border-bottom: 0 !important;
+		border-right: 0 !important;
 		min-width: 180px;
 		text-align: center;
 		height: 24px;
+	}
+
+	.topbar_2 {
+		border-left: 0 !important;
 	}
 
 	.sidebar {

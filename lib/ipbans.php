@@ -12,6 +12,17 @@ function ipBan($ip, $reason = 'N/A') {
 	$cache->set('ipb_'.$ip, $reason);
 }
 
+/**
+ * Unbans an existing IP ban.
+ *
+ * @param string $ip IPv4 address
+ */
+function ipUnban($ip) {
+	global $cache;
+	query("DELETE FROM ipbans WHERE ip = ?", [$ip]);
+	$cache->delete('ipb_'.$ip);
+}
+
 function showIpBanMsg($reason) {
 	global $appealmsg;
 	http_response_code(403);

@@ -16,6 +16,7 @@ if ($log) {
 		if (!$hasLiked) {
 			query("UPDATE levels SET likes = likes + '1' WHERE id = ?", [$lid]);
 			query("INSERT INTO likes VALUES (?,?)", [$userdata['id'], $lid]);
+			$cachectrl->invIndexTop();
 		}
 		die();
 	}

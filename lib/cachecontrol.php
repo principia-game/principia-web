@@ -16,6 +16,13 @@ class CacheControl {
 		$this->cache->deleteHash('idx_adv');
 		$this->cache->deleteHash('idx_feat');
 	}
+
+	/**
+	 * Invalidate top rated levels on index
+	 */
+	public function invIndexTop() {
+		$this->cache->deleteHash('idx_top');
+	}
 }
 
 $cachectrl = new CacheControl($cache);

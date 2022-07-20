@@ -41,15 +41,15 @@ p {
 
 .top, .footer {
 	background-color: #eee;
-	border-bottom: 1px solid #ccc;
-	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #bbb;
 	margin-top: 0px;
 	overflow: hidden;
 	padding: 10px 8px;
 }
 
 .top {
-	height: 32px;
+	//height: 32px;
 	margin-top: 6px;
 	border-top-width: 0;
 }
@@ -69,28 +69,11 @@ p {
 	float: right;
 }
 
-ul.menu {
+div.menu {
 	display: inline;
 	line-height: 32px;
 	text-align: center;
-
-	li {
-		list-style-type: none;
-		float: left;
-		overflow: hidden;
-		margin: 0px 5px;
-	}
-
-	&.right li {
-		float: right;
-		font-style: italic;
-		padding-right: 4px;
-
-		.notifs {
-			color: #20aa20;
-			font-weight: bold;
-		}
-	}
+	font-weight: bold;
 
 	a {
 		display: inline-block;
@@ -99,13 +82,18 @@ ul.menu {
 		font-weight: bold;
 		text-decoration: none;
 		padding: 0px 5px;
+		margin: 0px 3px;
 
 		&:hover {
 			background-color: #fff;
 		}
 	}
 
-	a.download {
+	&.right a, .notifs {
+		float: right;
+		margin-right: 6px;
+	}
+	.notifs {
 		color: #20aa20;
 	}
 
@@ -122,7 +110,7 @@ ul.menu {
 
 .header_message {
 	border-bottom: 1px solid #ccc;
-	padding: 10px;
+	padding: 15px;
 }
 
 div.level {
@@ -397,6 +385,11 @@ form.reglog {
 	border-bottom: 1px solid #ccc;
 	display: block;
 	text-align: center;
+	font-size: 1em;
+
+	a {
+		font-weight: bold;
+	}
 }
 
 // Community level archive page specific styles\\

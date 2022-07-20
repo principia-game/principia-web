@@ -12,11 +12,11 @@ a {
 
 .top, .footer {
 	background-color: #111;
-	border-bottom: 1px solid #333;
-	border-top: 1px solid #333;
+	border-bottom: 1px solid #444;
+	border-top: 1px solid #444;
 }
 
-ul.menu {
+div.menu {
 	a {
 		color: #ddd;
 
@@ -26,8 +26,8 @@ ul.menu {
 	}
 }
 
-.header_message {
-	border-bottom: 1px solid #333;
+.header_message, .skit {
+	border-bottom: 1px solid #444;
 }
 
 div.level {
@@ -40,7 +40,7 @@ div.level {
 
 .comments {
 	.comment-entry {
-		border-bottom: 1px solid #333;
+		border-bottom: 1px solid #444;
 
 		&:nth-child(odd)  { background-color: #0a0a0a; }
 		&:nth-child(even) { background-color: #171717; }
@@ -108,7 +108,7 @@ div.level {
 
 .settings {
 	.a, .b {
-		border-bottom: 1px solid #333;
+		border-bottom: 1px solid #444;
 	}
 
 	tr {

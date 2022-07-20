@@ -23,44 +23,43 @@
 			<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
 		{% endif %}
 		<div class="top">
-			<a href="/"><img class="picon" src="/assets/icon.png"/></a>
-			<ul class="menu left">
-				<li><a href="/popular.php" class="btn">Popular</a></li>
-				<li><a href="/top.php" class="btn">Top</a></li>
-				<li><a href="/latest.php" class="btn">New</a></li>
-				<li><a href="/chat.php" class="btn">Chat</a></li>
-				{% if glob_forum %}<li><a href="/forum/" class="btn">Forum</a></li>{% endif %}
-				{#<li><a href="/contests.php" class="btn">Contests</a></li>#}
-				{% if log %}<li><a href="/discord">Discord</a></li>{% endif %}
-				<li><a href="/search.php" class="btn"><img src="/assets/icons/search.svg" class="search"></a></li>
-			</ul>
-			<ul class="menu right">
-				<li>
-					{% if log %}
-						{{ userlink(userdata) }}
-						{% if notification_count > 0 %}
-							<span class="notifs">[{{ notification_count }}]</span>
-						{% endif %}
-					{% else %}
-						<a href="/login.php">Login</a>
+			<a href="/"><img class="picon" src="/assets/icon.png"></a>
+			<div class="menu">
+				<a href="/popular.php" class="btn">Popular</a>
+				<a href="/top.php" class="btn">Top</a>
+				<a href="/latest.php" class="btn">New</a>
+				<a href="/chat.php" class="btn">Chat</a>
+				{% if glob_forum %}<a href="/forum/" class="btn">Forum</a>{% endif %}
+				{#<a href="/contests.php" class="btn">Contests</a>#}
+				{% if log %}<a href="/discord">Discord</a>{% endif %}
+				<a href="/search.php" class="btn"><img src="/assets/icons/search.svg" class="search"></a>
+			</div>
+			<div class="menu right">
+				{% if log %}
+					{% if 3 > 0 %}
+						<span class="notifs">[{{ 33333333 }}]</span>
 					{% endif %}
-				</li>
-			</ul>
+					{{ userlink(userdata) }}
+
+				{% else %}
+					<a href="/login.php">Login</a>
+				{% endif %}
+			</div>
 		</div>
 		{% if acmlm %}
 		<div class="top top_forum">
-			<ul class="menu left">
-				<li><a href="/forum/" class="btn">Forum</a></li>
-				<li><a href="/forum/activeusers.php" class="btn">Active users</a></li>
-				<li><a href="/forum/thread.php?time=86400" class="btn">Latest posts</a></li>
+			<div class="menu left">
+				<a href="/forum/" class="btn">Forum</a>
+				<a href="/forum/activeusers.php" class="btn">Active users</a>
+				<a href="/forum/thread.php?time=86400" class="btn">Latest posts</a>
 				{% if log %}
-					<li><a href="/forum/private.php" class="btn">Private messages</a></li>
+					<a href="/forum/private.php" class="btn">Private messages</a>
 				{% endif %}
-			</ul>
+			</div>
 			{% if log %}
-				<ul class="menu right">
-					<li><a href="/forum/?action=markread&fid=all">Mark all forums read</a></li>
-				</ul>
+				<div class="menu right">
+					<a href="/forum/?action=markread&fid=all">Mark all forums read</a>
+				</div>
 			{% endif %}
 		</div>
 		{% block precontent %}{% endblock %}<br>

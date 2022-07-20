@@ -3,7 +3,7 @@ require('lib/common.php');
 
 needsLogin();
 
-if (isset($_POST['magic'])) {
+if (isset($_POST['action'])) {
 	$title			= $_POST['title'] ?: null;
 	$customcolor	= strtolower($_POST['customcolor']) != '#0000aa' ? $_POST['customcolor'] : null;
 	$about			= $_POST['about'] ?: null;

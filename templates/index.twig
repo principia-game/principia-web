@@ -5,7 +5,7 @@
 
 	{% block content %}
 {% if just_registered %}
-	<div class="header_message">You've been successfully registered!</div>
+	<div class="header_message">You've been successfully registered and automatically logged in. Welcome to principia-web!</div>
 {% endif %}
 
 {% if not log %}
@@ -14,7 +14,7 @@
 
 	<p>Principia-web is an unofficial community site replacement for the game Principia, as the official community site was shut down in early 2018.</p>
 
-	<p>To be able to play and upload levels, you will need to <a href="/download.php">install a mod</a>, available on both Windows and Android, that allows the game to connect to principia-web.</p>
+	<p>In order to play and upload levels, you will need to <a href="/download.php">install a mod</a>, available on both Windows and Android, that allows the game to connect to principia-web.</p>
 
 	<p>What are you waiting for? <a href="/register.php">Register now!</a></p>
 </div>
@@ -30,11 +30,18 @@
 <h2 class="header">Latest news <a href="/news.php">More</a></h2>
 <ul>
 	{% for new in news %}
-		<li><a href="/news.php?id={{ new.id }}">{{ new.title }}</a></li>
+		<li><b>{{ new.time | date('M j, Y') }}</b> - <a href="/news.php?id={{ new.id }}">{{ new.title }}</a></li>
 	{% else %}
 		<li>No news.</li>
 	{% endfor %}
 </ul>
+
+<h2 class="header">Top rated levels <a href="/top.php">More</a></h2>
+{% for top_level in top_levels %}
+	{{ level(top_level) }}
+{% else %}
+	There are no levels. At all.
+{% endfor %}
 
 <h2 class="header">Latest custom levels <a href="/latest.php?type=custom">More</a></h2>
 {% for custom_level in custom_levels %}

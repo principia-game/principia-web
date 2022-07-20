@@ -21,8 +21,7 @@ assets/js/jscolor.min.js
 internal/upload_debug.php
 templates/_template.twig
 lol.php
-gource.log
-test/
 lua/
 .vscode/
-
+wiki/
+misc/

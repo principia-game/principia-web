@@ -292,22 +292,25 @@ form.reglog {
 
 		// Play & Edit buttons \\
 		.play {
-			background-color: #ded;
+			background-color: #9ec59e;
 			border: none;
-			color: #454;
+			color: #2d3d2d;
 			display: inline-block;
 			font-weight: bold;
-			margin: 0;
 			margin-right: 0.5em;
 			padding: 10px 20px;
 
 			&:hover {
-				box-shadow: 0 0px 4px #666;
+				background-color: lighten(#9bc09b, 25%);
 			}
 		}
 
 		.play-edit {
-			background-color: #dde;
+			background-color: #a3a3ca;
+
+			&:hover {
+				background-color: lighten(#a3a3ca, 25%);
+			}
 		}
 
 		.likemsg {

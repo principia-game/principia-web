@@ -20,13 +20,13 @@
 		{% if not level.locked %}
 			<div id="buttons">
 				<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
-				{% if level.author == userdata.id %}
+				{%- if level.author == userdata.id -%}
 					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit</a>
-				{% elseif level.derivatives %}
+				{%- elseif level.derivatives -%}
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
-				{% elseif userdata.powerlevel > 1 %}
+				{%- elseif userdata.powerlevel > 1 -%}
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit*</a>
-				{% endif %}
+				{%- endif -%}
 
 				{% if userdata.powerlevel > 2 and level.author != userdata.id %}
 					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit (Admin)</a>

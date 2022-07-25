@@ -84,12 +84,16 @@ div.level {
 			color: #eee;
 
 			&:hover {
-				box-shadow: 0 0px 4px #fff;
+				background-color: darken(#608060, 10%);
 			}
 		}
 
 		.play-edit {
 			background-color: #636383;
+
+			&:hover {
+				background-color: darken(#636383, 10%);
+			}
 		}
 	}
 }

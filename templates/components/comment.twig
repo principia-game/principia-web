@@ -8,7 +8,7 @@
 <div class="comments">
 	{% for cmnt in cmnts %}
 		{% if not cmnt.deleted or userdata.powerlevel > 1 %}
-			<div class="comment-entry {% if cmnt.deleted %}deleted{% endif %}" id="comment-{{ cmnt.id }}">
+			<div class="comment {% if cmnt.deleted %}deleted{% endif %}" id="comment-{{ cmnt.id }}">
 				{% if userdata.powerlevel > 1 %}
 				<span class="delete">
 					<a href="javascript:document.remove{{ cmnt.id }}.submit()" style="color:red">X</a>

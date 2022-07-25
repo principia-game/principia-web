@@ -38,19 +38,17 @@ div.level {
 	}
 }
 
-.comments {
-	.comment-entry {
-		border-bottom: 1px solid #444;
+.comments .comment {
+	border-bottom: 1px solid #444;
 
-		&:nth-child(odd)  { background-color: #0a0a0a; }
-		&:nth-child(even) { background-color: #171717; }
+	&:nth-child(odd)  { background-color: #0a0a0a; }
+	&:nth-child(even) { background-color: #171717; }
 
-		&.deleted {
-			background-color: #861c1c;
+	&.deleted {
+		background-color: #861c1c;
 
-			&:after {
-				color: #eee;
-			}
+		&:after {
+			color: #eee;
 		}
 	}
 }

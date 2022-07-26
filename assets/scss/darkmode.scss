@@ -33,8 +33,12 @@ div.menu {
 div.level {
 	background-color: #000;
 
-	a.lvlbox_top {
+	.lvlbox_top {
 		color: white;
+	}
+
+	&:hover {
+		background-color: #111;
 	}
 }
 

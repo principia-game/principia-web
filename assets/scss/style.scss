@@ -53,9 +53,7 @@ ul li, ol li {
 }
 
 .top {
-	//height: 32px;
 	margin-top: 6px;
-	border-top-width: 0;
 }
 
 .footer {
@@ -131,7 +129,7 @@ div.level {
 	border-radius: 4px;
 	margin-bottom: 10px;
 
-	a.lvlbox_top {
+	.lvlbox_top {
 		color: black;
 		font-size: 14pt;
 		text-decoration: none;
@@ -161,6 +159,10 @@ div.level {
 	.likes {
 		float: right;
 		text-align: right;
+	}
+
+	&:hover {
+		background-color: #eee;
 	}
 }
 

@@ -54,19 +54,18 @@ div.level {
 }
 
 .latest-buttons a {
-	border: 2px outset white;
-	color: white;
+	background-color: #608060;
+	color: #eee;
 
 	&:hover {
-		border: 2px inset white;
-		background-color: #222;
+		background-color: darken(#608060, 10%);
 	}
+
 	&.sel {
-		background-color: #003333;
+		background-color: #636383;
 
 		&:hover {
-			border: 2px inset white;
-			background-color: #114444;
+			background-color: darken(#636383, 10%);
 		}
 	}
 }

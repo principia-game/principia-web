@@ -208,25 +208,27 @@ div.level {
 }
 
 // Buttons for the Latest Levels page \\
+.latest-buttons {
+	margin-bottom: 15px;
+}
 .latest-buttons a {
-	border: 2px outset black;
-	border-radius: 8px;
-	color: black;
-	padding: 5px;
-	margin: 2px;
-	margin-bottom: 1em;
+	background-color: #9ec59e;
+	border: none;
+	color: #202020;
 	display: inline-block;
+	font-weight: bold;
+	margin-right: 0.5em;
+	padding: 10px 20px;
 
 	&:hover {
-		border: 2px inset black;
-		background-color: #dddddd;
+		background-color: lighten(#9bc09b, 15%);
 	}
+
 	&.sel {
-		background-color: #ccccff;
+		background-color: #a3a3ca;
 
 		&:hover {
-			border: 2px inset black;
-			background-color: #bbbbee;
+			background-color: lighten(#a3a3ca, 15%);
 		}
 	}
 }
@@ -294,14 +296,14 @@ form.reglog {
 		.play {
 			background-color: #9ec59e;
 			border: none;
-			color: #2d3d2d;
+			color: #202020;
 			display: inline-block;
 			font-weight: bold;
 			margin-right: 0.5em;
 			padding: 10px 20px;
 
 			&:hover {
-				background-color: lighten(#9bc09b, 25%);
+				background-color: lighten(#9bc09b, 15%);
 			}
 		}
 
@@ -309,7 +311,7 @@ form.reglog {
 			background-color: #a3a3ca;
 
 			&:hover {
-				background-color: lighten(#a3a3ca, 25%);
+				background-color: lighten(#a3a3ca, 15%);
 			}
 		}
 

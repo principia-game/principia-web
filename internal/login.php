@@ -10,9 +10,9 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 	$logindata = fetch("SELECT id, name, password, token FROM users WHERE name = ?", [$_POST['username']]);
 
 	if (password_verify($_POST['password'], $logindata['password'])) {
-		//header("X-Principia-User-Id: ".$logindata['id']);
-		//header("X-Principia-Username: ".$logindata['name']);
-		//header("X-Principia-Unread: 9999999999999999999999999");
+		header("X-Principia-User-Id: ".$logindata['id']);
+		header("X-Principia-User-Name: ".$logindata['name']);
+		header("X-Principia-Unread: $notificationCount");
 
 		if (function_exists('nothingSpecial')) {
 			nothingSpecial();

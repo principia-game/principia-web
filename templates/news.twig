@@ -1,6 +1,11 @@
 {% extends "_layout.twig" %}
 
-{% set title = "News" %}
+{% if newsid %}
+	{% set title = news.title %}
+	{% set description = news.text %}
+{% else %}
+	{% set title = "News" %}
+{% endif %}
 
 	{% block content %}
 {% if newsid %}

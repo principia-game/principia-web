@@ -30,3 +30,12 @@ function sendMail($address, $subject, $body) {
 
 	return $mail->Send();
 }
+
+function mailHash($email) {
+	global $emailsalt;
+	return hash('sha256', $emailsalt . $email);
+}
+
+function mailVerify($email, $hash) {
+	return mailHash($email) == $hash;
+}

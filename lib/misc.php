@@ -11,9 +11,9 @@ function register($name, $pass, $mail, $sendWelcomeEmail = true) {
 	global $darkModeDefault;
 	$token = bin2hex(random_bytes(20));
 	query("INSERT INTO users (name, password, email, token, joined, darkmode) VALUES (?,?,?,?,?,?)",
-		[$name,password_hash($pass, PASSWORD_DEFAULT), $mail, $token, time(), ($darkModeDefault ? 1 : 0)]);
+		[$name,password_hash($pass, PASSWORD_DEFAULT), mailHash($mail), $token, time(), ($darkModeDefault ? 1 : 0)]);
 
-	if ($sendWelcomeEmail) {
+	if ($sendWelcomeEmail && false) {
 		sendMail($mail, 'Welcome to principia-web!', sprintf(<<<HTML
 				<p><b>Welcome to principia-web, %s!<b></p>
 

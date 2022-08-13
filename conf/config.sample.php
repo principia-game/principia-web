@@ -10,6 +10,8 @@ $tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
 // Array of memcached server(s) for memcache caching. Leave empty to disable memcache caching.
 $memcachedServers = [];
 
+$emailsalt = 'CHANGEME'; // Email salt to prevent rainbow table attacks. CHANGE THIS!
+
 $lpp = 20;
 
 // Should dark mode be default?

@@ -7,7 +7,7 @@ $twig = twigloader();
 
 if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 2) {
 	if (isset($_POST['ApOsTaL'])) {
-		query("INSERT INTO news (title, text, time, author_userid) VALUES (?,?,?,?)",
+		query("INSERT INTO news (title, text, time, author) VALUES (?,?,?,?)",
 			[$_POST['title'], $_POST['text'], time(), $userdata['id']]);
 
 		$cachectrl->invIndex();

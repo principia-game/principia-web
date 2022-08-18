@@ -17,7 +17,7 @@
 	- {{ level.time | date('M j, Y') }} from {{ level.platform }}</span>
 <div class="lvl-box">
 	<div class="info">
-		{% if not level.locked %}
+		{% if not level.visibility == 1 %}
 			<div id="buttons">
 				<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
 				{%- if level.author == userdata.id -%}
@@ -48,7 +48,7 @@
 
 	</div>
 	<div class="img">
-		{% if not level.locked %}
+		{% if not level.visibility == 1 %}
 			<img src="/levels/thumbs/{{ level.id }}.jpg">
 		{% else %}
 			<img src="/assets/locked_thumb.svg">
@@ -63,19 +63,20 @@
 		Views: {{ level.views }}
 		Downloads: {{ level.downloads }}
 		Level ID: {{ level.id }}
-		{% if userdata.id == level.author or userdata.powerlevel > 1 %}
-			| <em><a href="/level.php?id={{ lid }}&togglelock">{% if level.locked %}Unlock level{% else %}Lock level{% endif %}</a></em>
-		{% endif %}
 	</p>
-	{% if userdata.id == level.author and contests %}
-		<form method="POST" style="display:inline-block;">
-			<p>Add to contest:
+	<form method="POST"><p>
+		{% if userdata.id == level.author or userdata.powerlevel > 1 %}
+			<a href="/level.php?id={{ lid }}&togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
+		{% endif %}
+
+		{% if userdata.id == level.author and contests %}
+			- Add to contest:
 			<select name="addtocontest" onchange="this.form.submit()">
 				<option value="-1" selected>- None selected -</option>
 				{% for contest in contests %}<option value="{{ contest.id }}">{{ contest.title }}</option>{% endfor %}
-			</select></p>
-		</form>
-	{% endif %}
+			</select>
+		{% endif %}
+	</p></form>
 </div>
 
 {% if derivatives %}

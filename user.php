@@ -15,9 +15,9 @@ $page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 
 $forceuser = isset($_GET['forceuser']);
 
 $limit = sprintf("LIMIT %s,%s", (($page - 1) * $lpp), $lpp);
-$levels = query("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.author = ? AND l.locked = 0 ORDER BY l.id DESC $limit",
+$levels = query("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC $limit",
 	[$userpagedata['id']]);
-$count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.locked = 0", [$userpagedata['id']]);
+$count = result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$userpagedata['id']]);
 
 // Personal user page stuff
 if (isset($userdata['id']) && $userdata['id'] == $userpagedata['id'] && !$forceuser) {

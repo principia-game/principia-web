@@ -32,9 +32,9 @@ if ($log) {
 
 	// toggle lock
 	if (isset($_GET['togglelock']) && ($level['author'] == $userdata['id'] || $userdata['powerlevel'] > 1)) {
-		$lock = ($level['locked'] ? 0 : 1);
-		query("UPDATE levels SET locked = ? WHERE id = ?", [$lock, $lid]);
-		$level['locked'] = $lock;
+		$vis = ($level['visibility'] == 1 ? 0 : 1);
+		query("UPDATE levels SET visibility = ? WHERE id = ?", [$vis, $lid]);
+		$level['visibility'] = $vis;
 	}
 
 	// rerun webhook
@@ -72,9 +72,9 @@ $contests = query("SELECT id,title,active FROM contests WHERE active = 1");
 
 $comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
 
-$derivatives = query("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.locked = 0 ORDER BY l.id DESC LIMIT 4", [$lid]);
+$derivatives = query("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0 ORDER BY l.id DESC LIMIT 4", [$lid]);
 if ($level['parent']) {
-	$parentLevel = fetch("SELECT $userfields l.id id,l.title title,l.locked locked FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.locked = 0", [$level['parent']]);
+	$parentLevel = fetch("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0", [$level['parent']]);
 }
 
 $twig = twigloader();

@@ -24,17 +24,16 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 	$cid = $level->communityId();
 
 	// get some level info we need
-	$leveldata = fetch("SELECT cat, author, revision, locked, platform FROM levels WHERE id = ?", [$cid]);
+	$leveldata = fetch("SELECT cat, author, revision, platform FROM levels WHERE id = ?", [$cid]);
 
 	// additional checks to prevent someone from accidentally overwriting a level unintentionally.
 	// this might need to be tweaked as
 	if (!$leveldata
 		|| catConvert($level->type()) != $leveldata['cat']
-		|| ($userdata['id'] != $leveldata['author'] && $userdata['powerlevel'] < 3)
-		|| $leveldata['locked']) {
+		|| ($userdata['id'] != $leveldata['author'] && $userdata['powerlevel'] < 3)) {
 		// Throw an error and die, emulates the official community site's behavior of an incorrect community id (malicious or not)
 		trigger_error(sprintf('%s tried to upload a level with an invalid community id (%s)', $userdata['name'], $cid), E_USER_NOTICE);
-		die('-101');
+		die('lol');
 	}
 
 	// back up previous revision level ...
@@ -54,7 +53,7 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 		die("let's look for some chips instead");
 	}
 
-	query("UPDATE levels SET title = ?, description = ?, derivatives = ?, locked = ?, revision = revision + 1, revision_time = ? WHERE id = ?",
+	query("UPDATE levels SET title = ?, description = ?, derivatives = ?, visibility = ?, revision = revision + 1, revision_time = ? WHERE id = ?",
 		[$level->name(), $level->descr(), $level->allowDerivatives(), $level->visibility(), time(), $cid]);
 
 	// Print the ID of the uploaded level. This is required to display the "Level published!" box.

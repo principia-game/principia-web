@@ -70,7 +70,7 @@ CREATE TABLE `levels` (
   `revision_time` int(10) unsigned NOT NULL DEFAULT 0,
   `likes` int(10) unsigned NOT NULL DEFAULT 0,
   `derivatives` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  `locked` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `visibility` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `downloads` int(10) unsigned NOT NULL DEFAULT 0,
   `platform` varchar(32) NOT NULL DEFAULT 'Samsung Smart Fridge',

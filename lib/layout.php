@@ -68,7 +68,7 @@ function level($level, $featured = '', $pkg = false) {
 		$twig = twigloader('components');
 
 		if (!$pkg) {
-			if (!$level['locked']) {
+			if (!isset($level['visibility']) || $level['visibility'] != 1) {
 				$img = "levels/thumbs/low/".$level['id'].".jpg";
 			} else {
 				$img = "assets/locked_thumb.svg";

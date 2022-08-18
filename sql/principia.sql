@@ -23,7 +23,7 @@ CREATE TABLE `comments` (
   `author` int(10) unsigned NOT NULL,
   `time` int(10) unsigned NOT NULL,
   `message` text NOT NULL,
-  `deleted` tinyint(1) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -126,7 +126,7 @@ CREATE TABLE `passwordresets` (
 
 
 CREATE TABLE `users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `password` varchar(64) NOT NULL,
   `email` char(64) NOT NULL,
@@ -140,7 +140,6 @@ CREATE TABLE `users` (
   `powerlevel` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `threads` int(10) unsigned NOT NULL DEFAULT 0,
-  `archiveuser` int(10) unsigned DEFAULT NULL,
   `customcolor` char(6) DEFAULT NULL,
   `title` varchar(256) DEFAULT NULL,
   `timezone` varchar(64) DEFAULT NULL,
@@ -151,4 +150,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
--- 2022-08-18 14:44:04
+-- 2022-08-18 15:12:41

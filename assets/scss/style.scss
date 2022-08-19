@@ -122,7 +122,7 @@ div.level {
 	overflow: clip;
 	width: 230px;
 	height: 200px;
-	padding: 2px;
+	padding: 3px;
 	vertical-align: top;
 
 	border: 1px solid #444;
@@ -202,10 +202,8 @@ div.level {
 
 .comment-input {
 	width: 96%;
-	margin: 4px;
-	padding-bottom: 4px;
-	border: 1px solid #bbb;
-	padding: 3px;
+	margin: 5px;
+	padding: 5px;
 	min-height: 40px;
 }
 
@@ -456,7 +454,7 @@ form.reglog {
 .user_stats {
 	margin-right: 20px;
 	margin-left: 10px;
-	border: 1px solid black;
+	border: 1px solid #bbb;
 	width: 300px;
 	float: right;
 
@@ -466,7 +464,7 @@ form.reglog {
 	}
 
 	.row {
-		border-top: 1px solid black;
+		border-top: 1px solid #bbb;
 		padding: 10px;
 		display: block;
 

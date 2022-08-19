@@ -140,9 +140,10 @@ div.level {
 }
 
 .user_stats {
-	border: 1px solid white;
+	border: 1px solid #444;
+
 	.row {
-		border-top: 1px solid white;
+		border-top: 1px solid #444;
 	}
 }
 
@@ -177,10 +178,11 @@ table.c1 {
 
 /// Generic form element overrides \\\
 
-textarea, input[type=text], input[type=password] {
-	background-color: #0f0f0f;
-	border: 2px solid #aaa;
+textarea, input[type=text], input[type=password], input[type=color], .jscolor {
+	background-color: #111;
+	border: 1px solid #444;
 	color: white;
+	padding: 5px;
 }
 
 /// Invert icons \\\

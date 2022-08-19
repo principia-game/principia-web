@@ -12,22 +12,30 @@ class Cache {
 		}
 	}
 
-	public function hit($fingerprint, $uncachedContent, $expire = 0) {
+	public function hit($key, $uncachedContent, $expire = 0) {
 		if ($this->enabled) {
-			return $this->hitMem($fingerprint, $uncachedContent, $expire);
+			return $this->hitMem($key, $uncachedContent, false, $expire);
 		} else {
 			return $uncachedContent();
 		}
 	}
 
-	private function hitMem($fingerprint, $uncachedContent, $expire = 0) {
-		$hash = hash("xxh128", var_export($fingerprint, true));
-		$cached = $this->memcached->get($hash);
-		if ($cached) {
+	public function hitHash($fingerprint, $uncachedContent, $expire = 0) {
+		if ($this->enabled) {
+			$fingerprint = hash("xxh128", var_export($fingerprint, true));
+			return $this->hitMem($fingerprint, $uncachedContent, true, $expire);
+		} else {
+			return $uncachedContent();
+		}
+	}
+
+	private function hitMem($key, $uncachedContent, $expire = 0) {
+		$cached = $this->memcached->get($key);
+		if ($cached !== false) {
 			return $cached;
 		} else {
 			$content = $uncachedContent();
-			$this->memcached->set($hash, $content, $expire);
+			$this->memcached->set($key, $content, $expire);
 			return $content;
 		}
 	}

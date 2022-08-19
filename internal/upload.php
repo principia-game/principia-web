@@ -75,7 +75,7 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 
 	$parent = $level->parentId() ?? null;
 
-	query("INSERT INTO levels (cat, title, description, author, time, derivatives, locked, platform, parent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+	query("INSERT INTO levels (cat, title, description, author, time, derivatives, visibility, platform, parent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
 		[catConvert($level->type()), $level->name(), $level->descr(), $userdata['id'], time(), $level->allowDerivatives(), $level->visibility(), $platform, $parent]);
 
 	// Print the ID of the uploaded level. This is required to display the "Level published!" box.

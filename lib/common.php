@@ -42,7 +42,7 @@ if (!isCli()) {
 		}
 
 		// Redirect all non-internal pages to https if https is enabled.
-		if ($https && !isset($_SERVER['HTTPS'])) {
+		if ($https && !isset($_SERVER['HTTPS']) && !isset($_COOKIE['force-http'])) {
 			header("Location: https://".$_SERVER["HTTP_HOST"].$uri, true, 301);
 			die();
 		}

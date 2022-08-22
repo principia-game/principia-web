@@ -87,7 +87,7 @@
 <h3>Latest comments</h3>
 <div class="comments">
 	{% for cmnt in latest_comments %}
-		<div class="comment-entry{% if cmnt.deleted %} deleted{% endif %}" id="comment-{{ cmnt.id }}">
+		<div class="comment{% if cmnt.deleted %} deleted{% endif %}" id="comment-{{ cmnt.id }}">
 			<p>
 				{{ userlink(cmnt, 'u_') }}
 				commented on <a href="/{{ cmnt.type | cmt_num_to_type }}.php?id={{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:

@@ -9,9 +9,6 @@ switch ($error) {
 	break;
 	case 404:
 	default:
-		if (str_starts_with($uri, '/apZodIaL1')) {
-			ipBan($ipaddr, 'Touching internal pages.');
-		}
 		error('404', "The requested page wasn't found.");
 	break;
 }

@@ -10,8 +10,10 @@ if (isset($_POST['action'])) {
 	$mail = $_POST['mail'] ?? null;
 	$pass = $_POST['pass'] ?? null;
 	$pass2 = $_POST['pass2'] ?? null;
-	$captchaId = (isset($_POST['uwu']) && isset($captcha[$_POST['uwu']]) ? $_POST['uwu'] : null);
+	$captchaId = isset($_POST['uwu']) ? $_POST['uwu'] : null;
 	$captchaAnswer = $_POST['jupiter'] ?? null;
+
+	if (!isset($captcha[$captchaId])) ipBan($ipaddr, 'Manipulating CAPTCHA questions?');
 
 	if (!isset($name))
 		$error .= 'Blank username. ';

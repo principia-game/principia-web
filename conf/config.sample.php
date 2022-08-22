@@ -65,8 +65,6 @@ function customInfo() { }
 // Stub function to put special information in the header.
 function customHeader() { }
 
-$levelArchive = false;
-
 /// GENERAL FORUM STUFF
 
 $forumEnabled = true; // Enable forum-related stuff

@@ -4,13 +4,13 @@
 {% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
 
 	{% block content %}
-{% if markread %}
+{% if action == 'markread' %}
 	<div class="header_message">Marked all notifications as read.</div>
-{% elseif edited %}
+{% elseif action == 'edited' %}
 	<div class="header_message">Settings successfully saved!</div>
-{% elseif justbanned == "ban" %}
+{% elseif action == 'ban' %}
 	<div class="header_message">Successfully banned this user.</div>
-{% elseif justbanned == "unban" %}
+{% elseif action == 'unban' %}
 	<div class="header_message">Successfully unbanned this user.</div>
 {% endif %}
 

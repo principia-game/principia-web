@@ -23,6 +23,13 @@ class CacheControl {
 	public function invIndexTop() {
 		$this->cache->delete('idx_top');
 	}
+
+	/**
+	 * Invalidate the level count for an user
+	 */
+	public function invLevelCount($user) {
+		$this->cache->delete('levelcount_'.$user);
+	}
 }
 
 $cachectrl = new CacheControl($cache);

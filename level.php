@@ -33,8 +33,11 @@ if ($log) {
 	// toggle lock
 	if (isset($_GET['togglelock']) && ($level['author'] == $userdata['id'] || $userdata['powerlevel'] > 1)) {
 		$vis = ($level['visibility'] == 1 ? 0 : 1);
+
 		query("UPDATE levels SET visibility = ? WHERE id = ?", [$vis, $lid]);
 		$level['visibility'] = $vis;
+
+		$cachectrl->invLevelCount($level['author']);
 	}
 
 	// rerun webhook

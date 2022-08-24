@@ -49,9 +49,9 @@
 	</div>
 	<div class="img">
 		{% if not level.visibility == 1 %}
-			<img src="/levels/thumbs/{{ level.id }}.jpg">
+			<img src="/levels/thumbs/{{ level.id }}.jpg" alt="">
 		{% else %}
-			<img src="/assets/locked_thumb.svg">
+			<img src="/assets/locked_thumb.svg" alt="Locked level">
 		{% endif %}
 		{% if level.revision > 1 %}
 			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>

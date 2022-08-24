@@ -4,7 +4,7 @@ require('lib/common.php');
 $id = $_POST['id'] ?? null;
 $type = $_POST['t'] ?? null;
 $message = $_POST['comment'] ?? null;
-$doDelete = isset($_POST['del']) ? true : false;
+$doDelete = isset($_POST['del']);
 $cmntId = $_POST['cmnt'] ?? false;
 
 if (!$log) die('login pls');

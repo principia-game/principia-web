@@ -15,16 +15,16 @@ if (isset($_POST['action'])) {
 
 	if (!isset($captcha[$captchaId])) ipBan($ipaddr, 'Manipulating CAPTCHA questions?');
 
-	if (!isset($name))
+	if (!$name)
 		$error .= 'Blank username. ';
 
-	if (!isset($mail))
+	if (!$mail)
 		$error .= 'Blank email. ';
 
-	if (!isset($pass) || strlen($pass) < 6)
+	if (!$pass || strlen($pass) < 6)
 		$error .= 'Password is too short. ';
 
-	if (!isset($pass2) || $pass != $pass2)
+	if (!$pass2 || $pass != $pass2)
 		$error .= "The passwords don't match. ";
 
 	if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name)]))
@@ -50,7 +50,7 @@ if (isset($_POST['action'])) {
 
 		setcookie($cookieName, $token, 2147483647);
 
-		redirect('./?rd');
+		redirect('/?rd');
 	}
 }
 

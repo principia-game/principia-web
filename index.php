@@ -25,12 +25,10 @@ $latestadvent = $cache->hit('idx_adv', function () use ($latestquery) {
 	return fetchArray(query(sprintf($latestquery, 2)));
 });
 
-$justRegistered = (isset($_GET['rd']) ? true : false);
-
 $twig = twigloader();
 
 echo $twig->render('index.twig', [
-	'just_registered' => $justRegistered,
+	'just_registered' => isset($_GET['rd']),
 	'featured_levels' => $latestfeatured,
 	'news' => $newsdata,
 	'top_levels' => $toplevels,

@@ -2,13 +2,18 @@
 chdir('../');
 require('lib/common.php');
 
-if (!isset($_POST['signature']) || !isset($_POST['userdata'])) die('nah');
-
 $name = trim($_POST['username'] ?? null);
-// Yes... These variables are mixed up. This is intentional because Emil, in his infinite wisdom,
-//		  thought that putting the password in 'email' and email in 'password' was a good idea.
-$mail = $_POST['password'] ?? null;
-$pass = $_POST['email'] ?? null;
+
+if (isset($_POST['signature']) && isset($_POST['userdata'])) {
+	// Fallback behaviour for the principia-web mod, I accidentally switched up
+	// the mail and password fields and thought it was supposed to be like this. >_<
+	$mail = $_POST['password'] ?? null;
+	$pass = $_POST['email'] ?? null;
+} else {
+	// Normal behaviour for the open source version.
+	$mail = $_POST['email'] ?? null;
+	$pass = $_POST['password'] ?? null;
+}
 
 // TODO: code 117 - This email has been banned.
 //       code 118 is useless to us as we're not checking your license

@@ -64,6 +64,7 @@ function error($title, $message) {
 
 function level($level, $featured = '', $pkg = false) {
 	global $cache;
+	$level['v'] = 2;
 	return $cache->hitHash($level, function () use ($level, $featured, $pkg) {
 		$twig = twigloader('components');
 

@@ -72,4 +72,4 @@ if (!$doDelete) {
 	query("UPDATE comments SET deleted = ? WHERE id = ?", [$deleted, $cmntId]);
 }
 
-redirect(sprintf('/%s.php?id=%s%s', $type, $id, ($type == 'user' ? '&forceuser' : '')));
+redirect(sprintf('/%s.php?id=%s%s#comments', $type, $id, ($type == 'user' ? '&forceuser' : '')));

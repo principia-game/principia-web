@@ -13,9 +13,7 @@
 	<p><em>Published on the {{ time }}</em></p>
 	<p>{{ news.text | markdown_unsafe }}</p>
 
-	<h2>Comments</h2>
 	{{ comments(comments, 'news', news.id) }}
-	<br>
 {% else %}
 	<h2 class="header">Latest News
 		{% if userdata.powerlevel > 2 %}<a href="/news.php?new">New</a>{% endif %}</h2>

@@ -1,8 +1,9 @@
+{% if showheader %}<h2 id="comments">Comments</h2>{% endif %}
 {% if log and userdata.powerlevel > 0 %}<form action="/_post_comment.php" method="POST">
 	<input type="hidden" name="id" value="{{ id }}">
 	<input type="hidden" name="t" value="{{ type }}">
 	<textarea name="comment" class="comment-input" required></textarea>
-	<br><input type="submit" value="Post" ></input>
+	<br><input type="submit" value="Post">
 	<em style="padding-left:10px">Inline markdown supported.</em>
 </form><br>{% endif %}
 <div class="comments">
@@ -12,7 +13,7 @@
 				{% if userdata.powerlevel > 1 %}
 				<span class="delete">
 					<a href="javascript:document.remove{{ cmnt.id }}.submit()" style="color:red">X</a>
-					<form action="_post_comment.php" method="post" name="remove{{ cmnt.id }}">
+					<form action="/_post_comment.php" method="post" name="remove{{ cmnt.id }}">
 						<input type="hidden" name="id" value="{{ id }}">
 						<input type="hidden" name="t" value="{{ type }}">
 						<input type="hidden" name="del" value="yes">
@@ -26,4 +27,4 @@
 			</div>
 		{% endif %}
 	{% endfor %}
-</div>
+</div><br>

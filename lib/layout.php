@@ -40,9 +40,11 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	return $twig;
 }
 
-function comments($cmnts, $type, $id) {
+function comments($cmnts, $type, $id, $showheader = true) {
 	$twig = twigloader('components');
-	return $twig->render('comment.twig', ['cmnts' => $cmnts, 'type' => $type, 'id' => $id]);
+	return $twig->render('comment.twig', [
+		'cmnts' => $cmnts, 'type' => $type, 'id' => $id, 'showheader' => $showheader
+	]);
 }
 
 function pagination($levels, $lpp, $url, $current) {

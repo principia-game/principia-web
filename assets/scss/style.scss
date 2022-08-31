@@ -58,13 +58,14 @@ ul li, ol li {
 
 .footer {
 	text-align: center;
+	line-height: 1.5;
 }
 
 .picon {
 	width: 32px;
 	height: 32px;
 	float: left;
-	margin-right: 5px;
+	margin-right: 7px;
 }
 
 .float-right {
@@ -83,8 +84,8 @@ div.menu {
 		font-size: 1.1em;
 		font-weight: bold;
 		text-decoration: none;
-		padding: 0px 5px;
-		margin: 0px 3px;
+		padding: 0px 7px;
+		border-radius: 5px;
 
 		&:hover {
 			background-color: #fff;
@@ -236,8 +237,8 @@ div.level {
 // Common register and login form styles \\
 form.reglog {
 	p {
-		margin-block-start: 0.5em;
-		margin-block-end: 0.5em;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
 	}
 	span {
 		display: inline-block;
@@ -347,6 +348,10 @@ form.reglog {
 
 .center {
 	text-align: center;
+}
+
+.text-for-ants {
+	font-size: 8pt;
 }
 
 // Pagination \\

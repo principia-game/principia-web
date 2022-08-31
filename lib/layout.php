@@ -91,6 +91,8 @@ function level($level, $featured = '', $pkg = false) {
 }
 
 function relativeTime($time) {
+	if (!$time) return 'never';
+
 	$relativeTime = new \RelativeTime\RelativeTime([
 		'language' => '\RelativeTime\Languages\English',
 		'separator' => ', ',

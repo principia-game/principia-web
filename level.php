@@ -64,8 +64,6 @@ if ($log) {
 	clearMentions('level', $level['id']);
 }
 
-if (!isset($hasLiked)) $hasLiked = false;
-
 if ($log) {
 	query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
 	$level['views']++;
@@ -85,7 +83,7 @@ $twig = twigloader();
 echo $twig->render('level.twig', [
 	'lid' => $lid,
 	'level' => $level,
-	'has_liked' => $hasLiked,
+	'has_liked' => $hasLiked ?? false,
 	'contests' => fetchArray($contests),
 	'contest_entered' => $contestEntered ?? null,
 	'already_entered' => $alreadyEntered ?? false,

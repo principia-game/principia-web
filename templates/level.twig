@@ -28,14 +28,12 @@
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit*</a>
 				{%- endif -%}
 
-				{% if userdata.powerlevel > 2 and level.author != userdata.id %}
-					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit (Admin)</a>
-				{% endif %}
+				{%- if userdata.powerlevel > 2 and level.author != userdata.id -%}
+					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
+				{%- endif -%}
 
-				{% if log %}
-					{% if not has_liked %}
-						<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
-					{% endif %}
+				{%- if log and not has_liked -%}
+					<button class="play" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
 				{% endif %}
 				{% if level.likes > 0 %}
 					<span class="likemsg">{{ level.likes }} players liked this.</span>
@@ -64,10 +62,11 @@
 		Downloads: {{ level.downloads }}
 		Level ID: {{ level.id }}
 	</p>
+	{% if userdata.id == level.author or userdata.powerlevel > 1 %}
 	<form method="POST"><p>
-		{% if userdata.id == level.author or userdata.powerlevel > 1 %}
-			<a href="/level.php?id={{ lid }}&togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
-		{% endif %}
+		
+			<a href="/level/{{ lid }}?togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
+		
 
 		{% if userdata.id == level.author and contests %}
 			- Add to contest:
@@ -77,6 +76,7 @@
 			</select>
 		{% endif %}
 	</p></form>
+	{% endif %}
 </div>
 
 {% if derivatives %}

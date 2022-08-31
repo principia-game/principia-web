@@ -6,8 +6,10 @@
 	<br><input type="submit" value="Post">
 	<em style="padding-left:10px">Inline markdown supported.</em>
 </form><br>{% endif %}
+{% set got_comments = false %}
 <div class="comments">
 	{% for cmnt in cmnts %}
+		{% set got_comments = true %}
 		{% if not cmnt.deleted or userdata.powerlevel > 1 %}
 			<div class="comment {% if cmnt.deleted %}deleted{% endif %}" id="comment-{{ cmnt.id }}">
 				{% if userdata.powerlevel > 1 %}
@@ -27,4 +29,5 @@
 			</div>
 		{% endif %}
 	{% endfor %}
+	{% if not got_comments %}<div class="comment"><em>No comments have been posted. Be the first to comment!</em></div>{% endif %}
 </div><br>

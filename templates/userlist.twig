@@ -1,0 +1,23 @@
+{% extends "_layout.twig" %}
+
+{% set title = "User list" %}
+
+	{% block content %}
+<h2>User list</h2>
+<table class="settings">
+	<tr>
+		<th style="width:50px">ID</th>
+		<th>Username</th>
+		<th style="width:180px">Registered on</th>
+		<th style="width:80px">Levels</th>
+	</tr>
+	{% for user in users %}
+	<tr>
+		<td>{{ user.id }}
+		<td>{{ userlink(user) }}
+		<td class="center">{{ user.joined | date('Y-m-d H:i') }}</td>
+		<td class="center">{{ levelcounts[user.id] }}</td>
+	</tr>
+	{% endfor %}
+</table>
+	{% endblock %}

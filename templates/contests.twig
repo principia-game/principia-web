@@ -6,7 +6,7 @@
 <h2 class="header">Latest Contests</h2>
 <ul>
 	{% for contest in contests %}
-		<li><a href="/contest.php?id={{ contest.id }}">{{ contest.title }}</li>
+		<li><a href="/contest/{{ contest.id }}">{{ contest.title }}</li>
 	{% else %}
 		<li>No contests.</li>
 	{% endfor %}

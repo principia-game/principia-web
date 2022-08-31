@@ -80,11 +80,7 @@ function level($level, $featured = '', $pkg = false) {
 			$img = "assets/package_thumb.svg";
 		}
 
-		if ($pkg) {
-			$page = 'package.php';
-		} else {
-			$page = 'level.php';
-		}
+		$page = ($pkg ? 'package' : 'level');
 
 		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'img' => $img, 'page' => $page]);
 	});

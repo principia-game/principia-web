@@ -20,7 +20,7 @@
 		Search returned no results.
 	{% endfor %}
 
-	{% set le_url = 'search.php?query=' ~ query ~ '&page=%s' %}
+	{% set le_url = 'search?query=' ~ query ~ '&page=%s' %}
 	{{ pagination(level_count, glob_lpp, le_url, page) }}
 	<br><br>
 {% endif %}

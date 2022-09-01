@@ -36,6 +36,7 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('discord_invite', $invite);
 	$twig->addGlobal('domain', $domain);
 	$twig->addGlobal('uri', $uri);
+	$twig->addGlobal('pagename', substr($_SERVER['PHP_SELF'], 0, -4));
 
 	return $twig;
 }
@@ -80,11 +81,7 @@ function level($level, $featured = '', $pkg = false) {
 			$img = "assets/package_thumb.svg";
 		}
 
-		if ($pkg) {
-			$page = 'package.php';
-		} else {
-			$page = 'level.php';
-		}
+		$page = ($pkg ? 'package' : 'level');
 
 		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'img' => $img, 'page' => $page]);
 	});

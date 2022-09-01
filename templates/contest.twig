@@ -1,6 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = contest.title %}
+{% set pagename = "/contest/" ~ contest.id %}
 
 	{% block content %}
 <h1>{{ contest.title }}</h1>

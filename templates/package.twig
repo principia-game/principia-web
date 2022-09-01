@@ -1,6 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = pkg.title %}
+{% set pagename = "/package/" ~ pkg.id %}
 
 	{% block content %}
 <h1>{{ pkg.title }}</h1>

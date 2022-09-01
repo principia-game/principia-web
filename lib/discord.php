@@ -31,14 +31,14 @@ function newLevelHook($level) {
 
 	$mbd->title($level['name'])
 		->description($level['description'])
-		->url(sprintf("%s/level.php?id=%s", $domain, $level['id']))
+		->url(sprintf("%s/level/%s", $domain, $level['id']))
 		->timestamp(date(DATE_ISO8601))
 		->color(13056)
 		->footer("New uploaded levels")
 		->thumbnail(sprintf("%s/levels/thumbs/%s.jpg", $domain, $level['id']))
 		->author(
 			$level['u_name'],
-			sprintf("%s/user.php?id=%s", $domain, $level['u_id'])
+			sprintf("%s/user/%s", $domain, $level['u_id'])
 		);
 
 	$webhook->embed($mbd)->send();

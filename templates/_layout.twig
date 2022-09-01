@@ -16,6 +16,7 @@
 		<meta property="og:site_name" content="principia-web">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="{{ domain }}{{ uri }}">
+		<link rel="canonical" href="{{ domain }}{{ pagename }}">
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
 		{{ custom_header() | raw }}
@@ -25,21 +26,21 @@
 		<div class="top">
 			<a href="/"><img class="picon" src="/assets/icon.png" alt="Home"></a>
 			<div class="menu">
-				<a href="/popular.php" class="btn">Popular</a>
-				<a href="/top.php" class="btn">Top</a>
-				<a href="/latest.php" class="btn">New</a>
-				<a href="/chat.php" class="btn">Chat</a>
+				<a href="/popular" class="btn">Popular</a>
+				<a href="/top" class="btn">Top</a>
+				<a href="/latest" class="btn">New</a>
+				<a href="/chat" class="btn">Chat</a>
 				{% if glob_forum %}<a href="/forum/" class="btn">Forum</a>{% endif %}
-				{#<a href="/contests.php" class="btn">Contests</a>#}
+				{#<a href="/contests" class="btn">Contests</a>#}
 				{% if log %}<a href="/discord">Discord</a>{% endif %}
-				<a href="/search.php" class="btn"><img src="/assets/icons/search.svg" class="search" alt="Search"></a>
+				<a href="/search" class="btn"><img src="/assets/icons/search.svg" class="search" alt="Search"></a>
 			</div>
 			<div class="menu right">
 				{% if log %}
 					{% if notification_count > 0 %}<span class="notifs">[{{ notification_count }}]</span>{% endif %}
 					{{ userlink(userdata) }}
 				{% else %}
-					<a href="/login.php">Login</a>
+					<a href="/login">Login</a>
 				{% endif %}
 			</div>
 		</div>
@@ -65,7 +66,7 @@
 			{% block content %}{% endblock %}
 		</div>{% if acmlm %}<br>{% endif %}
 		<div class="footer">
-			<a href="/about.php">About</a>
+			<a href="/about">About</a>
 			{{ custom_info() }}
 			<br>
 			Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a>,

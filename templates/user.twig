@@ -2,6 +2,7 @@
 
 {% set title = name %}
 {% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
+{% set pagename = "/user/" ~ id %}
 
 	{% block content %}
 {% if action == 'markread' %}
@@ -30,25 +31,25 @@
 
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
-<p><a href="/settings.php">Edit my settings</a>
+<p><a href="/settings">Edit my settings</a>
 {% if glob_forum %}
 	&bull; <a href="/forum/private.php">View my private messages</a>
 {% endif %}
-&bull; <a href="/user.php?id={{ id }}&forceuser">View user page as viewer</a>
+&bull; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
 &bull; <a href="javascript:document.logout.submit()">Log out</a></p>
 
 {% if userdata.powerlevel > 2 %}
-<p><a href="/admin.php">Admin panel</a></p>
+<p><a href="/admin">Admin panel</a></p>
 {% endif %}
 
-<form action="/login.php" method="post" name="logout">
+<form action="/login" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">
 </form>
 
 <h3>Links</h3>
 
 <ul>
-	<li><a href="/download.php">Download principia-web mods</a></li>
+	<li><a href="/download">Download principia-web mods</a></li>
 	{% if discord_invite %}
 		<li><a href="{{ discord_invite }}">Unofficial Principia Discord Server</a></li>
 	{% endif %}
@@ -62,7 +63,7 @@
 		<li>No new notifications!</li>
 	{% endfor %}
 	{% if notifs %}
-		<br><li><a href="/user.php?id={{ id }}&markread">Mark all as read</a></li>
+		<br><li><a href="/user/{{ id }}?markread">Mark all as read</a></li>
 	{% endif %}
 </ul>
 {% else %}
@@ -119,7 +120,7 @@
 {% else %}
 	{% set forceuser = "" %}
 {% endif %}
-{% set le_url = '/user.php?id=' ~ id ~ '&page=%s' ~ forceuser %}
+{% set le_url = '/user/' ~ id ~ '?page=%s' ~ forceuser %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
 {{ comments(comments, 'user', id) }}

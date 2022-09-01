@@ -18,7 +18,7 @@
 		<meta property="og:url" content="{{ domain }}{{ uri }}">
 		<link rel="canonical" href="{{ domain }}{{ pagename }}">
 	</head>
-	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
+	<body {% if is_android_webview() %}style="zoom:0.75"{% endif %}>
 		{{ custom_header() | raw }}
 		{% if userdata.powerlevel < 0 %}
 			<div class="banner b-red">You have been banned. For more details see your personal user page.</div>

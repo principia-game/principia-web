@@ -72,6 +72,9 @@ if (!$doDelete) {
 	query("UPDATE comments SET deleted = ? WHERE id = ?", [$deleted, $cmntId]);
 }
 
+// Invalidate index comments, even if a comment is deleted it might show up.
+$cachectrl->invIndexComments();
+
 if ($type != 'chat')
 	$url = sprintf('/%s/%s%s#comments', $type, $id, ($type == 'user' ? '?forceuser' : ''));
 else

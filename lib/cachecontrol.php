@@ -25,6 +25,13 @@ class CacheControl {
 	}
 
 	/**
+	 * Invalidate comments on index
+	 */
+	public function invIndexComments() {
+		$this->cache->delete('idx_cmnts');
+	}
+
+	/**
 	 * Invalidate the level count for an user
 	 */
 	public function invLevelCount($user) {

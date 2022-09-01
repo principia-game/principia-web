@@ -38,6 +38,7 @@ if ($log) {
 		$level['visibility'] = $vis;
 
 		$cachectrl->invLevelCount($level['author']);
+		$cachectrl->invIndex();
 	}
 
 	// rerun webhook

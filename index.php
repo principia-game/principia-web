@@ -25,8 +25,13 @@ $latestadvent = $cache->hit('idx_adv', function () use ($latestquery) {
 	return fetchArray(query(sprintf($latestquery, 2)));
 });
 
-$twig = twigloader();
+$latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
+	return fetchArray(query("SELECT $userfields c.*, l.title level_name FROM comments c
+			JOIN users u ON c.author = u.id JOIN levels l ON c.level = l.id
+			WHERE c.type = 1 AND c.deleted = 0 ORDER BY c.time DESC LIMIT 6"));
+});
 
+$twig = twigloader();
 echo $twig->render('index.twig', [
 	'just_registered' => isset($_GET['rd']),
 	'featured_levels' => $latestfeatured,
@@ -34,4 +39,5 @@ echo $twig->render('index.twig', [
 	'top_levels' => $toplevels,
 	'custom_levels' => $latestcustom,
 	'adventure_levels' => $latestadvent,
+	'latest_comments' => $latestcomments,
 ]);

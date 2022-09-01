@@ -58,20 +58,19 @@
 	There are no adventure levels. You could create one!
 {% endfor %}
 
-{#
-<h2 class="header">Latest comments<a href="comments">More</a></h2>
+<h2 class="header">Latest comments</h2>
 <div class="comments">
-{% for i in 0..10 %}
-<div class="comment-entry" id="comment-1">
-	<p>
-		<a class="user" href="user.php?id=1"><span class="t_user">null</span></a>
-		commented on <a href="level.php?id=1">some level</a>:
-		<span class="date">2 hours ago</span>
-	</p>
-	<span class="comment-text">Blah blah</span>
+	{% for cmnt in latest_comments %}
+		<div class="comment" id="comment-{{ cmnt.id }}">
+			<p>
+				{{ userlink(cmnt, 'u_') }}
+				commented on <a href="/level/{{ cmnt.level }}">{{ cmnt.level_name }}</a>:
+				<span class="date">{{ cmnt.time | relative_time }}</span>
+			</p>
+			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
+		</div>
+	{% endfor %}
 </div>
-{% endfor %}
-</div>
-#}
-<br><br>
+
+<br>
 	{% endblock %}

@@ -3,6 +3,7 @@
 {% if newsid %}
 	{% set title = news.title %}
 	{% set description = news.text %}
+	{% set pagename = "/news/" ~ newsid %}
 {% else %}
 	{% set title = "News" %}
 {% endif %}

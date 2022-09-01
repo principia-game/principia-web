@@ -2,6 +2,7 @@
 
 {% set title = name %}
 {% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
+{% set pagename = "/user/" ~ id %}
 
 	{% block content %}
 {% if action == 'markread' %}

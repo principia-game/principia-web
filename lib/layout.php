@@ -36,6 +36,7 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('discord_invite', $invite);
 	$twig->addGlobal('domain', $domain);
 	$twig->addGlobal('uri', $uri);
+	$twig->addGlobal('pagename', substr($_SERVER['PHP_SELF'], 0, -4));
 
 	return $twig;
 }

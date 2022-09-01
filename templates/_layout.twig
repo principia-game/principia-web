@@ -16,6 +16,7 @@
 		<meta property="og:site_name" content="principia-web">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="{{ domain }}{{ uri }}">
+		<link rel="canonical" href="{{ domain }}{{ pagename }}">
 	</head>
 	<body {% if is_android_webview() %}style="zoom:0.6"{% endif %}>
 		{{ custom_header() | raw }}

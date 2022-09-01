@@ -6,6 +6,9 @@
 	{% set title = "Latest levels (Page " ~ page ~ ")" %}
 {% endif %}
 {% set description = "View the latest levels uploaded to principia-web." %}
+{% if type != 'all' %}
+	{% set pagename = '/latest/' ~ type %}
+{% endif %}
 
 	{% block content %}
 <h2>Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}</h2>

@@ -1,0 +1,51 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Forum" %}
+{% set description = "The principia-web forums allow you to discuss about Principia, along with Apparatus and Tesla Plushies and general chitchat." %}
+
+	{% block content %}
+{% set category = -1 %}
+
+{% for forum in forums %}
+	{% if forum.cat != category %}
+		{% if category != -1 %}
+			</table><br>
+		{% endif %}
+
+		{% set category = forum.cat %}
+
+		<table class="c1">
+			<tr class="h">
+				<td class="b h" style="width:30px">&nbsp;</td>
+				<td class="b h">{{ categories[forum.cat] }}</td>
+				<td class="b h" width="50">Threads</td>
+				<td class="b h" width="50">Posts</td>
+				<td class="b h" width="150">Last post</td>
+			</tr>
+	{% endif %}
+
+	<tr class="center">
+		<td class="b n1">
+			{% if log and forum.lastdate > forum.rtime %}
+				{{ new_status("n") }}
+			{% endif %}
+		</td>
+		<td class="b n2 left">
+			{% if forum.minread > 0 %}({% endif %}<a href="forum.php?id={{ forum.id }}">{{ forum.title }}</a>{% if forum.minread > 0 %}){% endif %}
+			<br><span>{{ forum.descr | raw }}</span>
+		</td>
+		<td class="b n1">{{ forum.threads }}</td>
+		<td class="b n1">{{ forum.posts }}</td>
+		<td class="b n2">
+			{% if forum.posts > 0 and forum.lastdate > 0 %}
+				<nobr>{{ forum.lastdate | date('Y-m-d H:i') }}</nobr>
+				<br>
+				<span>by {{ userlink(forum, 'u') }} <a href="thread.php?pid={{ forum.lastid }}#{{ forum.lastid }}">&raquo;</a></span>
+			{% else %}
+				None
+			{% endif %}
+		</td>
+	</tr>
+{% endfor %}
+</table>
+	{% endblock %}

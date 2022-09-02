@@ -49,14 +49,10 @@
 		<td class="a">Location</td>
 		<td class="b"><input type="text" name="location" size="45" maxlength="128" value="{{ userdata.location }}"></td>
 	</tr>
-	{% if glob_forum %}
 	<tr>
 		<td class="a">Forum signature</td>
 		<td class="b"><textarea name="signature" rows="5" cols="80" wrap="virtual">{{ userdata.signature }}</textarea></td>
 	</tr>
-	{% else %}
-	<input type="hidden" name="signature" value="{{ userdata.signature }}">
-	{% endif %}
 </table>
 
 <h3>Options</h3>

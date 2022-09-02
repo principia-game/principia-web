@@ -1,0 +1,29 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Forum management" %}
+
+	{% block content %}
+<form action="" method="POST">
+	<table class="c1">
+		<tr class="h"><td class="b h" colspan="2">{% if cid == 'new' %}Create{% else %}Edit{% endif %} category</td></tr>
+		<tr>
+			<td class="b n1 center">Title:</td>
+			<td class="b n2"><input type="text" name="title" value="{{ cat.title }}" size="50" maxlength="500"></td>
+		</tr><tr>
+			<td class="b n1 center">Display order:</td>
+			<td class="b n2"><input type="text" name="ord" value="{{ cat.ord }}" size="4" maxlength="10"></td>
+		</tr>
+		<tr class="h"><td class="b h" colspan="2">&nbsp;</td></tr>
+		<tr>
+			<td class="b n1 center"></td>
+			<td class="b n2">
+				<input type="submit" name="savecat" value="Save category">
+				{% if cid != 'new' %}
+					<input type="submit" name="delcat" value="Delete category" onclick="if (!confirm("Really delete this category?")) return false;">
+				{% endif %}
+				<button type="button" id="back" onclick="window.location='manageforums.php';">Back</button>
+			</td>
+		</tr>
+	</table>
+</form>
+	{% endblock %}

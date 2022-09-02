@@ -1,0 +1,32 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Edit post" %}
+
+	{% block content %}
+{{ render_page_bar(topbot) }}
+
+{% if action == 'Preview' %}
+	<br>
+	{{ threadpost(post) }}
+{% endif %}
+
+<br>
+<form action="editpost.php?pid={{ pid }}" method="POST">
+	<table class="c1">
+		<tr class="h"><td class="b h" colspan="2">Edit Post</td></tr>
+		<tr>
+			<td class="b n1 center" width="120">Post:</td>
+			<td class="b n2"><textarea name="message" id="message" rows="15" cols="80">{{ post.text }}</textarea></td>
+		</tr><tr>
+			<td class="b n1"></td>
+			<td class="b n1">
+				<input type="submit" name="action" value="Submit">
+				<input type="submit" name="action" value="Preview">
+			</td>
+		</tr>
+	</table>
+</form>
+<br>
+
+{{ render_page_bar(topbot) }}
+	{% endblock %}

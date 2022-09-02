@@ -32,9 +32,7 @@
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
 <p><a href="/settings">Edit my settings</a>
-{% if glob_forum %}
-	&bull; <a href="/forum/private.php">View my private messages</a>
-{% endif %}
+&bull; <a href="/forum/private.php">View my private messages</a>
 &bull; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
 &bull; <a href="javascript:document.logout.submit()">Log out</a></p>
 
@@ -69,12 +67,10 @@
 {% else %}
 <div class="user_stats">
 	<div class="topthing"><b>General information</b></div>
-	{% if glob_forum %}
-		<div class="row">
-			<b>Forum Threads</b>: {{ userpagedata.threads }}
-			<span class="pad"><b>Forum Posts</b>: {{ userpagedata.posts }}</span>
-		</div>
-	{% endif %}
+	<div class="row">
+		<b>Forum Threads</b>: {{ userpagedata.threads }}
+		<span class="pad"><b>Forum Posts</b>: {{ userpagedata.posts }}</span>
+	</div>
 	<div class="row">
 		<b>Registered on</b>: {{ userpagedata.joined | date('Y-m-d H:i:s') }}
 	</div>
@@ -92,19 +88,17 @@
 </div>
 
 <p class="clear_right">
-	{% if glob_forum %}
-		<a href="/forum/forum.php?user={{ id }}">View threads</a>
-		&bull; <a href="/forum/thread.php?user={{ id }}">Show posts</a>
-		{% if log %}
-			{% if userdata.id != id %}
-				&bull; <a href="/forum/sendprivate.php?uid={{ id }}">Send private message</a>
-			{% endif %}
-			{% if userdata.powerlevel > 2 %}
-				&bull; <a href="/resetpassword.php?grf={{ id }}">Generate password reset for user</a>
-			{% endif %}
-			{% if userdata.powerlevel > 1 %}
-				&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>
-			{% endif %}
+	<a href="/forum/forum.php?user={{ id }}">View threads</a>
+	&bull; <a href="/forum/thread.php?user={{ id }}">Show posts</a>
+	{% if log %}
+		{% if userdata.id != id %}
+			&bull; <a href="/forum/sendprivate.php?uid={{ id }}">Send private message</a>
+		{% endif %}
+		{% if userdata.powerlevel > 2 %}
+			&bull; <a href="/resetpassword.php?grf={{ id }}">Generate password reset for user</a>
+		{% endif %}
+		{% if userdata.powerlevel > 1 %}
+			&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>
 		{% endif %}
 	{% endif %}
 </p>

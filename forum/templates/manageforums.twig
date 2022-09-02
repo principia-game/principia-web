@@ -1,0 +1,26 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Forum management" %}
+
+	{% block content %}
+<table class="fullwidth">
+	<tr>
+		<td class="nb" style="width:50%; vertical-align:top;">
+			<table class="c1">
+				<tr class="h"><td class="b">Categories</td></tr>
+				{{ catlist | raw }}
+				<tr class="h"><td class="b">&nbsp;</td></tr>
+				<tr><td class="b n1"><a href="manageforums.php?cid=new">New category</a></td></tr>
+			</table>
+		</td>
+		<td class="nb" style="width:50%; vertical-align:top;">
+			<table class="c1">
+				<tr class="h"><td class="b">Forums</td></tr>
+				{{ forumlist | raw }}
+				<tr class="h"><td class="b">&nbsp;</td></tr>
+				<tr><td class="b n1"><a href="manageforums.php?fid=new">New forum</a></td></tr>
+			</table>
+		</td>
+	</tr>
+</table>
+	{% endblock %}

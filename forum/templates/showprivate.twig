@@ -1,0 +1,15 @@
+{% extends "_layout.twig" %}
+
+{% if pmsgs.title %}
+	{% set title = pmsgs.title %}
+{% else %}
+	{% set title = '(untitled)' %}
+{% endif %}
+
+	{% block content %}
+{{ render_page_bar(pagebar) }}
+<br>
+{{ threadpost(pmsgs) }}
+<br>
+{{ render_page_bar(pagebar) }}
+	{% endblock %}

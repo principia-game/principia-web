@@ -42,21 +42,21 @@ if ($action == 'Submit') {
 	query("INSERT INTO z_poststext (id,text,revision,date) VALUES (?,?,?,?)",
 		[$pid, $_POST['message'], $newrev, time()]);
 
-	redirect("thread.php?pid=$pid#edit");
+	redirect("thread?pid=$pid#edit");
 } else if ($action == 'delete' || $action == 'undelete') {
 
 	if ($userdata['powerlevel'] <= 1) {
 		error("403", "You do not have the permission to do this.");
 	} else {
 		query("UPDATE z_posts SET deleted = ? WHERE id = ?", [($action == 'delete' ? 1 : 0), $pid]);
-		redirect("thread.php?pid=$pid#edit");
+		redirect("thread?pid=$pid#edit");
 	}
 }
 
 $topbot = [
 	'breadcrumb' => [
-		['href' => "forum.php?id={$thread['forum']}", 'title' => $thread['ftitle']],
-		['href' => "thread.php?id={$thread['id']}", 'title' => $thread['title']]],
+		['href' => "forum?id={$thread['forum']}", 'title' => $thread['ftitle']],
+		['href' => "thread?id={$thread['id']}", 'title' => $thread['title']]],
 	'title' => 'Edit post'
 ];
 

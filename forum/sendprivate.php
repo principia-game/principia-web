@@ -6,7 +6,7 @@ $action = $_POST['action'] ?? null;
 needsLogin();
 
 $topbot = [
-	'breadcrumb' => [['href' => "private.php", 'title' => 'Private messages']],
+	'breadcrumb' => [['href' => "private", 'title' => 'Private messages']],
 	'title' => 'Send'
 ];
 
@@ -34,7 +34,7 @@ if ($action == 'Submit') {
 			query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
 				[3, $nextId, $userto, $userdata['id']]);
 
-			redirect("private.php");
+			redirect("private");
 		}
 	} elseif (!$userto) {
 		$error = "That user doesn't exist!";

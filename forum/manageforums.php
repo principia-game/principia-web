@@ -18,17 +18,17 @@ if (isset($_POST['savecat'])) {
 			query("INSERT INTO z_categories (id,title,ord) VALUES (?,?,?)", [$cid, $title, $ord]);
 		} else {
 			$cid = (int)$cid;
-			if (!result("SELECT COUNT(*) FROM z_categories WHERE id=?",[$cid])) redirect('manageforums.php');
+			if (!result("SELECT COUNT(*) FROM z_categories WHERE id=?",[$cid])) redirect('manageforums');
 			query("UPDATE z_categories SET title = ?, ord = ? WHERE id = ?", [$title, $ord, $cid]);
 		}
-		redirect('manageforums.php?cid='.$cid);
+		redirect('manageforums?cid='.$cid);
 	}
 } else if (isset($_POST['delcat'])) {
 	// delete category
 	$cid = (int)$_GET['cid'];
 	query("DELETE FROM z_categories WHERE id = ?",[$cid]);
 
-	redirect('manageforums.php');
+	redirect('manageforums');
 } else if (isset($_POST['saveforum'])) {
 	// save new/existing forum
 	$fid = $_GET['fid'];
@@ -53,17 +53,17 @@ if (isset($_POST['savecat'])) {
 		} else {
 			$fid = (int)$fid;
 			if (!result("SELECT COUNT(*) FROM z_forums WHERE id=?",[$fid]))
-				redirect('manageforums.php');
+				redirect('manageforums');
 			query("UPDATE z_forums SET cat=?, title=?, descr=?, ord=?, minread=?, minthread=?, minreply=? WHERE id=?",
 				[$cat, $title, $descr, $ord, $minread, $minthread, $minreply, $fid]);
 		}
-		redirect('manageforums.php?fid='.$fid);
+		redirect('manageforums?fid='.$fid);
 	}
 } else if (isset($_POST['delforum'])) {
 	// delete forum
 	$fid = (int)$_GET['fid'];
 	query("DELETE FROM z_forums WHERE id=?",[$fid]);
-	redirect('manageforums.php');
+	redirect('manageforums');
 }
 
 $twig = _twigloader();
@@ -125,7 +125,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 
 	$catlist = ''; $c = 1;
 	foreach ($cats as $cat) {
-		$catlist .= sprintf('<tr><td class="b n%s"><a href="manageforums.php?cid=%s">%s</a></td></tr>', $c, $cat['id'], $cat['title']);
+		$catlist .= sprintf('<tr><td class="b n%s"><a href="manageforums?cid=%s">%s</a></td></tr>', $c, $cat['id'], $cat['title']);
 		$c = ($c == 1) ? 2 : 1;
 	}
 
@@ -135,7 +135,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 			$lc = $forum['cat'];
 			$forumlist .= sprintf('<tr class="c"><td class="b c">%s</td></tr>', $cats[$forum['cat']]['title']);
 		}
-		$forumlist .= sprintf('<tr><td class="b n%s"><a href="manageforums.php?fid=%s">%s</a></td></tr>', $c, $forum['id'], $forum['title']);
+		$forumlist .= sprintf('<tr><td class="b n%s"><a href="manageforums?fid=%s">%s</a></td></tr>', $c, $forum['id'], $forum['title']);
 		$c = ($c == 1) ? 2 : 1;
 	}
 

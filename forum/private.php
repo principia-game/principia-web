@@ -58,17 +58,17 @@ $topbot = [
 ];
 
 if ($sent)
-	$topbot['actions'] = [['href' => 'private.php'.($id != $userdata['id'] ? "?id=$id&" : ''), 'title' => "View received"]];
+	$topbot['actions'] = [['href' => 'private'.($id != $userdata['id'] ? "?id=$id&" : ''), 'title' => "View received"]];
 else
-	$topbot['actions'] = [['href' => 'private.php?'.($id != $userdata['id'] ? "id=$id&" : '').'view=sent', 'title' => "View sent"]];
+	$topbot['actions'] = [['href' => 'private?'.($id != $userdata['id'] ? "id=$id&" : '').'view=sent', 'title' => "View sent"]];
 
-$topbot['actions'][] = ['href' => 'sendprivate.php', 'title' => 'Send new'];
+$topbot['actions'][] = ['href' => 'sendprivate', 'title' => 'Send new'];
 
 
 $fpagelist = '<br>';
 if ($pmsgc > $tpp) {
-	if ($id != $userdata['id'])	$furl = "private.php?id=$id&view=$view";
-	else	$furl = "private.php?view=$view";
+	if ($id != $userdata['id'])	$furl = "private?id=$id&view=$view";
+	else	$furl = "private?view=$view";
 	$fpagelist = pagelist($pmsgc, $tpp, $furl, $page).'<br>';
 }
 

@@ -17,10 +17,10 @@
 {% for pmsg in pmsgs %}
 	<tr class="n{% if i % 2 %}1{% else %}2{% endif %} center">
 		<td class="b n2">
-			<a href="private.php?action=del&id={{ pmsg.id }}&view={{ view }}" class="delete">X</a>
+			<a href="private?action=del&id={{ pmsg.id }}&view={{ view }}" class="delete">X</a>
 		</td>
 		<td class="b n1">{% if pmsg.unread %}{{ new_status("n") }}{% endif %}</td>
-		<td class="b left wbreak"><a href="showprivate.php?id={{ pmsg.id }}">{{ pmsg.title | default('(untitled)') }}</a></td>
+		<td class="b left wbreak"><a href="showprivate?id={{ pmsg.id }}">{{ pmsg.title | default('(untitled)') }}</a></td>
 		<td class="b">{{ userlink(pmsg, 'u') }}</td>
 		<td class="b"><nobr>{{ pmsg.date | date('Y-m-d H:i') }}</nobr></td>
 	</tr>

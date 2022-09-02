@@ -1,6 +1,11 @@
 {% extends "_layout.twig" %}
 
 {% set title = title %}
+{% if fid %}
+	{% set pagename = "/forum/forum?id=" ~ fid %}
+{% elseif uid %}
+	{% set pagename = "/forum/forum?user=" ~ uid %}
+{% endif %}
 
 	{% block content %}
 {% set lsticky = 0 %}
@@ -9,7 +14,7 @@
 	<table class="c1 autowidth">
 		<tr class="h"><td class="b">Latest Threads</td></tr>
 		<tr><td class="b n1 center">
-			By Threads | <a href="thread.php?time={{ time }}">By Posts</a></a><br><br>
+			By Threads | <a href="thread?time={{ time }}">By Posts</a></a><br><br>
 			{{ timelinks('forum') }}
 		</td></tr>
 	</table>
@@ -59,17 +64,17 @@
 				{% endif %}
 			</td>
 			{% if showforum %}
-				<td class="b"><a href="forum.php?id={{ thread.fid }}">{{ thread.ftitle }}</a></td>
+				<td class="b"><a href="forum?id={{ thread.fid }}">{{ thread.ftitle }}</a></td>
 			{% endif %}
 			<td class="b left wbreak">
-				<a href="thread.php?id={{ thread.id }}">{{ thread.title }}</a>
+				<a href="thread?id={{ thread.id }}">{{ thread.title }}</a>
 			</td>
 			<td class="b">{{ userlink(thread, 'u1') }}</td>
 			<td class="b">{{ thread.posts - 1 }}</td>
 			<td class="b">{{ thread.views }}</td>
 			<td class="b">
 				<nobr>{{ thread.lastdate | date('Y-m-d H:i') }}</nobr><br>
-				<span>by {{ userlink(thread, 'u2') }} <a href="thread.php?pid={{ thread.lastid }}#{{ thread.lastid }}">&raquo;</a></span>
+				<span>by {{ userlink(thread, 'u2') }} <a href="thread?pid={{ thread.lastid }}#{{ thread.lastid }}">&raquo;</a></span>
 			</td>
 		</tr>
 		{% set i = i + 1 %}

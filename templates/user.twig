@@ -32,7 +32,7 @@
 <p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
 
 <p><a href="/settings">Edit my settings</a>
-&bull; <a href="/forum/private.php">View my private messages</a>
+&bull; <a href="/forum/private">View my private messages</a>
 &bull; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
 &bull; <a href="javascript:document.logout.submit()">Log out</a></p>
 
@@ -88,17 +88,17 @@
 </div>
 
 <p class="clear_right">
-	<a href="/forum/forum.php?user={{ id }}">View threads</a>
-	&bull; <a href="/forum/thread.php?user={{ id }}">Show posts</a>
+	<a href="/forum/forum?user={{ id }}">View threads</a>
+	&bull; <a href="/forum/thread?user={{ id }}">Show posts</a>
 	{% if log %}
 		{% if userdata.id != id %}
-			&bull; <a href="/forum/sendprivate.php?uid={{ id }}">Send private message</a>
+			&bull; <a href="/forum/sendprivate?uid={{ id }}">Send private message</a>
 		{% endif %}
 		{% if userdata.powerlevel > 2 %}
-			&bull; <a href="/resetpassword.php?grf={{ id }}">Generate password reset for user</a>
+			&bull; <a href="/resetpassword?grf={{ id }}">Generate password reset for user</a>
 		{% endif %}
 		{% if userdata.powerlevel > 1 %}
-			&bull; <a href="/_ban_user.php?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>
+			&bull; <a href="/_ban_user?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>
 		{% endif %}
 	{% endif %}
 </p>

@@ -45,14 +45,14 @@ if ($action == 'Submit') {
 		// nuke entries of this thread in the "threadsread" table
 		query("DELETE FROM z_threadsread WHERE tid = ? AND NOT (uid = ?)", [$thread['id'], $userdata['id']]);
 
-		redirect("thread.php?pid=$pid#$pid");
+		redirect("thread?pid=$pid#$pid");
 	}
 }
 
 $topbot = [
 	'breadcrumb' => [
-		['href' => "forum.php?id={$thread['forum']}", 'title' => $thread['ftitle']],
-		['href' => "thread.php?id={$thread['id']}", 'title' => $thread['title']]
+		['href' => "forum?id={$thread['forum']}", 'title' => $thread['ftitle']],
+		['href' => "thread?id={$thread['id']}", 'title' => $thread['title']]
 	],
 	'title' => "New reply"
 ];

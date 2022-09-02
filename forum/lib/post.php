@@ -5,9 +5,9 @@ function postfilter($msg) {
 	$markdown->setSafeMode(true);
 	$msg = $markdown->text($msg);
 
-	$msg = preg_replace("'\[reply=\"(.*?)\" id=\"(.*?)\"\]'si", '<blockquote><span class="quotedby"><small><i><a href=showprivate.php?id=\\2>Sent by \\1</a></i></small></span><hr>', $msg);
+	$msg = preg_replace("'\[reply=\"(.*?)\" id=\"(.*?)\"\]'si", '<blockquote><span class="quotedby"><small><i><a href=showprivate?id=\\2>Sent by \\1</a></i></small></span><hr>', $msg);
 	$msg = str_replace('[/reply]', '<hr></blockquote>', $msg);
-	$msg = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\]'si", '<blockquote><span class="quotedby"><small><i><a href=thread.php?pid=\\2#\\2>Posted by \\1</a></i></small></span><hr>', $msg);
+	$msg = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\]'si", '<blockquote><span class="quotedby"><small><i><a href=thread?pid=\\2#\\2>Posted by \\1</a></i></small></span><hr>', $msg);
 	$msg = str_replace('[/quote]', '<hr></blockquote>', $msg);
 
 	return $msg;
@@ -23,7 +23,7 @@ function threadpost($post, $pthread = '') {
 	if (isset($post['deleted']) && $post['deleted']) {
 		if ($userdata['powerlevel'] > 1) {
 			$postlinks = sprintf(
-				'<a href="thread.php?pid=%s&pin=%s#%s">Peek</a> &bull; <a href="editpost.php?pid=%s&act=undelete">Undelete</a> &bull; ID: %s',
+				'<a href="thread?pid=%s&pin=%s#%s">Peek</a> &bull; <a href="editpost?pid=%s&act=undelete">Undelete</a> &bull; ID: %s',
 			$post['id'], $post['id'], $post['id'], $post['id'], $post['id']);
 		} else {
 			$postlinks = 'ID: '.$post['id'];
@@ -49,29 +49,29 @@ HTML;
 	$post['id'] = $post['id'] ?? 0;
 
 	if ($pthread)
-		$threadlink = sprintf(' - in <a href="thread.php?id=%s">%s</a>', $pthread['id'], esc($pthread['title']));
+		$threadlink = sprintf(' - in <a href="thread?id=%s">%s</a>', $pthread['id'], esc($pthread['title']));
 
 	if ($post['id'])
-		$postlinks = "<a href=\"thread.php?pid=$post[id]#$post[id]\">Link</a>";
+		$postlinks = "<a href=\"thread?pid=$post[id]#$post[id]\">Link</a>";
 
 	if (isset($post['revision']) && $post['revision'] >= 2)
 		$revisionstr = " (edited ".date('Y-m-d H:i', $post['ptdate']).")";
 
 	if (isset($post['thread']) && $log) {
 		// TODO: check minreply
-		$postlinks .= " &bull; <a href=\"newreply.php?id=$post[thread]&pid=$post[id]\">Quote</a>";
+		$postlinks .= " &bull; <a href=\"newreply?id=$post[thread]&pid=$post[id]\">Quote</a>";
 
 		// "Edit" link for admins or post owners, but not banned users
 		if ($userdata['powerlevel'] > 2 || $userdata['id'] == $post['uid'])
-			$postlinks .= " &bull; <a href=\"editpost.php?pid=$post[id]\">Edit</a>";
+			$postlinks .= " &bull; <a href=\"editpost?pid=$post[id]\">Edit</a>";
 
 		if ($userdata['powerlevel'] > 1)
-			$postlinks .= ' &bull; <a href="editpost.php?pid='.$post['id'].'&act=delete">Delete</a>';
+			$postlinks .= ' &bull; <a href="editpost?pid='.$post['id'].'&act=delete">Delete</a>';
 
 		if (isset($post['maxrevision']) && $userdata['powerlevel'] > 1 && $post['maxrevision'] > 1) {
 			$revisionstr .= " &bull; Revision ";
 			for ($i = 1; $i <= $post['maxrevision']; $i++)
-				$revisionstr .= "<a href=\"thread.php?pid=$post[id]&pin=$post[id]&rev=$i#$post[id]\">$i</a> ";
+				$revisionstr .= "<a href=\"thread?pid=$post[id]&pin=$post[id]&rev=$i#$post[id]\">$i</a> ";
 		}
 	}
 

@@ -26,14 +26,14 @@
 		<div class="top">
 			<a href="/"><img class="picon" src="/assets/icon.png" alt="Home"></a>
 			<div class="menu">
-				<a href="/popular" class="btn">Popular</a>
-				<a href="/top" class="btn">Top</a>
-				<a href="/latest" class="btn">New</a>
-				<a href="/chat" class="btn">Chat</a>
-				<a href="/forum/" class="btn">Forum</a>
-				{#<a href="/contests" class="btn">Contests</a>#}
+				<a href="/popular">Popular</a>
+				<a href="/top">Top</a>
+				<a href="/latest">New</a>
+				<a href="/chat">Chat</a>
+				<a href="/forum/">Forum</a>
+				{#<a href="/contests">Contests</a>#}
 				{% if log %}<a href="/discord">Discord</a>{% endif %}
-				<a href="/search" class="btn"><img src="/assets/icons/search.svg" class="search" alt="Search"></a>
+				<a href="/search"><img src="/assets/icons/search.svg" class="search" alt="Search"></a>
 			</div>
 			<div class="menu right">
 				{% if log %}
@@ -47,11 +47,11 @@
 		{% if acmlm %}
 		<div class="top top_forum">
 			<div class="menu left">
-				<a href="/forum/" class="btn">Forum</a>
-				<a href="/forum/activeusers.php" class="btn">Active users</a>
-				<a href="/forum/thread.php?time=86400" class="btn">Latest posts</a>
+				<a href="/forum/">Forum</a>
+				<a href="/forum/activeusers">Active users</a>
+				<a href="/forum/thread?time=86400">Latest posts</a>
 				{% if log %}
-					<a href="/forum/private.php" class="btn">Private messages</a>
+					<a href="/forum/private">Private messages</a>
 				{% endif %}
 			</div>
 			{% if log %}

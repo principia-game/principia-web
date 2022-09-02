@@ -1,6 +1,6 @@
 <?php
-if (isset($_GET['p'])) redirect("thread.php?pid={$_GET['p']}#{$_GET['p']}");
-if (isset($_GET['t'])) redirect("thread.php?id={$_GET['t']}");
+if (isset($_GET['p'])) redirect("thread?pid={$_GET['p']}#{$_GET['p']}");
+if (isset($_GET['t'])) redirect("thread?id={$_GET['t']}");
 
 require('lib/common.php');
 
@@ -19,7 +19,7 @@ if ($log && $action == 'markread') {
 		query("DELETE FROM z_threadsread WHERE uid = ?", [$userdata['id']]);
 		query("REPLACE INTO z_forumsread (uid,fid,time) SELECT ?, f.id, ? FROM z_forums f", [$userdata['id'], time()]);
 	}
-	redirect('index.php');
+	redirect('/forum/');
 }
 
 $categs = query("SELECT id,title FROM z_categories ORDER BY ord,id");

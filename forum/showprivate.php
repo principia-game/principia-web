@@ -18,9 +18,9 @@ elseif ($tologuser && $pmsgs['unread']) {
 }
 
 $pagebar = [
-	'breadcrumb' => [['href' => "private.php", 'title' => 'Private messages']],
+	'breadcrumb' => [['href' => "private", 'title' => 'Private messages']],
 	'title' => $pmsgs['title'] ?: '(untitled)',
-	'actions' => [['href' => "sendprivate.php?pid=$pid", 'title' => 'Reply']]
+	'actions' => [['href' => "sendprivate?pid=$pid", 'title' => 'Reply']]
 ];
 
 $pmsgs['id'] = 0;

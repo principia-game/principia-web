@@ -31,8 +31,8 @@
 			{% endif %}
 		</td>
 		<td class="b n2 left">
-			{% if forum.minread > 0 %}({% endif %}<a href="forum.php?id={{ forum.id }}">{{ forum.title }}</a>{% if forum.minread > 0 %}){% endif %}
-			<br><span>{{ forum.descr | raw }}</span>
+			{% if forum.minread > 0 %}({% endif %}<a href="forum?id={{ forum.id }}">{{ forum.title }}</a>{% if forum.minread > 0 %}){% endif %}
+			<div style="margin-top:3px">{{ forum.descr | raw }}</div>
 		</td>
 		<td class="b n1">{{ forum.threads }}</td>
 		<td class="b n1">{{ forum.posts }}</td>
@@ -40,7 +40,7 @@
 			{% if forum.posts > 0 and forum.lastdate > 0 %}
 				<nobr>{{ forum.lastdate | date('Y-m-d H:i') }}</nobr>
 				<br>
-				<span>by {{ userlink(forum, 'u') }} <a href="thread.php?pid={{ forum.lastid }}#{{ forum.lastid }}">&raquo;</a></span>
+				<span>by {{ userlink(forum, 'u') }} <a href="thread?pid={{ forum.lastid }}#{{ forum.lastid }}">&raquo;</a></span>
 			{% else %}
 				None
 			{% endif %}

@@ -47,12 +47,12 @@ if ($action == 'Submit') {
 
 		query("UPDATE z_threads SET lastid = ? WHERE id = ?", [$pid, $tid]);
 
-		redirect("thread.php?id=$tid");
+		redirect("thread?id=$tid");
 	}
 }
 
 $topbot = [
-	'breadcrumb' => [['href' => "forum.php?id=$fid", 'title' => $forum['title']]],
+	'breadcrumb' => [['href' => "forum?id=$fid", 'title' => $forum['title']]],
 	'title' => "New thread"
 ];
 

@@ -1,6 +1,11 @@
 {% extends "_layout.twig" %}
 
 {% set title = title %}
+{% if viewmode == "thread" %}
+	{% set pagename = "/forum/thread?id=" ~ tid %}
+{% elseif viewmode == "user" %}
+	{% set pagename = "/forum/thread?user=" ~ uid %}
+{% endif %}
 
 	{% block content %}
 {{ render_page_bar(topbot) }}
@@ -9,7 +14,7 @@
 	<table class="c1 autowidth">
 		<tr class="h"><td class="b">Latest Posts</td></tr>
 		<tr><td class="b n1 center">
-			<a href="forum.php?time={{ time }}">By Threads</a> | By Posts</a><br><br>
+			<a href="forum?time={{ time }}">By Threads</a> | By Posts</a><br><br>
 			{{ timelinks('thread') }}
 		</td></tr>
 	</table><br>
@@ -35,7 +40,7 @@
 {% if not time %}<br>{% endif %}
 
 {% if thread.id and userdata.powerlevel >= faccess.minreply and not thread.closed %}
-<form action="newreply.php?id={{ tid }}" method="POST">
+<form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td class="b h" colspan="2">Quick Reply</a></td>
 		<tr>

@@ -12,7 +12,7 @@ ob_start();
 <table class="c1">
 	<tr class="h"><td class="b h">Search</td>
 	<tr><td class="b n1">
-		<form action="search.php" method="get"><table>
+		<form action="search" method="get"><table>
 			<tr>
 				<td>Search for</td>
 				<td><input type="text" name="q" size="40" value="<?=htmlspecialchars($query, ENT_QUOTES) ?>"></td>
@@ -96,7 +96,7 @@ if ($where == 1) {
 
 		?><tr class="<?=$tr ?> center">
 			<td class="b left wbreak">
-				<a href="thread.php?id=<?=$thread['id'] ?>"><?=esc($thread['title']) ?></a> <?=($thread['sticky'] ? ' (Sticky)' : '')?>
+				<a href="thread?id=<?=$thread['id'] ?>"><?=esc($thread['title']) ?></a> <?=($thread['sticky'] ? ' (Sticky)' : '')?>
 			</td>
 			<td class="b"><?=userlink($thread,'u') ?></td>
 			<td class="b"><?=date('Y-m-d H:i',$thread['lastdate']) ?></td>
@@ -106,7 +106,7 @@ if ($where == 1) {
 		ifEmptyQuery("No threads found.", 6);
 
 	$query = urlencode($query);
-	echo '</table>'.pagelist($threadcount, $tpp, "search.php?q=$query&action=Search&w=0", $page);
+	echo '</table>'.pagelist($threadcount, $tpp, "search?q=$query&action=Search&w=0", $page);
 }
 
 $content = ob_get_contents();

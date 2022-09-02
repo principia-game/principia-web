@@ -17,7 +17,7 @@ if ($log) {
 }
 
 $ufields = userfields('u1', 'u1') . "," . userfields('u2', 'u2') . ",";
-if (isset($_GET['id']) && $fid = $_GET['id']) {
+if ($fid) {
 	if ($log) {
 		$forum = fetch("SELECT f.*, r.time rtime FROM z_forums f LEFT JOIN z_forumsread r ON (r.fid = f.id AND r.uid = ?) "
 			. "WHERE f.id = ? AND ? >= minread", [$userdata['id'], $fid, $userdata['powerlevel']]);
@@ -45,9 +45,9 @@ if (isset($_GET['id']) && $fid = $_GET['id']) {
 		'title' => $forum['title']
 	];
 	if ($userdata['powerlevel'] >= $forum['minthread'])
-		$topbot['actions'] = [['href' => "newthread.php?id=$fid", 'title' => 'New thread']];
+		$topbot['actions'] = [['href' => "newthread?id=$fid", 'title' => 'New thread']];
 
-} elseif (isset($_GET['user']) && $uid = $_GET['user']) {
+} elseif ($uid) {
 	$user = fetch("SELECT name FROM users WHERE id = ?", [$uid]);
 
 	if (!$user) error("404", "User does not exist.");
@@ -70,7 +70,7 @@ if (isset($_GET['id']) && $fid = $_GET['id']) {
 		[$uid, $userdata['powerlevel']]);
 
 	$topbot = [
-		'breadcrumb' => [['href' => "/user.php?id=$uid", 'title' => $user['name']]],
+		'breadcrumb' => [['href' => "/user/$uid", 'title' => $user['name']]],
 		'title' => 'Threads'
 	];
 } elseif (isset($_GET['time']) && $time = $_GET['time']) {
@@ -102,7 +102,7 @@ $showforum = $time ?? $uid;
 
 $fpagelist = '';
 if ($forum['threads'] > $tpp) {
-	$furl = "forum.php?";
+	$furl = "forum?";
 	if ($fid)	$furl .= "id=$fid";
 	if ($uid)	$furl .= "user=$uid";
 	if ($time)	$furl .= "time=$time";
@@ -111,10 +111,12 @@ if ($forum['threads'] > $tpp) {
 
 $twig = _twigloader();
 echo $twig->render('forum.twig', [
+	'fid' => $fid,
 	'title' => $title,
 	'threads' => $threads,
 	'showforum' => $showforum,
 	'topbot' => $topbot,
 	'fpagelist' => $fpagelist,
+	'uid' => $uid ?? null,
 	'time' => $time ?? null
 ]);

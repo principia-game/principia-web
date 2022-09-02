@@ -2,4 +2,15 @@ User-agent: *
 Disallow: /resetpassword.php
 Disallow: /search.php
 Disallow: /settings.php
-Disallow: /userlist.php
+
+Disallow: /forum/activeusers.php
+Disallow: /forum/editpost.php
+Disallow: /forum/forum.php?time=
+Disallow: /forum/manageforums.php
+Disallow: /forum/newreply.php
+Disallow: /forum/newthread.php
+Disallow: /forum/private.php
+Disallow: /forum/search.php
+Disallow: /forum/sendprivate.php
+Disallow: /forum/showprivate.php
+Disallow: /forum/thread.php?time=

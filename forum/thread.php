@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 } elseif (isset($_GET['time'])) {
 	$time = (int)$_GET['time'];
 	$viewmode = "time";
-} elseif (isset($_GET['pid'])) { // "link" support (i.e., thread.php?pid=999whatever)
+} elseif (isset($_GET['pid'])) { // "link" support (i.e., thread?pid=999whatever)
 	$pid = (int)$_GET['pid'];
 	$numpid = fetch("SELECT t.id tid FROM z_posts p LEFT JOIN z_threads t ON p.thread = t.id WHERE p.id = ?", [$pid]);
 	if (!$numpid) error("404", "Thread post does not exist.");
@@ -127,7 +127,7 @@ if ($viewmode == "thread") {
 
 $pagelist = '';
 if ($thread['posts'] > $ppp) {
-	$furl = "thread.php?";
+	$furl = "thread?";
 	if ($viewmode == "thread")	$furl .= "id=$tid";
 	if ($viewmode == "user")	$furl .= "user=$uid";
 	if ($viewmode == "time")	$furl .= "time=$time";
@@ -136,22 +136,22 @@ if ($thread['posts'] > $ppp) {
 
 if ($viewmode == "thread") {
 	$topbot = [
-		'breadcrumb' => [['href' => 'forum.php?id='.$thread['forum'], 'title' => $thread['ftitle']]],
+		'breadcrumb' => [['href' => 'forum?id='.$thread['forum'], 'title' => $thread['ftitle']]],
 		'title' => $thread['title']
 	];
 
 	$faccess = fetch("SELECT id,minreply FROM z_forums WHERE id = ?",[$thread['forum']]);
 	if ($faccess['minreply'] <= $userdata['powerlevel']) {
 		if ($userdata['powerlevel'] > 1 && $thread['closed'])
-			$topbot['actions'] = [['title' => 'Thread closed'],['href' => "newreply.php?id=$tid", 'title' => 'New reply']];
+			$topbot['actions'] = [['title' => 'Thread closed'],['href' => "newreply?id=$tid", 'title' => 'New reply']];
 		else if ($thread['closed'])
 			$topbot['actions'] = [['title' => 'Thread closed']];
 		else
-			$topbot['actions'] = [['href' => "newreply.php?id=$tid", 'title' => 'New reply']];
+			$topbot['actions'] = [['href' => "newreply?id=$tid", 'title' => 'New reply']];
 	}
 } elseif ($viewmode == "user") {
 	$topbot = [
-		'breadcrumb' => [['href' => "/user.php?id=$uid", 'title' => $user['name']]],
+		'breadcrumb' => [['href' => "/user/$uid", 'title' => $user['name']]],
 		'title' => 'Posts'
 	];
 } elseif ($viewmode == "time") {
@@ -185,7 +185,7 @@ if ($log && isset($tid) && ($userdata['powerlevel'] > 2 || ($userdata['id'] == $
 	$threadtitle = addcslashes(htmlentities($thread['title'], ENT_COMPAT | ENT_HTML401, 'UTF-8'), "'");
 
 	$modlinks = <<<HTML
-<br><form action="thread.php?id=$tid" method="post" name="mod" id="mod">
+<br><form action="thread?id=$tid" method="post" name="mod" id="mod">
 <table class="c1"><tr class="n2">
 	<td class="b n2">
 		<span id="moptions">Thread options: $stick $close $trash $edit</span>
@@ -204,6 +204,7 @@ HTML;
 
 $twig = _twigloader();
 echo $twig->render('thread.twig', [
+	'viewmode' => $viewmode,
 	'thread' => $thread,
 	'posts' => $posts,
 	'topbot' => $topbot,

@@ -9,7 +9,7 @@ function timeunits($sec) {
 
 function timelink($timex, $file) {
 	global $time;
-	return ($time == $timex ? timeunits($timex) : "<a href=\"$file.php?time=$timex\">".timeunits($timex).'</a>');
+	return ($time == $timex ? timeunits($timex) : "<a href=\"$file?time=$timex\">".timeunits($timex).'</a>');
 }
 
 function timelinks($file) {

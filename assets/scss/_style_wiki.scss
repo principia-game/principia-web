@@ -1,0 +1,25 @@
+
+.wikilinks {
+	border-top: 1px solid #ccc;
+	padding: 10px;
+	margin-top: 2em;
+}
+
+.toc {
+	border: 1px solid #444;
+	background-color: #171717;
+	min-width: 300px;
+	padding: 10px;
+	display: inline-block;
+
+	.toc_title {
+		text-align: center;
+	}
+
+
+	ul {
+		margin: 0;
+		padding-left: 20px;
+	}
+
+}

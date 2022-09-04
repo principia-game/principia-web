@@ -23,3 +23,39 @@
 	}
 
 }
+
+.infobox {
+	background-color: #141414;
+	border: 1px solid #444;
+	text-align: center;
+	width: 30%;
+	float: right;
+	clear: both;
+	margin-top: -65px;
+	margin-left: 25px;
+	margin-right: 15px;
+	margin-bottom: 25px;
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		.heading {
+			background-color: #0c0c0c;
+			font-size: 12pt;
+			font-weight: bold;
+		}
+
+		tr {
+			border-bottom: 1px solid #444;
+
+			&:last-child {
+				border-bottom: 0;
+			}
+		}
+
+		td, th {
+			padding: 10px;
+		}
+	}
+}

@@ -11,9 +11,21 @@ if (!$log) die('login pls');
 if (!$type || !$id) die('params pls');
 if ($userdata['powerlevel'] < 0) die('you have been banned');
 
+if ($type != 'chat')
+	$url = sprintf('/%s/%s%s#comments', $type, $id, ($type == 'user' ? '?forceuser' : ''));
+else
+	$url = "/chat";
+
 if (!$doDelete) {
 	if (!$message) die('params pls');
 	//if (result("SELECT COUNT(*) FROM levels WHERE id = ?", [$id]) != 1) die('valid level pls');
+
+	// prevent double posting
+	$doublePostCheck = result("SELECT COUNT(*) FROM comments WHERE author = ? AND time > ?", [$userdata['id'], time() - 10]);
+	if ($doublePostCheck) {
+		// do nothing, just redirect like normal
+		redirect($url);
+	}
 
 	// rate-limit one user to only being able to comment 5 times every 10 minutes. it should be fair enough to not prevent legitimate use
 	$recentCommentCountUser = result("SELECT COUNT(*) FROM comments WHERE author = ? AND time > ?", [$userdata['id'], time() - (10 * 60)]);
@@ -74,10 +86,5 @@ if (!$doDelete) {
 
 // Invalidate index comments, even if a comment is deleted it might show up.
 $cachectrl->invIndexComments();
-
-if ($type != 'chat')
-	$url = sprintf('/%s/%s%s#comments', $type, $id, ($type == 'user' ? '?forceuser' : ''));
-else
-	$url = "/chat";
 
 redirect($url);

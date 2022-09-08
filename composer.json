@@ -6,18 +6,22 @@
 		"phpmailer/phpmailer": "dev-master",
 		"nelexa/zip": "^3.3.3",
 		"nopjmp/discord-webhooks": "dev-master",
-		"mpratt/relativetime": "dev-master"
+		"mpratt/relativetime": "dev-master",
+		"rollerozxa/php-diff": "dev-master"
 	},
 	"minimum-stability": "dev",
 	"repositories": [
 		{
 			"type": "vcs",
 			"url":  "https://github.com/principia-preservation-project/kaitai_struct_php_runtime"
+		}, {
+			"type": "vcs",
+			"url":  "https://github.com/rollerozxa/php-diff"
 		}
 	],
 	"config": {
 		"platform": {
-			"php": "7.3"
+			"php": "7.4"
 		}
 	}
 }

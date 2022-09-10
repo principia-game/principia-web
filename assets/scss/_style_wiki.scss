@@ -6,8 +6,8 @@
 }
 
 .toc {
-	border: 1px solid #444;
-	background-color: #171717;
+	border: 1px solid #888;
+	background-color: #e8e8e8;
 	min-width: 300px;
 	padding: 10px;
 	display: inline-block;
@@ -16,17 +16,15 @@
 		text-align: center;
 	}
 
-
 	ul {
 		margin: 0;
 		padding-left: 20px;
 	}
-
 }
 
 .infobox {
-	background-color: #141414;
-	border: 1px solid #444;
+	background-color: #e8e8e8;
+	border: 1px solid #888;
 	text-align: center;
 	width: 30%;
 	float: right;
@@ -41,13 +39,13 @@
 		border-collapse: collapse;
 
 		.heading {
-			background-color: #0c0c0c;
+			background-color: #f5f5f5;
 			font-size: 12pt;
 			font-weight: bold;
 		}
 
 		tr {
-			border-bottom: 1px solid #444;
+			border-bottom: 1px solid #888;
 
 			&:last-child {
 				border-bottom: 0;
@@ -60,13 +58,11 @@
 	}
 }
 
-
 .diff {
 	width: 100%;
 	border-collapse: collapse;
 	border-top: 1px solid #444;
 	border-bottom: 1px solid #444;
-
 
 	tbody th {
 		text-align: right;

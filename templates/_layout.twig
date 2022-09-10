@@ -62,7 +62,7 @@
 		</div>
 		{% block precontent %}{% endblock %}<br>
 		{% endif %}
-		<div class="home content{% if acmlm %} forum{% endif %}">
+		<div class="home content{% if acmlm %} forum{% endif %}{% if wiki %} wiki{% endif %}">
 			{% block content %}{% endblock %}
 		</div>{% if acmlm %}<br>{% endif %}
 		<div class="footer">

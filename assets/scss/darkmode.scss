@@ -164,6 +164,26 @@ table.c1 {
 	border-top: 1px solid #444;
 }
 
+.toc {
+	border: 1px solid #444;
+	background-color: #171717;
+}
+
+.infobox {
+	background-color: #141414;
+	border: 1px solid #444;
+
+	table {
+		.heading {
+			background-color: #0c0c0c;
+		}
+
+		tr {
+			border-bottom: 1px solid #444;
+		}
+	}
+}
+
 /// Generic form element overrides \\\
 
 textarea, input[type=text], input[type=password], input[type=color], .jscolor {

@@ -2,7 +2,7 @@
 body {
 	background-color: #f0f0f0;
 	font-family: "Roboto", "Arial", sans-serif;
-	font-size: 0.9em;
+	font-size: 11pt;
 	margin: auto;
 	max-width: 1000px;
 	padding-bottom: 30px;
@@ -20,6 +20,7 @@ p {
 }
 
 ul li, ol li {
+	margin-top: 0.5em;
 	margin-bottom: 0.5em;
 }
 

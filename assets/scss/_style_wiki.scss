@@ -42,6 +42,19 @@
 			background-color: #f5f5f5;
 			font-size: 12pt;
 			font-weight: bold;
+
+			&.beta:after {
+				color: #ffd700;
+				content: " (BETA)";
+				font-size: 12pt;
+				vertical-align: super;
+			}
+			&.unused:after {
+				color: #029fd3;
+				content: "  Unused";
+				font-size: 12pt;
+				vertical-align: super;
+			}
 		}
 
 		tr {

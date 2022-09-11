@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="/assets/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css?v=7" type="text/css">
 		<script defer src="/assets/base.js"></script>
 
+		{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 		<meta property="og:title" content="{{ title }} - principia-web">
 		{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
 		{% if description %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">

@@ -11,6 +11,7 @@
 <p>{{ contest.description | markdown_unsafe }}</p>
 
 <h2>Entries</h2>
+<div class="level-list">
 {% for level in levels %}
 	{% set ranking = '' %}
 	{% if not contest.active and not level.ranking == 0 %}
@@ -29,6 +30,7 @@
 {% else %}
 	There are no entries yet. You could submit one!
 {% endfor %}
+</div>
 
 {{ comments(comments, 'contest', contest.id) }}
 	{% endblock %}

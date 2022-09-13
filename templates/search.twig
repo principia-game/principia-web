@@ -14,11 +14,13 @@
 </form><br>
 
 {% if query %}
+	<div class="level-list">
 	{% for level in levels %}
 		{{ level(level) }}
 	{% else %}
 		Search returned no results.
 	{% endfor %}
+	</div>
 
 	{% set le_url = 'search?query=' ~ query ~ '&page=%s' %}
 	{{ pagination(level_count, glob_lpp, le_url, page) }}

@@ -117,6 +117,22 @@ div.menu {
 	padding: 15px;
 }
 
+.level-list {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	gap: 15px 5px;
+
+	@media screen and (max-width: 1000px) {
+		&.scrollable {
+			flex-flow: row nowrap;
+			justify-content: unset;
+			overflow-x: scroll;
+			padding-bottom: 15px;
+		}
+	}
+}
+
 div.level {
 	background-color: #fff;
 	display: inline-block;
@@ -129,7 +145,6 @@ div.level {
 
 	border: 1px solid #444;
 	border-radius: 4px;
-	margin-bottom: 10px;
 
 	.lvlbox_top {
 		color: black;

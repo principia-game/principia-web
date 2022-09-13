@@ -22,11 +22,13 @@
 {% endif %}
 
 <h2 class="center">Featured levels</h2>
+<div class="level-list scrollable">
 {% for featured_level in featured_levels %}
 	{{ level(featured_level) }}
 {% else %}
 	There are no featured levels. How sad. :'(
 {% endfor %}
+</div>
 
 <h2 class="header">Latest news <a href="/news">More</a></h2>
 <ul>
@@ -38,25 +40,31 @@
 </ul>
 
 <h2 class="header">Top rated levels <a href="/top">More</a></h2>
+<div class="level-list scrollable">
 {% for top_level in top_levels %}
 	{{ level(top_level) }}
 {% else %}
 	There are no levels. At all.
 {% endfor %}
+</div>
 
 <h2 class="header">Latest custom levels <a href="/latest/custom">More</a></h2>
+<div class="level-list scrollable">
 {% for custom_level in custom_levels %}
 	{{ level(custom_level) }}
 {% else %}
 	There are no custom levels. You could create one!
 {% endfor %}
+</div>
 
 <h2 class="header">Latest adventures <a href="/latest/adventure">More</a></h2>
+<div class="level-list scrollable">
 {% for adventure_level in adventure_levels %}
 	{{ level(adventure_level) }}
 {% else %}
 	There are no adventure levels. You could create one!
 {% endfor %}
+</div>
 
 <h2 class="header">Latest comments</h2>
 <div class="comments">

@@ -5,11 +5,13 @@
 	{% block content %}
 <h2>Packages</h2>
 
+<div class="level-list">
 {% for package in packages %}
 	{{ level(package, '', true) }}
 {% else %}
 	No packages.
 {% endfor %}
+</div>
 
 {{ pagination(package_count, glob_lpp, 'packages.php?page=%s', page) }}
 

@@ -5,11 +5,13 @@
 	{% block content %}
 <h2>Locked Levels</h2>
 
+<div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}
 {% else %}
 	No levels have been locked. Yay...?
 {% endfor %}
+</div>
 
 <br><br>
 	{% endblock %}

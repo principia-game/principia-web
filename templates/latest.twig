@@ -19,11 +19,13 @@
 	<a {% if type == 'all' %}class="sel"{% endif %} href="/latest">All</a>
 </div>
 
+<div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}
 {% else %}
 	There are no {% if type != 'all' %}{{ type }}{% endif %} levels. You could create one!
 {% endfor %}
+</div>
 
 {% if type == 'all' %}
 	{% set le_url = '/latest?page=%s' %}

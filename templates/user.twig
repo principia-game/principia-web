@@ -103,11 +103,13 @@
 	{% endif %}
 </p>
 
+<div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}
 {% else %}
 	This user doesn't have any uploaded levels.
 {% endfor %}
+</div>
 
 {% if userdata.id == id %}
 	{% set forceuser = "&forceuser" %}

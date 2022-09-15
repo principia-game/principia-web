@@ -1,0 +1,15 @@
+{% extends "_layout.twig" %}
+
+{% set title = level.title ~ " - Edit" %}
+
+	{% block content %}
+<h2>Edit level</h2>
+
+<form action="/editlevel.php?id={{ level.id }}" method="POST">
+	<p><input type="text" name="title" placeholder="Title" size="60" value="{{ level.title }}"></p>
+	<p><textarea name="description" placeholder="Description" cols="80" rows="15">{{ level.description }}</textarea></p>
+	<p><em>Markdown formatting syntax is allowed.</em></p>
+
+	<p><input type="submit" name="action" value="Save"></input></p>
+</form>
+	{% endblock %}

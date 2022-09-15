@@ -65,10 +65,8 @@
 	</p>
 	{% if userdata.id == level.author or userdata.powerlevel > 1 %}
 	<form method="POST"><p>
-		
-			<a href="/level/{{ lid }}?togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
-		
-
+		<a href="/level/{{ lid }}?togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
+		- <a href="/editlevel?id={{ lid }}">Modify metadata</a>
 		{% if userdata.id == level.author and contests %}
 			- Add to contest:
 			<select name="addtocontest" onchange="this.form.submit()">

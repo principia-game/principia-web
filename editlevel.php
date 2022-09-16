@@ -10,7 +10,7 @@ if (!$level || ($userdata['powerlevel'] < 2 && $userdata['id'] != $level['author
 
 if (isset($_POST['action'])) {
 	$title = $_POST['title'] ?? '';
-	$description = $_POST['description'] ?? '';
+	$description = str_replace("\r", "", $_POST['description'] ?? '');
 
 	lvledit($lid, 'set-name', $title);
 	lvledit($lid, 'set-description', $description);

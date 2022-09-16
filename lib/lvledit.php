@@ -21,6 +21,7 @@ function lvledit($level, $method, $value = null) {
 			'./tools/lvledit %s --%s',
 		$levelfile, $method);
 
-		return exec($cmd);
+		exec($cmd, $output);
+		return implode("\n", $output);
 	}
 }

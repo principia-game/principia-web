@@ -8,6 +8,8 @@ body {
 
 a {
 	color: #ffff00;
+
+	&:active { color: #aaaa00; }
 }
 
 .top, .footer {
@@ -74,8 +76,10 @@ div.level {
 	}
 }
 
-.t_user {
-	color: #6da0fd;
+.user {
+	.t_user {
+		color: #6da0fd;
+	}
 }
 
 .lvl-box {

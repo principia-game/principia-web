@@ -13,6 +13,9 @@ body {
 a {
 	color: #0000ff;
 	text-decoration: none;
+
+	&:hover { text-decoration: underline; }
+	&:active { color: #0000aa; }
 }
 
 p {
@@ -262,9 +265,15 @@ form.reglog {
 	}
 }
 
-.t_user {
-	color: #0000aa;
-	font-weight: bold;
+.user {
+	&, &:hover, &:active {
+		text-decoration: none;
+	}
+
+	.t_user {
+		color: #0000aa;
+		font-weight: bold;
+	}
 }
 
 .lvl-box {

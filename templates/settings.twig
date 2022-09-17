@@ -23,18 +23,20 @@
 	</tr>
 </table>#}
 
-<h3>Customize your profile</h3>
 <table class="settings">
+	<tr>
+		<th></th>
+		<th class="left">Customize your profile</th>
 	{% if userdata.powerlevel > 2 %}
 	<tr>
 		<td class="a">Title</td>
-		<td class="b"><input type="text" name="title" size="45" maxlength="256" value="{{ userdata.title }}"></td>
+		<td class="b"><input type="text" name="title" size="45" maxlength="256" style="width:60%" value="{{ userdata.title }}"></td>
 	</tr>
 	{% endif %}
 	{% if userdata.powerlevel > 1 %}
 	<tr>
 		<td class="a">Custom color</td>
-		<td class="b"><input name="customcolor" value="{{ userdata.customcolor | default('0000aa') }}" data-jscolor="{}"></td>
+		<td class="b"><input name="customcolor" size="12" value="{{ userdata.customcolor | default('0000aa') }}" data-jscolor="{}"></td>
 	</tr>
 	{% endif %}
 	<!--<tr>
@@ -43,20 +45,21 @@
 	</tr>-->
 	<tr>
 		<td class="a">About<br><em>Markdown allowed.</em></td>
-		<td class="b"><textarea name="about" rows="5" cols="80" wrap="virtual">{{ userdata.about }}</textarea></td>
+		<td class="b"><textarea name="about" rows="5" cols="80" wrap="virtual" style="width:90%">{{ userdata.about }}</textarea></td>
 	</tr>
 	<tr>
 		<td class="a">Location</td>
-		<td class="b"><input type="text" name="location" size="45" maxlength="128" value="{{ userdata.location }}"></td>
+		<td class="b"><input type="text" name="location" size="45" maxlength="128" style="width:60%" value="{{ userdata.location }}"></td>
 	</tr>
 	<tr>
 		<td class="a">Forum signature</td>
-		<td class="b"><textarea name="signature" rows="5" cols="80" wrap="virtual">{{ userdata.signature }}</textarea></td>
+		<td class="b"><textarea name="signature" rows="5" cols="80" wrap="virtual" style="width:90%">{{ userdata.signature }}</textarea></td>
 	</tr>
-</table>
 
-<h3>Options</h3>
-<table class="settings">
+	<tr>
+		<th></th>
+		<th class="left">Options</th>
+	</tr>
 	<tr>
 		<td class="a">Dark mode</td>
 		<td class="b">
@@ -73,9 +76,10 @@
 			</select>
 		</td>
 	</tr>
+
 	<tr>
-		<td class="a"></td>
-		<td class="b"></td>
+		<th></th>
+		<th></th>
 	</tr>
 	<tr>
 		<td class="a"></td>

@@ -10,6 +10,13 @@ body {
 	padding-right: 10px;
 }
 
+@media screen and (max-width: 640px) {
+	body {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+}
+
 a {
 	color: #0000ff;
 	text-decoration: none;
@@ -23,8 +30,8 @@ p {
 }
 
 ul li, ol li {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
+	margin-top: 0.7em;
+	margin-bottom: 0.7em;
 }
 
 .banner {
@@ -421,7 +428,6 @@ form.reglog {
 .settings {
 	width: 100%;
 	border-collapse: collapse;
-	margin-bottom: 10px;
 
 	.a {
 		text-align: center;

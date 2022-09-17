@@ -186,6 +186,24 @@ div.level {
 	}
 }
 
+.comment-box {
+	margin: 20px 5px;
+
+	.comment-input {
+		width: 96%;
+		padding: 5px;
+		min-height: 40px;
+	}
+
+	.submit {
+		padding-left: 5px;
+
+		em {
+			padding-left: 10px;
+		}
+	}
+}
+
 .comments .comment {
 	padding: 7px 8px;
 	border-bottom: 1px solid #ccc;
@@ -220,12 +238,7 @@ div.level {
 	}
 }
 
-.comment-input {
-	width: 96%;
-	margin: 5px;
-	padding: 5px;
-	min-height: 40px;
-}
+
 
 // Buttons for the Latest Levels page \\
 .latest-buttons {

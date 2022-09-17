@@ -11,12 +11,26 @@
 {% elseif contest_entered %}
 	<div class="header_message">Your level has been successfully entered into the <b>{{ contest_entered }}</b> contest!</div>
 {% endif %}
+
 <h1>{{ level.title }}</h1>
+
 <span class="misc">
 	  {{ userlink(level, 'u_') }}
 	- {{ level.cat | cat_to_type | title }} level
 	- {{ level.time | date('M j, Y') }} from {{ level.platform }}</span>
+
 <div class="lvl-box">
+	<div class="img">
+		{% if not level.visibility == 1 %}
+			<img src="/levels/thumbs/{{ level.id }}.jpg" alt="">
+		{% else %}
+			<img src="/assets/locked_thumb.svg" alt="Locked level">
+		{% endif %}
+		{% if level.revision > 1 %}
+			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
+		{% endif %}
+	</div>
+
 	<div class="info">
 		{% if not level.visibility == 1 %}
 			<div id="buttons">
@@ -44,25 +58,12 @@
 			<p><em>This level has been locked. It will not be visible outside of this level page.</em></p>
 		{% endif %}
 		<p>{{ level.description | markdown }}</p>
-
-	</div>
-	<div class="img">
-		{% if not level.visibility == 1 %}
-			<img src="/levels/thumbs/{{ level.id }}.jpg" alt="">
-		{% else %}
-			<img src="/assets/locked_thumb.svg" alt="Locked level">
-		{% endif %}
-		{% if level.revision > 1 %}
-			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
-		{% endif %}
 	</div>
 </div>
+
 <div class="lvl-data">
-	<p>
-		Views: {{ level.views }}
-		Downloads: {{ level.downloads }}
-		Level ID: {{ level.id }}
-	</p>
+	<p>Views: {{ level.views }} - Downloads: {{ level.downloads }} - Level ID: {{ level.id }}</p>
+
 	{% if userdata.id == level.author or userdata.powerlevel > 1 %}
 	<form method="POST"><p>
 		<a href="/level/{{ lid }}?togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>

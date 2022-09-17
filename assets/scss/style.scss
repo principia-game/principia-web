@@ -277,22 +277,16 @@ form.reglog {
 }
 
 .lvl-box {
-	clear: both;
 	margin-top: 1em;
 	min-height: 280px;
-	overflow: hidden;
-	position: relative;
 	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: flex-start;
 
 	.img {
-		width: 45%;
-		position: absolute;
-
-		overflow-y: auto;
-		overflow-x: hidden;
-		white-space: nowrap;
-		max-height: 260px;
-
+		width: 48%;
 		img {
 			width: 100%;
 		}
@@ -310,13 +304,9 @@ form.reglog {
 	}
 
 	.info {
-		background-color: #fafafa;
-		float: left;
-		left: 45%;
-		margin-left: 1em;
+		width: 48%;
 		padding: 1em;
-		position: relative;
-		width: 50%;
+		background-color: #fafafa;
 
 		// Play & Edit buttons \\
 		.play {
@@ -344,6 +334,20 @@ form.reglog {
 		.likemsg {
 			display: inline-block;
 			margin-right: 1em;
+		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.lvl-box {
+		flex-flow: row-reverse wrap;
+		gap: 10px 0px;
+
+		.img, .info {
+			width: 100%;
+		}
+		.info {
+			margin-bottom: 20px;
 		}
 	}
 }

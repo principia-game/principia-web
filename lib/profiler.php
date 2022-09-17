@@ -8,6 +8,6 @@ class Profiler {
 	}
 
 	function getStats() {
-		printf("%dKB used @ %1.3f secs", memory_get_usage(false) / 1024, microtime(true) - $this->starttime);
+		printf("Rendered in %1.3fs with %dKB memory used", microtime(true) - $this->starttime, memory_get_usage(false) / 1024);
 	}
 }

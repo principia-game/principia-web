@@ -33,7 +33,10 @@ $domain = 'https://example.org';
 $invite = '';
 
 // URL to Discord webhook for new level uploads. Leave blank to disable this.
-$webhook = '';
+$webhookLevel = '';
+
+// URL to Discord webhook for wiki edits. Leave blank to disable this.
+$webhookWiki = '';
 
 // principia-web's CAPTCHA system relies on a list of security questions. It's highly recommended to change these.
 // The answer checking is case-insensitive, but it has to be written in all lowercase here.

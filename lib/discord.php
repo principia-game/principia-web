@@ -18,7 +18,7 @@ $exampleWebhookData = [
  * @param array $level Level array with the necessary data.
  */
 function newLevelHook($level) {
-	global $webhook, $domain;
+	global $webhookLevel, $domain;
 
 	// dirty description truncating
 	if (strlen($level['description']) > 500) {
@@ -26,7 +26,7 @@ function newLevelHook($level) {
 		$level['description'] = substr($level['description'], 0, strpos($level['description'], "\n")) . '...';
 	}
 
-	$webhook = new Client($webhook);
+	$webhook = new Client($webhookLevel);
 	$mbd = new Embed();
 
 	$mbd->title($level['name'])

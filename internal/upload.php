@@ -85,7 +85,7 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 	print($nextId);
 
 	// if we got a webhook url, send level info to discord webhook
-	if ($webhook) {
+	if ($webhookLevel) {
 		$webhookdata = [
 			'id' => $nextId,
 			'name' => $level->name(),

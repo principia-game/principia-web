@@ -188,6 +188,10 @@ table.c1 {
 	}
 }
 
+a.nonexistant {
+	color: #e63333;
+}
+
 /// Generic form element overrides \\\
 
 textarea, input[type=text], input[type=password], input[type=color], .jscolor {

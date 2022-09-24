@@ -1,8 +1,6 @@
 <?php
 require('lib/common.php');
 
-needsLogin();
-
 $users = query("SELECT id, name, customcolor, joined FROM users");
 
 $ucount = result("SELECT COUNT(*) FROM users");

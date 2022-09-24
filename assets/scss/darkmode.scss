@@ -4,7 +4,7 @@
 $grid: #444;
 $link: #ff0;
 $link_active: darken($link, 17%);
-$bg: #101010;
+$bg: #0F0F0F;
 $bg_box: #191919;
 $bg_box2: #060606;
 $btn_play: #608060;
@@ -19,7 +19,7 @@ body {
 a {
 	color: $link;
 
-	&:active { color: $link; }
+	&:active { color: $link_active; }
 }
 
 .top, .footer {
@@ -128,6 +128,10 @@ div.level {
 .settings {
 	td, th {
 		border-bottom: 1px solid $grid;
+	}
+
+	tr th {
+		background-color: #080808;
 	}
 
 	tr {

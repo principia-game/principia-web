@@ -1,21 +1,31 @@
 // Include normal styling, so only one stylesheet file needs to be loaded.
 @import "style";
 
+$grid: #444;
+$link: #ff0;
+$link_active: darken($link, 17%);
+$bg: #101010;
+$bg_box: #191919;
+$bg_box2: #060606;
+$btn_play: #608060;
+$btn_edit: #636383;
+$btn_text: #eee;
+
 body {
-	background-color: #0F0F0F;
+	background-color: $bg;
 	color: white;
 }
 
 a {
-	color: #ffff00;
+	color: $link;
 
-	&:active { color: #aaaa00; }
+	&:active { color: $link; }
 }
 
 .top, .footer {
-	background-color: #111;
-	border-bottom: 1px solid #444;
-	border-top: 1px solid #444;
+	background-color: $bg_box;
+	border-bottom: 1px solid $grid;
+	border-top: 1px solid $grid;
 }
 
 div.menu {
@@ -23,17 +33,17 @@ div.menu {
 		color: #ddd;
 
 		&:hover {
-			background-color: #000;
+			background-color: $bg_box2;
 		}
 	}
 }
 
 .header_message, .skit {
-	border-bottom: 1px solid #444;
+	border-bottom: 1px solid $grid;
 }
 
 div.level {
-	background-color: #000;
+	background-color: $bg_box2;
 
 	.lvlbox_top {
 		color: white;
@@ -45,9 +55,9 @@ div.level {
 }
 
 .comments .comment {
-	border-bottom: 1px solid #444;
+	border-bottom: 1px solid $grid;
 
-	&:nth-child(odd)  { background-color: #0a0a0a; }
+	&:nth-child(odd)  { background-color: #0c0c0c; }
 	&:nth-child(even) { background-color: #171717; }
 
 	&.deleted {
@@ -60,18 +70,18 @@ div.level {
 }
 
 .latest-buttons a {
-	background-color: #608060;
-	color: #eee;
+	background-color: $btn_play;
+	color: $btn_text;
 
 	&:hover {
-		background-color: darken(#608060, 10%);
+		background-color: darken($btn_play, 10%);
 	}
 
 	&.sel {
-		background-color: #636383;
+		background-color: $btn_edit;
 
 		&:hover {
-			background-color: darken(#636383, 10%);
+			background-color: darken($btn_edit, 10%);
 		}
 	}
 }
@@ -106,7 +116,7 @@ div.level {
 }
 
 .lvl-data {
-	background-color: #000;
+	background-color: $bg_box2;
 }
 
 .dl {
@@ -117,37 +127,37 @@ div.level {
 
 .settings {
 	td, th {
-		border-bottom: 1px solid #444;
+		border-bottom: 1px solid $grid;
 	}
 
 	tr {
-		&:nth-child(odd)  { background-color: #0a0a0a; }
+		&:nth-child(odd)  { background-color: #0c0c0c; }
 		&:nth-child(even) { background-color: #171717; }
 	}
 }
 
 .user_pic {
-	border: 1px solid #444;
+	border: 1px solid $grid;
 }
 
 .user_stats {
-	border: 1px solid #444;
+	border: 1px solid $grid;
 
 	.row {
-		border-top: 1px solid #444;
+		border-top: 1px solid $grid;
 	}
 }
 
 /// _style_forums \\\
 
 table.c1 {
-	border: 1px solid #444;
+	border: 1px solid $grid;
 
 	td.b {
-		border: 1px solid #444;
+		border: 1px solid $grid;
 	}
 
-	tr.n1, td.n1 { background-color: #0a0a0a; }
+	tr.n1, td.n1 { background-color: #0c0c0c; }
 	tr.n2, td.n2 { background-color: #141414; }
 	tr.n3, td.n3 { background-color: #2b2b2b; }
 }
@@ -155,31 +165,27 @@ table.c1 {
 .threadpost {
 	.mainbar {
 		td, th, table {
-			border: 1px solid white;
+			border: 1px solid $grid;
 		}
 		.siggy {
-			border-top: 1px solid white;
+			border-top: 1px solid $grid;
 		}
 	}
 }
 
-.top_forum {
-	margin-top: -1px;
-}
-
 /// _style_wiki \\\
 .wikilinks {
-	border-top: 1px solid #444;
+	border-top: 1px solid $grid;
 }
 
 .toc {
-	border: 1px solid #444;
+	border: 1px solid $grid;
 	background-color: #171717;
 }
 
 .infobox {
 	background-color: #141414;
-	border: 1px solid #444;
+	border: 1px solid $grid;
 
 	table {
 		.heading {
@@ -187,7 +193,7 @@ table.c1 {
 		}
 
 		tr {
-			border-bottom: 1px solid #444;
+			border-bottom: 1px solid $grid;
 		}
 	}
 }
@@ -200,7 +206,7 @@ a.nonexistant {
 
 textarea, input[type=text], input[type=password], input[type=color], .jscolor {
 	background-color: #111;
-	border: 1px solid #444;
+	border: 1px solid $grid;
 	color: white;
 	padding: 5px;
 }

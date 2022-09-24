@@ -1,7 +1,7 @@
 /// forum specific styling uwu \\\
 
 table.c1 {
-	border: #bbb 1px solid;
+	border: $grid 1px solid;
 	border-spacing: 0px;
 	border-collapse: collapse;
 	width: 100%;
@@ -24,7 +24,7 @@ table.c1 {
 	}
 
 	td.b {
-		border: #bbb 1px solid;
+		border: $grid 1px solid;
 		padding: 5px;
 	}
 

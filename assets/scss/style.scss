@@ -1,6 +1,16 @@
 
+$grid: #bbb;
+$link: #00f;
+$link_active: darken($link, 17%);
+$bg: #f0f0f0;
+$bg_box: #eee;
+$bg_box2: #fff;
+$btn_play: #9ec59e;
+$btn_edit: #a3a3ca;
+$btn_text: #202020;
+
 body {
-	background-color: #f0f0f0;
+	background-color: $bg;
 	font-family: "Roboto", "Arial", sans-serif;
 	font-size: 11pt;
 	margin: auto;
@@ -18,11 +28,11 @@ body {
 }
 
 a {
-	color: #0000ff;
+	color: $link;
 	text-decoration: none;
 
 	&:hover { text-decoration: underline; }
-	&:active { color: #0000aa; }
+	&:active { color: $link_active; }
 }
 
 p {
@@ -55,16 +65,17 @@ ul li, ol li {
 }
 
 .top, .footer {
-	background-color: #eee;
-	border-bottom: 1px solid #bbb;
-	border-top: 1px solid #bbb;
+	background-color: $bg_box;
+	border-bottom: 1px solid $grid;
+	border-top: 1px solid $grid;
 	margin-top: 0px;
 	overflow: hidden;
 	padding: 10px 8px;
 }
 
 .top {
-	margin-top: 6px;
+	padding-top: 10px;
+	border-top: 0 !important;
 }
 
 .footer {
@@ -77,10 +88,6 @@ ul li, ol li {
 	height: 32px;
 	float: left;
 	margin-right: 7px;
-}
-
-.float-right {
-	float: right;
 }
 
 div.menu {
@@ -99,7 +106,7 @@ div.menu {
 		border-radius: 5px;
 
 		&:hover {
-			background-color: #fff;
+			background-color: $bg_box2;
 		}
 	}
 
@@ -123,7 +130,7 @@ div.menu {
 }
 
 .header_message {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid $grid;
 	padding: 15px;
 }
 
@@ -144,7 +151,7 @@ div.menu {
 }
 
 div.level {
-	background-color: #fff;
+	background-color: $bg_box2;
 	display: inline-block;
 	position: relative;
 	overflow: clip;
@@ -213,7 +220,7 @@ div.level {
 
 .comments .comment {
 	padding: 7px 8px;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid $grid;
 	overflow-wrap: break-word;
 	max-height: 130px;
 	overflow: auto;
@@ -252,23 +259,24 @@ div.level {
 	margin-bottom: 15px;
 }
 .latest-buttons a {
-	background-color: #9ec59e;
+	background-color: $btn_play;
 	border: none;
-	color: #202020;
+	color: $btn_text;
 	display: inline-block;
 	font-weight: bold;
 	margin-right: 0.5em;
 	padding: 10px 20px;
 
 	&:hover {
-		background-color: lighten(#9bc09b, 15%);
+		background-color: lighten($btn_play, 15%);
+		text-decoration: none;
 	}
 
 	&.sel {
-		background-color: #a3a3ca;
+		background-color: $btn_edit;
 
 		&:hover {
-			background-color: lighten(#a3a3ca, 15%);
+			background-color: lighten($btn_edit, 15%);
 		}
 	}
 }
@@ -331,24 +339,25 @@ form.reglog {
 
 		// Play & Edit buttons \\
 		.play {
-			background-color: #9ec59e;
+			background-color: $btn_play;
 			border: none;
-			color: #202020;
+			color: $btn_text;
 			display: inline-block;
 			font-weight: bold;
 			margin-right: 0.5em;
 			padding: 10px 20px;
 
 			&:hover {
-				background-color: lighten(#9bc09b, 15%);
+				background-color: lighten($btn_play, 15%);
+				text-decoration: none;
 			}
 		}
 
 		.play-edit {
-			background-color: #a3a3ca;
+			background-color: $btn_edit;
 
 			&:hover {
-				background-color: lighten(#a3a3ca, 15%);
+				background-color: lighten($btn_edit, 15%);
 			}
 		}
 
@@ -374,7 +383,7 @@ form.reglog {
 }
 
 .lvl-data {
-	background-color: #fff;
+	background-color: $bg_box2;
 	padding: 0.5em;
 
 	p {
@@ -387,26 +396,9 @@ form.reglog {
 	border-collapse: collapse;
 
 	td {
-		border: 1px solid black;
+		border: 1px solid $grid;
 		padding: 7px;
 	}
-}
-
-.noborder {
-	border: 0;
-}
-
-.center {
-	text-align: center;
-}
-
-.text-for-ants {
-	font-size: 8pt;
-}
-
-.error {
-	color: red;
-	font-weight: bold;
 }
 
 // Pagination \\
@@ -436,7 +428,7 @@ form.reglog {
 	}
 
 	td, th {
-		border-bottom: 1px solid #ccc;
+		border-bottom: 1px solid $grid;
 		padding: 10px 5px;
 	}
 
@@ -449,7 +441,7 @@ form.reglog {
 // Welcome Thing on Index \\
 
 .skit {
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid $grid;
 	display: block;
 	text-align: center;
 	font-size: 1em;
@@ -459,13 +451,23 @@ form.reglog {
 	}
 }
 
-/// Generic text aligns \\\
+/// Generic classes \\\
 
 .left	{ text-align: left; }
 .center	{ text-align: center; }
 .right	{ text-align: right; }
 
 .clear_right { clear: right; }
+.float-right { float: right; }
+
+.noborder { border: 0; }
+
+.text-for-ants { font-size: 8pt; }
+
+.error {
+	color: red;
+	font-weight: bold;
+}
 
 
 /// User page \\\
@@ -475,7 +477,7 @@ form.reglog {
 
 .user_pic {
 	float: right;
-	border: 1px solid #bbb;
+	border: 1px solid $grid;
 	width: 100px;
 	height: 100px;
 	display: flex;
@@ -491,7 +493,7 @@ form.reglog {
 
 .user_stats {
 	margin-left: 10px;
-	border: 1px solid #bbb;
+	border: 1px solid $grid;
 	width: 300px;
 	float: right;
 

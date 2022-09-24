@@ -473,8 +473,23 @@ form.reglog {
 	margin-bottom: 1em;
 }
 
+.user_pic {
+	float: right;
+	border: 1px solid #bbb;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1px;
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
+
 .user_stats {
-	margin-right: 20px;
 	margin-left: 10px;
 	border: 1px solid #bbb;
 	width: 300px;

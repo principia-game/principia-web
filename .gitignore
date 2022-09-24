@@ -4,7 +4,7 @@ levels/
 packages/
 templates/cache/
 level_archive/
-forum/userpic/
+userpic/
 
 ## SCSS caches
 assets/css/

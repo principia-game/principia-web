@@ -28,6 +28,28 @@ if (isset($_POST['action'])) {
 		}
 	}
 
+	// avatars
+	$fname = $_FILES['avatar'] ?? null;
+	if ($fname && $fname['size'] > 0) {
+		$res = getimagesize($fname['tmp_name']);
+
+		if ($res['mime'] != 'image/png')
+			$error .= "- Only PNG images allowed.<br>";
+
+		if ($res[0] > 180 || $res[1] > 180)
+			$error .= "- The image is too big.<br>";
+
+		if ($fname['size'] > 80*1024)
+			$error .= "- The image filesize too big.<br>";
+
+		if (!$error) {
+			if (move_uploaded_file($fname['tmp_name'], 'userpic/'.$userdata['id']))
+				$fields['avatar'] = 1;
+			else
+				trigger_error("Avatar uploading broken, check userpic/ permissions", E_USER_ERROR);
+		}
+	}
+
 	// Temp variables for dynamic query construction.
 	$fieldquery = '';
 	$placeholders = [];

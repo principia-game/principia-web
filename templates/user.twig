@@ -65,6 +65,7 @@
 	{% endif %}
 </ul>
 {% else %}
+
 <div class="user_stats">
 	<div class="topthing"><b>General information</b></div>
 	<div class="row">
@@ -78,6 +79,11 @@
 		<b>Last view</b>: {{ userpagedata.lastview | relative_time }}
 	</div>
 </div>
+
+{% if userpagedata.avatar %}
+	<div class="user_pic"><img src="/userpic/{{ userpagedata.id }}"></div>
+{% endif %}
+
 <h2>{{ name }}
 	{% if userpagedata.powerlevel > 1 %}<img class="sdsd" src="/assets/icons/shield.svg" height="16" title="User is a moderator.">{% endif %}
 	{% if userpagedata.powerlevel < 0 %}<img class="sdsd" src="/assets/icons/gavel.svg" height="16" title="User has been banned.">{% endif %}</h2>

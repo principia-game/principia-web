@@ -3,7 +3,7 @@
 {% set title = "Settings" %}
 
 	{% block content %}
-<form action="settings" method="post">
+<form action="settings" method="post" enctype="multipart/form-data">
 <h2>Settings</h2>
 
 {#<h3>Credentials</h3>
@@ -39,10 +39,17 @@
 		<td class="b"><input name="customcolor" size="12" value="{{ userdata.customcolor | default('0000aa') }}" data-jscolor="{}"></td>
 	</tr>
 	{% endif %}
-	<!--<tr>
+	<tr>
 		<td class="a">Avatar</td>
-		<td class="b"><input type="file" name="avatar" size="40"></td>
-	</tr>-->
+		<td class="b">
+			{% if userdata.avatar %}
+				<span style="float:left;margin-right:20px"><img src="/userpic/{{ userdata.id }}" alt=\"(Avatar)\" height="64"></span>
+				<strong>Upload new:</strong><br><br><input type="file" name="avatar"> (max 180x180, <80KB)
+			{% else %}
+				<input type="file" name="avatar">
+			{% endif %}
+		</td>
+	</tr>
 	<tr>
 		<td class="a">About<br><em>Markdown allowed.</em></td>
 		<td class="b"><textarea name="about" rows="5" cols="80" wrap="virtual" style="width:90%">{{ userdata.about }}</textarea></td>

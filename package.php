@@ -1,25 +1,25 @@
 <?php
 require('lib/common.php');
 
-$lid = $_GET['id'] ?? 0;
+$pid = $_GET['id'] ?? 0;
 
-$pkg = fetch("SELECT $userfields p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$lid]);
+$pkg = fetch("SELECT $userfields p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
 
-if (!$pkg) {
-	error('404', "The requested package wasn't found.");
+if (!$pkg) error('404', "The requested package wasn't found.");
+
+if ($log) {
+	query("UPDATE packages SET views = views + '1' WHERE id = ?", [$pid]);
+	$pkg['views']++;
 }
 
-query("UPDATE packages SET views = views + '1' WHERE id = ?", [$lid]);
-$pkg['views']++;
+clearMentions('package', $pid);
 
-clearMentions('package', $lid);
-
-$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 6 AND c.level = ? ORDER BY c.time DESC", [$lid]);
+$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 6 AND c.level = ? ORDER BY c.time DESC", [$pid]);
 
 $twig = twigloader();
 
 echo $twig->render('package.twig', [
-	'id' => $lid,
+	'id' => $pid,
 	'pkg' => $pkg,
 	'comments' => fetchArray($comments)
 ]);

@@ -8,7 +8,7 @@ $packages = query("SELECT $userfields p.id id,p.title title FROM packages p JOIN
 $count = result("SELECT COUNT(*) FROM packages");
 
 $twig = twigloader();
-echo $twig->render('packages.twig', [
+echo $twig->render('listpackages.twig', [
 	'packages' => fetchArray($packages),
 	'page' => $page,
 	'package_count' => $count

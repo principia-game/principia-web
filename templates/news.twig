@@ -10,14 +10,13 @@
 
 	{% block content %}
 {% if newsid %}
-	<h2>{{ news.title }}</h2>
+	<h1>{{ news.title }}</h1>
 	<p><em>Published on the {{ time }}</em></p>
 	<p>{{ news.text | markdown_unsafe }}</p>
 
 	{{ comments(comments, 'news', news.id) }}
 {% else %}
-	<h2 class="header">Latest News
-		{% if userdata.powerlevel > 2 %}<a href="/news?new">New</a>{% endif %}</h2>
+	<h1 class="header">Latest News {% if userdata.powerlevel > 2 %}<a href="/news?new">New</a>{% endif %}</h1>
 	<ul>
 		{% for new in news %}
 			<li><a href="/news/{{ new.id }}">{{ new.title }}</li>

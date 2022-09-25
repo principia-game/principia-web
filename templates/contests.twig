@@ -3,7 +3,7 @@
 {% set title = "Contests" %}
 
 	{% block content %}
-<h2 class="header">Latest Contests</h2>
+<h1 class="header">Latest Contests</h1>
 <ul>
 	{% for contest in contests %}
 		<li><a href="/contest/{{ contest.id }}">{{ contest.title }}</li>

@@ -5,9 +5,7 @@ $contestid = $_GET['id'] ?? 0;
 
 $contest = fetch("SELECT * FROM contests WHERE id = ?", [$contestid]);
 
-if (!$contest) {
-	error('404', "The requested contest wasn't found.");
-}
+if (!$contest) error('404', "The requested contest wasn't found.");
 
 clearMentions('contest', $contestid);
 

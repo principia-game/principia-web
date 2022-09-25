@@ -5,9 +5,7 @@ $lid = $_GET['id'] ?? 0;
 
 $level = fetch("SELECT $userfields l.* FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
-if (!$level) {
-	error('404', "The requested level wasn't found.");
-}
+if (!$level) error('404', "The requested level wasn't found.");
 
 if ($log) {
 	// like

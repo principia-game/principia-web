@@ -26,3 +26,5 @@ lua/
 .vscode/
 wiki/
 misc/
+tools/lvlinfo
+tools/lvledit

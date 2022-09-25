@@ -412,14 +412,14 @@ form.reglog {
 .pagination {
 	margin-top: 1em;
 	font-size: 14pt;
+	font-weight: bold;
 
 	&:before {
 		content: "Pages: ";
 	}
 
 	span {
-		font-weight: bold;
-		margin-right: 5px;
+		margin-left: 7px;
 	}
 }
 

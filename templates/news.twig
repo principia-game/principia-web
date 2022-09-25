@@ -19,7 +19,7 @@
 	<h1 class="header">Latest News {% if userdata.powerlevel > 2 %}<a href="/news?new">New</a>{% endif %}</h1>
 	<ul>
 		{% for new in news %}
-			<li><a href="/news/{{ new.id }}">{{ new.title }}</li>
+			<li><b>{{ new.time | date('M j, Y') }}</b> - <a href="/news/{{ new.id }}">{{ new.title }}</a></li>
 		{% else %}
 			<li>No news.</li>
 		{% endfor %}

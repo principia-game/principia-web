@@ -1,15 +1,12 @@
 {% set pages = (levels / lpp)|round(0, 'ceil') %}
 {% if pages > 1 %}
-	<div class="pagination">
-		{% for page in 1..pages %}
-			<span>
-				{% if page != current %}
-					<a href="{{ url | format(page) }}"> {{ page }} </a>
-				{% else %}
-					{{ page }}
-				{% endif %}
-			</span>
-		{% endfor %}
-	</div>
+<div class="pagination">
+	{% for page in 1..pages %}
+		<span>{%- if page != current -%}
+			<a href="{{ url | format(page) }}">{{ page }}</a>
+		{%- else -%}
+			{{ page }}
+		{%- endif -%}</span>
+	{% endfor %}
+</div>
 {% endif %}
-

@@ -1,11 +1,10 @@
 <?php
 require('lib/common.php');
 
-if (isset($_GET['id'])) {
+if (isset($_GET['id']))
 	$userpagedata = fetch("SELECT * FROM users WHERE id = ?", [$_GET['id']]);
-} else if (isset($_GET['name'])) {
+else if (isset($_GET['name']))
 	$userpagedata = fetch("SELECT * FROM users WHERE name = ?", [$_GET['name']]);
-}
 
 if (!isset($userpagedata) || !$userpagedata) error('404', "No user specified.");
 

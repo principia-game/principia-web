@@ -23,9 +23,7 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 2) {
 if ($newsid) {
 	$newsdata = fetch("SELECT * FROM news WHERE id = ?", [$newsid]);
 
-	if (!$newsdata) {
-		error('404', "The requested news article wasn't found.");
-	}
+	if (!$newsdata) error('404', "The requested news article wasn't found.");
 
 	if (!isset($newsdata['redirect'])) {
 		clearMentions('news', $newsid);

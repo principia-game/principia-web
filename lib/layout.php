@@ -53,9 +53,9 @@ function pagination($levels, $lpp, $url, $current) {
 }
 
 function error($title, $message) {
-	global $acmlm;
+	global $acmlm, $wiki;
 
-	if ($acmlm)
+	if ($acmlm || $wiki)
 		$twig = _twigloader();
 	else
 		$twig = twigloader();

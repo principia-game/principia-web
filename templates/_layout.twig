@@ -35,7 +35,6 @@
 				<a href="/forum/">Forum</a>
 				{#<a href="/contests">Contests</a>#}
 				<a href="/wiki/">Wiki</a>
-				{% if log %}<a href="/discord">Discord</a>{% endif %}
 				<a href="/search"><img src="/assets/icons/search.svg" class="search" alt="Search"></a>
 			</div>
 			<div class="menu right">
@@ -69,7 +68,11 @@
 			{% block content %}{% endblock %}
 		</div>{% if acmlm %}<br>{% endif %}
 		<div class="footer">
-			<a href="/userlist">User list</a> - <a href="http://archive.principiagame.com">Official community site archive</a> - <a href="/about">About</a>
+			<a href="/download">Downloads</a>
+			{% if discord_invite %}- <a href="{{ discord_invite }}">Discord</a>{% endif %}
+			- <a href="/userlist">User list</a>
+			- <a href="http://archive.principiagame.com">Official community site archive</a>
+			- <a href="/about">About</a>
 			<br>{{ custom_info() }}
 			Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a>
 			commit <a href="https://github.com/principia-preservation-project/principia-web/commit/{{ git_commit(false) }}">{{ git_commit() }}</a> -

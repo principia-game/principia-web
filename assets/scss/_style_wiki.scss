@@ -1,15 +1,12 @@
 
-// sane styling for wiki pages
-.wiki {
-	img {
-		max-width: 100%;
-	}
-}
-
 .wikilinks {
 	border-top: 1px solid $grid;
 	padding: 10px;
 	margin-top: 2em;
+
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
 }
 
 .toc {

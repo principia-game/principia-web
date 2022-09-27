@@ -206,6 +206,10 @@ a.nonexistant {
 	color: #e63333;
 }
 
+.sizediff-pos { color: #0c0 }
+.sizediff-neg { color: #c00 }
+.sizediff-net { color: #aaa }
+
 /// Generic form element overrides \\\
 
 textarea, input[type=text], input[type=password], input[type=color], .jscolor {

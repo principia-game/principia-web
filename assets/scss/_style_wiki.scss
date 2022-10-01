@@ -1,4 +1,11 @@
 
+// sane styling for wiki pages
+.wiki {
+	img {
+		max-width: 100%;
+	}
+}
+
 .wikilinks {
 	border-top: 1px solid $grid;
 	padding: 10px;

@@ -131,6 +131,7 @@ class PrincipiaForumExtension extends \Twig\Extension\AbstractExtension {
 
 			// post.php
 			new \Twig\TwigFunction('threadpost', 'threadpost', ['is_safe' => ['html']]),
+			new \Twig\TwigFunction('minipost', 'minipost', ['is_safe' => ['html']]),
 		];
 	}
 }

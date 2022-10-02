@@ -89,11 +89,20 @@ if ($action == 'Preview') {
 	$topbot['title'] .= ' (Preview)';
 }
 
+$fieldlist = userfields('u', 'u') . ', u.posts uposts, ';
+$newestposts = query("SELECT $fieldlist p.*, pt.text
+			FROM z_posts p
+			LEFT JOIN z_poststext pt ON p.id = pt.id AND p.revision = pt.revision
+			LEFT JOIN users u ON p.user = u.id
+			WHERE p.thread = ? AND p.deleted = 0
+			ORDER BY p.id DESC LIMIT 5", [$tid]);
+
 $twig = _twigloader();
 echo $twig->render('newreply.twig', [
 	'post' => $post ?? null,
 	'topbot' => $topbot,
 	'action' => $action,
 	'tid' => $tid,
-	'error' => $error
+	'error' => $error,
+	'newestposts' => $newestposts
 ]);

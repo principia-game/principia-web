@@ -33,5 +33,13 @@
 	</table>
 </form>
 <br>
+<table class="c1 threadpost">
+	<tr class="h"><td class="b h" colspan="2">Thread preview</td></tr>
+	{% for post in newestposts %}
+		{{ minipost(post) }}
+	{% endfor %}
+</table>
+
+<br>
 {{ render_page_bar(topbot) }}
 	{% endblock %}

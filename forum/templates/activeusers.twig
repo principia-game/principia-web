@@ -3,28 +3,29 @@
 {% set title = "Active users" %}
 
 	{% block content %}
-<table class="c1 autowidth">
-	<tr class="h"><td class="b">Active users during the last {{ timeunits(time) }}</td></tr>
-	<tr class="n1"><td class="b n1 center">
+<table class="settings" style="width:350px">
+	<tr><th>Active users during the last {{ timeunits(time) }}</td></tr>
+	<tr><td class="center">
 		{{ timelinks('activeusers') }}
 	</td></tr>
 </table><br>
-<table class="c1">
-	<tr class="h">
-		<td class="b h" width="30">#</td>
-		<td class="b h">Username</td>
-		<td class="b h" width="200">Registered on</td>
-		<td class="b h" width="50">Posts</td>
-		<td class="b h" width="50">Total</td>
+
+<table class="settings">
+	<tr>
+		<th width="40">#</th>
+		<th>Username</th>
+		<th width="140">Registered on</th>
+		<th width="50">Posts</th>
+		<th width="50">Total</th>
 	</tr>
 	{% set i = 1 %}
 	{% for user in users %}
 		<tr class="n{% if i % 2 %}1{% else %}2{% endif %} center">
-			<td class="b">{{ i }}.</td>
-			<td class="b left">{{ userlink(user) }}</td>
-			<td class="b">{{ user.joined | date('Y-m-d H:i') }}</td>
-			<td class="b"><b>{{ user.num }}</b></td>
-			<td class="b"><b>{{ user.posts }}</b></td>
+			<td>{{ i }}.</td>
+			<td class="left">{{ userlink(user) }}</td>
+			<td>{{ user.joined | date('Y-m-d H:i') }}</td>
+			<td><b>{{ user.num }}</b></td>
+			<td><b>{{ user.posts }}</b></td>
 		</tr>
 		{% set i = i + 1 %}
 	{% else %}

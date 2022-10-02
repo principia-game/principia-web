@@ -11,13 +11,17 @@
 {{ render_page_bar(topbot) }}
 
 {% if time %}
-	<table class="c1 autowidth">
-		<tr class="h"><td class="b">Latest Posts</td></tr>
-		<tr><td class="b n1 center">
+	<table class="settings" style="width:350px">
+		<tr><th>Latest Posts</th></tr>
+		<tr><td class="center">
 			<a href="forum?time={{ time }}">By Threads</a> | By Posts</a><br><br>
 			{{ timelinks('thread') }}
 		</td></tr>
 	</table><br>
+{% endif %}
+
+{% if viewmode == "thread" %}
+	<h1>{{ title }}</h1>
 {% endif %}
 
 {{ modlinks | raw }}{{ pagelist | raw }}

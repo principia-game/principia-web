@@ -36,15 +36,25 @@ table.c1 {
 	tr.n1, td.n1 { background: #f5f5f5; }
 	tr.n2, td.n2 { background: #ebebeb; }
 	tr.n3, td.n3 { background: #d4d4d4; }
+}
 
-	.delete {
-		font-weight:900;
-		display: inline-block;
-		margin-left: 6px;
-		margin-right: 6px;
-		font-size: 18px;
-		color: red;
-	}
+.delete-cross {
+	font-weight:900;
+	display: inline-block;
+	margin-left: 6px;
+	margin-right: 6px;
+	font-size: 16px;
+	color: red;
+}
+
+/* Mobile hacks haha :^) */
+@media (min-width: 640px) {
+	.nod { display: none; }
+}
+
+@media only screen and (max-width: 640px) {
+	/* 'no mobile' */
+	.nom { display: none; }
 }
 
 .pagelist {

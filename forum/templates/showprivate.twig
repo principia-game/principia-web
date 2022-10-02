@@ -8,7 +8,9 @@
 
 	{% block content %}
 {{ render_page_bar(pagebar) }}
-<br>
+
+<h1>{{ pmsgs.title | default('(untitled)') }}</h2>
+
 {{ threadpost(pmsgs) }}
 <br>
 {{ render_page_bar(pagebar) }}

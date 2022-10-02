@@ -5,19 +5,19 @@
 	{% block content %}
 {{ render_page_bar(topbot) }}
 <br>
-<table class="c1">
-	<tr class="h">
-		<td class="b" width="17">&nbsp;</td>
-		<td class="b" style="width:30px">&nbsp;</td>
-		<td class="b">Title</td>
-		<td class="b" width="130">{{ fieldn }}</td>
-		<td class="b" width="130">Sent on</td>
+<table class="settings">
+	<tr>
+		<th class="b" width="17">&nbsp;</th>
+		<th class="b" style="width:30px">&nbsp;</th>
+		<th class="b">Title</th>
+		<th class="b" width="130">{{ fieldn }}</th>
+		<th class="b" width="130">Sent on</th>
 	</tr>
 {% set i = 1 %}
 {% for pmsg in pmsgs %}
 	<tr class="n{% if i % 2 %}1{% else %}2{% endif %} center">
 		<td class="b n2">
-			<a href="private?action=del&id={{ pmsg.id }}&view={{ view }}" class="delete">X</a>
+			<a href="private?action=del&id={{ pmsg.id }}&view={{ view }}" class="delete-cross">X</a>
 		</td>
 		<td class="b n1">{% if pmsg.unread %}{{ new_status("n") }}{% endif %}</td>
 		<td class="b left wbreak"><a href="showprivate?id={{ pmsg.id }}">{{ pmsg.title | default('(untitled)') }}</a></td>

@@ -24,12 +24,12 @@
 	<tr class="h">
 		<td class="b h" style="width:30px">&nbsp;</td>
 		{% if showforum %}
-			<td class="b h">Forum</td>
+			<td class="b h nom">Forum</td>
 		{% endif %}
 		<td class="b h">Title</td>
-		<td class="b h" width="130">Started by</td>
-		<td class="b h" width="50">Replies</td>
-		<td class="b h" width="50">Views</td>
+		<td class="b h nom" width="130">Started by</td>
+		<td class="b h nom" width="50">Replies</td>
+		<td class="b h nom" width="50">Views</td>
 		<td class="b h" width="130">Last post</td>
 	</tr>
 	{% set i = 1 %}
@@ -64,14 +64,14 @@
 				{% endif %}
 			</td>
 			{% if showforum %}
-				<td class="b"><a href="forum?id={{ thread.fid }}">{{ thread.ftitle }}</a></td>
+				<td class="b nom"><a href="forum?id={{ thread.fid }}">{{ thread.ftitle }}</a></td>
 			{% endif %}
 			<td class="b left wbreak">
 				<a href="thread?id={{ thread.id }}">{{ thread.title }}</a>
 			</td>
-			<td class="b">{{ userlink(thread, 'u1') }}</td>
-			<td class="b">{{ thread.posts - 1 }}</td>
-			<td class="b">{{ thread.views }}</td>
+			<td class="b nom">{{ userlink(thread, 'u1') }}</td>
+			<td class="b nom">{{ thread.posts - 1 }}</td>
+			<td class="b nom">{{ thread.views }}</td>
 			<td class="b">
 				<nobr>{{ thread.lastdate | date('Y-m-d H:i') }}</nobr><br>
 				<span>by {{ userlink(thread, 'u2') }} <a href="thread?pid={{ thread.lastid }}#{{ thread.lastid }}">&raquo;</a></span>

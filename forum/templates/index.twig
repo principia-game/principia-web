@@ -19,8 +19,8 @@
 			<tr class="h">
 				<td class="b h" style="width:30px">&nbsp;</td>
 				<td class="b h">{{ categories[forum.cat] }}</td>
-				<td class="b h" width="50">Threads</td>
-				<td class="b h" width="50">Posts</td>
+				<td class="b h nom" width="50">Threads</td>
+				<td class="b h nom" width="50">Posts</td>
 				<td class="b h" width="150">Last post</td>
 			</tr>
 	{% endif %}
@@ -35,8 +35,8 @@
 			{% if forum.minread > 0 %}({% endif %}<a href="forum?id={{ forum.id }}">{{ forum.title }}</a>{% if forum.minread > 0 %}){% endif %}
 			<div style="margin-top:3px">{{ forum.descr | raw }}</div>
 		</td>
-		<td class="b n1">{{ forum.threads }}</td>
-		<td class="b n1">{{ forum.posts }}</td>
+		<td class="b n1 nom">{{ forum.threads }}</td>
+		<td class="b n1 nom">{{ forum.posts }}</td>
 		<td class="b n2">
 			{% if forum.posts > 0 and forum.lastdate > 0 %}
 				<nobr>{{ forum.lastdate | date('Y-m-d H:i') }}</nobr>

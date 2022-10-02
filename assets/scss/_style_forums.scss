@@ -47,6 +47,21 @@ table.c1 {
 	}
 }
 
+input[value=Preview], input[value=Submit] {
+	margin: 5px 10px;
+	width: 70px;
+}
+
+/* Mobile hacks haha :^) */
+@media (min-width: 640px) {
+	.nod { display: none; }
+}
+
+@media only screen and (max-width: 640px) {
+	/* 'no mobile' */
+	.nom { display: none; }
+}
+
 .pagelist {
 	margin-left: 4px;
 	margin-top: 4px;

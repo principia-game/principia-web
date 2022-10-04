@@ -47,6 +47,14 @@ if ($action == 'Submit') {
 
 		query("UPDATE z_threads SET lastid = ? WHERE id = ?", [$pid, $tid]);
 
+		newForumPostHook([
+			'id' => $pid,
+			'title' => $title,
+			'content' => $message,
+			'u_id' => $userdata['id'],
+			'u_name' => $userdata['name']
+		], 'thread');
+
 		redirect("thread?id=$tid");
 	}
 }

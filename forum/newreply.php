@@ -52,6 +52,14 @@ if ($action == 'Submit') {
 		// nuke entries of this thread in the "threadsread" table
 		query("DELETE FROM z_threadsread WHERE tid = ? AND NOT (uid = ?)", [$thread['id'], $userdata['id']]);
 
+		newForumPostHook([
+			'id' => $pid,
+			'title' => $thread['title'],
+			'content' => $message,
+			'u_id' => $userdata['id'],
+			'u_name' => $userdata['name']
+		], 'reply');
+
 		redirect("thread?pid=$pid#$pid");
 	}
 }

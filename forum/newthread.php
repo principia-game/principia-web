@@ -58,15 +58,12 @@ $topbot = [
 
 if ($action == 'Preview') {
 	$post['date'] = $post['ulastpost'] = time();
-	$post['text'] = $_POST['message'];
+	$post['text'] = $message;
 	foreach ($userdata as $field => $val)
 		$post['u'.$field] = $val;
 	$post['headerbar'] = 'Post preview';
 
 	$topbot['title'] .= ' (Preview)';
-
-	$title = $_POST['title'];
-	$message = $_POST['message'];
 }
 
 $twig = _twigloader();

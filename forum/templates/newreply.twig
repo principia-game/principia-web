@@ -1,6 +1,6 @@
 {% extends "_layout.twig" %}
 
-{% set title = "New Reply" %}
+{% set title = "New reply" %}
 
 	{% block precontent %}
 {% if error %}
@@ -21,7 +21,7 @@
 	<table class="c1">
 		<tr class="h"><td class="b h" colspan="2">Reply</td></tr>
 		<tr>
-			<td class="b n2 center"><textarea name="message" id="message" rows="8" cols="80" style="width:90%"></textarea></td>
+			<td class="b n2 center"><textarea name="message" id="message" rows="15" cols="80" style="width:90%">{{ message }}</textarea></td>
 		</tr><tr class="n1">
 			<td class="b center">
 				<input type="submit" name="action" value="Preview">

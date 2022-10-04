@@ -31,7 +31,7 @@ function minipost($post) {
 		<td class="b n1 topbar_2 sfont fullwidth">Posted on $pdate
 			<span class="float-right"><a href="thread.php?pid={$post['id']}#{$post['id']}">Link</a> | ID: {$post['id']}</span></td>
 	</tr><tr valign="top">
-		<td class="b n1 sfont sidebar nom">
+		<td class="b n1 sfont sidebar">
 			Posts: {$post['uposts']}
 		</td>
 		<td class="b n2 mainbar">$posttext</td>

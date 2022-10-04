@@ -4,12 +4,12 @@ use \DiscordWebhooks\Client;
 use \DiscordWebhooks\Embed;
 
 /**
- * Trigger the new level webhook.
+ * Trigger the new forum post webhook.
  *
  * @param array $post Post array with the necessary data.
  */
 function newForumPostHook($post, $mode = 'reply') {
-	global $webhookLevel, $domain;
+	global $webhookForum, $domain;
 
 	$post['content'] = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\](.*)\[\/quote\]'si", '', $post['content']);
 
@@ -19,7 +19,7 @@ function newForumPostHook($post, $mode = 'reply') {
 		$post['content'] = substr($post['content'], 0, strpos($post['content'], "\n")) . '...';
 	}
 
-	$webhook = new Client($webhookLevel);
+	$webhook = new Client($webhookForum);
 	$mbd = new Embed();
 
 	$mbd->title($post['title'].($mode == 'thread' ? ' (New Thread)' : ''))

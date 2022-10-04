@@ -38,6 +38,9 @@ $webhookLevel = '';
 // URL to Discord webhook for wiki edits. Leave blank to disable this.
 $webhookWiki = '';
 
+// URL to Discord webhook for forum posts. Leave blank to disable this.
+$webhookForum = '';
+
 // principia-web's CAPTCHA system relies on a list of security questions. It's highly recommended to change these.
 // The answer checking is case-insensitive, but it has to be written in all lowercase here.
 $captcha = [

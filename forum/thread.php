@@ -215,5 +215,6 @@ echo $twig->render('thread.twig', [
 	'faccess' => $faccess ?? null,
 	'pin' => $_GET['pin'] ?? null,
 	'tid' => $tid ?? null,
-	'title' => $title
+	'title' => $title,
+	'pid' => $pid ?? null
 ]);

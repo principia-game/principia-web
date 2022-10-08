@@ -5,6 +5,9 @@
 	{% set pagename = "/forum/forum?id=" ~ fid %}
 {% elseif uid %}
 	{% set pagename = "/forum/forum?user=" ~ uid %}
+{% elseif time %}
+	{% set pagename = "/forum/forum?time" ~ time %}
+	{% set noindex = true %}
 {% endif %}
 
 	{% block content %}

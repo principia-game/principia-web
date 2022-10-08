@@ -2,9 +2,15 @@
 
 {% set title = title %}
 {% if viewmode == "thread" %}
+	{% if pid %}
+		{% set noindex = true %}
+	{% endif %}
 	{% set pagename = "/forum/thread?id=" ~ tid %}
 {% elseif viewmode == "user" %}
 	{% set pagename = "/forum/thread?user=" ~ uid %}
+{% elseif viewmode == "time" %}
+	{% set pagename = "/forum/thread?time=" ~ time %}
+	{% set noindex = true %}
 {% endif %}
 
 	{% block content %}

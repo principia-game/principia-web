@@ -5,6 +5,7 @@
 {% else %}
 	{% set title = '(untitled)' %}
 {% endif %}
+{% set noindex = true %}
 
 	{% block content %}
 {{ render_page_bar(pagebar) }}

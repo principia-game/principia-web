@@ -20,11 +20,11 @@
 <br>
 <form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
-		<tr class="h"><td class="b h" colspan="2">Reply</td></tr>
+		<tr class="h"><td colspan="2">Reply</td></tr>
 		<tr>
-			<td class="b n2 center"><textarea name="message" id="message" rows="15" cols="80" style="width:90%">{{ message }}</textarea></td>
-		</tr><tr class="n1">
-			<td class="b center">
+			<td class="n2 center"><textarea name="message" id="message" rows="15" cols="80" style="width:90%">{{ message }}</textarea></td>
+		</tr><tr>
+			<td class="n1 center">
 				<input type="submit" name="action" value="Preview">
 				<input type="submit" name="action" value="Submit">
 			</td>
@@ -34,7 +34,7 @@
 <br>
 
 <table class="c1 threadpost">
-	<tr class="h"><td class="b h" colspan="2">Thread preview</td></tr>
+	<tr class="h"><td colspan="2">Thread preview</td></tr>
 	{% for post in newestposts %}
 		{{ minipost(post) }}
 	{% endfor %}

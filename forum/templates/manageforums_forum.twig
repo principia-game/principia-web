@@ -6,16 +6,16 @@
 	{% block content %}
 <form action="" method="POST">
 	<table class="c1">
-		<tr class="h"><td class="b h" colspan="2">{% if fid == 'new' %}Create{% else %}Edit{% endif %} forum</td></tr>
+		<tr class="h"><td colspan="2">{% if fid == 'new' %}Create{% else %}Edit{% endif %} forum</td></tr>
 		<tr>
-			<td class="b n1 center">Title:</td>
-			<td class="b n2"><input type="text" name="title" value="{{ forum.title }}" size="50" maxlength="500"></td>
+			<td class="n1 center">Title:</td>
+			<td class="n2"><input type="text" name="title" value="{{ forum.title }}" size="50" maxlength="500"></td>
 		</tr><tr>
-			<td class="b n1 center">Description:<br><small>HTML allowed.</small></td>
-			<td class="b n2"><textarea name="descr" rows="3" cols="50">{{ forum.descr }}</textarea></td>
+			<td class="n1 center">Description:<br><small>HTML allowed.</small></td>
+			<td class="n2"><textarea name="descr" rows="3" cols="50">{{ forum.descr }}</textarea></td>
 		</tr><tr>
-			<td class="b n1 center">Category:</td>
-			<td class="b n2">
+			<td class="n1 center">Category:</td>
+			<td class="n2">
 				<select name="cat">
 					{% for cid, ctitle in cats %}
 						<option value="{{ cid }}"{% if cid == forum.cat %} selected{% endif %}>{{ ctitle }}</option>
@@ -23,24 +23,24 @@
 				</select>
 			</td>
 		</tr><tr>
-			<td class="b n1 center">Display order:</td>
-			<td class="b n2"><input type="text" name="ord" value="{{ forum.ord }}" size="4" maxlength="10"></td>
+			<td class="n1 center">Display order:</td>
+			<td class="n2"><input type="text" name="ord" value="{{ forum.ord }}" size="4" maxlength="10"></td>
 		</tr>
-		<tr class="h"><td class="b h" colspan="2">Permissions</td></tr>
+		<tr class="h"><td colspan="2">Permissions</td></tr>
 		{% for pid, pname in perms %}
 			<tr>
-				<td class="b n1 center">{{ pname }}:</td>
-				<td class="b n2"><select name="{{ pid }}">
+				<td class="n1 center">{{ pname }}:</td>
+				<td class="n2"><select name="{{ pid }}">
 					{% for plid, plname in powerlevels %}
 						<option value="{{ plid }}"{% if plid == forum[pid] %} selected{% endif %}>{{ plname }}</option>
 					{% endfor %}
 				</select></td>
 			</tr>
 		{% endfor %}
-		<tr class="h"><td class="b h" colspan="2">&nbsp;</td></tr>
+		<tr class="h"><td colspan="2">&nbsp;</td></tr>
 		<tr>
-			<td class="b n1 center"></td>
-			<td class="b n2">
+			<td class="n1 center"></td>
+			<td class="n2">
 				<input type="submit" name="saveforum" value="Save forum">
 				{% if fid != 'new' %}
 					<input type="submit" name="delforum" value="Delete forum" onclick="if(!confirm('Really delete this forum?'))return false;">

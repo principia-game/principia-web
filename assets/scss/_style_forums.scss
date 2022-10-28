@@ -23,7 +23,7 @@ table.c1 {
 		background: #44a9c2;
 	}
 
-	td.b {
+	td {
 		border: $grid 1px solid;
 		padding: 5px;
 	}
@@ -83,21 +83,17 @@ input[value=Preview], input[value=Submit] {
 }
 
 .threadpost {
+	.topbar_1, .sidebar {
+		text-align: center;
+	}
+
+	.topbar_1, .topbar_2, .sidebar {
+		border: 0 !important;
+	}
+
 	.topbar_1 {
-		border-bottom: 0 !important;
-		border-right: 0 !important;
 		min-width: 180px;
-		text-align: center;
 		height: 24px;
-	}
-
-	.topbar_2 {
-		border-left: 0 !important;
-	}
-
-	.sidebar {
-		border-top: 0 !important;
-		text-align: center;
 	}
 
 	.mainbar {

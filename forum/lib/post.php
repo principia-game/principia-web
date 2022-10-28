@@ -27,14 +27,14 @@ function minipost($post) {
 
 	return <<<HTML
 	<tr>
-		<td class="b n1 topbar_1">$ulink</td>
-		<td class="b n1 topbar_2 sfont fullwidth">Posted on $pdate
+		<td class="n1 topbar_1">$ulink</td>
+		<td class="n1 topbar_2 sfont fullwidth">Posted on $pdate
 			<span class="float-right"><a href="thread.php?pid={$post['id']}#{$post['id']}">Link</a> | ID: {$post['id']}</span></td>
 	</tr><tr valign="top">
-		<td class="b n1 sfont sidebar">
+		<td class="n1 sfont sidebar">
 			Posts: {$post['uposts']}
 		</td>
-		<td class="b n2 mainbar">$posttext</td>
+		<td class="n2 mainbar">$posttext</td>
 	</tr>
 HTML;
 }
@@ -54,8 +54,8 @@ function threadpost($post, $pthread = '') {
 		$ulink = userlink($post, 'u');
 		return <<<HTML
 <table class="c1 threadpost"><tr>
-	<td class="b n1 topbar_1">$ulink</td>
-	<td class="b n1 topbar_2 fullwidth">(post deleted) <span class="float-right">$postlinks</span></td>
+	<td class="n1 topbar_1">$ulink</td>
+	<td class="n1 topbar_2 fullwidth">(post deleted) <span class="float-right">$postlinks</span></td>
 </tr></table>
 HTML;
 	}
@@ -63,10 +63,10 @@ HTML;
 	$headerbar = $threadlink = $postlinks = $revisionstr = '';
 
 	if (isset($post['headerbar'])) {
-		$headerbar = sprintf('<tr class="h"><td class="b h" colspan="2">%s</td></tr>', $post['headerbar']);
+		$headerbar = sprintf('<tr class="h"><td colspan="2">%s</td></tr>', $post['headerbar']);
 	}
 
-	$post['utitle'] = $post['utitle'] . ($post['utitle'] ? '<br>' : '');
+	$usertitle = ($post['utitle'] ? $post['utitle'].'<br>' : '');
 
 	$post['id'] = $post['id'] ?? 0;
 
@@ -115,12 +115,11 @@ HTML;
 <table class="c1 threadpost" id="{$post['id']}">
 	$headerbar
 	<tr>
-		<td class="b n1 topbar_1">$ulink</td>
-		<td class="b n1 topbar_2 fullwidth">Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span></td>
+		<td class="n1 topbar_1">$ulink</td>
+		<td class="n1 topbar_2 fullwidth">Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span></td>
 	</tr><tr valign="top">
-		<td class="b n1 sidebar">
-			{$post['utitle']}
-			$picture
+		<td class="n1 sidebar">
+			$usertitle$picture
 			<br>Posts: {$post['uposts']}
 			<br>
 			<br>Since: $ujoined
@@ -128,8 +127,9 @@ HTML;
 			<br>Last post: $lastpost
 			<br>Last view: $lastview
 		</td>
-		<td class="b n2 mainbar" id="post_{$post['id']}">$posttext{$post['usignature']}</td>
+		<td class="n2 mainbar" id="post_{$post['id']}">$posttext{$post['usignature']}</td>
 	</tr>
 </table>
 HTML;
+
 }

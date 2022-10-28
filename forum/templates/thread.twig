@@ -18,8 +18,8 @@
 
 {% if time %}
 	<table class="c1 autowidth">
-		<tr class="h"><td class="b">Latest Posts</td></tr>
-		<tr><td class="b n1 center">
+		<tr class="h"><td>Latest Posts</td></tr>
+		<tr><td class="n1 center">
 			<a href="forum?time={{ time }}">By Threads</a> | By Posts</a><br><br>
 			{{ timelinks('thread') }}
 		</td></tr>
@@ -48,11 +48,11 @@
 {% if thread.id and userdata.powerlevel >= faccess.minreply and not thread.closed %}
 <form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
-		<tr class="h"><td class="b h" colspan="2">Quick Reply</a></td>
+		<tr class="h"><td colspan="2">Quick Reply</a></td>
 		<tr>
-			<td class="b n2 center"><textarea name="message" id="message" rows="8" cols="80" style="width:90%"></textarea></td>
+			<td class="n2 center"><textarea name="message" id="message" rows="8" cols="80" style="width:90%"></textarea></td>
 		</tr><tr class="n1">
-			<td class="b center">
+			<td class="center">
 				<input type="submit" name="action" value="Preview">
 				<input type="submit" name="action" value="Submit">
 			</td>

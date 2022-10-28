@@ -125,7 +125,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 
 	$catlist = ''; $c = 1;
 	foreach ($cats as $cat) {
-		$catlist .= sprintf('<tr><td class="b n%s"><a href="manageforums?cid=%s">%s</a></td></tr>', $c, $cat['id'], $cat['title']);
+		$catlist .= sprintf('<tr><td class="n%s"><a href="manageforums?cid=%s">%s</a></td></tr>', $c, $cat['id'], $cat['title']);
 		$c = ($c == 1) ? 2 : 1;
 	}
 
@@ -133,9 +133,9 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 	foreach ($forums as $forum) {
 		if ($forum['cat'] != $lc) {
 			$lc = $forum['cat'];
-			$forumlist .= sprintf('<tr class="c"><td class="b c">%s</td></tr>', $cats[$forum['cat']]['title']);
+			$forumlist .= sprintf('<tr class="c"><td>%s</td></tr>', $cats[$forum['cat']]['title']);
 		}
-		$forumlist .= sprintf('<tr><td class="b n%s"><a href="manageforums?fid=%s">%s</a></td></tr>', $c, $forum['id'], $forum['title']);
+		$forumlist .= sprintf('<tr><td class="n%s"><a href="manageforums?fid=%s">%s</a></td></tr>', $c, $forum['id'], $forum['title']);
 		$c = ($c == 1) ? 2 : 1;
 	}
 

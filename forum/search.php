@@ -9,28 +9,26 @@ $where = $_GET['w'] ?? 0;
 ob_start();
 
 ?>
-<table class="c1">
-	<tr class="h"><td class="b h">Search</td>
-	<tr><td class="b n1">
-		<form action="search" method="get"><table>
-			<tr>
-				<td>Search for</td>
-				<td><input type="text" name="q" size="40" value="<?=htmlspecialchars($query, ENT_QUOTES) ?>"></td>
-			</tr><tr>
-				<td></td>
-				<td>
-					in <input type="radio" class="radio" name="w" value="0" id="threadtitle" <?=(($where == 0) ? 'checked' : '') ?>><label for="threadtitle">thread title</label>
-					<input type="radio" class="radio" name="w" value="1" id="posttext" <?=(($where == 1) ? 'checked' : '') ?>><label for="posttext">post text</label>
-					<br><input type="submit" name="action" value="Search">
-				</td>
-			</tr>
-		</table></form>
-	</td></tr>
-</table>
+<form action="search" method="get"><table class="c1">
+	<tr class="h"><td colspan="2">Search Forums</td></tr>
+
+	<tr>
+		<td class="n1 center" width="150">Search for:</td>
+		<td class="n2"><input type="text" name="q" size="40" value="<?=htmlspecialchars($query, ENT_QUOTES) ?>"></td>
+	</tr><tr>
+		<td class="n1 center">In:</td>
+		<td class="n2">
+			<input type="radio" name="w" value="0" id="threadtitle" <?=(($where == 0) ? 'checked' : '') ?>><label for="threadtitle">thread title</label>
+			<input type="radio" name="w" value="1" id="posttext" <?=(($where == 1) ? 'checked' : '') ?>><label for="posttext">post text</label>
+	</tr><tr class="n1">
+		<td></td>
+		<td><input type="submit" name="action" value="Search"></td>
+	</tr>
+</table></form>
 <?php
 if (!isset($_GET['action']) || strlen($query) < 3) {
 	if (isset($_GET['action']) && strlen($query) < 3) {
-		echo '<br><table class="c1"><tr><td class="b n1 center">Please enter more than 2 characters!</td></tr></table>';
+		echo '<br><table class="c1"><tr><td class="n1 center">Please enter more than 2 characters!</td></tr></table>';
 	}
 	$content = ob_get_contents();
 	ob_end_clean();
@@ -44,7 +42,7 @@ if (!isset($_GET['action']) || strlen($query) < 3) {
 	die();
 }
 
-echo '<br><table class="c1"><tr class="h"><td class="b h" style="border-bottom:0">Results</td></tr></table>';
+echo '<br><table class="c1"><tr class="h"><td style="border-bottom:0">Results</td></tr></table>';
 
 $ufields = userfields('u','u');
 if ($where == 1) {
@@ -86,20 +84,20 @@ if ($where == 1) {
 
 	?><table class="c1">
 		<tr class="c">
-			<td class="b h">Title</td>
-			<td class="b h" style="min-width:80px">Started by</td>
-			<td class="b h" width="200">Date</td>
+			<td>Title</td>
+			<td style="min-width:80px">Started by</td>
+			<td width="200">Date</td>
 		</tr><?php
 
 	for ($i = 1; $thread = $threads->fetch(); $i++) {
 		$tr = ($i % 2 ? 'n2' :'n3');
 
 		?><tr class="<?=$tr ?> center">
-			<td class="b left wbreak">
+			<td class="left wbreak">
 				<a href="thread?id=<?=$thread['id'] ?>"><?=esc($thread['title']) ?></a> <?=($thread['sticky'] ? ' (Sticky)' : '')?>
 			</td>
-			<td class="b"><?=userlink($thread,'u') ?></td>
-			<td class="b"><?=date('Y-m-d H:i',$thread['lastdate']) ?></td>
+			<td><?=userlink($thread,'u') ?></td>
+			<td><?=date('Y-m-d H:i',$thread['lastdate']) ?></td>
 		</tr><?php
 	}
 	if ($i == 1)

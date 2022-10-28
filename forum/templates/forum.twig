@@ -15,8 +15,8 @@
 {{ render_page_bar(topbot) }}
 {% if time %}
 	<table class="c1 autowidth">
-		<tr class="h"><td class="b">Latest Threads</td></tr>
-		<tr><td class="b n1 center">
+		<tr class="h"><td>Latest Threads</td></tr>
+		<tr><td class="n1 center">
 			By Threads | <a href="thread?time={{ time }}">By Posts</a></a><br><br>
 			{{ timelinks('forum') }}
 		</td></tr>
@@ -25,15 +25,15 @@
 <br>
 <table class="c1">
 	<tr class="h">
-		<td class="b h" style="width:30px">&nbsp;</td>
+		<td style="width:30px">&nbsp;</td>
 		{% if showforum %}
-			<td class="b h nom">Forum</td>
+			<td class="nom">Forum</td>
 		{% endif %}
-		<td class="b h">Title</td>
-		<td class="b h nom" width="130">Started by</td>
-		<td class="b h nom" width="50">Replies</td>
-		<td class="b h nom" width="50">Views</td>
-		<td class="b h" width="130">Last post</td>
+		<td >Title</td>
+		<td class="nom" width="130">Started by</td>
+		<td class="nom" width="50">Replies</td>
+		<td class="nom" width="50">Views</td>
+		<td width="130">Last post</td>
 	</tr>
 	{% set i = 1 %}
 	{% for thread in threads %}
@@ -49,13 +49,13 @@
 
 		{% if not time %}
 			{% if not thread.sticky and lsticky %}
-				<tr class="c"><td class="b" colspan="{% if showforum %}7{% else %}6{% endif %}"></td>
+				<tr class="c"><td colspan="{% if showforum %}7{% else %}6{% endif %}"></td>
 			{% endif %}
 			{% set lsticky = thread.sticky %}
 		{% endif %}
 
 		<tr class="n{{ tr }} center">
-			<td class="b n1">
+			<td class="n1">
 				{% if log and not thread.isread %}
 					{% if thread.closed %}
 						{{ new_status("on") }}
@@ -67,15 +67,15 @@
 				{% endif %}
 			</td>
 			{% if showforum %}
-				<td class="b nom"><a href="forum?id={{ thread.fid }}">{{ thread.ftitle }}</a></td>
+				<td class="nom"><a href="forum?id={{ thread.fid }}">{{ thread.ftitle }}</a></td>
 			{% endif %}
-			<td class="b left wbreak">
+			<td class="left wbreak">
 				<a href="thread?id={{ thread.id }}">{{ thread.title }}</a>
 			</td>
-			<td class="b nom">{{ userlink(thread, 'u1') }}</td>
-			<td class="b nom">{{ thread.posts - 1 }}</td>
-			<td class="b nom">{{ thread.views }}</td>
-			<td class="b">
+			<td class="nom">{{ userlink(thread, 'u1') }}</td>
+			<td class="nom">{{ thread.posts - 1 }}</td>
+			<td class="nom">{{ thread.views }}</td>
+			<td>
 				<nobr>{{ thread.lastdate | date('Y-m-d H:i') }}</nobr><br>
 				<span>by {{ userlink(thread, 'u2') }} <a href="thread?pid={{ thread.lastid }}#{{ thread.lastid }}">&raquo;</a></span>
 			</td>
@@ -83,7 +83,7 @@
 		{% set i = i + 1 %}
 	{% else %}
 		<tr>
-			<td class="b n1 center" colspan="{% if showforum %}7{% else %}6{% endif %}"><p>No threads found.</p></td>
+			<td class="n1 center" colspan="{% if showforum %}7{% else %}6{% endif %}"><p>No threads found.</p></td>
 		</tr>
 	{% endfor %}
 </table>

@@ -17,27 +17,27 @@
 
 		<table class="c1">
 			<tr class="h">
-				<td class="b h" style="width:30px">&nbsp;</td>
-				<td class="b h">{{ categories[forum.cat] }}</td>
-				<td class="b h nom" width="50">Threads</td>
-				<td class="b h nom" width="50">Posts</td>
-				<td class="b h" width="150">Last post</td>
+				<td style="width:30px">&nbsp;</td>
+				<td>{{ categories[forum.cat] }}</td>
+				<td class="nom" width="50">Threads</td>
+				<td class="nom" width="50">Posts</td>
+				<td width="150">Last post</td>
 			</tr>
 	{% endif %}
 
 	<tr class="center">
-		<td class="b n1">
+		<td class="n1">
 			{% if log and forum.lastdate > forum.rtime %}
 				{{ new_status("n") }}
 			{% endif %}
 		</td>
-		<td class="b n2 left">
+		<td class="n2 left">
 			{% if forum.minread > 0 %}({% endif %}<a href="forum?id={{ forum.id }}">{{ forum.title }}</a>{% if forum.minread > 0 %}){% endif %}
 			<div style="margin-top:3px">{{ forum.descr | raw }}</div>
 		</td>
-		<td class="b n1 nom">{{ forum.threads }}</td>
-		<td class="b n1 nom">{{ forum.posts }}</td>
-		<td class="b n2">
+		<td class="n1 nom">{{ forum.threads }}</td>
+		<td class="n1 nom">{{ forum.posts }}</td>
+		<td class="n2">
 			{% if forum.posts > 0 and forum.lastdate > 0 %}
 				<nobr>{{ forum.lastdate | date('Y-m-d H:i') }}</nobr>
 				<br>

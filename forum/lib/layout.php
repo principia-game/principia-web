@@ -91,7 +91,7 @@ function forumlist($currentforum = -1) {
 
 function ifEmptyQuery($message, $colspan = 0, $table = false) {
 	if ($table) echo '<table class="c1">';
-	echo '<tr><td class="b n1 center" '.($colspan != 0 ? "colspan=$colspan" : '')."><p>$message</p></td></tr>";
+	echo '<tr><td class="n1 center" '.($colspan != 0 ? "colspan=$colspan" : '')."><p>$message</p></td></tr>";
 	if ($table) echo '</table>';
 }
 

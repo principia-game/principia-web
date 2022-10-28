@@ -11,30 +11,30 @@
 
 <table class="c1">
 	<tr class="h">
-		<td class="b h" width=100>Uptime</td>
-		<td class="b h" width=100>Total Get Calls</td>
-		<td class="b h" width=100>Total Read</td>
-		<td class="b h" width=100>Total Set Calls</td>
-		<td class="b h" width=100>Total Written</td>
-		<td class="b h" width=100>Memory Usage</td>
+		<td width=100>Uptime</td>
+		<td width=100>Total Get Calls</td>
+		<td width=100>Total Read</td>
+		<td width=100>Total Set Calls</td>
+		<td width=100>Total Written</td>
+		<td width=100>Memory Usage</td>
 	</tr>
 	{% for address,server in memcached_stats %}
-		<tr class="c"><td class="b" colspan="{{ cols }}">Server ({{ address }})</td></tr>
+		<tr class="c"><td colspan="{{ cols }}">Server ({{ address }})</td></tr>
 		{% if not server.offline %}
 			<tr>
-				<td class="b">{{ (server.uptime / 3600) | round(2) }} hours</td>
-				<td class="b">{{ server.cmd_get }} ({{ ((server.get_hits / server.cmd_get) * 100) | round(2) }}% hits)</td>
-				<td class="b">{{ (server.bytes_read / 1000000) | round(2) }} MB</td>
-				<td class="b">{{ server.cmd_set }}</td>
-				<td class="b">{{ (server.bytes_write / 1000000) | round(2) }} MB</td>
-				<td class="b">
+				<td>{{ (server.uptime / 3600) | round(2) }} hours</td>
+				<td>{{ server.cmd_get }} ({{ ((server.get_hits / server.cmd_get) * 100) | round(2) }}% hits)</td>
+				<td>{{ (server.bytes_read / 1000000) | round(2) }} MB</td>
+				<td>{{ server.cmd_set }}</td>
+				<td>{{ (server.bytes_write / 1000000) | round(2) }} MB</td>
+				<td>
 					{{ (server.bytes / 1000000) | round(2) }} MB
 					({{ ((server.bytes / server.limit_maxbytes) * 100) | round(2) }}%)
 				</td>
 			</tr>
 		{% else %}
 			<tr>
-				<td class="b" colspan="{{ cols }}">Server offline...</td>
+				<td colspan="{{ cols }}">Server offline...</td>
 			</tr>
 		{% endif %}
 	{% endfor %}
@@ -42,44 +42,42 @@
 
 <h3>User statistics</h3>
 
-<table class="fullwidth">
-	<tr>
-		<td class="nb" style="width:50%; vertical-align:top;">
-			<table class="c1">
-				<tr class="h"><td class="b" colspan="2">Latest registered users</td></tr>
-				{% for user in latest_registered_users %}
-					<tr>
-						<td class="b">{{ userlink(user) }}</td>
-						<td class="b">{{ user.joined | date() }}</td>
-					</tr>
-				{% endfor %}
-			</table>
-		</td>
-		<td class="nb" style="width:50%; vertical-align:top;">
-			<table class="c1">
-				<tr class="h"><td class="b" colspan="2">Latest seen users</td></tr>
-				{% for user in latest_seen_users %}
-					<tr>
-						<td class="b">{{ userlink(user) }}</td>
-						<td class="b">{{ user.lastview | relative_time }}</td>
-					</tr>
-				{% endfor %}
-			</table>
-		</td>
-	</tr>
-</table>
+<table class="fullwidth"><tr>
+	<td class="nb" style="width:50%">
+		<table class="c1">
+			<tr class="h"><td colspan="2">Latest registered users</td></tr>
+			{% for user in latest_registered_users %}
+				<tr>
+					<td>{{ userlink(user) }}</td>
+					<td>{{ user.joined | date() }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</td>
+	<td class="nb" style="width:50%">
+		<table class="c1">
+			<tr class="h"><td colspan="2">Latest seen users</td></tr>
+			{% for user in latest_seen_users %}
+				<tr>
+					<td>{{ userlink(user) }}</td>
+					<td>{{ user.lastview | relative_time }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	</td>
+</tr></table>
 
 <h3>Numberz</h3>
 
 <table class="c1">
 	<tr class="h">
 		{% for thing in things_to_count %}
-			<td class="b h" width=100>{{ thing | title }}</td>
+			<td width=100>{{ thing | title }}</td>
 		{% endfor %}
 	</tr>
 	<tr>
 		{% for thing in things_to_count %}
-			<td class="b">{{ count[thing] }}</td>
+			<td>{{ count[thing] }}</td>
 		{% endfor %}
 	</tr>
 </table>

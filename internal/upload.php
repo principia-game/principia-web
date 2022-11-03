@@ -4,37 +4,42 @@ require('lib/common.php');
 
 #require('upload_debug.php');
 
-if (!$log || $userdata['powerlevel'] < 0) {
+if (!$log || $userdata['powerlevel'] < 0)
 	die('-100');
-}
 
 // Kaitai runtime & data
 require('lib/kaitai/plvl.php');
 
 // Load level.
-//try {
-	$level = Plvl::fromFile($_FILES['xFxIax']['tmp_name']);
-//} catch (Kaitai\Struct\Error\KaitaiError $e) {
-//	die('garbled level or garbled kaitai');
-//}
+$level = Plvl::fromFile($_FILES['xFxIax']['tmp_name']);
 
 $platform = extractPlatform($useragent);
 
-if ($level->communityId()) { // level has a non-noll community_id, assume we're updating a level
-	$cid = $level->communityId();
+$cid = $level->communityId();
 
-	// get some level info we need
-	$leveldata = fetch("SELECT cat, author, revision, platform FROM levels WHERE id = ?", [$cid]);
+// If community id exists, get some level info we need
+$leveldata = fetch("SELECT cat, author, revision, platform FROM levels WHERE id = ?", [$cid]);
 
-	// additional checks to prevent someone from accidentally overwriting a level unintentionally.
-	// this might need to be tweaked as
-	if (!$leveldata
-		|| catConvert($level->type()) != $leveldata['cat']
-		|| ($userdata['id'] != $leveldata['author'] && $userdata['powerlevel'] < 3)) {
-		// Throw an error and die, emulates the official community site's behavior of an incorrect community id (malicious or not)
-		trigger_error(sprintf('%s tried to upload a level with an invalid community id (%s)', $userdata['name'], $cid), E_USER_NOTICE);
-		die('lol');
+// Check if we should update existing level
+$updatelevel = false;
+if ($leveldata) {
+	if ($userdata['id'] == $leveldata['author'] || $userdata['powerlevel'] < 3)
+		$updatelevel = true;
+}
+
+// Preparations for if we do not update a level
+if (!$updatelevel) {
+	// New levels' ID should be the next one available
+	$cid = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1") + 1;
+
+	// rate-limit new level uploading to once every 1 minutes
+	$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
+	if (time() - $latestLevelTime < 1*60 && $userdata['powerlevel'] < 2) {
+		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
+		die('-103');
 	}
+} else {
+	// Preparations for if we update a level
 
 	// back up previous revision level ...
 	rename("levels/$cid.plvl", sprintf('levels/backup/%s.plvl.bak.%s', $cid, $leveldata['revision']));
@@ -47,55 +52,66 @@ if ($level->communityId()) { // level has a non-noll community_id, assume we're 
 			rename("levels/thumbs/low/$cid.jpg", sprintf('levels/thumbs/backup/%s.low.jpg.bak.%s', $cid, $leveldata['revision']));
 		}
 	}
+}
 
-	// Move uploaded level file to the levels directory.
-	if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$cid.plvl")) {
-		die("let's look for some chips instead");
-	}
+// Move uploaded level file to the levels directory.
+if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$cid.plvl")) {
+	trigger_error("Could not move level file to levels folder, check permissions", E_USER_WARNING);
+	die("-");
+}
 
-	query("UPDATE levels SET title = ?, description = ?, derivatives = ?, visibility = ?, revision = revision + 1, revision_time = ? WHERE id = ?",
-		[$level->name(), $level->descr(), $level->allowDerivatives(), $level->visibility(), time(), $cid]);
+if ($updatelevel) {
+	$fields = [
+		'cat'			=> catConvert($level->type()),
+		'title'			=> $level->name(),
+		'description'	=> $level->descr(),
+		'derivatives'	=> $level->allowDerivatives(),
+		'visibility'	=> $level->visibility(),
+		'revision'		=> $leveldata['revision'] + 1,
+		'revision_time'	=> time(),
+		'platform'		=> $platform
+	];
 
-	// Print the ID of the uploaded level. This is required to display the "Level published!" box.
-	print($cid);
-} else { // level has a noll community_id, assume we're uploading a new level
-	// rate-limit new level uploading to once every 5 minutes
-	$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
-	if (time() - $latestLevelTime < 5*60 && $userdata['powerlevel'] < 2) {
-		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
-		die('-103');
-	}
+	$tmp = updateRowQuery($fields);
 
-	$nextId = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1") + 1;
+	//trigger_error($tmp['fieldquery']);
 
-	// Move uploaded level file to the levels directory.
-	if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$nextId.plvl")) {
-		die("let's look for some chips instead");
-	}
+	$tmp['placeholders'][] = $cid;
+	query("UPDATE levels SET ".$tmp['fieldquery']." WHERE id = ?", $tmp['placeholders']);
 
-	$parent = $level->parentId() ?? null;
-
-	query("INSERT INTO levels (cat, title, description, author, time, derivatives, visibility, platform, parent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-		[catConvert($level->type()), $level->name(), $level->descr(), $userdata['id'], time(), $level->allowDerivatives(), $level->visibility(), $platform, $parent]);
-
+} else {
 	// User level count has changed, invalidate cache
 	$cachectrl->invLevelCount($userdata['id']);
 
-	// Print the ID of the uploaded level. This is required to display the "Level published!" box.
-	print($nextId);
+	$params = [
+		catConvert($level->type()),
+		$level->name(), $level->descr(),
+		$userdata['id'],
+		time(),
+		$level->allowDerivatives(),
+		$level->visibility(),
+		$platform,
+		$level->parentId() ?? null];
 
-	// if we got a webhook url, send level info to discord webhook
-	if ($webhookLevel) {
-		$webhookdata = [
-			'id' => $nextId,
-			'name' => $level->name(),
-			'description' => $level->descr(),
-			'u_id' => $userdata['id'],
-			'u_name' => $userdata['name']
-		];
+	query("INSERT INTO levels (cat, title, description, author, time, derivatives, visibility, platform, parent) VALUES (?,?,?,?,?,?,?,?,?)",
+		$params);
 
-		newLevelHook($webhookdata);
-	}
+}
+
+// Print the ID of the uploaded level. This is required to display the "Level published!" box.
+print($cid);
+
+// if we got a webhook url, send new level info to discord webhook
+if (!$updatelevel && $webhookLevel) {
+	$webhookdata = [
+		'id' => $nextId,
+		'name' => $level->name(),
+		'description' => $level->descr(),
+		'u_id' => $userdata['id'],
+		'u_name' => $userdata['name']
+	];
+
+	newLevelHook($webhookdata);
 }
 
 // Latest levels has most likely changed, invalidate index cache.

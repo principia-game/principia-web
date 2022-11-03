@@ -13,7 +13,7 @@
 	"repositories": [
 		{
 			"type": "vcs",
-			"url":  "https://github.com/principia-preservation-project/kaitai_struct_php_runtime"
+			"url":  "https://github.com/kaitai-io/kaitai_struct_php_runtime"
 		}, {
 			"type": "vcs",
 			"url":  "https://github.com/rollerozxa/php-diff"

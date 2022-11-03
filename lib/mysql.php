@@ -41,3 +41,21 @@ function insertId() {
 	global $sql;
 	return $sql->lastInsertId();
 }
+
+/**
+ * Helper function to construct part of a query to set a lot of fields in one row
+ */
+function updateRowQuery($fields) {
+	// Temp variables for dynamic query construction.
+	$fieldquery = '';
+	$placeholders = [];
+
+	// Construct a query containing all fields.
+	foreach ($fields as $fieldk => $fieldv) {
+		if ($fieldquery) $fieldquery .= ',';
+		$fieldquery .= $fieldk.'=?';
+		$placeholders[] = $fieldv;
+	}
+
+	return ['fieldquery' => $fieldquery, 'placeholders' => $placeholders];
+}

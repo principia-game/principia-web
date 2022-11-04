@@ -140,6 +140,7 @@ CREATE TABLE `users` (
   `powerlevel` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `threads` int(10) unsigned NOT NULL DEFAULT 0,
+  `archivename` varchar(128) DEFAULT NULL,
   `customcolor` char(6) DEFAULT NULL,
   `title` varchar(256) DEFAULT NULL,
   `timezone` varchar(64) DEFAULT NULL,

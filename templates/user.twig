@@ -117,6 +117,12 @@
 {% set le_url = '/user/' ~ id ~ '?page=%s' ~ forceuser %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
+{% if userpagedata.archivename %}
+	<h3><a href="https://archive.principia-web.se/user/{{ userpagedata.archivename }}">
+		View this user's levels on the official community site archive
+	</a></h3>
+{% endif %}
+
 {{ comments(comments, 'user', id) }}
 {% endif %}
 	{% endblock %}

@@ -7,11 +7,12 @@ if (isset($_POST['action'])) {
 	$error = '';
 
 	$fields = [
-		'about'		=> $_POST['about'] ?: null,
-		'location'	=> $_POST['location'] ?: null,
-		'signature'	=> $_POST['signature'] ?: null,
-		'darkmode'	=> $_POST['darkmode'] ? 1 : 0,
-		'timezone'	=> $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null
+		'about'			=> $_POST['about'] ?: null,
+		'location'		=> $_POST['location'] ?: null,
+		'signature'		=> $_POST['signature'] ?: null,
+		'archivename'	=> $_POST['archivename'] ?: null,
+		'darkmode'		=> $_POST['darkmode'] ? 1 : 0,
+		'timezone'		=> $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null
 	];
 
 	if ($userdata['powerlevel'] > 2)

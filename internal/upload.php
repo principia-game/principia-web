@@ -60,6 +60,8 @@ if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$cid.plvl")) {
 	die("-");
 }
 
+lvledit($cid, 'set-community-id', $cid);
+
 if ($updatelevel) {
 	$fields = [
 		'cat'			=> catConvert($level->type()),
@@ -73,8 +75,6 @@ if ($updatelevel) {
 	];
 
 	$tmp = updateRowQuery($fields);
-
-	//trigger_error($tmp['fieldquery']);
 
 	$tmp['placeholders'][] = $cid;
 	query("UPDATE levels SET ".$tmp['fieldquery']." WHERE id = ?", $tmp['placeholders']);

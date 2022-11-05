@@ -11,7 +11,7 @@ assets/css/
 assets/scss/.sass-cache
 
 ## Featured stuff
-featured/main.py
+featured/
 
 ## Composer
 vendor/
@@ -28,3 +28,5 @@ wiki/
 misc/
 tools/lvlinfo
 tools/lvledit
+progress-get
+adminer/

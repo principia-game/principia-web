@@ -28,5 +28,5 @@ wiki/
 misc/
 tools/lvlinfo
 tools/lvledit
-progress-get
+tools/progress-get
 adminer/

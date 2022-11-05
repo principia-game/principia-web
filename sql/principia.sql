@@ -58,6 +58,15 @@ CREATE TABLE `ipbans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+CREATE TABLE `leaderboard` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `level` int(10) unsigned NOT NULL,
+  `user` int(10) unsigned NOT NULL,
+  `score` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 CREATE TABLE `levels` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `cat` tinyint(3) unsigned NOT NULL DEFAULT 1,

@@ -79,6 +79,25 @@
 	{% endif %}
 </div>
 
+{% if leaderboard %}
+	<br><table class="settings autowidth">
+		<tr>
+			<th style="width:50px"></th>
+			<th>Username</th>
+			<th style="width:100px">Score</th>
+		</tr>
+		{% set i = 1 %}
+		{% for entry in leaderboard %}
+			<tr>
+				<td class="center">{{ i }}.</td>
+				<td>{{ userlink(entry, 'u_') }}</td>
+				<td class="right">{{ entry.score | number_format }}</td>
+			</tr>
+			{% set i = i + 1 %}
+		{% endfor %}
+	</table><br>
+{% endif %}
+
 {% if derivatives %}
 	<h2>Derivatives</h2>
 	{% for derivative in derivatives %}

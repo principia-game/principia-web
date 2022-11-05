@@ -68,6 +68,8 @@ if ($log) {
 	$level['views']++;
 }
 
+$leaderboard = query("SELECT $userfields l.* FROM leaderboard l JOIN users u ON l.user = u.id WHERE l.level = ? ORDER BY l.score DESC LIMIT 8", [$level['id']]);
+
 $contests = query("SELECT id,title,active FROM contests WHERE active = 1");
 
 $comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
@@ -88,5 +90,6 @@ echo $twig->render('level.twig', [
 	'already_entered' => $alreadyEntered ?? false,
 	'comments' => fetchArray($comments),
 	'derivatives' => fetchArray($derivatives),
-	'parentlevel' => $parentLevel ?? null
+	'parentlevel' => $parentLevel ?? null,
+	'leaderboard' => fetchArray($leaderboard)
 ]);

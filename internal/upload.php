@@ -104,7 +104,7 @@ print($cid);
 // if we got a webhook url, send new level info to discord webhook
 if (!$updatelevel && $webhookLevel) {
 	$webhookdata = [
-		'id' => $nextId,
+		'id' => $cid,
 		'name' => $level->name(),
 		'description' => $level->descr(),
 		'u_id' => $userdata['id'],

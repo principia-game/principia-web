@@ -25,7 +25,7 @@
 			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
 		{% endif %}
 		{% if not level.visibility == 1 %}
-			<img src="/levels/thumbs/{{ level.id }}.jpg" alt="">
+			<a href="/levels/thumbs/{{ level.id }}.jpg"><img src="/levels/thumbs/{{ level.id }}.jpg" alt=""></a>
 		{% else %}
 			<img src="/assets/locked_thumb.svg" alt="Locked level">
 		{% endif %}

@@ -20,8 +20,6 @@ elseif (isset($_GET['edited']))
 elseif (isset($_GET['justbanned']))
 	$action = $_GET['justbanned'];
 
-$twig = twigloader();
-
 // Personal user page stuff
 if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 	if (isset($_GET['markread'])) {
@@ -65,7 +63,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		}
 	}
 
-	echo $twig->render('user.twig', [
+	echo twigloader()->render('user.twig', [
 		'id' => $id,
 		'name' => $userdata['name'],
 		'forceuser' => $forceuser,
@@ -93,7 +91,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	clearMentions('user', $id);
 
-	echo $twig->render('user.twig', [
+	echo twigloader()->render('user.twig', [
 		'id' => $id,
 		'name' => $userpagedata['name'],
 		'userpagedata' => $userpagedata,

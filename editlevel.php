@@ -28,9 +28,7 @@ if (isset($_POST['action'])) {
 	redirect("/level.php?id=$lid");
 }
 
-$twig = twigloader();
-
-echo $twig->render('editlevel.twig', [
+echo twigloader()->render('editlevel.twig', [
 	'lid' => $lid,
 	'level' => $level
 ]);

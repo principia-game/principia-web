@@ -27,5 +27,4 @@ if (isset($_POST['action'])) {
 	}
 }
 
-$twig = twigloader();
-echo $twig->render('login.twig', ['error' => $error]);
+echo twigloader()->render('login.twig', ['error' => $error]);

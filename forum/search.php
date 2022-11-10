@@ -33,8 +33,7 @@ if (!isset($_GET['action']) || strlen($query) < 3) {
 	$content = ob_get_contents();
 	ob_end_clean();
 
-	$twig = _twigloader();
-	echo $twig->render('_legacy.twig', [
+	echo _twigloader()->render('_legacy.twig', [
 		'page_title' => "Search",
 		'content' => $content
 	]);
@@ -110,8 +109,7 @@ if ($where == 1) {
 $content = ob_get_contents();
 ob_end_clean();
 
-$twig = _twigloader();
-echo $twig->render('_legacy.twig', [
+echo _twigloader()->render('_legacy.twig', [
 	'page_title' => "Search",
 	'content' => $content
 ]);

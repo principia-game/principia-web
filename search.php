@@ -12,8 +12,7 @@ if ($query) {
 		[$query]);
 }
 
-$twig = twigloader();
-echo $twig->render('search.twig', [
+echo twigloader()->render('search.twig', [
 	'query' => $query,
 	'page' => $page,
 	'levels' => $levels ?? null,

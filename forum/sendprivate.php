@@ -74,8 +74,7 @@ if (!$action) {
 	$topbot['title'] .= ' (Preview)';
 }
 
-$twig = _twigloader();
-echo $twig->render('sendprivate.twig', [
+echo _twigloader()->render('sendprivate.twig', [
 	'post' => $post ?? null,
 	'userto' => $userto,
 	'messagetitle' => $title,

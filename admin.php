@@ -21,8 +21,7 @@ $latestComments = query("SELECT $userfields c.* FROM comments c JOIN users u ON 
 
 $memcachedStats['dummy-server.lol'] = ['offline' => true];
 
-$twig = twigloader();
-echo $twig->render('admin.twig', [
+echo twigloader()->render('admin.twig', [
 	'memcached_stats' => $memcachedStats,
 	'latest_registered_users' => $latestRegisteredUsers,
 	'latest_seen_users' => $latestSeenUsers,

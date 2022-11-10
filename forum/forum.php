@@ -109,8 +109,7 @@ if ($forum['threads'] > $tpp) {
 	$fpagelist = '<br>'.pagelist($forum['threads'], $tpp, $furl, $page, true);
 }
 
-$twig = _twigloader();
-echo $twig->render('forum.twig', [
+echo _twigloader()->render('forum.twig', [
 	'fid' => $fid,
 	'title' => $title,
 	'threads' => $threads,

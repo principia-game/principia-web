@@ -41,15 +41,13 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 }
 
 function comments($cmnts, $type, $id, $showheader = true) {
-	$twig = twigloader('components');
-	return $twig->render('comment.twig', [
+	return twigloader('components')->render('comment.twig', [
 		'cmnts' => $cmnts, 'type' => $type, 'id' => $id, 'showheader' => $showheader
 	]);
 }
 
 function pagination($levels, $lpp, $url, $current) {
-	$twig = twigloader('components');
-	return $twig->render('pagination.twig', ['levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current]);
+	return twigloader('components')->render('pagination.twig', ['levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current]);
 }
 
 function error($title, $message) {
@@ -68,8 +66,6 @@ function level($level, $featured = '', $pkg = false) {
 	global $cache;
 	$level['v'] = 2;
 	return $cache->hitHash($level, function () use ($level, $featured, $pkg) {
-		$twig = twigloader('components');
-
 		if (!$pkg) {
 			if (!isset($level['visibility']) || $level['visibility'] != 1) {
 				$img = "levels/thumbs/low/".$level['id'].".jpg";
@@ -82,7 +78,7 @@ function level($level, $featured = '', $pkg = false) {
 
 		$page = ($pkg ? 'package' : 'level');
 
-		return $twig->render('level.twig', ['level' => $level, 'featured' => $featured, 'img' => $img, 'page' => $page]);
+		return twigloader('components')->render('level.twig', ['level' => $level, 'featured' => $featured, 'img' => $img, 'page' => $page]);
 	});
 }
 

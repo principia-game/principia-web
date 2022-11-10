@@ -11,8 +11,7 @@ for ($i = 1; $i <= $ucount; $i++) {
 	});
 }
 
-$twig = twigloader();
-echo $twig->render('userlist.twig', [
+echo twigloader()->render('userlist.twig', [
 	'users' => $users,
 	'levelcounts' => $levelcounts
 ]);

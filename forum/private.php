@@ -72,8 +72,7 @@ if ($pmsgc > $tpp) {
 	$fpagelist = pagelist($pmsgc, $tpp, $furl, $page).'<br>';
 }
 
-$twig = _twigloader();
-echo $twig->render('private.twig', [
+echo _twigloader()->render('private.twig', [
 	'id' => $id,
 	'pmsgs' => $pmsgs,
 	'topbot' => $topbot,

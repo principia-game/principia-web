@@ -22,8 +22,7 @@ if ($action == "Ban User") {
 	redirect(sprintf("/user.php?id=%s&justbanned=unban", $id));
 }
 
-$twig = twigloader();
-echo $twig->render('admin_ban_user.twig', [
+echo twigloader()->render('admin_ban_user.twig', [
 	'banuserdata' => $banuserdata,
 	'unban' => $banuserdata['powerlevel'] < 0
 ]);

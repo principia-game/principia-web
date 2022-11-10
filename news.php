@@ -3,8 +3,6 @@ require('lib/common.php');
 
 $newsid = $_GET['id'] ?? 0;
 
-$twig = twigloader();
-
 if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 2) {
 	if (isset($_POST['ApOsTaL'])) {
 		query("INSERT INTO news (title, text, time, author) VALUES (?,?,?,?)",
@@ -16,7 +14,7 @@ if (isset($_REQUEST['new']) && $log && $userdata['powerlevel'] > 2) {
 		redirect("/news.php?id=$insertid");
 	}
 
-	echo $twig->render('admin_news_add.twig');
+	echo twigloader()->render('admin_news_add.twig');
 	die();
 }
 
@@ -32,7 +30,7 @@ if ($newsid) {
 
 		$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
 
-		echo $twig->render('news.twig', [
+		echo twigloader()->render('news.twig', [
 			'newsid' => $newsid,
 			'news' => $newsdata,
 			'time' => $time,
@@ -44,7 +42,7 @@ if ($newsid) {
 } else {
 	$newsdata = query("SELECT id,title FROM news ORDER BY id DESC");
 
-	echo $twig->render('news.twig', [
+	echo twigloader()->render('news.twig', [
 		'newsid' => $newsid,
 		'news' => fetchArray($newsdata)
 	]);

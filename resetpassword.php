@@ -39,7 +39,6 @@ if (isset($_POST['action'])) {
 	}
 }
 
-$twig = twigloader();
-echo $twig->render('resetpassword.twig', [
+echo twigloader()->render('resetpassword.twig', [
 	'resetdata' => $resetdata
 ]);

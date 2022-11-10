@@ -79,9 +79,7 @@ if ($level['parent']) {
 	$parentLevel = fetch("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0", [$level['parent']]);
 }
 
-$twig = twigloader();
-
-echo $twig->render('level.twig', [
+echo twigloader()->render('level.twig', [
 	'lid' => $lid,
 	'level' => $level,
 	'has_liked' => $hasLiked ?? false,

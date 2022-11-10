@@ -16,9 +16,7 @@ clearMentions('package', $pid);
 
 $comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 6 AND c.level = ? ORDER BY c.time DESC", [$pid]);
 
-$twig = twigloader();
-
-echo $twig->render('package.twig', [
+echo twigloader()->render('package.twig', [
 	'id' => $pid,
 	'pkg' => $pkg,
 	'comments' => fetchArray($comments)

@@ -58,11 +58,11 @@ $topbot = [
 ];
 
 if ($sent)
-	$topbot['actions'] = [['href' => 'private'.($id != $userdata['id'] ? "?id=$id&" : ''), 'title' => "View received"]];
+	$topbot['actions'] = ['private'.($id != $userdata['id'] ? "?id=$id&" : '') => "View received"];
 else
-	$topbot['actions'] = [['href' => 'private?'.($id != $userdata['id'] ? "id=$id&" : '').'view=sent', 'title' => "View sent"]];
+	$topbot['actions'] = ['private?'.($id != $userdata['id'] ? "id=$id&" : '').'view=sent' => "View sent"];
 
-$topbot['actions'][] = ['href' => 'sendprivate', 'title' => 'Send new'];
+$topbot['actions']['sendprivate'] = 'Send new';
 
 
 $fpagelist = '<br>';

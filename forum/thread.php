@@ -136,22 +136,22 @@ if ($thread['posts'] > $ppp) {
 
 if ($viewmode == "thread") {
 	$topbot = [
-		'breadcrumb' => [['href' => 'forum?id='.$thread['forum'], 'title' => $thread['ftitle']]],
+		'breadcrumb' => ['forum?id='.$thread['forum'] => $thread['ftitle']],
 		'title' => $thread['title']
 	];
 
 	$faccess = fetch("SELECT id,minreply FROM z_forums WHERE id = ?",[$thread['forum']]);
 	if ($faccess['minreply'] <= $userdata['powerlevel']) {
 		if ($userdata['powerlevel'] > 1 && $thread['closed'])
-			$topbot['actions'] = [['title' => 'Thread closed'],['href' => "newreply?id=$tid", 'title' => 'New reply']];
+			$topbot['actions'] = ['none' => 'Thread closed', "newreply?id=$tid" => 'New reply'];
 		else if ($thread['closed'])
-			$topbot['actions'] = [['title' => 'Thread closed']];
+			$topbot['actions'] = ['none' => 'Thread closed'];
 		else
-			$topbot['actions'] = [['href' => "newreply?id=$tid", 'title' => 'New reply']];
+			$topbot['actions'] = ["newreply?id=$tid" => 'New reply'];
 	}
 } elseif ($viewmode == "user") {
 	$topbot = [
-		'breadcrumb' => [['href' => "/user/$uid", 'title' => $user['name']]],
+		'breadcrumb' => ["/user/$uid" => $user['name']],
 		'title' => 'Posts'
 	];
 } elseif ($viewmode == "time") {

@@ -46,7 +46,7 @@ if ($fid) {
 		'title' => $forum['title']
 	];
 	if ($userdata['powerlevel'] >= $forum['minthread'])
-		$topbot['actions'] = [['href' => "newthread?id=$fid", 'title' => 'New thread']];
+		$topbot['actions'] = ["newthread?id=$fid" => 'New thread'];
 
 } elseif ($uid) {
 	$user = fetch("SELECT name FROM users WHERE id = ?", [$uid]);

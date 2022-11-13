@@ -18,13 +18,13 @@ function newStatus($type) {
 function renderActions($actions) {
 	$out = '';
 	$i = 0;
-	foreach ($actions as $action) {
+	foreach ($actions as $url => $title) {
 		if ($i++) $out .= ' | ';
 
-		if (isset($action['href']))
-			$out .= sprintf('<a href="%s">%s</a>', esc($action['href']), $action['title']);
+		if ($url != 'none')
+			$out .= sprintf('<a href="%s">%s</a>', esc($url), $title);
 		else
-			$out .= $action['title'];
+			$out .= $title;
 	}
 	echo $out;
 }
@@ -34,8 +34,8 @@ function renderPageBar($pagebar) {
 
 	echo '<div class="breadcrumb"><a href="./">Forum</a> &raquo; ';
 	if (!empty($pagebar['breadcrumb'])) {
-		foreach ($pagebar['breadcrumb'] as $action)
-			printf('<a href=%s>%s</a> &raquo; ', '"'.esc($action['href']).'"', esc($action['title']));
+		foreach ($pagebar['breadcrumb'] as $url => $title)
+			printf('<a href="%s">%s</a> &raquo; ', esc($url), $title);
 	}
 	echo esc($pagebar['title']).'<div class="actions">';
 	if (!empty($pagebar['actions']))

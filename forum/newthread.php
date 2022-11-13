@@ -23,10 +23,8 @@ if ($action == 'Submit') {
 		$error = "You need to enter a longer title.";
 	if (strlen(trim($message)) == 0)
 		$error = "You need to enter a message to your thread.";
-	if ($userdata['lastpost'] > time() - 30 && $action == 'Submit' && $userdata['powerlevel'] < 4) // && !hasPerm('ignore-thread-time-limit')
+	if ($userdata['lastpost'] > time() - (10*60) && $action == 'Submit' && $userdata['powerlevel'] < 4)
 		$error = "Don't post threads so fast, wait a little longer.";
-	//if ($userdata['lastpost'] > time() - 2 && $action == 'Submit' && hasPerm('ignore-thread-time-limit'))
-	//	$error = "You must wait 2 seconds before posting a thread.";
 
 	if (!$error) {
 		query("UPDATE users SET posts = posts + 1, threads = threads + 1, lastpost = ? WHERE id = ?",

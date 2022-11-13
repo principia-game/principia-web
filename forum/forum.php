@@ -4,6 +4,7 @@ require('lib/common.php');
 $page = (int)($_GET['page'] ?? 1);
 $fid = (int)($_GET['id'] ?? 0);
 $uid = (int)($_GET['user'] ?? 0);
+$time = (int)($_GET['time'] ?? 0);
 
 $topbot = [];
 
@@ -73,7 +74,7 @@ if ($fid) {
 		'breadcrumb' => [['href' => "/user/$uid", 'title' => $user['name']]],
 		'title' => 'Threads'
 	];
-} elseif (isset($_GET['time']) && $time = $_GET['time']) {
+} elseif ($time) {
 	$mintime = ($time > 0 && $time <= 2592000 ? time() - $time : 86400);
 
 	$title = 'Latest threads';

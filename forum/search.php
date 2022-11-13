@@ -103,7 +103,7 @@ if ($where == 1) {
 		ifEmptyQuery("No threads found.", 6);
 
 	$query = urlencode($query);
-	echo '</table>'.pagelist($threadcount, $tpp, "search?q=$query&action=Search&w=0", $page);
+	echo '</table>'.pagination($threadcount, $tpp, "search?q=$query&action=Search&w=0&page=%s", $page);
 }
 
 $content = ob_get_contents();

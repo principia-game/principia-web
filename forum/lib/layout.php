@@ -43,30 +43,6 @@ function renderPageBar($pagebar) {
 	echo "</div></div>";
 }
 
-function pagelist($total, $limit, $url, $sel = 0, $showall = false) {
-	$pagelist = '';
-	$pages = ceil($total / $limit);
-	if ($pages < 2) return '';
-	for ($i = 1; $i <= $pages; $i++) {
-		if (	$showall	// If we don't show all the pages, show:
-			|| ($i < 7 || $i > $pages - 7)		// First / last 7 pages
-			|| ($i > $sel - 5 && $i < $sel + 5)	// 10 choices around the selected page
-			|| !($i % 10)						// Show 10, 20, etc...
-		) {
-			if ($i == $sel)
-				$pagelist .= " $i";
-			else
-				$pagelist .= " <a href=\"$url&page=$i\">$i</a>";
-		} else if (substr($pagelist, -1) != '.') {
-			$pagelist .= ' ...';
-		}
-	}
-
-	$listhtml = '<div class="pagelist">Pages: %s</div>';
-
-	return sprintf($listhtml, $pagelist);
-}
-
 function forumlist($currentforum = -1) {
 	global $userdata;
 	$r = query("SELECT c.title ctitle,f.id,f.title,f.cat FROM z_forums f LEFT JOIN z_categories c ON c.id=f.cat WHERE ? >= f.minread ORDER BY c.ord,c.id,f.ord,f.id",

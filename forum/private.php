@@ -69,7 +69,7 @@ $fpagelist = '<br>';
 if ($pmsgc > $tpp) {
 	if ($id != $userdata['id'])	$furl = "private?id=$id&view=$view";
 	else	$furl = "private?view=$view";
-	$fpagelist = pagelist($pmsgc, $tpp, $furl, $page).'<br>';
+	$fpagelist = pagination($pmsgc, $tpp, $furl, $page).'<br>';
 }
 
 echo _twigloader()->render('private.twig', [

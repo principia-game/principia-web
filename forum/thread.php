@@ -131,7 +131,7 @@ if ($thread['posts'] > $ppp) {
 	if ($viewmode == "thread")	$furl .= "id=$tid";
 	if ($viewmode == "user")	$furl .= "user=$uid";
 	if ($viewmode == "time")	$furl .= "time=$time";
-	$pagelist = '<br>'.pagelist($thread['posts'], $ppp, $furl, $page, true);
+	$pagelist = pagination($thread['posts'], $ppp, $furl.'&page=%s', $page, true);
 }
 
 if ($viewmode == "thread") {

@@ -106,7 +106,7 @@ if ($forum['threads'] > $tpp) {
 	if ($fid)	$furl .= "id=$fid";
 	if ($uid)	$furl .= "user=$uid";
 	if ($time)	$furl .= "time=$time";
-	$fpagelist = '<br>'.pagelist($forum['threads'], $tpp, $furl, $page, true);
+	$fpagelist = pagination($forum['threads'], $tpp, $furl.'&page=%s', $page);
 }
 
 echo _twigloader()->render('forum.twig', [

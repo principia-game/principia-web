@@ -1,7 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = "Home" %}
-{% set description = "An unofficial community site replacement for the game Principia by Bithack. Register today and play some levels!" %}
+{% set description = "A community site for the open source physics-based sandbox game Principia by Bithack. Register today and play some levels!" %}
 {% set pagename = "/" %}
 
 	{% block content %}
@@ -9,15 +9,17 @@
 	<div class="header_message">You've been successfully registered and automatically logged in. Welcome to principia-web!</div>
 {% endif %}
 
-{% if not log %}
+{% if not log and not is_android_webview() %}
 <div class="skit">
-	<h1>Welcome to principia-web!</h1>
+	<h1>Welcome to Principia</h1>
 
-	<p>Principia-web is an unofficial community site replacement for the game Principia, as the official community site was shut down in early 2018.</p>
+	<video autoplay loop muted>
+    	<source src="https://grejer.voxelmanip.se/principia/cool-video.webm" type="video/webm">
+	</video>
 
-	<p>In order to play and upload levels, you will need to <a href="/download">install a mod</a>, available on both Windows and Android, that allows the game to connect to principia-web.</p>
+	<p>Principia is a physics-based sandbox game. Build and play advanced contraptions, circuiting, minigames, robot adventures and more. Open source, free and available for Windows, Linux and Android, <a href="/download">download it today</a>.</p>
 
-	<p>What are you waiting for? <a href="/register">Register now!</a></p>
+	<p>Principia-web is the new community site for Principia. When you have installed Principia, enjoy the levels others have created, and <a href="/register">register</a> in order to upload your own levels and interact with the community.</p>
 </div>
 {% endif %}
 

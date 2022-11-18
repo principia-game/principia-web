@@ -456,7 +456,12 @@ form.reglog {
 	border-bottom: 1px solid $grid;
 	display: block;
 	text-align: center;
-	font-size: 1em;
+	font-size: 1.25em;
+
+	video {
+		max-width: 100%;
+		border-radius: 15px;
+	}
 
 	a {
 		font-weight: bold;

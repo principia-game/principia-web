@@ -1,39 +1,45 @@
 {% extends "_layout.twig" %}
 
 {% set title = "Downloads" %}
-{% set description = "Download the principia-web mod for the Principia game which allows the game to connect to principia-web." %}
+{% set description = "Download the latest version of open source Principia here, on principia-web." %}
 
 	{% block content %}
 <h1>Downloads</h1>
 
-<h3 style="color:red"><b>Hey!</b> This download page is from before the source release and contains modded versions of the old proprietary 1.5.1 intended for use with principia-web. There are not publicly available binaries of the open source version yet, but you can currently <a href="https://github.com/Bithack/principia">compile from source</a> for both Windows and Linux.</h3>
+<p>Below are downloads for beta versions of the new open source Principia 1.5.2.</p>
 
-<p>For uploading and playing levels you will need to download and install a mod to make the game connect to principia-web.</p>
+<table class="dl"><tr>
+	<td class="plat"><img src="/assets/icons/windows.svg"><br>Windows</td>
+	<td>
+		<p><a href="https://grejer.voxelmanip.se/principia/principia_1.5.2_beta_2022-11-20.exe">Download Principia 1.5.2 Beta for Windows x64 (built 2022-11-20)</a></p>
 
-<table class="dl">
-	<tr>
-		<td class="center"><img src="/assets/icons/windows.svg" height=32> <br>Windows</td>
-		<td>
-			<p>(If you don't already have 1.5.1, you can download it <a href="https://grejer.voxelmanip.se/principia/principia_1.5.1.exe">here</a> (<a href="https://archive.org/download/principia-windows-installer-151/principia-x86.exe">archive.org mirror</a>).)</p>
+		<p>Administrator privileges are required to run the installer.</p>
+	</td>
+</tr><tr>
+	<td class="plat"><img src="/assets/icons/linux.svg"><br>Linux</td>
+	<td>
+		<p>If you're on Arch Linux you can use the <a href="https://aur.archlinux.org/packages/principia-git">principia-git</a> package from the AUR.</p>
 
-			<p><a href="https://grejer.voxelmanip.se/principia/principia-web_curl_mod_r3.zip">Download the cURL mod for 1.5.1.</a></p>
+		<p>Otherwise, please clone the source repository and build from source:</p>
 
-			<p>This patches the game's cURL library to redirect connections to principia-web. For installing, please see the included README file.</p>
-		</td>
-	</tr>
-	<tr>
-		<td class="center"><img src="/assets/icons/android.svg" height=32> <br>Android</td>
-		<td>
-			<p><a href="https://grejer.voxelmanip.se/principia/principia_1.5.1_principia-web_mod_v1.apk">Download the principia-web mod for Android.</a> (<a href="https://archive.org/download/principia-mods/commod_r1_ozxa.apk">archive.org mirror</a>)</p>
+		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
 
-			<p><strong>Since this APK is signed using a different key from the original APK, you will need to uninstall the original one. You shouldn't lose any game data, but make a backup just in case.</strong></p>
+		<p>Compilation instructions can be found in the included <a href="https://github.com/Bithack/principia/#building-on-linux">README</a> file.
+	</td>
+</tr><tr>
+	<td class="plat"><img src="/assets/icons/android.svg"><br>Android</td>
+	<td>
+		<p>1.5.2 beta builds coming soon...</p>
 
-			<p>This modded APK not only renames strings to point to principia-web, but also removes Facebook analytics and fixes the SFX Emitter bug.</p>
-		</td>
-	</tr>
-</table>
+		<p><small>For the time being, you can download the old <a href="https://grejer.voxelmanip.se/principia/principia_1.5.1_principia-web_mod_v1.apk">1.5.1 principia-web mod for Android</a>.</small></p>
+		{#<p><a href="TODO">Download Principia 1.5.2 Beta for Android (Android 4.0+) (built 2022-10-29)</a></p>
 
-<p><strong>Bithack is cool.</strong></p>
+		<p>Principia 1.5.2 now stores its user data in scoped app storage as compared to in the shared storage. If you have existing levels and data saved locally you will need to manually migrate it to the new location. (See <a href="/wiki/Accessing_Android_Data_Directory">Accessing Android Data Directory</a>)</p>#}
+
+	</td>
+</tr></table>
+
+<p>Problems, crashes or bugs? Ask in the Discord server or <a href="https://github.com/Bithack/principia/issues/new">open an issue on Github</a>.</p>
 
 <p>If you fancy something else, see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview" target="_blank">Bithack Game Archive Index</a>.</p>
 	{% endblock %}

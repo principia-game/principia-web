@@ -405,6 +405,12 @@ form.reglog {
 	td {
 		border: 1px solid $grid;
 		padding: 7px;
+
+		&.plat {
+			text-align: center;
+
+			img { height: 32px }
+		}
 	}
 }
 
@@ -420,6 +426,7 @@ form.reglog {
 
 	span {
 		margin-left: 13px;
+		display: inline-block;
 	}
 }
 

@@ -47,7 +47,16 @@ function comments($cmnts, $type, $id, $showheader = true) {
 }
 
 function pagination($levels, $lpp, $url, $current) {
-	return twigloader('components')->render('pagination.twig', ['levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current]);
+	global $acmlm;
+
+	if ($acmlm)
+		$twig = _twigloader();
+	else
+		$twig = twigloader();
+
+	return $twig->render('pagination.twig', [
+		'levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current
+	]);
 }
 
 function error($title, $message) {

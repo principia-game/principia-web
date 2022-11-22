@@ -71,7 +71,7 @@ if ($fid) {
 		[$uid, $userdata['powerlevel']]);
 
 	$topbot = [
-		'breadcrumb' => [['href' => "/user/$uid", 'title' => $user['name']]],
+		'breadcrumb' => ["/user/$uid" => $user['name']],
 		'title' => 'Threads'
 	];
 } elseif ($time) {

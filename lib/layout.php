@@ -50,9 +50,9 @@ function pagination($levels, $lpp, $url, $current) {
 	global $acmlm;
 
 	if ($acmlm)
-		$twig = _twigloader();
+		$twig = _twigloader('../../templates/components');
 	else
-		$twig = twigloader();
+		$twig = twigloader('components');
 
 	return $twig->render('pagination.twig', [
 		'levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current

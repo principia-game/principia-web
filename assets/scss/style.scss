@@ -412,6 +412,20 @@ form.reglog {
 			img { height: 32px }
 		}
 	}
+
+	.generic {
+		height: 32px;
+		width: 32px;
+		text-align: center;
+		display: inline-block;
+		margin-bottom: 5px;
+		font-size: 18pt;
+		font-weight: bold;
+	}
+
+	code {
+		font-size: 11pt;
+	}
 }
 
 // Pagination \\

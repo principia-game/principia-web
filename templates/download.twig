@@ -10,17 +10,39 @@
 
 <table class="dl"><tr>
 	<td class="plat"><img src="/assets/icons/windows.svg"><br>Windows</td>
-	<td>
+	<td colspan="2">
 		<p><a href="https://grejer.voxelmanip.se/principia/principia_1.5.2_beta_2022-11-20.exe">Download Principia 1.5.2 Beta for Windows x64 (built 2022-11-20)</a></p>
 
 		<p>Administrator privileges are required to run the installer.</p>
 	</td>
 </tr><tr>
-	<td class="plat"><img src="/assets/icons/linux.svg"><br>Linux</td>
+	<td class="plat" rowspan="4"><img src="/assets/icons/linux.svg"><br>Linux</td>
+</tr><tr>
+	<td class="plat"><img src="/assets/icons/arch.svg"><br>Arch Linux
 	<td>
-		<p>If you're on Arch Linux you can use the <a href="https://aur.archlinux.org/packages/principia-git">principia-git</a> package from the AUR.</p>
+		<p>On Arch Linux-based distributions you can use the <a href="https://aur.archlinux.org/packages/principia-git">principia-git</a> package from the AUR which tracks the latest master. Use your favourite AUR helper, like such:</p>
 
-		<p>Otherwise, please clone the source repository and build from source:</p>
+		<p><code>yay -S principia-git</code></p>
+
+		<p>A custom binary repository is also available, being updated every now and then. To add:</p>
+
+		<p><code>echo -e '\n[principia]\nSigLevel = Optional DatabaseOptional\nServer = https://grejer.voxelmanip.se/principia/arch-repo/$arch' | sudo tee -a /etc/pacman.conf</code></p>
+	</td>
+</tr><tr>
+	<td class="plat"><img src="/assets/icons/debian.svg"><br>Debian
+	<td>
+		<p>For Debian-based distributions, we have an MPR package tracking the latest master.</p>
+
+		<p>Install <a href="https://www.makedeb.org/">makedeb</a> (if you do not already have it), and make the <a href="https://mpr.makedeb.org/packages/principia-git">principia-git</a> MPR package like such:</p>
+
+		<p><code>git clone https://mpr.makedeb.org/principia-git<br>
+cd principia-git/<br>
+makedeb -si</code></p>
+	</td>
+</tr><tr>
+	<td class="plat"><div class="generic">?</div> <br>Other</td>
+	<td>
+		<p>Please clone the source repository and build from source:</p>
 
 		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
 
@@ -28,7 +50,7 @@
 	</td>
 </tr><tr>
 	<td class="plat"><img src="/assets/icons/android.svg"><br>Android</td>
-	<td>
+	<td colspan="2">
 		<p>1.5.2 beta builds coming soon...</p>
 
 		<p><small>For the time being, you can download the old <a href="https://grejer.voxelmanip.se/principia/principia_1.5.1_principia-web_mod_v1.apk">1.5.1 principia-web mod for Android</a>.</small></p>

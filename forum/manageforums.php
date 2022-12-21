@@ -23,13 +23,13 @@ if (isset($_POST['savecat'])) {
 		}
 		redirect('manageforums?cid='.$cid);
 	}
-} else if (isset($_POST['delcat'])) {
+} elseif (isset($_POST['delcat'])) {
 	// delete category
 	$cid = (int)$_GET['cid'];
 	query("DELETE FROM z_categories WHERE id = ?",[$cid]);
 
 	redirect('manageforums');
-} else if (isset($_POST['saveforum'])) {
+} elseif (isset($_POST['saveforum'])) {
 	// save new/existing forum
 	$fid = $_GET['fid'];
 	$cat = (int)$_POST['cat'];
@@ -59,10 +59,10 @@ if (isset($_POST['savecat'])) {
 		}
 		redirect('manageforums?fid='.$fid);
 	}
-} else if (isset($_POST['delforum'])) {
+} elseif (isset($_POST['delforum'])) {
 	// delete forum
 	$fid = (int)$_GET['fid'];
-	query("DELETE FROM z_forums WHERE id=?",[$fid]);
+	query("DELETE FROM z_forums WHERE id = ?",[$fid]);
 	redirect('manageforums');
 }
 
@@ -81,7 +81,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 		'cid' => $cid,
 		'cat' => $cat
 	]);
-} else if (isset($_GET['fid']) && $fid = $_GET['fid']) {
+} elseif (isset($_GET['fid']) && $fid = $_GET['fid']) {
 	// forum editor
 	if ($fid == 'new') {
 		$forum = [

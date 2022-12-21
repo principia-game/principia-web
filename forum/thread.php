@@ -88,6 +88,22 @@ if ($viewmode == "thread") {
 			LIMIT ?,?",
 		[$tid, $offset, $ppp]);
 
+	$topbot = [
+		'breadcrumb' => ['forum?id='.$thread['forum'] => $thread['ftitle']],
+		'title' => $thread['title']
+	];
+
+	$faccess = fetch("SELECT id,minreply FROM z_forums WHERE id = ?",[$thread['forum']]);
+	if ($faccess['minreply'] <= $userdata['powerlevel']) {
+		if ($userdata['powerlevel'] > 1 && $thread['closed'])
+			$topbot['actions'] = ['none' => 'Thread closed', "newreply?id=$tid" => 'New reply'];
+		else if ($thread['closed'])
+			$topbot['actions'] = ['none' => 'Thread closed'];
+		else
+			$topbot['actions'] = ["newreply?id=$tid" => 'New reply'];
+	}
+
+	$url = "thread?id=$tid";
 } elseif ($viewmode == "user") {
 	$user = fetch("SELECT * FROM users WHERE id = ?", [$uid]);
 
@@ -105,6 +121,13 @@ if ($viewmode == "thread") {
 		[$uid, $userdata['powerlevel'], $offset, $ppp]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts p WHERE user = ?", [$uid]);
+
+	$topbot = [
+		'breadcrumb' => ["/user/$uid" => $user['name']],
+		'title' => 'Posts'
+	];
+
+	$url = "thread?user=$uid";
 } elseif ($viewmode == "time") {
 	$mintime = ($time > 0 && $time <= 2592000 ? time() - $time : 86400);
 
@@ -122,44 +145,15 @@ if ($viewmode == "thread") {
 		[$mintime, $userdata['powerlevel'], $offset, $ppp]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts WHERE date > ?", [$mintime]);
-} else
-	$title = '';
 
-$pagelist = '';
-if ($thread['posts'] > $ppp) {
-	$furl = "thread?";
-	if ($viewmode == "thread")	$furl .= "id=$tid";
-	if ($viewmode == "user")	$furl .= "user=$uid";
-	if ($viewmode == "time")	$furl .= "time=$time";
-	$pagelist = pagination($thread['posts'], $ppp, $furl.'&page=%s', $page, true);
-}
-
-if ($viewmode == "thread") {
-	$topbot = [
-		'breadcrumb' => ['forum?id='.$thread['forum'] => $thread['ftitle']],
-		'title' => $thread['title']
-	];
-
-	$faccess = fetch("SELECT id,minreply FROM z_forums WHERE id = ?",[$thread['forum']]);
-	if ($faccess['minreply'] <= $userdata['powerlevel']) {
-		if ($userdata['powerlevel'] > 1 && $thread['closed'])
-			$topbot['actions'] = ['none' => 'Thread closed', "newreply?id=$tid" => 'New reply'];
-		else if ($thread['closed'])
-			$topbot['actions'] = ['none' => 'Thread closed'];
-		else
-			$topbot['actions'] = ["newreply?id=$tid" => 'New reply'];
-	}
-} elseif ($viewmode == "user") {
-	$topbot = [
-		'breadcrumb' => ["/user/$uid" => $user['name']],
-		'title' => 'Posts'
-	];
-} elseif ($viewmode == "time") {
-	$topbot = [];
 	$time = $_GET['time'];
+
+	$url = "thread?time=$time";
 }
 
-$modlinks = '';
+if ($thread['posts'] > $ppp)
+	$pagelist = pagination($thread['posts'], $ppp, $url.'&page=%s', $page);
+
 if ($log && isset($tid) && ($userdata['powerlevel'] > 2 || ($userdata['id'] == $thread['user'] && !$thread['closed'] && $userdata['powerlevel'] > 0))) {
 	$fmovelinks = $stick = $close = $trash = '';
 	$link = "<a href=javascript:submitmod";
@@ -174,9 +168,8 @@ if ($log && isset($tid) && ($userdata['powerlevel'] > 2 || ($userdata['id'] == $
 
 		$fmovelinks = addslashes(forumlist($thread['forum']))
 		.'<input type="submit" id="move" value="Submit" name="movethread" onclick="submitmove(movetid())">';
-	} else {
+	} else
 		$edit = '<a href="javascript:showrbox()">Rename</a>';
-	}
 
 	$renamefield = '<input type="text" name="title" id="title" size=60 maxlength=255 value="'.esc($thread['title']).'">';
 	$renamefield.= '<input type="submit" name="submit" value="Rename" onclick="submitmod(\'rename\')">';
@@ -206,11 +199,11 @@ echo _twigloader()->render('thread.twig', [
 	'viewmode' => $viewmode,
 	'thread' => $thread,
 	'posts' => $posts,
-	'topbot' => $topbot,
+	'topbot' => $topbot ?? null,
 	'uid' => $uid ?? null,
 	'time' => $time ?? null,
-	'modlinks' => $modlinks,
-	'pagelist' => $pagelist,
+	'modlinks' => $modlinks ?? null,
+	'pagelist' => $pagelist ?? null,
 	'faccess' => $faccess ?? null,
 	'pin' => $_GET['pin'] ?? null,
 	'tid' => $tid ?? null,

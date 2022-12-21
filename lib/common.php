@@ -94,6 +94,7 @@ if ($log) {
 		}
 
 		query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $ipaddr, $userdata['id']]);
+		$userdata['lastview'] = time();
 	}
 } else {
 	$userdata['powerlevel'] = 0;

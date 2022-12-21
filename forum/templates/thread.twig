@@ -23,7 +23,7 @@
 			<a href="forum?time={{ time }}">By Threads</a> | By Posts</a><br><br>
 			{{ timelinks('thread') }}
 		</td></tr>
-	</table><br>
+	</table>
 {% endif %}
 
 {{ modlinks | raw }}{{ pagelist | raw }}
@@ -39,7 +39,7 @@
 
 	<br>{{ threadpost(post, pthread) }}
 {% else %}
-	{{ if_empty_query("No posts were found.", 0, true) }}
+	<br>{{ if_empty_query("No posts were found.", 0, true) }}
 {% endfor %}
 
 {{ pagelist | raw }}

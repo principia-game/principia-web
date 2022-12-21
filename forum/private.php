@@ -23,11 +23,11 @@ $showdel = isset($_GET['showdel']);
 
 if (isset($_GET['action']) && $_GET['action'] == "del") {
 	$owner = result("SELECT user$fieldn2 FROM z_pmsgs WHERE id = ?", [$id]);
-	if ($userdata['powerlevel'] > 3 || $owner == $userdata['id']) {
+	if ($userdata['powerlevel'] > 3 || $owner == $userdata['id'])
 		query("UPDATE z_pmsgs SET del_$fieldn2 = ? WHERE id = ?", [!$showdel, $id]);
-	} else {
+	else
 		error("403", "You are not allowed to (un)delete that message.");
-	}
+
 	$id = 0;
 }
 
@@ -53,9 +53,7 @@ $pmsgs = query("SELECT $ufields, p.* FROM z_pmsgs p
 				LIMIT ?,?",
 			[$id, $showdel, (($page - 1) * $tpp), $tpp]);
 
-$topbot = [
-	'title' => $title
-];
+$topbot = ['title' => $title];
 
 if ($sent)
 	$topbot['actions'] = ['private'.($id != $userdata['id'] ? "?id=$id&" : '') => "View received"];

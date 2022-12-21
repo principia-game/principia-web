@@ -8,19 +8,16 @@ table.c1 {
 
 	tr.h, tr.c {
 		text-align: center;
-	}
-
-	tr.h {
-		background: #235aa3;
 		color: #ffffff;
 	}
 
-	tr.h td {
-		border: 0;
-	}
+	tr.h { background: #235aa3; }
 
-	tr.c {
-		background: #44a9c2;
+	tr.c { background: #208aa5; }
+
+	tr.h td, tr.c td {
+		border-left: 0;
+		border-right: 0;
 	}
 
 	td {
@@ -38,7 +35,7 @@ table.c1 {
 	tr.n3, td.n3 { background: #d4d4d4; }
 
 	.delete {
-		font-weight:900;
+		font-weight: bold;
 		display: inline-block;
 		margin-left: 6px;
 		margin-right: 6px;
@@ -60,6 +57,19 @@ input[value=Preview], input[value=Submit] {
 @media only screen and (max-width: 640px) {
 	/* 'no mobile' */
 	.nom { display: none; }
+
+	/* 'no desktop' */
+	.nod { display: unset; }
+
+	.nod img { max-height: 64px; }
+
+	/* display block on mobile */
+	.blkm { display: block; }
+
+	table.c1 .topbar_1 {
+		width: unset;
+		text-align: left;
+	}
 }
 
 .pagelist {
@@ -83,17 +93,20 @@ input[value=Preview], input[value=Submit] {
 }
 
 .threadpost {
-	.topbar_1, .sidebar {
+	.topbar_1 {
+		border-bottom: 0 !important;
+		border-right: 0 !important;
+		width: 180px;
 		text-align: center;
 	}
-
-	.topbar_1, .topbar_2, .sidebar {
-		border: 0 !important;
+	.topbar_2 {
+		border-left: 0 !important;
+		padding: 7px !important;
 	}
 
-	.topbar_1 {
-		min-width: 180px;
-		height: 24px;
+	.sidebar {
+		border-top: 0 !important;
+		text-align: center;
 	}
 
 	.mainbar {
@@ -123,6 +136,12 @@ input[value=Preview], input[value=Submit] {
 			max-width: 100%;
 		}
 	}
+}
+
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
 }
 
 .autowidth { width: auto !important; }

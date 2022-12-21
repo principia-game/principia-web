@@ -27,11 +27,12 @@ function minipost($post) {
 
 	return <<<HTML
 	<tr>
-		<td class="n1 topbar_1">$ulink</td>
-		<td class="n1 topbar_2 sfont fullwidth">Posted on $pdate
-			<span class="float-right"><a href="thread.php?pid={$post['id']}#{$post['id']}">Link</a> | ID: {$post['id']}</span></td>
+		<td class="n1 topbar_1 nom">$ulink</td>
+		<td class="n1 topbar_1 blkm nod clearfix">$ulink</td>
+		<td class="n1 topbar_2 sfont blkm">Posted on $pdate
+			<span class="float-right"><a href="thread.php?pid={$post['id']}#{$post['id']}">Link</a> &bull; ID: {$post['id']}</span></td>
 	</tr><tr valign="top">
-		<td class="n1 sfont sidebar">
+		<td class="n1 sfont sidebar nom">
 			Posts: {$post['uposts']}
 		</td>
 		<td class="n2 mainbar">$posttext</td>
@@ -102,8 +103,8 @@ HTML;
 
 	$ulink = userlink($post, 'u');
 	$pdate = date('Y-m-d H:i', $post['date']);
-	$lastpost = ($post['ulastpost'] ? timeunits(time() - $post['ulastpost']) : 'none');
-	$lastview = timeunits(time() - $post['ulastview']);
+	$lastpost = relativeTime($post['ulastpost']);
+	$lastview = relativeTime($post['ulastview']);
 	$picture = ($post['uavatar'] ? "<img src=\"/userpic/{$post['uid']}\" alt=\"(Avatar)\">" : '');
 	if (!$log) $post['usignature'] = '';
 	else if ($post['usignature']) {
@@ -115,21 +116,24 @@ HTML;
 <table class="c1 threadpost" id="{$post['id']}">
 	$headerbar
 	<tr>
-		<td class="n1 topbar_1">$ulink</td>
-		<td class="n1 topbar_2 fullwidth">Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span></td>
+		<td class="n1 topbar_1 nom">$ulink</td>
+		<td class="n1 topbar_1 blkm nod clearfix">
+			<span style="float:left;margin-right:10px">$picture</span>
+			$ulink <div class="sfont" style="margin-top:0.5em">$usertitle</div>
+		</td>
+		<td class="n1 topbar_2 blkm clearfix">Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span></td>
 	</tr><tr valign="top">
-		<td class="n1 sidebar">
+		<td class="n1 sidebar nom">
 			$usertitle$picture
 			<br>Posts: {$post['uposts']}
 			<br>
-			<br>Since: $ujoined
+			<br>Joined: $ujoined
 			<br>
 			<br>Last post: $lastpost
 			<br>Last view: $lastview
 		</td>
-		<td class="n2 mainbar" id="post_{$post['id']}">$posttext{$post['usignature']}</td>
+		<td class="n2 mainbar">$posttext{$post['usignature']}</td>
 	</tr>
 </table>
 HTML;
-
 }

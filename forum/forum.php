@@ -48,6 +48,7 @@ if ($fid) {
 	if ($userdata['powerlevel'] >= $forum['minthread'])
 		$topbot['actions'] = ["newthread?id=$fid" => 'New thread'];
 
+	$url = "forum?id=$fid";
 } elseif ($uid) {
 	$user = fetch("SELECT name FROM users WHERE id = ?", [$uid]);
 
@@ -61,7 +62,7 @@ if ($fid) {
 			LEFT JOIN z_forums f ON f.id = t.forum
 			$threadsread
 			WHERE t.user = ? AND ? >= minread
-			ORDER BY t.sticky DESC, t.lastdate DESC
+			ORDER BY t.lastdate DESC
 			LIMIT ?,?",
 		[$uid, $userdata['powerlevel'], $offset, $tpp]);
 
@@ -74,6 +75,8 @@ if ($fid) {
 		'breadcrumb' => ["/user/$uid" => $user['name']],
 		'title' => 'Threads'
 	];
+
+	$url = "forum?user=$uid";
 } elseif ($time) {
 	$mintime = ($time > 0 && $time <= 2592000 ? time() - $time : 86400);
 
@@ -95,20 +98,15 @@ if ($fid) {
 			WHERE t.lastdate > ? AND ? >= f.minread",
 		[$mintime, $userdata['powerlevel']]);
 
-} else {
+	$url = "forum?time=$time";
+} else
 	error("404", "Forum does not exist.");
-}
+
 
 $showforum = $time ?? $uid;
 
-$fpagelist = '';
-if ($forum['threads'] > $tpp) {
-	$furl = "forum?";
-	if ($fid)	$furl .= "id=$fid";
-	if ($uid)	$furl .= "user=$uid";
-	if ($time)	$furl .= "time=$time";
-	$fpagelist = pagination($forum['threads'], $tpp, $furl.'&page=%s', $page);
-}
+if ($forum['threads'] > $tpp)
+	$pagelist = pagination($forum['threads'], $tpp, $url.'&page=%s', $page);
 
 echo _twigloader()->render('forum.twig', [
 	'fid' => $fid,
@@ -116,7 +114,7 @@ echo _twigloader()->render('forum.twig', [
 	'threads' => $threads,
 	'showforum' => $showforum,
 	'topbot' => $topbot,
-	'fpagelist' => $fpagelist,
+	'pagelist' => $pagelist ?? null,
 	'uid' => $uid ?? null,
 	'time' => $time ?? null
 ]);

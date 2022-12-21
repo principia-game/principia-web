@@ -72,8 +72,6 @@ function ifEmptyQuery($message, $colspan = 0, $table = false) {
 }
 
 function _twigloader($subfolder = '') {
-	global $acmlm;
-
 	$twig = twigloader($subfolder, function () use ($subfolder) {
 		return new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
 	}, function ($loader, $doCache) {
@@ -85,7 +83,7 @@ function _twigloader($subfolder = '') {
 
 	$twig->addExtension(new PrincipiaForumExtension());
 
-	$twig->addGlobal('acmlm', $acmlm);
+	$twig->addGlobal('acmlm', true);
 
 	return $twig;
 }
@@ -94,7 +92,6 @@ class PrincipiaForumExtension extends \Twig\Extension\AbstractExtension {
 	public function getFunctions() {
 		return [
 			// datetime.php
-			new \Twig\TwigFunction('timeunits', 'timeunits', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('timelinks', 'timelinks', ['is_safe' => ['html']]),
 
 			// layout.php

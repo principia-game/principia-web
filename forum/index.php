@@ -23,9 +23,8 @@ if ($log && $action == 'markread') {
 }
 
 $categs = query("SELECT id,title FROM z_categories ORDER BY ord,id");
-while ($c = $categs->fetch()) {
+while ($c = $categs->fetch())
 	$categ[$c['id']] = $c['title'];
-}
 
 $forums = query("SELECT f.*, ".($log ? "r.time rtime, " : '').userfields('u', 'u')." "
 		. "FROM z_forums f "

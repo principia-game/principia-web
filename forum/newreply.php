@@ -93,10 +93,11 @@ if ($pid) {
 }
 
 if ($action == 'Preview') {
-	$post['date'] = $post['ulastpost'] = time();
-	$post['text'] = $message;
 	foreach ($userdata as $field => $val)
 		$post['u'.$field] = $val;
+
+	$post['date'] = $post['ulastpost'] = time();
+	$post['text'] = $message;
 	$post['headerbar'] = 'Post preview';
 
 	$topbot['title'] .= ' (Preview)';

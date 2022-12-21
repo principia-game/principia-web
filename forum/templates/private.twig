@@ -11,19 +11,17 @@
 		<td width="17">&nbsp;</td>
 		<td style="width:30px">&nbsp;</td>
 		<td>Title</td>
-		<td width="130">{{ fieldn }}</td>
+		<td class="nom" width="130">{{ fieldn }}</td>
 		<td width="130">Sent on</td>
 	</tr>
 {% set i = 1 %}
 {% for pmsg in pmsgs %}
 	<tr class="n{% if i % 2 %}1{% else %}2{% endif %} center">
-		<td >
-			<a href="private?action=del&id={{ pmsg.id }}&view={{ view }}" class="delete">X</a>
-		</td>
+		<td><a href="private?action=del&id={{ pmsg.id }}&view={{ view }}" class="delete">X</a></td>
 		<td >{% if pmsg.unread %}{{ new_status("n") }}{% endif %}</td>
 		<td class="left wbreak"><a href="showprivate?id={{ pmsg.id }}">{{ pmsg.title | default('(untitled)') }}</a></td>
-		<td>{{ userlink(pmsg, 'u') }}</td>
-		<td><nobr>{{ pmsg.date | date('Y-m-d H:i') }}</nobr></td>
+		<td class="nom">{{ userlink(pmsg, 'u') }}</td>
+		<td>{{ pmsg.date | date('Y-m-d H:i') }}</td>
 	</tr>
 	{% set i = i + 1 %}
 {% else %}

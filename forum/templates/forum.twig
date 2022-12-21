@@ -33,11 +33,11 @@
 		<td class="nom" width="130">Started by</td>
 		<td class="nom" width="50">Replies</td>
 		<td class="nom" width="50">Views</td>
-		<td width="130">Last post</td>
+		<td width="150">Last post</td>
 	</tr>
 	{% set i = 1 %}
 	{% for thread in threads %}
-		{% if thread.sticky and not time %}
+		{% if thread.sticky and fid %}
 			{% set tr = 1 %}
 		{% else %}
 			{% if i % 2 %}
@@ -47,7 +47,7 @@
 			{% endif %}
 		{% endif %}
 
-		{% if not time %}
+		{% if fid %}
 			{% if not thread.sticky and lsticky %}
 				<tr class="c"><td colspan="{% if showforum %}7{% else %}6{% endif %}"></td>
 			{% endif %}
@@ -87,7 +87,7 @@
 		</tr>
 	{% endfor %}
 </table>
-{{ fpagelist | raw }}
+{{ pagelist | raw }}
 {% if not time %}<br>{% endif %}
 {{ render_page_bar(topbot) }}
 	{% endblock %}

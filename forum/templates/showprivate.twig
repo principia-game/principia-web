@@ -1,7 +1,7 @@
 {% extends "_layout.twig" %}
 
-{% if pmsgs.title %}
-	{% set title = pmsgs.title %}
+{% if pmsg.title %}
+	{% set title = pmsg.title %}
 {% else %}
 	{% set title = '(untitled)' %}
 {% endif %}
@@ -10,7 +10,7 @@
 	{% block content %}
 {{ render_page_bar(pagebar) }}
 <br>
-{{ threadpost(pmsgs) }}
+{{ threadpost(pmsg) }}
 <br>
 {{ render_page_bar(pagebar) }}
 	{% endblock %}

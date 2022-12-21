@@ -17,8 +17,7 @@
 
 		<table class="c1">
 			<tr class="h">
-				<td style="width:30px">&nbsp;</td>
-				<td>{{ categories[forum.cat] }}</td>
+				<td class="left" colspan="2">{{ categories[forum.cat] }}</td>
 				<td class="nom" width="50">Threads</td>
 				<td class="nom" width="50">Posts</td>
 				<td width="150">Last post</td>
@@ -26,7 +25,7 @@
 	{% endif %}
 
 	<tr class="center">
-		<td class="n1">
+		<td class="n1" style="width:30px">
 			{% if log and forum.lastdate > forum.rtime %}
 				{{ new_status("n") }}
 			{% endif %}

@@ -33,7 +33,7 @@
 </div>
 
 <h2 class="header">Latest news <a href="/news">More</a></h2>
-<ul>
+<ul style="font-size:12pt">
 	{% for new in news %}
 		<li><b>{{ new.time | date('M j, Y') }}</b> - <a href="/news/{{ new.id }}">{{ new.title }}</a></li>
 	{% else %}
@@ -67,6 +67,8 @@
 	There are no adventure levels. You could create one!
 {% endfor %}
 </div>
+
+<h3 style="text-align:center">Want more? Check out the <a href="https://archive.principia-web.se/">Official community site archive</a>, a complete archive of levels spanning 2013 to 2018</h3>
 
 <h2 class="header">Latest comments</h2>
 <div class="comments">

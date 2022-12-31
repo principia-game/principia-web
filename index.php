@@ -12,10 +12,10 @@ $newsdata = $cache->hit('idx_news', function () {
 });
 
 $toplevels = $cache->hit('idx_top', function () use ($userfields) {
-	return fetchArray(query("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC LIMIT 4"));
+	return fetchArray(query("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC LIMIT 8"));
 });
 
-$latestquery = "SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.cat = %d AND l.visibility = 0 ORDER BY l.id DESC LIMIT 4";
+$latestquery = "SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.cat = %d AND l.visibility = 0 ORDER BY l.id DESC LIMIT 8";
 
 $latestcustom = $cache->hit('idx_anp', function () use ($latestquery) {
 	return fetchArray(query(sprintf($latestquery, 1)));
@@ -28,7 +28,7 @@ $latestadvent = $cache->hit('idx_adv', function () use ($latestquery) {
 $latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
 	return fetchArray(query("SELECT $userfields c.*, l.title level_name FROM comments c
 			JOIN users u ON c.author = u.id JOIN levels l ON c.level = l.id
-			WHERE c.type = 1 AND c.deleted = 0 ORDER BY c.time DESC LIMIT 6"));
+			WHERE c.type = 1 AND c.deleted = 0 ORDER BY c.time DESC LIMIT 8"));
 });
 
 echo twigloader()->render('index.twig', [

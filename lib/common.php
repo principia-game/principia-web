@@ -69,7 +69,7 @@ if (isset($_COOKIE['user']))	setcookie('user', 'DEPRECATED', 1, '/');
 if (isset($_COOKIE['passenc'])) setcookie('passenc', 'DEPRECATED', 1, '/');
 
 // Authentication code.
-if (isset($_COOKIE[$cookieName])) {
+if (isset($_COOKIE[$cookieName]) && validToken($_COOKIE[$cookieName])) {
 	$id = result("SELECT id FROM users WHERE token = ?", [$_COOKIE[$cookieName]]);
 
 	if ($id) {

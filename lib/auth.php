@@ -5,7 +5,10 @@ function internalAuth() {
 
 	if ($log) {
 		header("X-Principia-User-Id: ".$userdata['id']);
-		header("X-Principia-User-Name: ".$userdata['name']);
+		if (isset($_SERVER['HTTPS']))
+			header("X-Principia-User-Name: ".$userdata['name']."|UPDATE!!");
+		else
+			header("X-Principia-User-Name: ".$userdata['name']);
 		header("X-Principia-Unread: ".$notificationCount);
 	}
 }

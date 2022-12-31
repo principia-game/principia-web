@@ -25,6 +25,9 @@
 		{% if userdata.powerlevel < 0 %}
 			<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
 		{% endif %}
+		{% if old_version %}
+			<div class="banner b-red">You are using the Android principia-web mod which is obsolete and will not support connecting to principia-web soon. Please update to 1.5.2 Beta available at the <a href="/download">download page</a>.</div>
+		{% endif %}
 		<div class="top">
 			<a href="/"><img class="picon" src="/assets/icon.png" alt="Home"></a>
 			<div class="menu">

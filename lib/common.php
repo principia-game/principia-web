@@ -33,19 +33,10 @@ if (!isCli()) {
 		}
 	}
 
-	// Do redirects if this is a non-internal page
-	if (!str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
-		// Redirect all non-internal pages on the old domain to new domain if old domain is defined.
-		if (isset($oldDomain) && $_SERVER['HTTP_HOST'] == $oldDomain && !isAndroidWebview()) {
-			header("Location: ".$domain.$uri, true, 301);
-			die();
-		}
-
-		// Redirect all non-internal pages to https if https is enabled.
-		if ($https && !isset($_SERVER['HTTPS']) && !isset($_COOKIE['force-http'])) {
-			header("Location: https://".$_SERVER["HTTP_HOST"].$uri, true, 301);
-			die();
-		}
+	// Redirect all non-internal pages to https if https is enabled.
+	if ($https && !isset($_SERVER['HTTPS']) && !isset($_COOKIE['force-http'])) {
+		header("Location: https://".$_SERVER["HTTP_HOST"].$uri, true, 301);
+		die();
 	}
 
 	// principia-web IP ban system
@@ -63,10 +54,6 @@ if (!isCli()) {
 	$useragent = 'principia-web/cli (sexy, like PHP)';
 	$uri = '/';
 }
-
-// Unset legacy authentication cookies for security purposes. This will hopefully delete it from browsers and clients.
-if (isset($_COOKIE['user']))	setcookie('user', 'DEPRECATED', 1, '/');
-if (isset($_COOKIE['passenc'])) setcookie('passenc', 'DEPRECATED', 1, '/');
 
 // Authentication code.
 if (isset($_COOKIE[$cookieName]) && validToken($_COOKIE[$cookieName])) {

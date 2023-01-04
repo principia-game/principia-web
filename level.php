@@ -3,6 +3,9 @@ require('lib/common.php');
 
 $lid = $_GET['id'] ?? 0;
 
+// HACK: Fake level ID to take the user to the download page (for old principia-web mod)
+if ($lid == 2147483000) redirect('https://principia-web.se/download');
+
 $level = fetch("SELECT $userfields l.* FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level) error('404', "The requested level wasn't found.");

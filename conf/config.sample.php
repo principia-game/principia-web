@@ -26,9 +26,6 @@ $cookieName = 'token';
 // Website domain.
 $domain = 'https://example.org';
 
-// If you have an old domain you hosted this instance on you want to redirect to the current domain, define this variable.
-//$oldDomain = '';
-
 // Discord server link. If blank will disable Discord link.
 $invite = '';
 

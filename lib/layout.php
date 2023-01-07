@@ -36,7 +36,6 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('domain', $domain);
 	$twig->addGlobal('uri', $uri);
 	$twig->addGlobal('pagename', substr($_SERVER['PHP_SELF'], 0, -4));
-	$twig->addGlobal('old_version', $_SERVER['HTTP_HOST'] == 'principia-web.tk');
 
 	return $twig;
 }

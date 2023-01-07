@@ -68,6 +68,10 @@ function customInfo() { }
 // Stub function to put special information in the header.
 function customHeader() { }
 
+$footerlinks = [
+	'/about' => 'About'
+];
+
 /// GENERAL FORUM STUFF
 
 $trashid = 2; // Designates the id for your trash forum.

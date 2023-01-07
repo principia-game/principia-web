@@ -7,7 +7,7 @@
  * @return \Twig\Environment Twig object.
  */
 function twigloader($subfolder = '', $customloader = null, $customenv = null) {
-	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $lpp, $invite, $domain, $uri;
+	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $lpp, $footerlinks, $domain, $uri;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -32,7 +32,7 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('notification_count', $notificationCount);
 	$twig->addGlobal('log', $log);
 	$twig->addGlobal('glob_lpp', $lpp);
-	$twig->addGlobal('discord_invite', $invite);
+	$twig->addGlobal('footerlinks', $footerlinks);
 	$twig->addGlobal('domain', $domain);
 	$twig->addGlobal('uri', $uri);
 	$twig->addGlobal('pagename', substr($_SERVER['PHP_SELF'], 0, -4));

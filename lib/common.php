@@ -21,6 +21,7 @@ if (!isCli()) {
 	$ipaddr = $_SERVER['REMOTE_ADDR'];
 	$useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
 	$uri = $_SERVER['REQUEST_URI'] ?? null;
+	$referer = $_SERVER['HTTP_REFERER'] ?? null;
 
 	// UA-based bans, for dumb and identifiable scripts
 	if (!empty($blockedUA) && $useragent) {
@@ -40,11 +41,10 @@ if (!isCli()) {
 	}
 
 	// principia-web IP ban system
-	if ($cache->enabled) { // Speedy memcachelez
+	if ($cache->enabled) // Speedy memcachelez
 		$ipban = $cache->get('ipb_'.$ipaddr);
-	} else { // Fallback
+	else // Fallback
 		$ipban = result("SELECT reason FROM ipbans WHERE ? LIKE ip", [$ipaddr]);
-	}
 
 	if ($ipban)
 		showIpBanMsg($ipban);
@@ -53,6 +53,7 @@ if (!isCli()) {
 	$ipaddr = '127.0.0.1';
 	$useragent = 'principia-web/cli (sexy, like PHP)';
 	$uri = '/';
+	$referer = '';
 }
 
 // Authentication code.

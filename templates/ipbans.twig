@@ -1,0 +1,27 @@
+{% extends "_layout.twig" %}
+
+{% set title = "IP bans" %}
+
+	{% block content %}
+<h1>IP bans</h1>
+<table class="settings">
+	<tr>
+		<th style="width:100px">IP</th>
+		<th>Reason</th>
+	</tr>
+	{% for ban in ipbans %}
+	<tr>
+		<td><a href="https://www.abuseipdb.com/check/{{ ban.ip }}">{{ ban.ip }}</a></td>
+		<td>{{ ban.reason }}</td>
+	</tr>
+	{% endfor %}
+</table><br>
+
+<h2>New IP ban(s)</h2>
+<form action="/ipbans?add" method="POST">
+	<p><textarea name="iplist" placeholder="Single IP address or list of them, newline separated" cols="40" rows="10"></textarea></p>
+	<p><input type="text" name="reason" placeholder="IP ban reason" size="60"></p>
+
+	<p><input type="submit" name="action" value="Submit"></input></p>
+</form>
+	{% endblock %}

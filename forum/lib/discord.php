@@ -14,8 +14,8 @@ function newForumPostHook($post, $mode = 'reply') {
 	$post['content'] = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\](.*)\[\/quote\]'si", '', $post['content']);
 
 	// dirty description truncating
-	if (strlen($post['content']) > 200) {
-		$post['content'] = wordwrap($post['content'], 500);
+	if (strlen($post['content']) > 250) {
+		$post['content'] = wordwrap($post['content'], 250);
 		$post['content'] = substr($post['content'], 0, strpos($post['content'], "\n")) . '...';
 	}
 

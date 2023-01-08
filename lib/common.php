@@ -22,7 +22,7 @@ if (!isCli()) {
 	$useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
 	$uri = $_SERVER['REQUEST_URI'] ?? null;
 
-	// UA-based bans, for retarded and identifiable scripts
+	// UA-based bans, for dumb and identifiable scripts
 	if (!empty($blockedUA) && $useragent) {
 		foreach ($blockedUA as $bl) {
 			if (str_contains($useragent, $bl)) {

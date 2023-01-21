@@ -54,3 +54,7 @@ function clearMentions($type, $id) {
 		query("DELETE FROM notifications WHERE type = ? AND level = ? AND recipient = ?", [cmtTypeToNum($type) + 10, $id, $userdata['id']]);
 	}
 }
+
+function clamp($current, $min, $max) {
+    return max($min, min($max, $current));
+}

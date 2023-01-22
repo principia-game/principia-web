@@ -22,9 +22,22 @@ $leveldata = fetch("SELECT cat, author, revision, platform FROM levels WHERE id 
 
 // Check if we should update existing level
 $updatelevel = false;
-if ($leveldata) {
-	if ($userdata['id'] == $leveldata['author'] || $userdata['powerlevel'] < 3)
+if ($leveldata && $userdata['id'] == $leveldata['author'])
+	$updatelevel = true;
+else {
+	// Hängsle och livrem... Check if author has a level of the same name, if it is somehow
+	// missing community_id or it's invalid (I fucking hate users why do they have to be so
+	// user-y and break everything I try to make)
+
+	$existinglevel = result("SELECT id FROM levels WHERE title = ? AND author = ?",
+		[$level->name(), $userdata['id']]);
+
+	if ($existinglevel) {
+		$cid = $existinglevel;
 		$updatelevel = true;
+
+		$leveldata = fetch("SELECT cat, author, revision, platform FROM levels WHERE id = ?", [$cid]);
+	}
 }
 
 // Preparations for if we do not update a level
@@ -32,9 +45,9 @@ if (!$updatelevel) {
 	// New levels' ID should be the next one available
 	$cid = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1") + 1;
 
-	// rate-limit new level uploading to once every 1 minutes
+	// rate-limit new level uploading to once every 30 seconds
 	$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
-	if (time() - $latestLevelTime < 1*60 && $userdata['powerlevel'] < 2) {
+	if (time() - $latestLevelTime < 30 && $userdata['powerlevel'] < 2) {
 		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
 		die('-103');
 	}

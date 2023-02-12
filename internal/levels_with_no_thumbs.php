@@ -5,10 +5,11 @@ require('lib/mysql.php');
 
 header('Content-Type: application/json');
 
-$lastlevel = result("SELECT id FROM levels ORDER BY id DESC LIMIT 1");
+$levellist = query("SELECT id FROM levels WHERE visibility = 0");
 
 $levels = [];
-for ($i = 1; $i <= $lastlevel; $i++) {
+while ($level = $levellist->fetch()) {
+	$i = $level['id'];
 	if (!file_exists(sprintf('levels/thumbs/%s.jpg', $i))) {
 		$levels[] = $i;
 	}

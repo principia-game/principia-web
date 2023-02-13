@@ -10,4 +10,4 @@ In August 2022, Principia's source code was finally released onto [GitHub](https
 ## About principia-web
 Principia-web is an open source reimplementation of the official Principia community site, created by the community for the community. It is currently developed mostly by ROllerozxa, with contributions from the Principia community.
 
-The GitHub repository of principia-web can be found [here](https://github.com/principia-preservation-project/principia-web).
+It is fully open source, and the GitHub repository of principia-web can be found [here](https://github.com/principia-preservation-project/principia-web). Also [see the credits page](/credits).

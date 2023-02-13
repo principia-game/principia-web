@@ -24,9 +24,11 @@ a {
 
 .top, .footer {
 	background-color: $bg_box;
-	border-bottom: 1px solid $grid;
-	border-top: 1px solid $grid;
 }
+
+.top { border-bottom: 1px solid $grid; }
+
+.footer { border-top: 1px solid $grid; }
 
 div.menu {
 	a {
@@ -217,10 +219,4 @@ textarea, input[type=text], input[type=password], input[type=color], .jscolor {
 	border: 1px solid $grid;
 	color: white;
 	padding: 5px;
-}
-
-/// Invert icons \\\
-
-.search, .sdsd {
-	filter: invert(1);
 }

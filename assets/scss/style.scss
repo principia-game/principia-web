@@ -12,19 +12,12 @@ $btn_text: #202020;
 body {
 	background-color: $bg;
 	font-family: "Roboto", "Arial", sans-serif;
-	font-size: 11.5pt;
-	margin: auto;
-	max-width: 1000px;
-	padding-bottom: 30px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
+	font-size: 11.75pt;
+	margin: 0;
 
-@media screen and (max-width: 640px) {
-	body {
-		padding-left: 5px;
-		padding-right: 5px;
-	}
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
 a {
@@ -36,7 +29,7 @@ a {
 }
 
 p {
-	line-height: 1.5;
+	line-height: 1.6;
 }
 
 ul li, ol li {
@@ -54,27 +47,20 @@ h6 { font-size: 0.67em; }
 .banner {
 	padding: 10px;
 	font-weight: bold;
-	margin: 5px;
 
 	&.b-red {
-		background-color: #ae1313;
+		background-color: #9c0d0d;
 		color: white;
 	}
 
 	&.b-green {
-		background-color: #13ae13;
+		background-color: #0d9c0d;
 		color: white;
-	}
-
-	&.userban {
-		margin: 0;
 	}
 }
 
 .top, .footer {
 	background-color: $bg_box;
-	border-bottom: 1px solid $grid;
-	border-top: 1px solid $grid;
 	margin-top: 0px;
 	overflow: hidden;
 	padding: 10px 8px;
@@ -82,24 +68,45 @@ h6 { font-size: 0.67em; }
 
 .top {
 	padding-top: 10px;
-	border-top: 0 !important;
+	border-bottom: 1px solid $grid;
+}
+
+.content {
+	flex: 1;
+}
+
+.container {
+	max-width: 1080px;
+	margin: auto;
+	padding: 0 7px;
 }
 
 .footer {
 	text-align: center;
 	line-height: 1.5;
+	padding-top: 15px;
+	padding-bottom: 35px;
+	border-top: 1px solid $grid;
 }
 
 .picon {
-	width: 32px;
-	height: 32px;
-	float: left;
-	margin-right: 7px;
+	margin-right: 10px;
+	vertical-align: bottom;
+
+	img {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+.menucontainer {
+	margin: auto;
+	max-width: 1280px;
 }
 
 div.menu {
 	display: inline;
-	line-height: 32px;
+	line-height: 40px;
 	text-align: center;
 	font-weight: bold;
 
@@ -109,8 +116,9 @@ div.menu {
 		font-size: 1.1em;
 		font-weight: bold;
 		text-decoration: none;
-		padding: 0px 7px;
+		padding: 0px 10px;
 		border-radius: 5px;
+		margin: 0px 1px;
 
 		&:hover {
 			background-color: $bg_box2;
@@ -210,9 +218,9 @@ div.level {
 	margin: 20px 5px;
 
 	.comment-input {
-		width: 96%;
+		width: 98%;
 		padding: 5px;
-		min-height: 40px;
+		min-height: 50px;
 	}
 
 	.submit {
@@ -295,7 +303,7 @@ form.reglog {
 	}
 	span {
 		display: inline-block;
-		width: 120px;
+		width: 150px;
 	}
 }
 

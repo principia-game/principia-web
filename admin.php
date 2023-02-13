@@ -19,8 +19,6 @@ $count = fetch($query);
 
 $latestComments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id ORDER BY c.time DESC LIMIT 7");
 
-$memcachedStats['dummy-server.lol'] = ['offline' => true];
-
 echo twigloader()->render('admin.twig', [
 	'memcached_stats' => $memcachedStats,
 	'latest_registered_users' => $latestRegisteredUsers,

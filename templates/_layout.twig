@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>{{ title }} - principia-web</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		{# inline font styling - update from /assets/css/fonts.css #}
-		<style>@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:swap;src:local("Roboto"),url("/assets/fonts/roboto-v29-latin-ext_latin-regular.woff2") format("woff2"),url("/assets/fonts/roboto-v29-latin-ext_latin-regular.woff") format("woff")}@font-face{font-family:"Roboto";font-style:normal;font-weight:700;font-display:swap;src:local("Roboto Bold"),url("/assets/fonts/roboto-v29-latin-ext_latin-700.woff2") format("woff2"),url("/assets/fonts/roboto-v29-latin-ext_latin-700.woff") format("woff")}</style>
-		<link rel="stylesheet" href="/assets/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css?v=26" type="text/css">
-		<script defer src="/assets/base.js"></script>
-		<script defer src="/assets/prism.js"></script>
+<head>
+	<meta charset="utf-8">
+	<title>{{ title }} - principia-web</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{# inline font styling - update from /assets/css/fonts.css #}
+	<style>@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:swap;src:local("Roboto"),url("/assets/fonts/roboto-v29-latin-ext_latin-regular.woff2") format("woff2"),url("/assets/fonts/roboto-v29-latin-ext_latin-regular.woff") format("woff")}@font-face{font-family:"Roboto";font-style:normal;font-weight:700;font-display:swap;src:local("Roboto Bold"),url("/assets/fonts/roboto-v29-latin-ext_latin-700.woff2") format("woff2"),url("/assets/fonts/roboto-v29-latin-ext_latin-700.woff") format("woff")}</style>
+	<link rel="stylesheet" href="/assets/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css?v=26" type="text/css">
+	<script defer src="/assets/base.js"></script>
+	<script defer src="/assets/prism.js"></script>
 
-		{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
-		<meta property="og:title" content="{{ title }} - principia-web">
-		{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
-		{% if description %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
-		<meta property="og:description" content="{{ description }}">{% endif %}
-		<meta property="og:site_name" content="principia-web">
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="{{ domain }}{{ uri }}">
-		<link rel="canonical" href="{{ domain }}{{ pagename }}">
-	</head>
-	<body>
-		{{ custom_header() | raw }}
-		{% if userdata.powerlevel < 0 %}
-			<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
-		{% endif %}
-		<div class="top">
-			<a href="/"><img class="picon" src="/assets/icon.png" alt="Home"></a>
-			<div class="menu">
-				<a href="/popular">Popular</a>
-				<a href="/top">Top</a>
-				<a href="/latest">New</a>
-				<a href="/chat">Chat</a>
-				<a href="/forum/">Forum</a>
-				<a href="/wiki/">Wiki</a>
-				<a href="/search"><img src="/assets/icons/search.svg" class="search" alt="Search"></a>
-			</div>
-			<div class="menu right">
-				{% if log %}
-					{% if notification_count > 0 %}<span class="notifs">[{{ notification_count }}]</span>{% endif %}
-					{{ userlink(userdata) }}
-				{% else %}
-					<a href="/login">Login</a>
-				{% endif %}
-			</div>
+	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
+	<meta property="og:title" content="{{ title }} - principia-web">
+	{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
+	{% if description %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
+	<meta property="og:description" content="{{ description }}">{% endif %}
+	<meta property="og:site_name" content="principia-web">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ domain }}{{ uri }}">
+	<link rel="canonical" href="{{ domain }}{{ pagename }}">
+	{#<link rel="apple-touch-icon" sizes="180x180" href="/assets/site-icons/apple-touch-icon.png">
+	<link rel="mask-icon" href="/assets/site-icons/safari-pinned-tab.svg" color="#152a30">
+	<meta name="theme-color" content="#152a30">#}
+</head>
+<body>
+	{{ custom_header() | raw }}
+	{% if userdata.powerlevel < 0 %}
+		<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
+	{% endif %}
+	<div class="top"><div class="menucontainer">
+		<a class="picon" href="/"><img src="/assets/icon.png" alt="Home"></a>
+		<div class="menu">
+			<a href="/popular">Popular</a>
+			<a href="/top">Top</a>
+			<a href="/latest">New</a>
+			<a href="/chat">Chat</a>
+			<a href="/forum/">Forum</a>
+			<a href="/wiki/">Wiki</a>
+			<a href="/search"><img src="/assets/icons/search{% if userdata.darkmode %}_w{%endif%}.svg" class="search" alt="Search"></a>
 		</div>
-		{% if acmlm %}
-		<div class="top top_forum">
+		<div class="menu right">
+			{% if log %}
+				{% if notification_count > 0 %}<span class="notifs">[{{ notification_count }}]</span>{% endif %}
+				{{ userlink(userdata) }}
+			{% else %}
+				<a href="/login">Login</a>
+			{% endif %}
+		</div>
+		</div>
+	</div>
+	{% if acmlm %}
+		<div class="top top_forum"><div class="menucontainer">
 			<div class="menu left">
 				<a href="/forum/">Forum</a>
 				<a href="/forum/activeusers">Active users</a>
-				<a href="/forum/thread?time=86400">Latest posts</a>
+				<a href="/forum/forum?time=86400">Latest posts</a>
 				{% if log %}
 					<a href="/forum/private">Private messages</a>
 				{% endif %}
@@ -60,20 +64,19 @@
 					<a href="/forum/?action=markread&fid=all">Mark all forums read</a>
 				</div>
 			{% endif %}
-		</div>
-		{% block precontent %}{% endblock %}<br>
-		{% endif %}
-		<div class="home content{% if acmlm %} forum{% endif %}{% if wiki %} wiki{% endif %}">
-			{% block content %}{% endblock %}
-		</div>{% if acmlm %}<br>{% endif %}
-		<div class="footer">
-			{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
+		</div></div>
+	{% endif %}
+	<div class="content{% if acmlm %} forum{% endif %}{% if wiki %} wiki{% endif %}"><div class="container">
+		{% block content %}{% endblock %}
+	</div></div>
+	<div class="footer">
+		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
 
-			<br>{{ custom_info() }}
-			Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a>
-			commit <a href="https://github.com/principia-preservation-project/principia-web/commit/{{ git_commit(false) }}">{{ git_commit() }}</a> -
-			{{ profiler_stats() }}
-		</div>
-		{% block custom_footer %}{% endblock %}
-	</body>
+		<br>{{ custom_info() }}
+		Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a>
+		commit <a href="https://github.com/principia-preservation-project/principia-web/commit/{{ git_commit(false) }}">{{ git_commit() }}</a> -
+		{{ profiler_stats() }}
+	</div>
+	{% block custom_footer %}{% endblock %}
+</body>
 </html>

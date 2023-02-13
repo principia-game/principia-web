@@ -3,21 +3,20 @@
 {% set title = "New reply" %}
 {% set noindex = true %}
 
-	{% block precontent %}
+	{% block content %}
 {% if error %}
 	<div class="header_message">{{ error }}</div>
 {% endif %}
-	{% endblock %}
 
-	{% block content %}
+<h1>New reply</h1>
+
 {{ render_page_bar(topbot) }}
 
 {% if action == 'Preview' %}
-	<br>
 	{{ threadpost(post) }}
+	<br>
 {% endif %}
 
-<br>
 <form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Reply</td></tr>
@@ -40,6 +39,5 @@
 	{% endfor %}
 </table>
 
-<br>
 {{ render_page_bar(topbot) }}
 	{% endblock %}

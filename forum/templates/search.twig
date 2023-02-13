@@ -3,16 +3,15 @@
 {% set title = "Search" %}
 
 	{% block content %}
-<form action="search" method="get"><table class="c1">
-	<tr class="h"><td>Search</td>
-	<tr><td class="n1 center">
+<h1>Search forums</h1>
+<form action="search" method="get">
+
 		<p>Search for: <input type="text" name="query" size="40" value="{{ query }}"></p>
 		<p>in
 			<label><input type="radio" class="radio" name="where" value="0"{% if where == 0 %} checked{% endif %}> thread title</label>
 			<label><input type="radio" class="radio" name="where" value="1"{% if where == 1 %} checked{% endif %}> post text</label></p>
 		<p><input type="submit" value="Search"></p>
-	</td></tr>
-</table></form><br>
+</form><br>
 
 {# rest is if query has been inputted #}
 {% if query %}

@@ -178,7 +178,7 @@ if ($log && isset($tid) && ($userdata['powerlevel'] > 2 || ($userdata['id'] == $
 	$threadtitle = addcslashes(htmlentities($thread['title'], ENT_COMPAT | ENT_HTML401, 'UTF-8'), "'");
 
 	$modlinks = <<<HTML
-<br><form action="thread?id=$tid" method="post" name="mod" id="mod">
+<form action="thread?id=$tid" method="post" name="mod" id="mod">
 <table class="c1"><tr>
 	<td class="n2">
 		<span id="moptions">Thread options: $stick $close $trash $edit</span>

@@ -12,17 +12,18 @@
 
 	{% block content %}
 {% set lsticky = 0 %}
-{{ render_page_bar(topbot) }}
+
+
+<h1>{{ title }}</h1>
+
 {% if time %}
-	<table class="c1 autowidth">
-		<tr class="h"><td>Latest Threads</td></tr>
-		<tr><td class="n1 center">
-			By Threads | <a href="thread?time={{ time }}">By Posts</a></a><br><br>
-			{{ timelinks('forum') }}
-		</td></tr>
-	</table>
+	<p>View the latest posts that have been made in threads within the given timespan.</p>
+
+	<p>{{ timelinks('forum') }}</p>
 {% endif %}
-<br>
+
+{{ render_page_bar(topbot) }}
+
 <table class="c1">
 	<tr class="h">
 		<td style="width:30px">&nbsp;</td>
@@ -41,9 +42,9 @@
 			{% set tr = 1 %}
 		{% else %}
 			{% if i % 2 %}
-				{% set tr = 2 %}
+				{% set tr = 1 %}
 			{% else %}
-				{% set tr = 3 %}
+				{% set tr = 2 %}
 			{% endif %}
 		{% endif %}
 
@@ -55,7 +56,7 @@
 		{% endif %}
 
 		<tr class="n{{ tr }} center">
-			<td class="n1">
+			<td>
 				{% if log and not thread.isread %}
 					{% if thread.closed %}
 						{{ new_status("on") }}
@@ -88,6 +89,5 @@
 	{% endfor %}
 </table>
 {{ pagelist | raw }}
-{% if not time %}<br>{% endif %}
 {{ render_page_bar(topbot) }}
 	{% endblock %}

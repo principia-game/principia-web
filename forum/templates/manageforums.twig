@@ -4,24 +4,21 @@
 {% set noindex = true %}
 
 	{% block content %}
-<table class="fullwidth">
-	<tr>
-		<td class="nb" style="width:50%; vertical-align:top;">
-			<table class="c1">
-				<tr class="h"><td>Categories</td></tr>
-				{{ catlist | raw }}
-				<tr class="h"><td>&nbsp;</td></tr>
-				<tr><td class="n1"><a href="manageforums?cid=new">New category</a></td></tr>
-			</table>
-		</td>
-		<td class="nb" style="width:50%; vertical-align:top;">
-			<table class="c1">
-				<tr class="h"><td>Forums</td></tr>
-				{{ forumlist | raw }}
-				<tr class="h"><td>&nbsp;</td></tr>
-				<tr><td class="n1"><a href="manageforums?fid=new">New forum</a></td></tr>
-			</table>
-		</td>
-	</tr>
-</table>
+<br>
+<div class="two-columns">
+	<table class="c1">
+		<tr class="h"><td>Categories</td></tr>
+		{{ catlist | raw }}
+		<tr class="h"><td>&nbsp;</td></tr>
+		<tr><td class="n1"><a href="manageforums?cid=new">New category</a></td></tr>
+	</table>
+
+	<table class="c1">
+		<tr class="h"><td>Forums</td></tr>
+		{{ forumlist | raw }}
+		<tr class="h"><td>&nbsp;</td></tr>
+		<tr><td class="n1"><a href="manageforums?fid=new">New forum</a></td></tr>
+	</table>
+</div>
+<br>
 	{% endblock %}

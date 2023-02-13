@@ -63,11 +63,11 @@ else
 $topbot['actions']['sendprivate'] = 'Send new';
 
 
-$fpagelist = '<br>';
+$fpagelist = '';
 if ($pmsgc > $tpp) {
-	if ($id != $userdata['id'])	$furl = "private?id=$id&view=$view";
-	else	$furl = "private?view=$view";
-	$fpagelist = pagination($pmsgc, $tpp, $furl, $page).'<br>';
+	if ($id != $userdata['id'])	$furl = "private?id=$id&view=$view&page=%s";
+	else	$furl = "private?view=$view&page=%s";
+	$fpagelist = pagination($pmsgc, $tpp, $furl, $page);
 }
 
 echo _twigloader()->render('private.twig', [

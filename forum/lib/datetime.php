@@ -13,5 +13,5 @@ function timelink($timex, $file) {
 }
 
 function timelinks($file) {
-	return timelink(3600,$file).' | '.timelink(86400,$file).' | '.timelink(604800,$file).' | '.timelink(2592000,$file);
+	return timelink(3600,$file).' &ndash; '.timelink(86400,$file).' &ndash; '.timelink(604800,$file).' &ndash; '.timelink(2592000,$file);
 }

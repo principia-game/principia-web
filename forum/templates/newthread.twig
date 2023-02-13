@@ -3,21 +3,20 @@
 {% set title = "New thread" %}
 {% set noindex = true %}
 
-	{% block precontent %}
+	{% block content %}
 {% if error %}
 	<div class="header_message">{{ error }}</div>
 {% endif %}
-	{% endblock %}
 
-	{% block content %}
+<h1>New thread</h1>
+
 {{ render_page_bar(topbot) }}
 
 {% if action == 'Preview' %}
-	<br>
 	{{ threadpost(post) }}
+	<br>
 {% endif %}
 
-<br>
 <form action="newthread?id={{ fid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Thread</td></tr>
@@ -35,7 +34,6 @@
 		</tr>
 	</table>
 </form>
-<br>
 
 {{ render_page_bar(topbot) }}
 	{% endblock %}

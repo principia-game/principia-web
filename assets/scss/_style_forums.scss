@@ -79,7 +79,7 @@ input[value=Preview], input[value=Submit] {
 }
 
 .breadcrumb {
-	margin: 4px 15px;
+	margin: 20px 15px;
 
 	.actions {
 		float: right;
@@ -107,6 +107,10 @@ input[value=Preview], input[value=Submit] {
 	.sidebar {
 		border-top: 0 !important;
 		text-align: center;
+	}
+
+	.topbar_2, .sidebar {
+		font-size: 0.9em;
 	}
 
 	.mainbar {

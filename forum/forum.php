@@ -80,7 +80,7 @@ if ($fid) {
 } elseif ($time) {
 	$mintime = ($time > 0 && $time <= 2592000 ? time() - $time : 86400);
 
-	$title = 'Latest threads';
+	$title = 'Latest posts';
 
 	$threads = query("SELECT $ufields t.*, f.id fid $isread, f.title ftitle
 			FROM z_threads t

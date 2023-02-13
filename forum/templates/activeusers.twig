@@ -4,12 +4,12 @@
 {% set noindex = true %}
 
 	{% block content %}
-<table class="c1 autowidth">
-	<tr class="h"><td>Active users</td></tr>
-	<tr class="n1"><td class="n1 center">
-		{{ timelinks('activeusers') }}
-	</td></tr>
-</table><br>
+<h1>Active users</h1>
+
+<p>View who has been the most active on the forums for a given timespan.</p>
+
+<p>{{ timelinks('activeusers') }}</p>
+
 <table class="c1">
 	<tr class="h">
 		<td width="30">#</td>

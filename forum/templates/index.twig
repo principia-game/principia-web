@@ -4,8 +4,13 @@
 {% set description = "The principia-web forums allow you to discuss about Principia, along with Apparatus and Tesla Plushies and general chitchat." %}
 {% set pagename = "/forum/" %}
 
+
 	{% block content %}
 {% set category = -1 %}
+
+<h1>Forum</h1>
+
+<p>Welcome to the principia-web forums. It is a place for longer-form discussions about Principia and related topics.</p>
 
 {% for forum in forums %}
 	{% if forum.cat != category %}
@@ -48,4 +53,5 @@
 	</tr>
 {% endfor %}
 </table>
+<br>
 	{% endblock %}

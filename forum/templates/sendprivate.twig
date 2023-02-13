@@ -3,21 +3,20 @@
 {% set title = "Send private message" %}
 {% set noindex = true %}
 
-	{% block precontent %}
+	{% block content %}
 {% if error %}
 	<div class="header_message">{{ error }}</div>
 {% endif %}
-	{% endblock %}
 
-	{% block content %}
+<h1>Send a private message</h1>
+
 {{ render_page_bar(topbot) }}
 
 {% if action == 'Preview' %}
-	<br>
 	{{ threadpost(post) }}
+	<br>
 {% endif %}
 
-<br>
 <form action="sendprivate" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Send message</td></tr>
@@ -38,7 +37,6 @@
 		</tr>
 	</table>
 </form>
-<br>
 
 {{ render_page_bar(topbot) }}
 	{% endblock %}

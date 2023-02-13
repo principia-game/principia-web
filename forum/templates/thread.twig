@@ -14,16 +14,14 @@
 {% endif %}
 
 	{% block content %}
+<h1>{{ title }}</h1>
+
 {{ render_page_bar(topbot) }}
 
 {% if time %}
-	<table class="c1 autowidth">
-		<tr class="h"><td>Latest Posts</td></tr>
-		<tr><td class="n1 center">
-			<a href="forum?time={{ time }}">By Threads</a> | By Posts</a><br><br>
-			{{ timelinks('thread') }}
-		</td></tr>
-	</table>
+	<p>View the latest posts that have been made within the given timespan.</p>
+
+	<p>{{ timelinks('forum') }}</p>
 {% endif %}
 
 {{ modlinks | raw }}{{ pagelist | raw }}
@@ -43,10 +41,9 @@
 {% endfor %}
 
 {{ pagelist | raw }}
-{% if not time %}<br>{% endif %}
 
 {% if thread.id and userdata.powerlevel >= faccess.minreply and not thread.closed %}
-<form action="newreply?id={{ tid }}" method="POST">
+<br><form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Quick Reply</a></td>
 		<tr>
@@ -58,7 +55,7 @@
 			</td>
 		</tr>
 	</table>
-</form><br>
+</form>
 {% endif %}
 
 {{ render_page_bar(topbot) }}

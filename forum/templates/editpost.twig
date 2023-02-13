@@ -4,14 +4,16 @@
 {% set noindex = true %}
 
 	{% block content %}
+<h1>Edit post</h1>
+
 {{ render_page_bar(topbot) }}
 
 {% if action == 'Preview' %}
-	<br>
+
 	{{ threadpost(post) }}
+	<br>
 {% endif %}
 
-<br>
 <form action="editpost?pid={{ pid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Edit Post</td></tr>
@@ -26,7 +28,6 @@
 		</tr>
 	</table>
 </form>
-<br>
 
 {{ render_page_bar(topbot) }}
 	{% endblock %}

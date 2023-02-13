@@ -77,6 +77,7 @@
 
 <h1>{{ name }}
 	{% if userpagedata.powerlevel > 1 %}<img src="/assets/icons/shield{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a moderator.">{% endif %}
+	{% if userpagedata.powerlevel > 3 %}<img src="/assets/icons/root{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a root administrator.">{% endif %}
 	{% if userpagedata.powerlevel < 0 %}<img src="/assets/icons/gavel{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User has been banned.">{% endif %}</h1>
 
 <div class="user_about">

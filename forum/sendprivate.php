@@ -10,7 +10,7 @@ $topbot = [
 	'title' => 'Send'
 ];
 
-if ($userdata['powerlevel'] < 1) error('403', 'You have no permissions to do this!');
+if ($userdata['rank'] < 1) error('403', 'You have no permissions to do this!');
 
 $userto = $_POST['userto'] ?? '';
 $title = $_POST['title'] ?? '';
@@ -45,7 +45,7 @@ if ($action == 'Submit') {
 if (!$action) {
 	if (isset($_GET['pid']) && $pid = $_GET['pid']) {
 		$post = fetch("SELECT u.name name, p.title, p.text FROM z_pmsgs p LEFT JOIN users u ON p.userfrom = u.id WHERE p.id = ?"
-			.($userdata['powerlevel'] < 4 ? " AND (p.userfrom=".$userdata['id']." OR p.userto=".$userdata['id'].")" : ''), [$pid]);
+			.($userdata['rank'] < 4 ? " AND (p.userfrom=".$userdata['id']." OR p.userto=".$userdata['id'].")" : ''), [$pid]);
 
 		if ($post) {
 			$quotetext = sprintf(

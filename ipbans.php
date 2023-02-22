@@ -7,7 +7,7 @@ function normalise($text) {
 	return trim(str_replace("\r", "", $text));
 }
 
-if ($userdata['powerlevel'] < 3) error('403', 'You don\'t have access to this page.');
+if ($userdata['rank'] < 3) error('403', 'You don\'t have access to this page.');
 
 if (isset($_POST['action'])) {
 	$iplist = $_POST['iplist'] ?? null;

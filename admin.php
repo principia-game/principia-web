@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-if ($userdata['powerlevel'] < 3) error('403', "You shouldn't be here, get out!");
+if ($userdata['rank'] < 3) error('403', "You shouldn't be here, get out!");
 
 $memcachedStats = $cache->memcached->getStats();
 

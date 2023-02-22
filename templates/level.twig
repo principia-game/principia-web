@@ -39,11 +39,11 @@
 					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit</a>
 				{%- elseif level.derivatives -%}
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
-				{%- elseif userdata.powerlevel > 1 -%}
+				{%- elseif userdata.rank > 1 -%}
 					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit*</a>
 				{%- endif -%}
 
-				{%- if userdata.powerlevel > 2 and level.author != userdata.id -%}
+				{%- if userdata.rank > 2 and level.author != userdata.id -%}
 					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
 				{%- endif -%}
 
@@ -64,7 +64,7 @@
 <div class="lvl-data">
 	<p>Views: {{ level.views }} - Downloads: {{ level.downloads }} - Level ID: {{ level.id }}</p>
 
-	{% if userdata.id == level.author or userdata.powerlevel > 1 %}
+	{% if userdata.id == level.author or userdata.rank > 1 %}
 	<form method="POST"><p>
 		<a href="/level/{{ lid }}?togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
 		- <a href="/editlevel?id={{ lid }}">Modify metadata</a>

@@ -21,13 +21,13 @@ $ufields = userfields('u1', 'u1') . "," . userfields('u2', 'u2') . ",";
 if ($fid) {
 	if ($log) {
 		$forum = fetch("SELECT f.*, r.time rtime FROM z_forums f LEFT JOIN z_forumsread r ON (r.fid = f.id AND r.uid = ?) "
-			. "WHERE f.id = ? AND ? >= minread", [$userdata['id'], $fid, $userdata['powerlevel']]);
+			. "WHERE f.id = ? AND ? >= minread", [$userdata['id'], $fid, $userdata['rank']]);
 		if (!$forum['rtime']) $forum['rtime'] = 0;
 
 		$isread = ", (NOT (r.time<t.lastdate OR isnull(r.time)) OR t.lastdate<'$forum[rtime]') isread";
 		$threadsread = "LEFT JOIN z_threadsread r ON (r.tid=t.id AND r.uid=$userdata[id])";
 	} else
-		$forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['powerlevel']]);
+		$forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['rank']]);
 
 	if (!isset($forum['id'])) error("404", "Forum does not exist.");
 
@@ -45,7 +45,7 @@ if ($fid) {
 	$topbot = [
 		'title' => $forum['title']
 	];
-	if ($userdata['powerlevel'] >= $forum['minthread'])
+	if ($userdata['rank'] >= $forum['minthread'])
 		$topbot['actions'] = ["newthread?id=$fid" => 'New thread'];
 
 	$url = "forum?id=$fid";
@@ -64,12 +64,12 @@ if ($fid) {
 			WHERE t.user = ? AND ? >= minread
 			ORDER BY t.lastdate DESC
 			LIMIT ?,?",
-		[$uid, $userdata['powerlevel'], $offset, $tpp]);
+		[$uid, $userdata['rank'], $offset, $tpp]);
 
 	$forum['threads'] = result("SELECT count(*) FROM z_threads t
 			LEFT JOIN z_forums f ON f.id = t.forum
 			WHERE t.user = ? AND ? >= minread",
-		[$uid, $userdata['powerlevel']]);
+		[$uid, $userdata['rank']]);
 
 	$topbot = [
 		'breadcrumb' => ["/user/$uid" => $user['name']],
@@ -91,12 +91,12 @@ if ($fid) {
 			WHERE t.lastdate > ? AND ? >= f.minread
 			ORDER BY t.lastdate DESC
 			LIMIT ?,?",
-		[$mintime, $userdata['powerlevel'], $offset, $tpp]);
+		[$mintime, $userdata['rank'], $offset, $tpp]);
 
 	$forum['threads'] = result("SELECT count(*) FROM z_threads t
 			LEFT JOIN z_forums f ON f.id = t.forum
 			WHERE t.lastdate > ? AND ? >= f.minread",
-		[$mintime, $userdata['powerlevel']]);
+		[$mintime, $userdata['rank']]);
 
 	$url = "forum?time=$time";
 } else

@@ -8,13 +8,13 @@ $tid = $_GET['id'] ?? null;
 
 $thread = fetch("SELECT t.*, f.title ftitle, f.minreply fminreply
 	FROM z_threads t LEFT JOIN z_forums f ON f.id=t.forum
-	WHERE t.id = ? AND ? >= f.minread", [$tid, $userdata['powerlevel']]);
+	WHERE t.id = ? AND ? >= f.minread", [$tid, $userdata['rank']]);
 
 if (!$thread)
 	error("404", "Thread does not exist.");
-if ($thread['fminreply'] > $userdata['powerlevel'])
+if ($thread['fminreply'] > $userdata['rank'])
 	error("403", "You have no permissions to create posts in this forum!");
-if ($thread['closed'] && $userdata['powerlevel'] < 2)
+if ($thread['closed'] && $userdata['rank'] < 2)
 	error("400", "You can't post in closed threads.");
 
 $error = '';
@@ -23,9 +23,9 @@ $message = $_POST['message'] ?? '';
 
 if ($action == 'Submit') {
 	$lastpost = fetch("SELECT id,user,date FROM z_posts WHERE thread = ? ORDER BY id DESC LIMIT 1", [$thread['id']]);
-	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 86400) && $userdata['powerlevel'] < 3)
+	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 86400) && $userdata['rank'] < 3)
 		$error = "You can't double post until it's been at least one day!";
-	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 2) && $userdata['powerlevel'] > 2)
+	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 2) && $userdata['rank'] > 2)
 		$error = "You must wait 2 seconds before posting consecutively.";
 	if (strlen(trim($message)) == 0)
 		$error = "Your post is empty! Enter a message and try again.";
@@ -82,7 +82,7 @@ if ($pid) {
 			WHERE p.id = ?", [$pid]);
 
 	//does the user have reading access to the quoted post?
-	if ($userdata['powerlevel'] < $post['minread']) {
+	if ($userdata['rank'] < $post['minread']) {
 		$post['name'] = 'ROllerozxa';
 		$post['text'] = 'uwu';
 	}

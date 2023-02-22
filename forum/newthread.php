@@ -6,11 +6,11 @@ needsLogin();
 $action = $_POST['action'] ?? null;
 $fid = $_GET['id'] ?? null;
 
-$forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['powerlevel']]);
+$forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['rank']]);
 
 if (!$forum)
 	error("404", "Forum does not exist.");
-if ($forum['minthread'] > $userdata['powerlevel'])
+if ($forum['minthread'] > $userdata['rank'])
 	error("403", "You have no permissions to create threads in this forum!");
 
 $error = '';
@@ -23,7 +23,7 @@ if ($action == 'Submit') {
 		$error = "You need to enter a longer title.";
 	if (strlen(trim($message)) == 0)
 		$error = "You need to enter a message to your thread.";
-	if ($userdata['lastpost'] > time() - (10*60) && $action == 'Submit' && $userdata['powerlevel'] < 4)
+	if ($userdata['lastpost'] > time() - (10*60) && $action == 'Submit' && $userdata['rank'] < 4)
 		$error = "Don't post threads so fast, wait a little longer.";
 
 	if (!$error) {

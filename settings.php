@@ -15,10 +15,10 @@ if (isset($_POST['action'])) {
 		'timezone'		=> $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null
 	];
 
-	if ($userdata['powerlevel'] > 2)
+	if ($userdata['rank'] > 2)
 		$fields['title'] = $_POST['title'] ?: null;
 
-	if ($userdata['powerlevel'] > 1) {
+	if ($userdata['rank'] > 1) {
 		$customcolor = strtolower($_POST['customcolor']) != '#0000aa' ? $_POST['customcolor'] : null;
 
 		// check custom color

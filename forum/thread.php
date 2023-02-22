@@ -31,8 +31,8 @@ $modact = '';
 
 $act = $_POST['action'] ?? '';
 
-if (isset($tid) && $log && $act && ($userdata['powerlevel'] > 2 ||
-		($userdata['id'] == $threadcreator && $act == "rename" && $userdata['powerlevel'] > 0 && isset($_POST['title'])))) {
+if (isset($tid) && $log && $act && ($userdata['rank'] > 2 ||
+		($userdata['id'] == $threadcreator && $act == "rename" && $userdata['rank'] > 0 && isset($_POST['title'])))) {
 
 	if ($act == 'stick')	$modact = ',sticky=1';
 	if ($act == 'unstick')	$modact = ',sticky=0';
@@ -56,7 +56,7 @@ if ($viewmode == "thread") {
 			. "FROM z_threads t LEFT JOIN z_forums f ON f.id=t.forum "
 			. ($log ? "LEFT JOIN z_forumsread r ON (r.fid=f.id AND r.uid=$userdata[id]) " : '')
 			. "WHERE t.id = ? AND ? >= f.minread",
-			[$tid, $userdata['powerlevel']]);
+			[$tid, $userdata['rank']]);
 
 	if (!isset($thread['id'])) error("404", "Thread does not exist.");
 
@@ -94,8 +94,8 @@ if ($viewmode == "thread") {
 	];
 
 	$faccess = fetch("SELECT id,minreply FROM z_forums WHERE id = ?",[$thread['forum']]);
-	if ($faccess['minreply'] <= $userdata['powerlevel']) {
-		if ($userdata['powerlevel'] > 1 && $thread['closed'])
+	if ($faccess['minreply'] <= $userdata['rank']) {
+		if ($userdata['rank'] > 1 && $thread['closed'])
 			$topbot['actions'] = ['none' => 'Thread closed', "newreply?id=$tid" => 'New reply'];
 		else if ($thread['closed'])
 			$topbot['actions'] = ['none' => 'Thread closed'];
@@ -118,7 +118,7 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_forums f ON f.id = t.forum
 			WHERE p.user = ? AND ? >= f.minread
 			ORDER BY p.id LIMIT ?,?",
-		[$uid, $userdata['powerlevel'], $offset, $ppp]);
+		[$uid, $userdata['rank'], $offset, $ppp]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts p WHERE user = ?", [$uid]);
 
@@ -142,7 +142,7 @@ if ($viewmode == "thread") {
 			WHERE p.date > ? AND ? >= f.minread
 			ORDER BY p.date DESC
 			LIMIT ?,?",
-		[$mintime, $userdata['powerlevel'], $offset, $ppp]);
+		[$mintime, $userdata['rank'], $offset, $ppp]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts WHERE date > ?", [$mintime]);
 
@@ -154,10 +154,10 @@ if ($viewmode == "thread") {
 if ($thread['posts'] > $ppp)
 	$pagelist = pagination($thread['posts'], $ppp, $url.'&page=%s', $page);
 
-if ($log && isset($tid) && ($userdata['powerlevel'] > 2 || ($userdata['id'] == $thread['user'] && !$thread['closed'] && $userdata['powerlevel'] > 0))) {
+if ($log && isset($tid) && ($userdata['rank'] > 2 || ($userdata['id'] == $thread['user'] && !$thread['closed'] && $userdata['rank'] > 0))) {
 	$fmovelinks = $stick = $close = $trash = '';
 	$link = "<a href=javascript:submitmod";
-	if ($userdata['powerlevel'] > 2) {
+	if ($userdata['rank'] > 2) {
 		$stick = $link.($thread['sticky'] ? "('unstick')>Unstick" : "('stick')>Stick").'</a>';
 		$close = '| '.$link.($thread['closed'] ? "('open')>Open" : "('close')>Close").'</a>';
 

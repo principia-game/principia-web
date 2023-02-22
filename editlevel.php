@@ -5,7 +5,7 @@ $lid = $_GET['id'] ?? 0;
 
 $level = fetch("SELECT $userfields l.* FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
-if (!$level || ($userdata['powerlevel'] < 2 && $userdata['id'] != $level['author']))
+if (!$level || ($userdata['rank'] < 2 && $userdata['id'] != $level['author']))
 	error('403', "Odd place to find yourself.");
 
 if (isset($_POST['action'])) {

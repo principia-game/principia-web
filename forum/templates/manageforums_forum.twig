@@ -32,7 +32,7 @@
 			<tr>
 				<td class="n1 center">{{ pname }}:</td>
 				<td class="n2"><select name="{{ pid }}">
-					{% for plid, plname in powerlevels %}
+					{% for plid, plname in ranks %}
 						<option value="{{ plid }}"{% if plid == forum[pid] %} selected{% endif %}>{{ plname }}</option>
 					{% endfor %}
 				</select></td>

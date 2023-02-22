@@ -93,7 +93,7 @@ if ($log) {
 	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 
 	if (!str_contains($_SERVER['SCRIPT_NAME'], 'internal')) {
-		if ($userdata['powerlevel'] < 0) {
+		if ($userdata['rank'] < 0) {
 			$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$id]);
 		}
 
@@ -101,7 +101,7 @@ if ($log) {
 		$userdata['lastview'] = time();
 	}
 } else {
-	$userdata['powerlevel'] = 0;
+	$userdata['rank'] = 0;
 	$userdata['darkmode'] = $darkModeDefault;
 }
 

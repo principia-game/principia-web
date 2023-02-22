@@ -1,5 +1,5 @@
 {% if showheader %}<h2 id="comments">Comments</h2>{% endif %}
-{% if log and userdata.powerlevel > 0 %}<form class="comment-box" action="/_post_comment.php" method="POST">
+{% if log and userdata.rank > 0 %}<form class="comment-box" action="/_post_comment.php" method="POST">
 	<input type="hidden" name="id" value="{{ id }}">
 	<input type="hidden" name="t" value="{{ type }}">
 	<textarea name="comment" class="comment-input" required></textarea>
@@ -9,9 +9,9 @@
 <div class="comments">
 	{% for cmnt in cmnts %}
 		{% set got_comments = true %}
-		{% if not cmnt.deleted or userdata.powerlevel > 1 %}
+		{% if not cmnt.deleted or userdata.rank > 1 %}
 			<div class="comment {% if cmnt.deleted %}deleted{% endif %}" id="comment-{{ cmnt.id }}">
-				{% if userdata.powerlevel > 1 %}
+				{% if userdata.rank > 1 %}
 				<span class="delete">
 					<a href="javascript:document.remove{{ cmnt.id }}.submit()" style="color:red">X</a>
 					<form action="/_post_comment.php" method="post" name="remove{{ cmnt.id }}">

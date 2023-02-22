@@ -25,7 +25,7 @@
 </head>
 <body>
 	{{ custom_header() | raw }}
-	{% if userdata.powerlevel < 0 %}
+	{% if userdata.rank < 0 %}
 		<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
 	{% endif %}
 	<div class="top"><div class="menucontainer">

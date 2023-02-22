@@ -178,7 +178,7 @@ CREATE TABLE `users` (
   `lastpost` int(10) unsigned NOT NULL DEFAULT 0,
   `darkmode` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `avatar` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  `powerlevel` tinyint(4) NOT NULL DEFAULT 1,
+  `rank` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `threads` int(10) unsigned NOT NULL DEFAULT 0,
   `archivename` varchar(128) DEFAULT NULL,

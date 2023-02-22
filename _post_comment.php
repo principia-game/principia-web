@@ -9,7 +9,7 @@ $cmntId = $_POST['cmnt'] ?? false;
 
 if (!$log) die('login pls');
 if (!$type || !$id) die('params pls');
-if ($userdata['powerlevel'] < 0) die('you have been banned');
+if ($userdata['rank'] < 0) die('you have been banned');
 
 if ($type != 'chat')
 	$url = sprintf('/%s/%s%s#comments', $type, $id, ($type == 'user' ? '?forceuser' : ''));
@@ -74,7 +74,7 @@ if (!$doDelete) {
 	}
 } else {
 	if (!$cmntId) die('params pls');
-	if ($userdata['powerlevel'] < 2) die('perms pls');
+	if ($userdata['rank'] < 2) die('perms pls');
 
 	// "deleting" a comment toggles the deleted value. This allows us to reuse the exact same code for undeleting comments!
 

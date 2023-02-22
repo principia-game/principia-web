@@ -18,7 +18,7 @@
 {% if userdata.id == id and not forceuser %}
 <h1>{{ name }}</h1>
 
-{% if userdata.powerlevel < 0 %}
+{% if userdata.rank < 0 %}
 <div class="banner b-red userban">
 	Your account has been banned.
 	{% if userdata.banreason %}
@@ -36,7 +36,7 @@
 &bull; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
 &bull; <a href="javascript:document.logout.submit()">Log out</a></p>
 
-{% if userdata.powerlevel > 2 %}
+{% if userdata.rank > 2 %}
 <p><a href="/admin">Admin panel</a></p>
 {% endif %}
 
@@ -76,9 +76,9 @@
 {% endif %}
 
 <h1>{{ name }}
-	{% if userpagedata.powerlevel > 1 %}<img src="/assets/icons/shield{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a moderator.">{% endif %}
-	{% if userpagedata.powerlevel > 3 %}<img src="/assets/icons/root{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a root administrator.">{% endif %}
-	{% if userpagedata.powerlevel < 0 %}<img src="/assets/icons/gavel{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User has been banned.">{% endif %}</h1>
+	{% if userpagedata.rank > 1 %}<img src="/assets/icons/shield{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a moderator.">{% endif %}
+	{% if userpagedata.rank > 3 %}<img src="/assets/icons/root{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a root administrator.">{% endif %}
+	{% if userpagedata.rank < 0 %}<img src="/assets/icons/gavel{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User has been banned.">{% endif %}</h1>
 
 <div class="user_about">
 	<h3>About this user</h3>
@@ -93,11 +93,11 @@
 		{% if userdata.id != id %}
 			&bull; <a href="/forum/sendprivate?uid={{ id }}">Send private message</a>
 		{% endif %}
-		{% if userdata.powerlevel > 2 %}
+		{% if userdata.rank > 2 %}
 			&bull; <a href="/resetpassword?grf={{ id }}">Generate password reset for user</a>
 		{% endif %}
-		{% if userdata.powerlevel > 1 %}
-			&bull; <a href="/_ban_user?id={{ id }}">{% if userpagedata.powerlevel < 0 %}Unb{% else %}B{% endif %}an user</a>
+		{% if userdata.rank > 1 %}
+			&bull; <a href="/_ban_user?id={{ id }}">{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
 		{% endif %}
 	{% endif %}
 </p>

@@ -33,7 +33,7 @@ $forums = query("SELECT f.*, ".($log ? "r.time rtime, " : '').userfields('u', 'u
 		. ($log ? "LEFT JOIN z_forumsread r ON r.fid = f.id AND r.uid = ".$userdata['id'] : '')
 		. " WHERE ? >= f.minread "
 		. " ORDER BY c.ord,c.id,f.ord,f.id ",
-		[$userdata['powerlevel']]);
+		[$userdata['rank']]);
 
 echo _twigloader()->render('index.twig', [
 	'forums' => $forums,

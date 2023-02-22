@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-if ($userdata['powerlevel'] < 3) error('403', 'You have no permissions to do this!');
+if ($userdata['rank'] < 3) error('403', 'You have no permissions to do this!');
 
 if (isset($_POST['savecat'])) {
 	// save new/existing category
@@ -107,7 +107,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 		'fid' => $fid,
 		'forum' => $forum,
 		'cats' => $cats,
-		'powerlevels' => $powerlevels,
+		'ranks' => $ranks,
 		'perms' => $perms
 	]);
 } else {

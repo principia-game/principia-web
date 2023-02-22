@@ -10,7 +10,7 @@ $pmsg = fetch("SELECT $fieldlist p.* FROM z_pmsgs p LEFT JOIN users u ON u.id = 
 if (!$pmsg) error("404", "Private message does not exist.");
 $tologuser = ($pmsg['userto'] == $userdata['id']);
 
-if ((!$tologuser && $pmsg['userfrom'] != $userdata['id']) && $userdata['powerlevel'] < 4)
+if ((!$tologuser && $pmsg['userfrom'] != $userdata['id']) && $userdata['rank'] < 4)
 	error("404", "Private message does not exist.");
 elseif ($tologuser && $pmsg['unread']) {
 	query("UPDATE z_pmsgs SET unread = 0 WHERE id = ?", [$pid]);

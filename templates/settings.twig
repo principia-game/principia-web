@@ -28,13 +28,13 @@
 	<tr>
 		<th></th>
 		<th class="left">Customize your profile</th>
-	{% if userdata.powerlevel > 2 %}
+	{% if userdata.rank > 2 %}
 	<tr>
 		<td class="a">Title</td>
 		<td class="b"><input type="text" name="title" size="45" maxlength="256" style="width:60%" value="{{ userdata.title }}"></td>
 	</tr>
 	{% endif %}
-	{% if userdata.powerlevel > 1 %}
+	{% if userdata.rank > 1 %}
 	<tr>
 		<td class="a">Custom color</td>
 		<td class="b"><input name="customcolor" size="12" value="{{ userdata.customcolor | default('0000aa') }}" data-jscolor="{}"></td>
@@ -106,7 +106,7 @@
 	{% endblock %}
 
 {% block custom_footer %}
-	{% if userdata.powerlevel > 1 %}
+	{% if userdata.rank > 1 %}
 		<script src="assets/js/jscolor.min.js"></script>
 	{% endif %}
 {% endblock %}

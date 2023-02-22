@@ -44,7 +44,7 @@ function threadpost($post, $pthread = '') {
 	global $log, $userdata;
 
 	if (isset($post['deleted']) && $post['deleted']) {
-		if ($userdata['powerlevel'] > 1) {
+		if ($userdata['rank'] > 1) {
 			$postlinks = sprintf(
 				'<a href="thread?pid=%s&pin=%s#%s">Peek</a> &bull; <a href="editpost?pid=%s&act=undelete">Undelete</a> &bull; ID: %s',
 			$post['id'], $post['id'], $post['id'], $post['id'], $post['id']);
@@ -85,13 +85,13 @@ HTML;
 		$postlinks .= " &bull; <a href=\"newreply?id=$post[thread]&pid=$post[id]\">Quote</a>";
 
 		// "Edit" link for admins or post owners, but not banned users
-		if ($userdata['powerlevel'] > 2 || $userdata['id'] == $post['uid'])
+		if ($userdata['rank'] > 2 || $userdata['id'] == $post['uid'])
 			$postlinks .= " &bull; <a href=\"editpost?pid=$post[id]\">Edit</a>";
 
-		if ($userdata['powerlevel'] > 1)
+		if ($userdata['rank'] > 1)
 			$postlinks .= ' &bull; <a href="editpost?pid='.$post['id'].'&act=delete">Delete</a>';
 
-		if (isset($post['maxrevision']) && $userdata['powerlevel'] > 1 && $post['maxrevision'] > 1) {
+		if (isset($post['maxrevision']) && $userdata['rank'] > 1 && $post['maxrevision'] > 1) {
 			$revisionstr .= " &bull; Revision ";
 			for ($i = 1; $i <= $post['maxrevision']; $i++)
 				$revisionstr .= "<a href=\"thread?pid=$post[id]&pin=$post[id]&rev=$i#$post[id]\">$i</a> ";

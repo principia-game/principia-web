@@ -31,7 +31,7 @@
 		{% set pthread = {id: post.tid, title: post.ttitle} %}
 	{% endif %}
 
-	{% if thread.forum and userdata.powerlevel > 1 and pin and post.id == pin %}
+	{% if thread.forum and userdata.rank > 1 and pin and post.id == pin %}
 		{% set post = post|merge({'deleted': false}) %}
 	{% endif %}
 
@@ -42,7 +42,7 @@
 
 {{ pagelist | raw }}
 
-{% if thread.id and userdata.powerlevel >= faccess.minreply and not thread.closed %}
+{% if thread.id and userdata.rank >= faccess.minreply and not thread.closed %}
 <br><form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Quick Reply</a></td>

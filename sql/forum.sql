@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 10.7.3-MariaDB dump
+-- Adminer 4.8.1 MySQL 10.11.2-MariaDB dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -12,14 +12,14 @@ CREATE TABLE `z_categories` (
   `title` varchar(255) NOT NULL,
   `ord` tinyint(3) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `z_categories` (`id`, `title`, `ord`) VALUES
 (1,	'General',	50),
 (2,	'Staff forums',	0);
 
 CREATE TABLE `z_forums` (
-  `id` int(5) unsigned NOT NULL DEFAULT 0,
+  `id` int(10) unsigned NOT NULL DEFAULT 0,
   `cat` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `ord` tinyint(3) unsigned NOT NULL DEFAULT 0,
   `title` varchar(255) NOT NULL,
@@ -32,8 +32,10 @@ CREATE TABLE `z_forums` (
   `minread` tinyint(4) NOT NULL DEFAULT -1,
   `minthread` tinyint(4) NOT NULL DEFAULT 1,
   `minreply` tinyint(4) NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `cat` (`cat`),
+  CONSTRAINT `z_forums_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `z_categories` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `z_forums` (`id`, `cat`, `ord`, `title`, `descr`, `threads`, `posts`, `lastdate`, `lastuser`, `lastid`, `minread`, `minthread`, `minreply`) VALUES
 (1,	1,	0,	'Example forum',	'This is an example forum to get started with.',	0,	0,	0,	0,	0,	-1, 1,  1),
@@ -43,22 +45,29 @@ CREATE TABLE `z_forumsread` (
   `uid` int(10) unsigned NOT NULL,
   `fid` int(5) unsigned NOT NULL,
   `time` int(11) unsigned NOT NULL,
-  UNIQUE KEY `uid` (`uid`,`fid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `uid` (`uid`,`fid`),
+  KEY `fid` (`fid`),
+  CONSTRAINT `z_forumsread_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_forumsread_ibfk_2` FOREIGN KEY (`fid`) REFERENCES `z_forums` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `z_pmsgs` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `text` text NOT NULL,
-  `date` int(11) unsigned NOT NULL DEFAULT 0,
+  `date` int(10) unsigned NOT NULL DEFAULT 0,
   `userto` int(10) unsigned NOT NULL,
   `userfrom` int(10) unsigned NOT NULL,
   `unread` tinyint(1) unsigned NOT NULL DEFAULT 1,
   `del_from` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `del_to` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `userto` (`userto`),
+  KEY `userfrom` (`userfrom`),
+  CONSTRAINT `z_pmsgs_ibfk_1` FOREIGN KEY (`userto`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_pmsgs_ibfk_2` FOREIGN KEY (`userfrom`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `z_posts` (
@@ -69,8 +78,11 @@ CREATE TABLE `z_posts` (
   `revision` int(10) unsigned NOT NULL DEFAULT 1,
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  KEY `threadid` (`thread`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `threadid` (`thread`),
+  KEY `user` (`user`),
+  CONSTRAINT `z_posts_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_posts_ibfk_2` FOREIGN KEY (`thread`) REFERENCES `z_threads` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `z_poststext` (
@@ -78,8 +90,9 @@ CREATE TABLE `z_poststext` (
   `text` text NOT NULL,
   `revision` smallint(5) unsigned NOT NULL DEFAULT 1,
   `date` int(11) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`,`revision`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`,`revision`),
+  CONSTRAINT `z_poststext_ibfk_1` FOREIGN KEY (`id`) REFERENCES `z_posts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `z_threads` (
@@ -87,23 +100,34 @@ CREATE TABLE `z_threads` (
   `title` varchar(100) NOT NULL,
   `posts` int(10) unsigned NOT NULL DEFAULT 1,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
-  `forum` int(10) unsigned NOT NULL DEFAULT 0,
+  `forum` int(5) unsigned NOT NULL DEFAULT 0,
   `user` int(10) unsigned NOT NULL DEFAULT 0,
   `lastdate` int(10) unsigned NOT NULL DEFAULT 0,
   `lastuser` int(10) unsigned NOT NULL DEFAULT 0,
-  `lastid` int(10) unsigned NOT NULL DEFAULT 0,
+  `lastid` int(11) unsigned NOT NULL DEFAULT 0,
   `sticky` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `closed` tinyint(1) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `forum` (`forum`),
+  KEY `user` (`user`),
+  KEY `lastuser` (`lastuser`),
+  KEY `lastid` (`lastid`),
+  CONSTRAINT `z_threads_ibfk_1` FOREIGN KEY (`forum`) REFERENCES `z_forums` (`id`),
+  CONSTRAINT `z_threads_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_threads_ibfk_3` FOREIGN KEY (`lastuser`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_threads_ibfk_4` FOREIGN KEY (`lastid`) REFERENCES `z_posts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `z_threadsread` (
   `uid` int(10) unsigned NOT NULL,
   `tid` int(10) unsigned NOT NULL,
   `time` int(10) unsigned NOT NULL,
-  UNIQUE KEY `uid` (`uid`,`tid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `uid` (`uid`,`tid`),
+  KEY `tid` (`tid`),
+  CONSTRAINT `z_threadsread_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_threadsread_ibfk_2` FOREIGN KEY (`tid`) REFERENCES `z_threads` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2022-04-19 12:27:41
+-- 2023-02-22 20:18:21

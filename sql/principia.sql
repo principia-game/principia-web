@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 10.8.3-MariaDB dump
+-- Adminer 4.8.1 MySQL 10.11.2-MariaDB dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -12,8 +12,10 @@ CREATE TABLE `bans` (
   `banner` int(10) unsigned NOT NULL,
   `reason` varchar(255) NOT NULL,
   `time` int(10) unsigned NOT NULL,
-  `old` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `old` tinyint(1) DEFAULT NULL,
+  KEY `user` (`user`),
+  CONSTRAINT `bans_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `comments` (
@@ -24,8 +26,10 @@ CREATE TABLE `comments` (
   `time` int(10) unsigned NOT NULL,
   `message` text NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `contests` (
@@ -35,27 +39,34 @@ CREATE TABLE `contests` (
   `image` varchar(128) NOT NULL DEFAULT 'assets/placeholder.png',
   `active` tinyint(1) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `contests_entries` (
   `contest` int(10) unsigned NOT NULL,
   `level` int(10) unsigned NOT NULL,
-  `ranking` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `ranking` tinyint(4) NOT NULL DEFAULT 0,
+  KEY `contest` (`contest`),
+  KEY `level` (`level`),
+  CONSTRAINT `contests_entries_ibfk_1` FOREIGN KEY (`contest`) REFERENCES `contests` (`id`),
+  CONSTRAINT `contests_entries_ibfk_2` FOREIGN KEY (`level`) REFERENCES `levels` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `featured` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `level` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `level` (`level`),
+  CONSTRAINT `featured_ibfk_1` FOREIGN KEY (`level`) REFERENCES `levels` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `ipbans` (
   `ip` char(16) NOT NULL DEFAULT '0.0.0.0',
-  `reason` varchar(255) NOT NULL DEFAULT '<em>No reason specified</em>'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `reason` varchar(255) NOT NULL DEFAULT '<em>No reason specified</em>',
+  PRIMARY KEY (`ip`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `leaderboard` (
@@ -63,8 +74,12 @@ CREATE TABLE `leaderboard` (
   `level` int(10) unsigned NOT NULL,
   `user` int(10) unsigned NOT NULL,
   `score` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `level` (`level`),
+  KEY `user` (`user`),
+  CONSTRAINT `leaderboard_ibfk_1` FOREIGN KEY (`level`) REFERENCES `levels` (`id`),
+  CONSTRAINT `leaderboard_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `levels` (
@@ -83,14 +98,20 @@ CREATE TABLE `levels` (
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `downloads` int(10) unsigned NOT NULL DEFAULT 0,
   `platform` varchar(32) NOT NULL DEFAULT 'Samsung Smart Fridge',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  CONSTRAINT `levels_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `likes` (
   `user` int(10) unsigned NOT NULL,
-  `level` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `level` int(10) unsigned NOT NULL,
+  KEY `user` (`user`),
+  KEY `level` (`level`),
+  CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`level`) REFERENCES `levels` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `news` (
@@ -100,8 +121,10 @@ CREATE TABLE `news` (
   `time` int(10) unsigned DEFAULT 0,
   `redirect` varchar(256) DEFAULT NULL,
   `author` int(10) unsigned NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `notifications` (
@@ -110,8 +133,12 @@ CREATE TABLE `notifications` (
   `level` int(10) unsigned DEFAULT NULL,
   `recipient` int(10) unsigned NOT NULL,
   `sender` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `recipient` (`recipient`),
+  KEY `sender` (`sender`),
+  CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`recipient`) REFERENCES `users` (`id`),
+  CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`sender`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `packages` (
@@ -122,16 +149,21 @@ CREATE TABLE `packages` (
   `time` int(10) unsigned NOT NULL DEFAULT 0,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `downloads` int(10) unsigned NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  CONSTRAINT `packages_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `passwordresets` (
   `id` char(64) NOT NULL,
   `user` int(10) unsigned NOT NULL,
   `time` int(10) unsigned NOT NULL,
-  `active` tinyint(1) unsigned NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `active` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `passwordresets_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 CREATE TABLE `users` (
@@ -156,8 +188,9 @@ CREATE TABLE `users` (
   `about` text DEFAULT NULL,
   `location` varchar(128) DEFAULT NULL,
   `signature` text DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2022-08-18 15:12:41
+-- 2023-02-22 20:17:06

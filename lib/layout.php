@@ -62,6 +62,8 @@ function pagination($levels, $lpp, $url, $current) {
 function error($title, $message) {
 	global $acmlm, $wiki;
 
+	if ($title >= 400 && $title < 500) http_response_code($title);
+
 	if ($acmlm || $wiki)
 		$twig = _twigloader();
 	else

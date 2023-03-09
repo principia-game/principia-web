@@ -6,7 +6,7 @@ if (isset($_POST['logout'])) {
 	redirect('./');
 }
 
-if ($log) redirect('./');
+if ($log) redirect('./ld');
 
 $error = '';
 

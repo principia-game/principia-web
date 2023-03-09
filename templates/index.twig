@@ -5,7 +5,10 @@
 {% set pagename = "/" %}
 
 	{% block content %}
-{% if just_registered %}
+{% if already_logged and log %}
+	<div class="header_message">You're already logged in.</div>
+{% endif %}
+{% if just_registered and log %}
 	<div class="header_message">You've been successfully registered and automatically logged in. Welcome to principia-web!</div>
 {% endif %}
 

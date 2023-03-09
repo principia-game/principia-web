@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-if ($log) redirect('./');
+if ($log) redirect('./?ld');
 
 $error = '';
 

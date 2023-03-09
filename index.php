@@ -33,6 +33,7 @@ $latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
 
 echo twigloader()->render('index.twig', [
 	'just_registered' => isset($_GET['rd']),
+	'already_logged' => isset($_GET['al']),
 	'featured_levels' => $latestfeatured,
 	'news' => $newsdata,
 	'top_levels' => $toplevels,

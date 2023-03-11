@@ -9,21 +9,19 @@
 {% endif %}
 
 	{% block content %}
-<h1>{{ action | title }} User</h1>
+<h1 class="center">{{ action | title }} User</h1>
 
-<p>You are going to be {{ action }}ning {{ userlink(banuserdata) }}.</p>
+<p class="center">You are going to be {{ action }}ning {{ userlink(banuserdata) }}.</p><br>
 
-{% if action == "ban" %}
-	<form class="reglog" method="POST" action="/_ban_user.php?id={{ banuserdata.id }}">
-		<p>
+<form class="reglog" method="POST" action="/_ban_user?id={{ banuserdata.id }}">
+	{% if action == "ban" %}
+		<div>
 			<span>Reason:</span>
-			<input type="text" name="reason" placeholder="Specify a reason (Optional, but preferred.)" size="60">
-		</p>
-		<p><input type="submit" class="submit" name="action" value="Ban User"></p>
-	</form>
-{% else %}
-	<form class="reglog" method="POST" action="/_ban_user.php?id={{ banuserdata.id }}">
-		<p><input type="submit" class="submit" name="action" value="Unban User"></p>
-	</form>
-{% endif %}
+			<input type="text" name="reason" placeholder="Specify a reason (Optional)" size="30">
+		</div>
+		<div><input type="submit" name="action" value="Ban User"></div>
+	{% else %}
+		<p><input type="submit" name="action" value="Unban User"></p>
+	{% endif %}
+</form>
 	{% endblock %}

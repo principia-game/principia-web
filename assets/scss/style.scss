@@ -296,14 +296,28 @@ div.level {
 }
 
 // Common register and login form styles \\
-form.reglog {
+.reglog {
+	text-align: center;
+
 	p {
-		margin-block-start: 1em;
-		margin-block-end: 1em;
+		margin-bottom: 30px;
 	}
+
+	div {
+		max-width: 500px;
+		padding-top: 15px;
+		padding-bottom: 5px;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin: 10px auto;
+		border-top: 1px solid #444;
+
+		&:last-child {border-bottom:0}
+	}
+
 	span {
+		width: 200px;
 		display: inline-block;
-		width: 150px;
 	}
 }
 

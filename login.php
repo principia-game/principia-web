@@ -6,14 +6,15 @@ if (isset($_POST['logout'])) {
 	redirect('./');
 }
 
-if ($log) redirect('./ld');
+if ($log) redirect('./?al');
 
 $error = '';
 
 if (isset($_GET['resetted'])) $error .= 'Password successfully reset! Please login with your new password.';
 
+$name = $_POST['name'] ?? null;
+
 if (isset($_POST['action'])) {
-	$name = $_POST['name'] ?? null;
 	$pass = $_POST['pass'] ?? null;
 
 	$logindata = fetch("SELECT id,password,token FROM users WHERE name = ?", [$name]);
@@ -27,4 +28,7 @@ if (isset($_POST['action'])) {
 	}
 }
 
-echo twigloader()->render('login.twig', ['error' => $error]);
+echo twigloader()->render('login.twig', [
+	'error' => $error,
+	'name' => $name
+]);

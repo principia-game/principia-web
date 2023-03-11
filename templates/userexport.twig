@@ -1,0 +1,30 @@
+{% extends "_layout.twig" %}
+
+{% set title = "User data export" %}
+
+	{% block content %}
+<h1>User data export</h1>
+
+<p>This is the data that is stored in the user database table for your user account. For more information about how your user information is handled see the <a href="/privacy">Privacy Policy</a>.</p>
+
+<table class="settings">
+	<tr>
+		<th>Field</th>
+		<th>Value</th>
+	</tr>
+	{% for key,value in userdata %}<tr>
+		<td>{{ key }}</td>
+		<td>
+			{% if key == 'password' %}
+				REDACTED <em>(bcrypt hash)</em>
+			{% elseif key == 'email' %}
+				REDACTED <em>(SHA256 hash)</em>
+			{% elseif key == 'token' %}
+				REDACTED <em>(random hexadecimal string)</em>
+			{% else %}
+				<code>{{ value }}</code>
+			{% endif %}
+		</td>
+	</tr>{% endfor %}
+</table><br>
+	{% endblock %}

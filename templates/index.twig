@@ -22,11 +22,22 @@
 
 	<p>Principia is a physics-based sandbox game. Build and play advanced contraptions, circuiting, minigames, robot adventures and more. Open source, free and available for Windows, Linux and Android, <a href="/download">download it today</a>.</p>
 
-	<p>Principia-web is the new community site for Principia. When you have installed Principia, enjoy the levels others have created, and <a href="/register">register</a> in order to upload your own levels and interact with the community.</p>
+	<p>This site, principia-web, is the new community site for Principia. When you have installed Principia, enjoy the levels others have created, and <a href="/register">register</a> in order to upload your own levels and interact with the community.</p>
+</div>
+
+<div class="skit">
+	<h2>Also check out...</h2>
+
+	<p>
+		<a href="https://github.com/Bithack/principia" style="margin-right:30px;line-height:4"><img src="/assets/icons/github.svg" height=48 title="Check out Principia on GitHub"></a>
+		<a href="https://discord.gg/qV6APzKfk9"><img src="/assets/icons/discord_logo.svg" height=48 title="Join the Principia Discord server!"></a>
+	</p>
+
+	<p>And the <a href="https://archive.principia-web.se">Official community site archive</a>, an archive of old levels spanning from 2013 to 2018.</p>
 </div>
 {% endif %}
 
-<h2 class="center">Featured levels</h2>
+<h1 class="center">Featured levels</h1>
 <div class="level-list scrollable">
 {% for featured_level in featured_levels %}
 	{{ level(featured_level) }}

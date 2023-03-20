@@ -40,7 +40,7 @@ if ($newsid) {
 		redirect($newsdata['redirect']);
 	}
 } else {
-	$newsdata = query("SELECT id,title FROM news ORDER BY id DESC");
+	$newsdata = query("SELECT id,title,time FROM news ORDER BY id DESC");
 
 	echo twigloader()->render('news.twig', [
 		'newsid' => $newsid,

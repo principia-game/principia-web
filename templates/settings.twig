@@ -51,6 +51,15 @@
 			{% endif %}
 		</td>
 	</tr>
+
+	<tr>
+		<td class="a">Pronouns</td>
+		<td class="b">
+			<input type="text" name="pronouns" maxlength="16" style="width:120px" value="{{ userdata.pronouns }}"><br>
+			<div class="fotnot">(These will be displayed next to your username so users can know what you go by)</div>
+		</td>
+	</tr>
+
 	<tr>
 		<td class="a">About <div class="fotnot">(Markdown allowed)</div></td>
 		<td class="b"><textarea name="about" rows="7" cols="80" style="width:90%">{{ userdata.about }}</textarea></td>

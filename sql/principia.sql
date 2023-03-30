@@ -188,9 +188,10 @@ CREATE TABLE `users` (
   `about` text DEFAULT NULL,
   `location` varchar(128) DEFAULT NULL,
   `signature` text DEFAULT NULL,
+  `pronouns` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2023-02-22 20:17:06
+-- 2023-03-30 20:48:44

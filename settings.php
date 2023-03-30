@@ -7,6 +7,7 @@ if (isset($_POST['action'])) {
 	$error = '';
 
 	$fields = [
+		'pronouns'		=> $_POST['pronouns'] ?: null,
 		'about'			=> $_POST['about'] ?: null,
 		'location'		=> $_POST['location'] ?: null,
 		'signature'		=> $_POST['signature'] ?: null,

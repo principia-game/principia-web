@@ -483,12 +483,17 @@ div.level {
 
 	tr th {
 		background-color: #fafafa;
-		font-size: 11.5pt;
+		font-size: 12pt;
 	}
 
 	tr {
 		&:nth-child(odd)  { background-color: #f5f5f5; }
 		&:nth-child(even) { background-color: #e8e8e8; }
+	}
+
+	.fotnot {
+		margin-top: 8px;
+		font-size: 10.5pt;
 	}
 }
 
@@ -532,7 +537,7 @@ div.level {
 
 /// User page \\\
 .user_about {
-	margin-bottom: 1em;
+	margin-bottom: 1.5em;
 }
 
 .user_pic {
@@ -572,6 +577,18 @@ div.level {
 		}
 	}
 }
+
+// sensitive info (censor things like IPs unless hovered)
+.sensitive {
+	color: #636363;
+	background-color: #636363;
+
+	&:hover {
+		color: unset;
+		background-color: unset;
+	}
+}
+
 
 /// Two columns that collapse on mobile (for tables) \\\
 .two-columns {

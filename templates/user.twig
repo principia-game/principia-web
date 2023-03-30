@@ -29,15 +29,15 @@
 </div>
 {% endif %}
 
-<p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customize your profile, and edit your settings.</p>
+<p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customise your profile, and edit your settings.</p>
 
 <p><a href="/settings">Edit my settings</a>
-&bull; <a href="/forum/private">View my private messages</a>
-&bull; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
-&bull; <a href="javascript:document.logout.submit()">Log out</a></p>
+&ndash; <a href="/forum/private">View my private messages</a>
+&ndash; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
+&ndash; <a href="javascript:document.logout.submit()">Log out</a></p>
 
 {% if userdata.rank > 2 %}
-<p><a href="/admin">Admin panel</a></p>
+	<p><a href="/admin">Admin panel</a></p>
 {% endif %}
 
 <form action="/login" method="post" name="logout">
@@ -59,20 +59,42 @@
 
 <div class="user_stats">
 	<div class="topthing"><b>General information</b></div>
-	<div class="row">
-		<b>Forum Threads</b>: {{ userpagedata.threads }}
-		<span class="pad"><b>Forum Posts</b>: {{ userpagedata.posts }}</span>
-	</div>
+
+	{% if level_count > 0 %}
+		<div class="row">
+			<b>Levels Uploaded</b>: {{ level_count }}
+		</div>
+	{% endif %}
+
+	{% if userpagedata.posts > 0 %}
+		<div class="row">
+			<b>Threads</b>: {{ userpagedata.threads }} (<a href="/forum/forum?user={{ id }}">Show</a>)
+			<span class="pad"><b>Posts</b>: {{ userpagedata.posts }} (<a href="/forum/thread?user={{ id }}">Show</a>)</span>
+		</div>
+	{% endif %}
+
+	{% if wikiconts > 0 %}
+		<div class="row">
+			<b>Wiki contributions</b>: {{ wikiconts }} (<a href="/wiki/Special:Contributions?id={{ id }}">Show</a>)
+		</div>
+	{% endif %}
+
 	<div class="row">
 		<b>Registered on</b>: {{ userpagedata.joined | date('Y-m-d H:i:s') }}
 	</div>
 	<div class="row">
 		<b>Last view</b>: {{ userpagedata.lastview | relative_time }}
 	</div>
+
+	{% if userdata.rank > 2 %}
+		<div class="row right">
+			<span class="sensitive">{{ userpagedata.ip }}</span>
+		</div>
+	{% endif %}
 </div>
 
 {% if userpagedata.avatar %}
-	<div class="user_pic"><img src="/userpic/{{ userpagedata.id }}"></div>
+	<div class="user_pic"><img src="/userpic/{{ id }}"></div>
 {% endif %}
 
 <h1>{{ name }}
@@ -82,31 +104,40 @@
 
 <div class="user_about">
 	<h3>About this user</h3>
-	{{ userpagedata.about | markdown }}
+	{{ userpagedata.about | default("*This user hasn't written anything about themselves yet...*") | markdown }}
 </div>
 
 <p class="clear_right">
-	<a href="/forum/forum?user={{ id }}">View threads</a>
-	&bull; <a href="/forum/thread?user={{ id }}">Show posts</a>
-	&bull; <a href="/wiki/Special:Contributions?id={{ id }}">View Wiki contributions</a>
 	{% if log %}
+		<strong>User actions:</strong>
+
 		{% if userdata.id != id %}
-			&bull; <a href="/forum/sendprivate?uid={{ id }}">Send private message</a>
+			<a href="/forum/sendprivate?uid={{ id }}">Send private message</a>
+		{% else %}
+			<a href="/user/{{ id }}">Go to personal user page</a>
 		{% endif %}
 		{% if userdata.rank > 2 %}
-			&bull; <a href="/resetpassword?grf={{ id }}">Generate password reset for user</a>
+			&ndash; <a href="/resetpassword?grf={{ id }}">Generate password reset for user</a>
 		{% endif %}
 		{% if userdata.rank > 1 %}
-			&bull; <a href="/_ban_user?id={{ id }}">{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
+			&ndash; <a href="/_ban_user?id={{ id }}">{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
 		{% endif %}
 	{% endif %}
 </p>
+
+{% if userpagedata.archivename %}
+	<h3><a href="https://archive.principia-web.se/user/{{ userpagedata.archivename }}">
+		View this user's levels on the official community site archive
+	</a></h3>
+{% endif %}
+
+<h2>Levels</h2>
 
 <div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}
 {% else %}
-	This user doesn't have any uploaded levels.
+	This user hasn't uploaded any levels yet!
 {% endfor %}
 </div>
 
@@ -117,12 +148,6 @@
 {% endif %}
 {% set le_url = '/user/' ~ id ~ '?page=%s' ~ forceuser %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
-
-{% if userpagedata.archivename %}
-	<h3><a href="https://archive.principia-web.se/user/{{ userpagedata.archivename }}">
-		View this user's levels on the official community site archive
-	</a></h3>
-{% endif %}
 
 {{ comments(comments, 'user', id) }}
 {% endif %}

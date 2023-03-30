@@ -214,7 +214,7 @@ a.nonexistant {
 
 /// Generic form element overrides \\\
 
-textarea, input[type=text], input[type=password], input[type=email], input[type=color], .jscolor {
+textarea, input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
 	background-color: #111;
 	border: 1px solid $grid;
 	color: white;

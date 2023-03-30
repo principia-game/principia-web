@@ -27,7 +27,7 @@
 <table class="settings">
 	<tr>
 		<th></th>
-		<th class="left">Customize your profile</th>
+		<th class="left">Customise your profile</th>
 	{% if userdata.rank > 2 %}
 	<tr>
 		<td class="a">Title</td>
@@ -45,30 +45,30 @@
 		<td class="b">
 			{% if userdata.avatar %}
 				<span style="float:left;margin-right:20px"><img src="/userpic/{{ userdata.id }}" alt=\"(Avatar)\" height="64"></span>
-				<strong>Upload new:</strong><br><br><input type="file" name="avatar"> (max 180x180, <80KB)
+				<strong>Upload new:</strong><br><input type="file" name="avatar" style="margin-top:10px" size=240> <span class="fotnot">(max 180x180, &lt;80KB)</span>
 			{% else %}
 				<input type="file" name="avatar">
 			{% endif %}
 		</td>
 	</tr>
 	<tr>
-		<td class="a">About<br><em>Markdown allowed.</em></td>
-		<td class="b"><textarea name="about" rows="5" cols="80" style="width:90%">{{ userdata.about }}</textarea></td>
+		<td class="a">About <div class="fotnot">(Markdown allowed)</div></td>
+		<td class="b"><textarea name="about" rows="7" cols="80" style="width:90%">{{ userdata.about }}</textarea></td>
 	</tr>
 	<tr>
 		<td class="a">Location</td>
 		<td class="b"><input type="text" name="location" size="45" maxlength="128" style="width:60%" value="{{ userdata.location }}"></td>
 	</tr>
 	<tr>
-		<td class="a">Forum signature</td>
-		<td class="b"><textarea name="signature" rows="5" cols="80" style="width:90%">{{ userdata.signature }}</textarea></td>
+		<td class="a">Forum signature <div class="fotnot">(Markdown allowed)</div></td>
+		<td class="b"><textarea name="signature" rows="7" cols="80" style="width:90%">{{ userdata.signature }}</textarea></td>
 	</tr>
 
 	<tr>
 		<td class="a">Old community site name</td>
 		<td class="b">
 			<input type="text" name="archivename" size="45" maxlength="128" style="width:60%" value="{{ userdata.archivename }}"><br>
-			<em>(Input the username you used on the <a href="https://archive.principia-web.se/">official community site</a> to link it to principia-web)</em>
+			<div class="fotnot">(Input the username you used on the <a href="https://archive.principia-web.se/">official community site</a> to link it to principia-web)</div>
 		</td>
 	</tr>
 
@@ -77,10 +77,10 @@
 		<th class="left">Options</th>
 	</tr>
 	<tr>
-		<td class="a">Dark mode</td>
+		<td class="a">Theme</td>
 		<td class="b">
-			<label><input type="radio" name="darkmode" value="0" {% if not userdata.darkmode %}checked{% endif %}>Disabled </label>
-			<label><input type="radio" name="darkmode" value="1" {% if userdata.darkmode %}checked{% endif %}>Enabled </label>
+			<label><input type="radio" name="darkmode" value="0" {% if not userdata.darkmode %}checked{% endif %}>Light mode </label>
+			<label><input type="radio" name="darkmode" value="1" {% if userdata.darkmode %}checked{% endif %}>Dark mode </label>
 		</td>
 	<tr>
 		<td class="a">Timezone</td>

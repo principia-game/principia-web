@@ -71,9 +71,8 @@ if (isset($_POST['action'])) {
 }
 
 $timezones = [];
-foreach (timezone_identifiers_list() as $tz) {
+foreach (timezone_identifiers_list() as $tz)
 	$timezones[] = $tz;
-}
 
 echo twigloader()->render('settings.twig', [
 	'timezones' => $timezones

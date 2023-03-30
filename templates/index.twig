@@ -9,7 +9,10 @@
 	<div class="header_message">You're already logged in.</div>
 {% endif %}
 {% if just_registered and log %}
-	<div class="header_message">You've been successfully registered and automatically logged in. Welcome to principia-web!</div>
+	<div class="header_message">
+		You've been successfully registered and automatically logged in. <strong>Welcome to principia-web!</strong><br><br>
+		You may want to <a href="/settings">fill out your profile</a> or log in within the Principia client to upload some levels!
+	</div>
 {% endif %}
 
 {% if not log and not is_android_webview() %}

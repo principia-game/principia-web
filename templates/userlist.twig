@@ -13,8 +13,10 @@
 	</tr>
 	{% for user in users %}
 	<tr>
-		<td>{{ user.id }}
+		<td>{{ user.id }}</td>
 		<td>{{ userlink(user) }}
+			{% if user.rank > 1 %}<img src="/assets/icons/shield{% if userdata.darkmode %}_w{%endif%}.svg" height="16">{% endif %}
+			{% if user.rank > 3 %}<img src="/assets/icons/root{% if userdata.darkmode %}_w{%endif%}.svg" height="16">{% endif %}</td>
 		<td class="center">{{ user.joined | date('Y-m-d H:i') }}</td>
 		<td class="center">{{ levelcounts[user.id] }}</td>
 	</tr>

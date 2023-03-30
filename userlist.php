@@ -1,7 +1,7 @@
 <?php
 require('lib/common.php');
 
-$users = query("SELECT id, name, customcolor, joined FROM users");
+$users = query("SELECT id, name, customcolor, joined, rank FROM users");
 
 $ucount = result("SELECT COUNT(*) FROM users");
 $levelcounts = [];

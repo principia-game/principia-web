@@ -14,10 +14,6 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 		header("X-Principia-User-Name: ".$logindata['name']);
 		header("X-Principia-Unread: $notificationCount");
 
-		if (function_exists('nothingSpecial')) {
-			nothingSpecial();
-		}
-
 		setcookie($cookieName, $logindata['token'], time() + 3600*24*365, '/');
 
 		echo '100'; // Logged in successfully

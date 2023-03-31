@@ -67,6 +67,10 @@ h6 { font-size: 0.67em; }
 }
 
 .top {
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
 	padding-top: 10px;
 	border-bottom: 1px solid $grid;
 }

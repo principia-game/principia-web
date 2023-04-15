@@ -72,6 +72,8 @@ $footerlinks = [
 	'/about' => 'About'
 ];
 
+$chatmsg = 'Please use the <a href="forum/">forum</a> for bigger discussions and questions.';
+
 /// GENERAL FORUM STUFF
 
 $trashid = 2; // Designates the id for your trash forum.

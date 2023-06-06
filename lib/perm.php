@@ -33,7 +33,6 @@ function powNameToId($id) {
 
 function needsLogin() {
 	global $log;
-	if (!$log) {
+	if (!$log)
 		error('403', "This page requires login.");
-	}
 }

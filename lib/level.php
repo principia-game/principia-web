@@ -56,9 +56,8 @@ function cmtNumToType($num) {
  */
 function extractPlatform($ua) {
 	preg_match('/\((\w+)\)/', $ua, $matches);
-	if (isset($matches[1])) {
+	if (isset($matches[1]))
 		return $matches[1];
-	} else {
+	else
 		throw new Exception('No platform found (input is probably garbled)');
-	}
 }

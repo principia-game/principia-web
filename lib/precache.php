@@ -32,8 +32,6 @@ class PreCache {
 				$cache->set('ipb_'.$ipban['ip'], $ipban['reason']);
 			}
 		});
-
-
 	}
 
 	/**

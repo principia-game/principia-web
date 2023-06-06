@@ -4,4 +4,4 @@ require('lib/common.php');
 
 internalAuth();
 
-echo readfile('featured/fl.cache');
+readfile('featured/fl.cache');

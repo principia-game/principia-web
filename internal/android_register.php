@@ -8,9 +8,6 @@ $name = trim($_POST['username'] ?? null);
 $mail = $_POST['email'] ?? null;
 $pass = $_POST['password'] ?? null;
 
-// TODO: code 117 - This email has been banned.
-//       code 118 is useless to us as we're not checking your license
-
 if (!isset($name))
 	die('111'); // 111 is a generic "something went wrong!" code.
 

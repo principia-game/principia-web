@@ -1,5 +1,5 @@
 <?php
-$host = '127.0.0.1';
+$host = 'localhost';
 $db   = 'principia';
 $user = '';
 $pass = '';
@@ -7,18 +7,12 @@ $pass = '';
 $tplCache = 'templates/cache';
 $tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
 
-// Array of memcached server(s) for memcache caching. Leave empty to disable memcache caching.
+// Array of memcached server(s) for memcache caching.
 $memcachedServers = [];
 
 $emailsalt = 'CHANGEME'; // Email salt to prevent rainbow table attacks. CHANGE THIS!
 
 $lpp = 20;
-
-// Should dark mode be default?
-$darkModeDefault = true;
-
-// Redirect all non-internal pages to https.
-$https = true;
 
 // Cookie token name. Don't change this too often as it'll invalidate old logins!
 $cookieName = 'token';

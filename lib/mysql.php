@@ -31,9 +31,9 @@ function result($query,$params = []) {
 
 function fetchArray($query) {
 	$out = [];
-	while ($record = $query->fetch()) {
+	while ($record = $query->fetch())
 		$out[] = $record;
-	}
+
 	return $out;
 }
 

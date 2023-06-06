@@ -12,4 +12,4 @@ if (!$pkg || !file_exists($pkgpath)) {
 
 query("UPDATE packages SET downloads = downloads + '1' WHERE id = ?", [$pkg]);
 
-echo readfile($pkgpath);
+readfile($pkgpath);

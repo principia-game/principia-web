@@ -11,19 +11,17 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
-	if (!isset($customloader)) {
+	if (!isset($customloader))
 		$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
-	} else {
+	else
 		$loader = $customloader();
-	}
 
 	if (!isset($customenv)) {
 		$twig = new \Twig\Environment($loader, [
 			'cache' => $doCache,
 		]);
-	} else {
+	} else
 		$twig = $customenv($loader, $doCache);
-	}
 
 	// Add principia-web specific extension
 	$twig->addExtension(new PrincipiaExtension());

@@ -7,11 +7,17 @@ function isCli() {
 	return php_sapi_name() == "cli";
 }
 
+/**
+ * Returns true if an internal page has been requested.
+ */
+function isInternal() {
+	return str_contains($_SERVER['SCRIPT_NAME'], 'internal');
+}
+
 function register($name, $pass, $mail, $sendWelcomeEmail = true) {
-	global $darkModeDefault;
 	$token = bin2hex(random_bytes(20));
 	query("INSERT INTO users (name, password, email, token, joined, darkmode) VALUES (?,?,?,?,?,?)",
-		[$name,password_hash($pass, PASSWORD_DEFAULT), mailHash($mail), $token, time(), ($darkModeDefault ? 1 : 0)]);
+		[$name,password_hash($pass, PASSWORD_DEFAULT), mailHash($mail), $token, time(), 1]);
 
 	if ($sendWelcomeEmail && false) {
 		sendMail($mail, 'Welcome to principia-web!', sprintf(<<<HTML

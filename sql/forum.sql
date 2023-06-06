@@ -14,9 +14,6 @@ CREATE TABLE `z_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `z_categories` (`id`, `title`, `ord`) VALUES
-(1,	'General',	50),
-(2,	'Staff forums',	0);
 
 CREATE TABLE `z_forums` (
   `id` int(10) unsigned NOT NULL DEFAULT 0,
@@ -37,9 +34,6 @@ CREATE TABLE `z_forums` (
   CONSTRAINT `z_forums_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `z_categories` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `z_forums` (`id`, `cat`, `ord`, `title`, `descr`, `threads`, `posts`, `lastdate`, `lastuser`, `lastid`, `minread`, `minthread`, `minreply`) VALUES
-(1,	1,	0,	'Example forum',	'This is an example forum to get started with.',	0,	0,	0,	0,	0,	-1, 1,  1),
-(2,	2,	0,	'Example staff forum',	'This is an example staff forum to get started with.',	0,	0,	0,	0,	0,	2,	2,  2);
 
 CREATE TABLE `z_forumsread` (
   `uid` int(10) unsigned NOT NULL,

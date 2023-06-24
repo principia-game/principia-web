@@ -76,14 +76,12 @@ function level($level, $featured = '', $pkg = false) {
 	$level['v'] = 2;
 	return $cache->hitHash($level, function () use ($level, $featured, $pkg) {
 		if (!$pkg) {
-			if (!isset($level['visibility']) || $level['visibility'] != 1) {
+			if (!isset($level['visibility']) || $level['visibility'] != 1)
 				$img = "levels/thumbs/low/".$level['id'].".jpg";
-			} else {
+			else
 				$img = "assets/locked_thumb.svg";
-			}
-		} else {
+		} else
 			$img = "assets/package_thumb.svg";
-		}
 
 		$page = ($pkg ? 'package' : 'level');
 

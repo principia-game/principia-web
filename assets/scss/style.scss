@@ -169,20 +169,18 @@ div.level {
 	background-color: $bg_box2;
 	display: inline-block;
 	position: relative;
-	width: 230px;
-	height: 200px;
-	padding: 3px;
-	vertical-align: top;
+	width: 240px;
+	height: 210px;
 
 	border: 1px solid #444;
 	border-radius: 4px;
 
 	.lvlbox_top {
 		color: black;
-		font-size: 14pt;
+		font-size: 13pt;
 		text-decoration: none;
-		overflow: hidden;
-		max-height: 230px;
+		display: block;
+		height: 100%;
 
 		span.featured {
 			position: absolute;
@@ -193,16 +191,21 @@ div.level {
 		}
 
 		img {
-			width: 230px;
-			height: 125px;
-			border-radius: 4px 4px 0px 0px;
+			width: 240px;
+			height: 135px;
+			border-radius: 3px 3px 0px 0px;
+		}
+
+		.lvltitle {
+			margin: 0 4px;
+			display: block;
 		}
 	}
 	.user {
 		position: absolute;
-		top: 183px;
-		text-decoration: none;
-		margin-left: 2px;
+		top: 187px;
+		padding: 0 4px;
+		font-size: 11.2pt;
 	}
 	.likes {
 		float: right;

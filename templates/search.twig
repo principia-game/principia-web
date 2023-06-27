@@ -27,7 +27,7 @@
 	{% set le_url = 'search?query=' ~ query ~ '&page=%s' %}
 	{{ pagination(level_count, glob_lpp, le_url, page) }}
 
-	<p>Want more or can't find what you're looking for? <a href="https://archive.principia-web.se/search.php?q={{ query }}">Search for '{{ query }}' the official community site archive.</a></p>
+	<p>Want more or can't find what you're looking for? <a href="https://archive.principia-web.se/search?query={{ query }}">Search for '{{ query }}' the official community site archive.</a></p>
 {% endif %}
 
 	{% endblock %}

@@ -10,7 +10,7 @@ $levellist = query("SELECT id FROM levels WHERE visibility = 0");
 $levels = [];
 while ($level = $levellist->fetch()) {
 	$i = $level['id'];
-	if (!file_exists(sprintf('levels/thumbs/%s.jpg', $i)))
+	if (!file_exists(sprintf('data/thumbs/%s.jpg', $i)))
 		$levels[] = $i;
 }
 

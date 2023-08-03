@@ -77,7 +77,7 @@ function level($level, $featured = '', $pkg = false) {
 	return $cache->hitHash($level, function () use ($level, $featured, $pkg) {
 		if (!$pkg) {
 			if (!isset($level['visibility']) || $level['visibility'] != 1)
-				$img = "levels/thumbs/low/".$level['id'].".jpg";
+				$img = "thumbs/low/".$level['id'].".jpg";
 			else
 				$img = "assets/locked_thumb.svg";
 		} else

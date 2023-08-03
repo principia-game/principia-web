@@ -19,8 +19,8 @@ if (isset($_POST['action'])) {
 	// (if this gets triggered there is probably something severely wrong, immediately error out and exit)
 	if (lvledit($lid, 'get-name') != $title
 	 || lvledit($lid, 'get-description') != $description) {
-		echo 'error occured while editing metadata, please report this immediately';
-		trigger_error("SEVERE LVLEDIT ERROR", E_USER_ERROR);
+		//echo 'error occured while editing metadata, please report this immediately';
+		trigger_error("SEVERE LVLEDIT ERROR", E_USER_WARNING);
 	}
 
 	query("UPDATE levels SET title = ?, description = ? WHERE id = ?", [$title, $description, $lid]);

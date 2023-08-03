@@ -35,7 +35,7 @@ function newLevelHook($level) {
 		->timestamp(date(DATE_ISO8601))
 		->color(13056)
 		->footer("New uploaded levels")
-		->thumbnail(sprintf("%s/levels/thumbs/%s.jpg", $domain, $level['id']))
+		->thumbnail(sprintf("%s/thumbs/%s.jpg", $domain, $level['id']))
 		->author(
 			$level['u_name'],
 			sprintf("%s/user/%s", $domain, $level['u_id'])

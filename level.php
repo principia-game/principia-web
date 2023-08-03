@@ -57,8 +57,8 @@ if ($log) {
 
 	// delete level thumbnails
 	if (isset($_GET['delthumb']) && $userdata['rank'] > 2) {
-		unlink("levels/thumbs/$lid.jpg");
-		unlink("levels/thumbs/low/$lid.jpg");
+		unlink("data/thumbs/$lid.jpg");
+		unlink("data/thumbs_low/$lid.jpg");
 	}
 
 	// remove notifications

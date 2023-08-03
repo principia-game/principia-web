@@ -55,20 +55,20 @@ if (!$updatelevel) {
 	// Preparations for if we update a level
 
 	// back up previous revision level ...
-	rename("levels/$cid.plvl", sprintf('levels/backup/%s.plvl.bak.%s', $cid, $leveldata['revision']));
+	rename("data/levels/$cid.plvl", sprintf('data/backup/levels/%s.plvl.bak.%s', $cid, $leveldata['revision']));
 	// ... and thumb
-	if (file_exists("levels/thumbs/$cid.jpg")) {
-		rename("levels/thumbs/$cid.jpg", sprintf('levels/thumbs/backup/%s.jpg.bak.%s', $cid, $leveldata['revision']));
+	if (file_exists("data/thumbs/$cid.jpg")) {
+		rename("data/thumbs/$cid.jpg", sprintf('data/backup/thumbs/%s.jpg.bak.%s', $cid, $leveldata['revision']));
 
 		// ... and low thumb
-		if (file_exists("levels/thumbs/low/$cid.jpg")) {
-			rename("levels/thumbs/low/$cid.jpg", sprintf('levels/thumbs/backup/%s.low.jpg.bak.%s', $cid, $leveldata['revision']));
+		if (file_exists("data/thumbs_low/$cid.jpg")) {
+			rename("data/thumbs_low/$cid.jpg", sprintf('data/backup/thumbs_low/%s.jpg.bak.%s', $cid, $leveldata['revision']));
 		}
 	}
 }
 
 // Move uploaded level file to the levels directory.
-if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "levels/$cid.plvl")) {
+if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "data/levels/$cid.plvl")) {
 	trigger_error("Could not move level file to levels folder, check permissions", E_USER_WARNING);
 	die("-");
 }

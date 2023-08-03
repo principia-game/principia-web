@@ -1,10 +1,7 @@
 ## User-generated files
 conf/config.php
-levels/
-packages/
+data/
 templates/cache/
-level_archive/
-userpic/
 
 ## SCSS caches
 assets/css/

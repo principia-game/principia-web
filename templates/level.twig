@@ -2,7 +2,7 @@
 
 {% set title = level.title %}
 {% set description = level.description %}
-{% set image = domain ~ "/levels/thumbs/" ~ lid ~ ".jpg" %}
+{% set image = domain ~ "/thumbs/" ~ lid ~ ".jpg" %}
 {% set pagename = "/level/" ~ lid %}
 
 	{% block content %}
@@ -25,7 +25,7 @@
 			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
 		{% endif %}
 		{% if not level.visibility == 1 %}
-			<a href="/levels/thumbs/{{ level.id }}.jpg"><img src="/levels/thumbs/{{ level.id }}.jpg" alt=""></a>
+			<a href="/thumbs/{{ level.id }}.jpg"><img src="/thumbs/{{ level.id }}.jpg" alt=""></a>
 		{% else %}
 			<img src="/assets/locked_thumb.svg" alt="Locked level">
 		{% endif %}

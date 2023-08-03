@@ -45,10 +45,10 @@ if (isset($_POST['action'])) {
 			$error .= "- The image filesize too big.<br>";
 
 		if (!$error) {
-			if (move_uploaded_file($fname['tmp_name'], 'userpic/'.$userdata['id']))
+			if (move_uploaded_file($fname['tmp_name'], 'data/userpic/'.$userdata['id']))
 				$fields['avatar'] = 1;
 			else
-				trigger_error("Avatar uploading broken, check userpic/ permissions", E_USER_ERROR);
+				trigger_error("Avatar uploading broken, check data/userpic/ permissions", E_USER_ERROR);
 		}
 	}
 

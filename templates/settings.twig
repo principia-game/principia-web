@@ -43,12 +43,10 @@
 	<tr>
 		<td class="a">Avatar</td>
 		<td class="b">
-			{% if userdata.avatar %}
-				<span style="float:left;margin-right:20px"><img src="/userpic/{{ userdata.id }}" alt=\"(Avatar)\" height="64"></span>
-				<strong>Upload new:</strong><br><input type="file" name="avatar" style="margin-top:10px" size=240> <span class="fotnot">(max 180x180, &lt;80KB)</span>
-			{% else %}
-				<input type="file" name="avatar">
-			{% endif %}
+			<span style="float:left;margin-right:10px">
+				<img src="{% if userdata.avatar %}/userpic/{{ userdata.id }}{% else %}/assets/no_avatar.png{% endif %}" alt="(Avatar)" height="64">
+			</span>
+			<strong>Upload new:</strong><br><input type="file" name="avatar" style="margin-top:10px" size=240> <span class="fotnot">(max 180x180, &lt;80KB)</span>
 		</td>
 	</tr>
 

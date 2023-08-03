@@ -25,5 +25,12 @@ The Principia client has a selection of featured levels on the main menu. By def
 ### Optional: Discord webhooks
 Principia-web has an option to trigger a Discord webhook during various events (e.g. level upload, forum post...). To enable, put the webhook URL in the respective variable in the principia-web config file. **You will also need the curl PHP extension to be enabled and working!**
 
+## Unit tests
+To run unit tests, you need to [download PHPUnit](https://phpunit.de/getting-started/phpunit-10.html). Then run
+
+```bash
+./phpunit --bootstrap lib/common.php --testdox tests
+```
+
 ## License
 Principia-web is licensed under the AGPLv3 license. This means you need to provide the source code of any forks, even if the fork is being run on a remote server. For more information, see the [LICENSE](https://github.com/principia-preservation-project/principia-web/blob/master/LICENSE) file, or [this page on choosealicense.com](https://choosealicense.com/licenses/agpl-3.0/).

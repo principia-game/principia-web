@@ -27,3 +27,7 @@ tools/lvlinfo
 tools/lvledit
 tools/progress-get
 adminer/
+.phpunit.result.cache
+phpunit
+paste/
+data_

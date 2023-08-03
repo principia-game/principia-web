@@ -11,7 +11,7 @@ if (isset($_REQUEST['new']) && $log && $userdata['rank'] > 2) {
 		$cachectrl->invIndex();
 
 		$insertid = result("SELECT LAST_INSERT_ID()");
-		redirect("/news.php?id=$insertid");
+		redirect("/news/$insertid");
 	}
 
 	echo twigloader()->render('admin_news_add.twig');

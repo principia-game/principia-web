@@ -12,7 +12,7 @@ if (isset($_GET['grf']) && $userdata['rank'] > 2) {
 		query("INSERT INTO passwordresets (id, user, time) VALUES (?,?,?)",
 			[$tok, $generateResetFor, time()]);
 
-		printf("/resetpassword.php?id=%s", $tok);
+		printf("/resetpassword?id=%s", $tok);
 	}
 	die();
 }
@@ -35,7 +35,7 @@ if (isset($_POST['action'])) {
 		query("UPDATE users SET password = ? WHERE id = ?", [password_hash($pass, PASSWORD_DEFAULT), $resetdata['user']]);
 		query("UPDATE passwordresets SET active = 0 WHERE id = ?", [$id]);
 
-		redirect('/login.php?resetted');
+		redirect('/login?resetted');
 	}
 }
 

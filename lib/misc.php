@@ -16,8 +16,14 @@ function isInternal() {
 
 function register($name, $pass, $mail, $sendWelcomeEmail = true) {
 	$token = bin2hex(random_bytes(20));
-	query("INSERT INTO users (name, password, email, token, joined, darkmode) VALUES (?,?,?,?,?,?)",
-		[$name,password_hash($pass, PASSWORD_DEFAULT), mailHash($mail), $token, time(), 1]);
+	insertInto('users', [
+		'name' => $name,
+		'password' => password_hash($pass, PASSWORD_DEFAULT),
+		'email' => mailHash($mail),
+		'token' => $token,
+		'joined' => time(),
+		'darkmode' => 1
+	]);
 
 	if ($sendWelcomeEmail && false) {
 		sendMail($mail, 'Welcome to principia-web!', sprintf(<<<HTML
@@ -63,4 +69,8 @@ function clearMentions($type, $id) {
 
 function clamp($current, $min, $max) {
     return max($min, min($max, $current));
+}
+
+function commasep($str) {
+	return implode(',', $str);
 }

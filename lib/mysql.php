@@ -43,6 +43,30 @@ function insertId() {
 }
 
 /**
+ * Helper function to insert a row into a table.
+ */
+function insertInto($table, $data, $dry = false) {
+	$fields = [];
+	$placeholders = [];
+	$values = [];
+
+	foreach ($data as $field => $value) {
+		$fields[] = $field;
+		$placeholders[] = '?';
+		$values[] = $value;
+	}
+
+	$query = sprintf(
+		"INSERT INTO %s (%s) VALUES (%s)",
+	$table, commasep($fields), commasep($placeholders));
+
+	if ($dry)
+		return $query;
+	else
+		return query($query, $values);
+}
+
+/**
  * Helper function to construct part of a query to set a lot of fields in one row
  */
 function updateRowQuery($fields) {

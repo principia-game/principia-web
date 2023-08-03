@@ -8,7 +8,7 @@
  */
 function ipBan($ip, $reason = 'N/A') {
 	global $cache;
-	query("INSERT INTO ipbans (ip,reason) VALUES (?,?)", [$ip, $reason]);
+	insertInto('ipbans', ['ip' => $ip, 'reason' => $reason]);
 	$cache->set('ipb_'.$ip, $reason);
 }
 

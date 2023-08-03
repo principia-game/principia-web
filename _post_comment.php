@@ -44,8 +44,13 @@ if (!$doDelete) {
 		die('valid type pls');
 	}
 
-	query("INSERT INTO comments (type, level, author, time, message) VALUES (?,?,?,?,?)",
-		[$nType, $id, $userdata['id'], time(), $message]);
+	insertInto('comments', [
+		'type' => $nType,
+		'level' => $id,
+		'author' => $userdata['id'],
+		'time' => time(),
+		'message' => $message
+	]);
 
 	switch ($type) {
 		case 'level':
@@ -53,14 +58,18 @@ if (!$doDelete) {
 
 			if ($userdata['id'] == $leveldata['author']) break;
 
-			query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
-				[1, $leveldata['id'], $leveldata['author'], $userdata['id']]);
+			insertInto('notifications', [
+				'type' => 1,
+				'level' => $leveldata['id'],
+				'recipient' => $leveldata['author'],
+				'sender' => $userdata['id']
+			]);
 		break;
 		case 'user':
 			if ($userdata['id'] == $id) break;
 
-			query("INSERT INTO notifications (type, recipient, sender) VALUES (?,?,?)",
-				[2, $id, $userdata['id']]);
+			insertInto('notifications',
+				['type' => 2, 'recipient' => $id, 'sender' => $userdata['id']]);
 		break;
 	}
 
@@ -68,8 +77,12 @@ if (!$doDelete) {
 	if (isset($matches[1])) {
 		$mentionedUser = result("SELECT id FROM users WHERE name = ?", [$matches[1]]);
 		if ($mentionedUser) {
-			query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
-				[$nType + 10, $id, $mentionedUser, $userdata['id']]);
+			insertInto('notifications', [
+				'type' => $nType + 10,
+				'level' => $id,
+				'recipient' => $mentionedUser,
+				'sender' => $userdata['id']
+			]);
 		}
 	}
 } else {

@@ -26,8 +26,9 @@ $result = explode(',', $output);
 	$lastscore = result("SELECT score FROM leaderboard WHERE level = ? AND user = ?", [$level, $userdata['id']]);
 
 	if ($lastscore === false) {
-		query("INSERT INTO leaderboard (level, user, score) VALUES (?,?,?)",
-			[$level, $userdata['id'], $result[2]]);
+		insertInto('leaderboard', [
+			'level' => $level, 'user' => $userdata['id'], 'score' => $result[2]
+		]);
 
 		header('x-notify-message: Successfully submitted score!');
 	} else {

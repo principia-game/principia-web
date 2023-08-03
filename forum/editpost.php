@@ -46,8 +46,12 @@ if ($action == 'Submit') {
 
 	query("UPDATE z_posts SET revision = ? WHERE id = ?", [$newrev, $pid]);
 
-	query("INSERT INTO z_poststext (id,text,revision,date) VALUES (?,?,?,?)",
-		[$pid, $_POST['message'], $newrev, time()]);
+	insertInto('z_poststext', [
+		'id' => $pid,
+		'text' => $_POST['message'],
+		'revision' => $newrev,
+		'date' => time()
+	]);
 
 	redirect("thread?pid=$pid#$pid");
 }

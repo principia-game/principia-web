@@ -30,15 +30,23 @@ if ($action == 'Submit') {
 		query("UPDATE users SET posts = posts + 1, threads = threads + 1, lastpost = ? WHERE id = ?",
 			[time(), $userdata['id']]);
 
-		query("INSERT INTO z_threads (title, forum, user, lastdate, lastuser) VALUES (?,?,?,?,?)",
-			[$title, $fid, $userdata['id'], time(), $userdata['id']]);
+		insertInto('z_threads', [
+			'title' => $title,
+			'forum' => $fid,
+			'user' => $userdata['id'],
+			'lastdate' => time(),
+			'lastuser' => $userdata['id']
+		]);
 
 		$tid = insertId();
-		query("INSERT INTO z_posts (user, thread, date) VALUES (?,?,?)",
-			[$userdata['id'], $tid, time()]);
+		insertInto('z_posts', [
+			'user' => $userdata['id'],
+			'thread' => $tid,
+			'date' => time()
+		]);
 
 		$pid = insertId();
-		query("INSERT INTO z_poststext (id, text) VALUES (?,?)", [$pid, $message]);
+		insertInto('z_poststext', ['id' => $pid, 'text' => $message]);
 
 		query("UPDATE z_forums SET threads = threads + 1, posts = posts + 1, lastdate = ?,lastuser = ?,lastid = ? WHERE id = ?",
 			[time(), $userdata['id'], $pid, $fid]);

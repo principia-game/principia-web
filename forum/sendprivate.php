@@ -30,12 +30,21 @@ if ($action == 'Submit') {
 		$error = "You can't send more than one PM within 30 seconds!";
 
 	if (!$error) {
-		query("INSERT INTO z_pmsgs (date,userto,userfrom,title,text) VALUES (?,?,?,?,?)",
-			[time(), $userto, $userdata['id'], $title, $message]);
-		$nextId = insertId();
+		insertInto('z_pmsgs', [
+			'date' => time(),
+			'userto' => $userto,
+			'userfrom' => $userdata['id'],
+			'title' => $title,
+			'text' => $message
+		]);
 
-		query("INSERT INTO notifications (type, level, recipient, sender) VALUES (?,?,?,?)",
-			[3, $nextId, $userto, $userdata['id']]);
+		$nextId = insertId();
+		insertInto('notifications', [
+			'type' => 3,
+			'level' => $nextId,
+			'recipient' => $userto,
+			'sender' => $userdata['id']
+		]);
 
 		redirect("private");
 	}

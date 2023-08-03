@@ -12,10 +12,11 @@ if (isset($_POST['savecat'])) {
 		error('400', 'Please enter a title for the category.');
 	else {
 		if ($cid == 'new') {
-			$cid = result("SELECT MAX(id) FROM z_categories");
-			if (!$cid) $cid = 0;
-			$cid++;
-			query("INSERT INTO z_categories (id,title,ord) VALUES (?,?,?)", [$cid, $title, $ord]);
+			$cid = result("SELECT MAX(id) FROM z_categories") ?: 0;
+
+			insertInto('z_categories', [
+				'id' => $cid+1, 'title' => $title, 'ord' => $ord
+			]);
 		} else {
 			$cid = (int)$cid;
 			if (!result("SELECT COUNT(*) FROM z_categories WHERE id=?",[$cid])) redirect('manageforums');
@@ -45,11 +46,12 @@ if (isset($_POST['savecat'])) {
 		error('400', 'Please enter a title for the forum.');
 	else {
 		if ($fid == 'new') {
-			$fid = result("SELECT MAX(id) FROM z_forums");
-			if (!$fid) $fid = 0;
-			$fid++;
-			query("INSERT INTO z_forums (id,cat,title,descr,ord,minread,minthread,minreply) VALUES (?,?,?,?,?,?,?,?)",
-				[$fid, $cat, $title, $descr, $ord, $minread, $minthread, $minreply]);
+			$fid = result("SELECT MAX(id) FROM z_forums") ?: 0;
+
+			insertInto('z_forums', [
+				'id' => $fid+1, 'cat' => $cat, 'title' => $title, 'descr' => $descr, 'ord' => $ord,
+				'minread' => $minread, 'minthread' => $minthread, 'minreply' => $minreply
+			]);
 		} else {
 			$fid = (int)$fid;
 			if (!result("SELECT COUNT(*) FROM z_forums WHERE id=?",[$fid]))

@@ -16,7 +16,8 @@ if ($log) {
 	if (isset($_GET['vote'])) {
 		if (!$hasLiked) {
 			query("UPDATE levels SET likes = likes + '1' WHERE id = ?", [$lid]);
-			query("INSERT INTO likes VALUES (?,?)", [$userdata['id'], $lid]);
+
+			insertInto('likes', ['user' => $userdata['id'], 'level' => $lid]);
 			$cachectrl->invIndexTop();
 		}
 		die();
@@ -27,7 +28,7 @@ if ($log) {
 		$contestEntered = result("SELECT title FROM contests WHERE id = ?", [$_POST['addtocontest']]);
 		$alreadyEntered = (result("SELECT COUNT(*) FROM contests_entries WHERE contest = ? AND level = ?", [$_POST['addtocontest'], $lid]) ? true : false);
 		if ($contestEntered && !$alreadyEntered) {
-			query("INSERT INTO contests_entries (contest, level) VALUES (?, ?)", [$_POST['addtocontest'], $lid]);
+			insertInto('contests_entries', ['contest' => $_POST['addtocontest'], 'level' => $lid]);
 		}
 	}
 

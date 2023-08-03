@@ -11,7 +11,13 @@ $banuserdata = fetch("SELECT id, name, customcolor, rank FROM users WHERE id = ?
 if ($action == "Ban User") {
 	$reason = (isset($_POST['reason']) && !empty($_POST['reason']) ? $_POST['reason'] : '(No reason specified)');
 
-	query("INSERT INTO bans (user, banner, reason, time) VALUES (?,?,?,?)", [$id, $userdata['id'], $reason, time()]);
+	insertInto('bans', [
+		'user' => $id,
+		'banner' => $userdata['id'],
+		'reason' => $reason,
+		'time' => $time
+	]);
+
 	query("UPDATE users SET rank = -1 WHERE id = ?", [$id]);
 
 	redirect(sprintf("/user/%s?justbanned=ban", $id));

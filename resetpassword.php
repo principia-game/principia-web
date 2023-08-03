@@ -9,8 +9,7 @@ if (isset($_GET['grf']) && $userdata['rank'] > 2) {
 	if ($generateResetFor) {
 		$tok = bin2hex(random_bytes(32));
 
-		query("INSERT INTO passwordresets (id, user, time) VALUES (?,?,?)",
-			[$tok, $generateResetFor, time()]);
+		insertInto('passwordresets', ['id' => $tok, 'user' => $generateResetFor, 'time' => time()]);
 
 		printf("/resetpassword?id=%s", $tok);
 	}

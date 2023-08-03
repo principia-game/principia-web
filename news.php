@@ -5,8 +5,12 @@ $newsid = $_GET['id'] ?? 0;
 
 if (isset($_REQUEST['new']) && $log && $userdata['rank'] > 2) {
 	if (isset($_POST['ApOsTaL'])) {
-		query("INSERT INTO news (title, text, time, author) VALUES (?,?,?,?)",
-			[$_POST['title'], $_POST['text'], time(), $userdata['id']]);
+		insertInto('news', [
+			'title' => $_POST['title'],
+			'text' => $_POST['text'],
+			'time' => time(),
+			'author' => $userdata['id']
+		]);
 
 		$cachectrl->invIndex();
 

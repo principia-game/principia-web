@@ -96,19 +96,17 @@ if ($updatelevel) {
 	// User level count has changed, invalidate cache
 	$cachectrl->invLevelCount($userdata['id']);
 
-	$params = [
-		catConvert($level->type()),
-		$level->name(), $level->descr(),
-		$userdata['id'],
-		time(),
-		$level->allowDerivatives(),
-		$level->visibility(),
-		$platform,
-		$level->parentId() ?? null];
-
-	query("INSERT INTO levels (cat, title, description, author, time, derivatives, visibility, platform, parent) VALUES (?,?,?,?,?,?,?,?,?)",
-		$params);
-
+	insertInto('levels', [
+		'cat'			=> catConvert($level->type()),
+		'title'			=> $level->name(),
+		'description'	=> $level->descr(),
+		'author'		=> $userdata['id'],
+		'time'			=> time(),
+		'derivatives'	=> $level->allowDerivatives(),
+		'visibility'	=> $level->visibility(),
+		'platform'		=> $platform,
+		'parent'		=> $level->parentId() ?? null
+	]);
 }
 
 // Print the ID of the uploaded level. This is required to display the "Level published!" box.

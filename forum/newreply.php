@@ -36,12 +36,10 @@ if ($action == 'Submit') {
 		query("UPDATE users SET posts = posts + 1, lastpost = ? WHERE id = ?",
 			[time(), $userdata['id']]);
 
-		query("INSERT INTO z_posts (user,thread,date) VALUES (?,?,?)",
-			[$userdata['id'], $tid, time()]);
+		insertInto('z_posts', ['user' => $userdata['id'], 'thread' => $tid, 'date' => time()]);
 
 		$pid = insertId();
-		query("INSERT INTO z_poststext (id,text) VALUES (?,?)",
-			[$pid,$message]);
+		insertInto('z_poststext', ['id' => $pid, 'text' => $message]);
 
 		query("UPDATE z_threads SET posts = posts + 1,lastdate = ?, lastuser = ?, lastid = ? WHERE id = ?",
 			[time(), $userdata['id'], $pid, $tid]);

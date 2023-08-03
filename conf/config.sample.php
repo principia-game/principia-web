@@ -44,9 +44,6 @@ $captcha = [
 	]
 ];
 
-// List of UA fragments to block.
-$blockedUA = [];
-
 // Message to be shown on IP ban page for appeals.
 $appealmsg = "If you believe this was in error, please hug a plushie and then send me a fax.";
 

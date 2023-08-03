@@ -54,7 +54,7 @@ function threadpost($post, $pthread = '') {
 
 		$ulink = userlink($post, 'u');
 		return <<<HTML
-<table class="c1 threadpost"><tr>
+<table class="c1 threadpost" id="{$post['id']}"><tr>
 	<td class="n1 topbar_1">$ulink</td>
 	<td class="n1 topbar_2 fullwidth">(post deleted) <span class="float-right">$postlinks</span></td>
 </tr></table>

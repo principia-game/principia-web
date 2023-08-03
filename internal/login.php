@@ -9,6 +9,7 @@ if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 	$logindata = fetch("SELECT id, name, password, token FROM users WHERE name = ?", [$_POST['username']]);
 
 	if (password_verify($_POST['password'], $logindata['password'])) {
+		$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 		header("X-Principia-User-Id: ".$logindata['id']);
 		header("X-Principia-User-Name: ".$logindata['name']);
 		header("X-Principia-Unread: $notificationCount");

@@ -10,7 +10,7 @@ if ($act == 'delete' || $act == 'undelete') {
 	if ($userdata['rank'] <= 1)
 		error("You do not have the permission to do this.");
 
-	$sql->query("UPDATE z_posts SET deleted = ? WHERE id = ?", [($act == 'delete' ? 1 : 0), $pid]);
+	query("UPDATE z_posts SET deleted = ? WHERE id = ?", [($act == 'delete' ? 1 : 0), $pid]);
 	redirect("thread.php?pid=$pid#$pid");
 }
 

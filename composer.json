@@ -18,10 +18,5 @@
 			"type": "vcs",
 			"url":  "https://github.com/rollerozxa/php-diff"
 		}
-	],
-	"config": {
-		"platform": {
-			"php": "7.4"
-		}
-	}
+	]
 }

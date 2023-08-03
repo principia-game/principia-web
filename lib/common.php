@@ -37,23 +37,6 @@ if (!isCli()) {
 	$uri = $_SERVER['REQUEST_URI'] ?? null;
 	$referer = $_SERVER['HTTP_REFERER'] ?? null;
 
-	// UA-based bans, for dumb and identifiable scripts
-	if (!empty($blockedUA) && $useragent) {
-		foreach ($blockedUA as $bl) {
-			if (str_contains($useragent, $bl)) {
-				http_response_code(403);
-				echo '403';
-				die();
-			}
-		}
-	}
-
-	// Redirect all non-internal pages to https if https is enabled.
-	if (!isset($_SERVER['HTTPS']) && !isset($_COOKIE['force-http'])) {
-		header("Location: https://".$_SERVER["HTTP_HOST"].$uri, true, 301);
-		die();
-	}
-
 	// principia-web IP ban system
 	$ipban = $cache->get('ipb_'.$ipaddr);
 	if ($ipban)

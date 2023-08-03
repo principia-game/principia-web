@@ -59,5 +59,5 @@ function extractPlatform($ua) {
 	if (isset($matches[1]))
 		return $matches[1];
 	else
-		throw new Exception('No platform found (input is probably garbled)');
+		return 'N/A';
 }

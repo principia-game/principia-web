@@ -254,7 +254,7 @@ class Plvl extends \Kaitai\Struct\Struct {
 	public function name() { return $this->_m_name; }
 
 	/**
-	 * 128x128 ASCII screenshot of the level where it last was saved. Unknown if this is used (could be for package thumbnails).
+	 * A 128x128 8-bit grayscale bitmap, which is a screenshot of the level where it last was saved. It is used for package thumbnails.
 	 */
 	public function levelThumbnail() { return $this->_m_levelThumbnail; }
 	public function descr() { return $this->_m_descr; }
@@ -312,5 +312,5 @@ class LevelVersion {
 class LevelType {
 	const PUZZLE = 0;
 	const ADVENTURE = 1;
-	const CREATIVE = 2;
+	const CUSTOM = 2;
 }

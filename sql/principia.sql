@@ -100,6 +100,7 @@ CREATE TABLE `levels` (
   `platform` varchar(32) NOT NULL DEFAULT 'Samsung Smart Fridge',
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
+  KEY `visibility` (`visibility`),
   CONSTRAINT `levels_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -194,4 +195,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2023-03-30 20:48:44
+-- 2023-08-03 19:30:13

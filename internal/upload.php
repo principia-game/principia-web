@@ -55,14 +55,14 @@ if (!$updatelevel) {
 	// Preparations for if we update a level
 
 	// back up previous revision level ...
-	rename("data/levels/$cid.plvl", sprintf('data/backup/levels/%s.plvl.bak.%s', $cid, $leveldata['revision']));
+	rename("data/levels/$cid.plvl", sprintf('data/backup/levels/%s.plvl.%s', $cid, $leveldata['revision']));
 	// ... and thumb
 	if (file_exists("data/thumbs/$cid.jpg")) {
-		rename("data/thumbs/$cid.jpg", sprintf('data/backup/thumbs/%s.jpg.bak.%s', $cid, $leveldata['revision']));
+		rename("data/thumbs/$cid.jpg", sprintf('data/backup/thumbs/%s.jpg.%s', $cid, $leveldata['revision']));
 
 		// ... and low thumb
 		if (file_exists("data/thumbs_low/$cid.jpg")) {
-			rename("data/thumbs_low/$cid.jpg", sprintf('data/backup/thumbs_low/%s.jpg.bak.%s', $cid, $leveldata['revision']));
+			rename("data/thumbs_low/$cid.jpg", sprintf('data/backup/thumbs_low/%s.jpg.%s', $cid, $leveldata['revision']));
 		}
 	}
 }

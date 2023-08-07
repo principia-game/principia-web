@@ -1,0 +1,63 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Statistics" %}
+{% set noindex = true %}
+
+	{% block content %}
+<h2>Graph</h2>
+<canvas id="myChart" style="background-color:#090909;padding:15px"></canvas>
+
+<script src="/assets/ext/chart.min.js"></script>
+    <script src="/assets/ext/chartjs-adapter-date-fns.bundle.min.js"></script>
+	<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+	type: 'line',
+	data: {
+		datasets: [{
+			label: 'Levels',
+			data: [
+				{% for graph in level_graph %}
+					{% if graph.runningTotal % 2 == 0 %}
+						{ x: "{{ graph.time }}", y: {{ graph.runningTotal }} },
+					{% endif %}
+				{% endfor %}
+			],
+			backgroundColor: ['#f88'],
+			borderColor: ['#f88'],
+			borderWidth: 1
+		}, {
+			label: 'Users',
+			data: [
+				{% for graph in user_graph %}
+					{% if graph.runningTotal % 2 == 0 %}
+						{ x: "{{ graph.joined }}", y: {{ graph.runningTotal }} },
+					{% endif %}
+				{% endfor %}
+			],
+			backgroundColor: ['#8f8'],
+			borderColor: ['#8f8'],
+			borderWidth: 1
+		}, {
+			label: 'Comments',
+			data: [
+				{% for graph in comment_graph %}
+					{% if graph.runningTotal % 2 == 0 %}
+						{ x: "{{ graph.time }}", y: {{ graph.runningTotal }} },
+					{% endif %}
+				{% endfor %}
+			],
+			backgroundColor: ['#88f'],
+			borderColor: ['#88f'],
+			borderWidth: 1
+		}]
+	},
+	options: {
+		scales: {
+			y: { beginAtZero: true },
+			x: { type: 'time', min: '2020-12-26 00:00:00', }
+		}
+	}
+});
+</script>
+	{% endblock %}

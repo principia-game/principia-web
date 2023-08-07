@@ -15,7 +15,6 @@ vendor/
 composer.lock
 
 ## misc.
-assets/js/jscolor.min.js
 templates/_template.twig
 lol.php
 lua/
@@ -31,3 +30,4 @@ paste/
 data_
 wiki/images
 wiki/_export
+assets/ext/

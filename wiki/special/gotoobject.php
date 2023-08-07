@@ -235,6 +235,6 @@ $pagename = match ($id) {
 };
 
 if ($pagename)
-	redirect(sprintf("/wiki/%s", $pagename));
+	redirect("/wiki/%s", $pagename);
 else
 	error('404', 'Invalid or nonexistant object ID. (g_id: '.$id.')');

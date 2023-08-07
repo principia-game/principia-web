@@ -64,7 +64,7 @@ if (isset($_POST['action'])) {
 	$placeholders[] = $userdata['id'];
 	query("UPDATE users SET $fieldquery WHERE id = ?", $placeholders);
 
-	redirect(sprintf("/user/%s?edited", $userdata['id']));
+	redirect("/user/%s?edited", $userdata['id']);
 }
 
 $timezones = [];

@@ -23,7 +23,7 @@ if (isset($_POST['savecat'])) { // save new/existing category
 
 		query("UPDATE z_categories SET title = ?, ord = ? WHERE id = ?", [$title, $ord, $cid]);
 	}
-	redirect('manageforums?cid='.$cid);
+	redirect('manageforums?cid=%s', $cid);
 
 } elseif (isset($_POST['delcat'])) { // delete category
 
@@ -61,7 +61,7 @@ if (isset($_POST['savecat'])) { // save new/existing category
 		query("UPDATE z_forums SET cat=?, title=?, descr=?, ord=?, minread=?, minthread=?, minreply=? WHERE id=?",
 			[$cat, $title, $descr, $ord, $minread, $minthread, $minreply, $fid]);
 	}
-	redirect('manageforums?fid='.$fid);
+	redirect('manageforums?fid=%s', $fid);
 
 } elseif (isset($_POST['delforum'])) { // delete forum
 

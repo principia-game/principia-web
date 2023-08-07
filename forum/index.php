@@ -1,7 +1,4 @@
 <?php
-if (isset($_GET['p'])) redirect("thread?pid={$_GET['p']}#{$_GET['p']}");
-if (isset($_GET['t'])) redirect("thread?id={$_GET['t']}");
-
 require('lib/common.php');
 
 $action = $_GET['action'] ?? '';

@@ -2,16 +2,14 @@
 chdir('../');
 require('lib/common.php');
 
-$level = isset($_GET['i']) ? (int)$_GET['i'] : null;
+$level = $_GET['i'] ?? null;
 $levelpath = sprintf('data/levels/%d.plvl', $level);
 
 if (!$level || !file_exists($levelpath)) {
-	// Temporarily disabled due to package problems
-	//header('HTTP/1.0 404 Not Found');
 	readfile('internal/null.plvl');
 	die();
 }
 
-query("UPDATE levels SET downloads = downloads + '1' WHERE id = ?", [$level]);
+query("UPDATE levels SET downloads = downloads + 1 WHERE id = ?", [$level]);
 
 readfile($levelpath);

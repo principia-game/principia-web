@@ -2,8 +2,6 @@
 chdir('../');
 require('lib/common.php');
 
-#require('upload_debug.php');
-
 if (!$log || $userdata['rank'] < 0)
 	die('-100');
 
@@ -61,17 +59,14 @@ if (!$updatelevel) {
 		rename("data/thumbs/$cid.jpg", sprintf('data/backup/thumbs/%s.jpg.%s', $cid, $leveldata['revision']));
 
 		// ... and low thumb
-		if (file_exists("data/thumbs_low/$cid.jpg")) {
+		if (file_exists("data/thumbs_low/$cid.jpg"))
 			rename("data/thumbs_low/$cid.jpg", sprintf('data/backup/thumbs_low/%s.jpg.%s', $cid, $leveldata['revision']));
-		}
 	}
 }
 
 // Move uploaded level file to the levels directory.
-if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "data/levels/$cid.plvl")) {
-	trigger_error("Could not move level file to levels folder, check permissions", E_USER_WARNING);
-	die("-");
-}
+if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "data/levels/$cid.plvl"))
+	trigger_error("Could not move level file to levels folder, check permissions", E_USER_ERROR);
 
 lvledit($cid, 'set-community-id', $cid);
 

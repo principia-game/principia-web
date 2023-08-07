@@ -1,9 +1,6 @@
 <?php
 $acmlm = true;
 
-// List of smilies
-$smilies = [];
-
 // Change directory to principia-web and include core principia-web code.
 chdir('../');
 require_once('conf/config.php'); // include principia-web config

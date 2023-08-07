@@ -37,8 +37,7 @@ $result = explode(',', $output);
 				[$result[2], $level, $userdata['id']]);
 
 			header('x-notify-message: Successfully submitted score!');
-		} else {
+		} else
 			header('x-notify-message: You already have a highscore better than this.');
-		}
 	}
 //}

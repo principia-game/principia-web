@@ -12,9 +12,8 @@ function userlink($user, $pre = '') {
 	//	$user[$pre.'name'] = '<span style="color:#D60270">ROll</span><span style="color:#9B4F96">er</span><span style="color:#0038A8">ozxa</span>';
 	//}
 
-	if ($user[$pre.'customcolor']) {
+	if ($user[$pre.'customcolor'])
 		$user[$pre.'name'] = sprintf('<span style="color:#%s">%s</span>', $user[$pre.'customcolor'], $user[$pre.'name']);
-	}
 
 	return sprintf(
 		'<a class="user" href="/user/%d"><span class="t_user">%s</span></a>',

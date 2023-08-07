@@ -63,11 +63,8 @@ HTML;
 
 	$headerbar = $threadlink = $postlinks = $revisionstr = '';
 
-	if (isset($post['headerbar'])) {
+	if (isset($post['headerbar']))
 		$headerbar = sprintf('<tr class="h"><td colspan="2">%s</td></tr>', $post['headerbar']);
-	}
-
-	$usertitle = ($post['utitle'] ? $post['utitle'].'<br>' : '');
 
 	$post['id'] = $post['id'] ?? 0;
 
@@ -106,10 +103,9 @@ HTML;
 	$lastpost = relativeTime($post['ulastpost']);
 	$lastview = relativeTime($post['ulastview']);
 	$picture = ($post['uavatar'] ? "<img src=\"/userpic/{$post['uid']}\" alt=\"(Avatar)\">" : '');
-	if (!$log) $post['usignature'] = '';
-	else if ($post['usignature']) {
-		$post['usignature'] = '<div class="siggy">' . postfilter($post['usignature']) . '</div>';
-	}
+
+	$signature = $post['usignature'] && $log ? '<div class="siggy">'.postfilter($post['usignature']).'</div>' : '';
+
 	$ujoined = date('Y-m-d', $post['ujoined']);
 	$posttext = postfilter($post['text']);
 	return <<<HTML
@@ -119,12 +115,12 @@ HTML;
 		<td class="n1 topbar_1 nom">$ulink</td>
 		<td class="n1 topbar_1 blkm nod clearfix">
 			<span style="float:left;margin-right:10px">$picture</span>
-			$ulink <div class="sfont" style="margin-top:0.5em">$usertitle</div>
+			$ulink
 		</td>
 		<td class="n1 topbar_2 blkm clearfix">Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span></td>
 	</tr><tr valign="top">
 		<td class="n1 sidebar nom">
-			$usertitle$picture
+			$picture
 			<br>Posts: {$post['uposts']}
 			<br>
 			<br>Joined: $ujoined
@@ -132,7 +128,7 @@ HTML;
 			<br>Last post: $lastpost
 			<br>Last view: $lastview
 		</td>
-		<td class="n2 mainbar">$posttext{$post['usignature']}</td>
+		<td class="n2 mainbar">$posttext$signature</td>
 	</tr>
 </table>
 HTML;

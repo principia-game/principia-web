@@ -16,17 +16,12 @@ function newStatus($type) {
 }
 
 function renderActions($actions) {
-	$out = '';
-	$i = 0;
-	foreach ($actions as $url => $title) {
-		if ($i++) $out .= ' | ';
+	$out = [];
 
-		if ($url != 'none')
-			$out .= sprintf('<a href="%s">%s</a>', esc($url), $title);
-		else
-			$out .= $title;
-	}
-	echo $out;
+	foreach ($actions as $url => $title)
+		$out[] = ($url == 'none' ? $title : sprintf('<a href="%s">%s</a>', esc($url), $title));
+
+	return join(' &ndash; ', $out);
 }
 
 function renderPageBar($pagebar) {
@@ -98,9 +93,6 @@ class PrincipiaForumExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFunction('new_status', 'newStatus', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('render_page_bar', 'renderPageBar', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('if_empty_query', 'ifEmptyQuery', ['is_safe' => ['html']]),
-
-			// misc.php
-			new \Twig\TwigFunction('mlink', 'mlink', ['is_safe' => ['html']]),
 
 			// post.php
 			new \Twig\TwigFunction('threadpost', 'threadpost', ['is_safe' => ['html']]),

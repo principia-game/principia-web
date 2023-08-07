@@ -1,12 +1,5 @@
 <?php
 
-function mlink($name, $sort, $page, $orderby) {
-	return '<a href="memberlist?'.
-		($sort ? "sort=$sort" : '').($page != 1 ? "&page=$page" : '').
-		($orderby != '' ? "&orderby=$orderby" : '').'">'
-		.$name.'</a>';
-}
-
 function moveThread($id, $forum, $close = 0) {
 	if (!result("SELECT COUNT(*) FROM z_forums WHERE id = ?", [$forum])) return;
 

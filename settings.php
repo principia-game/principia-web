@@ -9,15 +9,11 @@ if (isset($_POST['action'])) {
 	$fields = [
 		'pronouns'		=> $_POST['pronouns'] ?: null,
 		'about'			=> $_POST['about'] ?: null,
-		'location'		=> $_POST['location'] ?: null,
 		'signature'		=> $_POST['signature'] ?: null,
 		'archivename'	=> $_POST['archivename'] ?: null,
 		'darkmode'		=> $_POST['darkmode'] ? 1 : 0,
 		'timezone'		=> $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null
 	];
-
-	if ($userdata['rank'] > 2)
-		$fields['title'] = $_POST['title'] ?: null;
 
 	if ($userdata['rank'] > 1) {
 		$customcolor = strtolower($_POST['customcolor']) != '#0000aa' ? $_POST['customcolor'] : null;

@@ -9,9 +9,9 @@ if (!$contest) error('404', "The requested contest wasn't found.");
 
 clearMentions('contest', $contestid);
 
-$levels = query("SELECT $userfields ce.*, l.id id,l.title title FROM contests_entries ce JOIN levels l ON ce.level = l.id JOIN users u ON l.author = u.id WHERE ce.contest = ? ORDER BY ce.ranking DESC, l.id DESC", [$contestid]);
+$levels = query("SELECT ce.*, l.id id, l.title title, $userfields FROM contests_entries ce JOIN levels l ON ce.level = l.id JOIN users u ON l.author = u.id WHERE ce.contest = ? ORDER BY ce.ranking DESC, l.id DESC", [$contestid]);
 
-$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 3 AND c.level = ? ORDER BY c.time DESC", [$contestid]);
+$comments = query("SELECT c.*, $userfields FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 3 AND c.level = ? ORDER BY c.time DESC", [$contestid]);
 
 echo twigloader()->render('contest.twig', [
 	'contestid' => $contestid,

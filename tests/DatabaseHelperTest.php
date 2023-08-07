@@ -26,4 +26,8 @@ final class DatabaseHelperTest extends TestCase {
 
 		$this->assertSame($result, $output);
 	}
+
+	public function testPaginate(): void {
+		$this->assertSame(' LIMIT 0, 20', paginate(1, 20));
+	}
 }

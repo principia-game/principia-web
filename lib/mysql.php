@@ -83,3 +83,9 @@ function updateRowQuery($fields) {
 
 	return ['fieldquery' => $fieldquery, 'placeholders' => $placeholders];
 }
+
+function paginate($page, $pp) {
+	$page = (is_numeric($page) && $page > 0 ? $page : 1);
+
+	return sprintf(" LIMIT %s, %s", (($page - 1) * $pp), $pp);
+}

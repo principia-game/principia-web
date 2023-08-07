@@ -6,9 +6,11 @@ $lid = $_GET['id'] ?? 0;
 // HACK: Fake level ID to take the user to the download page (for old principia-web mod)
 if ($lid == 2147483000) redirect('https://principia-web.se/download');
 
-$level = fetch("SELECT $userfields l.* FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
+$level = fetch("SELECT l.*, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level) error('404', "The requested level wasn't found.");
+
+assert($lid == $level['id']);
 
 if ($log) {
 	// like
@@ -63,8 +65,8 @@ if ($log) {
 	}
 
 	// remove notifications
-	query("DELETE FROM notifications WHERE type = 1 AND level = ? AND recipient = ?", [$level['id'], $userdata['id']]);
-	clearMentions('level', $level['id']);
+	query("DELETE FROM notifications WHERE type = 1 AND level = ? AND recipient = ?", [$lid, $userdata['id']]);
+	clearMentions('level', $lid);
 }
 
 if ($log) {
@@ -72,16 +74,27 @@ if ($log) {
 	$level['views']++;
 }
 
-$leaderboard = query("SELECT $userfields l.* FROM leaderboard l JOIN users u ON l.user = u.id WHERE l.level = ? ORDER BY l.score DESC LIMIT 8", [$level['id']]);
+$leaderboard = query("SELECT l.*, $userfields
+		FROM leaderboard l JOIN users u ON l.user = u.id WHERE l.level = ?
+		ORDER BY l.score DESC LIMIT 8",
+	[$lid]);
 
-$contests = query("SELECT id,title,active FROM contests WHERE active = 1");
+$contests = query("SELECT id, title, active FROM contests WHERE active = 1");
 
-$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ? ORDER BY c.time DESC", [$lid]);
+$comments = query("SELECT c.*, $userfields
+		FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ?
+		ORDER BY c.time DESC",
+	[$lid]);
 
-$derivatives = query("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0 ORDER BY l.id DESC LIMIT 4", [$lid]);
-if ($level['parent']) {
-	$parentLevel = fetch("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0", [$level['parent']]);
-}
+$derivatives = query("SELECT l.id id,l.title title, $userfields
+		FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
+		ORDER BY l.id DESC LIMIT 4",
+	[$lid]);
+
+if ($level['parent'])
+	$parentLevel = fetch("SELECT l.id id, l.title title, $userfields
+			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
+		[$level['parent']]);
 
 echo twigloader()->render('level.twig', [
 	'lid' => $lid,

@@ -7,33 +7,11 @@
 <form action="settings" method="post" enctype="multipart/form-data">
 <h1>Settings</h1>
 
-{#<h3>Credentials</h3>
-<table class="settings">
-	<tr>
-		<td class="a">Username</td>
-		<td class="b">{{ userdata.name }}</td>
-	</tr>
-	<tr>
-		<td class="a">Email address
-			<abbr title="Emails are stored hashed and cannot be retrieved outside of providing the email during password resets.">(?)</abbr></td>
-		<td class="b"></td>
-	</tr>
-	<tr>
-		<td class="a">Password</td>
-		<td class="b">********</td>
-	</tr>
-</table>#}
-
 <table class="settings">
 	<tr>
 		<th></th>
 		<th class="left">Customise your profile</th>
-	{% if userdata.rank > 2 %}
-	<tr>
-		<td class="a">Title</td>
-		<td class="b"><input type="text" name="title" size="45" maxlength="256" style="width:60%" value="{{ userdata.title }}"></td>
 	</tr>
-	{% endif %}
 	{% if userdata.rank > 1 %}
 	<tr>
 		<td class="a">Custom color</td>

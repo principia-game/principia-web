@@ -3,7 +3,7 @@ require('lib/common.php');
 
 $page = (int)($_GET['page'] ?? 1);
 
-$fieldlist = userfields('u', 'u') . ',' . userfields_post();
+$fieldlist = userfields('u', 'u') . ',' . userfields_post() . ',';
 
 if (isset($_GET['id'])) {
 	$tid = (int)$_GET['id'];
@@ -42,8 +42,6 @@ if (isset($tid) && $log && $act && ($userdata['rank'] > 2 ||
 	if ($act == 'rename')	$modact = ",title=?";
 	if ($act == 'move')		moveThread($tid, $_POST['arg']);
 }
-
-$offset = (($page - 1) * $ppp);
 
 if ($viewmode == "thread") {
 	if (!$tid) $tid = 0;
@@ -84,9 +82,8 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_poststext pt ON p.id = pt.id AND p.revision = pt.revision
 			LEFT JOIN users u ON p.user = u.id
 			WHERE p.thread = ?
-			GROUP BY p.id ORDER BY p.id
-			LIMIT ?,?",
-		[$tid, $offset, $ppp]);
+			GROUP BY p.id ORDER BY p.id ".paginate($page, $ppp),
+		[$tid]);
 
 	$topbot = [
 		'breadcrumb' => ['forum?id='.$thread['forum'] => $thread['ftitle']],
@@ -117,8 +114,8 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_threads t ON p.thread = t.id
 			LEFT JOIN z_forums f ON f.id = t.forum
 			WHERE p.user = ? AND ? >= f.minread
-			ORDER BY p.id LIMIT ?,?",
-		[$uid, $userdata['rank'], $offset, $ppp]);
+			ORDER BY p.id".paginate($page, $ppp),
+		[$uid, $userdata['rank']]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts p WHERE user = ?", [$uid]);
 
@@ -140,9 +137,8 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_threads t ON p.thread=t.id
 			LEFT JOIN z_forums f ON f.id=t.forum
 			WHERE p.date > ? AND ? >= f.minread
-			ORDER BY p.date DESC
-			LIMIT ?,?",
-		[$mintime, $userdata['rank'], $offset, $ppp]);
+			ORDER BY p.date DESC ".paginate($page, $ppp),
+		[$mintime, $userdata['rank']]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts WHERE date > ?", [$mintime]);
 

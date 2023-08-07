@@ -5,7 +5,7 @@ require('lib/common.php');
 $limit = clamp($_GET['limit'] ?? 5, 0, 50);
 $offset = (int)($_GET['offset'] ?? 0);
 
-$levels = fetchArray(query("SELECT $userfields l.id id,l.title title FROM levels l JOIN users u ON l.author = u.id ORDER BY l.id DESC LIMIT ?,?",
+$levels = fetchArray(query("SELECT l.id id, l.title title, $userfields FROM levels l JOIN users u ON l.author = u.id ORDER BY l.id DESC LIMIT ?,?",
 	[$offset, $limit]));
 
 header('Content-Type: application/json');

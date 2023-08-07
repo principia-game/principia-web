@@ -27,8 +27,7 @@ if (!isInternal()) {
 	header("X-Xss-Protection: 1; mode=block");
 }
 
-if (!isset($acmlm))
-	$userfields = userfields();
+$userfields = userfields();
 
 if (!isCli()) {
 	// Shorter variables for common $_SERVER values.

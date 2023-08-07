@@ -8,7 +8,6 @@ $time = (int)($_GET['time'] ?? 0);
 
 $topbot = [];
 
-$offset = (($page - 1) * $tpp);
 $isread = $threadsread = '';
 
 if ($log) {
@@ -38,9 +37,8 @@ if ($fid) {
 			LEFT JOIN users u2 ON u2.id = t.lastuser
 			$threadsread
 			WHERE t.forum = ?
-			ORDER BY t.sticky DESC, t.lastdate DESC
-			LIMIT ?,?",
-		[$fid, $offset, $tpp]);
+			ORDER BY t.sticky DESC, t.lastdate DESC ".paginate($page, $tpp),
+		[$fid]);
 
 	$topbot = [
 		'title' => $forum['title']
@@ -62,9 +60,8 @@ if ($fid) {
 			LEFT JOIN z_forums f ON f.id = t.forum
 			$threadsread
 			WHERE t.user = ? AND ? >= minread
-			ORDER BY t.lastdate DESC
-			LIMIT ?,?",
-		[$uid, $userdata['rank'], $offset, $tpp]);
+			ORDER BY t.lastdate DESC ".paginate($page, $tpp),
+		[$uid, $userdata['rank']]);
 
 	$forum['threads'] = result("SELECT count(*) FROM z_threads t
 			LEFT JOIN z_forums f ON f.id = t.forum
@@ -89,9 +86,8 @@ if ($fid) {
 			LEFT JOIN z_forums f ON f.id = t.forum
 			$threadsread
 			WHERE t.lastdate > ? AND ? >= f.minread
-			ORDER BY t.lastdate DESC
-			LIMIT ?,?",
-		[$mintime, $userdata['rank'], $offset, $tpp]);
+			ORDER BY t.lastdate DESC ".paginate($page, $tpp),
+		[$mintime, $userdata['rank']]);
 
 	$forum['threads'] = result("SELECT count(*) FROM z_threads t
 			LEFT JOIN z_forums f ON f.id = t.forum

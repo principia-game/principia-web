@@ -10,7 +10,7 @@ if (!isset($userpagedata) || !$userpagedata) error('404', "No user specified.");
 
 $id = $userpagedata['id'];
 
-$page = (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? $_GET['page'] : 1);
+$page = $_GET['page'] ?? 1;
 $forceuser = isset($_GET['forceuser']);
 
 if (isset($_GET['markread']))
@@ -27,45 +27,12 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		$notificationCount = 0;
 	}
 
-	$notifsdata = query("SELECT $userfields n.*, l.id l_id, l.title l_title
+	$notifsdata = fetchArray(query("SELECT n.*, l.id l_id, l.title l_title, $userfields
 			FROM notifications n LEFT JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id
 			WHERE n.recipient = ?",
-		[$userdata['id']]);
+		[$userdata['id']]));
 
-	$notifications = [];
-	while ($notifdata = $notifsdata->fetch()) {
-		switch ($notifdata['type']) {
-			case 1:
-				$notifications[] = sprintf(
-					'%s commented on your level <a href="/level/%s">%s</a>.',
-				userlink($notifdata, 'u_'), $notifdata['l_id'], $notifdata['l_title']);
-			break;
-			case 2:
-				$notifications[] = sprintf(
-					'%s commented on your <a href="/user/%s?forceuser">user page</a>.',
-				userlink($notifdata, 'u_'), $userdata['id']);
-			break;
-			case 3:
-				$notifications[] = sprintf(
-					'%s sent you a private message: <a href="/forum/showprivate?id=%s">Read</a>',
-				userlink($notifdata, 'u_'), $notifdata['level']);
-			break;
-			case 11:
-			case 12:
-			case 13:
-			case 14:
-			case 16:
-				$notifications[] = sprintf(
-					'%s mentioned you in a %s comment: <a href="/%s.php?id=%s">Read</a>',
-				userlink($notifdata, 'u_'), cmtNumToType($notifdata['type'] - 10), cmtNumToType($notifdata['type'] - 10), $notifdata['level']);
-			break;
-			case 15:
-				$notifications[] = sprintf(
-					'%s mentioned you in the chat: <a href="/chat">Read</a>',
-				userlink($notifdata, 'u_'));
-			break;
-		}
-	}
+	$notifications = prepareNotifications($notifsdata, $userdata['id']);
 
 	echo twigloader()->render('user.twig', [
 		'id' => $id,
@@ -76,11 +43,9 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 	]);
 } else { // general profile details stuff
 
-	$limit = sprintf("LIMIT %s,%s", (($page - 1) * $lpp), $lpp);
-
-	$levels = query("SELECT $userfields l.id id,l.title title
+	$levels = query("SELECT l.id id,l.title title, $userfields
 			FROM levels l JOIN users u ON l.author = u.id
-			WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC $limit",
+			WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC ".paginate($page, $lpp),
 		[$id]);
 
 	$count = $cache->hit('levelcount_'.$id, function () use ($id) {

@@ -27,27 +27,30 @@ if ($newsid) {
 
 	if (!$newsdata) error('404', "The requested news article wasn't found.");
 
-	if (!isset($newsdata['redirect'])) {
-		clearMentions('news', $newsid);
-
-		$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
-
-		$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ? ORDER BY c.time DESC", [$newsid]);
-
-		echo twigloader()->render('news.twig', [
-			'newsid' => $newsid,
-			'news' => $newsdata,
-			'time' => $time,
-			'comments' => $comments
-		]);
-	} else {
+	if (isset($newsdata['redirect']))
 		redirect($newsdata['redirect']);
-	}
-} else {
-	$newsdata = query("SELECT id,title,time FROM news ORDER BY id DESC");
+
+	clearMentions('news', $newsid);
+
+	$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
+
+	$comments = query("SELECT c.*, $userfields
+			FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 2 AND c.level = ?
+			ORDER BY c.time DESC",
+		[$newsid]);
 
 	echo twigloader()->render('news.twig', [
 		'newsid' => $newsid,
-		'news' => fetchArray($newsdata)
+		'news' => $newsdata,
+		'time' => $time,
+		'comments' => $comments
+	]);
+
+} else {
+	$newsdata = query("SELECT id, title, time FROM news ORDER BY id DESC");
+
+	echo twigloader()->render('news.twig', [
+		'newsid' => $newsid,
+		'news' => $newsdata
 	]);
 }

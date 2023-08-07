@@ -2,7 +2,7 @@
 require('lib/common.php');
 needsLogin();
 
-$fieldlist = userfields('u', 'u').','.userfields_post();
+$fieldlist = userfields('u', 'u').','.userfields_post().',';
 
 $pid = $_GET['id'] ?? null;
 

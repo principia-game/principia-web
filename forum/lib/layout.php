@@ -34,7 +34,7 @@ function renderPageBar($pagebar) {
 	}
 	echo esc($pagebar['title']).'<div class="actions">';
 	if (!empty($pagebar['actions']))
-		renderActions($pagebar['actions']);
+		echo renderActions($pagebar['actions']);
 	echo "</div></div>";
 }
 

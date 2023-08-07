@@ -54,7 +54,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	$wikiconts = result("SELECT COUNT(*) FROM wikirevisions WHERE author = ?", [$id]);
 
-	$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$id]);
+	$comments = query("SELECT $userfields, c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$id]);
 
 	if (isset($userdata['id']) && $id == $userdata['id'])
 		query("DELETE FROM notifications WHERE type = 2 AND recipient = ?", [$userdata['id']]);

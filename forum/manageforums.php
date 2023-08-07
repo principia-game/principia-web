@@ -12,10 +12,10 @@ if (isset($_POST['savecat'])) { // save new/existing category
 		error('400', 'Please enter a title for the category.');
 
 	if ($cid == 'new') {
-		$cid = result("SELECT MAX(id) FROM z_categories") ?: 0;
+		$cid = (result("SELECT MAX(id) FROM z_categories") ?: 0)+1;
 
 		insertInto('z_categories', [
-			'id' => $cid+1, 'title' => $title, 'ord' => $ord
+			'id' => $cid, 'title' => $title, 'ord' => $ord
 		]);
 	} else {
 		if (!result("SELECT COUNT(*) FROM z_categories WHERE id = ?", [$cid]))
@@ -48,10 +48,10 @@ if (isset($_POST['savecat'])) { // save new/existing category
 		error('400', 'Please enter a title for the forum.');
 
 	if ($fid == 'new') {
-		$fid = result("SELECT MAX(id) FROM z_forums") ?: 0;
+		$fid = (result("SELECT MAX(id) FROM z_forums") ?: 0)+1;
 
 		insertInto('z_forums', [
-			'id' => $fid+1, 'cat' => $cat, 'title' => $title, 'descr' => $descr, 'ord' => $ord,
+			'id' => $fid, 'cat' => $cat, 'title' => $title, 'descr' => $descr, 'ord' => $ord,
 			'minread' => $minread, 'minthread' => $minthread, 'minreply' => $minreply
 		]);
 	} else {

@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = "Wanted pages" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:WantedPages" %}
+
+	{% block content %}
+<h1>Wanted pages</h1>
+
+<p>List of non-existing pages with links to them.</p>
+
+<ol>
+{% for page, count in wantedpages %}
+	<li><a class="nonexistant" href="/wiki/{{ page | replace({" ":"_"}) }}">{{ page }}</a> ({{ count }})</li>
+{% endfor %}
+</ol>
+{{ wikilinks("special") }}
+	{% endblock %}

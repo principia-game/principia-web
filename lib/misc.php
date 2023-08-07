@@ -47,9 +47,9 @@ HTML
  * @return void
  */
 function gitCommit($trim = true) {
-	global $acmlm;
+	global $submodule;
 
-	$prefix = ($acmlm ? '../' : '');
+	$prefix = ($submodule ? '../' : '');
 
 	$commit = file_get_contents($prefix.'.git/refs/heads/master');
 
@@ -73,4 +73,9 @@ function clamp($current, $min, $max) {
 
 function commasep($str) {
 	return implode(',', $str);
+}
+
+function normalise($text) {
+	// I HATE CRLF I HATE CRLF
+	return trim(str_replace("\r", "", $text));
 }

@@ -1,0 +1,45 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = "Version" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:Version" %}
+
+	{% block content %}
+<h1>Version</h1>
+<p>Huh, you thought this was MediaWiki? LOL NO!</p>
+
+<h2>principia-web License</h2>
+<p>principia-web is licensed under the AGPLv3, see <a href="/LICENSE">the license file</a>.
+
+<h2>Installed software</h2>
+
+<table class="settings autowidth">
+	<tr>
+		<th width=150>Product</th>
+		<th width=150>Version</th>
+	</tr><tr>
+		<td>principia-web</td>
+		<td>Rolling</td>
+	</tr><tr>
+		<td>principia-web-wiki</td>
+		<td>Rolling</td>
+	</tr><tr>
+		<td>PHP</td>
+		<td>probably the latest</td>
+	</tr><tr>
+		<td>MySQL</td>
+		<td>sir we use mariadb</td>
+	</tr>
+</table>
+
+<h2>Entry point URLs</h2>
+<p>/wiki/</p>
+
+<h2>Installed skins</h2>
+<ul>
+	<li>Scraped Yoshi skin</li>
+	<li>principia-web</li>
+</ul>
+
+{% endblock %}

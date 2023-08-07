@@ -1,0 +1,39 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks, sizediff %}
+
+{% set title = "Wiki Contributions for " ~ user.name %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:Contributions?id=" ~ user.id %}
+
+	{% block content %}
+<h1>{{ title }}</h1>
+
+<p>{{ contrib_text | raw }}</p>
+
+<p>Latest contributions:</p>
+
+{% set has_contributed = false %}
+
+<ul>
+{% for rev in contributions %}
+{% set has_contributed = true %}
+<li>
+	<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?rev={{ rev.revision }}">{{ rev.time | date('H:i, Y-m-d') }}</a>
+	({% if rev.revision == 1 %}diff{% else %}<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?action=diff&prev={{ rev.revision - 1 }}&next={{ rev.revision }}">diff</a>{% endif %}
+		| <a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?action=history">hist</a>)
+	{% if rev.revision != 1 %}
+		{{ sizediff(rev.sizediff) }}
+	{% else %}
+		<em>New</em>
+	{% endif %}
+	&nbsp;<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}">{{ rev.page }}</a>
+
+	{% if rev.description %} <em>({{ rev.description }})</em>{% endif %}
+</li>
+{% if latest_rev == -1 %}{% set latest_rev = rev.revision %}{% endif %}
+{% endfor %}
+{% if not has_contributed %}<li>None. :(</li>{% endif %}
+</ul>
+
+{{ wikilinks("special") }}
+	{% endblock %}

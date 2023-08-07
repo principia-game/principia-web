@@ -1,0 +1,27 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = pagetitle %}
+{% if revision %}
+	{% set noindex = true %}
+{% endif %}
+{% set pagename = '/wiki/' ~ pagetitle_slugified %}
+
+	{% block content %}
+<h1>{{ pagetitle }}</h1>
+
+{% if page.content %}
+	{% if revision %}
+		<p><em>Old revision #{{ revision }} from {{ page.time | date('Y-m-d H:m') }} by {{ userlink(page, 'u_') }}.</em>
+			(<a href="/wiki/{{ pagetitle_slugified }}">Go to current revision</a>)</p>
+	{% endif %}
+
+	{{ page.content | markdown_wiki }}
+
+	<br><br><p><em>This page was last modified on {{ page.time | date('Y-m-d H:m') }} by {{ page.u_name }}</em></p>
+{% else %}
+	<p>This page does not exist. Would you like to create it?</p>
+{% endif %}
+
+{{ wikilinks("read", pagetitle_slugified) }}
+	{% endblock %}

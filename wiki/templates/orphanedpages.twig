@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = "Orphaned pages" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:OrphanedPages" %}
+
+	{% block content %}
+<h1>Orphaned pages</h1>
+
+<p>List of pages that have no internal links pointing to them. Keep in mind pages listed may still be linked from other parts of the web.</p>
+
+<ol>
+{% for page in orphanedpages %}
+	<li><a href="/wiki/{{ page | replace({" ":"_"}) }}">{{ page }}</a></li>
+{% endfor %}
+</ol>
+{{ wikilinks("special") }}
+	{% endblock %}

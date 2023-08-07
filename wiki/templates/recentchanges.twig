@@ -1,0 +1,38 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks, sizediff %}
+
+{% set title = "Recent Changes" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:RecentChanges" %}
+
+	{% block content %}
+<h1>{{ title }}</h1>
+
+{% set date = -1 %}
+
+{% for rev in revisions %}
+	{% if rev.time|date('Y-m-d') != date %}
+		{% if date != -1 %}</ul>{% endif %}
+
+		{% set date = rev.time | date('Y-m-d')%}
+		<b>{{ date }}</b>
+		<ul>
+	{% endif %}
+	<li>
+		{{ rev.time | date('H:i') }}
+		&nbsp;<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}">{{ rev.page }}</a>
+			({% if rev.revision == 1 %}diff{% else %}<a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?action=diff&prev={{ rev.revision - 1 }}&next={{ rev.revision }}" rel="nofollow">diff</a>{% endif %}
+				| <a href="/wiki/{{ rev.page | replace({' ': '_'}) }}?action=history" rel="nofollow">hist</a>)
+		{% if rev.revision != 1 %}
+			{{ sizediff(rev.sizediff) }}
+		{% else %}
+			<em>New</em>
+		{% endif %}
+		&nbsp;{{ userlink(rev, "u_") }}
+		{% if rev.description %} <em>({{ rev.description }})</em>{% endif %}
+	</li>
+{% endfor %}
+</ul>
+
+{{ wikilinks("special") }}
+	{% endblock %}

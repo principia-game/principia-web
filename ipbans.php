@@ -1,11 +1,7 @@
 <?php
 require('lib/common.php');
 
-// From the wiki, put this into the main codebase sometime mm?
-function normalise($text) {
-	// I HATE CRLF I HATE CRLF
-	return trim(str_replace("\r", "", $text));
-}
+
 
 if ($userdata['rank'] < 3) error('403', 'You don\'t have access to this page.');
 

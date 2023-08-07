@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = "Long pages" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:LongPages" %}
+
+	{% block content %}
+<h1>Long pages</h1>
+
+<p>Showing the 50 longest pages.</p>
+
+<ol>
+{% for page in longpages %}
+	<li><a href="/wiki/{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a> [{{ page.size | number_format(0, '', ' ') }} bytes]</li>
+{% endfor %}
+</ol>
+{{ wikilinks("special") }}
+	{% endblock %}

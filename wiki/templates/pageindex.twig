@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = "Wiki Page Index" %}
+{% set pagename = "/wiki/Special:PageIndex" %}
+
+	{% block content %}
+<h1>Wiki Page Index</h1>
+
+<ul>
+{% for page in pages %}
+	<li>
+		<a href="{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a>
+	</li>
+{% endfor %}
+</ul>
+
+{{ wikilinks("special") }}
+	{% endblock %}

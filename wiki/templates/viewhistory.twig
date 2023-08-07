@@ -1,0 +1,31 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks, sizediff %}
+
+{% set title = "Revision history of \"" ~ pagetitle ~ "\"" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/" ~ pagetitle_slugified ~ "?action=history" %}
+
+{% set latest_rev = -1 %}
+
+	{% block content %}
+<h1>{{ title }}</h1>
+
+<ul>
+{% for rev in revisions %}
+<li>
+	({% if latest_rev == -1 %}cur {% else %}<a href="/wiki/{{ pagetitle_slugified }}?action=diff&prev={{ rev.revision }}&next={{ latest_rev }}">cur</a>{% endif %}
+	| {% if rev.revision == 1 %}prev{% else %}<a href="/wiki/{{ pagetitle_slugified }}?action=diff&prev={{ rev.revision - 1 }}&next={{ rev.revision }}">prev</a>{% endif %})
+	&nbsp;<a href="/wiki/{{ pagetitle_slugified }}?rev={{ rev.revision }}">{{ rev.time | date('H:i, Y-m-d') }}</a>
+	&nbsp;{{ userlink(rev, "u_") }}
+	&nbsp;({{ rev.size }} bytes)
+	{% if rev.revision != 1 %}
+		{{ sizediff(rev.sizediff) }}
+	{% endif %}
+	{% if rev.description %} <em>({{ rev.description }})</em>{% endif %}
+</li>
+{% if latest_rev == -1 %}{% set latest_rev = rev.revision %}{% endif %}
+{% endfor %}
+</ul>
+
+{{ wikilinks("viewhistory", pagetitle_slugified) }}
+	{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+{% from 'components/macros.twig' import wikilinks %}
+
+{% set title = "Short pages" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:ShortPages" %}
+
+	{% block content %}
+<h1>Short pages</h1>
+
+<p>Showing the 50 shortest pages.</p>
+
+<ol>
+{% for page in shortpages %}
+	<li><a href="/wiki/{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a> [{{ page.size | number_format(0, '', ' ') }} bytes]</li>
+{% endfor %}
+</ol>
+{{ wikilinks("special") }}
+	{% endblock %}

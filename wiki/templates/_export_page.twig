@@ -1,0 +1,11 @@
+{% extends "_layout_export.twig" %}
+
+{% set title = page.title %}
+
+	{% block content %}
+<h1>{{ page.title }}</h1>
+
+{{ page.content | markdown_wiki | replace({"/wiki/": ""}) | raw }}
+
+<br><br><em>This page was last modified on {{ page.time | date('Y-m-d H:m') }} by {{ page.u_name }}</em><br>
+	{% endblock %}

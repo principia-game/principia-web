@@ -45,9 +45,9 @@ function comments($cmnts, $type, $id, $showheader = true) {
 }
 
 function pagination($levels, $lpp, $url, $current) {
-	global $acmlm;
+	global $submodule;
 
-	if ($acmlm)
+	if ($submodule)
 		$twig = _twigloader('../../templates/components');
 	else
 		$twig = twigloader('components');
@@ -58,11 +58,11 @@ function pagination($levels, $lpp, $url, $current) {
 }
 
 function error($title, $message) {
-	global $acmlm, $wiki;
+	global $submodule;
 
 	if ($title >= 400 && $title < 500) http_response_code($title);
 
-	if ($acmlm || $wiki)
+	if ($submodule)
 		$twig = _twigloader();
 	else
 		$twig = twigloader();

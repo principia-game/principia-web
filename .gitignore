@@ -20,7 +20,6 @@ templates/_template.twig
 lol.php
 lua/
 .vscode/
-wiki/
 misc/
 tools/lvlinfo
 tools/lvledit
@@ -30,3 +29,5 @@ adminer/
 phpunit
 paste/
 data_
+wiki/images
+wiki/_export

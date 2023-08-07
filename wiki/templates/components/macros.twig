@@ -1,0 +1,27 @@
+{% macro wikilinks(type, page) %}
+	<div class="wikilinks" style="clear:both">
+		<div>
+			<a href="/wiki/">Main Page</a>
+			&bull; <a href="/wiki/Special:RecentChanges">Recent changes</a>
+			&bull; <a href="/wiki/Special:PageIndex">Page Index</a>
+		</div>
+
+		{% if type != "special" %}
+			<div class="right">
+				{% if type != "read" %}<a href="/wiki/{{ page }}" accesskey="r">Read</a>{% else %}Read{% endif %}
+				&bull; {% if type != "edit" %}<a href="/wiki/{{ page }}?action=edit" rel="nofollow" accesskey="e">Edit</a>{% else %}Edit{% endif %}
+				&bull; {% if type != "viewhistory" %}<a href="/wiki/{{ page }}?action=history" rel="nofollow" accesskey="d">View history</a>{% else %}View history{% endif %}
+			</div>
+		{% endif %}
+	</div>
+{% endmacro %}
+
+{% macro sizediff(sizediff) %}
+	{% if sizediff > 0 %}
+		<span class="sizediff-pos">(+{{ sizediff }})</span>
+	{% elseif sizediff < 0 %}
+		<span class="sizediff-neg">({{ sizediff }})</span>
+	{% else %}
+		<span class="sizediff-net">(0)</span>
+	{% endif %}
+{% endmacro %}

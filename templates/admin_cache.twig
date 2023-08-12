@@ -1,0 +1,58 @@
+{% extends "_layout.twig" %}
+
+{% set title = "APCu Cache Info" %}
+
+	{% block content %}
+<h1>APCu Cache Info</h1>
+
+<p><a href="/admin">&lt; Go back to Admin panel</a></p>
+
+<table class="c1">
+	<tr class="h">
+		<td width=100>num_hits</td>
+		<td width=100>num_misses</td>
+		<td width=100>num_inserts</td>
+		<td width=100>num_entries</td>
+		<td width=100>expunges</td>
+		<td width=100>start_time</td>
+		<td width=100>mem_size</td>
+		<td width=100>memory_type</td>
+	</tr>
+	<tr>
+		<td class="right">{{ info.num_hits }}</td>
+		<td class="right">{{ info.num_misses }}</td>
+		<td class="right">{{ info.num_inserts }}</td>
+		<td class="right">{{ info.num_entries }}</td>
+		<td class="right">{{ info.expunges }}</td>
+		<td class="right">{{ info.start_time }}</td>
+		<td class="right">{{ info.mem_size }}</td>
+		<td>{{ info.memory_type }}</td>
+	</tr>
+</table>
+<br>
+<table class="c1">
+	<tr class="h">
+		<td>info</td>
+		<td width=100>ttl</td>
+		<td width=100>num_hits</td>
+		<td width=100>mtime</td>
+		<td width=100>creation_time</td>
+		<td width=100>deletion_time</td>
+		<td width=100>access_time</td>
+		<td width=100>mem_size</td>
+	</tr>
+{% for entry in info.cache_list %}
+	<tr>
+		<td>{{ entry.info }}</td>
+		<td class="right">{{ entry.ttl }}</td>
+		<td class="right">{{ entry.num_hits }}</td>
+		<td class="right">{{ entry.mtime }}</td>
+		<td class="right">{{ entry.creation_time }}</td>
+		<td class="right">{{ entry.deletion_time }}</td>
+		<td class="right">{{ entry.access_time }}</td>
+		<td class="right">{{ entry.mem_size }}</td>
+	</tr>
+{% endfor %}
+</table>
+<br>
+	{% endblock %}

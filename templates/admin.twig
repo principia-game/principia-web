@@ -5,41 +5,6 @@
 	{% block content %}
 <h1>Admin panel</h1>
 
-<h3>Memcached Statistics</h3>
-
-{% set cols = 6 %}
-
-<table class="c1">
-	<tr class="h">
-		<td width=100>Uptime</td>
-		<td width=100>Total Get Calls</td>
-		<td width=100>Total Read</td>
-		<td width=100>Total Set Calls</td>
-		<td width=100>Total Written</td>
-		<td width=100>Memory Usage</td>
-	</tr>
-	{% for address,server in memcached_stats %}
-		<tr class="c"><td colspan="{{ cols }}">Server ({{ address }})</td></tr>
-		{% if not server.offline %}
-			<tr>
-				<td>{{ (server.uptime / 3600) | round(2) }} hours</td>
-				<td>{{ server.cmd_get }} ({{ ((server.get_hits / server.cmd_get) * 100) | round(2) }}% hits)</td>
-				<td>{{ (server.bytes_read / 1000000) | round(2) }} MB</td>
-				<td>{{ server.cmd_set }}</td>
-				<td>{{ (server.bytes_write / 1000000) | round(2) }} MB</td>
-				<td>
-					{{ (server.bytes / 1000000) | round(2) }} MB
-					({{ ((server.bytes / server.limit_maxbytes) * 100) | round(2) }}%)
-				</td>
-			</tr>
-		{% else %}
-			<tr>
-				<td colspan="{{ cols }}">Server offline...</td>
-			</tr>
-		{% endif %}
-	{% endfor %}
-</table>
-
 <h3>User statistics</h3>
 
 <div class="two-columns">
@@ -96,6 +61,7 @@
 <h3>various bells and whistles for super special people</h3>
 
 <ul>
+	<li><a href="/admin?cache">APCu Cache Info</a></li>
 	<li><a href="/news?new">New news post</a></li>
 	<li><a href="/viewlocked">View locked levels</a></li>
 	<li><a href="/ipbans">IP bans</a></li>

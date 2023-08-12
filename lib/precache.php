@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class that precaches data in memcached ahead of time.
+ * Class that precaches data in cache ahead of time.
  */
 class PreCache {
 	private $cache;
@@ -12,7 +12,7 @@ class PreCache {
 		$this->cache = $cacheObj;
 		$this->preCacheLevel = $this->cache->get('precache_level');
 
-		// Fallback to lowest precache support level if memcached was just initialised.
+		// Fallback to lowest precache support level if the cache was just initialised.
 		if ($this->preCacheLevel === false) $this->preCacheLevel = 0;
 
 		$this->runPreCache();
@@ -35,7 +35,7 @@ class PreCache {
 	}
 
 	/**
-	 * Run a precache action if the current memcached instance's precache level is lower.
+	 * Run a precache action if the current cache's precache level is lower.
 	 */
 	private function preCacheAction($level, $callback) {
 		if ($this->preCacheLevel >= $level) return;

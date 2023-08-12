@@ -14,9 +14,6 @@ Right now, a default nginx site configuration is not available although this may
 ### Connecting with the game
 Compile Principia to point at your instance of principia-web.
 
-### Optional: memcached
-principia-web makes use of memcached to off-load the primary database. To enable it please set up (a) memcached server(s), install the `php-memcached` extension and set the server details in `$memcachedServers`, one array item for each server.
-
 ### Optional: Featured levels list
 The Principia client has a selection of featured levels on the main menu. By default principia-web has placeholder data, but you can edit this by cloning [Featured List Creator](https://github.com/principia-preservation-project/featured-list-creator), and moving the `main.py` source file into `featured/`. Edit the `featured/data/data.json` to replace the placeholders with real levels.
 

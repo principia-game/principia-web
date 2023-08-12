@@ -13,10 +13,6 @@ function postfilter($msg) {
 	return $msg;
 }
 
-function esc($text) {
-	return htmlspecialchars($text);
-}
-
 function minipost($post) {
 	if (isset($post['deleted']) && $post['deleted']) return;
 

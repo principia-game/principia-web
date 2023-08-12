@@ -79,3 +79,7 @@ function normalise($text) {
 	// I HATE CRLF I HATE CRLF
 	return trim(str_replace("\r", "", $text));
 }
+
+function esc($text) {
+	return htmlspecialchars($text);
+}

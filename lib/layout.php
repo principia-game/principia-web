@@ -72,21 +72,28 @@ function error($title, $message) {
 }
 
 function level($level, $featured = '', $pkg = false) {
-	global $cache;
-	$level['v'] = 2;
-	return $cache->hitHash($level, function () use ($level, $featured, $pkg) {
-		if (!$pkg) {
-			if (!isset($level['visibility']) || $level['visibility'] != 1)
-				$img = "thumbs/low/".$level['id'].".jpg";
-			else
-				$img = "assets/locked_thumb.svg";
-		} else
-			$img = "assets/package_thumb.svg";
+	if (!$pkg) {
+		if (!isset($level['visibility']) || $level['visibility'] != 1)
+			$img = "thumbs/low/".$level['id'].".jpg";
+		else
+			$img = "assets/locked_thumb.svg";
+	} else
+		$img = "assets/package_thumb.svg";
 
-		$page = ($pkg ? 'package' : 'level');
+	$page = ($pkg ? 'package' : 'level');
+	$label = $featured ? '<span class="featured small">'.$featured.'</span>' : '';
+	$title = esc(strlen($level['title']) > 60 ? substr($level['title'], 0, 60).'...' : $level['title']);
+	$ulink = userlink($level, 'u_');
 
-		return twigloader('components')->render('level.twig', ['level' => $level, 'featured' => $featured, 'img' => $img, 'page' => $page]);
-	});
+	return <<<HTML
+<div class="level" id="l-{$level['id']}">
+	<a class="lvlbox_top" href="/{$page}/{$level['id']}">
+		<img src="/{$img}" alt="" loading="lazy">$label
+		<div class="lvltitle">$title</div>
+	</a>
+	{$ulink}
+</div>
+HTML;
 }
 
 function relativeTime($time) {

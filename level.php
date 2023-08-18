@@ -15,7 +15,7 @@ assert($lid == $level['id']);
 if ($log) {
 	// like
 	$hasLiked = result("SELECT COUNT(*) FROM likes WHERE user = ? AND level = ?", [$userdata['id'], $lid]) == 1 ? true : false;
-	if (isset($_GET['vote'])) {
+	if (isset($_POST['vote'])) {
 		if (!$hasLiked) {
 			query("UPDATE levels SET likes = likes + '1' WHERE id = ?", [$lid]);
 

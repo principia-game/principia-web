@@ -1,8 +1,9 @@
 
 function vote(el, id) {
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "/level.php?id="+id+"&vote", true);
-	xhttp.send();
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "/level/"+id, true);
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	xhr.send("vote=yes");
 
 	el.innerHTML = 'Liked!';
 	el.disabled = 'disabled';

@@ -8,10 +8,11 @@ $bg_box2: #fff;
 $btn_play: #9ec59e;
 $btn_edit: #a3a3ca;
 $btn_text: #202020;
+$fonts: "Roboto", "Arial", sans-serif;
 
 body {
 	background-color: $bg;
-	font-family: "Roboto", "Arial", sans-serif;
+	font-family: $fonts;
 	font-size: 11.75pt;
 	margin: 0;
 
@@ -221,9 +222,9 @@ div.level {
 	margin: 20px 5px;
 
 	.comment-input {
-		width: 98%;
+		width: 99%;
 		padding: 5px;
-		min-height: 50px;
+		min-height: 70px;
 	}
 
 	.submit {
@@ -470,8 +471,7 @@ div.level {
 
 // Settings \\
 
-.settings {
-	width: 100%;
+.settings, .wiki table {
 	border-collapse: collapse;
 
 	.a {
@@ -499,6 +499,10 @@ div.level {
 		margin-top: 8px;
 		font-size: 10.5pt;
 	}
+}
+
+.settings {
+	width: 100%;
 }
 
 // Welcome Thing on Index \\
@@ -616,6 +620,37 @@ div.level {
 			margin: 0px 10px;
 		}
 	}
+}
+
+input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
+	font-size: 11pt;
+	font-family: $fonts;
+	padding: 7px;
+}
+
+input[type=submit] {
+	font-size: 12pt;
+	border: 1px solid #8f8f9d;
+	background-color: #eee;
+	padding: 5px 15px;
+	vertical-align: top;
+
+	&:hover {
+		background-color: darken(#eee, 5%);
+	}
+	&:active {
+		padding-left: 16px;
+		padding-right: 14px;
+		padding-top: 6px;
+		padding-bottom: 4px;
+		background-color: darken(#eee, 15%);
+	}
+}
+
+textarea {
+	font-family: "Fira Mono", monospace;
+	font-size: 11pt;
+	line-height: 1.5;
 }
 
 /// Forums \\\

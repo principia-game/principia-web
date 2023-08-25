@@ -127,7 +127,7 @@ div.level {
 	}
 }
 
-.settings {
+.settings, .wiki table {
 	td, th {
 		border-bottom: 1px solid $grid;
 	}
@@ -218,5 +218,18 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 	background-color: #111;
 	border: 1px solid $grid;
 	color: white;
-	padding: 5px;
+	padding: 7px;
+}
+
+input[type=submit] {
+	border: 1px solid $grid;
+	background-color: #111;
+	color: white;
+
+	&:hover {
+		background-color: darken(#111, 2%);
+	}
+	&:active {
+		background-color: darken(#111, 5%);
+	}
 }

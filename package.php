@@ -3,7 +3,7 @@ require('lib/common.php');
 
 $pid = $_GET['id'] ?? 0;
 
-$pkg = fetch("SELECT $userfields p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
+$pkg = fetch("SELECT $userfields, p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
 
 if (!$pkg) error('404', "The requested package wasn't found.");
 
@@ -14,7 +14,7 @@ if ($log) {
 
 clearMentions('package', $pid);
 
-$comments = query("SELECT $userfields c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 6 AND c.level = ? ORDER BY c.time DESC", [$pid]);
+$comments = query("SELECT $userfields, c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 6 AND c.level = ? ORDER BY c.time DESC", [$pid]);
 
 echo twigloader()->render('package.twig', [
 	'id' => $pid,

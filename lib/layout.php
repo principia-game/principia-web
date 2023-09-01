@@ -7,7 +7,7 @@
  * @return \Twig\Environment Twig object.
  */
 function twigloader($subfolder = '', $customloader = null, $customenv = null) {
-	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $lpp, $footerlinks, $domain, $uri;
+	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $lpp, $footerlinks, $domain, $uri, $path;
 
 	$doCache = ($tplNoCache ? false : $tplCache);
 
@@ -33,7 +33,7 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('footerlinks', $footerlinks);
 	$twig->addGlobal('domain', $domain);
 	$twig->addGlobal('uri', $uri);
-	$twig->addGlobal('pagename', substr($_SERVER['PHP_SELF'], 0, -4));
+	$twig->addGlobal('pagename', '/'.$path[1]);
 
 	return $twig;
 }

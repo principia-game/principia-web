@@ -1,9 +1,8 @@
 <?php
-chdir('../');
-require('lib/common.php');
-
 $level = $_GET['i'] ?? null;
 $levelpath = sprintf('data/levels/%d.plvl', $level);
+
+//header('Content-Type: application/octet-stream');
 
 if (!$level || !file_exists($levelpath)) {
 	readfile('internal/null.plvl');

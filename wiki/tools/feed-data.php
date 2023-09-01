@@ -1,8 +1,5 @@
 #!/usr/bin/php
 <?php
-
-print("principia-web wiki tools - feed-data.php\n");
-print("==================================================\n");
 print("Import data from 'tools/outdata.json' into the wiki.\n\n");
 
 require('lib/common.php');

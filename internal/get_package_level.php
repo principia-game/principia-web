@@ -1,6 +1,4 @@
 <?php
-chdir('../');
-
 $level = $_GET['i'] ?? null;
 $levelpath = sprintf('data/packages/levels/%d.plvl', $level);
 

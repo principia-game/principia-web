@@ -1,20 +1,17 @@
 <?php
-chdir('../');
-require('lib/common.php');
-
-$name = trim($_POST['username'] ?? null);
+$name = trim($_POST['username'] ?? '');
 
 // Normal behaviour for the open source version.
 $mail = $_POST['email'] ?? null;
 $pass = $_POST['password'] ?? null;
 
-if (!isset($name))
+if (!$name)
 	die('111'); // 111 is a generic "something went wrong!" code.
 
-if (!isset($mail) || !filter_var($mail, FILTER_VALIDATE_EMAIL))
+if (!$mail || !filter_var($mail, FILTER_VALIDATE_EMAIL))
 	die('115'); // "This email is invalid."
 
-if (!isset($pass) || strlen($pass) < 6)
+if (!$pass || strlen($pass) < 6)
 	die('114'); // "The password is invalid."
 
 if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name)]))

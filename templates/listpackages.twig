@@ -13,7 +13,7 @@
 {% endfor %}
 </div>
 
-{{ pagination(package_count, glob_lpp, 'packages.php?page=%s', page) }}
+{{ pagination(package_count, glob_lpp, 'packages?page=%s', page) }}
 
 <br><br>
 	{% endblock %}

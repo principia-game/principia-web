@@ -1,9 +1,6 @@
 #!/usr/bin/php
 <?php
-
-print("principia-web tools - fix-community-ids.php\n");
-print("===========================================\n");
-print("Fixes community IDs in uploaded levels.\n");
+print("Fixes community IDs in uploaded levels.\n\n");
 
 require('lib/common.php');
 

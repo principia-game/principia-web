@@ -1,9 +1,6 @@
 #!/usr/bin/php
 <?php
-
-print("principia-web tools - hash-emails.php\n");
-print("=========================================\n");
-print("Hashes emails in a database with unhashed emails.\n");
+print("Hashes emails in a database with unhashed emails.\n\n");
 
 require('lib/common.php');
 

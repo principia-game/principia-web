@@ -1,7 +1,4 @@
 <?php
-chdir('../');
-require('lib/common.php');
-
 if (isset($_POST['cPa1Ozi']) && $_POST['cPa1Ozi'] == "Submit  ") {
 	if (!isset($_POST['username']) || !isset($_POST['password']))
 		die('102');

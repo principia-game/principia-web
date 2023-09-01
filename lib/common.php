@@ -6,12 +6,14 @@ if (!file_exists('conf/config.php'))
 require_once('lib/profiler.php');
 $profiler = new Profiler();
 
+if (!isset($internal)) $internal = false;
+
 require_once('conf/config.php');
 require_once('vendor/autoload.php');
 foreach (glob("lib/*.php") as $file)
 	require_once($file);
 
-if (!isInternal()) {
+if (!$internal) {
 	// Security headers.
 	header("Content-Security-Policy:"
 		."default-src 'self';"
@@ -62,7 +64,7 @@ if ($log) {
 	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$id]);
 	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 
-	if (!isInternal()) {
+	if (!$internal) {
 		if ($userdata['rank'] < 0)
 			$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$id]);
 

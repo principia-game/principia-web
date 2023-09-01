@@ -1,7 +1,4 @@
 <?php
-chdir('../');
-require('lib/common.php');
-
 $pkg = $_GET['i'] ?? null;
 $pkgpath = sprintf('data/packages/%d.ppkg', $pkg);
 

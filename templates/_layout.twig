@@ -4,11 +4,11 @@
 	<meta charset="utf-8">
 	<title>{{ title }} - principia-web</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{# inline font styling - update from /assets/css/fonts.css #}
-	<style>@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:swap;src:local("Roboto"),url("/assets/fonts/roboto-v29-latin-ext_latin-regular.woff2") format("woff2"),url("/assets/fonts/roboto-v29-latin-ext_latin-regular.woff") format("woff")}@font-face{font-family:"Roboto";font-style:normal;font-weight:700;font-display:swap;src:local("Roboto Bold"),url("/assets/fonts/roboto-v29-latin-ext_latin-700.woff2") format("woff2"),url("/assets/fonts/roboto-v29-latin-ext_latin-700.woff") format("woff")}</style>
-	<link rel="stylesheet" href="/assets/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css?v=32" type="text/css">
-	<script defer src="/assets/base.js?v=2"></script>
-	<script defer src="/assets/prism.js?v=1"></script>
+	{# inline font styling - update from /static/css/fonts.css #}
+	<style>@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:swap;src:local("Roboto"),url("/fonts/roboto-v29-latin-ext_latin-regular.woff2") format("woff2"),url("/fonts/roboto-v29-latin-ext_latin-regular.woff") format("woff")}@font-face{font-family:"Roboto";font-style:normal;font-weight:700;font-display:swap;src:local("Roboto Bold"),url("/fonts/roboto-v29-latin-ext_latin-700.woff2") format("woff2"),url("/fonts/roboto-v29-latin-ext_latin-700.woff") format("woff")}</style>
+	<link rel="stylesheet" href="/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css?v=32" type="text/css">
+	<script defer src="/js/base.js?v=2"></script>
+	<script defer src="/js/prism.js?v=1"></script>
 
 	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
 	<meta property="og:title" content="{{ title }} - principia-web">
@@ -38,7 +38,7 @@
 			<a href="/chat">Chat</a>
 			<a href="/forum/">Forum</a>
 			<a href="/wiki/">Wiki</a>
-			<a href="/search"><img src="/assets/icons/search{% if userdata.darkmode %}_w{%endif%}.svg" class="search" alt="Search"></a>
+			<a href="/search"><img src="/icons/search{% if userdata.darkmode %}_w{%endif%}.svg" class="search" alt="Search"></a>
 		</div>
 		<div class="menu right">
 			{% if log %}
@@ -74,8 +74,7 @@
 		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
 
 		<br>{{ custom_info() }}
-		Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a>
-		commit <a href="https://github.com/principia-preservation-project/principia-web/commit/{{ git_commit(false) }}">{{ git_commit() }}</a> -
+		Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a> -
 		{{ profiler_stats() }}
 	</div>
 	{% block custom_footer %}{% endblock %}

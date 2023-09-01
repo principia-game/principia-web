@@ -1,9 +1,6 @@
 #!/usr/bin/php
 <?php
-
-print("principia-web tools - generate-gourcelog-wiki.php\n");
-print("=================================================\n");
-print("This script generates a gource log for principia-web wiki edits.\n");
+print("This script generates a gource log for principia-web wiki edits.\n\n");
 
 require('lib/common.php');
 

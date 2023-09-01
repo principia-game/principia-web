@@ -1,12 +1,11 @@
 <?php
-chdir('../');
-require('lib/common.php');
-
 if (!$log || $userdata['rank'] < 0)
 	die('-100');
 
 // Kaitai runtime & data
 require('lib/kaitai/plvl.php');
+
+if (!isset($_FILES['xFxIax'])) die('404');
 
 // Load level.
 $level = Plvl::fromFile($_FILES['xFxIax']['tmp_name']);

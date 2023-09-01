@@ -4,11 +4,8 @@ data/
 templates/cache/
 
 ## SCSS caches
-assets/css/
+static/css/
 assets/scss/.sass-cache
-
-## Featured stuff
-featured/
 
 ## Composer
 vendor/
@@ -16,8 +13,7 @@ composer.lock
 
 ## misc.
 templates/_template.twig
-lol.php
-lua/
+static/image-to-lua/
 .vscode/
 misc/
 tools/lvlinfo
@@ -26,8 +22,6 @@ tools/progress-get
 adminer/
 .phpunit.result.cache
 phpunit
-paste/
-data_
 wiki/images
 wiki/_export
-assets/ext/
+static/js/ext/

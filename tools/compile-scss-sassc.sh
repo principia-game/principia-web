@@ -2,12 +2,12 @@
 
 common_arguments="--style compressed --load-path ./"
 
-mkdir -p assets/css
+mkdir -p static/css
 
-sassc ${common_arguments} assets/scss/darkmode.scss assets/css/darkmode.css
-sassc ${common_arguments} assets/scss/fonts.scss assets/css/fonts.css
-sassc ${common_arguments} assets/scss/style.scss assets/css/style.css
+sassc ${common_arguments} scss/darkmode.scss static/css/darkmode.css
+sassc ${common_arguments} scss/fonts.scss static/css/fonts.css
+sassc ${common_arguments} scss/style.scss static/css/style.css
 
 # Compress compiled stylesheets for nginx gzip_static
-gzip -fk assets/css/darkmode.css
-gzip -fk assets/css/style.css
+gzip -fk static/css/darkmode.css
+gzip -fk static/css/style.css

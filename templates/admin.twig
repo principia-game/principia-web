@@ -47,10 +47,10 @@
 <h3>Latest comments</h3>
 <div class="comments">
 	{% for cmnt in latest_comments %}
-		<div class="comment{% if cmnt.deleted %} deleted{% endif %}" id="comment-{{ cmnt.id }}">
+		<div class="comment" id="comment-{{ cmnt.id }}">
 			<p>
 				{{ userlink(cmnt, 'u_') }}
-				commented on <a href="/{{ cmnt.type | cmt_num_to_type }}.php?id={{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
+				commented on <a href="/{{ cmnt.type | cmt_num_to_type }}/{{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
 				<span class="date">{{ cmnt.time | relative_time }}</span>
 			</p>
 			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
@@ -66,6 +66,6 @@
 	<li><a href="/viewlocked">View locked levels</a></li>
 	<li><a href="/ipbans">IP bans</a></li>
 	<li><a href="/userlist">User list</a></li>
-	<li><a href="/forum/manageforums.php">Manage forums</a></li>
+	<li><a href="/forum/manageforums">Manage forums</a></li>
 </ul>
 	{% endblock %}

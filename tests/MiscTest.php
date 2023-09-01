@@ -9,10 +9,4 @@ final class MiscTest extends TestCase {
 
 		$this->assertSame('N/A', extractPlatform('curl/7.69.4'));
 	}
-
-	public function testGitCommitHash(): void {
-		$hash = gitCommit();
-
-		$this->assertSame(7, strlen($hash));
-	}
 }

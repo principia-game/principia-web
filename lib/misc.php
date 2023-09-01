@@ -7,13 +7,6 @@ function isCli() {
 	return php_sapi_name() == "cli";
 }
 
-/**
- * Returns true if an internal page has been requested.
- */
-function isInternal() {
-	return str_contains($_SERVER['SCRIPT_NAME'], 'internal');
-}
-
 function register($name, $pass, $mail, $sendWelcomeEmail = true) {
 	$token = bin2hex(random_bytes(20));
 	insertInto('users', [
@@ -38,25 +31,6 @@ HTML
 	}
 
 	return $token;
-}
-
-/**
- * Get hash of latest git commit
- *
- * @param bool $trim Trim the hash to the first 7 characters
- * @return void
- */
-function gitCommit($trim = true) {
-	global $submodule;
-
-	$prefix = ($submodule ? '../' : '');
-
-	$commit = file_get_contents($prefix.'.git/refs/heads/master');
-
-	if ($trim)
-		return substr($commit, 0, 7);
-	else
-		return rtrim($commit);
 }
 
 function clearMentions($type, $id) {

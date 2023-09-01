@@ -1,8 +1,5 @@
 #!/usr/bin/php
 <?php
-
-print("principia-web wiki tools - page-export.php\n");
-print("==================================================\n");
 print("Export the wiki content. Cool.\n\n");
 
 require('lib/common.php');

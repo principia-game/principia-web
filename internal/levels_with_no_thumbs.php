@@ -1,8 +1,4 @@
 <?php
-chdir('../');
-require('conf/config.php');
-require('lib/mysql.php');
-
 header('Content-Type: application/json');
 
 $levellist = query("SELECT id FROM levels WHERE visibility = 0");

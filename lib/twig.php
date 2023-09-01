@@ -11,7 +11,6 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 			new \Twig\TwigFunction('pagination', 'pagination', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('custom_info', 'customInfo', ['is_safe' => ['html']]),
 			new \Twig\TwigFunction('is_android_webview', 'isAndroidWebview', ['is_safe' => ['html']]),
-			new \Twig\TwigFunction('git_commit', 'gitCommit'),
 			new \Twig\TwigFunction('profiler_stats', function () use ($profiler) {
 				$profiler->getStats();
 			}),

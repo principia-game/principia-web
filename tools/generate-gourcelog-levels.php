@@ -1,9 +1,6 @@
 #!/usr/bin/php
 <?php
-
-print("principia-web tools - generate-gourcelog-levels.php\n");
-print("===================================================\n");
-print("This script generates a gource log for all levels that have been uploaded to principia-web.\n");
+print("This script generates a gource log for all levels that have been uploaded to principia-web.\n\n");
 
 require('lib/common.php');
 

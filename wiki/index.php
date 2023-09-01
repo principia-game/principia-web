@@ -1,8 +1,8 @@
 <?php
 require('lib/common.php');
 
-$page = (isset($_GET['page']) ? str_replace('_', ' ', $_GET['page']) : 'Main Page');
-$page_slugified = (isset($_GET['page']) ? $_GET['page'] : 'Main_Page');
+$page_slugified = $path[2] ?: 'Main_Page';
+$page = str_replace('_', ' ', $page_slugified);
 $revision = $_GET['rev'] ?? null;
 
 if (isset($_GET['action'])) {

@@ -1,12 +1,9 @@
 <?php
-chdir('../');
-require('lib/common.php');
-
 $level = (int)($_POST['lvl_id'] ?? null);
 
-$progfile = $_FILES['data_bin'];
+$progfile = $_FILES['data_bin'] ?? null;
 
-if (!$level || !$progfile || $progfile['name'] != 'data.bin') die("Cheatin'?");
+if (!$level || !$progfile || !$progfile || $progfile['name'] != 'data.bin') die("Cheatin'?");
 
 if (!$log) {
 	header("X-Error-Message: You need to be signed in to submit your score.");

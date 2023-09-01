@@ -5,7 +5,7 @@ function type_to_cat($type) {
 		'custom'	=> 1,
 		'adventure'	=> 2,
 		'puzzle'	=> 3,
-		default 	=> 99, // Fallback option: none
+		default 	=> null, // Fallback option: none
 	};
 }
 

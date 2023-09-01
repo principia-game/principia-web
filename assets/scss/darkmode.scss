@@ -127,7 +127,7 @@ div.level {
 	}
 }
 
-.settings, .wiki table {
+.settings, .wikitable {
 	td, th {
 		border-bottom: 1px solid $grid;
 	}
@@ -221,7 +221,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 	padding: 7px;
 }
 
-input[type=submit] {
+input[type=submit], select {
 	border: 1px solid $grid;
 	background-color: #111;
 	color: white;

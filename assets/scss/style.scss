@@ -471,7 +471,7 @@ div.level {
 
 // Settings \\
 
-.settings, .wiki table {
+.settings, .wikitable {
 	border-collapse: collapse;
 
 	.a {
@@ -628,22 +628,28 @@ input[type=text], input[type=password], input[type=email], input[type=color], in
 	padding: 7px;
 }
 
-input[type=submit] {
+input[type=submit], select {
 	font-size: 12pt;
 	border: 1px solid #8f8f9d;
 	background-color: #eee;
 	padding: 5px 15px;
-	vertical-align: top;
 
 	&:hover {
 		background-color: darken(#eee, 5%);
 	}
 	&:active {
+		background-color: darken(#eee, 15%);
+	}
+}
+
+input[type=submit] {
+	vertical-align: top;
+
+	&:active {
 		padding-left: 16px;
 		padding-right: 14px;
 		padding-top: 6px;
 		padding-bottom: 4px;
-		background-color: darken(#eee, 15%);
 	}
 }
 

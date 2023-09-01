@@ -21,7 +21,7 @@
 			<td class="n2">
 				<input type="submit" name="savecat" value="Save category">
 				{% if cid != 'new' %}
-					<input type="submit" name="delcat" value="Delete category" onclick="if (!confirm("Really delete this category?")) return false;">
+					<input type="submit" name="delcat" value="Delete category" onclick="if (!confirm('Really delete this category?')) return false;">
 				{% endif %}
 				<button type="button" id="back" onclick="window.location='manageforums';">Back</button>
 			</td>

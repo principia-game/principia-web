@@ -26,7 +26,7 @@ function minipost($post) {
 		<td class="n1 topbar_1 nom">$ulink</td>
 		<td class="n1 topbar_1 blkm nod clearfix">$ulink</td>
 		<td class="n1 topbar_2 sfont blkm">Posted on $pdate
-			<span class="float-right"><a href="thread.php?pid={$post['id']}#{$post['id']}">Link</a> &bull; ID: {$post['id']}</span></td>
+			<span class="float-right"><a href="thread.php?pid={$post['id']}#{$post['id']}">Link</a> &ndash; ID: {$post['id']}</span></td>
 	</tr><tr valign="top">
 		<td class="n1 sfont sidebar nom">
 			Posts: {$post['uposts']}
@@ -42,7 +42,7 @@ function threadpost($post, $pthread = '') {
 	if (isset($post['deleted']) && $post['deleted']) {
 		if ($userdata['rank'] > 1) {
 			$postlinks = sprintf(
-				'<a href="thread?pid=%s&pin=%s#%s">Peek</a> &bull; <a href="editpost?pid=%s&act=undelete">Undelete</a> &bull; ID: %s',
+				'<a href="thread?pid=%s&pin=%s#%s">Peek</a> &ndash; <a href="editpost?pid=%s&act=undelete">Undelete</a> &ndash; ID: %s',
 			$post['id'], $post['id'], $post['id'], $post['id'], $post['id']);
 		} else {
 			$postlinks = 'ID: '.$post['id'];
@@ -63,36 +63,39 @@ HTML;
 		$headerbar = sprintf('<tr class="h"><td colspan="2">%s</td></tr>', $post['headerbar']);
 
 	$post['id'] = $post['id'] ?? 0;
+	$postlinks = [];
 
 	if ($pthread)
 		$threadlink = sprintf(' - in <a href="thread?id=%s">%s</a>', $pthread['id'], esc($pthread['title']));
 
 	if ($post['id'])
-		$postlinks = "<a href=\"thread?pid=$post[id]#$post[id]\">Link</a>";
+		$postlinks[] = "<a href=\"thread?pid=$post[id]#$post[id]\">Link</a>";
 
 	if (isset($post['revision']) && $post['revision'] >= 2)
 		$revisionstr = " (edited ".date('Y-m-d H:i', $post['ptdate']).")";
 
 	if (isset($post['thread']) && $log) {
 		// TODO: check minreply
-		$postlinks .= " &bull; <a href=\"newreply?id=$post[thread]&pid=$post[id]\">Quote</a>";
+		$postlinks[] = "<a href=\"newreply?id=$post[thread]&pid=$post[id]\">Quote</a>";
 
 		// "Edit" link for admins or post owners, but not banned users
 		if ($userdata['rank'] > 2 || $userdata['id'] == $post['uid'])
-			$postlinks .= " &bull; <a href=\"editpost?pid=$post[id]\">Edit</a>";
+			$postlinks[] = '<a href="editpost?pid='.$post['id'].'">Edit</a>';
 
 		if ($userdata['rank'] > 1)
-			$postlinks .= ' &bull; <a href="editpost?pid='.$post['id'].'&act=delete">Delete</a>';
+			$postlinks[] = '<a href="editpost?pid='.$post['id'].'&act=delete">Delete</a>';
 
 		if (isset($post['maxrevision']) && $userdata['rank'] > 1 && $post['maxrevision'] > 1) {
-			$revisionstr .= " &bull; Revision ";
+			$revisionstr .= " &ndash; Revision ";
 			for ($i = 1; $i <= $post['maxrevision']; $i++)
 				$revisionstr .= "<a href=\"thread?pid=$post[id]&pin=$post[id]&rev=$i#$post[id]\">$i</a> ";
 		}
 	}
 
 	if (isset($post['thread']))
-		$postlinks .= " &bull; ID: $post[id]";
+		$postlinks[] = 'ID: '.$post['id'];
+
+	$postlinks = join(' &ndash; ', $postlinks);
 
 	$ulink = userlink($post, 'u');
 	$pdate = date('Y-m-d H:i', $post['date']);

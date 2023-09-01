@@ -27,9 +27,6 @@ if ($action == 'Submit') {
 		$error = "Don't post threads so fast, wait a little longer.";
 
 	if (!$error) {
-		query("UPDATE users SET posts = posts + 1, threads = threads + 1, lastpost = ? WHERE id = ?",
-			[time(), $userdata['id']]);
-
 		insertInto('z_threads', [
 			'title' => $title,
 			'forum' => $fid,
@@ -52,6 +49,9 @@ if ($action == 'Submit') {
 			[time(), $userdata['id'], $pid, $fid]);
 
 		query("UPDATE z_threads SET lastid = ? WHERE id = ?", [$pid, $tid]);
+
+		query("UPDATE users SET posts = posts + 1, threads = threads + 1, lastpost = ? WHERE id = ?",
+			[time(), $userdata['id']]);
 
 		newForumPostHook([
 			'id' => $pid,

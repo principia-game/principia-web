@@ -224,7 +224,7 @@ class ParsedownWiki extends \Parsedown {
 		$text  = trim(strip_tags($this->line($Content['text'])));
 		$id    = $Content['id'];
 		$level = (integer) trim($Content['level'], 'h');
-		$link  = "[${text}](#${id})";
+		$link  = sprintf("[%s](#%s)", $text, $id);
 
 		if ($this->firstHeadLevel === 0) {
 			$this->firstHeadLevel = $level;
@@ -244,7 +244,7 @@ class ParsedownWiki extends \Parsedown {
 		//     - [Header3](#Header3)
 		//   - [Header2-2](#Header2-2)
 		// ...
-		$this->contentsListString .= "${indent}- ${link}" . PHP_EOL;
+		$this->contentsListString .= $indent."- ".$link.PHP_EOL;
 	}
 	protected $contentsListString = '';
 	protected $firstHeadLevel = 0;
@@ -269,7 +269,7 @@ class ParsedownWiki extends \Parsedown {
 		$replace = <<<HTML
 <div class="toc" id="toc">
 	<div class="toc_title"><strong>Contents</strong> [<a href="javascript:toggleVis('toc_content', 'toc_toggle')" id="toc_toggle">Hide</a>]</div>
-	<div class="toc_content" id="toc_content">${toc_data}</div>
+	<div class="toc_content" id="toc_content">$toc_data</div>
 </div>
 HTML;
 

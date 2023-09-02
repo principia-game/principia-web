@@ -7,9 +7,9 @@
  * @return \Twig\Environment Twig object.
  */
 function twigloader($subfolder = '', $customloader = null, $customenv = null) {
-	global $tplCache, $tplNoCache, $userdata, $notificationCount, $log, $lpp, $footerlinks, $domain, $uri, $path;
+	global $userdata, $notificationCount, $log, $footerlinks, $uri, $path, $submodule;
 
-	$doCache = ($tplNoCache ? false : $tplCache);
+	$doCache = (TPL_NO_CACHE ? false : TPL_CACHE);
 
 	if (!isset($customloader))
 		$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
@@ -29,10 +29,13 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	$twig->addGlobal('userdata', $userdata);
 	$twig->addGlobal('notification_count', $notificationCount);
 	$twig->addGlobal('log', $log);
-	$twig->addGlobal('glob_lpp', $lpp);
+	$twig->addGlobal('glob_lpp', LPP);
 	$twig->addGlobal('footerlinks', $footerlinks);
-	$twig->addGlobal('domain', $domain);
+	$twig->addGlobal('domain', DOMAIN);
 	$twig->addGlobal('uri', $uri);
+	if ($submodule == 'forum')
+		$twig->addGlobal('pagename', '/forum/'.$path[2]);
+	else
 	$twig->addGlobal('pagename', '/'.$path[1]);
 
 	return $twig;
@@ -44,16 +47,9 @@ function comments($cmnts, $type, $id, $showheader = true) {
 	]);
 }
 
-function pagination($levels, $lpp, $url, $current) {
-	global $submodule;
-
-	if ($submodule)
-		$twig = _twigloader('../../templates/components');
-	else
-		$twig = twigloader('components');
-
-	return $twig->render('pagination.twig', [
-		'levels' => $levels, 'lpp' => $lpp, 'url' => $url, 'current' => $current
+function pagination($levels, $pp, $url, $current) {
+	return twigloader('components')->render('pagination.twig', [
+		'levels' => $levels, 'lpp' => $pp, 'url' => $url, 'current' => $current
 	]);
 }
 
@@ -62,8 +58,8 @@ function error($title, $message) {
 
 	if ($title >= 400 && $title < 500) http_response_code($title);
 
-	if ($submodule)
-		$twig = _twigloader();
+	if ($submodule == 'forum')
+		$twig = twigloaderForum();
 	else
 		$twig = twigloader();
 

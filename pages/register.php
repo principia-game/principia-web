@@ -45,7 +45,7 @@ if (isset($_POST['action'])) {
 	if ($error == []) {
 		$token = register($name, $pass, $mail);
 
-		setcookie($cookieName, $token, 2147483647);
+		setcookie(COOKIE_NAME, $token, 2147483647);
 
 		redirect('/?rd');
 	}

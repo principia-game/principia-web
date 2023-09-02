@@ -45,7 +45,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	$levels = query("SELECT l.id id,l.title title, $userfields
 			FROM levels l JOIN users u ON l.author = u.id
-			WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC ".paginate($page, $lpp),
+			WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC ".paginate($page, LPP),
 		[$id]);
 
 	$count = $cache->hit('levelcount_'.$id, function () use ($id) {

@@ -7,7 +7,7 @@ if ($query) {
 	$levels = query("SELECT l.id id, l.title title, $userfields
 			FROM levels l JOIN users u ON l.author = u.id
 			WHERE l.title LIKE CONCAT('%', ?, '%') AND l.visibility = 0
-			ORDER BY l.id DESC ".paginate($page, $lpp),
+			ORDER BY l.id DESC ".paginate($page, LPP),
 		[$query]);
 
 	$count = result("SELECT COUNT(*) FROM levels l WHERE title LIKE CONCAT('%', ?, '%')",

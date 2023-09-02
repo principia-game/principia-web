@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
 	if (!$numpid) error("404", "Thread post does not exist.");
 
 	$tid = result("SELECT thread FROM z_posts WHERE id = ?", [$pid]);
-	$page = floor(result("SELECT COUNT(*) FROM z_posts WHERE thread = ? AND id < ?", [$tid, $pid]) / $ppp) + 1;
+	$page = floor(result("SELECT COUNT(*) FROM z_posts WHERE thread = ? AND id < ?", [$tid, $pid]) / PPP) + 1;
 	$viewmode = "thread";
 } else
 	error("404", "Thread does not exist.");
@@ -80,7 +80,7 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_poststext pt ON p.id = pt.id AND p.revision = pt.revision
 			LEFT JOIN users u ON p.user = u.id
 			WHERE p.thread = ?
-			GROUP BY p.id ORDER BY p.id ".paginate($page, $ppp),
+			GROUP BY p.id ORDER BY p.id ".paginate($page, PPP),
 		[$tid]);
 
 	$topbot = [
@@ -112,7 +112,7 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_threads t ON p.thread = t.id
 			LEFT JOIN z_forums f ON f.id = t.forum
 			WHERE p.user = ? AND ? >= f.minread
-			ORDER BY p.id".paginate($page, $ppp),
+			ORDER BY p.id".paginate($page, PPP),
 		[$uid, $userdata['rank']]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts p WHERE user = ?", [$uid]);
@@ -135,7 +135,7 @@ if ($viewmode == "thread") {
 			LEFT JOIN z_threads t ON p.thread=t.id
 			LEFT JOIN z_forums f ON f.id=t.forum
 			WHERE p.date > ? AND ? >= f.minread
-			ORDER BY p.date DESC ".paginate($page, $ppp),
+			ORDER BY p.date DESC ".paginate($page, PPP),
 		[$mintime, $userdata['rank']]);
 
 	$thread['posts'] = result("SELECT count(*) FROM z_posts WHERE date > ?", [$mintime]);
@@ -145,8 +145,8 @@ if ($viewmode == "thread") {
 	$url = "thread?time=$time";
 }
 
-if ($thread['posts'] > $ppp)
-	$pagelist = pagination($thread['posts'], $ppp, $url.'&page=%s', $page);
+if ($thread['posts'] > PPP)
+	$pagelist = pagination($thread['posts'], PPP, $url.'&page=%s', $page);
 
 if ($log && isset($tid) && ($userdata['rank'] > 2 || ($userdata['id'] == $thread['user'] && !$thread['closed'] && $userdata['rank'] > 0))) {
 	$fmovelinks = $stick = $close = $trash = '';
@@ -189,7 +189,7 @@ function showmove() { moptions.innerHTML = 'Move to: $fmovelinks'; }
 HTML;
 }
 
-echo _twigloader()->render('thread.twig', [
+echo twigloaderForum()->render('thread.twig', [
 	'viewmode' => $viewmode,
 	'thread' => $thread,
 	'posts' => $posts,

@@ -1,26 +1,26 @@
 # principia-web
-Open source reimplementation of Principia's community site.
+This is the source code that powers the new Principia community site, including the forum and wiki.
 
 ## Setting up
+There's a lot of steps to setting up your own instance of principia-web, but here's the basic gist for seting up a basic development instance:
+
 1. Get nginx with PHP and MariaDB up and running.
 1. Import the database dump in the `sql` folder.
 1. Copy the `conf/config.sample.php` file to `conf/config.php` and fill in your database credentials.
 1. Run `composer update` with Composer to download dependencies.
-1. Compile the SCSS stylesheets `assets/scss/` into `assets/css/` (see `tools/compile-scss-{dartsass,sassc}`).
-1. Make the `levels/` and `templates/cache/` directories writeable by PHP.
+1. Compile the SCSS stylesheets.
 
-Right now, a default nginx site configuration is not available although this may change in the future if there is demand for it.
+### nginx configuration example
+This is an example of how to configure nginx to work with the principia-web router:
 
-### Connecting with the game
-Compile Principia to point at your instance of principia-web.
-
-### Optional: Featured levels list
-The Principia client has a selection of featured levels on the main menu. By default principia-web has placeholder data, but you can edit this by cloning [Featured List Creator](https://github.com/principia-preservation-project/featured-list-creator), and moving the `main.py` source file into `featured/`. Edit the `featured/data/data.json` to replace the placeholders with real levels.
-
-**The images have to be in JPEG format and of the dimensions 240x135!** Run `featured/main.py` to update and replace the pre-generated featured levels file.
-
-### Optional: Discord webhooks
-Principia-web has an option to trigger a Discord webhook during various events (e.g. level upload, forum post...). To enable, put the webhook URL in the respective variable in the principia-web config file. **You will also need the curl PHP extension to be enabled and working!**
+```nginx
+location / {
+	try_files /static$uri /router.php?$args;
+}
+location /router.php {
+	# pass on to PHP-FPM
+}
+```
 
 ## Unit tests
 To run unit tests, you need to [download PHPUnit](https://phpunit.de/getting-started/phpunit-10.html). Then run

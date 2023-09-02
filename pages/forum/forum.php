@@ -19,10 +19,13 @@ if ($fid) {
 	if ($log) {
 		$forum = fetch("SELECT f.*, r.time rtime FROM z_forums f LEFT JOIN z_forumsread r ON (r.fid = f.id AND r.uid = ?) "
 			. "WHERE f.id = ? AND ? >= minread", [$userdata['id'], $fid, $userdata['rank']]);
-		if (!$forum['rtime']) $forum['rtime'] = 0;
 
-		$isread = ", (NOT (r.time<t.lastdate OR isnull(r.time)) OR t.lastdate<'$forum[rtime]') isread";
-		$threadsread = "LEFT JOIN z_threadsread r ON (r.tid=t.id AND r.uid=$userdata[id])";
+		if ($forum) {
+			if (!$forum['rtime']) $forum['rtime'] = 0;
+
+			$isread = ", (NOT (r.time<t.lastdate OR isnull(r.time)) OR t.lastdate<'$forum[rtime]') isread";
+			$threadsread = "LEFT JOIN z_threadsread r ON (r.tid=t.id AND r.uid=$userdata[id])";
+		}
 	} else
 		$forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['rank']]);
 
@@ -35,7 +38,7 @@ if ($fid) {
 			LEFT JOIN users u2 ON u2.id = t.lastuser
 			$threadsread
 			WHERE t.forum = ?
-			ORDER BY t.sticky DESC, t.lastdate DESC ".paginate($page, $tpp),
+			ORDER BY t.sticky DESC, t.lastdate DESC ".paginate($page, TPP),
 		[$fid]);
 
 	$topbot = [
@@ -58,7 +61,7 @@ if ($fid) {
 			LEFT JOIN z_forums f ON f.id = t.forum
 			$threadsread
 			WHERE t.user = ? AND ? >= minread
-			ORDER BY t.lastdate DESC ".paginate($page, $tpp),
+			ORDER BY t.lastdate DESC ".paginate($page, TPP),
 		[$uid, $userdata['rank']]);
 
 	$forum['threads'] = result("SELECT count(*) FROM z_threads t
@@ -84,7 +87,7 @@ if ($fid) {
 			LEFT JOIN z_forums f ON f.id = t.forum
 			$threadsread
 			WHERE t.lastdate > ? AND ? >= f.minread
-			ORDER BY t.lastdate DESC ".paginate($page, $tpp),
+			ORDER BY t.lastdate DESC ".paginate($page, TPP),
 		[$mintime, $userdata['rank']]);
 
 	$forum['threads'] = result("SELECT count(*) FROM z_threads t
@@ -99,10 +102,10 @@ if ($fid) {
 
 $showforum = $time ?? $uid;
 
-if ($forum['threads'] > $tpp)
-	$pagelist = pagination($forum['threads'], $tpp, $url.'&page=%s', $page);
+if ($forum['threads'] > TPP)
+	$pagelist = pagination($forum['threads'], TPP, $url.'&page=%s', $page);
 
-echo _twigloader()->render('forum.twig', [
+echo twigloaderForum()->render('forum.twig', [
 	'fid' => $fid,
 	'title' => $title,
 	'threads' => $threads,

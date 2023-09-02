@@ -30,7 +30,7 @@ $forums = query("SELECT f.*, ".($log ? "r.time rtime, " : '').userfields('u', 'u
 		. " ORDER BY c.ord,c.id,f.ord,f.id ",
 		[$userdata['rank']]);
 
-echo _twigloader()->render('index.twig', [
+echo twigloaderForum()->render('index.twig', [
 	'forums' => $forums,
 	'categories' => $categ
 ]);

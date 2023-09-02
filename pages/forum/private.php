@@ -46,7 +46,7 @@ $pmsgs = query("SELECT $ufields, p.* FROM z_pmsgs p
 				LEFT JOIN users u ON u.id = p.user$fieldn
 				WHERE p.user$fieldn2 = ? AND del_$fieldn2 = ?
 				ORDER BY p.unread DESC, p.date DESC
-				".paginate($page, $tpp),
+				".paginate($page, TPP),
 			[$id, $showdel]);
 
 $topbot = ['title' => $title];
@@ -60,13 +60,13 @@ $topbot['actions']['sendprivate'] = 'Send new';
 
 
 $fpagelist = '';
-if ($pmsgc > $tpp) {
+if ($pmsgc > TPP) {
 	if ($id != $userdata['id'])	$furl = "private?id=$id&view=$view&page=%s";
 	else	$furl = "private?view=$view&page=%s";
-	$fpagelist = pagination($pmsgc, $tpp, $furl, $page);
+	$fpagelist = pagination($pmsgc, TPP, $furl, $page);
 }
 
-echo _twigloader()->render('private.twig', [
+echo twigloaderForum()->render('private.twig', [
 	'id' => $id,
 	'pmsgs' => $pmsgs,
 	'topbot' => $topbot,

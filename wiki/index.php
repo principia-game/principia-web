@@ -1,6 +1,4 @@
 <?php
-require('lib/common.php');
-
 $page_slugified = $path[2] ?: 'Main_Page';
 $page = str_replace('_', ' ', $page_slugified);
 $revision = $_GET['rev'] ?? null;

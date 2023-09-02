@@ -68,7 +68,7 @@ if (isset($_POST['savecat'])) { // save new/existing category
 	redirect('manageforums');
 }
 
-$twig = _twigloader();
+$twig = twigloaderForum();
 
 if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 	// category editor

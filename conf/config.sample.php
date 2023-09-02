@@ -1,33 +1,25 @@
 <?php
-$host = 'localhost';
-$db   = 'principia';
-$user = '';
-$pass = '';
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'principia');
+define('DB_USER', '');
+define('DB_PASS', '');
 
-$tplCache = 'templates/cache';
-$tplNoCache = false; // **DO NOT SET AS TRUE IN PROD - DEV ONLY**
+define('TPL_CACHE', 'templates/cache');
+define('TPL_NO_CACHE', false);
 
-$emailsalt = 'CHANGEME'; // Email salt to prevent rainbow table attacks. CHANGE THIS!
+define('EMAIL_SALT', 'CHANGEME'); // Email salt to prevent rainbow table attacks. CHANGE THIS!
 
-$lpp = 20;
+define('LPP', 20); // Levels per page
+define('PPP', 20); // Forum posts per page
+define('TPP', 20); // Forum threads per page
 
-// Cookie token name. Don't change this too often as it'll invalidate old logins!
-$cookieName = 'token';
+define('COOKIE_NAME', '_PRINCSECURITY');
 
-// Website domain.
-$domain = 'https://example.org';
+define('DOMAIN', 'http://principia-web.uwu');
 
-// Discord server link. If blank will disable Discord link.
-$invite = '';
-
-// URL to Discord webhook for new level uploads. Leave blank to disable this.
-$webhookLevel = '';
-
-// URL to Discord webhook for wiki edits. Leave blank to disable this.
-$webhookWiki = '';
-
-// URL to Discord webhook for forum posts. Leave blank to disable this.
-$webhookForum = '';
+define('WEBHOOK_LEVEL', '');
+define('WEBHOOK_WIKI', '');
+define('WEBHOOK_FORUM', '');
 
 // principia-web's CAPTCHA system relies on a list of security questions. It's highly recommended to change these.
 // The answer checking is case-insensitive, but it has to be written in all lowercase here.
@@ -41,19 +33,8 @@ $captcha = [
 	]
 ];
 
-// Message to be shown on IP ban page for appeals.
-$appealmsg = "If you believe this was in error, please hug a plushie and then send me a fax.";
-
-// Email stuff. Uncomment to enable
-//$email['host'] = '';
-//$email['port'] = '';
-//$email['username'] = '';
-//$email['password'] = '';
-
-// Stub function to put special information in the footer.
 function customInfo() { }
 
-// Stub function to put special information in the header.
 function customHeader() { }
 
 $footerlinks = [

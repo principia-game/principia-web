@@ -24,7 +24,7 @@ $pagebar = [
 
 $pmsg['id'] = 0;
 
-echo _twigloader()->render('showprivate.twig', [
+echo twigloaderForum()->render('showprivate.twig', [
 	'pagebar' => $pagebar,
 	'pmsg' => $pmsg
 ]);

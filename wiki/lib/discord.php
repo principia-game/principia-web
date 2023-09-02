@@ -26,9 +26,7 @@ function discordSafeText($text) {
  * @param array $data Array with the necessary data.
  */
 function wikiEditHook($data) {
-	global $webhookWiki, $domain;
-
-	$webhook = new Client($webhookWiki);
+	$webhook = new Client(WEBHOOK_WIKI);
 
 	$desc = discordSafeText($data['description']);
 	if ($desc)
@@ -37,14 +35,14 @@ function wikiEditHook($data) {
 	if ($data['revision'] > 1) {
 		$moreinfo = sprintf(
 			"([diff](<%s/wiki/%s?action=diff&prev=%s&next=%s>))",
-		$domain, $data['page_slugified'], $data['revision']-1, $data['revision']);
+		DOMAIN, $data['page_slugified'], $data['revision']-1, $data['revision']);
 	} else
 		$moreinfo = "*(New)*";
 
 	$msg = sprintf(
 		"**[%s](<%s/user/%s>)** edited [%s](<%s/wiki/%s>) %s %s",
-	$data['u_name'], $domain, $data['u_id'],
-	$data['page'], $domain, $data['page_slugified'],
+	$data['u_name'], DOMAIN, $data['u_id'],
+	$data['page'], DOMAIN, $data['page_slugified'],
 	$moreinfo, $desc);
 
 	$webhook->message($msg)->send();
@@ -56,9 +54,7 @@ function wikiEditHook($data) {
  * @param array $data Array with the necessary data.
  */
 function wikiImportHook($data) {
-	global $webhookWiki;
-
-	$webhook = new Client($webhookWiki);
+	$webhook = new Client(WEBHOOK_WIKI);
 
 	$msg = sprintf(
 		"**%d pages** have been imported automatically from script (total **%d bytes**)",

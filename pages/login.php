@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST['logout'])) {
-	setcookie($cookieName, '');
+	setcookie(COOKIE_NAME, '');
 	redirect('./');
 }
 
@@ -20,7 +20,7 @@ if (isset($_POST['action'])) {
 	if (!$name || !$pass || !$logindata || !password_verify($pass, $logindata['password'])) $error .= 'Invalid credentials.';
 
 	if ($error == '') {
-		setcookie($cookieName, $logindata['token'], 2147483647);
+		setcookie(COOKIE_NAME, $logindata['token'], 2147483647);
 
 		redirect('./');
 	}

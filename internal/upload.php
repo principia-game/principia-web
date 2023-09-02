@@ -106,8 +106,8 @@ if ($updatelevel) {
 // Print the ID of the uploaded level. This is required to display the "Level published!" box.
 print($cid);
 
-// if we got a webhook url, send new level info to discord webhook
-if (!$updatelevel && $webhookLevel) {
+// Send new level info to discord webhook
+if (!$updatelevel) {
 	$webhookdata = [
 		'id' => $cid,
 		'name' => $level->name(),

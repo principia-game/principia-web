@@ -12,7 +12,9 @@ function notFound() {
 
 if ($path[1]) {
 	if ($path[1] == 'forum') {
-		require('lib/forum/common.php');
+		$submodule = 'forum';
+		foreach (glob("lib/forum/*.php") as $filename)
+			require($filename);
 
 		if (!isset($path[2]))
 			redirect('/forum/');
@@ -24,10 +26,15 @@ if ($path[1]) {
 			notFound();
 	}
 	else if ($path[1] == 'wiki') {
+		$submodule = 'wiki';
+
 		if (!isset($path[2]))
 			redirect('/wiki/');
 		else { // Reboot into wiki subdir
 			chdir('wiki/');
+			foreach (glob("lib/*.php") as $filename)
+				require($filename);
+
 			require('wiki/index.php');
 		}
 	}

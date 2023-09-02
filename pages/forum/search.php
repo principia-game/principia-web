@@ -29,7 +29,7 @@ if ($query && $where == 1) {
 	[$query, $userdata['rank']]);
 }
 
-echo _twigloader()->render('search.twig', [
+echo twigloaderForum()->render('search.twig', [
 	'query' => $query,
 	'where' => $where,
 	'threads' => $threads ?? null,

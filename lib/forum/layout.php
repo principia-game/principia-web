@@ -66,12 +66,12 @@ function ifEmptyQuery($message, $colspan = 0, $table = false) {
 	if ($table) echo '</table>';
 }
 
-function _twigloader($subfolder = '') {
+function twigloaderForum($subfolder = '') {
 	$twig = twigloader('forum');
 
 	$twig->addExtension(new PrincipiaForumExtension());
 
-	$twig->addGlobal('acmlm', true);
+	$twig->addGlobal('submodule', 'forum');
 
 	return $twig;
 }

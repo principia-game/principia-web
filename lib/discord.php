@@ -18,27 +18,25 @@ $exampleWebhookData = [
  * @param array $level Level array with the necessary data.
  */
 function newLevelHook($level) {
-	global $webhookLevel, $domain;
-
 	// dirty description truncating
 	if (strlen($level['description']) > 500) {
 		$level['description'] = wordwrap($level['description'], 500);
 		$level['description'] = substr($level['description'], 0, strpos($level['description'], "\n")) . '...';
 	}
 
-	$webhook = new Client($webhookLevel);
+	$webhook = new Client(WEBHOOK_LEVEL);
 	$mbd = new Embed();
 
 	$mbd->title($level['name'])
 		->description($level['description'])
-		->url(sprintf("%s/level/%s", $domain, $level['id']))
-		->timestamp(date(DATE_ISO8601))
-		->color(13056)
+		->url(sprintf("%s/level/%s", DOMAIN, $level['id']))
+		->timestamp(date(DATE_ATOM))
+		->color("178017")
 		->footer("New uploaded levels")
-		->thumbnail(sprintf("%s/thumbs/%s.jpg", $domain, $level['id']))
+		->thumbnail(sprintf("%s/thumbs/%s.jpg", DOMAIN, $level['id']))
 		->author(
 			$level['u_name'],
-			sprintf("%s/user/%s", $domain, $level['u_id'])
+			sprintf("%s/user/%s", DOMAIN, $level['u_id'])
 		);
 
 	$webhook->embed($mbd)->send();

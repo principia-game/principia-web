@@ -53,8 +53,8 @@ if (!isCli()) {
 // Authentication code.
 $log = false;
 
-if (isset($_COOKIE[$cookieName]) && validToken($_COOKIE[$cookieName])) {
-	$id = result("SELECT id FROM users WHERE token = ?", [$_COOKIE[$cookieName]]);
+if (isset($_COOKIE[COOKIE_NAME]) && validToken($_COOKIE[COOKIE_NAME])) {
+	$id = result("SELECT id FROM users WHERE token = ?", [$_COOKIE[COOKIE_NAME]]);
 
 	if ($id) // Valid cookie, user is logged in.
 		$log = true;

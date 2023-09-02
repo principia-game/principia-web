@@ -32,8 +32,7 @@ function sendMail($address, $subject, $body) {
 }
 
 function mailHash($email) {
-	global $emailsalt;
-	return hash('sha256', $emailsalt . $email);
+	return hash('sha256', EMAIL_SALT . $email);
 }
 
 function mailVerify($email, $hash) {

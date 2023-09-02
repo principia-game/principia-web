@@ -25,3 +25,5 @@ phpunit
 wiki/images
 wiki/_export
 static/js/ext/
+static/ahrefs_*
+static/wiki/images/

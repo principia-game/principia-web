@@ -24,7 +24,6 @@ function ipUnban($ip) {
 }
 
 function showIpBanMsg($reason) {
-	global $appealmsg;
 	http_response_code(403);
 	printf(<<<HTML
 		<style>
@@ -40,7 +39,7 @@ function showIpBanMsg($reason) {
 		</style>
 		<p>Your IP address has been banned.</p>
 		<p><strong>Reason:</strong> %s</p>
-		<p>%s</p>
-HTML, ($reason != 'N/A' ? $reason : '<em>No reason specified</em>'), $appealmsg);
+		<p>If you believe this was in error, please email appeals@principia-web.se or contact a staff member directly.</p>
+HTML, ($reason != 'N/A' ? $reason : '<em>No reason specified</em>'));
 	die();
 }

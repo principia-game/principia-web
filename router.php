@@ -18,14 +18,14 @@ if ($path[1]) {
 
 		if (!isset($path[2]))
 			redirect('/forum/');
-		else if ($path[2] == '')
+		elseif ($path[2] == '')
 			require('pages/forum/index.php');
-		else if (file_exists('pages/forum/'.$path[2].'.php'))
+		elseif (file_exists('pages/forum/'.$path[2].'.php'))
 			require('pages/forum/'.$path[2].'.php');
 		else
 			notFound();
 	}
-	else if ($path[1] == 'wiki') {
+	elseif ($path[1] == 'wiki') {
 		$submodule = 'wiki';
 
 		if (!isset($path[2]))
@@ -38,29 +38,29 @@ if ($path[1]) {
 			require('wiki/index.php');
 		}
 	}
-	else if ($path[1] == 'api') {
+	elseif ($path[1] == 'api') {
 		if (!isset($path[2]))
 			redirect('/api/');
-		else if ($path[2] == '') {
+		elseif ($path[2] == '') {
 			header('Content-Type: text/plain');
 			readfile('pages/api/README.md');
-		} else {
-			require('api/'.$path[2].'.php');
+		} elseif (file_exists('pages/api/'.$path[2].'.php')) {
+			require('pages/api/'.$path[2].'.php');
 		}
 	}
-	else if (isset($markdownPages[$path[1]])) {
+	elseif (isset($markdownPages[$path[1]])) {
 		echo twigloader()->render('_markdown.twig', [
 			'pagetitle' => $markdownPages[$path[1]],
 			'file' => $path[1].'.md'
 		]);
 	}
-	else if ($path[1] == 'download')
+	elseif ($path[1] == 'download')
 		echo twigloader()->render('download.twig');
 
-	else if (file_exists('pages/'.$path[1].'.php'))
+	elseif (file_exists('pages/'.$path[1].'.php'))
 		require('pages/'.$path[1].'.php');
 
-	else if ($path[1] == 'apZodIaL1') {
+	elseif ($path[1] == 'apZodIaL1') {
 
 		$page = str_replace('.php', '', $path[2]);
 
@@ -80,11 +80,11 @@ if ($path[1]) {
 		if ($internalPage)
 			require('internal/'.$internalPage.'.php');
 	}
-	else if ($path[1] == 'principia-version-code')
+	elseif ($path[1] == 'principia-version-code')
 		require('internal/principia-version-code.php');
-	else if ($path[1] == 'upload.php')
+	elseif ($path[1] == 'upload.php')
 		require('internal/upload.php');
-	else if ($path[1] == 'levels_with_no_thumbs')
+	elseif ($path[1] == 'levels_with_no_thumbs')
 		require('internal/levels_with_no_thumbs.php');
 	else
 		notFound();

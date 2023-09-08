@@ -11,7 +11,13 @@ function notFound() {
 }
 
 if ($path[1]) {
-	if ($path[1] == 'forum') {
+	if ($path[1] == 'adminer') {
+		if (IS_ROOT)
+			adminerBootstrap();
+		else
+			notFound();
+	}
+	elseif ($path[1] == 'forum') {
 		$submodule = 'forum';
 		foreach (glob("lib/forum/*.php") as $filename)
 			require($filename);

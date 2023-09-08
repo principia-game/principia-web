@@ -1,7 +1,6 @@
 ## User-generated files
 conf/config.php
 data/
-templates/cache/
 
 ## SCSS caches
 static/css/
@@ -22,7 +21,7 @@ tools/progress-get
 adminer/
 .phpunit.result.cache
 phpunit
-wiki/images
+lib/ext/
 wiki/_export
 static/js/ext/
 static/ahrefs_*

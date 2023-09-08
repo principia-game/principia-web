@@ -2,9 +2,6 @@
 
 /**
  * Bans an IP address with principia-web's IP ban system.
- *
- * @param string $ip IPv4 address
- * @param string $reason Reason (leave blank for none)
  */
 function ipBan($ip, $reason = 'N/A') {
 	global $cache;
@@ -14,8 +11,6 @@ function ipBan($ip, $reason = 'N/A') {
 
 /**
  * Unbans an existing IP ban.
- *
- * @param string $ip IPv4 address
  */
 function ipUnban($ip) {
 	global $cache;

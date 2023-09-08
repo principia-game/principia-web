@@ -12,9 +12,6 @@ $exampleWebhookData = [
 
 /**
  * Make text safe for raw use in Discord webhooks (strip backticks and at-symbols)
- *
- * @param string $text
- * @return void
  */
 function discordSafeText($text) {
 	return ($text ? preg_replace('/(`|@)/', '', $text) : null);
@@ -22,8 +19,6 @@ function discordSafeText($text) {
 
 /**
  * Trigger the new wiki edit webhook.
- *
- * @param array $data Array with the necessary data.
  */
 function wikiEditHook($data) {
 	$webhook = new Client(WEBHOOK_WIKI);

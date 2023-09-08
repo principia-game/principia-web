@@ -14,8 +14,6 @@ $exampleWebhookData = [
 
 /**
  * Trigger the new level webhook.
- *
- * @param array $level Level array with the necessary data.
  */
 function newLevelHook($level) {
 	// dirty description truncating

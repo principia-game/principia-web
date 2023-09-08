@@ -21,7 +21,7 @@ if ($action == 'Submit') {
 		$error = "You need to enter a longer title.";
 	if (strlen(trim($message)) == 0)
 		$error = "You need to enter a message to your thread.";
-	if ($userdata['lastpost'] > time() - (10*60) && $action == 'Submit' && $userdata['rank'] < 4)
+	if ($userdata['lastpost'] > time() - (10*60) && $action == 'Submit' && !IS_ROOT)
 		$error = "Don't post threads so fast, wait a little longer.";
 
 	if (!$error) {

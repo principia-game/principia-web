@@ -1,6 +1,6 @@
 <?php
 
-if ($userdata['rank'] < 2) error('403', "You shouldn't be here, get out!");
+if (!IS_ADMIN) error('403', "You shouldn't be here, get out!");
 
 $id = $_GET['id'] ?? null;
 $action = $_POST['action'] ?? null;

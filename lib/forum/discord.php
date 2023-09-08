@@ -5,8 +5,6 @@ use \DiscordWebhooks\Embed;
 
 /**
  * Trigger the new forum post webhook.
- *
- * @param array $post Post array with the necessary data.
  */
 function newForumPostHook($post, $mode = 'reply') {
 	$post['content'] = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\](.*)\[\/quote\]'si", '', $post['content']);

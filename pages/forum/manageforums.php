@@ -1,6 +1,6 @@
 <?php
 
-if ($userdata['rank'] < 3) error('403', 'You have no permissions to do this!');
+if (!IS_ROOT) error('403', 'You have no permissions to do this!');
 
 if (isset($_POST['savecat'])) { // save new/existing category
 

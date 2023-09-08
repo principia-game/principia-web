@@ -2,7 +2,7 @@
 
 $id = $_GET['id'] ?? null;
 
-if (isset($_GET['grf']) && $userdata['rank'] > 2) {
+if (isset($_GET['grf']) && IS_ADMIN) {
 	$generateResetFor = $_GET['grf'] ?? null;
 
 	if ($generateResetFor) {

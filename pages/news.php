@@ -3,7 +3,7 @@ if (isset($_GET['id'])) redirect('/news/'.$_GET['id']);
 
 $newsid = $path[2] ?? 0;
 
-if (isset($_REQUEST['new']) && $log && $userdata['rank'] > 2) {
+if (isset($_REQUEST['new']) && $log && IS_ADMIN) {
 	if (isset($_POST['ApOsTaL'])) {
 		insertInto('news', [
 			'title' => $_POST['title'],

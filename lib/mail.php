@@ -2,11 +2,6 @@
 
 /**
  * Simple mail wrapper.
- *
- * @param string $address Email adress to send to.
- * @param string $subject Email subject.
- * @param string $body Email body.
- * @return bool Whether it was successful or not.
  */
 function sendMail($address, $subject, $body) {
 	global $email;

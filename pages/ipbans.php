@@ -1,6 +1,6 @@
 <?php
 
-if ($userdata['rank'] < 3) error('403', 'You don\'t have access to this page.');
+if (!IS_ADMIN) error('403', 'You don\'t have access to this page.');
 
 if (isset($_POST['action'])) {
 	$iplist = $_POST['iplist'] ?? null;

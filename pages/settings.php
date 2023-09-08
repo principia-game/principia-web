@@ -14,7 +14,7 @@ if (isset($_POST['action'])) {
 		'timezone'		=> $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null
 	];
 
-	if ($userdata['rank'] > 1) {
+	if (IS_MOD) {
 		$customcolor = strtolower($_POST['customcolor']) != '#0000aa' ? $_POST['customcolor'] : null;
 
 		// check custom color

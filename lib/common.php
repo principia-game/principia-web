@@ -78,6 +78,12 @@ if ($log) {
 	];
 }
 
+define('IS_BANNED', $userdata['rank'] < 0);
+define('IS_MEMBER', $userdata['rank'] > 0);
+define('IS_MOD',	$userdata['rank'] > 1);
+define('IS_ADMIN',	$userdata['rank'] > 2);
+define('IS_ROOT',	$userdata['rank'] > 3);
+
 if (!$log || !$userdata['timezone'])
 	$userdata['timezone'] = 'Europe/Stockholm'; // I'm a self-centered egomaniac! Time itself centers around me!
 

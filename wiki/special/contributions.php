@@ -19,7 +19,7 @@ while ($rev = $revisions->fetch()) {
 	if ($rev['sizediff'] > 0) {
 		// positive sizediff - add to additions
 		$stats['additions'] += $rev['sizediff'];
-	} else if ($rev['sizediff'] < 0) {
+	} elseif ($rev['sizediff'] < 0) {
 		// negative sizediff - add to removals
 		$stats['removals'] += -$rev['sizediff'];
 	} else {

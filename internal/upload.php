@@ -1,5 +1,5 @@
 <?php
-if (!$log || $userdata['rank'] < 0)
+if (!$log || IS_BANNED)
 	die('-100');
 
 // Kaitai runtime & data
@@ -44,7 +44,7 @@ if (!$updatelevel) {
 
 	// rate-limit new level uploading to once every 30 seconds
 	$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
-	if (time() - $latestLevelTime < 30 && $userdata['rank'] < 2) {
+	if (time() - $latestLevelTime < 30 && !IS_ADMIN) {
 		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
 		die('-103');
 	}

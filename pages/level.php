@@ -35,7 +35,7 @@ if ($log) {
 	}
 
 	// toggle lock
-	if (isset($_GET['togglelock']) && ($level['author'] == $userdata['id'] || $userdata['rank'] > 1)) {
+	if (isset($_GET['togglelock']) && ($level['author'] == $userdata['id'] || IS_MOD)) {
 		$vis = ($level['visibility'] == 1 ? 0 : 1);
 
 		query("UPDATE levels SET visibility = ? WHERE id = ?", [$vis, $lid]);
@@ -46,7 +46,7 @@ if ($log) {
 	}
 
 	// rerun webhook
-	if (isset($_GET['rerunhook']) && $userdata['rank'] > 2) {
+	if (isset($_GET['rerunhook']) && IS_ADMIN) {
 		$webhookdata = [
 			'id' => $level['id'],
 			'name' => $level['title'],
@@ -59,7 +59,7 @@ if ($log) {
 	}
 
 	// delete level thumbnails
-	if (isset($_GET['delthumb']) && $userdata['rank'] > 2) {
+	if (isset($_GET['delthumb']) && IS_ADMIN) {
 		unlink("data/thumbs/$lid.jpg");
 		unlink("data/thumbs_low/$lid.jpg");
 	}

@@ -29,8 +29,8 @@ $modact = '';
 
 $act = $_POST['action'] ?? '';
 
-if (isset($tid) && $log && $act && ($userdata['rank'] > 2 ||
-		($userdata['id'] == $threadcreator && $act == "rename" && $userdata['rank'] > 0 && isset($_POST['title'])))) {
+if (isset($tid) && $log && $act && (IS_ADMIN ||
+		($userdata['id'] == $threadcreator && $act == "rename" && IS_MEMBER && isset($_POST['title'])))) {
 
 	if ($act == 'stick')	$modact = ',sticky=1';
 	if ($act == 'unstick')	$modact = ',sticky=0';
@@ -90,9 +90,9 @@ if ($viewmode == "thread") {
 
 	$faccess = fetch("SELECT id,minreply FROM z_forums WHERE id = ?",[$thread['forum']]);
 	if ($faccess['minreply'] <= $userdata['rank']) {
-		if ($userdata['rank'] > 1 && $thread['closed'])
+		if (IS_MOD && $thread['closed'])
 			$topbot['actions'] = ['none' => 'Thread closed', "newreply?id=$tid" => 'New reply'];
-		else if ($thread['closed'])
+		elseif ($thread['closed'])
 			$topbot['actions'] = ['none' => 'Thread closed'];
 		else
 			$topbot['actions'] = ["newreply?id=$tid" => 'New reply'];
@@ -148,10 +148,10 @@ if ($viewmode == "thread") {
 if ($thread['posts'] > PPP)
 	$pagelist = pagination($thread['posts'], PPP, $url.'&page=%s', $page);
 
-if ($log && isset($tid) && ($userdata['rank'] > 2 || ($userdata['id'] == $thread['user'] && !$thread['closed'] && $userdata['rank'] > 0))) {
+if ($log && isset($tid) && (IS_ADMIN || ($userdata['id'] == $thread['user'] && !$thread['closed'] && IS_MEMBER))) {
 	$fmovelinks = $stick = $close = $trash = '';
 	$link = "<a href=javascript:submitmod";
-	if ($userdata['rank'] > 2) {
+	if (IS_ADMIN) {
 		$stick = $link.($thread['sticky'] ? "('unstick')>Unstick" : "('stick')>Stick").'</a>';
 		$close = '| '.$link.($thread['closed'] ? "('open')>Open" : "('close')>Close").'</a>';
 

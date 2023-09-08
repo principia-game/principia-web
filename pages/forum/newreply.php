@@ -12,7 +12,7 @@ if (!$thread)
 	error("404", "Thread does not exist.");
 if ($thread['fminreply'] > $userdata['rank'])
 	error("403", "You have no permissions to create posts in this forum!");
-if ($thread['closed'] && $userdata['rank'] < 2)
+if ($thread['closed'] && !IS_MOD)
 	error("400", "You can't post in closed threads.");
 
 $error = '';
@@ -21,9 +21,9 @@ $message = $_POST['message'] ?? '';
 
 if ($action == 'Submit') {
 	$lastpost = fetch("SELECT id,user,date FROM z_posts WHERE thread = ? ORDER BY id DESC LIMIT 1", [$thread['id']]);
-	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 86400) && $userdata['rank'] < 3)
+	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 86400) && !IS_ADMIN)
 		$error = "You can't double post until it's been at least one day!";
-	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 2) && $userdata['rank'] > 2)
+	if ($lastpost['user'] == $userdata['id'] && $lastpost['date'] >= (time() - 2) && IS_ADMIN)
 		$error = "You must wait 2 seconds before posting consecutively.";
 	if (strlen(trim($message)) == 0)
 		$error = "Your post is empty! Enter a message and try again.";

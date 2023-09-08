@@ -1,6 +1,6 @@
 <?php
 
-if ($userdata['rank'] < 3) error('403', "You shouldn't be here, get out!");
+if (!IS_ROOT) error('403', "You shouldn't be here, get out!");
 
 if (isset($_GET['cache'])) {
 	echo twigloader()->render('admin_cache.twig', [

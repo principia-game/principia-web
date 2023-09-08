@@ -43,7 +43,7 @@ if ($log && $action == 'Save changes' && $userdata['rank'] >= $pagedata['minedit
 	}
 
 	$minedit = $_POST['minedit'] ?? null;
-	if ($userdata['rank'] > 2 && $minedit) {
+	if (IS_ADMIN && $minedit) {
 		query("UPDATE wikipages SET minedit = ? WHERE BINARY title = ?",
 			[$minedit, $page]);
 	}

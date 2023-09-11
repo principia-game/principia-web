@@ -10,6 +10,15 @@ function notFound() {
 	error('404');
 }
 
+function rewritePHP() {
+	global $uri;
+
+	if (str_contains($uri, '.php')) {
+		header("Location: ".str_replace('.php', '', $uri), true, 301);
+		die();
+	}
+}
+
 if ($path[1]) {
 	if ($path[1] == 'adminer') {
 		if (IS_ROOT)
@@ -28,8 +37,11 @@ if ($path[1]) {
 			require('pages/forum/index.php');
 		elseif (file_exists('pages/forum/'.$path[2].'.php'))
 			require('pages/forum/'.$path[2].'.php');
-		else
+		else {
+			rewritePHP();
+
 			notFound();
+		}
 	}
 	elseif ($path[1] == 'wiki') {
 		$submodule = 'wiki';
@@ -92,7 +104,20 @@ if ($path[1]) {
 		require('internal/upload.php');
 	elseif ($path[1] == 'levels_with_no_thumbs')
 		require('internal/levels_with_no_thumbs.php');
-	else
+	elseif ($uri == '/image-to-lua')
+		redirect('/image-to-lua/');
+	elseif ($uri == '/image-to-lua/')
+		require('static/image-to-lua/index.html');
+	else {
+		rewritePHP();
+
+		if (str_starts_with($uri, '/levels/thumbs')) {
+			header("Location: ".str_replace('/levels', '', $uri), true, 301);
+			die();
+		}
+
 		notFound();
+	}
+
 } else
 	require('pages/index.php');

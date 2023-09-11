@@ -18,7 +18,7 @@ if (!$internal) {
 	header("Content-Security-Policy:"
 		."default-src 'self';"
 		."script-src 'self' 'unsafe-inline';"
-		."img-src 'self' data: *.voxelmanip.se voxelmanip.se *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com;"
+		."img-src 'self' data: *.voxelmanip.se voxelmanip.se *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com cdn.discordapp.com;"
 		."media-src 'self' *.voxelmanip.se voxelmanip.se;"
 		."frame-src *.youtube-nocookie.com;"
 		."style-src 'self' 'unsafe-inline';");

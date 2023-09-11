@@ -1,6 +1,8 @@
 <?php
 $arg = $path[2] ?? null;
 
+if (isset($_GET['id'])) redirect('/user/'.$_GET['id']);
+
 if (is_numeric($arg))
 	$user = fetch("SELECT * FROM users WHERE id = ?", [$arg]);
 else

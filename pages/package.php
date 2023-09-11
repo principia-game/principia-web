@@ -1,5 +1,5 @@
 <?php
-$pid = $path[1] ?? 0;
+$pid = $path[2] ?? 0;
 
 $pkg = fetch("SELECT $userfields, p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
 

@@ -17,7 +17,7 @@ if (isset($_GET['grf']) && IS_ADMIN) {
 
 $resetdata = fetch("SELECT pr.*, u.name FROM passwordresets pr JOIN users u ON pr.user = u.id WHERE pr.id = ?", [$id]);
 
-if (!$resetdata) error('403', "nononononono");
+if (!$resetdata) error('403');
 if ((time() - $resetdata['time']) >= 60*60*12) error('403', "Password reset request expired (requests are only valid for 12 hours).");
 if (!$resetdata['active']) error('403', "Your password has already been reset by this request.");
 

@@ -7,7 +7,7 @@ $internal = (isset($path[1]) && (in_array($path[1], ['apZodIaL1', 'principia-ver
 require('lib/common.php');
 
 function notFound() {
-	error('404', "The requested page wasn't found.");
+	error('404');
 }
 
 if ($path[1]) {

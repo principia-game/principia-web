@@ -7,9 +7,9 @@ $fid = $_GET['id'] ?? null;
 $forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['rank']]);
 
 if (!$forum)
-	error("404", "Forum does not exist.");
+	error('404');
 if ($forum['minthread'] > $userdata['rank'])
-	error("403", "You have no permissions to create threads in this forum!");
+	error('403', "You have no permissions to create threads in this forum!");
 
 $error = '';
 

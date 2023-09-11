@@ -15,13 +15,13 @@ if (isset($_GET['id'])) {
 } elseif (isset($_GET['pid'])) { // "link" support (i.e., thread?pid=999whatever)
 	$pid = (int)$_GET['pid'];
 	$numpid = fetch("SELECT t.id tid FROM z_posts p LEFT JOIN z_threads t ON p.thread = t.id WHERE p.id = ?", [$pid]);
-	if (!$numpid) error("404", "Thread post does not exist.");
+	if (!$numpid) error('404');
 
 	$tid = result("SELECT thread FROM z_posts WHERE id = ?", [$pid]);
 	$page = floor(result("SELECT COUNT(*) FROM z_posts WHERE thread = ? AND id < ?", [$tid, $pid]) / PPP) + 1;
 	$viewmode = "thread";
 } else
-	error("404", "Thread does not exist.");
+	error('404');
 
 $threadcreator = ($viewmode == "thread" ? result("SELECT user FROM z_threads WHERE id = ?", [$tid]) : 0);
 
@@ -54,7 +54,7 @@ if ($viewmode == "thread") {
 			. "WHERE t.id = ? AND ? >= f.minread",
 			[$tid, $userdata['rank']]);
 
-	if (!isset($thread['id'])) error("404", "Thread does not exist.");
+	if (!isset($thread['id'])) error('404');
 
 	//append thread's title to page title
 	$title = $thread['title'];
@@ -102,7 +102,7 @@ if ($viewmode == "thread") {
 } elseif ($viewmode == "user") {
 	$user = fetch("SELECT * FROM users WHERE id = ?", [$uid]);
 
-	if ($user == null) error("404", "User doesn't exist.");
+	if ($user == null) error('404');
 
 	$title = "Posts by " . $user['name'];
 	$posts = query("SELECT $fieldlist p.*, pt.text, pt.date ptdate, pt.revision cur_revision, t.id tid, f.id fid, t.title ttitle, t.forum tforum

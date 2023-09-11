@@ -6,7 +6,7 @@ if (is_numeric($arg))
 else
 	$user = fetch("SELECT * FROM users WHERE name = ?", [$arg]);
 
-if (!isset($user) || !$user) error('404', "No user specified.");
+if (!isset($user) || !$user) error('404');
 
 $id = $user['id'];
 

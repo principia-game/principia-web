@@ -9,7 +9,7 @@ if ($lid == 2147483000) redirect('https://principia-web.se/download');
 
 $level = fetch("SELECT l.*, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
-if (!$level) error('404', "The requested level wasn't found.");
+if (!$level) error('404');
 
 assert($lid == $level['id']);
 

@@ -8,7 +8,7 @@ $topbot = [
 	'title' => 'Send'
 ];
 
-if (IS_BANNED) error('403', 'You have no permissions to do this!');
+if (IS_BANNED) error('403', 'You cannot send private messages when banned.');
 
 $userto = $_POST['userto'] ?? '';
 $title = $_POST['title'] ?? '';

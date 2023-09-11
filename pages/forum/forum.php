@@ -29,7 +29,7 @@ if ($fid) {
 	} else
 		$forum = fetch("SELECT * FROM z_forums WHERE id = ? AND ? >= minread", [$fid, $userdata['rank']]);
 
-	if (!isset($forum['id'])) error("404", "Forum does not exist.");
+	if (!isset($forum['id'])) error('404');
 
 	$title = $forum['title'];
 
@@ -51,7 +51,7 @@ if ($fid) {
 } elseif ($uid) {
 	$user = fetch("SELECT name FROM users WHERE id = ?", [$uid]);
 
-	if (!$user) error("404", "User does not exist.");
+	if (!$user) error('404');
 
 	$title = "Threads by ".$user['name'];
 
@@ -97,7 +97,7 @@ if ($fid) {
 
 	$url = "forum?time=$time";
 } else
-	error("404", "Forum does not exist.");
+	error('404');
 
 
 $showforum = $time ?? $uid;

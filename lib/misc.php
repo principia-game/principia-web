@@ -42,7 +42,7 @@ function clearMentions($type, $id) {
 }
 
 function clamp($current, $min, $max) {
-    return max($min, min($max, $current));
+	return max($min, min($max, $current));
 }
 
 function commasep($str) {

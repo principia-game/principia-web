@@ -25,7 +25,7 @@ if (isset($_REQUEST['new']) && $log && IS_ADMIN) {
 if ($newsid) {
 	$newsdata = fetch("SELECT * FROM news WHERE id = ?", [$newsid]);
 
-	if (!$newsdata) error('404', "The requested news article wasn't found.");
+	if (!$newsdata) error('404');
 
 	if (isset($newsdata['redirect']))
 		redirect($newsdata['redirect']);

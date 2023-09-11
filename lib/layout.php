@@ -53,7 +53,7 @@ function pagination($levels, $pp, $url, $current) {
 	]);
 }
 
-function error($title, $message) {
+function error($title, $message = '') {
 	global $submodule;
 
 	if ($title >= 400 && $title < 500) http_response_code($title);
@@ -62,6 +62,14 @@ function error($title, $message) {
 		$twig = twigloaderForum();
 	else
 		$twig = twigloader();
+
+	if (!$message) {
+		// Placeholder messages if there is no message.
+		$message = match ($title) {
+			'403' => "You do not have access to this page or action.",
+			'404' => "The requested page was not found. The link may be broken, the page may have been deleted, or you may not have access to it."
+		};
+	}
 
 	echo $twig->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
 	die();

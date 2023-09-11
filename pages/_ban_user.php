@@ -1,6 +1,6 @@
 <?php
 
-if (!IS_MOD) error('403', "You shouldn't be here, get out!");
+if (!IS_MOD) error('403');
 
 $id = $_GET['id'] ?? null;
 $action = $_POST['action'] ?? null;

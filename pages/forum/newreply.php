@@ -9,11 +9,11 @@ $thread = fetch("SELECT t.*, f.title ftitle, f.minreply fminreply
 	WHERE t.id = ? AND ? >= f.minread", [$tid, $userdata['rank']]);
 
 if (!$thread)
-	error("404", "Thread does not exist.");
+	error('404');
 if ($thread['fminreply'] > $userdata['rank'])
-	error("403", "You have no permissions to create posts in this forum!");
+	error('403', "You have no permissions to create posts in this forum!");
 if ($thread['closed'] && !IS_MOD)
-	error("400", "You can't post in closed threads.");
+	error('400', "You can't post in closed threads.");
 
 $error = '';
 

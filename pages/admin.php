@@ -1,6 +1,6 @@
 <?php
 
-if (!IS_MOD) error('403', 'nuh uh');
+if (!IS_MOD) error('403');
 
 if (isset($path[2])) {
 	if (file_exists('pages/admin/'.$path[2].'.php')) {
@@ -29,12 +29,3 @@ if (isset($path[2])) {
 		'latest_comments' => $latestComments
 	]);
 }
-die();
-
-if (!IS_ROOT) error('403', "You shouldn't be here, get out!");
-
-if (isset($_GET['cache'])) {
-
-}
-
-

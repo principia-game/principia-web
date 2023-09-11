@@ -6,7 +6,7 @@ $pid = $_GET['pid'] ?? null;
 
 if ($act == 'delete' || $act == 'undelete') {
 	if (!IS_MOD)
-		error("You do not have the permission to do this.");
+		error('403', "You do not have the permission to do this.");
 
 	query("UPDATE z_posts SET deleted = ? WHERE id = ?", [($act == 'delete' ? 1 : 0), $pid]);
 	redirect("thread?pid=$pid#$pid");
@@ -22,11 +22,11 @@ $thread = fetch("SELECT p.user puser, t.*, f.title ftitle
 		[$pid, $userdata['rank']]);
 
 if (!$thread)
-	error('404', "Post doesn't exist.");
+	error('404');
 if ($thread['closed'] && !IS_MOD)
-	error("403", "You can't edit a post in closed threads!");
+	error('403', "You can't edit a post in closed threads!");
 if (!IS_ROOT && $userdata['id'] != $thread['puser'])
-	error("403", "You do not have permission to edit this post.");
+	error('403', "You do not have permission to edit this post.");
 
 $editpost = fetch("SELECT u.id, p.user, pt.text
 			FROM z_posts p
@@ -38,7 +38,7 @@ $message = $_POST['message'] ?? $editpost['text'];
 
 if ($action == 'Submit') {
 	if ($editpost['text'] == $_POST['message'])
-		error("400", "No changes detected.");
+		error('400', "No changes detected.");
 
 	$newrev = result("SELECT revision FROM z_posts WHERE id = ?", [$pid]) + 1;
 

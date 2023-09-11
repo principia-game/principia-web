@@ -5,7 +5,7 @@ $lid = $_GET['id'] ?? 0;
 $level = fetch("SELECT l.*, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level || (!IS_ADMIN && $userdata['id'] != $level['author']))
-	error('403', "Odd place to find yourself.");
+	error('403');
 
 if (isset($_POST['action'])) {
 	$title = $_POST['title'] ?? '';

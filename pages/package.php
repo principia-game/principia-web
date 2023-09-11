@@ -3,7 +3,7 @@ $pid = $path[1] ?? 0;
 
 $pkg = fetch("SELECT $userfields, p.* FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
 
-if (!$pkg) error('404', "The requested package wasn't found.");
+if (!$pkg) error('404');
 
 if ($log) {
 	query("UPDATE packages SET views = views + '1' WHERE id = ?", [$pid]);

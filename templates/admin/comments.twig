@@ -1,0 +1,31 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Comment list" %}
+
+	{% block content %}
+<h1>Comment list</h1>
+<table class="settings">
+	<tr>
+		<th style="width:50px">ID</th>
+		<th style="width:50px">Type</th>
+		<th style="width:50px">"Level"</th>
+		<th>Excerpt</th>
+		<th style="width:180px">Author</th>
+		<th style="width:120px">Time</th>
+		<th style="width:70px">Deleted</th>
+		<th style="width:50px"></th>
+	</tr>
+	{% for entry in comments %}
+	<tr>
+		<td class="right">{{ entry.id }}</td>
+		<td class="center">{{ entry.type | cmt_num_to_type }}</td>
+		<td class="right">{{ entry.level }}</td>
+		<td class="mono">{{ entry.message |slice(0, 100) }}</td>
+		<td class="center">{{ userlink(entry, 'u_') }}</td>
+		<td class="center">{{ entry.time | relative_time }}</td>
+		<td class="center {% if entry.deleted %}bg-red">Yes{% else %}bg-green">No{% endif %}</td>
+		<td class="center"><a href="/{{ entry.type | cmt_num_to_type }}/{{ entry.level }}">Link</a></td>
+	</tr>
+	{% endfor %}
+</table><br>
+	{% endblock %}

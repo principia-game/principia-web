@@ -1,0 +1,29 @@
+{% extends "_layout.twig" %}
+
+{% set title = 'Level list' %}
+
+	{% block content %}
+<h1>Level list</h1>
+<table class="settings">
+	<tr>
+		<th style="width:50px">ID</th>
+		<th>Title</th>
+		<th style="width:180px">Author</th>
+		<th style="width:80px">Visibility</th>
+		<th>Has thumb</th>
+		<th>Parent ID</th>
+		<th>Download inflation</th>
+	</tr>
+	{% for level in levels %}
+	<tr>
+		<td class="right"><a href="/level/{{ level.id }}">{{ level.id }}</a></td>
+		<td>{{ level.title }}</td>
+		<td class="center">{{ userlink(level, 'u_') }}</td>
+		<td class="center {{ level.visibility | vis_id_to_colour }}">{{ level.visibility | vis_id_to_name }}</td>
+		<td class="center {% if level.hasthumb %}bg-green">Yes{% else %}bg-red">No{% endif %}</td>
+		<td class="center{% if level.parent > newestlevel.id %} bg-red{% endif %}">{{ level.parent | default('0') }}</td>
+		<td class="center{% if level.dlbloat > 2 %} bg-magenta{% endif %}">{{ level.dlbloat }}</td>
+	</tr>
+	{% endfor %}
+</table><br>
+	{% endblock %}

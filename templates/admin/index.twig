@@ -1,0 +1,72 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Administrative panel" %}
+
+	{% block content %}
+<h1>Administrative panel</h1>
+
+<p>Welcome to the principia-web administration panel, providing tools as well as statistics to moderate and manage principia-web at a glance.</p>
+
+<div class="two-columns">
+	<div class="column">
+		<h3>Moderators</h3>
+		<p>These pages are accessible to moderators and administrators.</p>
+		<ul>
+			<li><a href="/admin/comments">Comments</a></li>
+			<li><a href="/admin/levels">Levels</a></li>
+			<li><a href="/viewlocked">View locked levels</a></li>
+			<li><a href="/userlist">User list</a></li>
+		</ul>
+	</div>
+	<div class="column">
+		<h3>Administrators</h3>
+		<p>These pages are only accessible to administrators.</p>
+
+		<ul>
+			<li><a href="/admin/cache">APCu Cache Info</a></li>
+			<li><a href="/news?new">New news post</a></li>
+			<li><a href="/admin/ipbans">IP bans</a></li>
+			<li><a href="/forum/manageforums">Manage forums</a></li>
+			{% if userdata.rank > 3 %}<li style="font-weight:bold"><a href="/adminer">Go to Adminer</a></li>{% endif %}
+		</ul>
+	</div>
+</div>
+
+<h3>User statistics</h3>
+
+<div class="two-columns">
+	<table class="c1">
+		<tr class="h"><td colspan="2">Latest registered users</td></tr>
+		{% for user in latest_registered_users %}
+			<tr>
+				<td style="width:50%">{{ userlink(user) }}</td>
+				<td>{{ user.joined | date() }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+	<table class="c1">
+		<tr class="h"><td colspan="2">Latest seen users</td></tr>
+		{% for user in latest_seen_users %}
+			<tr>
+				<td style="width:50%">{{ userlink(user) }}</td>
+				<td>{{ user.lastview | relative_time }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</div>
+
+<h3>Latest comments</h3>
+<div class="comments">
+	{% for cmnt in latest_comments %}
+		<div class="comment" id="comment-{{ cmnt.id }}">
+			<p>
+				{{ userlink(cmnt, 'u_') }}
+				commented on <a href="/{{ cmnt.type | cmt_num_to_type }}/{{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
+				<span class="date">{{ cmnt.time | relative_time }}</span>
+			</p>
+			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
+		</div>
+	{% endfor %}
+</div>
+	{% endblock %}

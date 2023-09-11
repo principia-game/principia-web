@@ -47,6 +47,24 @@ function cmtNumToType($num) {
 	};
 }
 
+function visIdToName($id) {
+	return match ($id) {
+		0 => 'Public',
+		1 => 'Locked',
+		2 => 'Unlisted',
+		default => 'N/A'
+	};
+}
+
+function visIdToColour($id) {
+	return match ($id) {
+		0 => 'bg-green',
+		1 => 'bg-yellow',
+		2 => 'bg-cyan',
+		default => ''
+	};
+}
+
 /**
  * Extract the platform from a user agent string.
  * This is supposed to be used for getting the platform a level was uploaded from.

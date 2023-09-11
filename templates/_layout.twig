@@ -44,6 +44,7 @@
 			{% if log %}
 				{% if notification_count > 0 %}<span class="notifs">[{{ notification_count }}]</span>{% endif %}
 				{{ userlink(userdata) }}
+				{% if userdata.rank > 1 %}<a href="/admin"><img src="/icons/shield{% if userdata.darkmode %}_w{%endif%}.svg" height="20" style="vertical-align:middle"></a>{% endif %}
 			{% else %}
 				<a href="/login">Login</a>
 			{% endif %}

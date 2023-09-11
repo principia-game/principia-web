@@ -537,11 +537,32 @@ div.level {
 
 .text-for-ants { font-size: 8pt; }
 
+.mono { font-family: monospace; }
+
 .error {
 	color: red;
 	font-weight: bold;
 }
 
+$basic-colours: (
+	"red": #9c0d0d,
+	"green": #0d9c0d,
+	"blue": #0d0d9c,
+	"cyan": #0d9c9c,
+	"magenta": #9c0d9c,
+	"yellow": #9c9c0d,
+);
+
+@mixin map-colors-to-boxes($basic-colours: $basic-colours) {
+	@each $name, $hex in $basic-colours {
+		.bg-#{$name} {
+			background-color: $hex;
+			color: white;
+		}
+	}
+}
+
+@include map-colors-to-boxes;
 
 /// User page \\\
 .user_about {
@@ -608,7 +629,7 @@ div.level {
 .two-columns {
 	display: block;
 
-	table {
+	table, .column {
 		margin: 15px 0px;
 	}
 
@@ -616,7 +637,7 @@ div.level {
 		display: flex;
 		align-items: flex-start;
 
-		table {
+		table, .column {
 			margin: 0px 10px;
 		}
 	}

@@ -21,6 +21,11 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 		return [
 			new \Twig\TwigFilter('cat_to_type', 'cat_to_type'),
 
+			new \Twig\TwigFilter('vis_id_to_name', 'visIdToName'),
+			new \Twig\TwigFilter('vis_id_to_colour', 'visIdToColour'),
+
+			new \Twig\TwigFilter('cmt_num_to_type', 'cmtNumToType'),
+
 			// Markdown function for non-inline text, sanitized.
 			new \Twig\TwigFilter('markdown', function ($text) {
 				$markdown = new Parsedown();

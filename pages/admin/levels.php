@@ -14,7 +14,7 @@ while ($level = $levelquery->fetch()) {
 
 $newestlevel = fetch("SELECT l.id, l.title FROM levels l ORDER BY l.id DESC");
 
-echo twigloader()->render('admin/levels.twig', [
+twigloader()->display('admin/levels.twig', [
 	'levels' => $levels,
 	'newestlevel' => $newestlevel
 ]);

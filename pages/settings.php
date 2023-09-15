@@ -70,6 +70,6 @@ $timezones = [];
 foreach (timezone_identifiers_list() as $tz)
 	$timezones[] = $tz;
 
-echo twigloader()->render('settings.twig', [
+twigloader()->display('settings.twig', [
 	'timezones' => $timezones
 ]);

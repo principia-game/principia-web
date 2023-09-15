@@ -189,7 +189,7 @@ function showmove() { moptions.innerHTML = 'Move to: $fmovelinks'; }
 HTML;
 }
 
-echo twigloaderForum()->render('thread.twig', [
+twigloaderForum()->display('thread.twig', [
 	'viewmode' => $viewmode,
 	'thread' => $thread,
 	'posts' => $posts,

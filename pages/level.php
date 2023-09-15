@@ -96,7 +96,7 @@ if ($level['parent'])
 			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
 		[$level['parent']]);
 
-echo twigloader()->render('level.twig', [
+twigloader()->display('level.twig', [
 	'lid' => $lid,
 	'level' => $level,
 	'has_liked' => $hasLiked ?? false,

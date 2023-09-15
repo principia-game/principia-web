@@ -30,6 +30,6 @@ foreach ($pages as $page) {
 		$orphanedpages[] = $page['title'];
 }
 
-echo _twigloader()->render('orphanedpages.twig', [
+_twigloader()->display('orphanedpages.twig', [
 	'orphanedpages' => $orphanedpages
 ]);

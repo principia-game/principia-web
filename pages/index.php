@@ -30,7 +30,7 @@ $latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
 			WHERE c.type = 1 AND c.deleted = 0 ORDER BY c.time DESC LIMIT 8"));
 });
 
-echo twigloader()->render('index.twig', [
+twigloader()->display('index.twig', [
 	'just_registered' => isset($_GET['rd']),
 	'already_logged' => isset($_GET['al']),
 	'featured_levels' => $latestfeatured,

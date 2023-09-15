@@ -55,7 +55,7 @@ $chosenCaptcha = array_rand($captcha);
 $currentCaptcha = $captcha[$chosenCaptcha];
 $currentCaptcha['id'] = $chosenCaptcha;
 
-echo twigloader()->render('register.twig', [
+twigloader()->display('register.twig', [
 	'error' => $error, 'current_captcha' => $currentCaptcha,
 	'name' => $name, 'mail' => $mail
 ]);

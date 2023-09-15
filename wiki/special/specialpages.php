@@ -9,6 +9,6 @@ $specialpages = [
 	'WantedPages' => 'Wanted pages'
 ];
 
-echo _twigloader()->render('specialpages.twig', [
+_twigloader()->display('specialpages.twig', [
 	'specialpages' => $specialpages
 ]);

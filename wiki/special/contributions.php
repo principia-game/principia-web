@@ -38,7 +38,7 @@ userlink($user), $stats['contributions'], $stats['creations'], number_format($st
 
 $contributions = query("SELECT page, revision, size, sizediff, time, description FROM wikirevisions WHERE BINARY author = ? ORDER BY time DESC, id DESC LIMIT 50", [$id]);
 
-echo _twigloader()->render('contributions.twig', [
+_twigloader()->display('contributions.twig', [
 	'id' => $id,
 	'user' => $user,
 	'contrib_text' => $contrib_text,

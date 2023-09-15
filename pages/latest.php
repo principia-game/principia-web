@@ -9,7 +9,7 @@ $levels = query("SELECT l.id, l.title, $userfields
 
 $count = result("SELECT COUNT(*) FROM levels l $where");
 
-echo twigloader()->render('latest.twig', [
+twigloader()->display('latest.twig', [
 	'type' => $type,
 	'levels' => fetchArray($levels),
 	'page' => $page,

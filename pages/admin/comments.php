@@ -10,6 +10,6 @@ while ($comment = $commentquery->fetch()) {
 	$comments[] = $comment;
 }
 
-echo twigloader()->render('admin/comments.twig', [
+twigloader()->display('admin/comments.twig', [
 	'comments' => $comments
 ]);

@@ -31,7 +31,7 @@ if ($revision) {
 			WHERE BINARY p.title = ? AND BINARY r.page = ?", [$page, $page]);
 }
 
-echo _twigloader()->render('index.twig', [
+_twigloader()->display('index.twig', [
 	'pagetitle' => $page,
 	'pagetitle_slugified' => str_replace(' ', '_', $page),
 	'page' => $pagedata,

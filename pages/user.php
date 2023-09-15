@@ -36,7 +36,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	$notifications = prepareNotifications($notifsdata, $userdata['id']);
 
-	echo twigloader()->render('user.twig', [
+	twigloader()->display('user.twig', [
 		'id' => $id,
 		'name' => $userdata['name'],
 		'forceuser' => $forceuser,
@@ -63,7 +63,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	clearMentions('user', $id);
 
-	echo twigloader()->render('user.twig', [
+	twigloader()->display('user.twig', [
 		'id' => $id,
 		'name' => $user['name'],
 		'userpagedata' => $user,

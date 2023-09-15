@@ -2,4 +2,4 @@
 
 needsLogin();
 
-echo twigloader()->render('userexport.twig');
+twigloader()->display('userexport.twig');

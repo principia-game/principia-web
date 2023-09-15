@@ -13,7 +13,7 @@ $diff = new Diff(
 $renderer = new Diff_Renderer_Html_Inline;
 $output = $diff->render($renderer);
 
-echo _twigloader()->render('diff.twig', [
+_twigloader()->display('diff.twig', [
 	'pagetitle' => $page,
 	'pagetitle_slugified' => $page_slugified,
 	'prev' => $prev,

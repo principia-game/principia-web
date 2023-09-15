@@ -18,7 +18,7 @@ if (isset($_REQUEST['new']) && $log && IS_ADMIN) {
 		redirect("/news/$insertid");
 	}
 
-	echo twigloader()->render('admin_news_add.twig');
+	twigloader()->display('admin_news_add.twig');
 	die();
 }
 
@@ -39,7 +39,7 @@ if ($newsid) {
 			ORDER BY c.time DESC",
 		[$newsid]);
 
-	echo twigloader()->render('news.twig', [
+	twigloader()->display('news.twig', [
 		'newsid' => $newsid,
 		'news' => $newsdata,
 		'time' => $time,
@@ -49,7 +49,7 @@ if ($newsid) {
 } else {
 	$newsdata = query("SELECT id, title, time FROM news ORDER BY id DESC");
 
-	echo twigloader()->render('news.twig', [
+	twigloader()->display('news.twig', [
 		'newsid' => $newsid,
 		'news' => $newsdata
 	]);

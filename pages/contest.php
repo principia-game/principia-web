@@ -12,7 +12,7 @@ $levels = query("SELECT ce.*, l.id id, l.title title, $userfields FROM contests_
 
 $comments = query("SELECT c.*, $userfields FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 3 AND c.level = ? ORDER BY c.time DESC", [$contestid]);
 
-echo twigloader()->render('contest.twig', [
+twigloader()->display('contest.twig', [
 	'contestid' => $contestid,
 	'contest' => $contest,
 	'levels' => fetchArray($levels),

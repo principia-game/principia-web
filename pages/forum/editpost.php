@@ -73,7 +73,7 @@ if ($action == 'Preview') {
 	$topbot['title'] .= ' (Preview)';
 }
 
-echo twigloaderForum()->render('editpost.twig', [
+twigloaderForum()->display('editpost.twig', [
 	'post' => $post ?? null,
 	'topbot' => $topbot,
 	'action' => $action,

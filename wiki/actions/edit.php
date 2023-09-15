@@ -62,7 +62,7 @@ if ($log && $action == 'Save changes' && $userdata['rank'] >= $pagedata['minedit
 
 $pagedata['minedit'] = $_POST['minedit'] ?? ($pagedata['minedit'] ?? 1);
 
-echo _twigloader()->render('edit.twig', [
+_twigloader()->display('edit.twig', [
 	'pagetitle' => $page,
 	'pagetitle_slugified' => str_replace(' ', '_', $page),
 	'page' => $pagedata,

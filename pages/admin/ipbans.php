@@ -16,6 +16,6 @@ if (isset($_POST['action'])) {
 
 $ipbans = query("SELECT * FROM ipbans");
 
-echo twigloader()->render('admin/ipbans.twig', [
+twigloader()->display('admin/ipbans.twig', [
 	'ipbans' => $ipbans,
 ]);

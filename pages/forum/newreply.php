@@ -107,7 +107,7 @@ $newestposts = query("SELECT $fieldlist p.*, pt.text
 			WHERE p.thread = ? AND p.deleted = 0
 			ORDER BY p.id DESC LIMIT 5", [$tid]);
 
-echo twigloaderForum()->render('newreply.twig', [
+twigloaderForum()->display('newreply.twig', [
 	'post' => $post ?? null,
 	'message' => $message,
 	'topbot' => $topbot,

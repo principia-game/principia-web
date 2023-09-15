@@ -21,7 +21,7 @@ if (isset($path[2])) {
 
 	$latestComments = query("SELECT c.*, $userfields FROM comments c JOIN users u ON c.author = u.id WHERE c.deleted = 0 ORDER BY c.time DESC LIMIT 7");
 
-	echo twigloader()->render('admin/index.twig', [
+	twigloader()->display('admin/index.twig', [
 		'latest_registered_users' => $latestRegisteredUsers,
 		'latest_seen_users' => $latestSeenUsers,
 		'things_to_count' => $thingsToCount,

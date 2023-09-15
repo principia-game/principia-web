@@ -10,7 +10,7 @@ for ($i = 1; $i <= $ucount; $i++) {
 	});
 }
 
-echo twigloader()->render('userlist.twig', [
+twigloader()->display('userlist.twig', [
 	'users' => $users,
 	'levelcounts' => $levelcounts
 ]);

@@ -67,13 +67,13 @@ if ($path[1]) {
 		}
 	}
 	elseif (isset($markdownPages[$path[1]])) {
-		echo twigloader()->render('_markdown.twig', [
+		twigloader()->display('_markdown.twig', [
 			'pagetitle' => $markdownPages[$path[1]],
 			'file' => $path[1].'.md'
 		]);
 	}
 	elseif ($path[1] == 'download')
-		echo twigloader()->render('download.twig');
+		twigloader()->display('download.twig');
 
 	elseif (file_exists('pages/'.$path[1].'.php'))
 		require('pages/'.$path[1].'.php');

@@ -1,0 +1,20 @@
+<div class="infobox">
+	<table>
+		<tr>
+			<td class="heading" colspan="2">{{ data.name }}</td>
+		</tr>
+		<tr>
+			<th style="width:50%">ID</th>
+			<td>{{ data.id }}</td>
+		</tr><tr>
+			<th>Category</th>
+			<td>{{ data.category }}</td>
+		</tr>
+		{% if data.version %}
+			<tr>
+				<th>Added in</th>
+				<td>{{ data.version }}</td>
+			</tr>
+		{% endif %}
+	</table>
+</div>

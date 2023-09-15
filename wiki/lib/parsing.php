@@ -17,13 +17,19 @@ function parsing($text) {
 }
 
 function parseFunctions($match) {
-	if (str_contains($match[1], '.') || !file_exists('scripts/'.$match[1].'.lua'))
+	if (str_contains($match[1], '.') || !file_exists('templates/functions/'.$match[1].'.twig'))
 		return '<span class="error">Template error: Invalid function name</span>';
 
-	$cmd = sprintf(
-		"luajit lib/lua/bootstrap.lua %s %s 2>&1",
-	escapeshellarg($match[1]), escapeshellarg($match[2]));
+	// JSON is the most anal language ever
+	// (I mean, I'm into anal, but not this kind)
+	$match[2] = str_replace(",\n}", "\n}", $match[2]);
 
-	exec($cmd, $output);
-	return implode('', $output);
+	$data = json_decode($match[2], true);
+
+	if (json_last_error_msg() != "No error")
+		return '<span class="error">Template error: '.json_last_error_msg().'</span>';
+
+	return _twigloader()->render('functions/'.$match[1].'.twig', [
+		'data' => $data
+	]);
 }

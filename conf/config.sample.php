@@ -5,7 +5,6 @@ define('DB_USER', '');
 define('DB_PASS', '');
 
 define('TPL_CACHE', '/tmp/principia-web/');
-define('TPL_NO_CACHE', false);
 
 define('EMAIL_SALT', 'CHANGEME'); // Email salt to prevent rainbow table attacks. CHANGE THIS!
 

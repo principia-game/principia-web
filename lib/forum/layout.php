@@ -66,7 +66,7 @@ function ifEmptyQuery($message, $colspan = 0, $table = false) {
 	if ($table) echo '</table>';
 }
 
-function twigloaderForum($subfolder = '') {
+function twigloaderForum() {
 	$twig = twigloader('forum');
 
 	$twig->addExtension(new PrincipiaForumExtension());

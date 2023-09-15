@@ -1,33 +1,31 @@
 <?php
 
+if (DEBUG)
+	$profile = new \Twig\Profiler\Profile();
+
 /**
  * Twig loader, initializes Twig with standard configurations and extensions.
  *
  * @param string $subfolder Subdirectory to use in the templates/ directory.
  * @return \Twig\Environment Twig object.
  */
-function twigloader($subfolder = '', $customloader = null, $customenv = null) {
-	global $userdata, $notificationCount, $log, $footerlinks, $uri, $path, $submodule;
+function twigloader($subfolder = '') {
+	global $log, $footerlinks, $uri, $path, $submodule, $profile;
 
-	$doCache = (TPL_NO_CACHE ? false : TPL_CACHE);
+	$loader = new \Twig\Loader\FilesystemLoader('templates/'.$subfolder);
 
-	if (!isset($customloader))
-		$loader = new \Twig\Loader\FilesystemLoader('templates/' . $subfolder);
-	else
-		$loader = $customloader();
-
-	if (!isset($customenv)) {
-		$twig = new \Twig\Environment($loader, [
-			'cache' => $doCache,
-		]);
-	} else
-		$twig = $customenv($loader, $doCache);
+	$twig = new \Twig\Environment($loader, [
+		'cache' => TPL_CACHE,
+		'auto_reload' => true,
+	]);
 
 	// Add principia-web specific extension
 	$twig->addExtension(new PrincipiaExtension());
 
-	$twig->addGlobal('userdata', $userdata);
-	$twig->addGlobal('notification_count', $notificationCount);
+	if (DEBUG)
+		$twig->addExtension(new \Twig\Extension\ProfilerExtension($profile));
+
+	$twig->addGlobal('userdata', $GLOBALS['userdata']);
 	$twig->addGlobal('log', $log);
 	$twig->addGlobal('glob_lpp', LPP);
 	$twig->addGlobal('footerlinks', $footerlinks);
@@ -36,7 +34,7 @@ function twigloader($subfolder = '', $customloader = null, $customenv = null) {
 	if ($submodule == 'forum')
 		$twig->addGlobal('pagename', '/forum/'.$path[2]);
 	else
-	$twig->addGlobal('pagename', '/'.$path[1]);
+		$twig->addGlobal('pagename', '/'.$path[1]);
 
 	return $twig;
 }

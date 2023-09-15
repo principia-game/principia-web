@@ -9,6 +9,14 @@ $profiler = new Profiler();
 if (!isset($internal)) $internal = false;
 
 require_once('conf/config.php');
+
+define('DEBUG', (isset($debug) && $debug));
+
+if (DEBUG) {
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
+}
+
 require_once('vendor/autoload.php');
 foreach (glob("lib/*.php") as $file)
 	require_once($file);
@@ -62,7 +70,7 @@ if (isset($_COOKIE[COOKIE_NAME]) && validToken($_COOKIE[COOKIE_NAME])) {
 
 if ($log) {
 	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$id]);
-	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
+	$userdata['notifications'] = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 
 	if (!$internal) {
 		if ($userdata['rank'] < 0)

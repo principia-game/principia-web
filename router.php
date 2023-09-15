@@ -121,3 +121,9 @@ if ($path[1]) {
 
 } else
 	require('pages/index.php');
+
+if (DEBUG) {
+	echo "<pre>== Twig perf dump ==\n";
+	$dumper = new \Twig\Profiler\Dumper\TextDumper();
+	echo $dumper->dump($profile).'</pre>';
+}

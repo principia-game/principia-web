@@ -1,27 +1,14 @@
-{% macro wikilinks(type, page) %}
+{% macro wikilinks(page) %}
 	<div class="wikilinks" style="clear:both">
 		<div>
 			<a href="/wiki/">Main Page</a>
-			&ndash; <a href="/wiki/Special:RecentChanges">Recent changes</a>
 			&ndash; <a href="/wiki/Special:PageIndex">Page Index</a>
 		</div>
 
-		{% if type != "special" %}
+		{% if page %}
 			<div class="right">
-				{% if type != "read" %}<a href="/wiki/{{ page }}" accesskey="r">Read</a>{% else %}Read{% endif %}
-				&ndash; {% if type != "edit" %}<a href="/wiki/{{ page }}?action=edit" rel="nofollow" accesskey="e">Edit</a>{% else %}Edit{% endif %}
-				&ndash; {% if type != "viewhistory" %}<a href="/wiki/{{ page }}?action=history" rel="nofollow" accesskey="d">View history</a>{% else %}View history{% endif %}
+				<a href="https://github.com/principia-game/wiki/blob/master/pages/{{ page }}.md">View on GitHub</a>
 			</div>
 		{% endif %}
 	</div>
-{% endmacro %}
-
-{% macro sizediff(sizediff) %}
-	{% if sizediff > 0 %}
-		<span class="sizediff-pos">(+{{ sizediff }})</span>
-	{% elseif sizediff < 0 %}
-		<span class="sizediff-neg">({{ sizediff }})</span>
-	{% else %}
-		<span class="sizediff-net">(0)</span>
-	{% endif %}
 {% endmacro %}

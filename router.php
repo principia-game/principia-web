@@ -13,13 +13,11 @@ function notFound() {
 function rewritePHP() {
 	global $uri;
 
-	if (str_contains($uri, '.php')) {
-		header("Location: ".str_replace('.php', '', $uri), true, 301);
-		die();
-	}
+	if (str_contains($uri, '.php'))
+		redirectPerma(str_replace('.php', '', $uri));
 }
 
-if ($path[1]) {
+if (isset($path[1]) && $path[1] != '') {
 	if ($path[1] == 'adminer') {
 		if (IS_ROOT)
 			adminerBootstrap();
@@ -60,8 +58,7 @@ if ($path[1]) {
 		if (!isset($path[2]))
 			redirect('/api/');
 		elseif ($path[2] == '') {
-			header('Content-Type: text/plain');
-			readfile('pages/api/README.md');
+			renderPlaintext('pages/api/README.md');
 		} elseif (file_exists('pages/api/'.$path[2].'.php')) {
 			require('pages/api/'.$path[2].'.php');
 		}
@@ -108,13 +105,13 @@ if ($path[1]) {
 		redirect('/image-to-lua/');
 	elseif ($uri == '/image-to-lua/')
 		require('static/image-to-lua/index.html');
+	elseif ($path[1] == 'LICENSE')
+		renderPlaintext('LICENSE');
 	else {
 		rewritePHP();
 
-		if (str_starts_with($uri, '/levels/thumbs')) {
-			header("Location: ".str_replace('/levels', '', $uri), true, 301);
-			die();
-		}
+		if (str_starts_with($uri, '/levels/thumbs'))
+			redirectPerma(str_replace('/levels', '', $uri));
 
 		notFound();
 	}

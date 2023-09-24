@@ -15,7 +15,6 @@ The following PHP libraries are used:
 - [`nelexa/zip`](https://github.com/Ne-Lexa/php-zip) (MIT)
 - [`nopjmp/discord-webhooks`](https://github.com/nopjmp/discord-webhooks) (MIT)
 - [`mpratt/relativetime`](https://github.com/mpratt/RelativeTime) (MIT)
-- [`rollerozxa/php-diff`](https://github.com/rollerozxa/php-diff/) (BSD-3)
 
 ---
 

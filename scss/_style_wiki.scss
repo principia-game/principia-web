@@ -9,7 +9,7 @@
 .wikilinks {
 	border-top: 1px solid $grid;
 	padding: 10px;
-	margin-top: 1em;
+	margin-top: 2em;
 
 	display: flex;
 	flex-flow: row nowrap;
@@ -87,58 +87,6 @@
 	}
 }
 
-.diff {
-	width: 100%;
-	border-collapse: collapse;
-	border-top: 1px solid #444;
-	border-bottom: 1px solid #444;
-
-	tbody th {
-		text-align: right;
-		background: #111;
-		width: 2em;
-		padding: 1px 4px;
-		border-left: 1px solid #444;
-		border-right: 1px solid #444;
-		vertical-align: top;
-	}
-
-	td {
-		padding: 1px 4px;
-		font-family: Consolas, monospace;
-	}
-
-	ins, del {
-		text-decoration: none;
-	}
-
-	.skip {
-		background: #000;
-	}
-
-	.chng-replace .d-left,
-	.chng-delete .d-left {
-		background: #600;
-	}
-
-	.chng-replace .d-right,
-	.chng-insert .d-right {
-		background: #060;
-	}
-
-	.chng-replace ins {
-		background: #0a0;
-	}
-
-	.chng-replace del {
-		background: #a00;
-	}
-}
-
 a.nonexistant {
 	color: #ba0000;
 }
-
-.sizediff-pos { color: #090 }
-.sizediff-neg { color: #a00 }
-.sizediff-net { color: #888 }

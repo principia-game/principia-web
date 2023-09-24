@@ -15,5 +15,5 @@
 	<li><a class="nonexistant" href="/wiki/{{ page | replace({" ":"_"}) }}">{{ page }}</a> ({{ count }})</li>
 {% endfor %}
 </ol>
-{{ wikilinks("special") }}
+{{ wikilinks() }}
 	{% endblock %}

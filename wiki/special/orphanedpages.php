@@ -2,14 +2,12 @@
 
 // Generates a list of "orphaned" pages, not linked from anywhere else on the wiki.
 
-$pagecontent = query("SELECT p.title, r.content FROM wikipages p JOIN wikirevisions r ON p.cur_revision = r.revision AND p.title = r.page");
-
-$pages = query("SELECT title FROM wikipages p");
+$pagecontent = getPageContent();
 
 // Iterate over page contents, get a list of linked pages.
 $linkedpages = [];
-foreach ($pagecontent as $page) {
-	preg_match_all('/\[\[(.*?)\]\]/', $page['content'], $links);
+foreach ($pagecontent as $content) {
+	preg_match_all('/\[\[(.*?)\]\]/', $content, $links);
 	foreach ($links[1] as $link)
 		$linkedpages[$link] = true;
 }
@@ -25,9 +23,9 @@ foreach ($blacklist as $page)
 
 // Iterate over pages, any pages not existing in $linkedpages is an orphan!
 $orphanedpages = [];
-foreach ($pages as $page) {
-	if (!isset($linkedpages[$page['title']]))
-		$orphanedpages[] = $page['title'];
+foreach ($pagecontent as $pagename => $content) {
+	if (!isset($linkedpages[$pagename]))
+		$orphanedpages[] = $pagename;
 }
 
 _twigloader()->display('orphanedpages.twig', [

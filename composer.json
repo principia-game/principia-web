@@ -6,17 +6,13 @@
 		"phpmailer/phpmailer": "dev-master",
 		"nelexa/zip": "^3.3.3",
 		"nopjmp/discord-webhooks": "dev-master",
-		"mpratt/relativetime": "dev-master",
-		"rollerozxa/php-diff": "dev-master"
+		"mpratt/relativetime": "dev-master"
 	},
 	"minimum-stability": "dev",
 	"repositories": [
 		{
 			"type": "vcs",
 			"url":  "https://github.com/kaitai-io/kaitai_struct_php_runtime"
-		}, {
-			"type": "vcs",
-			"url":  "https://github.com/rollerozxa/php-diff"
 		}
 	]
 }

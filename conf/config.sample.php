@@ -17,7 +17,6 @@ define('COOKIE_NAME', '_PRINCSECURITY');
 define('DOMAIN', 'http://principia-web.uwu');
 
 define('WEBHOOK_LEVEL', '');
-define('WEBHOOK_WIKI', '');
 define('WEBHOOK_FORUM', '');
 
 // principia-web's CAPTCHA system relies on a list of security questions. It's highly recommended to change these.

@@ -57,3 +57,9 @@ function normalise($text) {
 function esc($text) {
 	return htmlspecialchars($text);
 }
+
+function renderPlaintext($filename) {
+	header('Content-Type: text/plain');
+	readfile($filename);
+	die();
+}

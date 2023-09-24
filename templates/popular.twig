@@ -5,7 +5,7 @@
 
 	{% block content %}
 <h1>Most popular levels</h1>
-<p><em>These are the top{% if levels|length >= glob_lpp %} {{ glob_lpp }}{% endif %} most popular levels of all time.</em></p>
+<p><em>These are the top {{ glob_lpp }} most popular levels of all time.</em></p>
 
 <div class="level-list">
 {% for level in levels %}

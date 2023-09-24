@@ -1,10 +1,10 @@
 <?php
-$pagecontent = query("SELECT p.title, r.content FROM wikipages p JOIN wikirevisions r ON p.cur_revision = r.revision AND p.title = r.page");
+$pagecontent = getPageContent();
 
 $wantedpages = [];
 
-foreach ($pagecontent as $page) {
-	preg_match_all('/\[\[(.*?)\]\]/', $page['content'], $links);
+foreach ($pagecontent as $content) {
+	preg_match_all('/\[\[(.*?)\]\]/', $content, $links);
 	foreach ($links[1] as $link){
 		if (!checkPageExistance($link)) {
 			if (!isset($wantedpages[$link])) $wantedpages[$link] = 0;

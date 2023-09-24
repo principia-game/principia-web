@@ -73,12 +73,6 @@
 		</div>
 	{% endif %}
 
-	{% if wikiconts > 0 %}
-		<div class="row">
-			<b>Wiki contributions</b>: {{ wikiconts }} (<a href="/wiki/Special:Contributions?id={{ id }}">Show</a>)
-		</div>
-	{% endif %}
-
 	<div class="row">
 		<b>Registered on</b>: {{ userpagedata.joined | date('Y-m-d H:i:s') }}
 	</div>

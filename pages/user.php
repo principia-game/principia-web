@@ -54,8 +54,6 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		return result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$id]);
 	});
 
-	$wikiconts = result("SELECT COUNT(*) FROM wikirevisions WHERE author = ?", [$id]);
-
 	$comments = query("SELECT $userfields, c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$id]);
 
 	if (isset($userdata['id']) && $id == $userdata['id'])
@@ -72,7 +70,6 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		'page' => $page,
 		'level_count' => $count,
 		'action' => $action ?? null,
-		'comments' => $comments ?? null,
-		'wikiconts' => $wikiconts
+		'comments' => $comments ?? null
 	]);
 }

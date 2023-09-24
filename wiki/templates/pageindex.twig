@@ -10,10 +10,10 @@
 <ul>
 {% for page in pages %}
 	<li>
-		<a href="{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a>
+		<a href="{{ page | replace({" ":"_"}) }}">{{ page }}</a>
 	</li>
 {% endfor %}
 </ul>
 
-{{ wikilinks("special") }}
+{{ wikilinks() }}
 	{% endblock %}

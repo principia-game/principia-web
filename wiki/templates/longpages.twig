@@ -8,6 +8,9 @@
 	{% block content %}
 <h1>Long pages</h1>
 
+<p>Not yet implemented...</p>
+
+{#
 <p>Showing the 50 longest pages.</p>
 
 <ol>
@@ -15,5 +18,6 @@
 	<li><a href="/wiki/{{ page.title | replace({" ":"_"}) }}">{{ page.title }}</a> [{{ page.size | number_format(0, '', ' ') }} bytes]</li>
 {% endfor %}
 </ol>
-{{ wikilinks("special") }}
+#}
+{{ wikilinks() }}
 	{% endblock %}

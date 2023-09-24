@@ -43,7 +43,6 @@ if (!isCli()) {
 	// Shorter variables for common $_SERVER values.
 	$ipaddr = $_SERVER['REMOTE_ADDR'];
 	$useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-	$uri = $_SERVER['REQUEST_URI'] ?? null;
 	$referer = $_SERVER['HTTP_REFERER'] ?? null;
 
 	// principia-web IP ban system
@@ -54,7 +53,6 @@ if (!isCli()) {
 	// Dummy values for CLI usage
 	$ipaddr = '127.0.0.1';
 	$useragent = 'principia-web/cli (sexy, like PHP)';
-	$uri = '/';
 	$referer = '';
 }
 

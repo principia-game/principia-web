@@ -10,7 +10,7 @@ if (DEBUG)
  * @return \Twig\Environment Twig object.
  */
 function twigloader($subfolder = '') {
-	global $log, $footerlinks, $uri, $path, $submodule, $profile;
+	global $log, $footerlinks, $path, $submodule, $profile;
 
 	$loader = new \Twig\Loader\FilesystemLoader('templates/'.$subfolder);
 
@@ -30,7 +30,7 @@ function twigloader($subfolder = '') {
 	$twig->addGlobal('glob_lpp', LPP);
 	$twig->addGlobal('footerlinks', $footerlinks);
 	$twig->addGlobal('domain', DOMAIN);
-	$twig->addGlobal('uri', $uri);
+	$twig->addGlobal('uri', $_SERVER['REQUEST_URI'] ?? null);
 	if ($submodule == 'forum')
 		$twig->addGlobal('pagename', '/forum/'.$path[2]);
 	else
@@ -113,6 +113,11 @@ function relativeTime($time) {
 
 function redirect($url, ...$args) {
 	header('Location: '.sprintf($url, ...$args));
+	die();
+}
+
+function redirectPerma($url, ...$args) {
+	header('Location: '.sprintf($url, ...$args), true, 301);
 	die();
 }
 

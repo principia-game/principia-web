@@ -1,5 +1,5 @@
 # Credits/attribution
-The [principia-web software](https://github.com/principia-preservation-project/principia-web) is developed primarily by [ROllerozxa](https://voxelmanip.se) with [contributions from others](https://github.com/principia-preservation-project/principia-web/graphs/contributors), and is licensed under the AGPLv3 license.
+The [principia-web software](https://github.com/principia-game/principia-web) is developed primarily by [ROllerozxa](https://voxelmanip.se) with [contributions from others](https://github.com/principia-game/principia-web/graphs/contributors), and is licensed under the AGPLv3 license.
 
 The following assets or libraries are used:
 - [Material Design Icons](https://pictogrammers.com/library/mdi/)

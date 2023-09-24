@@ -41,8 +41,8 @@ If you have published personal information you would like to remove, use the too
 
 
 ## Transparency
-The principia-web site is fully open source and its source code [is available on GitHub](https://github.com/principia-preservation-project/principia-web). You may inspect the source code yourself to see how your data is handled by the software.
+The principia-web site is fully open source and its source code [is available on GitHub](https://github.com/principia-game/principia-web). You may inspect the source code yourself to see how your data is handled by the software.
 
 
 ## Updates
-Updates to this privacy policy are done as commits to the principia-web Git repository ([View changes](https://github.com/principia-preservation-project/principia-web/commits/master/templates/markdown/privacy.md)). You will be alerted of any substantial changes made to the privacy policy through Principia community channels.
+Updates to this privacy policy are done as commits to the principia-web Git repository ([View changes](https://github.com/principia-game/principia-web/commits/master/templates/markdown/privacy.md)). You will be alerted of any substantial changes made to the privacy policy through Principia community channels.

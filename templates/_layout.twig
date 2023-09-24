@@ -78,7 +78,7 @@
 		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
 
 		<br>{{ custom_info() }}
-		Running <a href="https://github.com/principia-preservation-project/principia-web">principia-web</a> -
+		Running <a href="https://github.com/principia-game/principia-web">principia-web</a> -
 		{{ profiler_stats() }}
 	</div>
 	{% block custom_footer %}{% endblock %}

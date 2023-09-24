@@ -30,4 +30,4 @@ To run unit tests, you need to [download PHPUnit](https://phpunit.de/getting-sta
 ```
 
 ## License
-Principia-web is licensed under the AGPLv3 license. This means you need to provide the source code of any forks, even if the fork is being run on a remote server. For more information, see the [LICENSE](https://github.com/principia-preservation-project/principia-web/blob/master/LICENSE) file, or [this page on choosealicense.com](https://choosealicense.com/licenses/agpl-3.0/).
+Principia-web is licensed under the AGPLv3 license. This means you need to provide the source code of any forks, even if the fork is being run on a remote server. For more information, see the [LICENSE](https://github.com/principia-game/principia-web/blob/master/LICENSE) file, or [this page on choosealicense.com](https://choosealicense.com/licenses/agpl-3.0/).

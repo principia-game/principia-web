@@ -7,35 +7,8 @@ if (isset($_GET['rev']) || isset($_GET['action']))
 
 if (str_starts_with($page, 'Special:')) {
 	$specialpage = strtolower(substr($page, 8));
-	$specialpath = 'special/'.$specialpage.'.php';
-	if (file_exists($specialpath))
-		require($specialpath);
-	elseif ($specialpage == 'recentchanges' || $specialpage == 'contributions')
-		redirectPerma('/wiki/');
-	elseif ($specialpage == 'longpages')
-		_twigloader()->display('longpages.twig', [
-			'longpages' => []
-		]);
-	elseif ($specialpage == 'pageindex')
-		_twigloader()->display('pageindex.twig', [
-			'pages' => getPageList()
-		]);
-	elseif ($specialpage == 'shortpages')
-		_twigloader()->display('shortpages.twig', [
-			'shortpages' => []
-		]);
-	elseif ($specialpage == 'specialpages')
-		_twigloader()->display('specialpages.twig', [
-			'specialpages' => [
-				'LongPages' => 'Long pages',
-				'OrphanedPages' => 'Orphaned pages',
-				'PageIndex' => 'Page index',
-				'ShortPages' => 'Short pages',
-				'WantedPages' => 'Wanted pages'
-			]
-		]);
-	elseif ($specialpage == 'version')
-		_twigloader()->display('version.twig');
+	if (isset($specialpages[$specialpage]))
+		$specialpages[$specialpage]();
 	else
 		die('No such special page...');
 

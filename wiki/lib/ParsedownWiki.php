@@ -53,34 +53,33 @@ class ParsedownWiki extends \Parsedown {
 		// Use parent blockHeader method to process the $Line to $Block
 		$Block = parent::blockHeader($Line);
 
-		if (!empty($Block)) {
-			// Get the text of the heading
-			if (isset($Block['element']['handler']['argument'])) {
-				$text = $Block['element']['handler']['argument'];
-			}
+		if (empty($Block)) return;
 
-			// Get the heading level. Levels are h1, h2, ..., h6
-			$level = $Block['element']['name'];
+		// Get the text of the heading
+		if (isset($Block['element']['handler']['argument']))
+			$text = $Block['element']['handler']['argument'];
 
-			// Get the anchor of the heading to link from the ToC list
-			$id = isset($Block['element']['attributes']['id']) ?
-				$Block['element']['attributes']['id'] : $this->createAnchorID($text);
+		// Get the heading level. Levels are h1, h2, ..., h6
+		$level = $Block['element']['name'];
 
-			// Set attributes to head tags
-			$Block['element']['attributes']['id'] = $id;
+		// Get the anchor of the heading to link from the ToC list
+		$id = isset($Block['element']['attributes']['id']) ?
+			$Block['element']['attributes']['id'] : $this->createAnchorID($text);
 
-			// Check if level are defined as a selector
-			if (in_array($level, $this->selectors)) {
-				// Add/stores the heading element info to the ToC list
-				$this->setContentsList([
-					'text'  => $text,
-					'id'    => $id,
-					'level' => $level
-				]);
-			}
+		// Set attributes to head tags
+		$Block['element']['attributes']['id'] = $id;
 
-			return $Block;
+		// Check if level are defined as a selector
+		if (in_array($level, $this->selectors)) {
+			// Add/stores the heading element info to the ToC list
+			$this->setContentsList([
+				'text'  => $text,
+				'id'    => $id,
+				'level' => $level
+			]);
 		}
+
+		return $Block;
 	}
 
 	/**
@@ -96,34 +95,33 @@ class ParsedownWiki extends \Parsedown {
 		// Use parent blockHeader method to process the $Line to $Block
 		$Block = parent::blockSetextHeader($Line, $Block);
 
-		if (!empty($Block)) {
-			// Get the text of the heading
-			if (isset($Block['element']['text'])) {
-				$text = $Block['element']['text'];
-			}
+		if (empty($Block)) return;
 
-			// Get the heading level. Levels are h1, h2, ..., h6
-			$level = $Block['element']['name'];
+		// Get the text of the heading
+		if (isset($Block['element']['text']))
+			$text = $Block['element']['text'];
 
-			// Get the anchor of the heading to link from the ToC list
-			$id = isset($Block['element']['attributes']['id']) ?
-			$Block['element']['attributes']['id'] : $this->createAnchorID($text);
+		// Get the heading level. Levels are h1, h2, ..., h6
+		$level = $Block['element']['name'];
 
-			// Set attributes to head tags
-			$Block['element']['attributes']['id'] = $id;
+		// Get the anchor of the heading to link from the ToC list
+		$id = isset($Block['element']['attributes']['id']) ?
+		$Block['element']['attributes']['id'] : $this->createAnchorID($text);
 
-			// Check if level are defined as a selector
-			if (in_array($level, $this->selectors)) {
-				// Add/stores the heading element info to the ToC list
-				$this->setContentsList([
-					'text'  => $text,
-					'id'    => $id,
-					'level' => $level
-				]);
-			}
+		// Set attributes to head tags
+		$Block['element']['attributes']['id'] = $id;
 
-			return $Block;
+		// Check if level are defined as a selector
+		if (in_array($level, $this->selectors)) {
+			// Add/stores the heading element info to the ToC list
+			$this->setContentsList([
+				'text'  => $text,
+				'id'    => $id,
+				'level' => $level
+			]);
 		}
+
+		return $Block;
 	}
 
 	/**
@@ -132,12 +130,11 @@ class ParsedownWiki extends \Parsedown {
 	 * @return string|array         HTML/JSON string, or array of ToC.
 	 */
 	public function contentsList() {
-		$result = '';
-		if (!empty($this->contentsListString)) {
-			// Parses the ToC list in markdown to HTML
+		// Parses the ToC list in markdown to HTML
+		if (!empty($this->contentsListString))
 			$result = parent::text($this->contentsListString);
-		}
-		return $result;
+
+		return $result ?? '';
 	}
 
 	/**
@@ -204,15 +201,14 @@ class ParsedownWiki extends \Parsedown {
 		$level = (integer) trim($Content['level'], 'h');
 		$link  = sprintf("[%s](#%s)", $text, $id);
 
-		if ($this->firstHeadLevel === 0) {
+		if ($this->firstHeadLevel === 0)
 			$this->firstHeadLevel = $level;
-		}
+
 		$cutIndent = $this->firstHeadLevel - 1;
-		if ($cutIndent > $level) {
+		if ($cutIndent > $level)
 			$level = 1;
-		} else {
+		else
 			$level = $level - $cutIndent;
-		}
 
 		$indent = str_repeat('  ', $level);
 
@@ -272,11 +268,10 @@ HTML;
 			$newStr .= "-{$count}";
 
 			// increment until conversion doesn't produce new duplicates anymore
-			if (isset($this->anchorDuplicates[$newStr])) {
+			if (isset($this->anchorDuplicates[$newStr]))
 				$newStr = $this->incrementAnchorId($str);
-			} else {
+			else
 				$this->anchorDuplicates[$newStr] = 0;
-			}
 		}
 
 		return $newStr;

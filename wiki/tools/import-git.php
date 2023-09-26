@@ -32,4 +32,3 @@ while ($rev = $revs->fetch()) {
 	system("git add -A");
 	system('git commit -m '.escapeshellarg($desc));
 }
-

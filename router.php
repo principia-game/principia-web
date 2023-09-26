@@ -11,10 +11,8 @@ function notFound() {
 }
 
 function rewritePHP() {
-	global $uri;
-
-	if (str_contains($uri, '.php'))
-		redirectPerma(str_replace('.php', '', $uri));
+	if (str_contains($_SERVER["REQUEST_URI"], '.php'))
+		redirectPerma(str_replace('.php', '', $_SERVER["REQUEST_URI"]));
 }
 
 if (isset($path[1]) && $path[1] != '') {

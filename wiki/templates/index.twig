@@ -5,12 +5,14 @@
 {% set pagename = '/wiki/' ~ pagetitle_slugified %}
 
 	{% block content %}
-<h1>{{ pagetitle }}</h1>
+{% if pagetitle != 'Main Page' %}
+	<h1>{{ pagetitle }}</h1>
+{% endif %}
 
 {% if pagecontent %}
 	{{ pagecontent | markdown_wiki }}
 {% else %}
-	<p>This page does not exist. Would you like to create it?</p>
+	<p>A wiki page with this name does not exist.</p>
 {% endif %}
 
 {{ wikilinks(pagetitle_slugified) }}

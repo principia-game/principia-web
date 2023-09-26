@@ -180,11 +180,18 @@ table.c1 {
 }
 
 /// _style_wiki \\\
+
+.wiki {
+	h1,h2,h3,h4 {
+		border-bottom: 1px solid $grid;
+	}
+}
+
 .wikilinks {
 	border-top: 1px solid $grid;
 }
 
-.toc {
+.toc, .wikibox {
 	border: 1px solid $grid;
 	background-color: #171717;
 }

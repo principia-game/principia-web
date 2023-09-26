@@ -2,9 +2,10 @@
 
 function parsing($text) {
 	$markdown = new ParsedownWiki();
-	$markdown->setSafeMode(true);
 
 	$text = $markdown->text($text);
+
+	$text = preg_replace_callback('@\|\|ARTICLE_NUMBER\|\|@', 'getPageCount', $text);
 
 	$text = str_replace('<table>', '<table class="wikitable">', $text);
 

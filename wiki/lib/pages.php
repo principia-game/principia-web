@@ -43,3 +43,7 @@ function getPageContent() {
 
 	return $pagecontents;
 }
+
+function getPageCount() {
+	return count(glob(WIKI_PAGES.'*.md'));
+}

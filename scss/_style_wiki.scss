@@ -4,6 +4,10 @@
 	img {
 		max-width: 100%;
 	}
+
+	h1,h2,h3,h4 {
+		border-bottom: 1px solid $grid;
+	}
 }
 
 .wikilinks {
@@ -16,9 +20,12 @@
 	justify-content: space-between;
 }
 
-.toc {
+.toc, .wikibox {
 	border: 1px solid #888;
 	background-color: #e8e8e8;
+}
+
+.toc {
 	min-width: 300px;
 	padding: 10px;
 	display: inline-block;
@@ -31,6 +38,10 @@
 		margin: 0;
 		padding-left: 20px;
 	}
+}
+
+.wikibox {
+	margin-top: 20px;
 }
 
 .infobox {

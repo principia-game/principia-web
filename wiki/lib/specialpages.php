@@ -9,7 +9,7 @@ function registerSpecialPage($name, $func) {
 }
 
 // Pages that don't exist anymore
-foreach (['contributions', 'recentchanges'] as $page)
+foreach (['contributions', 'recentchanges', 'version'] as $page)
 	registerSpecialPage($page, function () {
 		redirectPerma('/wiki/');
 	});
@@ -32,7 +32,6 @@ registerSpecialPage('gotoobject', function () {
 
 // Special:OrphanedPages - Generates a list of "orphaned" pages, not linked from anywhere else on the wiki.
 registerSpecialPage('orphanedpages', function () {
-	//
 
 	$pagecontent = getPageContent();
 
@@ -95,11 +94,6 @@ registerSpecialPage('specialpages', function () {
 			'WantedPages' => 'Wanted pages'
 		]
 	]);
-});
-
-// 8)
-registerSpecialPage('version', function () {
-	_twigloader()->display('version.twig');
 });
 
 // Special:WantedPages - Generates a list of "wanted" pages, ones linked to but don't exist yet.

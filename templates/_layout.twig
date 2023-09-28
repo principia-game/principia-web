@@ -73,6 +73,15 @@
 	{% endif %}
 	<div class="content{% if submodule == 'forum' %} forum{% endif %}{% if submodule == 'wiki' %} wiki{% endif %}"><div class="container">
 		{% block content %}{% endblock %}
+		{% if submodule == 'wiki' %}<div class="wikilinks" style="clear:both">
+			<div><a href="/wiki/">Main Page</a> &ndash; <a href="/wiki/Special:PageIndex">Page Index</a></div>
+
+			{% if pagetitle_slugified %}
+				<div class="right">
+					<a href="https://github.com/principia-game/wiki/blob/master/pages/{{ pagetitle_slugified }}.md">View on GitHub</a>
+				</div>
+			{% endif %}
+		</div>{% endif %}
 	</div></div>
 	<div class="footer">
 		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}

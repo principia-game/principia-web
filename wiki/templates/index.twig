@@ -1,5 +1,4 @@
 {% extends "_layout.twig" %}
-{% from 'components/macros.twig' import wikilinks %}
 
 {% set title = pagetitle %}
 {% set pagename = '/wiki/' ~ pagetitle_slugified %}
@@ -14,6 +13,4 @@
 {% else %}
 	<p>A wiki page with this name does not exist.</p>
 {% endif %}
-
-{{ wikilinks(pagetitle_slugified) }}
 	{% endblock %}

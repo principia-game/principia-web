@@ -1,5 +1,4 @@
 {% extends "_layout.twig" %}
-{% from 'components/macros.twig' import wikilinks %}
 
 {% set title = "Wanted pages" %}
 {% set noindex = true %}
@@ -15,5 +14,4 @@
 	<li><a class="nonexistant" href="/wiki/{{ page | replace({" ":"_"}) }}">{{ page }}</a> ({{ count }})</li>
 {% endfor %}
 </ol>
-{{ wikilinks() }}
 	{% endblock %}

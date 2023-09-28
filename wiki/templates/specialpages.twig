@@ -1,5 +1,4 @@
 {% extends "_layout.twig" %}
-{% from 'components/macros.twig' import wikilinks %}
 
 {% set title = "Special pages" %}
 {% set pagename = "/wiki/Special:SpecialPages" %}
@@ -12,6 +11,4 @@
 		<li><a href="/wiki/Special:{{ name }}">{{ title }}</a></li>
 	{% endfor %}
 </ul>
-
-{{ wikilinks() }}
 	{% endblock %}

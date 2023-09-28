@@ -15,7 +15,7 @@ trait Cache {
 
 	public function hitHash($fingerprint, $uncachedContent, $expire = 0) {
 		$fingerprint = hash("xxh128", var_export($fingerprint, true));
-		return $this->hitMem($fingerprint, $uncachedContent, true, $expire);
+		return $this->hitMem($fingerprint, $uncachedContent, $expire);
 	}
 
 	private function hitMem($key, $uncachedContent, $expire = 0) {

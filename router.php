@@ -41,16 +41,13 @@ if (isset($path[1]) && $path[1] != '') {
 	}
 	elseif ($path[1] == 'wiki') {
 		$submodule = 'wiki';
+		foreach (glob("lib/wiki/*.php") as $filename)
+			require($filename);
 
 		if (!isset($path[2]))
 			redirect('/wiki/');
-		else { // Reboot into wiki subdir
-			chdir('wiki/');
-			foreach (glob("lib/*.php") as $filename)
-				require($filename);
-
-			require('wiki/index.php');
-		}
+		else // Load Wiki router
+			require('pages/wiki/index.php');
 	}
 	elseif ($path[1] == 'api') {
 		if (!isset($path[2]))

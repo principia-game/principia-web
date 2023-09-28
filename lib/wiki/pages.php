@@ -4,7 +4,7 @@ function checkPageExistance($pagename) {
 	return file_exists(humanToFilepath($pagename));
 }
 
-define('WIKI_PAGES', '../data/wiki/pages/');
+define('WIKI_PAGES', 'data/wiki/pages/');
 
 function filepathToSlug($name) {
 	return str_replace(

@@ -9,10 +9,10 @@ if (DEBUG)
  * @param string $subfolder Subdirectory to use in the templates/ directory.
  * @return \Twig\Environment Twig object.
  */
-function twigloader($subfolder = '') {
+function twigloader() {
 	global $log, $footerlinks, $path, $submodule, $profile;
 
-	$loader = new \Twig\Loader\FilesystemLoader('templates/'.$subfolder);
+	$loader = new \Twig\Loader\FilesystemLoader('templates/');
 
 	$twig = new \Twig\Environment($loader, [
 		'cache' => TPL_CACHE,
@@ -40,13 +40,13 @@ function twigloader($subfolder = '') {
 }
 
 function comments($cmnts, $type, $id, $showheader = true) {
-	return twigloader('components')->render('comment.twig', [
+	return twigloader()->render('components/comment.twig', [
 		'cmnts' => $cmnts, 'type' => $type, 'id' => $id, 'showheader' => $showheader
 	]);
 }
 
 function pagination($levels, $pp, $url, $current) {
-	return twigloader('components')->render('pagination.twig', [
+	return twigloader()->render('components/pagination.twig', [
 		'levels' => $levels, 'lpp' => $pp, 'url' => $url, 'current' => $current
 	]);
 }

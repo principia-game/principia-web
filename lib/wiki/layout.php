@@ -1,7 +1,7 @@
 <?php
 
-function _twigloader($subfolder = '') {
-	$twig = twigloader($subfolder);
+function twigloaderWiki() {
+	$twig = twigloader();
 
 	$twig->addGlobal('submodule', 'wiki');
 

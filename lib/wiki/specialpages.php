@@ -9,7 +9,7 @@ function registerSpecialPage($name, $func) {
 }
 
 // Pages that don't exist anymore
-foreach (['contributions', 'recentchanges', 'version'] as $page)
+foreach (['contributions', 'recentchanges', 'version', 'specialpages'] as $page)
 	registerSpecialPage($page, function () {
 		redirectPerma('/wiki/');
 	});
@@ -23,11 +23,11 @@ foreach (['longpages', 'shortpages'] as $page)
 
 
 registerSpecialPage('gotoitem', function () {
-	require('lib/special/gotoitem.php');
+	require('lib/wiki/special/gotoitem.php');
 });
 
 registerSpecialPage('gotoobject', function () {
-	require('lib/special/gotoobject.php');
+	require('lib/wiki/special/gotoobject.php');
 });
 
 // Special:OrphanedPages - Generates a list of "orphaned" pages, not linked from anywhere else on the wiki.
@@ -59,14 +59,14 @@ registerSpecialPage('orphanedpages', function () {
 			$orphanedpages[] = $pagename;
 	}
 
-	_twigloader()->display('orphanedpages.twig', [
+	twigloaderWiki()->display('wiki/orphanedpages.twig', [
 		'orphanedpages' => $orphanedpages
 	]);
 });
 
 // Special:PageIndex - Generates a list of pages
 registerSpecialPage('pageindex', function () {
-	_twigloader()->display('pageindex.twig', [
+	twigloaderWiki()->display('wiki/pageindex.twig', [
 		'pages' => getPageList()
 	]);
 });
@@ -81,19 +81,6 @@ registerSpecialPage('sitemap', function () {
 		$sitemap->add('wiki/'.filepathToSlug($page));
 
 	$sitemap->output();
-});
-
-// Special:SpecialPages - Lists special pages
-registerSpecialPage('specialpages', function () {
-	_twigloader()->display('specialpages.twig', [
-		'specialpages' => [
-			'LongPages' => 'Long pages',
-			'OrphanedPages' => 'Orphaned pages',
-			'PageIndex' => 'Page index',
-			'ShortPages' => 'Short pages',
-			'WantedPages' => 'Wanted pages'
-		]
-	]);
 });
 
 // Special:WantedPages - Generates a list of "wanted" pages, ones linked to but don't exist yet.
@@ -112,7 +99,7 @@ registerSpecialPage('wantedpages', function () {
 		}
 	}
 
-	_twigloader()->display('wantedpages.twig', [
+	twigloaderWiki()->display('wiki/wantedpages.twig', [
 		'wantedpages' => $wantedpages
 	]);
 });

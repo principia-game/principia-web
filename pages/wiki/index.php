@@ -3,7 +3,7 @@ $page_slugified = str_replace('/wiki/', '', $uri) ?: 'Main_Page';
 $page = str_replace('_', ' ', $page_slugified);
 
 if (isset($_GET['rev']) || isset($_GET['action']))
-	redirectPerma('/wiki/'.$page_slugified);
+	redirectPerma('/wiki/%s', $page_slugified);
 
 if (str_starts_with($page, 'Special:')) {
 	$specialpage = strtolower(substr($page, 8));
@@ -22,7 +22,7 @@ if (file_exists($filename))
 else
 	http_response_code(404);
 
-_twigloader()->display('index.twig', [
+twigloaderWiki()->display('wiki/index.twig', [
 	'pagetitle' => $page,
 	'pagetitle_slugified' => str_replace(' ', '_', $page),
 	'pagecontent' => $pagecontent ?? null

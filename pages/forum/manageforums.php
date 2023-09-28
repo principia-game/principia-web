@@ -137,7 +137,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 		$c = ($c == 1) ? 2 : 1;
 	}
 
-	echo $twig->render("manageforums.twig", [
+	echo $twig->render("forum/manageforums.twig", [
 		'catlist' => $catlist,
 		'forumlist' => $forumlist
 	]);

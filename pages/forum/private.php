@@ -68,7 +68,7 @@ if ($pmsgc > TPP) {
 	$fpagelist = pagination($pmsgc, TPP, $furl, $page);
 }
 
-twigloaderForum()->display('private.twig', [
+twigloaderForum()->display('forum/private.twig', [
 	'id' => $id,
 	'pmsgs' => $pmsgs,
 	'topbot' => $topbot,

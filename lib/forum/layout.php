@@ -67,7 +67,7 @@ function ifEmptyQuery($message, $colspan = 0, $table = false) {
 }
 
 function twigloaderForum() {
-	$twig = twigloader('forum');
+	$twig = twigloader();
 
 	$twig->addExtension(new PrincipiaForumExtension());
 

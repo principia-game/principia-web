@@ -80,7 +80,7 @@ if (!$action) {
 	$topbot['title'] .= ' (Preview)';
 }
 
-twigloaderForum()->display('sendprivate.twig', [
+twigloaderForum()->display('forum/sendprivate.twig', [
 	'post' => $post ?? null,
 	'userto' => $userto,
 	'messagetitle' => $title,

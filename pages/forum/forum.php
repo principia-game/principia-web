@@ -105,7 +105,7 @@ $showforum = $time ?? $uid;
 if ($forum['threads'] > TPP)
 	$pagelist = pagination($forum['threads'], TPP, $url.'&page=%s', $page);
 
-twigloaderForum()->display('forum.twig', [
+twigloaderForum()->display('forum/forum.twig', [
 	'fid' => $fid,
 	'title' => $title,
 	'threads' => $threads,

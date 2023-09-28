@@ -12,7 +12,7 @@ function notFound() {
 
 function rewritePHP() {
 	if (str_contains($_SERVER["REQUEST_URI"], '.php'))
-		redirectPerma(str_replace('.php', '', $_SERVER["REQUEST_URI"]));
+		redirectPerma('%s', str_replace('.php', '', $_SERVER["REQUEST_URI"]));
 }
 
 if (isset($path[1]) && $path[1] != '') {
@@ -106,7 +106,7 @@ if (isset($path[1]) && $path[1] != '') {
 		rewritePHP();
 
 		if (str_starts_with($uri, '/levels/thumbs'))
-			redirectPerma(str_replace('/levels', '', $uri));
+			redirectPerma('%s', str_replace('/levels', '', $uri));
 
 		notFound();
 	}

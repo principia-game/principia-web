@@ -8,7 +8,6 @@ assets/scss/.sass-cache
 
 ## Composer
 vendor/
-composer.lock
 
 ## misc.
 templates/_template.twig
@@ -18,11 +17,9 @@ misc/
 tools/lvlinfo
 tools/lvledit
 tools/progress-get
-adminer/
 .phpunit.result.cache
 phpunit
 lib/ext/
-wiki/_export
 static/js/ext/
 static/ahrefs_*
 static/wiki/images/

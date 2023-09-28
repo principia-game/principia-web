@@ -4,7 +4,6 @@
 		"twig/twig": "^3.0",
 		"erusev/parsedown": "9999999-dev",
 		"phpmailer/phpmailer": "dev-master",
-		"nelexa/zip": "^3.3.3",
 		"nopjmp/discord-webhooks": "dev-master",
 		"mpratt/relativetime": "dev-master"
 	},

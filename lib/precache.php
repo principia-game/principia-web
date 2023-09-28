@@ -47,4 +47,5 @@ class PreCache {
 	}
 }
 
-$precache = new PreCache($cache);
+if (!isCli())
+	$precache = new PreCache($cache);

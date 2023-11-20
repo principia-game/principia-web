@@ -93,3 +93,22 @@ class PrincipiaForumExtension extends \Twig\Extension\AbstractExtension {
 		];
 	}
 }
+
+function timelinks($file, $seltime) {
+	$relativeTime = new \RelativeTime\RelativeTime([
+		'suffix' => false,
+		'truncate' => 1,
+	]);
+
+	$links = [];
+	foreach ([3600, 86400, 604800, 2592000] as $time) {
+		$timelbl = $relativeTime->convert(1, $time+1);
+
+		if ($time == $seltime)
+			$links[] = $timelbl;
+		else
+			$links[] = sprintf('<a href="%s?time=%s">%s</a>', $file, $time, $timelbl);
+	}
+
+	return join(' &ndash; ', $links);
+}

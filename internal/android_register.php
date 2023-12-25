@@ -27,5 +27,5 @@ if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
 	die('111'); // Just give the generic "something went wrong!" code.
 
 // All possible invalid credentials have been checked, it should be successful now.
-register($name, $pass, $mail);
+register($name, $pass, $mail, $ipaddr);
 die('110');

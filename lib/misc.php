@@ -7,11 +7,12 @@ function isCli() {
 	return php_sapi_name() == "cli";
 }
 
-function register($name, $pass, $mail, $sendWelcomeEmail = true) {
+function register($name, $pass, $mail, $ip = null, $sendWelcomeEmail = true) {
 	$token = bin2hex(random_bytes(20));
 	insertInto('users', [
 		'name' => $name,
 		'password' => password_hash($pass, PASSWORD_DEFAULT),
+		'ip' => $ip,
 		'email' => mailHash($mail),
 		'token' => $token,
 		'joined' => time(),

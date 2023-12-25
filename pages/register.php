@@ -43,7 +43,7 @@ if (isset($_POST['action'])) {
 		$error[] = "Creating multiple accounts (alts) aren't allowed.";
 
 	if ($error == []) {
-		$token = register($name, $pass, $mail);
+		$token = register($name, $pass, $mail, $ipaddr);
 
 		setcookie(COOKIE_NAME, $token, 2147483647);
 

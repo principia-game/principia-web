@@ -14,7 +14,7 @@ if ($action == "Ban User") {
 		'user' => $id,
 		'banner' => $userdata['id'],
 		'reason' => $reason,
-		'time' => $time
+		'time' => time()
 	]);
 
 	query("UPDATE users SET rank = -1 WHERE id = ?", [$id]);

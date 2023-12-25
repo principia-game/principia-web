@@ -103,3 +103,12 @@ registerSpecialPage('wantedpages', function () {
 		'wantedpages' => $wantedpages
 	]);
 });
+
+registerSpecialPage('notepad', function () {
+	needsLogin();
+
+	twigloaderWiki()->display('wiki/notepad.twig', [
+		'title' => $_POST['title'] ?? null,
+		'content' => $_POST['content'] ?? null
+	]);
+});

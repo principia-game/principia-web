@@ -1,0 +1,23 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Notepad" %}
+{% set noindex = true %}
+{% set pagename = "/wiki/Special:Notepad" %}
+
+	{% block content %}
+<h1>Notepad</h1>
+
+<form method="POST">
+	<p><textarea name="content" placeholder="Content" cols="80" rows="15">{{ content }}</textarea></p>
+
+	<p><input type="submit" value="Preview"></input></p>
+</form>
+
+{% if content %}
+	<hr>
+
+	<h1>Page preview</h1>
+
+	{{ content | markdown_wiki }}
+{% endif %}
+	{% endblock %}

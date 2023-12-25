@@ -1,26 +1,86 @@
 {% extends "_layout.twig" %}
 
-{% set title = "Downloads" %}
+{% set title = "Download Principia" %}
 {% set description = "Download the latest version of open source Principia here, on principia-web." %}
 
+{% set dlurl = 'https://grejer.voxelmanip.se/principia' %}
+{% set buildrev = '2023-03-10' %}
+
 	{% block content %}
-<h1>Downloads</h1>
+<h1>Download Principia</h1>
 
-<p>Below are downloads for beta versions of the new open source Principia 1.5.2.</p>
+<p>This page contains downloads and instructions for obtaining Principia on all supported platforms.</p>
 
-<table class="dl"><tr>
-	<td class="plat"><img src="/icons/windows.svg"><br>Windows</td>
-	<td colspan="2">
-		<p><a href="https://grejer.voxelmanip.se/principia/principia_1.5.2_beta_2023-03-10.exe">Download Principia 1.5.2 Beta for Windows x64 (built 2023-03-10)</a></p>
+<table class="dl">
 
-		<p>Administrator privileges are required to run the installer.</p>
+<tr>
+	<td class="plat">
+		<img src="/icons/windows.svg"><br>Windows
 	</td>
-</tr><tr>
-	<td class="plat" rowspan="5"><img src="/icons/linux.svg"><br>Linux</td>
-</tr><tr>
-	<td class="plat"><img src="/icons/arch.svg"><br>Arch Linux
+	<td colspan="2">
+		<p>
+			Windows 10 and above is supported, older versions may work but are not supported. See <a href="/wiki/Windows_Compatibility">Windows Compatibility</a> for more info.
+		</p>
+
+		<p>
+			<strong>
+				<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}{#_win64#}.exe">
+					Principia 1.5.2 Beta build {{ buildrev }} - Installer, 64-bit (recommended)
+				</a>
+			</strong>
+		</p>
+
+		{#<p>
+			<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}_win64.7z">
+				Principia 1.5.2 Beta build {{ buildrev }} - Portable, 64-bit
+			</a>
+		</p>#}
+
+		<p>
+			Administrator privileges are required to run the installer.
+			{# The portable build has some limitations to it that are important to know about, see <a href="/wiki/Windows_Portable">Windows Portable</a> for more info. #}
+		</p>
+	</td>
+</tr>
+<tr>
+	<td class="plat">
+		<img src="/icons/android.svg?v=2"><br>Android
+	</td>
+	<td colspan="2">
+		<p>
+			Works with Android 4.4 and above. APK contains native libraries for both 32-bit and 64-bit ARM devices.
+		</p>
+
+		<p>
+			<strong>
+				<a href="https://grejer.voxelmanip.se/principia/principia_1.5.2_beta_{{ buildrev }}.apk">
+					Principia 1.5.2 Beta build {{ buildrev }}
+				</a>
+			</strong>
+		</p>
+
+		<p>
+			<strong>IMPORTANT WHEN UPDATING</strong>: Principia 1.5.2 now stores its user data in scoped app storage
+			as compared to in the shared storage. If you have existing levels and data saved locally you will need
+			to manually migrate it to the new location.
+			(See <a href="/wiki/Accessing_Android_Data_Directory">Accessing Android Data Directory</a> for how to access)
+		</p>
+	</td>
+</tr>
+<tr>
+	<td class="plat" rowspan="5">
+		<img src="/icons/linux.svg?v=2"><br>Linux
+	</td>
+</tr>
+<tr>
+	<td class="plat">
+		<img src="/icons/arch.svg"><br>Arch Linux
+	</td>
 	<td>
-		<p>On Arch Linux-based distributions you can use the <a href="https://aur.archlinux.org/packages/principia-git">principia-git</a> package from the AUR which tracks the latest master. Use your favourite AUR helper, like such:</p>
+		<p>
+			On Arch Linux-based distributions you can use the <a href="https://aur.archlinux.org/packages/principia-git">principia-git</a> package from the AUR which
+			tracks the latest master. Use your favourite AUR helper, like such:
+		</p>
 
 		<p><code>yay -S principia-git</code></p>
 
@@ -28,45 +88,86 @@
 
 		<p><code>echo -e '\n[principia]\nSigLevel = Optional DatabaseOptional\nServer = https://grejer.voxelmanip.se/principia/arch-repo/$arch' | sudo tee -a /etc/pacman.conf</code></p>
 	</td>
-</tr><tr>
-	<td class="plat"><img src="/icons/debian.svg"><br>Debian
+</tr>
+<tr>
+	<td class="plat">
+		<img src="/icons/debian.svg"><br>Debian
+	</td>
 	<td>
-		<p>For Debian-based distributions, we have an MPR package tracking the latest master.</p>
+		<p>
+			For Debian-based distributions, we have an MPR package tracking the latest master.
+		</p>
 
-		<p>Install <a href="https://www.makedeb.org/">makedeb</a> (if you do not already have it), and make the <a href="https://mpr.makedeb.org/packages/principia-git">principia-git</a> MPR package like such:</p>
+		<p>
+			Install <a href="https://www.makedeb.org/">makedeb</a> (if you do not already have it),
+			and make the <a href="https://mpr.makedeb.org/packages/principia-git">principia-git</a> MPR package like such:
+		</p>
 
 		<p><code>git clone https://mpr.makedeb.org/principia-git<br>
 cd principia-git/<br>
 makedeb -si</code></p>
 	</td>
-</tr><tr>
-	<td class="plat"><img src="/icons/nix.svg"><br>NixOS
-	<td>
-		<p>Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia&type=packages&query=principia">is available in nixpkgs</a>.</p>
-
-		<p>The Principia source repository also contains files to automatically build and package Principia on NixOS.</p>
-
-		<p>See the <a href="https://github.com/Bithack/principia/tree/master/nix#readme">NixOS README</a> for more information.</p>
+</tr>
+<tr>
+	<td class="plat">
+		<img src="/icons/nix.svg"><br>NixOS
 	</td>
-</tr><tr>
-	<td class="plat"><div class="generic">?</div> <br>Other</td>
 	<td>
-		<p>Please clone the source repository and build from source:</p>
+		<p>
+			Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia&type=packages&query=principia">is available in nixpkgs</a>.
+		</p>
+
+		<p>
+			The Principia source repository also contains files to automatically build and package Principia on NixOS.
+		</p>
+
+		<p>
+			See the <a href="https://github.com/Bithack/principia/tree/master/nix#readme">NixOS README</a> for more information.
+		</p>
+	</td>
+</tr>
+<tr>
+	<td class="plat">
+		<div class="generic">?</div> <br>Other
+	</td>
+	<td>
+		<p>
+			Please clone the source repository and build from source:
+		</p>
 
 		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
 
-		<p>Compilation instructions can be found in the included <a href="https://github.com/Bithack/principia/#building-on-linux">README</a> file.
+		<p>
+			Compilation instructions can be found in the included
+			<a href="https://github.com/Bithack/principia/#building-on-linux">README</a> file.
+		</p>
 	</td>
-</tr><tr>
-	<td class="plat"><img src="/icons/android.svg"><br>Android</td>
+</tr>
+
+<tr>
+	<td class="plat">
+		<img src="/icons/haiku.svg"><br>Haiku
+	</td>
 	<td colspan="2">
-		<p><a href="https://grejer.voxelmanip.se/principia/principia_1.5.2_beta_2023-03-10.apk">Download Principia 1.5.2 Beta for Android (Android 4.4+) (built 2023-03-10)</a></p>
+		<p>
+			An experimental port of Haiku OS is available for Principia in the <code>haiku-port</code> branch.
+		</p>
 
-		<p><strong>IMPORTANT WHEN UPDATING</strong>: Principia 1.5.2 now stores its user data in scoped app storage as compared to in the shared storage. If you have existing levels and data saved locally you will need to manually migrate it to the new location. (See <a href="/wiki/Accessing_Android_Data_Directory">Accessing Android Data Directory</a> for how to access)</p>
+		<p>
+			For instructions on how to compile and run Principia on Haiku OS see <a href="https://principia-web.se/wiki/Compiling_Principia#haiku">Compiling Principia</a>.
+		</p>
 	</td>
-</tr></table>
+</tr>
 
-<p>Problems, crashes or bugs? Ask in the Discord server or <a href="https://github.com/Bithack/principia/issues/new">open an issue on Github</a>.</p>
+</table>
 
-<p>If you fancy something else, see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview" target="_blank">Bithack Game Archive Index</a>.</p>
+<p>
+	Problems, crashes or bugs? Ask in the Discord server or
+	<a href="https://github.com/Bithack/principia/issues/new">open an issue on Github</a>.
+</p>
+
+<p>
+	For an archive of old Principia versions for various platforms, see the
+	<a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview" target="_blank">Bithack Game Archive Index</a>.
+</p>
 	{% endblock %}

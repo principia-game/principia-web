@@ -32,9 +32,9 @@ function twigloader() {
 	$twig->addGlobal('domain', DOMAIN);
 	$twig->addGlobal('uri', $_SERVER['REQUEST_URI'] ?? null);
 	if ($submodule == 'forum')
-		$twig->addGlobal('pagename', '/forum/'.$path[2]);
+		$twig->addGlobal('pagename', '/forum/'.($path[2] ?? ''));
 	else
-		$twig->addGlobal('pagename', '/'.$path[1]);
+		$twig->addGlobal('pagename', '/'.($path[1] ?? ''));
 
 	return $twig;
 }

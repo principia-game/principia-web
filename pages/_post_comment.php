@@ -10,7 +10,7 @@ if (!$type || !$id) die('params pls');
 if (IS_BANNED) die('you have been banned');
 
 if ($type != 'chat')
-	$url = sprintf('/%s/%s%s#comments', $type, $id, ($type == 'user' ? '?forceuser' : ''));
+	$url = sprintf('/%s/%s%s', $type, $id, ($type == 'user' ? '?forceuser' : ''));
 else
 	$url = "/chat";
 
@@ -93,4 +93,4 @@ if (!$doDelete) {
 // Invalidate index comments, even if a comment is deleted it might show up.
 $cachectrl->invIndexComments();
 
-redirect($url."?commented");
+redirect($url);

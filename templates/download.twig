@@ -4,7 +4,7 @@
 {% set description = "Download the latest version of open source Principia here, on principia-web." %}
 
 {% set dlurl = 'https://grejer.voxelmanip.se/principia' %}
-{% set buildrev = '2023-03-10' %}
+{% set buildrev = '2023-12-26' %}
 
 	{% block content %}
 <h1>Download Principia</h1>
@@ -24,21 +24,21 @@
 
 		<p>
 			<strong>
-				<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}{#_win64#}.exe">
+				<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}_win64.exe">
 					Principia 1.5.2 Beta build {{ buildrev }} - Installer, 64-bit (recommended)
 				</a>
 			</strong>
 		</p>
 
-		{#<p>
+		<p>
 			<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}_win64.7z">
 				Principia 1.5.2 Beta build {{ buildrev }} - Portable, 64-bit
 			</a>
-		</p>#}
+		</p>
 
 		<p>
 			Administrator privileges are required to run the installer.
-			{# The portable build has some limitations to it that are important to know about, see <a href="/wiki/Windows_Portable">Windows Portable</a> for more info. #}
+			The portable build has some limitations to it that are important to know about, see <a href="/wiki/Windows_Portable">Windows Portable</a> for more info.
 		</p>
 	</td>
 </tr>

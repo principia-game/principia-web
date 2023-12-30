@@ -17,3 +17,7 @@ function validToken($token) {
 	// Tokens are 40 characters in length (Why? Apparatus. I really should make them longer...)
 	return strlen($token) == 40 && ctype_xdigit($token);
 }
+
+function internalKey() {
+	return isset($_POST['key']) && $_POST['key'] == 'cuddles';
+}

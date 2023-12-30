@@ -1,14 +1,26 @@
 <?php
-if (!$log || IS_BANNED)
-	die('-100');
 
-// Kaitai runtime & data
+$modern = ($uri == "/internal/upload");
+
+$levelfile = ($modern ? 'level' : 'xFxIax');
+
+if (!$log || IS_BANNED) {
+	if ($modern)
+		header("x-error-message: You must be logged in with a valid Principia account to publish levels.");
+	else
+		echo '-100';
+
+	die();
+}
+
+if (($modern && !internalKey()) || !isset($_FILES[$levelfile])) {
+	header("x-error-message: what ok");
+	die('404');
+}
+
 require('lib/kaitai/plvl.php');
 
-if (!isset($_FILES['xFxIax'])) die('404');
-
-// Load level.
-$level = Plvl::fromFile($_FILES['xFxIax']['tmp_name']);
+$level = Plvl::fromFile($_FILES[$levelfile]['tmp_name']);
 
 $platform = extractPlatform($useragent);
 
@@ -46,7 +58,11 @@ if (!$updatelevel) {
 	$latestLevelTime = result("SELECT time FROM levels WHERE author = ? ORDER BY time DESC LIMIT 1", [$userdata['id']]);
 	if (time() - $latestLevelTime < 30 && !IS_ADMIN) {
 		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
-		die('-103');
+
+		if ($modern)
+			header("x-error-message: An error occured when attempting to publish your map. Please try again soon.");
+		else
+			die('-103');
 	}
 } else {
 	// Preparations for if we update a level
@@ -64,7 +80,7 @@ if (!$updatelevel) {
 }
 
 // Move uploaded level file to the levels directory.
-if (!move_uploaded_file($_FILES['xFxIax']['tmp_name'], "data/levels/$cid.plvl"))
+if (!move_uploaded_file($_FILES[$levelfile]['tmp_name'], "data/levels/$cid.plvl"))
 	trigger_error("Could not move level file to levels folder, check permissions", E_USER_ERROR);
 
 lvledit($cid, 'set-community-id', $cid);
@@ -104,7 +120,10 @@ if ($updatelevel) {
 }
 
 // Print the ID of the uploaded level. This is required to display the "Level published!" box.
-print($cid);
+if ($modern)
+	header('x-notify-message: '.$cid);
+else
+	print($cid);
 
 // Send new level info to discord webhook
 if (!$updatelevel) {

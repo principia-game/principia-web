@@ -23,3 +23,4 @@ lib/ext/
 static/js/ext/
 static/ahrefs_*
 static/wiki/images/
+phpstan.neon

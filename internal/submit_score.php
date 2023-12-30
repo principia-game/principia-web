@@ -6,8 +6,8 @@ $progfile = $_FILES['data_bin'] ?? null;
 if (!$level || !$progfile || !$progfile || $progfile['name'] != 'data.bin') die("Cheatin'?");
 
 if (!$log) {
-	header("X-Error-Message: You need to be signed in to submit your score.");
-	header("X-Error-Action: 1"); // Display login dialog
+	header("x-error-message: You need to be signed in to submit your score.");
+	header("x-error-action: 1"); // Display login dialog
 	die();
 }
 

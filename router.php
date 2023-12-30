@@ -2,7 +2,7 @@
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $path = explode('/', $uri);
 
-$internal = (isset($path[1]) && (in_array($path[1], ['apZodIaL1', 'principia-version-code', 'upload.php'])));
+$internal = (isset($path[1]) && (in_array($path[1], ['apZodIaL1', 'internal', 'principia-version-code', 'upload.php'])));
 
 require('lib/common.php');
 
@@ -70,6 +70,15 @@ if (isset($path[1]) && $path[1] != '') {
 	elseif (file_exists('pages/'.$path[1].'.php'))
 		require('pages/'.$path[1].'.php');
 
+	elseif ($path[1] == 'internal') {
+		if (file_exists('internal/'.$path[2].'.php'))
+			require('internal/'.$path[2].'.php');
+		elseif ($path[2] == 'derive_level')
+			require('internal/get_level.php');
+		elseif ($path[2] == 'edit_level')
+			require('internal/get_level.php');
+	}
+
 	elseif ($path[1] == 'apZodIaL1') {
 
 		$page = str_replace('.php', '', $path[2]);
@@ -91,7 +100,7 @@ if (isset($path[1]) && $path[1] != '') {
 			require('internal/'.$internalPage.'.php');
 	}
 	elseif ($path[1] == 'principia-version-code')
-		require('internal/principia-version-code.php');
+		require('internal/version_code.php');
 	elseif ($path[1] == 'upload.php')
 		require('internal/upload.php');
 	elseif ($path[1] == 'levels_with_no_thumbs')

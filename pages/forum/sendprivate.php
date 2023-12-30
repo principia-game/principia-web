@@ -55,7 +55,7 @@ if (!$action) {
 			.(!IS_ROOT ? " AND (p.userfrom=".$userdata['id']." OR p.userto=".$userdata['id'].")" : ''), [$pid]);
 
 		if ($post) {
-			$quotetext = sprintf(
+			$message = sprintf(
 				'[reply="%s" id="%s"]%s[/reply]'.PHP_EOL.PHP_EOL,
 			$post['name'], $pid, $post['text']);
 

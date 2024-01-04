@@ -2,10 +2,7 @@
 
 if (isset($_GET['id'])) redirect('/level/'.$_GET['id']);
 
-$lid = $path[2] ?? 0;
-
-// HACK: Fake level ID to take the user to the download page (for old principia-web mod)
-if ($lid == 2147483000) redirect('https://principia-web.se/download');
+$lid = (int)($path[2] ?? 0);
 
 $level = fetch("SELECT l.*, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 

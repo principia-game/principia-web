@@ -9,10 +9,9 @@ if (!$log) die('login pls');
 if (!$type || !$id) die('params pls');
 if (IS_BANNED) die('you have been banned');
 
-if ($type != 'chat')
-	$url = sprintf('/%s/%s%s', $type, $id, ($type == 'user' ? '?forceuser' : ''));
-else
-	$url = "/chat";
+if ($type == 'chat') die('The chat has been closed.');
+
+$url = sprintf('/%s/%s%s', $type, $id, ($type == 'user' ? '?forceuser' : ''));
 
 if (!$doDelete) {
 	if (!$message) die('params pls');

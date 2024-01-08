@@ -115,19 +115,6 @@ CREATE TABLE `likes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-CREATE TABLE `news` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL DEFAULT 'Lorem ipsum',
-  `text` text DEFAULT NULL,
-  `time` int(10) unsigned DEFAULT 0,
-  `redirect` varchar(256) DEFAULT NULL,
-  `author` int(10) unsigned NOT NULL DEFAULT 1,
-  PRIMARY KEY (`id`),
-  KEY `author` (`author`),
-  CONSTRAINT `news_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 CREATE TABLE `notifications` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` int(10) unsigned NOT NULL,

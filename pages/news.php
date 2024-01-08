@@ -3,32 +3,10 @@ if (isset($_GET['id'])) redirect('/news/'.$_GET['id']);
 
 $newsid = $path[2] ?? 0;
 
-if (isset($_REQUEST['new']) && $log && IS_ADMIN) {
-	if (isset($_POST['ApOsTaL'])) {
-		insertInto('news', [
-			'title' => $_POST['title'],
-			'text' => $_POST['text'],
-			'time' => time(),
-			'author' => $userdata['id']
-		]);
-
-		$cachectrl->invIndex();
-
-		$insertid = result("SELECT LAST_INSERT_ID()");
-		redirect("/news/$insertid");
-	}
-
-	twigloader()->display('admin_news_add.twig');
-	die();
-}
-
 if ($newsid) {
-	$newsdata = fetch("SELECT * FROM news WHERE id = ?", [$newsid]);
+	$newsdata = News::getArticle($newsid);
 
 	if (!$newsdata) error('404');
-
-	if (isset($newsdata['redirect']))
-		redirect($newsdata['redirect']);
 
 	clearMentions('news', $newsid);
 
@@ -47,7 +25,7 @@ if ($newsid) {
 	]);
 
 } else {
-	$newsdata = query("SELECT id, title, time FROM news ORDER BY id DESC");
+	$newsdata = News::retrieveList(100);
 
 	twigloader()->display('news.twig', [
 		'newsid' => $newsid,

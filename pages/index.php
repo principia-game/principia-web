@@ -6,9 +6,7 @@ $latestfeatured = $cache->hit('idx_feat', function () use ($userfields) {
 	return fetchArray(query("SELECT l.id,l.title, $userfields FROM featured f JOIN levels l on f.level = l.id JOIN users u ON l.author = u.id ORDER BY f.id DESC LIMIT 4"));
 });
 
-$newsdata = $cache->hit('idx_news', function () {
-	return fetchArray(query("SELECT id, title, time FROM news ORDER BY id DESC LIMIT 5"));
-});
+$newsdata = News::retrieveList(5);
 
 $toplevels = $cache->hit('idx_top', function () use ($userfields) {
 	return fetchArray(query("SELECT l.id,l.title, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC LIMIT 8"));

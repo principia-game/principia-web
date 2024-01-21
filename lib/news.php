@@ -16,7 +16,7 @@ class News {
 	 * $limit sets a limit to the X latest news articles.
 	 */
 	public static function retrieveList($limit) {
-		if (!self::$news) self::loadnews();
+		if (!self::$news) self::loadNews();
 
 		$data = [];
 
@@ -38,7 +38,7 @@ class News {
 	 *
 	 */
 	public static function getArticle($id) {
-		if (!self::$news) self::loadnews();
+		if (!self::$news) self::loadNews();
 
 		$data = self::$news[$id] ?? null;
 

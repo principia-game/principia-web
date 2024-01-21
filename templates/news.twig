@@ -12,7 +12,7 @@
 {% if newsid %}
 	<h1>{{ news.title }}</h1>
 	<p><em>Published on the {{ time }}</em></p>
-	<p>{{ news.text | markdown_unsafe }}</p>
+	{{ news.text | markdown_unsafe }}
 
 	{{ comments(comments, 'news', news.id) }}
 {% else %}

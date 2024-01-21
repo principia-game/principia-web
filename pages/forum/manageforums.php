@@ -77,7 +77,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 	else
 		$cat = fetch("SELECT * FROM z_categories WHERE id = ?", [$cid]);
 
-	echo $twig->render("manageforums_category.twig", [
+	echo $twig->render("forum/manageforums_category.twig", [
 		'cid' => $cid,
 		'cat' => $cat
 	]);
@@ -101,7 +101,7 @@ if (isset($_GET['cid']) && $cid = $_GET['cid']) {
 		'minreply' => 'Who can reply'
 	];
 
-	echo $twig->render("manageforums_forum.twig", [
+	echo $twig->render("forum/manageforums_forum.twig", [
 		'fid' => $fid,
 		'forum' => $forum,
 		'cats' => $cats,

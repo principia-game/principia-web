@@ -11,7 +11,6 @@ class CacheControl {
 	 * Aggressively invalidate index cache if any data has been modified.
 	 */
 	public function invIndex() {
-		$this->cache->delete('idx_news');
 		$this->cache->delete('idx_anp');
 		$this->cache->delete('idx_adv');
 		$this->cache->delete('idx_feat');

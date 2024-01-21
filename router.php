@@ -91,7 +91,7 @@ if (isset($path[1]) && $path[1] != '') {
 			'xxxxx'			=> 'get_package_level',	# Get package levels
 			'xxxxxx'		=> 'get_level',			# Edit level
 			'get_feature'	=> 'get_featured',		# Get featured levels
-			'bppfoal2_'		=> 'android_register',	# Android register
+			'bppfoal2_'		=> 'register',			# Register (Android)
 			'submit_score'	=> 'submit_score',		# Submit score
 			default => null
 		};

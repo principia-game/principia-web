@@ -1,6 +1,8 @@
 <?php
 
 function postfilter($msg) {
+	$msg = str_replace("[/quote]", "[/quote]\n\n", $msg);
+
 	$markdown = new Parsedown();
 	$markdown->setSafeMode(true);
 	$msg = $markdown->text($msg);

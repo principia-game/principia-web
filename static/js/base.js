@@ -9,6 +9,17 @@ function vote(el, id) {
 	el.disabled = 'disabled';
 }
 
+if (protocolButton = document.getElementById('protocol-button')) {
+	let attempts = 0;
+
+	protocolButton.addEventListener('click', () => {
+		attempts++;
+
+		if (attempts >= 3)
+			document.getElementById('protocol-issues').style.display = 'block';
+	});
+}
+
 // toggle visibility of element with id `id`,
 // reflecting the status in id `feedback`.
 function toggleVis(id, feedback) {

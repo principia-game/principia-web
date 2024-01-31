@@ -34,7 +34,7 @@
 	<div class="info">
 		{% if not level.visibility == 1 %}
 			<div id="buttons">
-				<a class="play" href="principia://play/lvl/db/{{ lid }}">Play</a>
+				<a class="play" id="protocol-button" href="principia://play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
 				{%- if level.author == userdata.id -%}
 					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit</a>
 				{%- elseif level.derivatives -%}
@@ -57,6 +57,12 @@
 		{% else %}
 			<p><em>This level has been locked. It will not be visible outside of this level page.</em></p>
 		{% endif %}
+
+		<div class="protocol-issues" id="protocol-issues">
+			<strong>Issues trying to play levels?</strong>
+			<a href="/wiki/Troubleshoot_Playing_Levels">Troubleshoot issues playing levels</a>
+		</div>
+
 		<p>{{ level.description | markdown }}</p>
 	</div>
 </div>

@@ -8,4 +8,4 @@ if (!$pkg || !file_exists($pkgpath)) {
 
 query("UPDATE packages SET downloads = downloads + 1 WHERE id = ?", [$pkg]);
 
-readfile($pkgpath);
+offerFile($pkgpath, $pkg.'.ppkg');

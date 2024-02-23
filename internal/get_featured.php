@@ -1,4 +1,4 @@
 <?php
 internalAuth();
 
-readfile('data/featured/fl.cache');
+offerFile('data/featured/fl.cache', 'fl.cache');

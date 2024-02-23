@@ -64,3 +64,11 @@ function renderPlaintext($filename) {
 	readfile($filename);
 	die();
 }
+
+function offerFile($filepath, $savename) {
+	header("Content-Type: application/octet-stream");
+	header("Content-Disposition: attachment; filename=\"$savename\"");
+	header("Content-Length: ".filesize($filepath));
+
+	readfile($filepath);
+}

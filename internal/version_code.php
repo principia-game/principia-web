@@ -2,4 +2,4 @@
 internalAuth();
 
 // TODO: dehardcode
-echo "34:Latest news article: Principia 1.5.2 Beta build 2023-12-26";
+echo "35:Latest news article: Principia 2024.02.29";

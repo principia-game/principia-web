@@ -3,8 +3,9 @@
 {% set title = "Download Principia" %}
 {% set description = "Download the latest version of open source Principia here, on principia-web." %}
 
-{% set dlurl = 'https://grejer.voxelmanip.se/principia' %}
-{% set buildrev = '2023-12-26' %}
+
+{% set version = '2024.02.29' %}
+{% set dlurl = 'https://github.com/Bithack/principia/releases/download/'~ version %}
 
 	{% block content %}
 <h1>Download Principia</h1>
@@ -24,15 +25,15 @@
 
 		<p>
 			<strong>
-				<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}_win64.exe">
-					Principia 1.5.2 Beta build {{ buildrev }} - Installer, 64-bit (recommended)
+				<a href="{{ dlurl }}/principia_{{ version }}_win64.exe">
+					Principia {{ version }} for Windows - Installer, 64-bit (recommended)
 				</a>
 			</strong>
 		</p>
 
 		<p>
-			<a href="{{ dlurl }}/principia_1.5.2_beta_{{ buildrev }}_win64.7z">
-				Principia 1.5.2 Beta build {{ buildrev }} - Portable, 64-bit
+			<a href="{{ dlurl }}/principia_{{ version }}_win64.7z">
+				Principia {{ version }} for Windows - Portable, 64-bit
 			</a>
 		</p>
 
@@ -48,20 +49,20 @@
 	</td>
 	<td colspan="2">
 		<p>
-			Works with Android 4.4 and above. APK contains native libraries for both 32-bit and 64-bit ARM devices.
+			Works with Android 4.4 and above. APK contains native libraries for both 32-bit and 64-bit ARM devices as well as x86_64.
 		</p>
 
 		<p>
 			<strong>
-				<a href="https://grejer.voxelmanip.se/principia/principia_1.5.2_beta_{{ buildrev }}.apk">
-					Principia 1.5.2 Beta build {{ buildrev }}
+				<a href="{{ dlurl }}/principia_{{ version }}.apk">
+					Principia {{ version }} for Android
 				</a>
 			</strong>
 		</p>
 
 		<p>
-			<strong>IMPORTANT WHEN UPDATING</strong>: Principia 1.5.2 now stores its user data in scoped app storage
-			as compared to in the shared storage. If you have existing levels and data saved locally you will need
+			<strong>IMPORTANT WHEN UPDATING</strong>: Principia now stores its user data in scoped app storage
+			as compared to in the shared storage. If you have existing levels and data saved locally from 1.5.1 you will need
 			to manually migrate it to the new location.
 			(See <a href="/wiki/Accessing_Android_Data_Directory">Accessing Android Data Directory</a> for how to access)
 		</p>
@@ -70,6 +71,32 @@
 <tr>
 	<td class="plat" rowspan="5">
 		<img src="/icons/linux.svg?v=2"><br>Linux
+	</td>
+</tr>
+<tr>
+	<td class="plat">
+		<img src="/icons/appimage.svg"><br>AppImage
+	</td>
+	<td>
+		<p><strong>GTK+3</strong>, <strong>FUSE2</strong>, <strong>xdg-utils</strong> and functional OpenGL drivers are required to be installed on your system!</p>
+
+		<p>A distro equivalent to Debian 11 Bullseye or newer is required.</p>
+
+		<p>
+			<strong>
+				<a href="{{ dlurl }}/principia_{{ version }}_x86_64.AppImage">
+					Principia {{ version }} for Linux - AppImage, 64-bit
+				</a>
+			</strong>
+		</p>
+
+		<p>
+			An AppImage is a single file containing the game's files that you run.
+			For more information on how to run an AppImage see
+			<a href="https://docs.appimage.org/introduction/quickstart.html#ref-how-to-run-appimage">
+				AppImage quickstart
+			</a>
+		</p>
 	</td>
 </tr>
 <tr>
@@ -108,6 +135,7 @@ cd principia-git/<br>
 makedeb -si</code></p>
 	</td>
 </tr>
+{# (NixOS build hasn't been updated in a while)
 <tr>
 	<td class="plat">
 		<img src="/icons/nix.svg"><br>NixOS
@@ -126,6 +154,7 @@ makedeb -si</code></p>
 		</p>
 	</td>
 </tr>
+#}
 <tr>
 	<td class="plat">
 		<div class="generic">?</div> <br>Other
@@ -150,7 +179,7 @@ makedeb -si</code></p>
 	</td>
 	<td colspan="2">
 		<p>
-			An experimental port of Haiku OS is available for Principia in the <code>haiku-port</code> branch.
+			An experimental port of Haiku OS is available for Principia.
 		</p>
 
 		<p>

@@ -1,4 +1,4 @@
 <?php
 
 // TODO: dehardcode
-redirect('/news/12');
+redirect('/news/13');

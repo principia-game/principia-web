@@ -78,9 +78,14 @@
 		<img src="/icons/appimage.svg"><br>AppImage
 	</td>
 	<td>
-		<p><strong>GTK+3</strong>, <strong>FUSE2</strong>, <strong>xdg-utils</strong> and functional OpenGL drivers are required to be installed on your system!</p>
+		<p>
+			<strong>GTK+3</strong>, <strong>FUSE2</strong>, <strong>xdg-utils</strong> and functional OpenGL drivers
+			are required to be installed on your system!
+		</p>
 
-		<p>A distro equivalent to Debian 11 Bullseye or newer is required.</p>
+		<p>
+			A distro equivalent to Debian 11 Bullseye or newer is required.
+		</p>
 
 		<p>
 			<strong>
@@ -105,15 +110,23 @@
 	</td>
 	<td>
 		<p>
-			On Arch Linux-based distributions you can use the <a href="https://aur.archlinux.org/packages/principia-git">principia-git</a> package from the AUR which
-			tracks the latest master. Use your favourite AUR helper, like such:
+			Principia is available in the AUR either as the stable <a href="https://aur.archlinux.org/packages/principia"><code>principia</code></a>
+			package or the <a href="https://aur.archlinux.org/packages/principia-git"><code>principia-git</code></a> package tracking the master branch.
+			Use your favourite AUR helper, as such:
 		</p>
 
-		<p><code>yay -S principia-git</code></p>
+		<p><code>yay -S principia</code></p>
 
-		<p>A custom binary repository is also available, being updated every now and then. To add:</p>
+		<p>
+			A custom binary repository is also available. To add:
+		</p>
 
 		<p><code>echo -e '\n[principia]\nSigLevel = Optional DatabaseOptional\nServer = https://grejer.voxelmanip.se/principia/arch-repo/$arch' | sudo tee -a /etc/pacman.conf</code></p>
+
+		<p>
+			A <code>principia</code> binary package for the latest version is available in the repository as well as
+			a <code>principia-git</code> package which gets updated every now and then.
+		</p>
 	</td>
 </tr>
 <tr>
@@ -168,7 +181,7 @@ makedeb -si</code></p>
 
 		<p>
 			Compilation instructions can be found in the included
-			<a href="https://github.com/Bithack/principia/#building-on-linux">README</a> file.
+			<a href="https://github.com/Bithack/principia/#linux">README</a> file.
 		</p>
 	</td>
 </tr>
@@ -183,7 +196,7 @@ makedeb -si</code></p>
 		</p>
 
 		<p>
-			For instructions on how to compile and run Principia on Haiku OS see <a href="https://principia-web.se/wiki/Compiling_Principia#haiku">Compiling Principia</a>.
+			For instructions on how to compile and run Principia on Haiku OS see <a href="/wiki/Compiling_Principia#haiku-os">Compiling Principia</a>.
 		</p>
 	</td>
 </tr>

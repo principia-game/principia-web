@@ -84,15 +84,10 @@ if (isset($path[1]) && $path[1] != '') {
 		$page = str_replace('.php', '', $path[2]);
 
 		$internalPage = match ($page) {
-			'xx'			=> 'login',				# Login
 			'x'				=> 'get_level',			# Get level file
 			'xxx'			=> 'get_level',			# Open level in sandbox
-			'xxxx'			=> 'get_package',		# Get package file
-			'xxxxx'			=> 'get_package_level',	# Get package levels
 			'xxxxxx'		=> 'get_level',			# Edit level
 			'get_feature'	=> 'get_featured',		# Get featured levels
-			'bppfoal2_'		=> 'register',			# Register (Android)
-			'submit_score'	=> 'submit_score',		# Submit score
 			default => null
 		};
 
@@ -101,10 +96,6 @@ if (isset($path[1]) && $path[1] != '') {
 	}
 	elseif ($path[1] == 'principia-version-code')
 		require('internal/version_code.php');
-	elseif ($path[1] == 'upload.php')
-		require('internal/upload.php');
-	elseif ($path[1] == 'levels_with_no_thumbs')
-		require('internal/levels_with_no_thumbs.php');
 	elseif ($uri == '/image-to-lua')
 		redirect('/image-to-lua/');
 	elseif ($uri == '/image-to-lua/')

@@ -1,26 +1,9 @@
 <?php
 
-$modern = ($uri == "/internal/register");
+if (!internalKey()) die('403');
 
-if ($modern && !internalKey()) die('403');
-
-function getError($code) {
-	global $modern;
-
-	$errors = [
-		111 => "You have already registered an account.",
-		112 => "This username is already taken.",
-		113 => "The username contains invalid characters.",
-		114 => "Password is too short.",
-		115 => "This email is invalid.",
-		116 => "This email is already in use."
-	];
-
-	if ($modern)
-		header("x-error-message: ".$errors[$code]);
-	else
-		echo $code;
-
+function sendError($msg) {
+	header("x-error-message: ".$msg);
 	die();
 }
 
@@ -30,31 +13,28 @@ $name = trim($_POST['username'] ?? '');
 $mail = $_POST['email'] ?? null;
 $pass = $_POST['password'] ?? null;
 
-if (!$name) // XXX
-	getError('112'); // 111 is a generic "something went wrong!" code.
+if (!$name)
+	sendError("You need to enter a username.");
 
 if (!$mail || !filter_var($mail, FILTER_VALIDATE_EMAIL))
-	getError('115'); // "This email is invalid."
+	sendError("This email is invalid.");
 
 if (!$pass || strlen($pass) < 6)
-	getError('114'); // "The password is invalid."
+	sendError("Password is too short.");
 
 if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name)]))
-	getError('112'); // "This username is already taken."
+	sendError("This username is already taken.");
 
 if (!preg_match('/^[a-zA-Z0-9\-_]+$/', $name))
-	getError('113'); // "The username contains invalid characters."
+	sendError("The username contains invalid characters.");
 
 if (result("SELECT COUNT(*) FROM users WHERE email = ?", [$mail]))
-	getError('116'); // "This email is already in use."
+	sendError("This email is already in use.");
 
 if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
-	getError('111'); // Just give the generic "something went wrong!" code.
+	sendError("You have already registered an account.");
 
 // All possible invalid credentials have been checked, it should be successful now.
 register($name, $pass, $mail, $ipaddr);
 
-if ($modern)
-	header('x-notify-message: Registered successfully!');
-else
-	die('110');
+header('x-notify-message: Registered successfully!');

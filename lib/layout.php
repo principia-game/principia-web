@@ -121,10 +121,12 @@ function redirectPerma($url, ...$args) {
 	die();
 }
 
-/**
- * Is the useragent Principia's android webview useragent?
- */
-function isAndroidWebview() {
+function androidWebviewVersion() {
 	global $useragent;
-	return str_contains($useragent, 'Principia WebView');
+	preg_match('/Principia WebView\/([0-9]+) \(Android\)/', $useragent, $matches);
+
+	if (isset($matches[1]))
+		return (int)$matches[1];
+	else
+		return null;
 }

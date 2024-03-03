@@ -26,6 +26,9 @@
 </head>
 <body>
 	{{ custom_header() | raw }}
+	{% if android_webview_version() == 34 %}
+		<div class="banner b-red center">You are on an old version of Principia that is not supported by principia-web anymore. Please <a href="/download">update</a> to be able to continue using principia-web.</div>
+	{% endif %}
 	{% if constant('DEBUG') %}
 		<div class="banner" style="background:repeating-linear-gradient(45deg,#111,#111 10px,#aa0 10px,#aa0 20px)"></div>
 	{% endif %}

@@ -1,7 +1,8 @@
 <?php
 
 $markdownPages = [
-	'about' => 'About',
-	'credits' => 'Credits',
-	'privacy' => 'Privacy Policy'
+	'about'		=> 'About',
+	'chat'		=> 'Chat',
+	'credits'	=> 'Credits',
+	'privacy'	=> 'Privacy Policy'
 ];

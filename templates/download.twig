@@ -69,7 +69,7 @@
 	</td>
 </tr>
 <tr>
-	<td class="plat" rowspan="5">
+	<td class="plat" rowspan="7">
 		<img src="/icons/linux.svg?v=2"><br>Linux
 	</td>
 </tr>
@@ -148,41 +148,49 @@ cd principia-git/<br>
 makedeb -si</code></p>
 	</td>
 </tr>
-{# (NixOS build hasn't been updated in a while)
 <tr>
 	<td class="plat">
 		<img src="/icons/nix.svg"><br>NixOS
 	</td>
 	<td>
 		<p>
-			Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia&type=packages&query=principia">is available in nixpkgs</a>.
-		</p>
-
-		<p>
-			The Principia source repository also contains files to automatically build and package Principia on NixOS.
-		</p>
-
-		<p>
-			See the <a href="https://github.com/Bithack/principia/tree/master/nix#readme">NixOS README</a> for more information.
+			A package for Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia">is available in nixpkgs</a>.
 		</p>
 	</td>
 </tr>
-#}
+<tr>
+	<td class="plat">
+		<img src="/icons/slackware.svg"><br>Slackware
+	</td>
+	<td>
+		<p>
+			A package for Principia <a href="https://slackbuilds.org/repository/15.0/games/principia/">is available in SlackBuilds</a>.
+		</p>
+	</td>
+</tr>
 <tr>
 	<td class="plat">
 		<div class="generic">?</div> <br>Other
 	</td>
 	<td>
 		<p>
-			Please clone the source repository and build from source:
-		</p>
-
-		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
-
-		<p>
 			Compilation instructions can be found in the included
 			<a href="https://github.com/Bithack/principia/#linux">README</a> file.
 		</p>
+
+		<p>
+			<strong>
+				<a href="https://github.com/Bithack/principia/archive/refs/tags/{{ version }}.tar.gz">
+					Principia {{ version }} source code (.tar.gz)
+				</a>
+			</strong>
+		</p>
+
+		<p>
+			Alternatively clone the source repository and build from source <strong>(this will clone latest master)</strong>:
+		</p>
+
+		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
 	</td>
 </tr>
 

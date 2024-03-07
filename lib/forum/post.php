@@ -24,39 +24,46 @@ function minipost($post) {
 	$posttext = postfilter($post['text']);
 
 	return <<<HTML
-	<tr>
-		<td class="n1 topbar_1 nom">$ulink</td>
-		<td class="n1 topbar_1 blkm nod clearfix">$ulink</td>
-		<td class="n1 topbar_2 sfont blkm">Posted on $pdate
-			<span class="float-right"><a href="thread?pid={$post['id']}#{$post['id']}">Link</a> &ndash; ID: {$post['id']}</span></td>
-	</tr><tr valign="top">
-		<td class="n1 sfont sidebar nom">
-			Posts: {$post['uposts']}
-		</td>
-		<td class="n2 mainbar">$posttext</td>
-	</tr>
-HTML;
+		<tr>
+			<td class="n2 topbar_mobile blkm nod clearfix sep_mini">
+				$ulink
+			</td>
+		</tr>
+		<tr>
+			<td class="n2 sidebar nom sep_mini" rowspan="2">
+				$ulink
+				<br>
+				<br>Posts: {$post['uposts']}
+			</td>
+			<td class="n2 topbar blkm sep_mini">Posted on $pdate
+				<span class="float-right"><a href="thread?pid={$post['id']}#{$post['id']}">Link</a> &ndash; ID: {$post['id']}</span>
+			</td>
+		</tr><tr>
+			<td class="n2 mainbar">$posttext</td>
+		</tr>
+	HTML;
 }
 
 function threadpost($post, $pthread = '') {
 	global $log, $userdata;
 
 	if (isset($post['deleted']) && $post['deleted']) {
-		if (IS_MOD) {
-			$postlinks = sprintf(
-				'<a href="thread?pid=%s&pin=%s#%s">Peek</a> &ndash; <a href="editpost?pid=%s&act=undelete">Undelete</a> &ndash; ID: %s',
-			$post['id'], $post['id'], $post['id'], $post['id'], $post['id']);
-		} else {
-			$postlinks = 'ID: '.$post['id'];
-		}
+		if (!IS_MOD) return;
 
+		$pid = $post['id'];
 		$ulink = userlink($post, 'u');
 		return <<<HTML
-<table class="c1 threadpost" id="{$post['id']}"><tr>
-	<td class="n1 topbar_1">$ulink</td>
-	<td class="n1 topbar_2 fullwidth">(post deleted) <span class="float-right">$postlinks</span></td>
-</tr></table>
-HTML;
+			<table class="c1 threadpost" id="{$post['id']}"><tr>
+				<td class="n1 sidebar">$ulink</td>
+				<td class="n1 topbar">
+					(post deleted)
+					<span class="float-right">
+						<a href="thread?pid=$pid&pin=$pid#$pid">Peek</a>
+						&ndash; <a href="editpost?pid=$pid&act=undelete">Undelete</a>
+					</span>
+				</td>
+			</tr></table>
+		HTML;
 	}
 
 	$headerbar = $threadlink = $postlinks = $revisionstr = '';
@@ -94,43 +101,39 @@ HTML;
 		}
 	}
 
-	if (isset($post['thread']))
-		$postlinks[] = 'ID: '.$post['id'];
-
 	$postlinks = join(' &ndash; ', $postlinks);
 
 	$ulink = userlink($post, 'u');
 	$pdate = date('Y-m-d H:i', $post['date']);
-	$lastpost = relativeTime($post['ulastpost']);
-	$lastview = relativeTime($post['ulastview']);
-	$picture = ($post['uavatar'] ? "<img src=\"/userpic/{$post['uid']}\" alt=\"(Avatar)\">" : '');
+	$picture = ($post['uavatar'] ? "<img src=\"/userpic/{$post['uid']}\" alt=\"(Avatar)\"><br>" : '');
 
 	$signature = $post['usignature'] && $log ? '<div class="siggy">'.postfilter($post['usignature']).'</div>' : '';
 
 	$ujoined = date('Y-m-d', $post['ujoined']);
 	$posttext = postfilter($post['text']);
 	return <<<HTML
-<table class="c1 threadpost" id="{$post['id']}">
-	$headerbar
-	<tr>
-		<td class="n1 topbar_1 nom">$ulink</td>
-		<td class="n1 topbar_1 blkm nod clearfix">
-			<span style="float:left;margin-right:10px">$picture</span>
-			$ulink
-		</td>
-		<td class="n1 topbar_2 blkm clearfix">Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span></td>
-	</tr><tr valign="top">
-		<td class="n1 sidebar nom">
-			$picture
-			<br>Posts: {$post['uposts']}
-			<br>
-			<br>Joined: $ujoined
-			<br>
-			<br>Last post: $lastpost
-			<br>Last view: $lastview
-		</td>
-		<td class="n2 mainbar">$posttext$signature</td>
-	</tr>
-</table>
-HTML;
+		<table class="c1 threadpost" id="{$post['id']}">
+			$headerbar
+			<tr>
+				<td class="n2 topbar_mobile blkm nod clearfix">
+					<span style="float:left;margin-right:10px">$picture</span>
+					$ulink
+				</td>
+			</tr>
+			<tr>
+				<td class="n2 sidebar nom" rowspan="2">
+					$picture
+					$ulink
+					<br>
+					<br><strong>Posts:</strong> {$post['uposts']}
+					<br><strong>Joined:</strong> $ujoined
+				</td>
+				<td class="n2 topbar blkm clearfix">
+					Posted on $pdate$threadlink$revisionstr <span class="float-right">$postlinks</span>
+				</td>
+			</tr><tr>
+				<td class="n2 mainbar">$posttext$signature</td>
+			</tr>
+		</table>
+	HTML;
 }

@@ -14,7 +14,7 @@
 {% for forum in forums %}
 	{% if forum.cat != category %}
 		{% if category != -1 %}
-			</table><br>
+			</table>
 		{% endif %}
 
 		{% set category = forum.cat %}
@@ -52,5 +52,4 @@
 	</tr>
 {% endfor %}
 </table>
-<br>
 	{% endblock %}

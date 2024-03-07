@@ -21,7 +21,7 @@
 {% if time %}
 	<p>View the latest posts that have been made within the given timespan.</p>
 
-	<p>{{ timelinks('forum', time) }}</p>
+	<p>{{ timelinks('thread', time) }}</p>
 {% endif %}
 
 {{ modlinks | raw }}{{ pagelist | raw }}
@@ -35,15 +35,15 @@
 		{% set post = post|merge({'deleted': false}) %}
 	{% endif %}
 
-	<br>{{ threadpost(post, pthread) }}
+	{{ threadpost(post, pthread) }}
 {% else %}
-	<br>{{ if_empty_query("No posts were found.", 0, true) }}
+	{{ if_empty_query("No posts were found.", 0, true) }}
 {% endfor %}
 
 {{ pagelist | raw }}
 
 {% if thread.id and userdata.rank >= faccess.minreply and not thread.closed %}
-<br><form action="newreply?id={{ tid }}" method="POST">
+<form action="newreply?id={{ tid }}" method="POST">
 	<table class="c1">
 		<tr class="h"><td colspan="2">Quick Reply</a></td>
 		<tr>

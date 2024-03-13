@@ -27,7 +27,7 @@ if ($action == "Ban User") {
 	redirect("/user/%s?justbanned=unban", $id);
 }
 
-twigloader()->display('admin_ban_user.twig', [
+twigloader()->display('admin/ban_user.twig', [
 	'banuserdata' => $banuserdata,
 	'unban' => $banuserdata['rank'] < 0
 ]);

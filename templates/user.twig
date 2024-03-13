@@ -115,7 +115,7 @@
 			&ndash; <a href="/resetpassword?grf={{ id }}">Generate password reset for user</a>
 		{% endif %}
 		{% if userdata.rank > 1 %}
-			&ndash; <a href="/_ban_user?id={{ id }}">{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
+			&ndash; <a href="/admin/ban_user?id={{ id }}">{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
 		{% endif %}
 	{% endif %}
 </p>

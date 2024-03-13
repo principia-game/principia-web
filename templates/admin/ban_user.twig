@@ -13,7 +13,7 @@
 
 <p class="center">You are going to be {{ action }}ning {{ userlink(banuserdata) }}.</p><br>
 
-<form class="reglog" method="POST" action="/_ban_user?id={{ banuserdata.id }}">
+<form class="reglog" method="POST">
 	{% if action == "ban" %}
 		<div>
 			<span>Reason:</span>

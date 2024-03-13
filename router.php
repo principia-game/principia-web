@@ -2,7 +2,7 @@
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $path = explode('/', $uri);
 
-$internal = (isset($path[1]) && (in_array($path[1], ['apZodIaL1', 'internal', 'principia-version-code', 'upload.php'])));
+$internal = (isset($path[1]) && (in_array($path[1], ['apZodIaL1', 'internal', 'principia-version-code'])));
 
 require('lib/common.php');
 
@@ -52,18 +52,17 @@ if (isset($path[1]) && $path[1] != '') {
 	elseif ($path[1] == 'api') {
 		if (!isset($path[2]))
 			redirect('/api/');
-		elseif ($path[2] == '') {
+		elseif ($path[2] == '')
 			renderPlaintext('pages/api/README.md');
-		} elseif (file_exists('pages/api/'.$path[2].'.php')) {
+		elseif (file_exists('pages/api/'.$path[2].'.php'))
 			require('pages/api/'.$path[2].'.php');
-		}
 	}
-	elseif (isset($markdownPages[$path[1]])) {
+	elseif (isset($markdownPages[$path[1]]))
 		twigloader()->display('_markdown.twig', [
 			'pagetitle' => $markdownPages[$path[1]],
 			'file' => $path[1].'.md'
 		]);
-	}
+
 	elseif ($path[1] == 'download')
 		twigloader()->display('download.twig');
 
@@ -77,22 +76,20 @@ if (isset($path[1]) && $path[1] != '') {
 			require('internal/get_level.php');
 		elseif ($path[2] == 'edit_level')
 			require('internal/get_level.php');
+		else
+			notFound();
 	}
 
 	elseif ($path[1] == 'apZodIaL1') {
 
-		$page = str_replace('.php', '', $path[2]);
+		if ($path[2] == 'get_feature.php')
+			require('internal/get_featured.php');
+		else {
+			header("x-error-message: Please update your version of Principia to continue using principia-web.");
 
-		$internalPage = match ($page) {
-			'x'				=> 'get_level',			# Get level file
-			'xxx'			=> 'get_level',			# Open level in sandbox
-			'xxxxxx'		=> 'get_level',			# Edit level
-			'get_feature'	=> 'get_featured',		# Get featured levels
-			default => null
-		};
-
-		if ($internalPage)
-			require('internal/'.$internalPage.'.php');
+			http_response_code(500);
+			die();
+		}
 	}
 	elseif ($path[1] == 'principia-version-code')
 		require('internal/version_code.php');
@@ -114,7 +111,7 @@ if (isset($path[1]) && $path[1] != '') {
 } else
 	require('pages/index.php');
 
-if (DEBUG) {
+if (DEBUG && false) {
 	echo "<pre>== Twig perf dump ==\n";
 	$dumper = new \Twig\Profiler\Dumper\TextDumper();
 	echo $dumper->dump($profile).'</pre>';

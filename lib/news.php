@@ -35,7 +35,7 @@ class News {
 	}
 
 	/**
-	 *
+	 * Get an array of data for a news article.
 	 */
 	public static function getArticle($id) {
 		if (!self::$news) self::loadNews();
@@ -47,5 +47,19 @@ class News {
 		$data['text'] = file_get_contents('data/news/'.$id.'.md');
 
 		return $data;
+	}
+
+	/**
+	 * Get ID and title of latest news article.
+	 */
+	public static function getLatestArticle() {
+		if (!self::$news) self::loadNews();
+
+		$latestid = count(self::$news);
+
+		return [
+			'id' => $latestid,
+			'title' => self::$news[$latestid]['title']
+		];
 	}
 }

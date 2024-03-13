@@ -1,4 +1,5 @@
 <?php
 
-// TODO: dehardcode
-redirect('/news/13');
+$latestnews = News::getLatestArticle();
+
+redirect('/news/'.$latestnews['id']);

@@ -531,6 +531,33 @@ div.level {
 	a {
 		font-weight: bold;
 	}
+
+	.buttonbar {
+		margin-bottom: 40px;
+
+		a {
+			display: inline-block;
+			color: white;
+			margin: 0 20px;
+			width: 150px;
+
+			&:hover {
+				filter: brightness(1.25);
+				text-decoration: none;
+			}
+
+			&:active {
+				filter: brightness(0.75);
+			}
+		}
+		img {
+			height: 90px;
+			padding: 10px;
+		}
+		span {
+			display: block;
+		}
+	}
 }
 
 /// Generic classes \\\

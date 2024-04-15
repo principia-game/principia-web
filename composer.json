@@ -3,15 +3,7 @@
 		"kaitai-io/kaitai_struct_php_runtime": "dev-master",
 		"twig/twig": "^3.0",
 		"erusev/parsedown": "9999999-dev",
-		"phpmailer/phpmailer": "dev-master",
-		"nopjmp/discord-webhooks": "dev-master",
-		"mpratt/relativetime": "dev-master"
+		"nopjmp/discord-webhooks": "dev-master"
 	},
-	"minimum-stability": "dev",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url":  "https://github.com/kaitai-io/kaitai_struct_php_runtime"
-		}
-	]
+	"minimum-stability": "dev"
 }

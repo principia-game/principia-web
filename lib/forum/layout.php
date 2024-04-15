@@ -95,7 +95,7 @@ class PrincipiaForumExtension extends \Twig\Extension\AbstractExtension {
 }
 
 function timelinks($file, $seltime) {
-	$relativeTime = new \RelativeTime\RelativeTime([
+	$relativeTime = new RelativeTime([
 		'suffix' => false,
 		'truncate' => 1,
 	]);

@@ -101,10 +101,7 @@ HTML;
 function relativeTime($time) {
 	if (!$time) return 'never';
 
-	$relativeTime = new \RelativeTime\RelativeTime([
-		'language' => '\RelativeTime\Languages\English',
-		'separator' => ', ',
-		'suffix' => true,
+	$relativeTime = new RelativeTime([
 		'truncate' => 1,
 	]);
 

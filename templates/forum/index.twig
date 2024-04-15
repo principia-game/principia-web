@@ -1,7 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = "Forum" %}
-{% set description = "The principia-web forums allow you to discuss about Principia, along with Apparatus and Tesla Plushies and general chitchat." %}
+{% set description = "The Principia forums allow you to discuss about Principia, along with Apparatus and Tesla Plushies and general chitchat." %}
 {% set pagename = "/forum/" %}
 
 	{% block content %}
@@ -9,7 +9,7 @@
 
 <h1>Forum</h1>
 
-<p>Welcome to the principia-web forums. It is a place for longer-form discussions about Principia and related topics.</p>
+<p>Welcome to the Principia forums. It is a place for longer-form discussions about Principia and related topics.</p>
 
 {% for forum in forums %}
 	{% if forum.cat != category %}

@@ -86,13 +86,11 @@
 			{% endif %}
 		</div>{% endif %}
 	</div></div>
-	{% if not android_webview_version() %}
 	<div class="donate-nag">
 		<a href="https://liberapay.com/ROllerozxa" target="_blank">
 			<img src="/donate-nag.webp" loading="lazy" alt="Support principia-web! Help cover server costs for Principia">
 		</a>
 	</div>
-	{% endif %}
 	<div class="footer">
 		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
 

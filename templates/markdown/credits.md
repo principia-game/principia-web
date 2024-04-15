@@ -12,7 +12,6 @@ The following PHP libraries are used:
 - [`twig/twig`](https://twig.symfony.com/) (MIT)
 - [`erusev/parsedown`](https://github.com/erusev/parsedown) (MIT)
 - [`phpmailer/phpmailer`](https://github.com/PHPMailer/PHPMailer) (LGPLv2.1)
-- [`nelexa/zip`](https://github.com/Ne-Lexa/php-zip) (MIT)
 - [`nopjmp/discord-webhooks`](https://github.com/nopjmp/discord-webhooks) (MIT)
 - [`mpratt/relativetime`](https://github.com/mpratt/RelativeTime) (MIT)
 

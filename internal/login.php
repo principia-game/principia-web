@@ -6,7 +6,7 @@ if (!internalKey()) {
 }
 
 if (!isset($_POST['username']) || !isset($_POST['password'])) {
-	header("x-error-message: Fill the Username and Password field before pressing Log in.");
+	header("x-error-message: Fill the username and password fields before pressing log in.");
 	die();
 }
 
@@ -22,6 +22,5 @@ if ($logindata && password_verify($_POST['password'], $logindata['password'])) {
 	setcookie(COOKIE_NAME, $logindata['token'], time() + 3600*24*365, '/');
 
 	header('x-notify-message: Logged in successfully!');
-} else {
+} else
 	header("x-error-message: Invalid username or password");
-}

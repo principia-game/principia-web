@@ -1,14 +1,8 @@
 <?php
 
-if (!$log || IS_BANNED) {
-	header("x-error-message: You must be logged in with a valid Principia account to publish levels.");
-
+if (!internalKey() || !$log || IS_BANNED || !isset($_FILES['level'])) {
+	header("x-error-message: You cannot upload levels.");
 	die();
-}
-
-if (!internalKey() || !isset($_FILES['level'])) {
-	header("x-error-message: what ok");
-	die('404');
 }
 
 require('lib/kaitai/plvl.php');

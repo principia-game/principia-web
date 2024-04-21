@@ -31,7 +31,6 @@ function cmtTypeToNum($type) {
 		'news'		=> 2,
 		'contest'	=> 3,
 		'user'		=> 4,
-		'chat'		=> 5,
 		'package'	=> 6
 	};
 }
@@ -42,7 +41,6 @@ function cmtNumToType($num) {
 		2 => 'news',
 		3 => 'contest',
 		4 => 'user',
-		5 => 'chat',
 		6 => 'package'
 	};
 }

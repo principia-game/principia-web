@@ -8,13 +8,6 @@ function registerSpecialPage($name, $func) {
 	$specialpages[$name] = $func;
 }
 
-// Pages that don't exist anymore
-foreach (['contributions', 'recentchanges', 'version', 'specialpages'] as $page)
-	registerSpecialPage($page, function () {
-		redirectPerma('/wiki/');
-	});
-
-
 // Stubs
 foreach (['longpages', 'shortpages'] as $page)
 	registerSpecialPage($page, function () {

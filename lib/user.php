@@ -72,18 +72,12 @@ function prepareNotifications($notifs, $userid) {
 				userlink($notif, 'u_'), $notif['level']);
 			break;
 			case 11:
-			case 12:
 			case 13:
 			case 14:
 			case 16:
 				$notifications[] = sprintf(
 					'%s mentioned you in a %s comment: <a href="/%s/%s">Read</a>',
 				userlink($notif, 'u_'), cmtNumToType($notif['type'] - 10), cmtNumToType($notif['type'] - 10), $notif['level']);
-			break;
-			case 15:
-				$notifications[] = sprintf(
-					'%s mentioned you in the chat: <a href="/chat">Read</a>',
-				userlink($notif, 'u_'));
 			break;
 		}
 	}

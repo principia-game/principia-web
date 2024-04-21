@@ -9,7 +9,6 @@ function sendError($msg) {
 
 $name = trim($_POST['username'] ?? '');
 
-// Normal behaviour for the open source version.
 $mail = $_POST['email'] ?? null;
 $pass = $_POST['password'] ?? null;
 

@@ -2,9 +2,6 @@
 $page_slugified = str_replace('/wiki/', '', $uri) ?: 'Main_Page';
 $page = str_replace('_', ' ', $page_slugified);
 
-if (isset($_GET['rev']) || isset($_GET['action']))
-	redirectPerma('/wiki/%s', $page_slugified);
-
 if (str_starts_with($page, 'Special:')) {
 	$specialpage = strtolower(substr($page, 8));
 	if (isset($specialpages[$specialpage]))

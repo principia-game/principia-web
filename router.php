@@ -2,7 +2,7 @@
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $path = explode('/', $uri);
 
-$internal = (isset($path[1]) && (in_array($path[1], ['apZodIaL1', 'internal', 'principia-version-code'])));
+$internal = (isset($path[1]) && (in_array($path[1], ['internal', 'principia-version-code'])));
 
 require('lib/common.php');
 
@@ -79,17 +79,11 @@ if (isset($path[1]) && $path[1] != '') {
 		else
 			notFound();
 	}
-
 	elseif ($path[1] == 'apZodIaL1') {
+		header("x-error-message: Please update your version of Principia to continue using principia-web.");
 
-		if ($path[2] == 'get_feature.php')
-			require('internal/get_featured.php');
-		else {
-			header("x-error-message: Please update your version of Principia to continue using principia-web.");
-
-			http_response_code(500);
-			die();
-		}
+		http_response_code(500);
+		die();
 	}
 	elseif ($path[1] == 'principia-version-code')
 		require('internal/version_code.php');
@@ -102,12 +96,8 @@ if (isset($path[1]) && $path[1] != '') {
 	else {
 		rewritePHP();
 
-		if (str_starts_with($uri, '/levels/thumbs'))
-			redirectPerma('%s', str_replace('/levels', '', $uri));
-
 		notFound();
 	}
-
 } else
 	require('pages/index.php');
 

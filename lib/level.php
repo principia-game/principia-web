@@ -28,7 +28,6 @@ function catConvert($cat) {
 function cmtTypeToNum($type) {
 	return match ($type) {
 		'level'		=> 1,
-		'news'		=> 2,
 		'contest'	=> 3,
 		'user'		=> 4,
 		'package'	=> 6
@@ -38,7 +37,6 @@ function cmtTypeToNum($type) {
 function cmtNumToType($num) {
 	return match ($num) {
 		1 => 'level',
-		2 => 'news',
 		3 => 'contest',
 		4 => 'user',
 		6 => 'package'

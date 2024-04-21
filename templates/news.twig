@@ -13,8 +13,6 @@
 	<h1>{{ news.title }}</h1>
 	<p><em>Published on the {{ time }}</em></p>
 	{{ news.text | markdown_unsafe }}
-
-	{{ comments(comments, 'news', news.id) }}
 {% else %}
 	<h1 class="header">Latest News</h1>
 	<ul>

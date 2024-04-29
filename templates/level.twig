@@ -22,7 +22,7 @@
 <div class="lvl-box">
 	<div class="img">
 		{% if level.revision > 1 %}
-			<span class="revision">Revision #{{ level.revision }}, updated {{ level.time | date('M j, Y') }}</span>
+			<span class="revision">Revision #{{ level.revision }}, updated {{ level.revision_time | date('M j, Y') }}</span>
 		{% endif %}
 		{% if not level.visibility == 1 %}
 			<a href="/thumbs/{{ level.id }}.jpg"><img src="/thumbs/{{ level.id }}.jpg" alt=""></a>

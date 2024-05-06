@@ -42,6 +42,9 @@ if (isset($_POST['action'])) {
 	if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
 		$error[] = "Creating multiple accounts (alts) aren't allowed.";
 
+	if (isTor())
+		$error[] = "Your IP address is detected as a Tor exit node. Registrations from Tor have been blocked due to abuse, but if you still want to register then send an email to accountrequest@principia-web.se with your username of choice.";
+
 	if ($error == []) {
 		$token = register($name, $pass, $mail, $ipaddr);
 

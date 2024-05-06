@@ -1,6 +1,6 @@
 <?php
 
-if (!internalKey()) die('403');
+if (!internalKey() || isTor()) die('403');
 
 function sendError($msg) {
 	header("x-error-message: ".$msg);

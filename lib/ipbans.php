@@ -38,3 +38,10 @@ function showIpBanMsg($reason) {
 HTML, ($reason != 'N/A' ? $reason : '<em>No reason specified</em>'));
 	die();
 }
+
+function isTor() {
+	global $ipaddr;
+
+	$torexits = json_decode(file_get_contents('data/torexits.json'));
+	return in_array($ipaddr, $torexits);
+}

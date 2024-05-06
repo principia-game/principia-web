@@ -47,8 +47,12 @@ if (!isCli()) {
 
 	// principia-web IP ban system
 	$ipban = $cache->get('ipb_'.$ipaddr);
-	if ($ipban)
-		showIpBanMsg($ipban);
+	if ($ipban) {
+		if (str_starts_with($ipban, "[silent]"))
+			die();
+		else
+			showIpBanMsg($ipban);
+	}
 } else {
 	// Dummy values for CLI usage
 	$ipaddr = '127.0.0.1';

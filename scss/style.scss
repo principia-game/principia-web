@@ -29,13 +29,16 @@ a {
 	&:active { color: $link_active; }
 }
 
-p, blockquote {
+p, blockquote, ul li, ol li {
 	line-height: 1.6;
 }
 
+code {
+	display: inline-block;
+}
+
 ul li, ol li {
-	margin-top: 0.7em;
-	margin-bottom: 0.7em;
+	margin-top: 0.6em;
 }
 
 h1 { font-size: 1.75em; }
@@ -440,6 +443,8 @@ div.level {
 
 		&.plat {
 			text-align: center;
+			width: 64px;
+			padding: 4px;
 
 			img { height: 32px }
 		}

@@ -12,11 +12,17 @@
 
 <p>This page contains downloads and instructions for obtaining Principia on all supported platforms.</p>
 
+<p>
+	<strong>Problems</strong>, <em>crashes</em> or <u>bugs</u>? Ask in <a href="/discord">the Discord server</a> or
+	on <a href="/forum/">the forums</a>, or
+	<a href="https://github.com/Bithack/principia/issues">open an issue on Github</a>.
+</p>
+
 <table class="dl">
 
 <tr>
-	<td class="plat">
-		<img src="/icons/windows.svg"><br>Windows
+	<td class="plat" id="windows">
+		<a href="#windows"><img src="/icons/windows.svg"></a><br>Windows
 	</td>
 	<td colspan="2">
 		<p>
@@ -43,9 +49,10 @@
 		</p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
-		<img src="/icons/android.svg?v=2"><br>Android
+	<td class="plat" id="android">
+		<a href="#android"><img src="/icons/android.svg?v=2"></a><br>Android
 	</td>
 	<td colspan="2">
 		<p>
@@ -68,14 +75,16 @@
 		</p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat" rowspan="8">
-		<img src="/icons/linux.svg?v=2"><br>Linux
+	<td class="plat" rowspan="8" id="linux">
+		<a href="#linux"><img src="/icons/linux.svg?v=2"></a><br>Linux
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
-		<img src="/icons/appimage.svg"><br>AppImage
+	<td class="plat" id="appimage">
+		<a href="#appimage"><img src="/icons/appimage.svg"></a><br>AppImage
 	</td>
 	<td>
 		<p>
@@ -104,9 +113,10 @@
 		</p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
-		<img src="/icons/arch.svg"><br>Arch Linux
+	<td class="plat" id="archlinux">
+		<a href="#archlinux"><img src="/icons/arch.svg"></a><br>Arch Linux
 	</td>
 	<td>
 		<p>
@@ -129,9 +139,10 @@
 		</p>
 	</td>
 </tr>
+
 <tr>
 	<td class="plat">
-		<img src="/icons/debian.svg"><br>Debian
+		<a href="#debian"><img src="/icons/debian.svg"></a><br>Debian
 	</td>
 	<td>
 		<p>
@@ -148,9 +159,10 @@ cd principia-git/<br>
 makedeb -si</code></p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
-		<img src="/icons/chrome.svg"><br>Chrome OS
+	<td class="plat" id="chromeos">
+		<a href="#chromeos"><img src="/icons/chrome.svg"></a><br>Chrome OS
 	</td>
 	<td>
 		<p>
@@ -162,9 +174,10 @@ makedeb -si</code></p>
 		</p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
-		<img src="/icons/nix.svg"><br>NixOS
+	<td class="plat" id="nixos">
+		<a href="#nixos"><img src="/icons/nix.svg"></a><br>NixOS
 	</td>
 	<td>
 		<p>
@@ -172,9 +185,10 @@ makedeb -si</code></p>
 		</p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
-		<img src="/icons/slackware.svg"><br>Slackware
+	<td class="plat" id="slackware">
+		<a href="#slackware"><img src="/icons/slackware.svg"></a><br>Slackware
 	</td>
 	<td>
 		<p>
@@ -182,8 +196,9 @@ makedeb -si</code></p>
 		</p>
 	</td>
 </tr>
+
 <tr>
-	<td class="plat">
+	<td class="plat" id="generic-linux">
 		<div class="generic">?</div> <br>Other
 	</td>
 	<td>
@@ -209,29 +224,44 @@ makedeb -si</code></p>
 </tr>
 
 <tr>
-	<td class="plat">
-		<img src="/icons/haiku.svg"><br>Haiku
+	<td class="plat" id="haiku">
+		<a href="#haiku"><img src="/icons/haiku.svg"></a><br>Haiku
 	</td>
 	<td colspan="2">
 		<p>
-			An experimental port of Haiku OS is available for Principia.
+			An experimental port to Haiku OS is available for Principia.
 		</p>
 
 		<p>
-			For instructions on how to compile and run Principia on Haiku OS see <a href="/wiki/Compiling_Principia#haiku-os">Compiling Principia</a>.
+			For instructions on how to compile and run Principia on Haiku OS see
+			<a href="/wiki/Compiling_Principia#haiku-os">Compiling Principia</a>.
+		</p>
+	</td>
+</tr>
+
+<tr>
+	<td class="plat" id="source">
+		<a href="#source"><img src="/icons/root_w.svg"></a><br>Source
+	</td>
+	<td colspan="2">
+		<p>
+			The source code for Principia is hosted on <a href="https://github.com/Bithack/principia">Github</a>
+			with a read-only mirror available on <a href="https://codeberg.org/principia/principia">Codeberg</a>.
+		</p>
+
+		<p>
+			For instructions on how to compile Principia from source see the
+			<a href="/wiki/Compiling_Principia">Compiling Principia</a> page on the Principia Wiki.
 		</p>
 	</td>
 </tr>
 
 </table>
 
-<p>
-	Problems, crashes or bugs? Ask in the Discord server or
-	<a href="https://github.com/Bithack/principia/issues">open an issue on Github</a>.
-</p>
+<p>The downloads for Principia are currently hosted by <a href="https://github.com">Github</a>. Special thanks to <a href="https://voxelmanip.se">ROllerozxa</a> for hosting the Principia downloads prior to 2024.02.29.</p>
 
-<p>
-	For an archive of old Principia versions for various platforms, see the
-	<a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview" target="_blank">Bithack Game Archive Index</a>.
-</p>
+<p>For an archive of old Principia versions prior to the open sourcing, as well as Apparatus and Tesla Plushies, see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview">Bithack Game Archive Index</a>.</p>
+
+<div style="height:100px"></div>
+
 	{% endblock %}

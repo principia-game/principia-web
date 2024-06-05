@@ -4,9 +4,9 @@ function internalAuth() {
 	global $log, $userdata, $notificationCount;
 
 	if ($log) {
-		header("X-Principia-User-Id: ".$userdata['id']);
-		header("X-Principia-User-Name: ".$userdata['name']);
-		header("X-Principia-Unread: ".$userdata['notifications']);
+		header("x-principia-user-id: ".$userdata['id']);
+		header("x-principia-user-name: ".$userdata['name']);
+		header("x-principia-unread: ".$userdata['notifications']);
 	}
 }
 

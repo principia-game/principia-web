@@ -34,17 +34,17 @@
 	<div class="info">
 		{% if not level.visibility == 1 %}
 			<div id="buttons">
-				<a class="play" id="protocol-button" href="principia://play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
+				<a class="play" id="protocol-button" href="principia://principia-web.se/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
 				{%- if level.author == userdata.id -%}
-					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit</a>
+					<a class="play play-edit" href="principia://principia-web.se/edit/db/{{ lid }}">Edit</a>
 				{%- elseif level.derivatives -%}
-					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit</a>
+					<a class="play play-edit" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit</a>
 				{%- elseif userdata.rank > 1 -%}
-					<a class="play play-edit" href="principia://sandbox/db/{{ lid }}">Edit*</a>
+					<a class="play play-edit" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit*</a>
 				{%- endif -%}
 
 				{%- if userdata.rank > 2 and level.author != userdata.id -%}
-					<a class="play play-edit" href="principia://edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
+					<a class="play play-edit" href="principia://principia-web.se/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
 				{%- endif -%}
 
 				{%- if log and not has_liked -%}

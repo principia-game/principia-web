@@ -24,11 +24,21 @@ class ParsedownWiki extends \Parsedown {
 			if (!checkPageExistance($matches[1]))
 				$customClass = 'nonexistant';
 
+			$extent = strlen($matches[0]);
+			$text = $matches[1];
+
+			$tail = substr($excerpt['text'], $extent);
+
+			if (preg_match('/^([a-z]+)/', $tail, $matchies)) {
+				$extent += strlen($matchies[1]);
+				$text .= $matchies[1];
+			}
+
 			return [
-				'extent' => strlen($matches[0]),
+				'extent' => $extent,
 				'element' => [
 					'name' => 'a',
-					'text' => $matches[1],
+					'text' => $text,
 					'attributes' => [
 						'class' => $customClass,
 						'href' => '/wiki/'.str_replace(' ', '_', $matches[1])

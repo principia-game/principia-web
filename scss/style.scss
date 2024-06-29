@@ -729,6 +729,25 @@ textarea {
 /// Prism.js styling \\\
 @import "_prism";
 
+/// Styling used for printing \\\
+
+@media print {
+	body {
+		font-family: serif;
+	}
+
+	a {
+		color: #01004b !important;
+		text-decoration: underline;
+	}
+
+	.banner, .top, .footer, .wikilinks {
+		display: none;
+	}
+}
+
+/// Misc. \\\
+
 .donate-nag {
 	text-align: center;
 	margin-top: 40px;

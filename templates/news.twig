@@ -11,8 +11,15 @@
 	{% block content %}
 {% if newsid %}
 	<h1>{{ news.title }}</h1>
-	<p><em>Published on the {{ time }}</em></p>
-	{{ news.text | markdown_unsafe }}
+
+	{% if news.cover %}
+		<img src="images/{{ newsid }}/cover.webp" style="max-width:100%">
+	{% endif %}
+
+	<p><em>Posted on {{ news.time | date('M j, Y') }} by {{ news.author | default('ROllerozxa') }}</em></p>
+	<div class="news">
+		{{ news.text | markdown_unsafe }}
+	</div>
 {% else %}
 	<h1 class="header">Latest News</h1>
 	<ul>

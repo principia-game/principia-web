@@ -8,12 +8,9 @@ if ($newsid) {
 
 	if (!$newsdata) error('404');
 
-	$time = date('jS F Y', $newsdata['time']).' at '.date('H:i:s', $newsdata['time']);
-
 	twigloader()->display('news.twig', [
 		'newsid' => $newsid,
-		'news' => $newsdata,
-		'time' => $time,
+		'news' => $newsdata
 	]);
 
 } else {

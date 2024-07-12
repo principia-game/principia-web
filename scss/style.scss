@@ -756,3 +756,17 @@ textarea {
 		max-width: 100%;
 	}
 }
+
+figure {
+	text-align: center;
+	margin: 10px 0;
+
+	figcaption {
+		font-style: italic;
+		margin-top: 3px;
+	}
+}
+
+.news img {
+	max-width: 100%;
+}

@@ -19,18 +19,6 @@ function register($name, $pass, $mail, $ip = null, $sendWelcomeEmail = true) {
 		'darkmode' => 1
 	]);
 
-	if ($sendWelcomeEmail && false) {
-		sendMail($mail, 'Welcome to principia-web!', sprintf(<<<HTML
-				<p><b>Welcome to principia-web, %s!<b></p>
-
-				<p>Principia-web is an unofficial community site replacement for the game Principia, as the official community site was shut down in early 2018.
-				Feel free to upload some cool levels!</p>
-
-				<p><em>This is an automated email, sent to you since you registered an account on principia-web.</em></p>
-HTML
-		, $name));
-	}
-
 	return $token;
 }
 

@@ -1,6 +1,6 @@
 {
-	"name": "principia-web",
-	"short_name": "principia-web",
+	"name": "Principia",
+	"short_name": "Principia",
 	"icons": [
 		{
 			"src": "/assets/icon-256.png",

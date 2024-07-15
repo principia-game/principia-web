@@ -98,9 +98,11 @@
 	<div class="footer">
 		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
 
-		<br>{{ custom_info() }}
-		Running <a href="https://github.com/principia-game/principia-web">principia-web</a> -
-		{{ profiler_stats() }}
+		{{ custom_info() }}
+
+		<small>
+			Running <a href="https://github.com/principia-game/principia-web">principia-web</a> - {{ profiler_stats() }}
+		</small>
 	</div>
 	{% block custom_footer %}{% endblock %}
 </body>

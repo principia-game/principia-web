@@ -15,8 +15,7 @@ function register($name, $pass, $mail, $ip = null, $sendWelcomeEmail = true) {
 		'ip' => $ip,
 		'email' => mailHash($mail),
 		'token' => $token,
-		'joined' => time(),
-		'darkmode' => 1
+		'joined' => time()
 	]);
 
 	return $token;

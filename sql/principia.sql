@@ -164,7 +164,6 @@ CREATE TABLE `users` (
   `joined` int(10) unsigned NOT NULL DEFAULT 0,
   `lastview` int(10) unsigned NOT NULL DEFAULT 0,
   `lastpost` int(10) unsigned NOT NULL DEFAULT 0,
-  `darkmode` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `avatar` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `rank` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,

@@ -83,10 +83,11 @@ if ($log) {
 	}
 } else {
 	$userdata = [
-		'rank' => 0,
-		'darkmode' => 1
+		'rank' => 0
 	];
 }
+
+$userdata['darkmode'] = (isset($_COOKIE['darkmode']) ? $_COOKIE['darkmode'] == 1 : true);
 
 define('IS_BANNED', $userdata['rank'] < 0);
 define('IS_MEMBER', $userdata['rank'] > 0);

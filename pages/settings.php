@@ -10,7 +10,6 @@ if (isset($_POST['action'])) {
 		'about'			=> $_POST['about'] ?: null,
 		'signature'		=> $_POST['signature'] ?: null,
 		'archivename'	=> $_POST['archivename'] ?: null,
-		'darkmode'		=> $_POST['darkmode'] ? 1 : 0,
 		'timezone'		=> $_POST['timezone'] != 'Europe/Stockholm' ? $_POST['timezone'] : null
 	];
 

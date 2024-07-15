@@ -689,7 +689,7 @@ input[type=text], input[type=password], input[type=email], input[type=color], in
 	padding: 7px;
 }
 
-input[type=submit], select {
+input[type=submit], button.btn, select {
 	font-size: 12pt;
 	border: 1px solid #8f8f9d;
 	background-color: #eee;
@@ -703,7 +703,7 @@ input[type=submit], select {
 	}
 }
 
-input[type=submit] {
+input[type=submit], button.btn {
 	vertical-align: top;
 
 	&:active {

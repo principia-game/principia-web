@@ -228,7 +228,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 	padding: 7px;
 }
 
-input[type=submit], select {
+input[type=submit], button.btn, select {
 	border: 1px solid $grid;
 	background-color: #111;
 	color: white;

@@ -36,6 +36,25 @@ function toggleVis(id, feedback) {
 	}
 }
 
+
+// Toggle dark mode
+function toggleDarkMode() {
+	let themeStylesheet = document.getElementById('style');
+	let currentTheme = themeStylesheet.getAttribute('href');
+	let cssver = currentTheme.split('?v=')[1];
+
+	if (currentTheme.startsWith('/css/style.css')) {
+		themeStylesheet.setAttribute('href', '/css/darkmode.css?v='+cssver);
+		document.cookie = 'darkmode=1; max-age=31536000; path=/';
+	} else {
+		themeStylesheet.setAttribute('href', '/css/style.css?v='+cssver);
+		document.cookie = 'darkmode=0; max-age=31536000; path=/';
+	}
+}
+
+document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+
+
 // Forum thread.php code
 function submitmod(act) {
 	document.getElementById('action').value = act;

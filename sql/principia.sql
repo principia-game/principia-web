@@ -1,4 +1,4 @@
--- Adminer 4.8.1 MySQL 10.11.2-MariaDB dump
+-- principia-web database, dumped with Adminer
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -34,9 +34,9 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `contests` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL DEFAULT 'A contest',
+  `title` varchar(128) NOT NULL,
   `description` text NOT NULL,
-  `image` varchar(128) NOT NULL DEFAULT 'assets/placeholder.png',
+  `image` varchar(128) NOT NULL,
   `active` tinyint(1) unsigned NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -84,20 +84,20 @@ CREATE TABLE `leaderboard` (
 
 CREATE TABLE `levels` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cat` tinyint(3) unsigned NOT NULL DEFAULT 1,
-  `title` varchar(128) NOT NULL DEFAULT 'A level',
+  `cat` tinyint(3) unsigned NOT NULL,
+  `title` varchar(128) NOT NULL,
   `description` text NOT NULL,
-  `author` int(10) unsigned NOT NULL DEFAULT 1,
-  `time` int(10) unsigned NOT NULL DEFAULT 0,
+  `author` int(10) unsigned NOT NULL,
+  `time` int(10) unsigned NOT NULL,
   `parent` int(10) unsigned DEFAULT NULL,
   `revision` int(10) unsigned NOT NULL DEFAULT 1,
-  `revision_time` int(10) unsigned NOT NULL DEFAULT 0,
+  `revision_time` int(10) unsigned DEFAULT NULL,
   `likes` int(10) unsigned NOT NULL DEFAULT 0,
   `derivatives` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `visibility` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `downloads` int(10) unsigned NOT NULL DEFAULT 0,
-  `platform` varchar(32) NOT NULL DEFAULT 'Samsung Smart Fridge',
+  `platform` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
   KEY `visibility` (`visibility`),
@@ -110,8 +110,8 @@ CREATE TABLE `likes` (
   `level` int(10) unsigned NOT NULL,
   KEY `user` (`user`),
   KEY `level` (`level`),
-  CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
-  CONSTRAINT `likes_ibfk_2` FOREIGN KEY (`level`) REFERENCES `levels` (`id`)
+  CONSTRAINT `likes_ibfk_4` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `likes_ibfk_5` FOREIGN KEY (`level`) REFERENCES `levels` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -131,10 +131,10 @@ CREATE TABLE `notifications` (
 
 CREATE TABLE `packages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(128) NOT NULL DEFAULT 'A package',
+  `title` varchar(128) NOT NULL,
   `description` text NOT NULL,
-  `author` int(10) unsigned NOT NULL DEFAULT 1,
-  `time` int(10) unsigned NOT NULL DEFAULT 0,
+  `author` int(10) unsigned DEFAULT NULL,
+  `time` int(10) unsigned DEFAULT NULL,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `downloads` int(10) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
@@ -157,10 +157,10 @@ CREATE TABLE `passwordresets` (
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `email` char(64) NOT NULL,
-  `ip` char(15) NOT NULL DEFAULT '999.999.999.999',
-  `token` char(40) NOT NULL,
+  `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `email` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `ip` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `token` char(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `joined` int(10) unsigned NOT NULL DEFAULT 0,
   `lastview` int(10) unsigned NOT NULL DEFAULT 0,
   `lastpost` int(10) unsigned NOT NULL DEFAULT 0,
@@ -175,8 +175,126 @@ CREATE TABLE `users` (
   `signature` text DEFAULT NULL,
   `pronouns` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `token` (`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2023-08-03 19:30:13
+CREATE TABLE `z_categories` (
+  `id` tinyint(3) unsigned NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `ord` tinyint(3) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_forums` (
+  `id` int(10) unsigned NOT NULL DEFAULT 0,
+  `cat` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `ord` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `title` varchar(100) NOT NULL,
+  `descr` varchar(200) NOT NULL,
+  `threads` int(10) unsigned NOT NULL DEFAULT 0,
+  `posts` int(10) unsigned NOT NULL DEFAULT 0,
+  `lastdate` int(10) unsigned DEFAULT NULL,
+  `lastuser` int(10) unsigned DEFAULT NULL,
+  `lastid` int(10) unsigned DEFAULT NULL,
+  `minread` tinyint(4) NOT NULL DEFAULT -1,
+  `minthread` tinyint(4) NOT NULL DEFAULT 1,
+  `minreply` tinyint(4) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  KEY `cat` (`cat`),
+  CONSTRAINT `z_forums_ibfk_1` FOREIGN KEY (`cat`) REFERENCES `z_categories` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_forumsread` (
+  `uid` int(10) unsigned NOT NULL,
+  `fid` int(5) unsigned NOT NULL,
+  `time` int(11) unsigned NOT NULL,
+  UNIQUE KEY `uid` (`uid`,`fid`),
+  KEY `fid` (`fid`),
+  CONSTRAINT `z_forumsread_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `z_forumsread_ibfk_4` FOREIGN KEY (`fid`) REFERENCES `z_forums` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_pmsgs` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `text` text NOT NULL,
+  `date` int(10) unsigned NOT NULL DEFAULT 0,
+  `userto` int(10) unsigned NOT NULL,
+  `userfrom` int(10) unsigned NOT NULL,
+  `unread` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `del_from` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `del_to` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `userto` (`userto`),
+  KEY `userfrom` (`userfrom`),
+  CONSTRAINT `z_pmsgs_ibfk_1` FOREIGN KEY (`userto`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_pmsgs_ibfk_2` FOREIGN KEY (`userfrom`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_posts` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user` int(10) unsigned NOT NULL,
+  `thread` int(10) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `revision` int(10) unsigned NOT NULL DEFAULT 1,
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `threadid` (`thread`),
+  KEY `user` (`user`),
+  CONSTRAINT `z_posts_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_posts_ibfk_2` FOREIGN KEY (`thread`) REFERENCES `z_threads` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_poststext` (
+  `id` int(11) unsigned NOT NULL,
+  `text` text NOT NULL,
+  `revision` smallint(5) unsigned NOT NULL DEFAULT 1,
+  `date` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`,`revision`),
+  CONSTRAINT `z_poststext_ibfk_1` FOREIGN KEY (`id`) REFERENCES `z_posts` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_threads` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `forum` int(5) unsigned NOT NULL DEFAULT 0,
+  `title` varchar(100) NOT NULL,
+  `user` int(10) unsigned DEFAULT NULL,
+  `posts` int(10) unsigned NOT NULL DEFAULT 1,
+  `views` int(10) unsigned NOT NULL DEFAULT 0,
+  `lastdate` int(10) unsigned DEFAULT NULL,
+  `lastuser` int(10) unsigned DEFAULT NULL,
+  `lastid` int(10) unsigned DEFAULT NULL,
+  `closed` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `sticky` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `forum` (`forum`),
+  KEY `user` (`user`),
+  KEY `lastuser` (`lastuser`),
+  KEY `lastid` (`lastid`),
+  CONSTRAINT `z_threads_ibfk_1` FOREIGN KEY (`forum`) REFERENCES `z_forums` (`id`),
+  CONSTRAINT `z_threads_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`id`),
+  CONSTRAINT `z_threads_ibfk_5` FOREIGN KEY (`lastuser`) REFERENCES `users` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `z_threads_ibfk_6` FOREIGN KEY (`lastid`) REFERENCES `z_posts` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `z_threadsread` (
+  `uid` int(10) unsigned NOT NULL,
+  `tid` int(10) unsigned NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  UNIQUE KEY `uid` (`uid`,`tid`),
+  KEY `tid` (`tid`),
+  CONSTRAINT `z_threadsread_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `z_threadsread_ibfk_4` FOREIGN KEY (`tid`) REFERENCES `z_threads` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- 2024-07-28 19:48:11

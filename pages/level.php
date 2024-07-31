@@ -76,7 +76,7 @@ $leaderboard = query("SELECT l.*, $userfields
 		ORDER BY l.score DESC LIMIT 8",
 	[$lid]);
 
-$contests = query("SELECT id, title, active FROM contests WHERE active = 1");
+$contests = query("SELECT id, title FROM contests WHERE NOW() BETWEEN time_from AND time_to");
 
 $comments = query("SELECT c.*, $userfields
 		FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ?

@@ -1,6 +1,6 @@
 <?php
 
-$contestid = $_GET['id'] ?? 0;
+$contestid = (int)($path[2] ?? 0);
 
 $contest = fetch("SELECT * FROM contests WHERE id = ?", [$contestid]);
 

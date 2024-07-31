@@ -37,7 +37,8 @@ CREATE TABLE `contests` (
   `title` varchar(128) NOT NULL,
   `description` text NOT NULL,
   `image` varchar(128) NOT NULL,
-  `active` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `time_from` datetime DEFAULT NULL,
+  `time_to` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -297,4 +298,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2024-07-28 19:48:11
+-- 2024-07-31 20:08:45

@@ -55,6 +55,30 @@ function toggleDarkMode() {
 document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
 
 
+// Contest countdown
+function startCountdown(elementId, deadline) {
+	var countDownDate = new Date(deadline).getTime();
+	var x = setInterval(function() {
+		var now = new Date();
+		var nowUTC = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+
+		var distance = countDownDate - nowUTC;
+
+		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		document.getElementById(elementId).innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+		if (distance < 0) {
+			clearInterval(x);
+			document.getElementById(elementId).innerHTML = "Contest is over!";
+		}
+	}, 250);
+}
+
+
 // Forum thread.php code
 function submitmod(act) {
 	document.getElementById('action').value = act;

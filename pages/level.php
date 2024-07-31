@@ -25,10 +25,15 @@ if ($log) {
 
 	// add to contest
 	if (isset($_POST['addtocontest'])) {
-		$contestEntered = result("SELECT title FROM contests WHERE id = ?", [$_POST['addtocontest']]);
-		$alreadyEntered = (result("SELECT COUNT(*) FROM contests_entries WHERE contest = ? AND level = ?", [$_POST['addtocontest'], $lid]) ? true : false);
-		if ($contestEntered && !$alreadyEntered)
-			insertInto('contests_entries', ['contest' => $_POST['addtocontest'], 'level' => $lid]);
+		$contestEntered = result("SELECT title, time_from, time_to FROM contests WHERE id = ?", [$_POST['addtocontest']]);
+
+		// Check that the contest is actually current
+		if (strtotime($contestEntered['time_from']) < time() && time() < strtotime($contestEntered['time_to'])) {
+			$alreadyEntered = (result("SELECT COUNT(*) FROM contests_entries WHERE contest = ? AND level = ?", [$_POST['addtocontest'], $lid]) ? true : false);
+
+			if ($contestEntered && !$alreadyEntered)
+				insertInto('contests_entries', ['contest' => $_POST['addtocontest'], 'level' => $lid]);
+		}
 	}
 
 	// toggle lock

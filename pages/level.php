@@ -25,7 +25,7 @@ if ($log) {
 
 	// add to contest
 	if (isset($_POST['addtocontest'])) {
-		$contestEntered = result("SELECT title, time_from, time_to FROM contests WHERE id = ?", [$_POST['addtocontest']]);
+		$contestEntered = fetch("SELECT title, time_from, time_to FROM contests WHERE id = ?", [$_POST['addtocontest']]);
 
 		// Check that the contest is actually current
 		if (strtotime($contestEntered['time_from']) < time() && time() < strtotime($contestEntered['time_to'])) {

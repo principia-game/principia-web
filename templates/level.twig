@@ -7,9 +7,9 @@
 
 	{% block content %}
 {% if already_entered %}
-	<div class="header_message">You've already entered this level into the <b>{{ contest_entered }}</b> contest.</div>
+	<div class="header_message">You've already entered this level into the <b>{{ contest_entered.title }}</b> contest.</div>
 {% elseif contest_entered %}
-	<div class="header_message">Your level has been successfully entered into the <b>{{ contest_entered }}</b> contest!</div>
+	<div class="header_message">Your level has been successfully entered into the <b>{{ contest_entered.title }}</b> contest!</div>
 {% endif %}
 
 <h1>{{ level.title }}</h1>

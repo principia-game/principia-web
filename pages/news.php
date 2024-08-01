@@ -8,6 +8,9 @@ if ($newsid) {
 
 	if (!$newsdata) error('404');
 
+	if (isset($newsdata['redirect']))
+		redirect($newsdata['redirect']);
+
 	twigloader()->display('news.twig', [
 		'newsid' => $newsid,
 		'news' => $newsdata

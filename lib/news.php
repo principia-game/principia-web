@@ -44,7 +44,9 @@ class News {
 
 		if (!$data) return null;
 
-		$data['text'] = file_get_contents('data/news/'.$id.'.md');
+		$newsfile = 'data/news/'.$id.'.md';
+		if (file_exists($newsfile))
+			$data['text'] = file_get_contents($newsfile);
 
 		return $data;
 	}

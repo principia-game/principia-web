@@ -37,10 +37,8 @@
 				<a class="play" id="protocol-button" href="principia://principia-web.se/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
 				{%- if level.author == userdata.id -%}
 					<a class="play play-edit" href="principia://principia-web.se/edit/db/{{ lid }}">Edit</a>
-				{%- elseif level.derivatives -%}
+				{%- else -%}
 					<a class="play play-edit" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit</a>
-				{%- elseif userdata.rank > 1 -%}
-					<a class="play play-edit" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit*</a>
 				{%- endif -%}
 
 				{%- if userdata.rank > 2 and level.author != userdata.id -%}

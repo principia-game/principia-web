@@ -81,7 +81,6 @@ if ($updatelevel) {
 		'cat'			=> catConvert($level->type()),
 		'title'			=> $level->name(),
 		'description'	=> $level->descr(),
-		'derivatives'	=> $level->allowDerivatives(),
 		'visibility'	=> $level->visibility(),
 		'revision'		=> $leveldata['revision'] + 1,
 		'revision_time'	=> time(),
@@ -103,7 +102,6 @@ if ($updatelevel) {
 		'description'	=> $level->descr(),
 		'author'		=> $userdata['id'],
 		'time'			=> time(),
-		'derivatives'	=> $level->allowDerivatives(),
 		'visibility'	=> $level->visibility(),
 		'platform'		=> $platform,
 		'parent'		=> $level->parentId() ?? null

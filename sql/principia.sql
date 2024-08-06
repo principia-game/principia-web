@@ -94,7 +94,6 @@ CREATE TABLE `levels` (
   `revision` int(10) unsigned NOT NULL DEFAULT 1,
   `revision_time` int(10) unsigned DEFAULT NULL,
   `likes` int(10) unsigned NOT NULL DEFAULT 0,
-  `derivatives` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `visibility` tinyint(1) unsigned NOT NULL DEFAULT 0,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `downloads` int(10) unsigned NOT NULL DEFAULT 0,

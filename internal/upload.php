@@ -9,6 +9,12 @@ require('lib/kaitai/plvl.php');
 
 $level = Plvl::fromFile($_FILES['level']['tmp_name']);
 
+// Check if lvledit supports this level version
+if ($level->version() <= lvleditGetBuiltVersion()) {
+	header("x-error-message: This level version is newer than principia-web can handle.");
+	trigger_error('lvledit version mismatch !!', E_USER_ERROR);
+}
+
 $platform = extractPlatform($useragent);
 
 $cid = $level->communityId();
@@ -47,6 +53,7 @@ if (!$updatelevel) {
 		trigger_error(sprintf('%s tried to upload a level too quickly!', $userdata['name']), E_USER_NOTICE);
 
 		header("x-error-message: You are being ratelimited.");
+		die();
 	}
 } else {
 	// Preparations for if we update a level

@@ -15,8 +15,6 @@ function lvledit($level, $method, $value = null) {
 
 		exec($cmd);
 	} else {
-		$value = escapeshellarg($value);
-
 		$cmd = sprintf(
 			'./tools/lvledit %s --%s',
 		$levelfile, $method);
@@ -24,4 +22,13 @@ function lvledit($level, $method, $value = null) {
 		exec($cmd, $output);
 		return implode("\n", $output);
 	}
+}
+
+/**
+ * Get the highest level version lvledit is built to handle
+ */
+function lvleditGetBuiltVersion() {
+
+	exec('./tools/lvledit --get-built-level-version', $output);
+	return implode("\n", $output);
 }

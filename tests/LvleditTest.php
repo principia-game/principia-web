@@ -20,4 +20,9 @@ final class LvleditTest extends TestCase {
 
 		$this->assertSame($garbage, lvledit(1, 'get-description'));
 	}
+
+	public function testGetBuiltVersion(): void {
+		$this->assertTrue(1 <= lvleditGetBuiltVersion());
+		$this->assertFalse(999 <= lvleditGetBuiltVersion());
+	}
 }

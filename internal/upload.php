@@ -10,7 +10,7 @@ require('lib/kaitai/plvl.php');
 $level = Plvl::fromFile($_FILES['level']['tmp_name']);
 
 // Check if lvledit supports this level version
-if ($level->version() <= lvleditGetBuiltVersion()) {
+if ($level->version() > lvleditGetBuiltVersion()) {
 	header("x-error-message: This level version is newer than principia-web can handle.");
 	trigger_error('lvledit version mismatch !!', E_USER_ERROR);
 }

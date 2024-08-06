@@ -10,8 +10,13 @@
 	{% block content %}
 <h1>Download Principia</h1>
 
-<p>This page contains downloads and instructions for obtaining Principia on all supported platforms.</p>
+<p>
+	This page contains downloads and instructions for obtaining Principia on all supported platforms.
+</p>
 
+<p>
+	The latest version of Principia is <strong>{{ version }}</strong>.
+	You can see what is new in this release in the <a href="/wiki/Changelog#{{ version }}">Changelog</a>.
 <p>
 	<strong>Problems</strong>, <em>crashes</em> or <u>bugs</u>? Ask in <a href="/discord">the Discord server</a> or
 	on <a href="/forum/">the forums</a>, or
@@ -266,6 +271,23 @@ makedeb -si</code></p>
 		<p>
 			For instructions on how to compile and run Principia on Haiku OS see
 			<a href="/wiki/Compiling_Principia#haiku-os">Compiling Principia</a>.
+		</p>
+	</td>
+</tr>
+
+<tr>
+	<td class="plat" id="nightly">
+		<a href="#nightly"><img src="/icons/wizard-hat.svg"></a><br>Nightly
+	</td>
+	<td colspan="2">
+		<p>
+			Whenever a new commit is pushed the game is automatically built by CI for all supported platforms.
+			These nightly builds contain changes that have not yet made it into a full release,
+			but are also less tested than the release builds.
+		</p>
+
+		<p>
+			For more information and downloads see the <a href="/wiki/Nightly_Builds">Nightly Builds</a> page.
 		</p>
 	</td>
 </tr>

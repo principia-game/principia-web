@@ -9,18 +9,21 @@ assets/scss/.sass-cache
 ## Composer
 vendor/
 
-## misc.
-templates/_template.twig
-static/image-to-lua/
-.vscode/
-misc/
-tools/lvlinfo
-tools/lvledit
-tools/progress-get
-.phpunit.result.cache
-phpunit
+## External libs
 lib/ext/
 static/js/ext/
+
+## Tools
+tools/featured-list-creator
+tools/lvledit
+tools/lvlinfo
+tools/progress-get
+
+## Some static files that we don't check in
 static/ahrefs_*
-static/wiki/images/
-phpstan.neon
+static/branding/
+static/image-to-lua/
+
+## misc.
+.vscode/
+misc/

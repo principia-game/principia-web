@@ -39,6 +39,8 @@ $footerlinks = [
 	'/about' => 'About'
 ];
 
+$gettingstarted_links = [];
+
 /// GENERAL FORUM STUFF
 
 $trashid = 2; // Designates the id for your trash forum.

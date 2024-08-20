@@ -6,7 +6,7 @@ function lvledit($level, $method, $value = null) {
 		trigger_error('lvledit binary not found', E_USER_ERROR);
 
 	$levelfile = sprintf('data/levels/%d.plvl', $level);
-	if ($value) {
+	if ($value !== null) {
 		$value = escapeshellarg($value);
 
 		$cmd = sprintf(

@@ -88,12 +88,11 @@
 		</div>{% endif %}
 	</div></div>
 	{% if not android_webview_version() %}
-	{# Removed for now until morale worsens :^) #}
-	{#<div class="donate-nag">
-		<a href="https://liberapay.com/ROllerozxa" target="_blank">
-			<img src="/donate-nag.webp" loading="lazy" alt="Support principia-web! Help cover server costs for Principia">
+	<div class="donate-nag">
+		<a href="/donate">
+			<img src="/assets/donate-nag.webp" alt="Donate now! Cover server costs & support Principia">
 		</a>
-	</div>#}
+	</div>
 	{% endif %}
 	<div class="footer">
 		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}

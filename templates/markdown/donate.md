@@ -25,4 +25,4 @@ ROllerozxa has made a printable overview cheatsheet of the LuaScript API in PDF 
 <iframe frameborder="0" src="https://itch.io/embed/2862096?bg_color=0f0f0f&fg_color=fff&link_color=fa5c5c&border_color=3f3f3f" width="552" height="167" style="max-width:100%"><a href="https://rollerozxa.itch.io/principia-luascript-api-cheatsheet" target="_blank">Principia LuaScript API cheatsheet by ROllerozxa</a></iframe>
 
 ## Other
-If you would like to donate in some other way then please reach out to [ROllerozxa](https://voxelmanip.se/about/#contact) to discuss the details.
+If you would like to donate in some other way then please reach out to [ROllerozxa](https://voxelmanip.se/contact/) to discuss the details.

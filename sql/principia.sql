@@ -101,6 +101,8 @@ CREATE TABLE `levels` (
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
   KEY `visibility` (`visibility`),
+  FULLTEXT KEY `title` (`title`),
+  FULLTEXT KEY `description` (`description`),
   CONSTRAINT `levels_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -297,4 +299,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2024-07-31 20:08:45
+-- 2024-08-30 20:56:11

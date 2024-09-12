@@ -18,8 +18,8 @@ if (isset($_POST['action'])) {
 	if (!$name || !$mail || !$pass)
 		$error[] = 'Fill in all fields.';
 
-	if (!$pass || strlen($pass) < 15)
-		$error[] = 'Password is too short. (Needs to be at least 16 characters)';
+	if (!$pass || strlen($pass) < 10)
+		$error[] = 'Password is too short. (Needs to be at least 10 characters)';
 
 	if (!$pass2 || $pass != $pass2)
 		$error[] = "The passwords don't match.";
@@ -36,11 +36,11 @@ if (isset($_POST['action'])) {
 	if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 		$error[] = "Email isn't valid.";
 
-	if (result("SELECT COUNT(*) FROM users WHERE email = ?", [$mail]))
-		$error[] = "You've already registered an account using this email address.";
+	if (result("SELECT COUNT(*) FROM users WHERE email = ?", [mailHash($mail)]))
+		$error[] = "You have already registered an account.";
 
 	if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
-		$error[] = "Creating multiple accounts (alts) aren't allowed.";
+		$error[] = "You have already registered an account.";
 
 	if (isTor())
 		$error[] = "Your IP address is detected as a Tor exit node. Registrations from Tor have been blocked due to abuse, but if you still want to register then send an email to accountrequest@principia-web.se with your username of choice.";

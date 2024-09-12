@@ -4,14 +4,17 @@ if ($log) redirect('./?ld');
 
 $error = [];
 
-$name = trim($_POST['name'] ?? null);
+$name = $_POST['name'] ?? null;
 $mail = $_POST['mail'] ?? null;
+
+if ($name) $name = trim($name);
 
 if (isset($_POST['action'])) {
 	$pass = $_POST['pass'] ?? null;
 	$pass2 = $_POST['pass2'] ?? null;
 	$captchaId = isset($_POST['uwu']) ? $_POST['uwu'] : null;
 	$captchaAnswer = $_POST['jupiter'] ?? null;
+	$passwordmanager = $_POST['passwordmanager'] ?? null;
 
 	if (!isset($captcha[$captchaId])) die('hmm did you try to manipulate the CAPTCHA?');
 
@@ -44,6 +47,9 @@ if (isset($_POST['action'])) {
 
 	if (isTor())
 		$error[] = "Your IP address is detected as a Tor exit node. Registrations from Tor have been blocked due to abuse, but if you still want to register then send an email to accountrequest@principia-web.se with your username of choice.";
+
+	if (!$passwordmanager)
+		$error[] = "Please save your account credentials in a password manager before registering.";
 
 	if ($error == []) {
 		$token = register($name, $pass, $mail, $ipaddr);

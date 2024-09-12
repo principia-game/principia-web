@@ -1,7 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% set title = "Register" %}
-{% set description = "Register an account on principia-web to be able to upload and comment on levels!" %}
+{% set description = "Register an account on principia-web to be able to upload levels and participate in the Principia community." %}
 
 	{% block content %}
 {% if error %}
@@ -13,7 +13,7 @@
 <form class="reglog" method="POST">
 	<input type="hidden" name="uwu" value="{{ current_captcha.id }}">
 
-	<p>Register an account on principia-web to be able to upload and comment on levels!</p>
+	<p>Register an account on principia-web to be able to upload levels and participate in the Principia community.</p>
 
 	<div>
 		<span>Username:</span>
@@ -35,6 +35,10 @@
 		<span>Security question:</span>
 		<input type="text" name="jupiter" size="25" required>
 		<br><br><em>{{ current_captcha.question }}</em>
+	</div>
+
+	<div>
+		<label><input type="checkbox" name="passwordmanager" value="1"> I have saved my password in a password manager (e.g. <a href="https://bitwarden.com/" target="_blank">Bitwarden</a>).</label>
 	</div>
 
 	<div><br><input type="submit" name="action" value="Register"></div>

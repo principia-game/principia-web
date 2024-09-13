@@ -32,6 +32,7 @@ if ($fid) {
 	if (!isset($forum['id'])) error('404');
 
 	$title = $forum['title'];
+	$fdesc = $forum['descr'];
 
 	$threads = query("SELECT $ufields t.* $isread FROM z_threads t
 			LEFT JOIN users u1 ON u1.id = t.user
@@ -108,6 +109,7 @@ if ($forum['threads'] > TPP)
 twigloaderForum()->display('forum/forum.twig', [
 	'fid' => $fid,
 	'title' => $title,
+	'fdesc' => $fdesc ?? null,
 	'threads' => $threads,
 	'showforum' => $showforum,
 	'topbot' => $topbot,

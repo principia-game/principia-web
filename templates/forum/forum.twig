@@ -3,6 +3,7 @@
 {% set title = title %}
 {% if fid %}
 	{% set pagename = "/forum/forum?id=" ~ fid %}
+	{% set description = fdesc %}
 {% elseif uid %}
 	{% set pagename = "/forum/forum?user=" ~ uid %}
 {% elseif time %}
@@ -14,6 +15,10 @@
 {% set lsticky = 0 %}
 
 <h1>{{ title }}</h1>
+
+{% if fdesc %}
+	<p>{{ fdesc | raw }}</p>
+{% endif %}
 
 {% if time %}
 	<p>View the latest posts that have been made in threads within the given timespan.</p>

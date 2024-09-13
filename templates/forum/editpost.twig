@@ -4,9 +4,9 @@
 {% set noindex = true %}
 
 	{% block content %}
-<h1>Edit post</h1>
-
 {{ render_page_bar(topbot) }}
+
+<h1>Edit post</h1>
 
 {% if action == 'Preview' %}
 	{{ threadpost(post) }}

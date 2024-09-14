@@ -2,6 +2,19 @@
 
 needsLogin();
 
+if (isset($_POST['resetpassword'])) {
+	$password = $_POST['password'] ?? null;
+
+	$correctpass = password_verify($password, $userdata['password']);
+
+	if ($correctpass) {
+		$tok = generatePasswordReset($userdata['id']);
+
+		redirect("/resetpassword?id=%s", $tok);
+	} else
+		$error = 'Current password inputted was invalid.';
+}
+
 if (isset($_POST['action'])) {
 	$error = '';
 
@@ -70,5 +83,6 @@ foreach (timezone_identifiers_list() as $tz)
 	$timezones[] = $tz;
 
 twigloader()->display('settings.twig', [
+	'error' => $error ?? null,
 	'timezones' => $timezones
 ]);

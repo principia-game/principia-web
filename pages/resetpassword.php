@@ -6,9 +6,7 @@ if (isset($_GET['grf']) && IS_ADMIN) {
 	$generateResetFor = $_GET['grf'] ?? null;
 
 	if ($generateResetFor) {
-		$tok = bin2hex(random_bytes(32));
-
-		insertInto('passwordresets', ['id' => $tok, 'user' => $generateResetFor, 'time' => time()]);
+		$tok = generatePasswordReset($generateResetFor);
 
 		printf("/resetpassword?id=%s", $tok);
 	}
@@ -17,9 +15,14 @@ if (isset($_GET['grf']) && IS_ADMIN) {
 
 $resetdata = fetch("SELECT pr.*, u.name FROM passwordresets pr JOIN users u ON pr.user = u.id WHERE pr.id = ?", [$id]);
 
-if (!$resetdata) error('403');
-if ((time() - $resetdata['time']) >= 60*60*24) error('403', "Password reset request expired (requests are only valid for 24 hours).");
-if (!$resetdata['active']) error('403', "Your password has already been reset by this request.");
+if (!$resetdata)
+	error('403');
+
+if ((time() - $resetdata['time']) >= 60*60*24)
+	error('403', "Password reset request expired (requests are only valid for 24 hours).");
+
+if (!$resetdata['active'])
+	error('403', "Your password has already been reset by this request.");
 
 $error = '';
 
@@ -33,7 +36,7 @@ if (isset($_POST['action'])) {
 		query("UPDATE users SET password = ? WHERE id = ?", [password_hash($pass, PASSWORD_DEFAULT), $resetdata['user']]);
 		query("UPDATE passwordresets SET active = 0 WHERE id = ?", [$id]);
 
-		redirect('/login?resetted');
+		redirect($log ? '/settings' : '/login?resetted');
 	}
 }
 

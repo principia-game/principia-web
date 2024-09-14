@@ -4,10 +4,30 @@
 {% set noindex = true %}
 
 	{% block content %}
+{% if error %}
+	<div class="header_message">{{ error }}</div>
+{% endif %}
+
 <form action="settings" method="post" enctype="multipart/form-data">
 <h1>Settings</h1>
 
 <table class="settings">
+	<tr>
+		<th></th>
+		<th class="left">Credentials</th>
+	</tr>
+	<tr>
+		<td class="a">Username</td>
+		<td class="b">
+			{{ userdata.name }}
+		</td>
+	</tr>
+	<tr>
+		<td class="a">Password</td>
+		<td class="b">
+			<input type="password" name="password" placeholder="Current password">
+			<input type="submit" name="resetpassword" value="Change password">
+		</td>
 	<tr>
 		<th></th>
 		<th class="left">Customise your profile</th>

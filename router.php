@@ -15,6 +15,9 @@ function rewritePHP() {
 		redirectPerma('%s', str_replace('.php', '', $_SERVER["REQUEST_URI"]));
 }
 
+if (androidWebviewVersion() && androidWebviewVersion() <= 36)
+	die("Please update your Principia. See https://principia-web.se/download in your web browser.");
+
 if (isset($path[1]) && $path[1] != '') {
 	if ($path[1] == 'adminer') {
 		if (IS_ROOT)

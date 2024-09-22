@@ -15,12 +15,15 @@ while [ "$OUTPUT" -eq 0 ]; do
 
     echo "File existence check result: $OUTPUT"
 
-    sleep 0.5
+    sleep 0.1
 done
+
+sleep 1
 
 SCREENSHOT=${DATADIR}/thumbs_src/${LEVEL}.png
 
 docker cp ss:/principia/ss-0.png ${SCREENSHOT}
+sleep 0.25
 docker exec ss rm /principia/ss-0.png
 
 convert ${SCREENSHOT} -quality 85 ${DATADIR}/thumbs/${LEVEL}.jpg

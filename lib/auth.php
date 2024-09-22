@@ -1,5 +1,17 @@
 <?php
 
+function authenticateCookie() {
+
+	if (isset($_COOKIE[COOKIE_NAME]) && validToken($_COOKIE[COOKIE_NAME])) {
+		$id = result("SELECT id FROM users WHERE token = ?", [$_COOKIE[COOKIE_NAME]]);
+
+		if ($id) // Valid cookie, user is logged in.
+			return $id;
+	}
+
+	return -1;
+}
+
 function internalAuth() {
 	global $log, $userdata, $notificationCount;
 

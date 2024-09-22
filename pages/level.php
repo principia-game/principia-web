@@ -14,12 +14,9 @@ if ($log) {
 	// like
 	$hasLiked = result("SELECT COUNT(*) FROM likes WHERE user = ? AND level = ?", [$userdata['id'], $lid]) == 1 ? true : false;
 	if (isset($_POST['vote'])) {
-		if (!$hasLiked) {
-			query("UPDATE levels SET likes = likes + '1' WHERE id = ?", [$lid]);
+		if (!$hasLiked)
+			likeLevel($lid, $userdata['id']);
 
-			insertInto('likes', ['user' => $userdata['id'], 'level' => $lid]);
-			$cachectrl->invIndexTop();
-		}
 		die();
 	}
 
@@ -38,26 +35,18 @@ if ($log) {
 
 	// toggle lock
 	if (isset($_GET['togglelock']) && ($level['author'] == $userdata['id'] || IS_MOD)) {
-		$vis = ($level['visibility'] == 1 ? 0 : 1);
-
-		query("UPDATE levels SET visibility = ? WHERE id = ?", [$vis, $lid]);
-		$level['visibility'] = $vis;
-
-		$cachectrl->invLevelCount($level['author']);
-		$cachectrl->invIndex();
+		$level['visibility'] = toggleLevelLock($level, $level['visibility']);
 	}
 
 	// rerun webhook
 	if (isset($_GET['rerunhook']) && IS_ADMIN) {
-		$webhookdata = [
+		newLevelHook([
 			'id' => $level['id'],
 			'name' => $level['title'],
 			'description' => $level['description'],
 			'u_id' => $level['u_id'],
 			'u_name' => $level['u_name']
-		];
-
-		newLevelHook($webhookdata);
+		]);
 	}
 
 	// delete level thumbnails

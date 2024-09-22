@@ -83,7 +83,7 @@ function level($level, $featured = '', $pkg = false) {
 		$img = "assets/package_thumb.svg";
 
 	$page = ($pkg ? 'package' : 'level');
-	$label = $featured ? '<span class="featured small">'.$featured.'</span>' : '';
+	$label = $featured ? "<span class=\"featured small\">{$featured}</span>" : '';
 	$title = esc(strlen($level['title']) > 60 ? substr($level['title'], 0, 60).'...' : $level['title']);
 	$ulink = userlink($level, 'u_');
 
@@ -108,15 +108,6 @@ function relativeTime($time) {
 	return $relativeTime->timeAgo($time);
 }
 
-function redirect($url, ...$args) {
-	header('Location: '.sprintf($url, ...$args));
-	die();
-}
-
-function redirectPerma($url, ...$args) {
-	header('Location: '.sprintf($url, ...$args), true, 301);
-	die();
-}
 
 function androidWebviewVersion() {
 	global $useragent;

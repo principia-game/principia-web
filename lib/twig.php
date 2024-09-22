@@ -23,7 +23,7 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 	}
 	public function getFilters() {
 		return [
-			new \Twig\TwigFilter('cat_to_type', 'cat_to_type'),
+			new \Twig\TwigFilter('cat_to_type', 'catToType'),
 
 			new \Twig\TwigFilter('vis_id_to_name', 'visIdToName'),
 			new \Twig\TwigFilter('vis_id_to_colour', 'visIdToColour'),

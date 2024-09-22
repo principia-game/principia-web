@@ -3,8 +3,7 @@
 function newStatus($type) {
 	$text = match ($type) {
 		'n'  => 'NEW',
-		'o'  => 'OFF',
-		'on' => 'OFF'
+		'o', 'on' => 'OFF'
 	};
 	$statusimg = match ($type) {
 		'n'  => 'new.png',

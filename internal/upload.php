@@ -113,15 +113,13 @@ header('x-notify-message: '.$cid);
 
 // Send new level info to discord webhook
 if (!$updatelevel) {
-	$webhookdata = [
+	newLevelHook([
 		'id' => $cid,
 		'name' => $level->name(),
 		'description' => $level->descr(),
 		'u_id' => $userdata['id'],
 		'u_name' => $userdata['name']
-	];
-
-	newLevelHook($webhookdata);
+	]);
 }
 
 // Latest levels has most likely changed, invalidate index cache.

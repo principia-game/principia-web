@@ -12,7 +12,7 @@ if ($name) $name = trim($name);
 if (isset($_POST['action'])) {
 	$pass = $_POST['pass'] ?? null;
 	$pass2 = $_POST['pass2'] ?? null;
-	$captchaId = isset($_POST['uwu']) ? $_POST['uwu'] : null;
+	$captchaId = $_POST['uwu'] ?? null;
 	$captchaAnswer = $_POST['jupiter'] ?? null;
 	$passwordmanager = $_POST['passwordmanager'] ?? null;
 

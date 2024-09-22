@@ -89,4 +89,4 @@ $pagename = match ($id) {
 if ($pagename)
 	redirect("/wiki/%s", $pagename);
 else
-	error('404', 'Invalid or nonexistant item ID. (item id: '.$id.')');
+	error('404', "Invalid or nonexistent item ID. (item id: {$id})");

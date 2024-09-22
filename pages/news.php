@@ -11,16 +11,11 @@ if ($newsid) {
 	if (isset($newsdata['redirect']))
 		redirect($newsdata['redirect']);
 
-	twigloader()->display('news.twig', [
-		'newsid' => $newsid,
-		'news' => $newsdata
-	]);
-
 } else {
 	$newsdata = News::retrieveList(100);
-
-	twigloader()->display('news.twig', [
-		'newsid' => $newsid,
-		'news' => $newsdata
-	]);
 }
+
+twigloader()->display('news.twig', [
+	'newsid' => $newsid,
+	'news' => $newsdata
+]);

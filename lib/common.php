@@ -21,21 +21,8 @@ require_once('vendor/autoload.php');
 foreach (glob("lib/*.php") as $file)
 	require_once($file);
 
-if (!$internal) {
-	// Security headers.
-	header("Content-Security-Policy:"
-		."default-src 'self';"
-		."script-src 'self' 'unsafe-inline';"
-		."img-src 'self' data: *.principia-web.se principia-web.se *.voxelmanip.se voxelmanip.se *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com *.postimg.cc postimg.cc;"
-		."media-src 'self' *.voxelmanip.se voxelmanip.se;"
-		."frame-src *.youtube-nocookie.com itch.io;"
-		."style-src 'self' 'unsafe-inline';");
-
-	header("Referrer-Policy: strict-origin-when-cross-origin");
-	header("X-Content-Type-Options: nosniff");
-	header("X-Frame-Options: SAMEORIGIN");
-	header("X-Xss-Protection: 1; mode=block");
-}
+if (!$internal)
+	securityHeaders();
 
 $userfields = userfields();
 
@@ -46,13 +33,7 @@ if (!isCli()) {
 	$referer = $_SERVER['HTTP_REFERER'] ?? null;
 
 	// principia-web IP ban system
-	$ipban = $cache->get('ipb_'.$ipaddr);
-	if ($ipban) {
-		if (str_starts_with($ipban, "[silent]"))
-			die();
-		else
-			showIpBanMsg($ipban);
-	}
+	checkIpBan($ipaddr);
 } else {
 	// Dummy values for CLI usage
 	$ipaddr = '127.0.0.1';
@@ -60,23 +41,16 @@ if (!isCli()) {
 	$referer = '';
 }
 
-// Authentication code.
-$log = false;
-
-if (isset($_COOKIE[COOKIE_NAME]) && validToken($_COOKIE[COOKIE_NAME])) {
-	$id = result("SELECT id FROM users WHERE token = ?", [$_COOKIE[COOKIE_NAME]]);
-
-	if ($id) // Valid cookie, user is logged in.
-		$log = true;
-}
+$userId = authenticateCookie();
+$log = $userId != -1;
 
 if ($log) {
-	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$id]);
+	$userdata = fetch("SELECT * FROM users WHERE id = ?", [$userId]);
 	$userdata['notifications'] = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$userdata['id']]);
 
 	if (!$internal) {
 		if ($userdata['rank'] < 0)
-			$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$id]);
+			$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$userId]);
 
 		query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $ipaddr, $userdata['id']]);
 		$userdata['lastview'] = time();
@@ -87,7 +61,7 @@ if ($log) {
 	];
 }
 
-$userdata['darkmode'] = (isset($_COOKIE['darkmode']) ? $_COOKIE['darkmode'] == 1 : true);
+$userdata['darkmode'] = !isset($_COOKIE['darkmode']) || $_COOKIE['darkmode'] == 1;
 
 define('IS_BANNED', $userdata['rank'] < 0);
 define('IS_MEMBER', $userdata['rank'] > 0);

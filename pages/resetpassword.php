@@ -3,7 +3,7 @@
 $id = $_GET['id'] ?? null;
 
 if (isset($_GET['grf']) && IS_ADMIN) {
-	$generateResetFor = $_GET['grf'] ?? null;
+	$generateResetFor = $_GET['grf'];
 
 	if ($generateResetFor) {
 		$tok = generatePasswordReset($generateResetFor);

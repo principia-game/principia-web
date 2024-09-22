@@ -1,6 +1,28 @@
 <?php
 
-function type_to_cat($type) {
+function likeLevel($lid, $user) {
+	global $cachectrl;
+
+	query("UPDATE levels SET likes = likes + '1' WHERE id = ?", [$lid]);
+
+	insertInto('likes', ['user' => $user, 'level' => $lid]);
+	$cachectrl->invIndexTop();
+}
+
+function toggleLevelLock($level, $visibility) {
+	global $cachectrl;
+
+	$visibility = $visibility == 1 ? 0 : 1;
+
+	query("UPDATE levels SET visibility = ? WHERE id = ?", [$visibility, $level['id']]);
+
+	$cachectrl->invLevelCount($level['author']);
+	$cachectrl->invIndex();
+
+	return $visibility;
+}
+
+function typeToCat($type) {
 	return match ($type) {
 		'custom'	=> 1,
 		'adventure'	=> 2,
@@ -9,7 +31,7 @@ function type_to_cat($type) {
 	};
 }
 
-function cat_to_type($cat) {
+function catToType($cat) {
 	return match ($cat) {
 		1 => 'custom',
 		2 => 'adventure',
@@ -70,8 +92,5 @@ function visIdToColour($id) {
  */
 function extractPlatform($ua) {
 	preg_match('/\((\w+)\)/', $ua, $matches);
-	if (isset($matches[1]))
-		return $matches[1];
-	else
-		return 'N/A';
+	return $matches[1] ?? 'N/A';
 }

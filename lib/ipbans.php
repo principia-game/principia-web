@@ -6,7 +6,7 @@
 function ipBan($ip, $reason = 'N/A') {
 	global $cache;
 	insertInto('ipbans', ['ip' => $ip, 'reason' => $reason]);
-	$cache->set('ipb_'.$ip, $reason);
+	$cache->set("ipb_{$ip}", $reason);
 }
 
 /**
@@ -15,7 +15,7 @@ function ipBan($ip, $reason = 'N/A') {
 function ipUnban($ip) {
 	global $cache;
 	query("DELETE FROM ipbans WHERE ip = ?", [$ip]);
-	$cache->delete('ipb_'.$ip);
+	$cache->delete("ipb_{$ip}");
 }
 
 function showIpBanMsg($reason) {
@@ -37,6 +37,18 @@ function showIpBanMsg($reason) {
 		<p>If you believe this was in error, please email appeals@principia-web.se or contact a staff member directly.</p>
 HTML, ($reason != 'N/A' ? $reason : '<em>No reason specified</em>'));
 	die();
+}
+
+function checkIpBan($ipaddr) {
+	global $cache;
+
+	$ipban = $cache->get("ipb_{$ipaddr}");
+	if ($ipban) {
+		if (str_starts_with($ipban, "[silent]"))
+			die();
+		else
+			showIpBanMsg($ipban);
+	}
 }
 
 function isTor() {

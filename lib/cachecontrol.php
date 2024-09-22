@@ -34,7 +34,7 @@ class CacheControl {
 	 * Invalidate the level count for an user
 	 */
 	public function invLevelCount($user) {
-		$this->cache->delete('levelcount_'.$user);
+		$this->cache->delete("levelcount_{$user}");
 	}
 }
 

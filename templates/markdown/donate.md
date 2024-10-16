@@ -19,6 +19,11 @@ Ko-fi supports both one-time and monthly donations natively.
 	<img alt="Donate using Ko-fi" title="Donate using Ko-fi" src="/assets/donate-kofi.svg" width="170">
 </a>
 
+## GitHub Sponsors
+GitHub Sponsors supports both one-time and monthly donations natively.
+
+[Go to GitHub Sponsors page](https://github.com/sponsors/rollerozxa)
+
 ## LuaScript API Cheatsheet
 ROllerozxa has made a printable overview cheatsheet of the LuaScript API in PDF form, which is available on itch.io. The purchase of the cheatsheet doubles as a donation.
 

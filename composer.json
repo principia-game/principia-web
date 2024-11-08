@@ -4,6 +4,5 @@
 		"twig/twig": "^3.0",
 		"erusev/parsedown": "9999999-dev",
 		"nopjmp/discord-webhooks": "dev-master"
-	},
-	"minimum-stability": "dev"
+	}
 }

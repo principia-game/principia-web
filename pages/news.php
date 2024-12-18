@@ -1,5 +1,5 @@
 <?php
-if (isset($_GET['id'])) redirect('/news/'.$_GET['id']);
+if (isset($_GET['id'])) redirect('/news/%d', $_GET['id']);
 
 $newsid = $path[2] ?? 0;
 

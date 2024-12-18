@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_GET['id'])) redirect('/level/'.$_GET['id']);
+if (isset($_GET['id'])) redirect('/level/%d', $_GET['id']);
 
 $lid = (int)($path[2] ?? 0);
 

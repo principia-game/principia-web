@@ -2,4 +2,4 @@
 
 $latestnews = News::getLatestArticle();
 
-redirect('/news/'.$latestnews['id']);
+redirect('/news/%d', $latestnews['id']);

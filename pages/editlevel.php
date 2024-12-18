@@ -24,7 +24,7 @@ if (isset($_POST['action'])) {
 
 	query("UPDATE levels SET title = ?, description = ? WHERE id = ?", [$title, $description, $lid]);
 
-	redirect("/level/$lid");
+	redirect("/level/%d", $lid);
 }
 
 twigloader()->display('editlevel.twig', [

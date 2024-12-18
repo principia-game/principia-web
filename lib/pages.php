@@ -7,5 +7,6 @@ $markdownPages = [
 	'donate'    => 'Donations',
 	'forgotpassword' => 'Forgot password',
 	'matrix'	=> 'Principia Matrix space',
-	'privacy'	=> 'Privacy Policy'
+	'privacy'	=> 'Privacy Policy',
+	'rules'		=> 'Rules'
 ];

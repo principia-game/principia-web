@@ -1,7 +1,9 @@
 # Privacy Policy
+(Last updated 2024-12-18 - [View revision history](https://github.com/principia-game/principia-web/commits/master/templates/markdown/privacy.md))
+
 This is the privacy policy for this site, principia-web.
 
-The only person who currently has full server and database access is ROllerozxa, he is the server administrator. Moderators do not have full server or database access, and can only use moderation tools provided by them.
+The only person who currently has full server and database access is ROllerozxa, he is the server administrator. Moderators do not have full server or database access, and can only use moderation tools provided to them.
 
 Currently principia-web is hosted on the [Voxelmanip server](http://51.68.173.17/), located at OVH in Germany. Backups are stored by ROllerozxa in Sweden.
 
@@ -13,7 +15,11 @@ This site consists mainly of user generated content, and whenever you e.g. uploa
 ## Interaction with Principia
 If you are playing the open source version of Principia, the game will make connections to principia-web.
 
-Outside of obvious interactions such as logging in or downloading community levels, the game will make requests to `/principia-version-code` initially to check for updates, and if you're logged in it will regularily ping the site for notifications which will show up in the top left corner of the game next to your username.
+Outside of obvious interactions such as logging in or downloading community levels, the game will make requests to `/internal/version-code` initially to check for updates, and if you're logged in it will regularly ping the site for notifications which will show up in the top left corner of the game next to your username.
+
+With all requests, the client will send a user agent containing the version and the platform you are running Principia on (e.g. "Principia/37 (Android) (2024.07.12)"). These are visible in access logs and may be used for aggregate statistics for determining the distribution of client versions that are in use. When you upload a level the platform you uploaded the level from will be visible on the level page.
+
+To fully disable the client from interacting with principia-web, you can create a file called `community_host.txt` in your Principia user folder and write `localhost` which will disable all connectivity to principia-web.
 
 
 ## User information

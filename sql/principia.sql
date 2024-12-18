@@ -79,7 +79,7 @@ CREATE TABLE `leaderboard` (
   KEY `level` (`level`),
   KEY `user` (`user`),
   CONSTRAINT `leaderboard_ibfk_1` FOREIGN KEY (`level`) REFERENCES `levels` (`id`),
-  CONSTRAINT `leaderboard_ibfk_2` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+  CONSTRAINT `leaderboard_ibfk_3` FOREIGN KEY (`user`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -153,6 +153,17 @@ CREATE TABLE `passwordresets` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `passwordresets_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `reports` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `url` varchar(256) NOT NULL,
+  `message` text NOT NULL,
+  `user` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -299,4 +310,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2024-08-30 20:56:11
+-- 2024-12-18 21:44:22

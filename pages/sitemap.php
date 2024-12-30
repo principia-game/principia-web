@@ -18,7 +18,6 @@ while ($level = $levels->fetch()) {
 	$sitemap->add('level/'.$level['id']);
 }
 
-$sitemap->add('matrix');
 $sitemap->add('news');
 
 $latestnews = News::getLatestArticle();

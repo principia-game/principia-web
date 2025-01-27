@@ -32,6 +32,9 @@ if (isset($_POST['action'])) {
 
 	if ($pass != $pass2) $error .= "Passwords aren't identical.";
 
+	if (strlen($pass) > 64)
+		$error .= ' Maximum length of passwords is 64 characters.';
+
 	if ($error == '') {
 		query("UPDATE users SET password = ? WHERE id = ?", [password_hash($pass, PASSWORD_DEFAULT), $resetdata['user']]);
 		query("UPDATE passwordresets SET active = 0 WHERE id = ?", [$id]);

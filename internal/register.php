@@ -21,6 +21,9 @@ if (!$mail || !filter_var($mail, FILTER_VALIDATE_EMAIL))
 if (!$pass || strlen($pass) < 10)
 	sendError("Password is too short. (needs to be at least 10 characters)");
 
+if (strlen($pass) > 64)
+	sendError("Maximum length of passwords is 64 characters.");
+
 if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name)]))
 	sendError("This username is already taken.");
 

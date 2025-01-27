@@ -24,6 +24,9 @@ if (isset($_POST['action'])) {
 	if (!$pass || strlen($pass) < 10)
 		$error[] = 'Password is too short. (Needs to be at least 10 characters)';
 
+	if (strlen($pass) > 64)
+		$error[] = 'Maximum length of passwords is 64 characters.';
+
 	if (!$pass2 || $pass != $pass2)
 		$error[] = "The passwords don't match.";
 

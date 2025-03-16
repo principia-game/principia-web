@@ -1,0 +1,10 @@
+<figure>
+	<a href="{{ data.url }}">
+		<img src="{{ data.url }}"
+			{% if data.max_width %}style="width:{{ data.max_width }}px"{% endif %}
+			{% if data.alt %}alt="{{ data.alt }}"{% endif %}>
+	</a>
+	{%- if data.caption -%}
+		<figcaption>{{ data.caption }}</figcaption>
+	{%- endif -%}
+</figure>

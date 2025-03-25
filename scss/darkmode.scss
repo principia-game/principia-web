@@ -40,7 +40,7 @@ div.menu {
 	}
 }
 
-.header_message, .skit {
+.header_message, .skit, .welcome-back {
 	border-bottom: 1px solid $grid;
 }
 
@@ -152,6 +152,11 @@ div.level {
 	.row {
 		border-top: 1px solid $grid;
 	}
+}
+
+.intermission {
+	border-top: 1px solid $grid;
+	border-bottom: 1px solid $grid;
 }
 
 /// _style_forums \\\

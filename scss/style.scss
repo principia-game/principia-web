@@ -535,33 +535,39 @@ div.level {
 	a {
 		font-weight: bold;
 	}
+}
 
-	.buttonbar {
-		margin-bottom: 40px;
+.buttonbar {
+	margin-bottom: 30px;
+	font-size: 1.25em;
 
-		a {
-			display: inline-block;
-			color: white;
-			margin: 0 10px;
-			width: 150px;
+	a {
+		display: inline-block;
+		color: white;
+		margin: 0 10px;
+		width: 150px;
+		font-weight: bold;
 
-			&:hover {
-				filter: brightness(1.25);
-				text-decoration: none;
-			}
-
-			&:active {
-				filter: brightness(0.75);
-			}
+		&:hover {
+			filter: brightness(1.25);
+			text-decoration: none;
 		}
-		img {
-			height: 90px;
-			padding: 10px;
-		}
-		span {
-			display: block;
+
+		&:active {
+			filter: brightness(0.75);
 		}
 	}
+	img {
+		height: 90px;
+		padding: 10px;
+	}
+	span {
+		display: block;
+	}
+}
+
+.welcome-back {
+	border-bottom: 1px solid $grid;
 }
 
 /// Generic classes \\\
@@ -756,6 +762,14 @@ textarea {
 		max-width: 100%;
 		aspect-ratio: 700/100;
 	}
+}
+
+.intermission {
+	text-align: center;
+	margin: 2em 0;
+	padding: 1.5em 0;
+	border-top: 1px solid $grid;
+	border-bottom: 1px solid $grid;
 }
 
 .gallery {

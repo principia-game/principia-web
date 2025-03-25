@@ -770,6 +770,10 @@ textarea {
 	padding: 1.5em 0;
 	border-top: 1px solid $grid;
 	border-bottom: 1px solid $grid;
+
+	img {
+		max-width: 100%;
+	}
 }
 
 .gallery {
@@ -801,5 +805,9 @@ figure {
 }
 
 .news img {
+	max-width: 100%;
+}
+
+.img-responsive {
 	max-width: 100%;
 }

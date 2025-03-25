@@ -1,0 +1,47 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Browse" %}
+{% set description = "Browse the latest and greatest levels that the community has to offer you." %}
+
+	{% block content %}
+<h1>Browse community levels</h1>
+
+<img src="/assets/browse_banner.webp" class="img-responsive" alt="">
+
+<p>The latest and greatest that the community has to offer you.</p>
+
+<h2 class="header">Latest custom levels <a href="/latest/custom">More</a></h2>
+<div class="level-list scrollable">
+{% for custom_level in custom_levels %}
+	{{ level(custom_level) }}
+{% else %}
+	There are no custom levels. You could create one!
+{% endfor %}
+</div>
+
+<h2 class="header">Latest adventures <a href="/latest/adventure">More</a></h2>
+<div class="level-list scrollable">
+{% for adventure_level in adventure_levels %}
+	{{ level(adventure_level) }}
+{% else %}
+	There are no adventure levels. You could create one!
+{% endfor %}
+</div>
+
+<div class="intermission center">
+	<a href="https://archive.principia-web.se">
+		<img src="/assets/archive_banner.webp" alt="Browse the community site archive - A full collection of levels uploaded by the community between 2013-2018">
+	</a>
+</div>
+
+<h2 class="header">Top rated levels <a href="/top">More</a></h2>
+<div class="level-list scrollable">
+{% for top_level in top_levels %}
+	{{ level(top_level) }}
+{% else %}
+	There are no levels. At all.
+{% endfor %}
+</div>
+
+<br>
+	{% endblock %}

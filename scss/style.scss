@@ -758,6 +758,24 @@ textarea {
 	}
 }
 
+.gallery {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 1fr;
+
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 2px;
+	}
+}
+
+@media (min-width: 600px) {
+	.gallery {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
 figure {
 	text-align: center;
 	margin: 10px 0;

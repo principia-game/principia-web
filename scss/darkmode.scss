@@ -97,22 +97,29 @@ div.level {
 .lvl-box {
 	.info {
 		background-color: #050505;
+	}
+}
 
-		.play {
-			background-color: #608060;
-			color: #eee;
+.play-btn {
+	color: #eee;
 
-			&:hover {
-				background-color: darken(#608060, 10%);
-			}
+	&:active {
+		color: #eee;
+	}
+
+	&.green {
+		background-color: #608060;
+
+		&:hover {
+			background-color: darken(#608060, 10%);
 		}
+	}
 
-		.play-edit {
-			background-color: #636383;
+	&.blue {
+		background-color: #636383;
 
-			&:hover {
-				background-color: darken(#636383, 10%);
-			}
+		&:hover {
+			background-color: darken(#636383, 10%);
 		}
 	}
 }

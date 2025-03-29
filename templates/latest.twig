@@ -13,10 +13,10 @@
 	{% block content %}
 <h1>Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
 <div class="latest-buttons">
-	<a{% if type == 'custom' %} class="sel"{% endif %} href="/latest/custom">Custom</a>
-	<a{% if type == 'adventure' %} class="sel"{% endif %} href="/latest/adventure">Adventure</a>
-	<a{% if type == 'puzzle' %} class="sel"{% endif %} href="/latest/puzzle">Puzzle</a>
-	<a{% if type == 'all' %} class="sel"{% endif %} href="/latest">All</a>
+	<a class="play-btn {% if type == 'custom' %}blue{% else %}green{% endif %}" href="/latest/custom">Custom</a>
+	<a class="play-btn {% if type == 'adventure' %}blue{% else %}green{% endif %}" href="/latest/adventure">Adventure</a>
+	<a class="play-btn {% if type == 'puzzle' %}blue{% else %}green{% endif %}" href="/latest/puzzle">Puzzle</a>
+	<a class="play-btn {% if type == 'all' %}blue{% else %}green{% endif %}" href="/latest">All</a>
 </div>
 
 <div class="level-list">

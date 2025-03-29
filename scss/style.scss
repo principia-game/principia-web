@@ -12,13 +12,16 @@ $fonts: "Roboto", "Arial", sans-serif;
 
 body {
 	background-color: $bg;
-	font-family: $fonts;
-	font-size: 11.75pt;
 	margin: 0;
 
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+}
+
+button, body {
+	font-family: $fonts;
+	font-size: 11.75pt;
 }
 
 a {
@@ -278,28 +281,6 @@ div.level {
 .latest-buttons {
 	margin-bottom: 15px;
 }
-.latest-buttons a {
-	background-color: $btn_play;
-	border: none;
-	color: $btn_text;
-	display: inline-block;
-	font-weight: bold;
-	margin-right: 0.5em;
-	padding: 10px 20px;
-
-	&:hover {
-		background-color: lighten($btn_play, 15%);
-		text-decoration: none;
-	}
-
-	&.sel {
-		background-color: $btn_edit;
-
-		&:hover {
-			background-color: lighten($btn_edit, 15%);
-		}
-	}
-}
 
 // Common register and login form styles \\
 .reglog {
@@ -371,30 +352,6 @@ div.level {
 		padding: 1em;
 		background-color: #fafafa;
 
-		// Play & Edit buttons \\
-		.play {
-			background-color: $btn_play;
-			border: none;
-			color: $btn_text;
-			display: inline-block;
-			font-weight: bold;
-			margin-right: 0.5em;
-			padding: 10px 20px;
-
-			&:hover {
-				background-color: lighten($btn_play, 15%);
-				text-decoration: none;
-			}
-		}
-
-		.play-edit {
-			background-color: $btn_edit;
-
-			&:hover {
-				background-color: lighten($btn_edit, 15%);
-			}
-		}
-
 		.likemsg {
 			display: inline-block;
 			margin-right: 1em;
@@ -406,6 +363,40 @@ div.level {
 			padding: 15px;
 			background-color: #6b4040;
 			color: white;
+		}
+	}
+}
+
+// Play & Edit buttons \\
+.play-btn {
+	border: none;
+	color: $btn_text;
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 0.5em;
+	padding: 10px 20px;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&:active {
+		color: $btn_text;
+	}
+
+	&.green {
+		background-color: $btn_play;
+
+		&:hover {
+			background-color: lighten($btn_play, 15%);
+		}
+	}
+
+	&.blue {
+		background-color: $btn_edit;
+
+		&:hover {
+			background-color: lighten($btn_edit, 15%);
 		}
 	}
 }

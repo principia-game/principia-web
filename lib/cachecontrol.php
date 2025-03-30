@@ -13,6 +13,7 @@ class CacheControl {
 	public function invIndex() {
 		$this->cache->delete('idx_anp');
 		$this->cache->delete('idx_adv');
+		$this->cache->delete('idx_puz');
 		$this->cache->delete('idx_feat');
 	}
 

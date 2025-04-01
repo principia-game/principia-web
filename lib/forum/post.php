@@ -105,7 +105,7 @@ function threadpost($post, $pthread = '') {
 
 	$ulink = userlink($post, 'u');
 	$pdate = date('Y-m-d H:i', $post['date']);
-	$picture = ($post['uavatar'] ? "<img src=\"/userpic/{$post['uid']}\" alt=\"(Avatar)\"><br>" : '');
+	$picture = ($post['uavatar'] ? "<img class=\"avatar\" src=\"/userpic/{$post['uid']}\" alt=\"(Avatar)\"><br>" : '');
 
 	$signature = $post['usignature'] && $log ? '<div class="siggy">'.postfilter($post['usignature']).'</div>' : '';
 

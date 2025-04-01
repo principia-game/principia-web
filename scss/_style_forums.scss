@@ -93,6 +93,10 @@ table.c1 {
 	.sidebar {
 		padding: 10px 0 10px 10px;
 		width: 180px;
+
+		img.avatar {
+			max-width: 140px;
+		}
 	}
 	.topbar {
 		border: 0;

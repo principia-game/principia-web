@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Principia news feed</title>
+	<subtitle>News about Principia</subtitle>
+	<author><name>ROllerozxa</name></author>
+	<link href="https://principia-web.se/news/feed" rel="self" />
+	<link href="https://principia-web.se" />
+	{% for post in news %}
+		<entry>
+			<title>{{ post.title }}</title>
+			<link href="https://principia-web.se/news/{{ post.id }}" />
+			<id>https://principia-web.se/news/{{ post.id }}</id>
+			<published>{{ post.time | date('Y-m-d\\TH:i:sP') }}</published>
+			<content type="html">
+				&lt;a href="https://principia-web.se/news/{{ post.id }}"&gt;Link to news article&lt;/a&gt;
+			</content>
+		</entry>
+	{% endfor %}
+</feed>

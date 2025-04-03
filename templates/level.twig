@@ -15,14 +15,14 @@
 <h1>{{ level.title }}</h1>
 
 <span class="misc">
-	  {{ userlink(level, 'u_') }}
-	- {{ level.cat | cat_to_type | title }} level
-	- {{ level.time | date('M j, Y') }} from {{ level.platform }}</span>
+	By {{ userlink(level, 'u_') }}
+	&ndash; {{ level.cat | cat_to_type | title }} level
+	&ndash; uploaded {{ level.time | date('j M Y') }} from {{ level.platform }}</span>
 
 <div class="lvl-box">
 	<div class="img">
 		{% if level.revision > 1 %}
-			<span class="revision">Revision #{{ level.revision }}, updated {{ level.revision_time | date('M j, Y') }}</span>
+			<span class="revision">Revision #{{ level.revision }}, updated {{ level.revision_time | date('j M Y') }}</span>
 		{% endif %}
 		{% if not level.visibility == 1 %}
 			<a href="/thumbs/{{ level.id }}.jpg"><img src="/thumbs/{{ level.id }}.jpg" alt=""></a>
@@ -33,25 +33,23 @@
 
 	<div class="info">
 		{% if not level.visibility == 1 %}
-			<div id="buttons">
-				<a class="play-btn green" id="protocol-button" href="principia://principia-web.se/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
-				{%- if level.author == userdata.id -%}
-					<a class="play-btn blue" href="principia://principia-web.se/edit/db/{{ lid }}">Edit</a>
-				{%- else -%}
-					<a class="play-btn blue" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit</a>
-				{%- endif -%}
+			<a class="play-btn green" id="protocol-button" href="principia://principia-web.se/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
+			{%- if level.author == userdata.id -%}
+				<a class="play-btn blue" href="principia://principia-web.se/edit/db/{{ lid }}">Edit</a>
+			{%- else -%}
+				<a class="play-btn blue" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit</a>
+			{%- endif -%}
 
-				{%- if userdata.rank > 2 and level.author != userdata.id -%}
-					<a class="play-btn blue" href="principia://principia-web.se/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
-				{%- endif -%}
+			{%- if userdata.rank > 2 and level.author != userdata.id -%}
+				<a class="play-btn blue" href="principia://principia-web.se/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
+			{%- endif -%}
 
-				{%- if log and not has_liked -%}
-					<button class="play-btn green" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
-				{% endif %}
-				{% if level.likes > 0 %}
-					<span class="likemsg">{{ level.likes }} players liked this.</span>
-				{% endif %}
-			</div>
+			{%- if log and not has_liked -%}
+				<button class="play-btn green" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
+			{% endif %}
+			{% if level.likes > 0 %}
+				<span class="likemsg">{{ level.likes }} players liked this.</span>
+			{% endif %}
 		{% else %}
 			<p><em>This level has been locked. It will not be visible outside of this level page.</em></p>
 		{% endif %}

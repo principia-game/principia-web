@@ -7,9 +7,9 @@
 <h1>{{ pkg.title }}</h1>
 
 <span class="misc">
-	  {{ userlink(pkg, 'u_') }}
-	- Package
-	- {{ pkg.time | date('M j, Y') }}</span>
+	By {{ userlink(level, 'u_') }}
+	&ndash; Package
+	&ndash; uploaded {{ level.time | date('j M Y') }}</span>
 
 <div class="lvl-box">
 	<div class="img">
@@ -17,9 +17,8 @@
 	</div>
 
 	<div class="info">
-		<div id="buttons">
-			<a class="play" href="principia://play/pkg/db/{{ id }}">Play</a>
-		</div>
+		<a class="play-btn green" href="principia://play/pkg/db/{{ id }}">Play</a>
+
 		<p>{{ pkg.description | markdown }}</p>
 	</div>
 </div>

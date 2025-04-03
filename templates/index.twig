@@ -144,6 +144,15 @@
 {% endfor %}
 </div>
 
+<h2 class="header">Latest puzzles <a href="/latest/puzzle">More</a></h2>
+<div class="level-list scrollable">
+{% for puzzle_level in puzzle_levels %}
+	{{ level(puzzle_level) }}
+{% else %}
+	There are no puzzle levels. You could create one!
+{% endfor %}
+</div>
+
 <div class="intermission center">
 	<a href="https://archive.principia-web.se">
 		<img src="/assets/archive_banner.webp" alt="Browse the community site archive - A full collection of levels uploaded by the community between 2013-2018">

@@ -22,6 +22,10 @@ $latestadvent = $cache->hit('idx_adv', function () use ($latestquery) {
 	return fetchArray(query(sprintf($latestquery, 2)));
 });
 
+$latestpuzzle = $cache->hit('idx_puz', function () use ($latestquery) {
+	return fetchArray(query(sprintf($latestquery, 3)));
+});
+
 $latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
 	return fetchArray(query("SELECT c.*, l.title level_name, $userfields FROM comments c
 			JOIN users u ON c.author = u.id JOIN levels l ON c.level = l.id
@@ -36,5 +40,6 @@ twigloader()->display('index.twig', [
 	'top_levels' => $toplevels,
 	'custom_levels' => $latestcustom,
 	'adventure_levels' => $latestadvent,
+	'puzzle_levels' => $latestpuzzle,
 	'latest_comments' => $latestcomments,
 ]);

@@ -48,7 +48,7 @@
 				<button class="play-btn green" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
 			{% endif %}
 			{% if level.likes > 0 %}
-				<span class="likemsg">{{ level.likes }} players liked this.</span>
+				<span class="likemsg">{{ level.likes }} player{% if level.likes != 1 %}s{% endif %} liked this.</span>
 			{% endif %}
 		{% else %}
 			<p><em>This level has been locked. It will not be visible outside of this level page.</em></p>

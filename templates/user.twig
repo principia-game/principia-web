@@ -94,9 +94,9 @@
 {% endif %}
 
 <h1>{{ name }}
-	{% if userpagedata.rank > 1 %}<img src="/icons/shield{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a moderator.">{% endif %}
-	{% if userpagedata.rank > 3 %}<img src="/icons/root{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User is a root administrator.">{% endif %}
-	{% if userpagedata.rank < 0 %}<img src="/icons/gavel{% if userdata.darkmode %}_w{%endif%}.svg" height="20" title="User has been banned.">{% endif %}
+	{% if userpagedata.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
+	{% if userpagedata.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}
+	{% if userpagedata.rank < 0 %}<span title="User has been banned.">{{ icon("gavel") }}</span>{% endif %}
 	{% if userpagedata.pronouns %}<span class="pronouns">({{ userpagedata.pronouns }})</span>{% endif %}</h1>
 
 <div class="user_about">

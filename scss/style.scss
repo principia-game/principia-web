@@ -51,6 +51,13 @@ h4 { font-size: 1.00em; }
 h5 { font-size: 0.83em; }
 h6 { font-size: 0.67em; }
 
+svg {
+	fill: black;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
 .banner {
 	padding: 10px;
 	font-weight: bold;
@@ -139,8 +146,7 @@ div.menu {
 		color: #20aa20;
 	}
 
-	img.search {
-		vertical-align: middle;
+	.search svg {
 		width: 18px;
 		height: 18px;
 	}
@@ -436,8 +442,10 @@ div.level {
 			text-align: center;
 			width: 64px;
 			padding: 4px;
+			font-size: 11pt;
 
 			img { height: 32px }
+			svg { width: 32px; height: 32px; padding-bottom: 3px }
 		}
 	}
 
@@ -534,7 +542,7 @@ div.level {
 
 	a {
 		display: inline-block;
-		color: white;
+		color: black;
 		margin: 0 10px;
 		width: 150px;
 		font-weight: bold;

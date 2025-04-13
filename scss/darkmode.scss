@@ -22,6 +22,10 @@ a {
 	&:active { color: $link_active; }
 }
 
+svg {
+	fill: white;
+}
+
 .top, .footer {
 	background-color: $bg_box;
 }
@@ -42,6 +46,10 @@ div.menu {
 
 .header_message, .skit, .welcome-back {
 	border-bottom: 1px solid $grid;
+}
+
+.buttonbar a {
+	color: white;
 }
 
 div.level {

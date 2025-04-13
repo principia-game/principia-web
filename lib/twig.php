@@ -19,6 +19,10 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 				$profiler->getStats();
 			}),
 			new \Twig\TwigFunction('custom_header', 'customHeader'),
+
+			new \Twig\TwigFunction('icon', function ($name) {
+				return file_get_contents("templates/icons/{$name}.svg");
+			}, ['is_safe' => ['html']])
 		];
 	}
 	public function getFilters() {

@@ -126,5 +126,7 @@ if (!$updatelevel) {
 $cachectrl->invIndex();
 
 // Write the level ID in the pending screenshots folder.
-mkdir('/tmp/principia_pending_screenshots/');
-file_put_contents('/tmp/principia_pending_screenshots/'.$cid, $cid);
+$scrndir = '/tmp/principia_pending_screenshots';
+if (!is_dir($scrndir))
+	mkdir($scrndir);
+file_put_contents($scrndir.'/'.$cid, $cid);

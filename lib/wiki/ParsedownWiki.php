@@ -101,7 +101,7 @@ class ParsedownWiki extends \Parsedown {
 	* @param  array $Line  Array that Parsedown detected as a block type element.
 	* @return void|array   Array of Heading Block.
 	 */
-	protected function blockSetextHeader($Line, array $Block = null) {
+	protected function blockSetextHeader($Line, ?array $Block = null) {
 		// Use parent blockHeader method to process the $Line to $Block
 		$Block = parent::blockSetextHeader($Line, $Block);
 

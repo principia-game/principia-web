@@ -4,20 +4,12 @@ data/
 
 ## SCSS caches
 static/css/
-assets/scss/.sass-cache
 
 ## Composer
 vendor/
 
 ## External libs
 lib/ext/
-static/js/ext/
-
-## Tools
-tools/featured-list-creator
-tools/lvledit
-tools/lvlinfo
-tools/progress-get
 
 ## Some static files that we don't check in
 static/ahrefs_*

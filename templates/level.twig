@@ -74,7 +74,8 @@
 			- Add to contest:
 			<select name="addtocontest" onchange="this.form.submit()">
 				<option value="-1" selected>- None selected -</option>
-				{% for contest in contests %}<option value="{{ contest.id }}">{{ contest.title }}</option>{% endfor %}
+				{# HACK: contest id 2 only allows puzzles to be submitted #}
+				{% for contest in contests %}{% if level.cat == 3 or contest.id != 2 %}<option value="{{ contest.id }}">{{ contest.title }}</option>{% endif %}{% endfor %}
 			</select>
 		{% endif %}
 	</p></form>

@@ -16,7 +16,7 @@ if (isset($_POST['action'])) {
 	$captchaAnswer = $_POST['jupiter'] ?? null;
 	$passwordmanager = $_POST['passwordmanager'] ?? null;
 
-	if (!isset($captcha[$captchaId])) die('hmm did you try to manipulate the CAPTCHA?');
+	if (!isset(CAPTCHA[$captchaId])) die('hmm did you try to manipulate the CAPTCHA?');
 
 	if (!$name || !$mail || !$pass)
 		$error[] = 'Fill in all fields.';
@@ -33,7 +33,7 @@ if (isset($_POST['action'])) {
 	if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name)]))
 		$error[] = "Username has already been taken.";
 
-	if (!in_array(strtolower($captchaAnswer), $captcha[$captchaId]['answer']))
+	if (!in_array(strtolower($captchaAnswer), CAPTCHA[$captchaId]['answer']))
 		$error[] = "Wrong security question answer.";
 
 	if (!preg_match('/^[a-zA-Z0-9\-_]+$/', $name))
@@ -63,8 +63,8 @@ if (isset($_POST['action'])) {
 	}
 }
 
-$chosenCaptcha = array_rand($captcha);
-$currentCaptcha = $captcha[$chosenCaptcha];
+$chosenCaptcha = array_rand(CAPTCHA);
+$currentCaptcha = CAPTCHA[$chosenCaptcha];
 $currentCaptcha['id'] = $chosenCaptcha;
 
 twigloader()->display('register.twig', [

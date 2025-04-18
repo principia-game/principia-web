@@ -36,7 +36,7 @@ if (isset($tid) && $log && $act && (IS_ADMIN ||
 	if ($act == 'unstick')	$modact = ',sticky=0';
 	if ($act == 'close')	$modact = ',closed=1';
 	if ($act == 'open')		$modact = ',closed=0';
-	if ($act == 'trash')	moveThread($tid, $trashid, 1);
+	if ($act == 'trash')	moveThread($tid, TRASH_FORUM_ID, 1);
 	if ($act == 'rename')	$modact = ",title=?";
 	if ($act == 'move')		moveThread($tid, $_POST['arg']);
 }
@@ -155,7 +155,7 @@ if ($log && isset($tid) && (IS_ADMIN || ($userdata['id'] == $thread['user'] && !
 		$stick = $link.($thread['sticky'] ? "('unstick')>Unstick" : "('stick')>Stick").'</a>';
 		$close = '| '.$link.($thread['closed'] ? "('open')>Open" : "('close')>Close").'</a>';
 
-		if ($thread['forum'] != $trashid)
+		if ($thread['forum'] != TRASH_FORUM_ID)
 			$trash = '| <a href=javascript:submitmod(\'trash\') onclick="trashConfirm(event)">Trash</a>';
 
 		$edit = '| <a href="javascript:showrbox()">Rename</a> | <a href="javascript:showmove()">Move</a>';

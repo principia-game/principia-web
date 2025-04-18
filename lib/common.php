@@ -1,6 +1,6 @@
 <?php
-if (!file_exists('conf/config.php'))
-	die('Please read the installing instructions in the README file.');
+if (!file_exists('data/config.php'))
+	die('Configuration file missing.');
 
 // load profiler first
 require_once('lib/profiler.php');
@@ -8,7 +8,7 @@ $profiler = new Profiler();
 
 if (!isset($internal)) $internal = false;
 
-require_once('conf/config.php');
+require_once('data/config.php');
 
 define('DEBUG', (isset($debug) && $debug));
 

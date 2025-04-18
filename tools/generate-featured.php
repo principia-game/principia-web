@@ -20,7 +20,7 @@ while ($level = $featured->fetch()) {
 	];
 }
 
-foreach ($gettingstarted_links as $link => $name) {
+foreach (GETTINGSTARTED_LINKS as $link => $name) {
 	$data['gettingstarted_list'][] = [
 		'name' => $name,
 		'link' => $link

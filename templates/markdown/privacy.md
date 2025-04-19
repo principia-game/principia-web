@@ -5,7 +5,7 @@ This is the privacy policy for this site, principia-web.
 
 The only person who currently has full server and database access is ROllerozxa, he is the server administrator. Moderators do not have full server or database access, and can only use moderation tools provided to them.
 
-Currently principia-web is hosted on the [Voxelmanip server](http://51.68.173.17/), located at OVH in Germany. Backups are stored by ROllerozxa in Sweden.
+Currently principia-web is hosted at Hetzner in Germany. Backups are stored by ROllerozxa in Sweden.
 
 Whenever a request is sent, it is logged in the server's access logs. This will include your IP, user agent and HTTP referer. These access logs are only accessible to the server administrator and are purged on a weekly basis. They will be used for temporary statistics and for logging potential errors that occur. In the case of illegal activity (e.g. a DDoS attack) the offending parts of an access log may be saved for further analysis.
 

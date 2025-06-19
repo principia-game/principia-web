@@ -3,9 +3,13 @@ Principia is, in its simplest form, a physics-based sandbox game. In Principia, 
 
 Principia also features the Adventure game mode. In this game mode, you take control of a small robot which can do whatever you decide it to do. It can take part in a giant battle with enemy robots, or it can take control of the giant robot and wreak havoc on the world.
 
-Principia was originally developed as a paid commercial game by the Swedish independent game company [Bithack AB](https://bithack.se) during 2013 and 2014. Sadly, the game was later abandoned due to Bithack not being able to finance the project anymore. It is however still loved by a small but passionate community that still keeps the game alive after all these years, including creating this site.
+Principia was originally developed as a paid commercial game by the Swedish independent game company [Bithack AB](https://bithack.se) during 2013 and 2014, and was the sequel to the 2011 Android smash hit [Apparatus](https://apparatus.voxelmanip.se). Sadly, Principia was later abandoned due to Bithack not being able to finance the project anymore because of low sales. It is however still loved by a small but passionate community that has kept the game alive after all these years.
 
-In August 2022, Principia's source code was finally released onto [GitHub](https://github.com/Bithack/principia) and is now being further developed as an open source project. It is now free for everyone to download, as well as use under the terms of the BSD 3-Clause license. The game is available for Windows, Linux, Android, as well as experimental ports to other platforms.
+In August 2022, Principia's source code was finally released onto [GitHub](https://github.com/Bithack/principia) and is now being further developed as an open source project by the community that grew up playing it. Principia is now free for everyone to download, use and modify under the terms of the BSD 3-Clause license. The game is currently available play on Windows, Linux, Android, as well as experimental ports to other platforms.
+
+There are tens of thousands of user made creations by the community to play and enjoy. [Browse the latest](/browse) that the community has made right now, or browse the full collection of 25000+ levels from 2013 to 2018 on the [Principia official community site archive](https://archive.principia-web.se).
+
+## [Download Principia!](/download)
 
 ## Gallery
 (Clicking on an image will give you a lossless PNG version of each)

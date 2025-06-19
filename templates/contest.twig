@@ -14,16 +14,16 @@
 
 <h2>Timeframe</h2>
 
-<p>The contest was started at <strong>{{ contest.time_from | date('M j, Y') }}</strong>.</p>
+<p>The contest was started at <strong>{{ contest.time_from | date('j F Y') }}</strong>.</p>
 
 {% if contest.time_to|date("U") < "now"|date("U") %}
-	<p>The contest ended at <strong>{{ contest.time_to | date('M j, Y H:i:s') }}</strong>. The results may be published with some delay.</p>
+	<p>The contest ended at <strong>{{ contest.time_to | date('j F Y H:i:s') }}</strong>. The results may be published with some delay.</p>
 {% else %}
-	<p>The contest will end at <strong>{{ contest.time_to | date('M j, Y H:i:s') }} GMT</strong>. Time left: <strong id="countdown"></strong></p>
+	<p>The contest will end at <strong>{{ contest.time_to | date('j F Y H:i:s') }} GMT</strong>. Time left: <strong id="countdown"></strong></p>
 
 	<script>
 	window.onload = function() {
-		startCountdown("countdown", "{{ contest.time_to | date('M j, Y H:i:s', false) }}");
+		startCountdown("countdown", "{{ contest.time_to | date('j F Y H:i:s', false) }}");
 	};
 	</script>
 {% endif %}

@@ -56,6 +56,10 @@
 			<img src="/icons/matrix.svg" title="Join the Principia Matrix space" alt="Matrix">
 			<span>Matrix</span>
 		</a>
+		<a href="https://www.youtube.com/@principiagame">
+			<img src="/icons/youtube.svg" title="Subscribe to Principia on YouTube" alt="YouTube">
+			<span>YouTube</span>
+		</a>
 		<a rel="me" href="https://hachyderm.io/@Principia">
 			<img src="/icons/mastodon.svg" title="Follow Principia on Mastodon" alt="Mastodon">
 			<span>Mastodon</span>
@@ -90,6 +94,7 @@
 	{% endfor %}
 </ul>
 
+{% if log %}
 <div class="intermission">
 	<h2>Useful links</h2>
 
@@ -110,6 +115,10 @@
 			<img src="/icons/matrix.svg" title="Join the Principia Matrix space" alt="Matrix">
 			<span>Matrix</span>
 		</a>
+		<a href="https://www.youtube.com/@principiagame">
+			<img src="/icons/youtube.svg" title="Subscribe to Principia on YouTube" alt="YouTube">
+			<span>YouTube</span>
+		</a>
 		<a rel="me" href="https://hachyderm.io/@Principia">
 			<img src="/icons/mastodon.svg" title="Follow Principia on Mastodon" alt="Mastodon">
 			<span>Mastodon</span>
@@ -120,6 +129,7 @@
 		</a>
 	</div>
 </div>
+{% endif %}
 
 <h2 class="header">Top rated levels <a href="/top">More</a></h2>
 <div class="level-list scrollable">

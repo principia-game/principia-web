@@ -539,11 +539,14 @@ div.level {
 .buttonbar {
 	margin-bottom: 30px;
 	font-size: 1.25em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 30px 0;
 
 	a {
 		display: inline-block;
 		color: black;
-		margin: 0 10px;
 		width: 150px;
 		font-weight: bold;
 

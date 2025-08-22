@@ -1,0 +1,194 @@
+/** @author Ondrej Valka, http://valka.info
+  * @author ROllerozxa, https://voxelmanip.se
+  */
+
+$grid: #444;
+$bg: #0F0F0F;
+$bg_box: #191919;
+$bg_box2: #060606;
+
+body {
+	color: #ffffff;
+	background: $bg;
+}
+
+.jush a {
+	color: white !important;
+}
+
+a:link, a:visited {
+	color: #47a8e9;
+	text-decoration: none;
+}
+
+a:link:hover, a:visited:hover {
+	color: #e74c3c;
+	text-decoration: underline;
+}
+
+h1, h2 {
+	border-bottom: 1px solid $grid;
+	background: $bg_box;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td, th {
+	border: 1px solid $grid;
+	padding: .3em .5em;
+}
+
+th {
+	background: #111;
+}
+
+thead {
+	position: initial;
+}
+
+thead th, thead td {
+	background: #080808;
+	color: white;
+	border: 1px solid $grid;
+	padding: .3em .5em;
+}
+
+fieldset {
+	border: 1px solid $grid;
+	border-radius: 0;
+}
+
+code {
+	background: #111;
+}
+
+tbody tr:hover td, tbody tr:hover th {
+	background: #1a1a1a;
+}
+
+pre {
+	margin: 1em 0 0;
+}
+
+pre.jush {
+	background-color: unset;
+}
+
+.js .column {
+	background: #ddf;
+}
+
+.error {
+	color: #ffc6c6;
+	background: #200;
+
+	b {
+		background: #200;
+	}
+}
+
+.message {
+	color: #c6ffc6;
+	background: #020;
+}
+
+.char	{ color: #0ab10a; }
+.date	{ color: #992199; }
+.enum	{ color: #16a3a3; }
+.binary	{ color: #ee4d4d; }
+
+.odds tbody tr:nth-child(n) {
+	background: #171717;
+}
+.odds tbody tr:nth-child(2n) {
+	background: #0c0c0c;
+}
+
+
+.js .checkable .checked td, .js .checkable .checked th {
+	background: #203c4d;
+}
+
+.time {
+	color: silver;
+	font-size: 70%;
+}
+
+.function, .number, .datetime {
+	text-align: right;
+}
+
+.jush {
+	color: white !important;
+}
+
+.footer {
+	border: 1px solid $grid;
+	box-shadow: none;
+
+	& > div {
+		background: #000;
+		padding: 5px;
+	}
+}
+
+.logout {
+	background-color: unset;
+	box-shadow: none;
+}
+.logout span {
+	display: none;
+}
+
+#menu {
+	padding: 0 0 30px 0;
+}
+
+#menu p, #logins, #tables {
+	border-bottom: 1px solid $grid;
+}
+
+#breadcrumb {
+	background: unset;
+}
+
+#tables a, #logins a {
+	background-color: unset;
+}
+
+.links a { white-space: nowrap; margin-right: 20px; }
+
+#help {
+	border: 1px solid #999;
+	background: #111;
+}
+
+#logo {
+	display: none;
+}
+
+textarea, input {
+	font-size: 11pt;
+	background-color: #111;
+	border: 1px solid $grid;
+	color: white;
+	padding: 5px;
+	vertical-align: top;
+}
+
+input[type=submit], select {
+	font-size: 11pt;
+	border: 1px solid $grid;
+	background-color: #111;
+	color: white;
+	padding: 5px 15px;
+
+	&:hover {
+		background-color: darken(#111, 2%);
+	}
+	&:active {
+		background-color: darken(#111, 5%);
+	}
+}

@@ -8,9 +8,6 @@ static/css/
 ## Composer
 vendor/
 
-## External libs
-lib/ext/
-
 ## Some static files that we don't check in
 static/ahrefs_*
 static/branding/

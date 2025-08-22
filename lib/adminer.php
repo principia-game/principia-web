@@ -10,7 +10,7 @@ function adminerBootstrap() {
 	define('USERNAME', $userdata['name']);
 
 	function adminer_object() {
-		class AdminerPlugin extends Adminer {
+		class AdminerPlugin extends Adminer\Adminer {
 			function credentials() {
 				return [DB_HOST, DB_USER, DB_PASS];
 			}
@@ -32,7 +32,11 @@ function adminerBootstrap() {
 				echo $this->loginFormField('password', '<tr><th>Key<td>', '<input type="password" name="auth[password]" autocomplete="current-password">');
 				echo "</table>";
 				echo "<p><input type='submit' value='Login'> ";
-				echo checkbox("auth[permanent]", 1, 1, 'Permanent login');
+				echo Adminer\checkbox("auth[permanent]", 1, 1, 'Permanent login');
+			}
+
+			function css() {
+				return ["/css/adminer.css"];
 			}
 		}
 

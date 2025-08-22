@@ -3,17 +3,17 @@
   */
 
 $grid: #444;
-$bg: #0F0F0F;
+$bg: #0f0f0f;
 $bg_box: #191919;
 $bg_box2: #060606;
 
 body {
-	color: #ffffff;
+	color: #fff;
 	background: $bg;
 }
 
 .jush a {
-	color: white !important;
+	color: #fff !important;
 }
 
 a:link, a:visited {
@@ -50,7 +50,7 @@ thead {
 
 thead th, thead td {
 	background: #080808;
-	color: white;
+	color: #fff;
 	border: 1px solid $grid;
 	padding: .3em .5em;
 }
@@ -121,7 +121,7 @@ pre.jush {
 }
 
 .jush {
-	color: white !important;
+	color: #fff !important;
 }
 
 .footer {
@@ -173,7 +173,7 @@ textarea, input {
 	font-size: 11pt;
 	background-color: #111;
 	border: 1px solid $grid;
-	color: white;
+	color: #fff;
 	padding: 5px;
 	vertical-align: top;
 }
@@ -182,7 +182,7 @@ input[type=submit], select {
 	font-size: 11pt;
 	border: 1px solid $grid;
 	background-color: #111;
-	color: white;
+	color: #fff;
 	padding: 5px 15px;
 
 	&:hover {

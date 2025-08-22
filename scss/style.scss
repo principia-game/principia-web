@@ -52,7 +52,7 @@ h5 { font-size: 0.83em; }
 h6 { font-size: 0.67em; }
 
 svg {
-	fill: black;
+	fill: #000;
 	width: 20px;
 	height: 20px;
 	vertical-align: middle;
@@ -64,12 +64,12 @@ svg {
 
 	&.b-red {
 		background-color: #9c0d0d;
-		color: white;
+		color: #fff;
 	}
 
 	&.b-green {
 		background-color: #0d9c0d;
-		color: white;
+		color: #fff;
 	}
 }
 
@@ -188,7 +188,7 @@ div.level {
 	border-radius: 4px;
 
 	.lvlbox_top {
-		color: black;
+		color: #000;
 		font-size: 13pt;
 		text-decoration: none;
 		display: block;
@@ -259,7 +259,7 @@ div.level {
 	&:nth-child(even) { background-color: #e8e8e8; }
 
 	&.deleted {
-		background-color: #ffcccc;
+		background-color: #fcc;
 
 		&:after {
 			content: "(deleted comment)";
@@ -368,7 +368,7 @@ div.level {
 			margin: 15px 0;
 			padding: 15px;
 			background-color: #6b4040;
-			color: white;
+			color: #fff;
 		}
 	}
 }
@@ -546,7 +546,7 @@ div.level {
 
 	a {
 		display: inline-block;
-		color: black;
+		color: #000;
 		width: 150px;
 		font-weight: bold;
 
@@ -571,6 +571,7 @@ div.level {
 .welcome-back {
 	border-bottom: 1px solid $grid;
 }
+
 
 /// Generic classes \\\
 
@@ -605,7 +606,7 @@ $basic-colours: (
 	@each $name, $hex in $basic-colours {
 		.bg-#{$name} {
 			background-color: $hex;
-			color: white;
+			color: #fff;
 		}
 	}
 }

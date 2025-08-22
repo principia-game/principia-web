@@ -4,7 +4,7 @@
 $grid: #444;
 $link: #62aafc;
 $link_active: darken($link, 17%);
-$bg: #0F0F0F;
+$bg: #0f0f0f;
 $bg_box: #191919;
 $bg_box2: #060606;
 $btn_play: #608060;
@@ -13,7 +13,7 @@ $btn_text: #eee;
 
 body {
 	background-color: $bg;
-	color: white;
+	color: #fff;
 }
 
 a {
@@ -23,7 +23,7 @@ a {
 }
 
 svg {
-	fill: white;
+	fill: #fff;
 }
 
 .top, .footer {
@@ -49,14 +49,14 @@ div.menu {
 }
 
 .buttonbar a {
-	color: white;
+	color: #fff;
 }
 
 div.level {
 	background-color: $bg_box2;
 
 	.lvlbox_top {
-		color: white;
+		color: #fff;
 	}
 
 	&:hover {
@@ -244,14 +244,14 @@ a.nonexistant {
 textarea, input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
 	background-color: #111;
 	border: 1px solid $grid;
-	color: white;
+	color: #fff;
 	padding: 7px;
 }
 
 input[type=submit], button.btn, select {
 	border: 1px solid $grid;
 	background-color: #111;
-	color: white;
+	color: #fff;
 
 	&:hover {
 		background-color: darken(#111, 2%);

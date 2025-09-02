@@ -47,3 +47,8 @@ function getPageContent() {
 function getPageCount() {
 	return count(glob(WIKI_PAGES.'*.md'));
 }
+
+if (file_exists('data/wiki/redirects.php'))
+	require('data/wiki/redirects.php');
+else
+	$wikiPageRedirects = [];

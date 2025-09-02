@@ -3,7 +3,7 @@ Principia is, in its simplest form, a physics-based sandbox game. In Principia, 
 
 Principia also features the Adventure game mode. In this game mode, you take control of a small robot which can do whatever you decide it to do. It can take part in a giant battle with enemy robots, or it can take control of the giant robot and wreak havoc on the world.
 
-Principia was originally developed as a paid commercial game by the Swedish independent game company [Bithack AB](https://bithack.se) during 2013 and 2014, and was the sequel to the 2011 Android smash hit [Apparatus](https://apparatus.voxelmanip.se). Sadly, Principia was later abandoned due to Bithack not being able to finance the project anymore because of low sales. It is however still loved by a small but passionate community that has kept the game alive after all these years.
+Principia was originally developed as a paid commercial game by the Swedish independent game company [Bithack AB](/wiki/Bithack) during 2013 and 2014, and was the sequel to the 2011 Android smash hit [Apparatus](https://apparatus.voxelmanip.se). Sadly, Principia was later abandoned due to Bithack not being able to finance the project anymore because of low sales. It is however still loved by a small but passionate community that has kept the game alive after all these years.
 
 In August 2022, Principia's source code was finally released onto [GitHub](https://github.com/Bithack/principia) and is now being further developed as an open source project by the community that grew up playing it. Principia is now free for everyone to download, use and modify under the terms of the BSD 3-Clause license. The game is currently available play on Windows, Linux, Android, as well as experimental ports to other platforms.
 

@@ -64,7 +64,7 @@ CREATE TABLE `featured` (
 
 
 CREATE TABLE `ipbans` (
-  `ip` char(16) NOT NULL DEFAULT '0.0.0.0',
+  `ip` inet6 NOT NULL,
   `reason` varchar(255) NOT NULL DEFAULT '<em>No reason specified</em>',
   PRIMARY KEY (`ip`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -172,7 +172,7 @@ CREATE TABLE `users` (
   `name` varchar(50) NOT NULL,
   `password` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `email` char(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `ip` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `ip` inet6 DEFAULT NULL,
   `token` char(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `joined` int(10) unsigned NOT NULL DEFAULT 0,
   `lastview` int(10) unsigned NOT NULL DEFAULT 0,

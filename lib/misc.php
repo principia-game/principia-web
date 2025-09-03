@@ -59,3 +59,20 @@ function offerFile($filepath, $savename) {
 
 	readfile($filepath);
 }
+
+/**
+ * Tries to convert an IPv4-mapped IPv6 address to real IPv4 address,
+ * no-op if it's an actual IPv6 address.
+ */
+function ipv6_to_ipv4($ip) {
+	$bin = inet_pton($ip);
+	$prefix = substr($bin, 0, 12);
+
+	// Check prefix for IPv4-mapped IPv6 address
+	if ($prefix === "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xff\xff")
+		// IPv4-mapped IPv6 address, do fun stuff with it
+		return inet_ntop(substr($bin, 12));
+
+	// Real IPv6 address, return as-is
+	return $ip;
+}

@@ -84,7 +84,7 @@
 
 	{% if userdata.rank > 2 %}
 		<div class="row right">
-			<span class="sensitive">{{ userpagedata.ip }}</span>
+			<span class="sensitive">{{ userpagedata.ip | ipv6_to_ipv4 }}</span>
 		</div>
 	{% endif %}
 </div>

@@ -11,7 +11,7 @@
 	</tr>
 	{% for ban in ipbans %}
 	<tr>
-		<td><a href="https://www.abuseipdb.com/check/{{ ban.ip }}">{{ ban.ip }}</a></td>
+		<td><a href="https://www.abuseipdb.com/check/{{ ban.ip }}">{{ ban.ip | ipv6_to_ipv4 }}</a></td>
 		<td>{{ ban.reason }}</td>
 	</tr>
 	{% endfor %}

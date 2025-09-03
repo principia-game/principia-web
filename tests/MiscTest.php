@@ -9,4 +9,10 @@ final class MiscTest extends TestCase {
 
 		$this->assertSame('N/A', extractPlatform('curl/7.69.4'));
 	}
+
+	public function testIpv6ToIpv4(): void {
+		$this->assertSame('127.0.0.1', ipv6_to_ipv4('::ffff:127.0.0.1'));
+
+		$this->assertSame('::1', ipv6_to_ipv4('::1'));
+	}
 }

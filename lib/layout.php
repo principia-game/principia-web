@@ -12,7 +12,7 @@ if (DEBUG)
 function twigloader() {
 	global $log, $footerlinks, $path, $submodule, $profile;
 
-	$loader = new \Twig\Loader\FilesystemLoader('templates/');
+	$loader = new \Twig\Loader\FilesystemLoader('templates/' . (IS_ARCHIVE ? 'archive/' : ''));
 
 	$twig = new \Twig\Environment($loader, [
 		'cache' => IS_ARCHIVE ? '/tmp/pwa_cache' : TPL_CACHE,

@@ -1,0 +1,52 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Home" %}
+{% set description = "An archive of the old official Principia community site, containing all levels that were uploaded during the official community site's existance between 2013 and 2018." %}
+{% set pagename = "/" %}
+
+	{% block content %}
+<div class="archive-head">
+	<h1>Principia Official Community Site Archive</h1>
+
+	<p>This is an archive of the official community site, containing all levels that was uploaded spanning from the game's release in 2013 to the community site's shutdown in 2018.</p>
+
+	<p>A recent enough version of the open source version of Principia is required to play levels.</p>
+</div>
+
+<h1 class="center">Featured levels</h1>
+<div class="level-list scrollable">
+{% for featured_level in featured_levels %}
+	{{ level(featured_level) }}
+{% endfor %}
+</div>
+
+<h2 class="header">Top rated levels <a href="/top">More</a></h2>
+<div class="level-list scrollable">
+{% for top_level in top_levels %}
+	{{ level(top_level) }}
+{% endfor %}
+</div>
+
+<h2 class="header">Random picks <a href="/random">More</a></h2>
+<div class="level-list scrollable">
+{% for random_level in random_levels %}
+	{{ level(random_level) }}
+{% endfor %}
+</div>
+
+<h2 class="header">Custom levels <a href="/latest/custom">More</a></h2>
+<div class="level-list scrollable">
+{% for custom_level in custom_levels %}
+	{{ level(custom_level) }}
+{% endfor %}
+</div>
+
+<h2 class="header">Adventure levels <a href="/latest/adventure">More</a></h2>
+<div class="level-list scrollable">
+{% for adventure_level in adventure_levels %}
+	{{ level(adventure_level) }}
+{% endfor %}
+</div>
+
+<br>
+	{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Top rated levels" %}
+{% set description = "View what were the most liked levels on the Principia official community site." %}
+
+	{% block content %}
+<h1>Top rated levels{% if page != 1 %} (Page {{ page }}){% endif %}</h1>
+<p>These were the top rated levels of all time, which have the most likes.</p>
+
+<div class="level-list">
+{% for level in levels %}
+	{{ level(level) }}
+{% endfor %}
+</div>
+
+{{ pagination(level_count, glob_lpp, "/top?page=%s", page) }}
+
+<br><br>
+	{% endblock %}

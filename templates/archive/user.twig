@@ -1,0 +1,28 @@
+{% extends "_layout.twig" %}
+
+{% set title = name %}
+{% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
+{% set pagename = "/user/" ~ id %}
+
+	{% block content %}
+<h1>{{ name }}</h1>
+
+{% if name == "zardOz" %}
+	<p>R.I.P. zardOz...</p>
+{% endif %}
+
+<h2>Levels</h2>
+
+<div class="level-list">
+{% for level in levels %}
+	{{ level(level) }}
+{% else %}
+	This user hasn't uploaded any levels.
+{% endfor %}
+</div>
+
+{% set le_url = '/user/' ~ id ~ '?page=%s' %}
+{{ pagination(level_count, glob_lpp, le_url, page) }}
+
+<br><br>
+	{% endblock %}

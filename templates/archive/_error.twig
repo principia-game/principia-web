@@ -1,0 +1,9 @@
+{% extends "_layout.twig" %}
+
+{% set title = err_title %}
+{% set noindex = true %}
+
+	{% block content %}
+<h1 class="center" style="margin-top:50px;font-size:3.5em">{{ err_title }}</h1>
+<p class="center" style="margin-bottom:50px">{{ err_message | raw }}</p>
+	{% endblock %}

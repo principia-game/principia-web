@@ -1,0 +1,36 @@
+{% extends "_layout.twig" %}
+
+{% if page == 1 %}
+	{% set title = "Browse levels" %}
+{% else %}
+	{% set title = "Browse levels (Page " ~ page ~ ")" %}
+{% endif %}
+{% set description = "Browse all the levels that were ever uploaded to the official Principia community site." %}
+{% if type != 'all' %}
+	{% set pagename = '/latest/' ~ type %}
+{% endif %}
+
+	{% block content %}
+<h1>Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
+<div class="latest-buttons">
+	<a class="play-btn {% if type == 'custom' %}blue{% else %}green{% endif %}" href="/latest/custom">Custom</a>
+	<a class="play-btn {% if type == 'adventure' %}blue{% else %}green{% endif %}" href="/latest/adventure">Adventure</a>
+	<a class="play-btn {% if type == 'puzzle' %}blue{% else %}green{% endif %}" href="/latest/puzzle">Puzzle</a>
+	<a class="play-btn {% if type == 'all' %}blue{% else %}green{% endif %}" href="/latest">All</a>
+</div>
+
+<div class="level-list">
+{% for level in levels %}
+	{{ level(level) }}
+{% endfor %}
+</div>
+
+{% if type == 'all' %}
+	{% set le_url = '/latest?page=%s' %}
+{% else %}
+	{% set le_url = '/latest/' ~ type ~ '?page=%s' %}
+{% endif %}
+{{ pagination(level_count, glob_lpp, le_url, page) }}
+
+<br><br>
+	{% endblock %}

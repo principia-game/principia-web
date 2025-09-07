@@ -1,0 +1,16 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Random picks" %}
+{% set description = "View a random pick of levels." %}
+
+	{% block content %}
+<h1>Random picks</h1>
+
+<div class="level-list">
+{% for level in levels %}
+	{{ level(level) }}
+{% endfor %}
+</div>
+
+<br><br>
+	{% endblock %}

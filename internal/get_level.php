@@ -1,10 +1,12 @@
 <?php
 $level = $_GET['i'] ?? null;
-$levelpath = sprintf('data/levels/%d.plvl', $level);
+if (IS_ARCHIVE)
+	$levelpath = sprintf('data/archive/levels/%d.plvl', $level);
+else
+	$levelpath = sprintf('data/levels/%d.plvl', $level);
 
 if (!$level || !file_exists($levelpath)) {
-	if (!IS_ARCHIVE)
-		offerFile('internal/null.plvl', 'not-found');
+	offerFile('internal/null.plvl', 'not-found');
 	die();
 }
 

@@ -8,8 +8,7 @@ define('IS_ARCHIVE', $_SERVER['HTTP_HOST'] == 'principia-web-archive.uwu' || $_S
 require('lib/common.php');
 
 if (IS_ARCHIVE) {
-	chdir('../principia-web-archive/');
-	require('router.php');
+	require('lib/archive/router.php');
 	return;
 }
 

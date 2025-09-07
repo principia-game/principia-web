@@ -1,0 +1,19 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Most popular levels" %}
+{% set description = "View the most popular levels on principia-web." %}
+
+	{% block content %}
+<h1>Most popular levels</h1>
+<p><em>These are the most popular levels of all time, with the most downloads total.</em></p>
+
+<div class="level-list">
+{% for level in levels %}
+	{{ level(level) }}
+{% endfor %}
+</div>
+
+{{ pagination(level_count, glob_lpp, "/popular?page=%s", page) }}
+
+<br><br>
+	{% endblock %}

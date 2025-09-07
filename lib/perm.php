@@ -10,6 +10,14 @@ $ranks = [
 ];
 
 function powIdToName($id) {
+	if (IS_ARCHIVE) {
+		return match ($id) {
+			1  => 'user',
+			2  => 'moderator',
+			3  => 'admin'
+		};
+	}
+
 	return match ($id) {
 		-1 => 'Banned',
 		0  => 'Guest',

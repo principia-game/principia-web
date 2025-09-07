@@ -315,13 +315,14 @@ div.level {
 }
 
 .user {
+	font-weight: bold;
+
 	&, &:hover, &:active {
 		text-decoration: none;
 	}
 
 	.t_user {
 		color: #0000aa;
-		font-weight: bold;
 	}
 }
 
@@ -734,6 +735,9 @@ textarea {
 
 /// Wiki \\\
 @import "_style_wiki";
+
+/// Archive \\\
+@import "_style_archive";
 
 /// Prism.js styling \\\
 @import "_prism";

@@ -1,0 +1,78 @@
+
+/// Archive specific \\\
+
+.archive-head {
+	border-bottom: 1px solid #333;
+	display: block;
+	text-align: center;
+	font-size: 1em;
+	margin: 30px 0px;
+}
+
+.user {
+	.t_moderator { color: #23e123; }
+	.t_admin { color: #ff4646; }
+}
+
+.trophee {
+	line-height: 16px;
+	height: 16px;
+	padding-left: 16px;
+	padding-right: 2px;
+	vertical-align: middle;
+	display: inline-block;
+
+	&:first-child {
+		margin-left: 3px;
+	}
+
+	&.bdiamond {
+		background-image: url('/assets/trophy_diamond.webp');
+	}
+
+	&.gold {
+		color: #e0b036;
+		background-image: url('/assets/trophy_gold.webp');
+	}
+
+	&.silver {
+		color: #949494;
+		background-image: url('/assets/trophy_silver.webp');
+	}
+
+	&.bdiamond, &.gold, &.silver {
+		background-repeat: no-repeat;
+	}
+}
+
+.num_trophees {
+	display: block;
+	font-size: 8pt;
+}
+
+// Pagination (archive) \\
+.pagination-archive {
+	margin-top: 2em;
+	font-size: 14pt;
+	text-align: center;
+
+	div, a {
+		width: 120px;
+		display: inline-block;
+	}
+
+	a {
+		color: white;
+		text-decoration: none;
+
+		margin: 0 15px;
+		padding: 10px;
+
+		background-color: #080808;
+
+		&:hover {
+			background-color: #111;
+		}
+	}
+}
+

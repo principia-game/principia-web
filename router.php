@@ -3,8 +3,15 @@ $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $path = explode('/', $uri);
 
 $internal = (isset($path[1]) && (in_array($path[1], ['internal', 'principia-version-code'])));
+define('IS_ARCHIVE', $_SERVER['HTTP_HOST'] == 'principia-web-archive.uwu' || $_SERVER['HTTP_HOST'] == 'archive.principia-web.se');
 
 require('lib/common.php');
+
+if (IS_ARCHIVE) {
+	chdir('../principia-web-archive/');
+	require('router.php');
+	return;
+}
 
 function notFound() {
 	error('404');

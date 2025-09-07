@@ -15,7 +15,7 @@ function twigloader() {
 	$loader = new \Twig\Loader\FilesystemLoader('templates/');
 
 	$twig = new \Twig\Environment($loader, [
-		'cache' => TPL_CACHE,
+		'cache' => IS_ARCHIVE ? '/tmp/pwa_cache' : TPL_CACHE,
 		'auto_reload' => true,
 	]);
 
@@ -75,9 +75,12 @@ function error($title, $message = '') {
 
 function level($level, $featured = '', $pkg = false) {
 	if (!$pkg) {
-		if (!isset($level['visibility']) || $level['visibility'] != 1)
-			$img = "thumbs/low/".$level['id'].".jpg";
-		else
+		if (!isset($level['visibility']) || $level['visibility'] != 1) {
+			if (IS_ARCHIVE)
+				$img = "thumbs/low/".$level['id']."-0-0.jpg";
+			else
+				$img = "thumbs/low/".$level['id'].".jpg";
+		} else
 			$img = "assets/locked_thumb.svg";
 	} else
 		$img = "assets/package_thumb.svg";
@@ -85,7 +88,7 @@ function level($level, $featured = '', $pkg = false) {
 	$page = ($pkg ? 'package' : 'level');
 	$label = $featured ? "<span class=\"featured small\">{$featured}</span>" : '';
 	$title = esc(strlen($level['title']) > 60 ? substr($level['title'], 0, 60).'...' : $level['title']);
-	$ulink = userlink($level, 'u_');
+	$author = userlink($level, 'u_');
 
 	return <<<HTML
 <div class="level" id="l-{$level['id']}">
@@ -93,7 +96,7 @@ function level($level, $featured = '', $pkg = false) {
 		<img src="/{$img}" alt="" loading="lazy">$label
 		<div class="lvltitle">$title</div>
 	</a>
-	{$ulink}
+	{$author}
 </div>
 HTML;
 }

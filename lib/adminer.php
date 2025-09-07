@@ -38,6 +38,18 @@ function adminerBootstrap() {
 			function css() {
 				return ["/css/adminer.css"];
 			}
+
+			function databases($flush = true) {
+				$hiddenDatabases = ['information_schema', 'mysql', 'performance_schema', 'sys'];
+				$return = [];
+				foreach (Adminer\get_databases($flush) as $db) {
+					if (in_array(strtolower($db), $hiddenDatabases))
+						continue;
+
+					$return[] = $db;
+				}
+				return $return;
+			}
 		}
 
 		return new AdminerPlugin();

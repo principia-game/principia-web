@@ -184,7 +184,7 @@ div.level {
 	width: 240px;
 	height: 210px;
 
-	border: 1px solid #444;
+	border: 1px solid #8f8f9d;
 	border-radius: 4px;
 
 	.lvlbox_top {
@@ -467,16 +467,14 @@ div.level {
 
 // Pagination \\
 .pagination {
-	margin-top: 1em;
-	font-size: 14pt;
-	font-weight: bold;
+	margin-top: 2em;
+	text-align: center;
 
-	&:before {
-		content: "Pages: ";
-	}
-
-	span {
-		margin-left: 13px;
+	div, a.btn {
+		font-size: 14pt;
+		width: 120px;
+		padding: 10px;
+		margin: 0 15px;
 		display: inline-block;
 	}
 }
@@ -699,29 +697,24 @@ input[type=text], input[type=password], input[type=email], input[type=color], in
 	padding: 7px;
 }
 
-input[type=submit], button.btn, select {
+input[type=submit], button.btn, a.btn, select {
 	font-size: 12pt;
 	border: 1px solid #8f8f9d;
 	background-color: #eee;
+	color: #000;
 	padding: 5px 15px;
 
 	&:hover {
 		background-color: darken(#eee, 5%);
+		text-decoration: none;
 	}
 	&:active {
 		background-color: darken(#eee, 15%);
 	}
 }
 
-input[type=submit], button.btn {
+input[type=submit], button.btn, a.btn {
 	vertical-align: top;
-
-	&:active {
-		padding-left: 16px;
-		padding-right: 14px;
-		padding-top: 6px;
-		padding-bottom: 4px;
-	}
 }
 
 textarea {

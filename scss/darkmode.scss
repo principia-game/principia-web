@@ -54,6 +54,7 @@ div.menu {
 
 div.level {
 	background-color: $bg_box2;
+	border: 1px solid #444;
 
 	.lvlbox_top {
 		color: #fff;
@@ -248,7 +249,7 @@ textarea, input[type=text], input[type=password], input[type=email], input[type=
 	padding: 7px;
 }
 
-input[type=submit], button.btn, select {
+input[type=submit], button.btn, a.btn, select {
 	border: 1px solid $grid;
 	background-color: #111;
 	color: #fff;

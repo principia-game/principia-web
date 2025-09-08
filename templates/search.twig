@@ -5,7 +5,10 @@
 {% set noindex = true %}
 
 	{% block content %}
-<h1 class="header">Search levels <a href="/forum/search">Search the forums</a></h1>
+<h1 class="header">
+	Search levels
+	{% if not constant('IS_ARCHIVE') %}<a href="/forum/search">Search the forums</a>{% endif %}
+</h1>
 
 <form>
 	<input type="text" name="query" value="{{ query }}" style="width:360px">
@@ -39,7 +42,16 @@
 	{% endif %}
 	{{ pagination(level_count, glob_lpp, le_url, page) }}
 
-	<p>Want more or can't find what you're looking for? <a href="https://archive.principia-web.se/search?query={{ query }}">Search for '{{ query }}' the official community site archive.</a></p>
+	{% if constant('IS_ARCHIVE') %}
+		<br><br>
+	{% else %}
+		<p>
+			Want more or can't find what you're looking for?
+			<a href="https://archive.principia-web.se/search?query={{ query }}">
+				Search for '{{ query }}' the official community site archive.
+			</a>
+		</p>
+	{% endif %}
 {% endif %}
 
 	{% endblock %}

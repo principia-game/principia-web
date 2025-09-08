@@ -1,17 +1,24 @@
 {% extends "_layout.twig" %}
 
-{% if page == 1 %}
-	{% set title = "Latest levels" %}
+{% if constant('IS_ARCHIVE') %}
+	{% set term = 'Browse' %}
+	{% set description = "Browse all the levels that were ever uploaded to the official Principia community site." %}
 {% else %}
-	{% set title = "Latest levels (Page " ~ page ~ ")" %}
+	{% set term = 'Latest' %}
+	{% set description = "View the latest levels uploaded to the Principia community site." %}
 {% endif %}
-{% set description = "View the latest levels uploaded to the Principia community site." %}
+
+{% if page == 1 %}
+	{% set title = term ~ " levels" %}
+{% else %}
+	{% set title = term ~ " levels (Page " ~ page ~ ")" %}
+{% endif %}
 {% if type != 'all' %}
 	{% set pagename = '/latest/' ~ type %}
 {% endif %}
 
 	{% block content %}
-<h1>Latest levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
+<h1>{{ term }} levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
 <div class="latest-buttons">
 	<a class="play-btn {% if type == 'custom' %}blue{% else %}green{% endif %}" href="/latest/custom">Custom</a>
 	<a class="play-btn {% if type == 'adventure' %}blue{% else %}green{% endif %}" href="/latest/adventure">Adventure</a>

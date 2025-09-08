@@ -19,7 +19,7 @@ $levels = query("SELECT $userfields,l.id,l.title
 
 $levelcount = result("SELECT COUNT(*) FROM levels WHERE author = ? AND visibility = 0", [$id]);
 
-twigloader()->display('user.twig', [
+twigloader()->display('archive/user.twig', [
 	'id' => $id,
 	'name' => $user['name'],
 	'userpagedata' => $user,

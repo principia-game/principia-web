@@ -9,7 +9,7 @@ $derivatives = query("SELECT $userfields,l.id,l.title FROM levels l JOIN users u
 if ($level['parent'])
 	$parentLevel = fetch("SELECT $userfields,l.id,l.title FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0", [$level['parent']]);
 
-twigloader()->display('level.twig', [
+twigloader()->display('archive/level.twig', [
 	'lid' => $lid,
 	'level' => $level,
 	'derivatives' => fetchArray($derivatives),

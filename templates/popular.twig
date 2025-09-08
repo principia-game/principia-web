@@ -4,8 +4,9 @@
 {% set description = "View the most popular levels of all time." %}
 
 	{% block content %}
-<h1>Most popular levels</h1>
-<p><em>These are the top {{ glob_lpp }} most popular levels of all time.</em></p>
+<h1>Most popular levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
+
+<p><em>These {% if constant('IS_ARCHIVE') %}were{% else %}are{% endif %} the most popular levels of all time, with the most downloads total.</em></p>
 
 <div class="level-list">
 {% for level in levels %}
@@ -14,6 +15,8 @@
 	There are no levels. You could create one!
 {% endfor %}
 </div>
+
+{{ pagination(level_count, glob_lpp, "/popular?page=%s", page) }}
 
 <br><br>
 	{% endblock %}

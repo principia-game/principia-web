@@ -1,6 +1,6 @@
 <?php
 $randomlevels = randomLevels(20);
 
-twigloader()->display('random.twig', [
+twigloader()->display('archive/random.twig', [
 	'levels' => $randomlevels
 ]);

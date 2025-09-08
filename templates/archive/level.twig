@@ -31,8 +31,8 @@
 		{% elseif level.visibility == 2 %}
 			<p><em>This level is unlisted. It will not be visible outside of this level page.</em></p>
 		{% else %}
-			<a class="play-btn green" href="principia://{{ domain }}/play/lvl/db/{{ lid }}">Play</a>
-			<a class="play-btn blue" href="principia://{{ domain }}/sandbox/db/{{ lid }}">Edit</a>
+			<a class="play-btn green" href="principia://archive.principia-web.se/play/lvl/db/{{ lid }}">Play</a>
+			<a class="play-btn blue" href="principia://archive.principia-web.se/sandbox/db/{{ lid }}">Edit</a>
 
 			{% if level.likes > 0 %}
 				<span class="likemsg">{{ level.likes }} player{% if level.likes != 1 %}s{% endif %} liked this.</span>

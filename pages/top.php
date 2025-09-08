@@ -1,7 +1,15 @@
 <?php
+$page = $_GET['page'] ?? 1;
 
-$levels = query("SELECT l.id id, l.title title, $userfields
+$levels = query("SELECT l.id, l.title, $userfields
 		FROM levels l JOIN users u ON l.author = u.id
-		WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC LIMIT ".LPP);
+		WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC "
+		.paginate($page, LPP));
 
-twigloader()->display('top.twig', ['levels' => fetchArray($levels)]);
+$count = result("SELECT COUNT(*) FROM levels WHERE visibility = 0");
+
+twigloader()->display('top.twig', [
+	'levels' => $levels,
+	'page' => $page,
+	'level_count' => $count
+]);

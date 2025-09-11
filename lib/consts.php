@@ -10,9 +10,11 @@ const TRASH_FORUM_ID = 7;
 
 const GETTINGSTARTED_LINKS = [
 	'https://principia-web.se/wiki/' => 'Principia Wiki',
-	'https://principia-web.se/wiki/Tutorials' => 'Tutorial',
+	'https://principia-web.se/wiki/Tutorials' => 'Tutorials',
 	'https://principia-web.se/wiki/Objects' => 'Wiki Objects List',
 	'https://principia-web.se/wiki/LuaScript' => 'Principia Lua Scripting',
+	'https://principia-web.se/browse' => 'Browse community levels',
+	'https://youtube.com/@principiagame' => 'Principia on YouTube',
 	'https://principia-web.se/donate' => 'Donate',
 ];
 

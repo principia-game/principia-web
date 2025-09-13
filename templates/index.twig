@@ -1,8 +1,16 @@
 {% extends "_layout.twig" %}
 
-{% set title = "Home" %}
+{% set title = "Principia - Physics-based sandbox game" %}
+{% set no_tagline = true %}
 {% set description = "A community site for the open source physics-based sandbox game Principia by Bithack. Register today and play some levels!" %}
 {% set pagename = "/" %}
+
+{% block custom_head %}
+	<meta property="og:image" content="{{ domain }}/branding/screenshot-9.jpg">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content="{{ domain }}/branding/screenshot-9.jpg">
+{% endblock %}
 
 	{% block content %}
 {% if already_logged and log %}

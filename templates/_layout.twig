@@ -1,122 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>{{ title }}{% if not no_tagline %} - Principia{% if constant('IS_ARCHIVE') %} Archive{% endif %}{% endif %}</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	{# inline font styling - update from /static/css/fonts.css #}
-	<style>@font-face{font-family:"Roboto";font-style:normal;font-weight:400;font-display:swap;src:local("Roboto"),url("/fonts/roboto-v29-latin-ext_latin-regular.woff2") format("woff2"),url("/fonts/roboto-v29-latin-ext_latin-regular.woff") format("woff")}@font-face{font-family:"Roboto";font-style:normal;font-weight:700;font-display:swap;src:local("Roboto Bold"),url("/fonts/roboto-v29-latin-ext_latin-700.woff2") format("woff2"),url("/fonts/roboto-v29-latin-ext_latin-700.woff") format("woff")}</style>
-	<link id="style" rel="stylesheet" href="/css/{% if userdata.darkmode %}darkmode{% else %}style{% endif %}.css?v=53" type="text/css">
-	<script defer src="/js/base.js?v=4"></script>
-	<script defer src="/js/prism.js?v=1"></script>
-
-	{% if noindex %}<meta name="robots" content="noindex,nofollow">{% endif %}
-	<meta property="og:title" content="{{ title }}">
-	{% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
-	{% if description %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
-	<meta property="og:description" content="{{ description }}">{% endif %}
-	<meta property="og:site_name" content="Principia{% if constant('IS_ARCHIVE') %} Community Site Archive{% endif %}">
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="{{ domain }}{{ uri }}">
-	<link rel="canonical" href="{{ domain }}{{ pagename }}">
-
-	<link rel="icon" href="/assets/icon-256.png?v=2" sizes="256x256">
-	<link rel="icon" href="/assets/icon.png?v=2" sizes="64x64">
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	
-	{% block custom_head %}{% endblock %}
+	{% include 'includes/layout/head.twig' %}
 </head>
 <body>
 	{{ custom_header() | raw }}
-	{% if android_webview_version() == 34 %}
-		<div class="banner b-red center">You are on an old version of Principia that is not supported by principia-web anymore. Please update to be able to continue using principia-web.</div>
-	{% endif %}
 	{% if constant('DEBUG') %}
 		<div class="banner" style="background:repeating-linear-gradient(45deg,#111,#111 10px,#aa0 10px,#aa0 20px)"></div>
-	{% endif %}
-	{% if userdata.rank < 0 %}
-		<div class="banner b-red">You have been banned. For more details see your personal user page.</div>
 	{% endif %}
 	{% if constant('IS_ARCHIVE') %}
 		<div class="banner center">
 			<a href="https://principia-web.se">&lt; Go back to main community site</a>
 		</div>
 	{% endif %}
-	<div class="top"><div class="menucontainer">
-		<a class="picon" href="/"><img src="/assets/icon.png?v=2" alt="Home"></a>
-		<div class="menu">
-			<a href="/popular">Popular</a>
-			<a href="/top">Top</a>
-			{% if constant('IS_ARCHIVE') %}
-				<a href="/latest">Browse</a>
-				<a href="/random">Random picks</a>
-			{% else %}
-				<a href="/latest">New</a>
-				<a href="/download" class="download">Download</a>
-				<a href="/forum/">Forum</a>
-				<a href="/wiki/">Wiki</a>
-			{% endif %}
-			<a href="/search" class="search">{{ icon("search") }}</a>
-		</div>
-		{% if not constant('IS_ARCHIVE') %}
-		<div class="menu right">
-			{% if log %}
-				{% if userdata.notifications %}<span class="notifs">[{{ userdata.notifications }}]</span>{% endif %}
-				{{ userlink(userdata) }}
-				{% if userdata.rank > 1 %}<a href="/admin">{{ icon("shield") }}</a>{% endif %}
-			{% else %}
-				<a href="/login">Login</a>
-			{% endif %}
-		</div>
-		{% endif %}
+	<header>
+		{% include 'includes/layout/header.twig' %}
+	</header>
+	<div class="content
+		{%- if submodule == 'forum' %} forum{% endif %}
+		{%- if submodule == 'wiki' %} wiki{% endif %}">
+
+		<div class="container">
+			{% block content %}{% endblock %}
+			{% include 'includes/layout/wikilinks.twig' %}
 		</div>
 	</div>
-	{% if submodule == 'forum' %}
-		<div class="top top_forum"><div class="menucontainer">
-			<div class="menu left">
-				<a href="/forum/">Forum</a>
-				<a href="/forum/activeusers">Active users</a>
-				<a href="/forum/forum?time=86400">Latest posts</a>
-				{% if log %}
-					<a href="/forum/private">Private messages</a>
-				{% endif %}
-			</div>
-			{% if log %}
-				<div class="menu right">
-					<a href="/forum/?action=markread&fid=all">Mark all forums read</a>
-				</div>
-			{% endif %}
-		</div></div>
-	{% endif %}
-	<div class="content{% if submodule == 'forum' %} forum{% endif %}{% if submodule == 'wiki' %} wiki{% endif %}"><div class="container">
-		{% block content %}{% endblock %}
-		{% if submodule == 'wiki' %}<div class="wikilinks" style="clear:both">
-			<div><a href="/wiki/">Main Page</a> &ndash; <a href="/wiki/Special:PageIndex">Page Index</a></div>
-
-			{% if pagetitle_slugified %}
-				<div class="right">
-					<a href="https://github.com/principia-game/wiki/blob/master/pages/{{ pagetitle_slugified | replace({'/':'Ä'}) }}.md">View on GitHub</a>
-					&ndash; <a href="https://github.com/principia-game/wiki/edit/master/pages/{{ pagetitle_slugified | replace({'/':'Ä'}) }}.md">Edit</a>
-				</div>
-			{% endif %}
-		</div>{% endif %}
-	</div></div>
 	<div class="donate-nag">
 		<a href="https://principia-web.se/donate">
 			<img src="/assets/donate-nag.webp" alt="Donate now! Cover server costs & support Principia">
 		</a>
 	</div>
-	<div class="footer">
-		{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
-
-		<p><button class="btn" id="dark-mode-toggle" style="font-size:10pt">Toggle dark mode</button></p>
-
-		<small>
-			Disclaimer: This site is not affiliated with or in any way related to Bithack AB.
-			<br>
-			Running <a href="https://github.com/principia-game/principia-web">principia-web</a> - {{ profiler_stats() }}
-		</small>
-	</div>
-	{% block custom_footer %}{% endblock %}
+	<footer>
+		{% include 'includes/layout/footer.twig' %}
+	</footer>
 </body>
 </html>

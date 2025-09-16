@@ -1,0 +1,8 @@
+{% for url, title in footerlinks %}{% if not loop.first %}&ndash;{% endif %} <a href="{{ url }}">{{ title }}</a> {% endfor %}
+
+<p><button class="btn" id="dark-mode-toggle" style="font-size:10pt">Toggle dark mode</button></p>
+
+<small>Running <a href="https://github.com/principia-game/principia-web">principia-web</a> by <a href="https://voxelmanip.se">ROllerozxa</a></small>
+<br>
+<span style="font-size:8pt">Disclaimer: This site is not affiliated with or in any way related to Bithack AB.</span>
+<!-- {{ profiler_stats() }} -->

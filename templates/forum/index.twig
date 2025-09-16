@@ -7,6 +7,10 @@
 	{% block content %}
 {% set category = -1 %}
 
+{% if log %}
+	<a class="float-right" href="/forum/?action=markread&fid=all">Mark all forums read</a>
+{% endif %}
+
 <h1>Forum</h1>
 
 <p>Welcome to the Principia forums. It is a place for longer-form discussions about Principia and related topics.</p>

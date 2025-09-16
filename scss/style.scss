@@ -1,7 +1,8 @@
 
-$grid: #bbb;
+$grid: #aaa;
 $link: #193fe7;
 $link_active: darken($link, 17%);
+$text: #000;
 $bg: #f0f0f0;
 $bg_box: #eee;
 $bg_box2: #fff;
@@ -12,6 +13,7 @@ $fonts: "Roboto", "Arial", sans-serif;
 
 body {
 	background-color: $bg;
+	color: $text;
 	margin: 0;
 
 	display: flex;
@@ -73,15 +75,13 @@ svg {
 	}
 }
 
-.top, .footer {
+header, footer {
 	background-color: $bg_box;
 	margin-top: 0px;
 	overflow: hidden;
-	padding: 10px 8px;
 }
 
-.top {
-	padding-top: 10px;
+header {
 	border-bottom: 1px solid $grid;
 }
 
@@ -95,58 +95,66 @@ svg {
 	padding: 0 7px;
 }
 
-.footer {
+footer {
 	text-align: center;
 	line-height: 1.5;
-	padding-top: 15px;
-	padding-bottom: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+nav {
+	margin: auto;
+	max-width: 1280px;
+	padding: 10px 0;
+}
+
+footer, nav.nav-forum {
 	border-top: 1px solid $grid;
 }
 
-.picon {
-	margin-right: 10px;
-	vertical-align: bottom;
-
-	img {
-		width: 32px;
-		height: 32px;
-	}
-}
-
-.menucontainer {
-	margin: auto;
-	max-width: 1280px;
-}
-
 div.menu {
-	display: inline;
-	line-height: 40px;
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 5px;
 	text-align: center;
+	width: 100%;
 
-	a {
-		display: inline-block;
+	a, .nav-right a {
 		color: #222;
 		font-size: 1.1em;
 		font-weight: bold;
 		text-decoration: none;
-		padding: 0px 10px;
+		padding: 10px 10px;
 		border-radius: 5px;
-		margin: 0px 1px;
 
-		&:hover {
+		&:hover:not(.picon) {
 			background-color: $bg_box2;
 		}
 	}
 
-	&.right a, .notifs {
-		float: right;
-		margin-right: 6px;
+	.picon {
+		padding-top: 0;
+		padding-bottom: 0;
+
+		img {
+			display: inline-block;
+			vertical-align: middle;
+			width: 32px;
+			height: 32px;
+		}
 	}
+
+	.nav-right {
+		margin-left: auto;
+		display: flex;
+	}
+
 	.download, .notifs {
 		color: #20aa20;
 	}
 
-	.search svg {
+	[href="/search"] svg {
 		width: 18px;
 		height: 18px;
 	}
@@ -159,6 +167,10 @@ div.menu {
 .header_message {
 	border-bottom: 1px solid $grid;
 	padding: 15px;
+}
+
+.buttonbar a {
+	color: $text;
 }
 
 .level-list {
@@ -747,7 +759,7 @@ textarea {
 		text-decoration: underline;
 	}
 
-	.banner, .top, .footer, .wikilinks {
+	.banner, .top, footer, .wikilinks {
 		display: none;
 	}
 }

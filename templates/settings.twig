@@ -36,6 +36,7 @@
 	<tr>
 		<td class="a">Custom color</td>
 		<td class="b"><input name="customcolor" size="12" value="{{ userdata.customcolor | default('0000aa') }}" data-jscolor="{}"></td>
+		<script defer src="/js/jscolor.min.js"></script>
 	</tr>
 	{% endif %}
 	<tr>
@@ -109,9 +110,3 @@
 </table>
 </form>
 	{% endblock %}
-
-{% block custom_footer %}
-	{% if userdata.rank > 1 %}
-		<script src="/js/jscolor.min.js"></script>
-	{% endif %}
-{% endblock %}

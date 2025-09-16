@@ -43,11 +43,11 @@ function toggleDarkMode() {
 	let currentTheme = themeStylesheet.getAttribute('href');
 	let cssver = currentTheme.split('?v=')[1];
 
-	if (currentTheme.startsWith('/css/style.css')) {
-		themeStylesheet.setAttribute('href', '/css/darkmode.css?v='+cssver);
+	if (currentTheme.startsWith('/css/light.css')) {
+		themeStylesheet.setAttribute('href', '/css/dark.css?v='+cssver);
 		document.cookie = 'darkmode=1; max-age=31536000; path=/';
 	} else {
-		themeStylesheet.setAttribute('href', '/css/style.css?v='+cssver);
+		themeStylesheet.setAttribute('href', '/css/light.css?v='+cssver);
 		document.cookie = 'darkmode=0; max-age=31536000; path=/';
 	}
 }

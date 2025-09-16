@@ -1,0 +1,27 @@
+
+$grid: #aaa;
+$link: #193fe7;
+$link_active: darken($link, 17%);
+$text: #000;
+$bg: #f0f0f0;
+$bg_box: #eee;
+$bg_box2: #fff;
+$btn_play: #9ec59e;
+$btn_edit: #a3a3ca;
+$btn_text: #202020;
+$fonts: "Roboto", "Arial", sans-serif;
+
+/// Main style \\\
+@import "_style";
+
+/// Forums \\\
+@import "_style_forums";
+
+/// Wiki \\\
+@import "_style_wiki";
+
+/// Archive \\\
+@import "_style_archive";
+
+/// Prism.js styling \\\
+@import "_prism";

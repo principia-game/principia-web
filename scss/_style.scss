@@ -1,16 +1,4 @@
 
-$grid: #aaa;
-$link: #193fe7;
-$link_active: darken($link, 17%);
-$text: #000;
-$bg: #f0f0f0;
-$bg_box: #eee;
-$bg_box2: #fff;
-$btn_play: #9ec59e;
-$btn_edit: #a3a3ca;
-$btn_text: #202020;
-$fonts: "Roboto", "Arial", sans-serif;
-
 body {
 	background-color: $bg;
 	color: $text;
@@ -164,13 +152,12 @@ div.menu {
 	float: right;
 }
 
-.header_message {
+.header_message, .skit, .welcome-back {
 	border-bottom: 1px solid $grid;
-	padding: 15px;
 }
 
-.buttonbar a {
-	color: $text;
+.header_message {
+	padding: 15px;
 }
 
 .level-list {
@@ -200,7 +187,7 @@ div.level {
 	border-radius: 4px;
 
 	.lvlbox_top {
-		color: #000;
+		color: $text;
 		font-size: 13pt;
 		text-decoration: none;
 		display: block;
@@ -531,7 +518,6 @@ div.level {
 // Welcome Thing on Index \\
 
 .skit {
-	border-bottom: 1px solid $grid;
 	display: block;
 	text-align: center;
 	font-size: 1.25em;
@@ -557,7 +543,7 @@ div.level {
 
 	a {
 		display: inline-block;
-		color: #000;
+		color: $text;
 		width: 150px;
 		font-weight: bold;
 
@@ -577,10 +563,6 @@ div.level {
 	span {
 		display: block;
 	}
-}
-
-.welcome-back {
-	border-bottom: 1px solid $grid;
 }
 
 
@@ -735,18 +717,6 @@ textarea {
 	line-height: 1.5;
 }
 
-/// Forums \\\
-@import "_style_forums";
-
-/// Wiki \\\
-@import "_style_wiki";
-
-/// Archive \\\
-@import "_style_archive";
-
-/// Prism.js styling \\\
-@import "_prism";
-
 /// Styling used for printing \\\
 
 @media print {
@@ -759,8 +729,8 @@ textarea {
 		text-decoration: underline;
 	}
 
-	.banner, .top, footer, .wikilinks {
-		display: none;
+	.banner, header, footer, .donate-nag, .wikilinks {
+		display: none !important;
 	}
 }
 

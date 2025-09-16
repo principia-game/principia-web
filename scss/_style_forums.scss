@@ -111,12 +111,16 @@ table.c1 {
 		font-size: 0.96em;
 	}
 
+	.sep_mini {
+		border-top: 1px solid $grid;
+	}
+
 	.mainbar {
 		p {
 			margin-top: 0;
 		}
 		table {
-			border: 1px solid #000;
+			border: 1px solid $grid;
 			border-spacing: 0px;
 			border-collapse: collapse;
 		}
@@ -126,11 +130,11 @@ table.c1 {
 			color: #fff;
 		}
 		td, th {
-			border: 1px solid #000;
+			border: 1px solid $grid;
 			padding: 5px;
 		}
 		.siggy {
-			border-top: 1px solid #000;
+			border-top: 1px solid $grid;
 			font-size: 10pt;
 			margin-top: 3em;
 		}

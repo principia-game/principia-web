@@ -1,15 +1,28 @@
 
-$grid: #aaa;
+$grid: #b4b4b4;
 $link: #193fe7;
 $link_active: darken($link, 17%);
 $text: #000;
 $bg: #f0f0f0;
-$bg_box: #eee;
-$bg_box2: #fff;
+$bg_box: #eeeeee;
+$bg_box2: #fcfcfc;
 $btn_play: #9ec59e;
 $btn_edit: #a3a3ca;
 $btn_text: #202020;
 $fonts: "Roboto", "Arial", sans-serif;
+
+$btn_border: #888;
+$btn_bg: #eee;
+$input_bg: #fff;
+$t_user: #0000aa;
+$text_red: #ba0000;
+$bg_red: #fcc;
+
+$funhead: #fafafa;
+$funbg0: #f5f5f5;
+$funbg1: #ebebeb;
+$funbg2: #e8e8e8;
+$funbg3: #d4d4d4;
 
 /// Main style \\\
 @import "_style";

@@ -33,9 +33,9 @@ table.c1 {
 		border: 0px none;
 	}
 
-	tr.n1, td.n1 { background: #f5f5f5; }
-	tr.n2, td.n2 { background: #ebebeb; }
-	tr.n3, td.n3 { background: #d4d4d4; }
+	tr.n1, td.n1 { background: $funbg0; }
+	tr.n2, td.n2 { background: $funbg1; }
+	tr.n3, td.n3 { background: $funbg3; }
 
 	.delete {
 		font-weight: bold;

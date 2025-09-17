@@ -4,12 +4,25 @@ $link: #62aafc;
 $link_active: darken($link, 17%);
 $text: #fff;
 $bg: #0f0f0f;
-$bg_box: #191919;
+$bg_box: #181818;
 $bg_box2: #060606;
 $btn_play: #608060;
 $btn_edit: #636383;
 $btn_text: #eee;
 $fonts: "Roboto", "Arial", sans-serif;
+
+$btn_border: #444;
+$btn_bg: #111;
+$input_bg: $btn_bg;
+$t_user: #6da0fd;
+$text_red: #e63333;
+$bg_red: #861c1c;
+
+$funhead: #080808;
+$funbg0: #0c0c0c;
+$funbg1: #141414;
+$funbg2: #171717;
+$funbg3: #2b2b2b;
 
 /// Main style \\\
 @import "_style";
@@ -25,114 +38,3 @@ $fonts: "Roboto", "Arial", sans-serif;
 
 /// Prism.js styling \\\
 @import "_prism";
-
-
-svg {
-	fill: #fff;
-}
-
-div.menu {
-	a, .nav-right a {
-		color: #ddd;
-	}
-}
-
-div.level {
-	border: 1px solid #444;
-
-	&:hover {
-		background-color: #111;
-	}
-}
-
-.comments .comment {
-
-	&:nth-child(odd)  { background-color: #0c0c0c; }
-	&:nth-child(even) { background-color: #171717; }
-
-	&.deleted {
-		background-color: #861c1c;
-
-		&:after {
-			color: #eee;
-		}
-	}
-}
-
-.user {
-	.t_user {
-		color: #6da0fd;
-	}
-}
-
-.lvl-box .info {
-	background-color: #050505;
-}
-
-.settings, .wikitable {
-	tr th {
-		background-color: #080808;
-	}
-
-	tr {
-		&:nth-child(odd)  { background-color: #0c0c0c; }
-		&:nth-child(even) { background-color: #171717; }
-	}
-}
-
-/// _style_forums \\\
-
-table.c1 {
-	tr.n1, td.n1 { background-color: #0c0c0c; }
-	tr.n2, td.n2 { background-color: #141414; }
-	tr.n3, td.n3 { background-color: #2b2b2b; }
-}
-
-/// _style_wiki \\\
-
-
-.toc, .wikibox {
-	border: 1px solid $grid;
-	background-color: #171717;
-}
-
-.infobox {
-	background-color: #141414;
-	border: 1px solid $grid;
-
-	table {
-		.heading {
-			background-color: #0c0c0c;
-		}
-
-		tr {
-			border-bottom: 1px solid $grid;
-		}
-	}
-}
-
-a.nonexistant {
-	color: #e63333;
-}
-
-/// Generic form element overrides \\\
-
-textarea, input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
-	background-color: #111;
-	border: 1px solid $grid;
-	color: $text;
-	padding: 7px;
-}
-
-input[type=submit], button.btn, a.btn, select {
-	border: 1px solid $grid;
-	background-color: #111;
-	color: $text;
-
-	&:hover {
-		background-color: darken(#111, 2%);
-	}
-	&:active {
-		background-color: darken(#111, 5%);
-	}
-}

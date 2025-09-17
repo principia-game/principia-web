@@ -42,7 +42,7 @@ h5 { font-size: 0.83em; }
 h6 { font-size: 0.67em; }
 
 svg {
-	fill: #000;
+	fill: $text;
 	width: 20px;
 	height: 20px;
 	vertical-align: middle;
@@ -109,7 +109,7 @@ div.menu {
 	width: 100%;
 
 	a, .nav-right a {
-		color: #222;
+		color: $btn_text;
 		font-size: 1.1em;
 		font-weight: bold;
 		text-decoration: none;
@@ -183,7 +183,7 @@ div.level {
 	width: 240px;
 	height: 210px;
 
-	border: 1px solid #8f8f9d;
+	border: 1px solid $btn_border;
 	border-radius: 4px;
 
 	.lvlbox_top {
@@ -212,6 +212,7 @@ div.level {
 			display: block;
 		}
 	}
+
 	.user {
 		position: absolute;
 		top: 187px;
@@ -224,7 +225,7 @@ div.level {
 	}
 
 	&:hover {
-		background-color: #eee;
+		background-color: $btn_bg;
 	}
 }
 
@@ -254,17 +255,11 @@ div.level {
 	overflow: auto;
 	line-height: 1.4;
 
-	&:nth-child(odd)  { background-color: #f5f5f5; }
-	&:nth-child(even) { background-color: #e8e8e8; }
+	&:nth-child(odd)  { background-color: $funbg0; }
+	&:nth-child(even) { background-color: $funbg2; }
 
 	&.deleted {
-		background-color: #fcc;
-
-		&:after {
-			content: "(deleted comment)";
-			color: #333;
-			font-style: italic;
-		}
+		background-color: $bg_red;
 	}
 
 	p {
@@ -321,7 +316,7 @@ div.level {
 	}
 
 	.t_user {
-		color: #0000aa;
+		color: $t_user;
 	}
 }
 
@@ -337,6 +332,7 @@ div.level {
 	.img {
 		position: relative;
 		width: 48%;
+
 		img {
 			width: 100%;
 		}
@@ -356,7 +352,7 @@ div.level {
 	.info {
 		width: 48%;
 		padding: 1em;
-		background-color: #fafafa;
+		background-color: $bg_box2;
 
 		.likemsg {
 			display: inline-block;
@@ -495,13 +491,13 @@ div.level {
 	}
 
 	tr th {
-		background-color: #fafafa;
+		background-color: $funhead;
 		font-size: 12pt;
 	}
 
 	tr {
-		&:nth-child(odd)  { background-color: #f5f5f5; }
-		&:nth-child(even) { background-color: #e8e8e8; }
+		&:nth-child(odd)  { background-color: $funbg0; }
+		&:nth-child(even) { background-color: $funbg2; }
 	}
 
 	.fotnot {
@@ -685,25 +681,28 @@ $basic-colours: (
 	}
 }
 
-input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
+textarea, input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
+	border: 1px solid $grid;
+	background-color: $input_bg;
+	color: $text;
 	font-size: 11pt;
-	font-family: $fonts;
+	font-family: inherit;
 	padding: 7px;
 }
 
 input[type=submit], button.btn, a.btn, select {
 	font-size: 12pt;
-	border: 1px solid #8f8f9d;
-	background-color: #eee;
-	color: #000;
+	border: 1px solid $btn_border;
+	background-color: $btn_bg;
+	color: $text;
 	padding: 5px 15px;
 
 	&:hover {
-		background-color: darken(#eee, 5%);
+		background-color: darken($btn_bg, 5%);
 		text-decoration: none;
 	}
 	&:active {
-		background-color: darken(#eee, 15%);
+		background-color: darken($btn_bg, 15%);
 	}
 }
 
@@ -712,8 +711,6 @@ input[type=submit], button.btn, a.btn {
 }
 
 textarea {
-	font-family: "Fira Mono", monospace;
-	font-size: 11pt;
 	line-height: 1.5;
 }
 

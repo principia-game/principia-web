@@ -9,7 +9,7 @@ The following rules are in place:
 
 2. Do not repeatedly post **repetitive** or **uninteresting** content (**spam**). This includes uploading a large amount of low-quality levels or posting to the forums solely for the sake of your post count.
 
-3. Do not post content that is **sexually obscene**, **illegal** in the EU, or otherwise **inappropriate**.
+3. Do not post content that is **sexually obscene**, **illegal** in Sweden or the EU, or otherwise **inappropriate**.
 
 4. Do not sign up for the **sole purpose of advertising** a service or a product.
 
@@ -19,6 +19,8 @@ The following rules are in place:
 
 7. Moderation action taken by staff members are **final** until they are lifted at a later date. Circumventing moderation actions are **strictly forbidden**.
 
-To report content that violates these rules, you can press the Report link which is available in the footer on any page when logged in. Please describe what it is you are reporting, if it is not obvious.
+To report content that violates these rules, you can press the Report link which is available in the footer on any page of the website. Please describe what it is you are reporting, if it is not obvious.
+
+The website administrator is [ROllerozxa](/user/1), and he has oversight for the moderation of content which is posted to the website, as reasonably required by applicable law.
 
 In cases where a crime may have been committed we reserve the right to contact ISPs and/or law enforcement, including any relevant details about the incident and the affected user.

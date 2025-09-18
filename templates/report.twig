@@ -6,46 +6,42 @@
 	{% block content %}
 <h1>Report</h1>
 
-{% if log %}
-	{% if has_been_sent %}
-		<p>
-			Your report has been sent!
-			<a href="{{ url }}">Go back to the previous page</a>.
-		</p>
-	{% else %}
-		<p>
-			Please use this form to send a report that will be seen by staff members.
-			The previous URL you just visited will be included with the report.
-		</p>
+{% if has_been_sent %}
+	<p>
+		Your report has been sent!
+		<a href="{{ url }}">Go back to the previous page</a>.
+	</p>
+{% else %}
+	<p>
+		Please use this form to send a report <a href="/rules">for content which violates the rules</a>,
+		which will be seen by staff members.
+		The previous URL you just visited will be included with the report.
+	</p>
 
+	{% if log %}
 		<p>
-			Your user ID will be included with the report.
+			Your user ID will be included with the report when logged in.
 			It is only visible to {{ userlink(admin, 'u_') }}
 			and is used to reach out for clarification if necessary.
 		</p>
-
-		<form method="POST">
-			<p>
-				URL:
-				<input type="text" name="url" placeholder="URL" value="{{ url }}" readonly style="width:320px">
-			</p>
-			<p>
-				<textarea name="message" placeholder="Report text" cols="80" rows="10" required></textarea>
-			</p>
-			<p>
-				<input type="submit" value="Submit">
-			</p>
-		</form>
 	{% endif %}
-{% else %}
-	<p>
-		Due to spam, we do not accept reports from users who are not logged in.
-	</p>
 
 	<p>
-		Please <a href="/login">log in</a>, or send your report by email to
-		<a href="mailto:abuse@principia-web.se?subject=Reporting URL: {{ url }}%0D%0A%0D%0A">abuse@principia-web.se</a>
-		if you do not wish to make an account.
+		Alternatively, instead of using the form, you can send your report via email to
+		<a href="mailto:abuse@principia-web.se?subject=Reporting URL: {{ url }}%0D%0A%0D%0A">abuse@principia-web.se</a>.
 	</p>
+
+	<form method="POST">
+		<p>
+			URL:
+			<input type="text" name="url" placeholder="URL" value="{{ url }}" readonly style="width:320px">
+		</p>
+		<p>
+			<textarea name="message" placeholder="Report text - Please describe what it is you're reporting, if it is not obvious." cols="80" rows="10" required></textarea>
+		</p>
+		<p>
+			<input type="submit" value="Submit">
+		</p>
+	</form>
 {% endif %}
 	{% endblock %}

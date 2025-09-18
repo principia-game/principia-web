@@ -160,7 +160,8 @@ CREATE TABLE `reports` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `url` varchar(256) NOT NULL,
   `message` text NOT NULL,
-  `user` int(10) unsigned NOT NULL,
+  `user` int(10) unsigned DEFAULT NULL,
+  `ip` inet6 NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   CONSTRAINT `reports_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)

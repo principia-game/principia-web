@@ -3,19 +3,12 @@ if (isset($_POST['url'])) {
 	$url = $_POST['url'] ?? null;
 	$message = $_POST['message'] ?? null;
 
-	if (IS_ARCHIVE) {
-		insertInto('reports', [
-			'url' => $url,
-			'reporttext' => $message,
-			'ip' => $ipaddr
-		]);
-	} else {
-		insertInto('reports', [
-			'url' => $url,
-			'message' => $message,
-			'user' => $userdata['id']
-		]);
-	}
+	insertInto('reports', [
+		'url' => $url,
+		'message' => $message,
+		'user' => $userdata['id'] ?? null,
+		'ip' => $ipaddr
+	]);
 
 	$hasBeenSent = true;
 }

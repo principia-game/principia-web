@@ -96,12 +96,29 @@ function extractPlatform($ua) {
 }
 
 function randomLevels($amount) {
-	// This is used for the community site archive's random levels only right now
-	global $publicLevels, $userfields;
+	global $cache, $userfields;
 
-	$levelIds = [];
-	for ($i = 0; $i < $amount; $i++)
-		$levelIds[] = $publicLevels[array_rand($publicLevels)];
+	$publicLevels = $cache->hit((IS_ARCHIVE ? 'archive:' : '').'public_levels', fn() =>
+		fetchArray(query("SELECT id FROM levels WHERE visibility = 0"))
+	, IS_ARCHIVE ? 0 : 3600);
 
-	return query("SELECT $userfields,l.id,l.title FROM levels l JOIN users u ON l.author = u.id WHERE l.id IN (".implode(",", $levelIds).")");
+	if (count($publicLevels) < $amount)
+		return [];
+
+	$randomLevelIds = [];
+	while (count($randomLevelIds) < $amount) {
+		$randomId = $publicLevels[array_rand($publicLevels)]['id'];
+
+		if (!in_array($randomId, $randomLevelIds))
+			$randomLevelIds[] = $randomId;
+	}
+
+	$randomLevels = fetchArray(query("SELECT $userfields, l.id, l.title
+		FROM levels l JOIN users u ON l.author = u.id
+		WHERE l.id IN (".implode(",", $randomLevelIds).")"));
+
+	// Don't make the random levels get ordered by ID
+	shuffle($randomLevels);
+
+	return $randomLevels;
 }

@@ -6,6 +6,8 @@
 	{% block content %}
 <h1>Random picks</h1>
 
+<p>I'm feeling lucky! Here are some randomly picked levels. Refresh the page to see more.</p>
+
 <div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}

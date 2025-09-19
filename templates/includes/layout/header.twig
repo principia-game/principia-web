@@ -5,15 +5,11 @@
 		</a>
 		<a href="/popular">Popular</a>
 		<a href="/top">Top</a>
-		{% if constant('IS_ARCHIVE') %}
-			<a href="/latest">Browse</a>
-			<a href="/random">Random picks</a>
-		{% else %}
-			<a href="/latest">New</a>
-			<a href="/download" class="download">Download</a>
-			<a href="/forum/">Forum</a>
-			<a href="/wiki/">Wiki</a>
-		{% endif %}
+		<a href="/latest">{% if constant('IS_ARCHIVE') %}Browse{% else %}New{% endif %}</a>
+		<a href="/random">Random picks</a>
+		<a href="{{ '/download' | main_site }}" class="download">Download</a>
+		<a href="{{ '/forum/' | main_site }}">Forum</a>
+		<a href="{{ '/wiki/' | main_site }}">Wiki</a>
 		<a href="/search">{{ icon("search") }}</a>
 		{% if not constant('IS_ARCHIVE') %}
 			<div class="nav-right">

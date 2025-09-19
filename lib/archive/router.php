@@ -1,11 +1,10 @@
 <?php
-require('data/archive/public_levels.php');
-
 query("USE `".DB_NAME_ARCHIVE."`");
 
 $pages = [
 	'latest' => 'pages/latest.php',
 	'popular' => 'pages/popular.php',
+	'random' => 'pages/random.php',
 	'report' => 'pages/report.php',
 	'search' => 'pages/search.php',
 	'sitemap' => 'pages/sitemap.php',

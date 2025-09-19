@@ -10,7 +10,7 @@
  */
 trait Cache {
 	public function hit($key, $uncachedContent, $expire = 0) {
-		return $this->hitMem($key, $uncachedContent, false, $expire);
+		return $this->hitMem($key, $uncachedContent, $expire);
 	}
 
 	public function hitHash($fingerprint, $uncachedContent, $expire = 0) {

@@ -56,7 +56,9 @@ class PrincipiaExtension extends \Twig\Extension\AbstractExtension {
 
 			new \Twig\TwigFilter('cmt_num_to_type', 'cmtNumToType'),
 
-			new \Twig\TwigFilter('ipv6_to_ipv4', 'ipv6_to_ipv4')
+			new \Twig\TwigFilter('ipv6_to_ipv4', 'ipv6_to_ipv4'),
+
+			new \Twig\TwigFilter('main_site', 'mainSite', SAFE_HTML),
 		];
 	}
 }

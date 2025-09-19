@@ -14,6 +14,8 @@ The following PHP libraries are used:
 - [`nopjmp/discord-webhooks`](https://github.com/nopjmp/discord-webhooks) (MIT)
 - [`mpratt/relativetime`](https://github.com/mpratt/RelativeTime) (MIT)
 
+For geolocation lookups, principia-web makes use of GeoLite2 data created by MaxMind, available from [maxmind.com](https://maxmind.com).
+
 ---
 
 For credits of the game Principia, see [AUTHORS.md](https://github.com/Bithack/principia/blob/master/AUTHORS.md), [THANKS.md](https://github.com/Bithack/principia/blob/master/THANKS.md) and [the list of open source contributors](https://github.com/Bithack/principia/graphs/contributors).

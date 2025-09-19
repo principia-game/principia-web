@@ -18,7 +18,7 @@ if (!IS_ARCHIVE)
 
 $url = $_GET['url'] ?? null;
 
-twigloader()->display(maybeArchive('report.twig'), [
+twigloader()->display('report.twig', [
 	'url' => $url,
 	'has_been_sent' => $hasBeenSent ?? false,
 	'admin' => $admin ?? null

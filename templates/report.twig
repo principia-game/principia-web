@@ -12,24 +12,39 @@
 		<a href="{{ url }}">Go back to the previous page</a>.
 	</p>
 {% else %}
-	<p>
-		Please use this form to send a report <a href="/rules">for content which violates the rules</a>,
-		which will be seen by staff members.
-		The previous URL you just visited will be included with the report.
-	</p>
-
-	{% if log %}
+	{% if constant('IS_ARCHIVE') %}
 		<p>
-			Your user ID will be included with the report when logged in.
-			It is only visible to {{ userlink(admin, 'u_') }}
-			and is used to reach out for clarification if necessary.
+			Please use this form to report any issues that you have found in the archive.
+			The previous URL you just visited will be included with the report.
+			Some things you can report would be, but not limited to:
+		</p>
+
+		<ul>
+			<li>Report mojibake or any kind of text encoding issue</li>
+			<li>Report hateful content that should be omitted from the archive</li>
+			<li>Report inaccurate data compared to the old archive site</li>
+			<li>Make privacy complaints - request sensitive data to be deindexed or omitted from the archive</li>
+		</ul>
+	{% else %}
+		<p>
+			Please use this form to send a report <a href="/rules">for content which violates the rules</a>,
+			which will be seen by staff members.
+			The previous URL you just visited will be included with the report.
+		</p>
+
+		{% if log %}
+			<p>
+				Your user ID will be included with the report when logged in.
+				It is only visible to {{ userlink(admin, 'u_') }}
+				and is used to reach out for clarification if necessary.
+			</p>
+		{% endif %}
+
+		<p>
+			Alternatively, instead of using the form, you can send your report via email to
+			<a href="mailto:abuse@principia-web.se?subject=Reporting URL: {{ url }}%0D%0A%0D%0A">abuse@principia-web.se</a>.
 		</p>
 	{% endif %}
-
-	<p>
-		Alternatively, instead of using the form, you can send your report via email to
-		<a href="mailto:abuse@principia-web.se?subject=Reporting URL: {{ url }}%0D%0A%0D%0A">abuse@principia-web.se</a>.
-	</p>
 
 	<form method="POST">
 		<p>

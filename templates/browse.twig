@@ -43,6 +43,13 @@
 {% endfor %}
 </div>
 
+<h2 class="header">Random picks <a href="/random">More</a></h2>
+<div class="level-list scrollable">
+	{% for random_level in random_levels %}
+		{{ level(random_level) }}
+	{% endfor %}
+</div>
+
 <div class="intermission center">
 	<a href="/classic-puzzles">
 		<img src="/assets/puzzle_banner.webp" alt="Play the classic puzzle package - The original set of puzzles that comes with Principia">

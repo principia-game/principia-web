@@ -20,9 +20,12 @@ $latestpuzzle = $cache->hit('idx_puz', function () use ($latestquery) {
 	return fetchArray(query(sprintf($latestquery, 3)));
 });
 
+$randomlevels = randomLevels(8);
+
 twigloader()->display('browse.twig', [
 	'top_levels' => $toplevels,
 	'custom_levels' => $latestcustom,
 	'adventure_levels' => $latestadvent,
-	'puzzle_levels' => $latestpuzzle
+	'puzzle_levels' => $latestpuzzle,
+	'random_levels' => $randomlevels
 ]);

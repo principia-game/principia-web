@@ -8,7 +8,7 @@
 	<tr>
 		<th style="width:50px">ID</th>
 		<th>Username</th>
-		<th style="width:180px">Registered on</th>
+		{% if not constant('IS_ARCHIVE') %}<th style="width:180px">Registered on</th>{% endif %}
 		<th style="width:80px">Levels</th>
 	</tr>
 	{% for user in users %}
@@ -17,7 +17,7 @@
 		<td>{{ userlink(user) }}
 			{% if user.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
 			{% if user.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}</td>
-		<td class="center">{{ user.joined | date('Y-m-d H:i') }}</td>
+		{% if not constant('IS_ARCHIVE') %}<td class="center">{{ user.joined | date('Y-m-d H:i') }}</td>{% endif %}
 		<td class="center">{{ levelcounts[user.id] | default('N/A') }}</td>
 	</tr>
 	{% endfor %}

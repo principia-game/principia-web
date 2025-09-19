@@ -19,6 +19,19 @@
 
 	{% block content %}
 <h1>{{ term }} levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
+
+{% if constant('IS_ARCHIVE') %}
+	<p>
+		<em>Browse all of the levels that were uploaded to the official Principia community site, in order of most recently uploaded.</em>
+	</p>
+{% else %}
+	<p>
+		<em>View the latest levels made by the community.</em>
+	</p>
+{% endif %}
+
+<p>Filter by level type:</p>
+
 <div class="latest-buttons">
 	<a class="play-btn {% if type == 'custom' %}blue{% else %}green{% endif %}" href="/latest/custom">Custom</a>
 	<a class="play-btn {% if type == 'adventure' %}blue{% else %}green{% endif %}" href="/latest/adventure">Adventure</a>

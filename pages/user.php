@@ -36,7 +36,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	$notifications = prepareNotifications($notifsdata, $userdata['id']);
 
-	twigloader()->display('user.twig', [
+	twigloader()->display('user_personal.twig', [
 		'id' => $id,
 		'name' => $userdata['name'],
 		'forceuser' => $forceuser,
@@ -50,11 +50,15 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 			WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC ".paginate($page, LPP),
 		[$id]);
 
-	$count = $cache->hit('levelcount_'.$id, function () use ($id) {
+	$count = $cache->hit((IS_ARCHIVE ? ':archive' : '').'levelcount_'.$id, function () use ($id) {
 		return result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$id]);
 	});
 
-	$comments = query("SELECT $userfields, c.* FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC", [$id]);
+	if (!IS_ARCHIVE)
+		$comments = query("SELECT $userfields, c.*
+				FROM comments c JOIN users u ON c.author = u.id
+				WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC",
+			[$id]);
 
 	if (isset($userdata['id']) && $id == $userdata['id'])
 		query("DELETE FROM notifications WHERE type = 2 AND recipient = ?", [$userdata['id']]);

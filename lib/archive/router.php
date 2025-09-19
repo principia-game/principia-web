@@ -10,9 +10,9 @@ $pages = [
 	'search' => 'pages/search.php',
 	'sitemap' => 'pages/sitemap.php',
 	'top' => 'pages/top.php',
+	'user' => 'pages/user.php',
 	'userlist' => 'pages/userlist.php',
 	'viewlocked' => 'pages/viewlocked.php'
-
 ];
 
 if (isset($path[1]) && $path[1] != '') {

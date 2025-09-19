@@ -1,0 +1,57 @@
+{% extends "_layout.twig" %}
+
+{% set title = name %}
+{% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
+{% set pagename = "/user/" ~ id %}
+
+	{% block content %}
+{% if action == 'markread' %}
+	<div class="header_message">Marked all notifications as read.</div>
+{% elseif action == 'edited' %}
+	<div class="header_message">Settings successfully saved!</div>
+{% endif %}
+
+<h1>{{ name }}</h1>
+
+{% if userdata.rank < 0 %}
+	<div class="banner b-red userban">
+		Your account has been banned.
+		{% if userdata.banreason %}
+			<br><br>Reason: {{ userdata.banreason }}
+		{% else %}
+			<br><br>No reason was provided.
+		{% endif %}
+
+		<br><br>
+		If you wish to appeal your ban, send an email to
+		<a href="mailto:appeals@principia-web.se">appeals@principia-web.se</a>.
+	</div>
+{% endif %}
+
+<p>Welcome to your personal user page. Here, you can see and manage your uploaded levels, customise your profile, and edit your settings.</p>
+
+<p><a href="/settings">Edit my settings</a>
+&ndash; <a href="/forum/private">View my private messages</a>
+&ndash; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
+&ndash; <a href="javascript:document.logout.submit()">Log out</a></p>
+
+{% if userdata.rank > 2 %}
+	<p><a href="/admin">Admin panel</a></p>
+{% endif %}
+
+<form action="/login" method="post" name="logout">
+	<input type="hidden" name="logout" value="yes">
+</form>
+
+<h3>Notifications</h3>
+<ul>
+	{% for notif in notifs %}
+		<li>{{ notif | raw }}</li>
+	{% else %}
+		<li>No new notifications!</li>
+	{% endfor %}
+	{% if notifs %}
+		<li><a href="/user/{{ id }}?markread">Mark all as read</a></li>
+	{% endif %}
+</ul>
+	{% endblock %}

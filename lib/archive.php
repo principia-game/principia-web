@@ -5,5 +5,5 @@ function maybeArchive($path) {
 }
 
 function mainSite($path) {
-	return IS_ARCHIVE ? DOMAIN.$path : $path;
+	return IS_ARCHIVE ? "https://principia-web.se".$path : $path;
 }

@@ -86,14 +86,14 @@
 
 <h1 class="center">Featured levels</h1>
 <div class="level-list scrollable">
-{% for featured_level in featured_levels %}
-	{{ level(featured_level) }}
-{% else %}
-	There are no featured levels. How sad. :'(
-{% endfor %}
+	{% for featured_level in featured_levels %}
+		{{ level(featured_level) }}
+	{% endfor %}
 </div>
 
-<h2 class="header">Latest news <a href="/news">More</a></h2>
+<h2 class="header">
+	Latest news <a href="/news">More</a>
+</h2>
 <ul class="latestnews">
 	{% for new in news %}
 		<li><b>{{ new.time | date('j M Y') }}</b><a href="/news/{{ new.id }}">{{ new.title }}</a></li>
@@ -139,40 +139,40 @@
 </div>
 {% endif %}
 
-<h2 class="header">Top rated levels <a href="/top">More</a></h2>
+<h2 class="header">
+	Top rated levels <a href="/top">More</a>
+</h2>
 <div class="level-list scrollable">
-{% for top_level in top_levels %}
-	{{ level(top_level) }}
-{% else %}
-	There are no levels. At all.
-{% endfor %}
+	{% for top_level in top_levels %}
+		{{ level(top_level) }}
+	{% endfor %}
 </div>
 
-<h2 class="header">Latest custom levels <a href="/latest/custom">More</a></h2>
+<h2 class="header">
+	Latest custom levels <a href="/latest/custom">More</a>
+</h2>
 <div class="level-list scrollable">
-{% for custom_level in custom_levels %}
-	{{ level(custom_level) }}
-{% else %}
-	There are no custom levels. You could create one!
-{% endfor %}
+	{% for custom_level in custom_levels %}
+		{{ level(custom_level) }}
+	{% endfor %}
 </div>
 
-<h2 class="header">Latest adventures <a href="/latest/adventure">More</a></h2>
+<h2 class="header">
+	Latest adventures <a href="/latest/adventure">More</a>
+</h2>
 <div class="level-list scrollable">
-{% for adventure_level in adventure_levels %}
-	{{ level(adventure_level) }}
-{% else %}
-	There are no adventure levels. You could create one!
-{% endfor %}
+	{% for adventure_level in adventure_levels %}
+		{{ level(adventure_level) }}
+	{% endfor %}
 </div>
 
-<h2 class="header">Latest puzzles <a href="/latest/puzzle">More</a></h2>
+<h2 class="header">
+	Latest puzzles <a href="/latest/puzzle">More</a>
+</h2>
 <div class="level-list scrollable">
-{% for puzzle_level in puzzle_levels %}
-	{{ level(puzzle_level) }}
-{% else %}
-	There are no puzzle levels. You could create one!
-{% endfor %}
+	{% for puzzle_level in puzzle_levels %}
+		{{ level(puzzle_level) }}
+	{% endfor %}
 </div>
 
 <div class="intermission center">

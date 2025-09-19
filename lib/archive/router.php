@@ -3,6 +3,7 @@ query("USE `".DB_NAME_ARCHIVE."`");
 
 $pages = [
 	'latest' => 'pages/latest.php',
+	'level' => 'pages/level.php',
 	'popular' => 'pages/popular.php',
 	'random' => 'pages/random.php',
 	'report' => 'pages/report.php',

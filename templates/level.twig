@@ -1,8 +1,16 @@
 {% extends "_layout.twig" %}
 
+{% if constant('IS_ARCHIVE') %}
+	{% set img_url = "/thumbs/" ~ lid ~ "-0-0.jpg" %}
+	{% set play_domain = "principia://archive.principia-web.se" %}
+{% else %}
+	{% set img_url = "/thumbs/" ~ lid ~ ".jpg" %}
+	{% set play_domain = "principia://principia-web.se" %}
+{% endif %}
+
 {% set title = level.title %}
 {% set description = level.description %}
-{% set image = domain ~ "/thumbs/" ~ lid ~ ".jpg" %}
+{% set image = domain ~ img_url %}
 {% set pagename = "/level/" ~ lid %}
 
 	{% block content %}
@@ -22,10 +30,17 @@
 <div class="lvl-box">
 	<div class="img">
 		{% if level.revision > 1 %}
-			<span class="revision">Revision #{{ level.revision }}, updated {{ level.revision_time | date('j M Y') }}</span>
+			<span class="revision">
+				Revision #{{ level.revision }}, updated
+				{% if constant('IS_ARCHIVE') %}
+					N/A
+				{% else %}
+					{{ level.revision_time | date('j M Y') }}
+				{% endif %}
+			</span>
 		{% endif %}
 		{% if not level.visibility == 1 %}
-			<a href="/thumbs/{{ level.id }}.jpg"><img src="/thumbs/{{ level.id }}.jpg" alt=""></a>
+			<a href="{{ img_url }}"><img src="{{ img_url }}" alt=""></a>
 		{% else %}
 			<img src="/assets/locked_thumb.svg" alt="Locked level">
 		{% endif %}
@@ -33,15 +48,15 @@
 
 	<div class="info">
 		{% if not level.visibility == 1 %}
-			<a class="play-btn green" id="protocol-button" href="principia://principia-web.se/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
+			<a class="play-btn green" id="protocol-button" href="{{ play_domain }}/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
 			{%- if level.author == userdata.id -%}
-				<a class="play-btn blue" href="principia://principia-web.se/edit/db/{{ lid }}">Edit</a>
+				<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ lid }}">Edit</a>
 			{%- else -%}
-				<a class="play-btn blue" href="principia://principia-web.se/sandbox/db/{{ lid }}">Edit</a>
+				<a class="play-btn blue" href="{{ play_domain }}/sandbox/db/{{ lid }}">Edit</a>
 			{%- endif -%}
 
 			{%- if userdata.rank > 2 and level.author != userdata.id -%}
-				<a class="play-btn blue" href="principia://principia-web.se/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
+				<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
 			{%- endif -%}
 
 			{%- if log and not has_liked -%}
@@ -56,15 +71,25 @@
 
 		<div class="protocol-issues" id="protocol-issues">
 			<strong>Issues trying to play levels?</strong>
-			<a href="/wiki/Troubleshoot_Playing_Levels">Troubleshoot issues playing levels</a>
+			<a href="{{ '/wiki/Troubleshoot_Playing_Levels' | main_site }}">Troubleshoot issues playing levels</a>
 		</div>
 
-		<p>{{ level.description | markdown }}</p>
+		<p>
+			{% if constant('IS_ARCHIVE') %}
+				{{ level.description | replace({'&gt;': '>', '&lt;': '<'}) | nl2br }}
+			{% else %}
+				{{ level.description | markdown }}
+			{% endif %}
+		</p>
 	</div>
 </div>
 
 <div class="lvl-data">
-	<p>Views: {{ level.views }} - Downloads: {{ level.downloads }} - Level ID: {{ level.id }}</p>
+	<p>
+		{% if not constant('IS_ARCHIVE') %}Views: {{ level.views }} -{% endif %}
+		Downloads: {{ level.downloads }} -
+		Level ID: {{ level.id }}
+	</p>
 
 	{% if userdata.id == level.author or userdata.rank > 1 %}
 	<form method="POST"><p>
@@ -103,9 +128,12 @@
 
 {% if derivatives %}
 	<h2>Derivatives</h2>
-	{% for derivative in derivatives %}
-		{{ level(derivative) }}
-	{% endfor %}
+	<div class="level-list">
+		{% for derivative in derivatives %}
+			{{ level(derivative) }}
+		{% endfor %}
+	</div>
+	<br><br>
 {% endif %}
 
 {% if parentlevel %}
@@ -113,5 +141,7 @@
 	{{ level(parentlevel) }}
 {% endif %}
 
-{{ comments(comments, 'level', level.id) }}
+{% if not constant('IS_ARCHIVE') %}
+	{{ comments(comments, 'level', level.id) }}
+{% endif %}
 	{% endblock %}

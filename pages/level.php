@@ -10,7 +10,7 @@ if (!$level) error('404');
 
 assert($lid == $level['id']);
 
-if ($log) {
+if (!IS_ARCHIVE && $log) {
 	// like
 	$hasLiked = result("SELECT COUNT(*) FROM likes WHERE user = ? AND level = ?", [$userdata['id'], $lid]) == 1 ? true : false;
 	if (isset($_POST['vote'])) {
@@ -58,11 +58,30 @@ if ($log) {
 	// remove notifications
 	query("DELETE FROM notifications WHERE type = 1 AND level = ? AND recipient = ?", [$lid, $userdata['id']]);
 	clearMentions('level', $lid);
-}
 
-if ($log) {
 	query("UPDATE levels SET views = views + '1' WHERE id = ?", [$lid]);
 	$level['views']++;
+}
+
+$derivatives = query("SELECT l.id id,l.title title, $userfields
+		FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
+		ORDER BY l.id DESC",
+	[$lid]);
+
+if ($level['parent'])
+	$parentLevel = fetch("SELECT l.id id, l.title title, $userfields
+			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
+		[$level['parent']]);
+
+if (IS_ARCHIVE) {
+	twigloader()->display('level.twig', [
+		'lid' => $lid,
+		'level' => $level,
+		'derivatives' => fetchArray($derivatives),
+		'parentlevel' => $parentLevel ?? null
+	]);
+
+	return;
 }
 
 $leaderboard = query("SELECT l.*, $userfields
@@ -76,16 +95,6 @@ $comments = query("SELECT c.*, $userfields
 		FROM comments c JOIN users u ON c.author = u.id WHERE c.type = 1 AND c.level = ?
 		ORDER BY c.time DESC",
 	[$lid]);
-
-$derivatives = query("SELECT l.id id,l.title title, $userfields
-		FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
-		ORDER BY l.id DESC LIMIT 4",
-	[$lid]);
-
-if ($level['parent'])
-	$parentLevel = fetch("SELECT l.id id, l.title title, $userfields
-			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
-		[$level['parent']]);
 
 twigloader()->display('level.twig', [
 	'lid' => $lid,

@@ -19,7 +19,7 @@ $paths = [
 
 		$latestnews = News::getLatestArticle();
 
-		echo "39:Latest news article: ".$latestnews['title'];
+		echo LATEST_VERSION_CODE.":Latest news article: ".$latestnews['title'];
 	}
 ];
 

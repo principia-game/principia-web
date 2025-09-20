@@ -93,15 +93,3 @@ function randomLevels($amount) {
 
 	return $randomLevels;
 }
-
-/**
- * Extract the platform from a user agent string.
- * This is supposed to be used for getting the platform a level was uploaded from.
- *
- * @param string $ua User agent
- * @return string Platform.
- */
-function extractPlatform($ua) {
-	preg_match('/\((\w+)\)/', $ua, $matches);
-	return $matches[1] ?? 'N/A';
-}

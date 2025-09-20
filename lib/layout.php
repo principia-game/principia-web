@@ -111,13 +111,3 @@ function relativeTime($time) {
 	return $relativeTime->timeAgo($time);
 }
 
-
-function androidWebviewVersion() {
-	global $useragent;
-	preg_match('/Principia WebView\/([0-9]+) \(Android\)/', $useragent, $matches);
-
-	if (isset($matches[1]))
-		return (int)$matches[1];
-	else
-		return null;
-}

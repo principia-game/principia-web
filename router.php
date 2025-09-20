@@ -8,7 +8,7 @@ define('IS_ARCHIVE', $_SERVER['HTTP_HOST'] == 'principia-web-archive.uwu' || $_S
 require('lib/common.php');
 
 if (IS_ARCHIVE) {
-	require('lib/archive/router.php');
+	require('lib/routes/archive.php');
 	return;
 }
 
@@ -70,16 +70,9 @@ if (isset($path[1]) && $path[1] != '') {
 	elseif (file_exists('pages/'.$path[1].'.php'))
 		require('pages/'.$path[1].'.php');
 
-	elseif ($path[1] == 'internal') {
-		if (file_exists('internal/'.$path[2].'.php'))
-			require('internal/'.$path[2].'.php');
-		elseif ($path[2] == 'derive_level')
-			require('internal/get_level.php');
-		elseif ($path[2] == 'edit_level')
-			require('internal/get_level.php');
-		else
-			notFound();
-	}
+	elseif ($path[1] == 'internal')
+		require('lib/routes/internal.php');
+
 	elseif ($path[1] == 'apZodIaL1') {
 		header("x-error-message: Please update your version of Principia to continue using principia-web.");
 
@@ -87,7 +80,7 @@ if (isset($path[1]) && $path[1] != '') {
 		die();
 	}
 	elseif ($path[1] == 'principia-version-code')
-		require('internal/version_code.php');
+		die('999');
 	elseif ($path[1] == 'LICENSE')
 		renderPlaintext('LICENSE');
 	else {

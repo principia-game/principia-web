@@ -52,14 +52,6 @@ function renderPlaintext($filename) {
 	die();
 }
 
-function offerFile($filepath, $savename) {
-	header("Content-Type: application/octet-stream");
-	header("Content-Disposition: attachment; filename=\"$savename\"");
-	header("Content-Length: ".filesize($filepath));
-
-	readfile($filepath);
-}
-
 /**
  * Tries to convert an IPv4-mapped IPv6 address to real IPv4 address,
  * no-op if it's an actual IPv6 address.

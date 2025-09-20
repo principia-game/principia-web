@@ -24,3 +24,17 @@ function redirectPerma($url, ...$args) {
 	header('Location: '.sprintf($url, ...$args), true, 301);
 	die();
 }
+
+/**
+ * Offers a binary file for download to the browser
+ * @param mixed $filepath Path of file
+ * @param mixed $savename Default name to save it as
+ */
+function offerFile($filepath, $savename) {
+	header("Content-Type: application/octet-stream");
+	header("Content-Disposition: attachment; filename=\"$savename\"");
+	header("Content-Length: ".filesize($filepath));
+
+	readfile($filepath);
+	die();
+}

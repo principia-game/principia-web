@@ -5,10 +5,8 @@ if (IS_ARCHIVE)
 else
 	$levelpath = sprintf('data/levels/%d.plvl', $level);
 
-if (!$level || !file_exists($levelpath)) {
-	offerFile('internal/null.plvl', 'not-found');
-	die();
-}
+if (!$level || !file_exists($levelpath))
+	offerFile('static/assets/null.plvl', 'not-found');
 
 if (!IS_ARCHIVE)
 	query("UPDATE levels SET downloads = downloads + 1 WHERE id = ?", [$level]);

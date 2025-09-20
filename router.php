@@ -58,14 +58,6 @@ if (isset($path[1]) && $path[1] != '') {
 		else // Load Wiki router
 			require('pages/wiki/index.php');
 	}
-	elseif ($path[1] == 'api') {
-		if (!isset($path[2]))
-			redirect('/api/');
-		elseif ($path[2] == '')
-			renderPlaintext('pages/api/README.md');
-		elseif (file_exists('pages/api/'.$path[2].'.php'))
-			require('pages/api/'.$path[2].'.php');
-	}
 	elseif (isset($markdownPages[$path[1]]))
 		twigloader()->display('_markdown.twig', [
 			'pagetitle' => $markdownPages[$path[1]],

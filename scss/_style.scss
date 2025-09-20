@@ -34,6 +34,11 @@ ul li, ol li {
 	margin-top: 0.6em;
 }
 
+hr {
+	border-top: 1px solid $grid;
+	border-bottom: 0;
+}
+
 h1 { font-size: 1.75em; }
 h2 { font-size: 1.50em; }
 h3 { font-size: 1.25em; }
@@ -681,6 +686,17 @@ $basic-colours: (
 	}
 }
 
+@media only screen and (min-width: 1024px) {
+	.i2l-two-columns {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.i2l-two-columns div {
+		flex: 1;
+	}
+}
+
 textarea, input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
 	border: 1px solid $grid;
 	background-color: $input_bg;
@@ -712,6 +728,20 @@ input[type=submit], button.btn, a.btn {
 
 textarea {
 	line-height: 1.5;
+	outline: none;
+}
+
+// For image to lua
+
+textarea.code {
+	width: 100%;
+	height: 250px;
+	box-sizing: border-box;
+}
+
+textarea.code.wide {
+	width: 85%;
+	height: 60px;
 }
 
 /// Styling used for printing \\\
@@ -795,3 +825,5 @@ figure {
 	display: inline-block;
 	width: 105px;
 }
+
+.desc { font-weight: bold; }

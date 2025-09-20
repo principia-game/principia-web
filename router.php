@@ -96,10 +96,6 @@ if (isset($path[1]) && $path[1] != '') {
 	}
 	elseif ($path[1] == 'principia-version-code')
 		require('internal/version_code.php');
-	elseif ($uri == '/image-to-lua')
-		redirect('/image-to-lua/');
-	elseif ($uri == '/image-to-lua/')
-		require('static/image-to-lua/index.html');
 	elseif ($path[1] == 'LICENSE')
 		renderPlaintext('LICENSE');
 	else {

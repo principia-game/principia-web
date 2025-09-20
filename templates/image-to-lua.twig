@@ -1,0 +1,114 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Principia Lua image converter" %}
+{% set description = "This tool can help you convert an image into code for loading it as a Principia LuaScript sprite. It converts an image into a table of pixel data that can be loaded into a sprite." %}
+
+	{% block content %}
+<h1>Principia Lua image converter</h1>
+
+<p>
+	This tool can help you convert an image into code for loading it as a Principia LuaScript sprite.
+	It converts an image into a table of pixel data that can be loaded into a sprite.
+</p>
+
+<p>
+	While the example loading implementation is exclusive to Principia's LuaScript API,
+	you can implement your own loading functionality around the pixel data that is outputted for use with anything else featuring Lua scripting.
+</p>
+
+<p>
+	For more information about Principia Lua scripting see <a href="/wiki/LuaScript">LuaScript</a> on the Principia Wiki.
+</p>
+
+<hr>
+
+<p class="desc">
+	Select an image to convert:
+	<input type="file" id="temp_upload">
+</p>
+<p class="desc">
+	Include transparency:
+	<input type="checkbox" id="include_alpha">
+</p>
+<p class="desc">
+	Base coordinates:
+	X: <input type="text" id="base_x" value="0" size="4">,
+	Y: <input type="text" id="base_y" value="0" size="4">
+</p>
+
+<p>(Used to offset the sprite in the Principia canvas, to allow for several sprites within the 512x512 canvas)</p>
+
+<p>
+	<button class="btn" onclick="image_to_lua();">Process image</button>
+	<button class="btn" onclick="$hide($('results'));">Clear</button>
+</p>
+
+<hr>
+
+<div id="loading" class="loading" style="display:none">Loading...</div>
+
+<div id="results" style="display:none">
+	<h2>Converted image data</h2>
+
+	<div class="i2l-two-columns">
+		<div>
+			<p id="str_len_1">
+				<strong>Variant 1</strong>
+				(Uncompressed, <span id="v1_chars">X</span> chars)
+			</p>
+
+			<textarea class="code" id="code_1" readonly></textarea>
+
+			<button class="btn" onclick="$('code_1').select();">Select code</button>
+		</div>
+		<div>
+			<p id="str_len_2"><strong>Variant 2</strong> (RLE compression, <span id="v2_chars">X</span> chars)</p>
+
+			<textarea class="code" id="code_2" readonly></textarea>
+
+			<button class="btn" onclick="$('code_2').select();">Select code</button>
+		</div>
+	</div>
+
+	<h2>Initialise and load texels:</h2>
+
+	Initialises the sprite area and loads the image data table on level startup.
+
+	<div class="i2l-two-columns">
+		<div>
+			<p><strong>Variant 1</strong></p>
+
+			<textarea class="code" id="init_code_1" readonly></textarea>
+
+			<button class="btn" onclick="$('init_code_1').select();">Select code</button>
+		</div>
+		<div>
+			<p><strong>Variant 2</strong></p>
+
+			<textarea class="code" id="init_code_2" readonly></textarea>
+
+			<button class="btn" onclick="$('init_code_2').select();">Select code</button>
+		</div>
+	</div>
+
+	<h2>Draw image:</h2>
+
+	<p>Example code to draw the image as a sprite. See <a href="/wiki/LuaScript/this#this-draw-sprite">this:draw_sprite()</a> on the Principia Wiki for more information about the function arguments.</p>
+
+	<textarea class="code wide" id="draw_image" readonly></textarea>
+
+	<p>Image dimensions: <span id="img_res">?</span></p>
+
+	<img id="temp_img">
+</div>
+
+<br>
+
+<div id="debug" style="display:none">
+	<h3>Debug</h3>
+
+	<canvas id="temp_canvas"></canvas>
+</div>
+
+<script src="/js/image-to-lua.js"></script>
+	{% endblock %}

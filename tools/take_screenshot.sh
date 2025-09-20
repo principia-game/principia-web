@@ -2,9 +2,9 @@
 
 LEVEL=$1
 
-DATADIR=/srv/principia-web/data/
+DATADIR=/srv/principia-web/data
 
-docker cp ${DATADIR}/levels/${LEVEL}.plvl ss:/principia/storage/lvl/db/${LEVEL}.plvl
+docker cp ${DATADIR}/levels/${LEVEL}.plvl ss:/tmp/principia_cache/lvl/db/${LEVEL}.plvl
 
 docker exec ss /principia/principia principia://play/lvl/db/${LEVEL}
 
@@ -23,11 +23,11 @@ sleep 1
 SCREENSHOT=${DATADIR}/thumbs_src/${LEVEL}.png
 
 docker cp ss:/principia/ss-0.png ${SCREENSHOT}
-sleep 0.25
+sleep 0.35
 docker exec ss rm /principia/ss-0.png
 
 convert ${SCREENSHOT} -quality 85 ${DATADIR}/thumbs/${LEVEL}.jpg
-convert ${SCREENSHOT} -resize 240 -unsharp 0x0.55+0.55+0.008 -quality 92 ${DATADIR}thumbs_low/${LEVEL}.jpg
+convert ${SCREENSHOT} -resize 240 -unsharp 0x0.55+0.55+0.008 -quality 92 ${DATADIR}/thumbs_low/${LEVEL}.jpg
 
 chmod 666 ${DATADIR}/thumbs/${LEVEL}.jpg
-chmod 666 ${DATADIR}thumbs_low/${LEVEL}.jpg
+chmod 666 ${DATADIR}/thumbs_low/${LEVEL}.jpg

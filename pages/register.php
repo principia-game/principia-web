@@ -39,6 +39,9 @@ if (isset($_POST['action'])) {
 	if (!preg_match('/^[a-zA-Z0-9\-_]+$/', $name))
 		$error[] = "Username contains invalid characters (Only alphanumeric and underscore allowed).";
 
+	if (in_array(strtolower($name), USERNAME_BLACKLIST))
+		$error[] = "Please choose a different username.";
+
 	if (!filter_var($mail, FILTER_VALIDATE_EMAIL))
 		$error[] = "Email isn't valid.";
 

@@ -30,6 +30,9 @@ if (result("SELECT COUNT(*) FROM users WHERE LOWER(name) = ?", [strtolower($name
 if (!preg_match('/^[a-zA-Z0-9\-_]+$/', $name))
 	sendError("The username contains invalid characters.");
 
+if (in_array(strtolower($name), USERNAME_BLACKLIST))
+	sendError("Please choose a different username.");
+
 if (result("SELECT COUNT(*) FROM users WHERE email = ?", [mailHash($mail)]))
 	sendError("You have already registered an account.");
 

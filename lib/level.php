@@ -22,79 +22,50 @@ function toggleLevelLock($level, $visibility) {
 	return $visibility;
 }
 
-function typeToCat($type) {
-	return match ($type) {
-		'custom'	=> 1,
-		'adventure'	=> 2,
-		'puzzle'	=> 3,
-		default 	=> null, // Fallback option: none
-	};
+function incrementLevelView(&$level) {
+	query("UPDATE levels SET views = views + '1' WHERE id = ?", [$level['id']]);
+	$level['views']++;
 }
 
-function catToType($cat) {
-	return match ($cat) {
-		1 => 'custom',
-		2 => 'adventure',
-		3 => 'puzzle'
-	};
-}
+function getLevelDerivatives($lid) {
+	global $userfields;
 
-function catConvert($cat) {
-	return match ($cat) {
-		0 => 3,
-		1 => 2,
-		2 => 1,
-	};
-}
-
-function cmtTypeToNum($type) {
-	return match ($type) {
-		'level'		=> 1,
-		'contest'	=> 3,
-		'user'		=> 4,
-		'package'	=> 6
-	};
-}
-
-function cmtNumToType($num) {
-	return match ($num) {
-		1 => 'level',
-		3 => 'contest',
-		4 => 'user',
-		6 => 'package'
-	};
-}
-
-function visIdToName($id) {
-	return match ($id) {
-		0 => 'Public',
-		1 => 'Locked',
-		2 => 'Unlisted',
-		default => 'N/A'
-	};
-}
-
-function visIdToColour($id) {
-	return match ($id) {
-		0 => 'bg-green',
-		1 => 'bg-yellow',
-		2 => 'bg-cyan',
-		default => ''
-	};
+	return query("SELECT l.id id,l.title title, $userfields
+		FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
+		ORDER BY l.id DESC",
+	[$lid]);
 }
 
 /**
- * Extract the platform from a user agent string.
- * This is supposed to be used for getting the platform a level was uploaded from.
- *
- * @param string $ua User agent
- * @return string Platform.
+ * Get data of the parent level, if it has one
+ * @param $level Level data
  */
-function extractPlatform($ua) {
-	preg_match('/\((\w+)\)/', $ua, $matches);
-	return $matches[1] ?? 'N/A';
+function getParentLevel($level) {
+	global $userfields;
+
+	if (!$level['parent']) return null;
+
+	return fetch("SELECT l.id id, l.title title, $userfields
+			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
+		[$level['parent']]);
 }
 
+/**
+ * Get amount of public levels a user has uploaded
+ * @param $uid User ID
+ */
+function getUserLevelCount($uid) {
+	global $cache;
+
+	return $cache->hit((IS_ARCHIVE ? 'archive:' : '').'levelcount_'.$uid, function () use ($uid) {
+		return result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$uid]);
+	});
+}
+
+/**
+ * Get a number of random public levels
+ * @param $amount Amount of random levels
+ */
 function randomLevels($amount) {
 	global $cache, $userfields;
 
@@ -121,4 +92,16 @@ function randomLevels($amount) {
 	shuffle($randomLevels);
 
 	return $randomLevels;
+}
+
+/**
+ * Extract the platform from a user agent string.
+ * This is supposed to be used for getting the platform a level was uploaded from.
+ *
+ * @param string $ua User agent
+ * @return string Platform.
+ */
+function extractPlatform($ua) {
+	preg_match('/\((\w+)\)/', $ua, $matches);
+	return $matches[1] ?? 'N/A';
 }

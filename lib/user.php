@@ -72,36 +72,3 @@ function userfields_post() {
 	return commasep($out);
 }
 
-function prepareNotifications($notifs, $userid) {
-	$notifications = [];
-
-	foreach ($notifs as $notif) {
-		switch ($notif['type']) {
-			case 1:
-				$notifications[] = sprintf(
-					'%s commented on your level <a href="/level/%s">%s</a>.',
-				userlink($notif, 'u_'), $notif['l_id'], $notif['l_title']);
-			break;
-			case 2:
-				$notifications[] = sprintf(
-					'%s commented on your <a href="/user/%s?forceuser">user page</a>.',
-				userlink($notif, 'u_'), $userid);
-			break;
-			case 3:
-				$notifications[] = sprintf(
-					'%s sent you a private message: <a href="/forum/showprivate?id=%s">Read</a>',
-				userlink($notif, 'u_'), $notif['level']);
-			break;
-			case 11:
-			case 13:
-			case 14:
-			case 16:
-				$notifications[] = sprintf(
-					'%s mentioned you in a %s comment: <a href="/%s/%s">Read</a>',
-				userlink($notif, 'u_'), cmtNumToType($notif['type'] - 10), cmtNumToType($notif['type'] - 10), $notif['level']);
-			break;
-		}
-	}
-
-	return $notifications;
-}

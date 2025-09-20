@@ -1,7 +1,7 @@
 <?php
 $arg = $path[2] ?? null;
 
-if (isset($_GET['id'])) redirect('/user/%d', $_GET['id']);
+if (isset($_GET['id'])) redirectPerma('/user/%d', $_GET['id']);
 
 if (is_numeric($arg))
 	$user = fetch("SELECT * FROM users WHERE id = ?", [$arg]);
@@ -29,11 +29,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		$notificationCount = 0;
 	}
 
-	$notifsdata = fetchArray(query("SELECT n.*, l.id l_id, l.title l_title, $userfields
-			FROM notifications n LEFT JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id
-			WHERE n.recipient = ?",
-		[$userdata['id']]));
-
+	$notifsdata = getNotifications($userdata['id']);
 	$notifications = prepareNotifications($notifsdata, $userdata['id']);
 
 	twigloader()->display('user_personal.twig', [
@@ -54,12 +50,6 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		return result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$id]);
 	});
 
-	if (!IS_ARCHIVE)
-		$comments = query("SELECT $userfields, c.*
-				FROM comments c JOIN users u ON c.author = u.id
-				WHERE c.type = 4 AND c.level = ? ORDER BY c.time DESC",
-			[$id]);
-
 	if (isset($userdata['id']) && $id == $userdata['id'])
 		query("DELETE FROM notifications WHERE type = 2 AND recipient = ?", [$userdata['id']]);
 
@@ -74,6 +64,6 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		'page' => $page,
 		'level_count' => $count,
 		'action' => $action ?? null,
-		'comments' => $comments ?? null
+		'comments' => !IS_ARCHIVE ? getComments('user', $id) : null
 	]);
 }

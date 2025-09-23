@@ -15,9 +15,7 @@ $logindata = fetch("SELECT id, name, password, token FROM users WHERE name = ?",
 if ($logindata && password_verify($_POST['password'], $logindata['password'])) {
 	$notificationCount = result("SELECT COUNT(*) FROM notifications WHERE recipient = ?", [$logindata['id']]);
 
-	header("x-principia-user-id: ".$logindata['id']);
-	header("x-principia-user-name: ".$logindata['name']);
-	header("x-principia-unread: ".$notificationCount);
+	sendUserHeaders($logindata['id'], $logindata['name'], $notificationCount);
 
 	setcookie(COOKIE_NAME, $logindata['token'], time() + 3600*24*365, '/');
 

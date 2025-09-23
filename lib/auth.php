@@ -13,13 +13,10 @@ function authenticateCookie() {
 }
 
 function internalAuth() {
-	global $log, $userdata, $notificationCount;
+	global $log, $userdata;
 
-	if ($log) {
-		header("x-principia-user-id: ".$userdata['id']);
-		header("x-principia-user-name: ".$userdata['name']);
-		header("x-principia-unread: ".$userdata['notifications']);
-	}
+	if ($log)
+		sendUserHeaders($userdata['id'], $userdata['name'], $userdata['notifications']);
 }
 
 /**

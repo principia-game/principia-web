@@ -38,3 +38,9 @@ function offerFile($filepath, $savename) {
 	readfile($filepath);
 	die();
 }
+
+function sendUserHeaders($userid, $username, $notificationCount) {
+	header("x-principia-user-id: ".$userid);
+	header("x-principia-user-name: ".$username);
+	header("x-principia-unread: ".$notificationCount);
+}

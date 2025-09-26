@@ -1,8 +1,8 @@
 <?php
 
-$joined = !IS_ARCHIVE ? ', joined' : '';
+$extrafields = !IS_ARCHIVE ? ', joined, rank' : '';
 
-$users = query("SELECT id, name, customcolor {$joined}, rank FROM users");
+$users = query("SELECT id, name, customcolor {$extrafields} FROM users");
 
 $maxid = result("SELECT MAX(id) FROM users");
 $levelcounts = [];

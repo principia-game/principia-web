@@ -12,9 +12,6 @@ function tcount($c) {
  * @return string Userlink HTML code.
  */
 function userlink($user, $pre = '') {
-	//if ($user[$pre.'id'] == 1)
-	//	$user[$pre.'name'] = '<span style="color:#D60270">ROll</span><span style="color:#9B4F96">er</span><span style="color:#0038A8">ozxa</span>';
-
 	if ($user[$pre.'customcolor'])
 		$user[$pre.'name'] = sprintf('<span style="color:#%s">%s</span>', $user[$pre.'customcolor'], $user[$pre.'name']);
 
@@ -28,8 +25,8 @@ function userlink($user, $pre = '') {
 		if ($silver) $trophy .= '<span class="trophee silver">'.tcount($silver).'</span>';
 
 		return sprintf(
-			'<a class="user" href="/user/%d"><span class="t_%s">%s%s</span></a>',
-		$user[$pre.'id'], powIdToName($user[$pre.'rank']), $user[$pre.'name'], $trophy);
+			'<a class="user" href="/user/%d"><span class="t_user">%s%s</span></a>',
+		$user[$pre.'id'], $user[$pre.'name'], $trophy);
 	}
 
 	return sprintf(
@@ -45,7 +42,7 @@ function userlink($user, $pre = '') {
 function userfields($tbl = null, $pf = null) {
 	$fields = ['id', 'name', 'customcolor'];
 	if (IS_ARCHIVE) {
-		$fields = array_merge($fields, ['rank', 't_black', 't_gold', 't_silver']);
+		$fields = array_merge($fields, ['t_black', 't_gold', 't_silver']);
 	}
 	$out = [];
 

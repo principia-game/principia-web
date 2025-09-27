@@ -3,7 +3,7 @@
 $geoip = new MaxMind\Db\Reader('data/GeoLite2-Country.mmdb');
 
 function getUserCountry() {
-	global $geoip, $ipaddr;
+	global $geoip;
 
-	return $geoip->get($ipaddr)['country']['iso_code'] ?? 'AQ';
+	return $geoip->get(HTTP_IP)['country']['iso_code'] ?? 'AQ';
 }

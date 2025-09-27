@@ -7,7 +7,7 @@ if (isset($_POST['url'])) {
 		'url' => $url,
 		'message' => $message,
 		'user' => $userdata['id'] ?? null,
-		'ip' => $ipaddr
+		'ip' => HTTP_IP
 	]);
 
 	$hasBeenSent = true;

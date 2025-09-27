@@ -36,13 +36,13 @@ if (in_array(strtolower($name), USERNAME_BLACKLIST))
 if (result("SELECT COUNT(*) FROM users WHERE email = ?", [mailHash($mail)]))
 	sendError("You have already registered an account.");
 
-if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
+if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [HTTP_IP]))
 	sendError("You have already registered an account.");
 
 if (isTor())
 	sendError("Registrations from Tor have been blocked due to abuse.");
 
 // All possible invalid credentials have been checked, it should be successful now.
-register($name, $pass, $mail, $ipaddr);
+register($name, $pass, $mail, HTTP_IP);
 
 header('x-notify-message: Registered successfully!');

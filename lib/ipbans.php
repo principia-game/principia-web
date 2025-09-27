@@ -52,8 +52,6 @@ function checkIpBan($ipaddr) {
 }
 
 function isTor() {
-	global $ipaddr;
-
 	$torexits = json_decode(file_get_contents('data/torexits.json'));
-	return in_array($ipaddr, $torexits);
+	return in_array(HTTP_IP, $torexits);
 }

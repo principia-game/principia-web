@@ -28,18 +28,18 @@ if (!$internal)
 	securityHeaders();
 
 if (!isCli()) {
-	// Shorter variables for common $_SERVER values.
-	$ipaddr = $_SERVER['REMOTE_ADDR'];
-	$useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-	$referer = $_SERVER['HTTP_REFERER'] ?? null;
+	// Shorter constants for common $_SERVER values.
+	define('HTTP_IP', $_SERVER['REMOTE_ADDR']);
+	define('HTTP_UA', $_SERVER['HTTP_USER_AGENT'] ?? null);
+	define('HTTP_RF', $_SERVER['HTTP_REFERER'] ?? null);
 
 	// principia-web IP ban system
-	checkIpBan($ipaddr);
+	checkIpBan(HTTP_IP);
 } else {
 	// Dummy values for CLI usage
-	$ipaddr = '127.0.0.1';
-	$useragent = 'principia-web/cli (sexy, like PHP)';
-	$referer = '';
+	define('HTTP_IP', '127.0.0.1');
+	define('HTTP_UA', 'principia-web/cli (sexy, like PHP)');
+	define('HTTP_RF', '');
 }
 
 $userId = authenticateCookie();
@@ -52,7 +52,7 @@ if ($log) {
 	if ($userdata['rank'] < 0)
 		$userdata['banreason'] = result("SELECT reason FROM bans WHERE user = ?", [$userId]);
 
-	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), $ipaddr, $userdata['id']]);
+	query("UPDATE users SET lastview = ?, ip = ? WHERE id = ?", [time(), HTTP_IP, $userdata['id']]);
 	$userdata['lastview'] = time();
 } else {
 	$userdata = [

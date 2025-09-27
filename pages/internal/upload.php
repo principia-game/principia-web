@@ -15,7 +15,7 @@ if ($level->version() > lvleditGetBuiltVersion()) {
 	trigger_error('lvledit version mismatch !!', E_USER_ERROR);
 }
 
-$platform = extractPlatform($useragent);
+$platform = extractPlatform(HTTP_UA);
 
 $cid = $level->communityId();
 

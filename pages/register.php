@@ -48,7 +48,7 @@ if (isset($_POST['action'])) {
 	if (result("SELECT COUNT(*) FROM users WHERE email = ?", [mailHash($mail)]))
 		$error[] = "You have already registered an account.";
 
-	if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [$ipaddr]))
+	if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [HTTP_IP]))
 		$error[] = "You have already registered an account.";
 
 	if (isTor())
@@ -58,7 +58,7 @@ if (isset($_POST['action'])) {
 		$error[] = "Please save your account credentials in a password manager before registering.";
 
 	if ($error == []) {
-		$token = register($name, $pass, $mail, $ipaddr);
+		$token = register($name, $pass, $mail, HTTP_IP);
 
 		setcookie(COOKIE_NAME, $token, 2147483647);
 

@@ -25,7 +25,6 @@ function extractPrincipiaVersion($ua) {
  * If the user agent is an Android WebView, extract its version.
  */
 function androidWebviewVersion() {
-	global $useragent;
-	preg_match('/Principia WebView\/([0-9]+) \(Android\)/', $useragent, $matches);
+	preg_match('/Principia WebView\/([0-9]+) \(Android\)/', HTTP_UA, $matches);
 	return $matches[1] ?? null;
 }

@@ -68,29 +68,16 @@ function ifEmptyQuery($message, $colspan = 0, $table = false) {
 function twigloaderForum() {
 	$twig = twigloader();
 
-	$twig->addExtension(new PrincipiaForumExtension());
+	$twig->addFunction('timelinks');
+	$twig->addFunction('new_status', 'newStatus');
+	$twig->addFunction('render_page_bar', 'renderPageBar');
+	$twig->addFunction('if_empty_query', 'ifEmptyQuery');
+	$twig->addFunction('threadpost');
+	$twig->addFunction('minipost');
 
 	$twig->addGlobal('submodule', 'forum');
 
 	return $twig;
-}
-
-class PrincipiaForumExtension extends \Twig\Extension\AbstractExtension {
-	public function getFunctions() {
-		return [
-			// datetime.php
-			new \Twig\TwigFunction('timelinks', 'timelinks', ['is_safe' => ['html']]),
-
-			// layout.php
-			new \Twig\TwigFunction('new_status', 'newStatus', ['is_safe' => ['html']]),
-			new \Twig\TwigFunction('render_page_bar', 'renderPageBar', ['is_safe' => ['html']]),
-			new \Twig\TwigFunction('if_empty_query', 'ifEmptyQuery', ['is_safe' => ['html']]),
-
-			// post.php
-			new \Twig\TwigFunction('threadpost', 'threadpost', ['is_safe' => ['html']]),
-			new \Twig\TwigFunction('minipost', 'minipost', ['is_safe' => ['html']]),
-		];
-	}
 }
 
 function timelinks($file, $seltime) {

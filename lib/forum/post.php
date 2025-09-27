@@ -3,9 +3,7 @@
 function postfilter($msg) {
 	$msg = str_replace("[/quote]", "[/quote]\n\n", $msg);
 
-	$markdown = new Parsedown();
-	$markdown->setSafeMode(true);
-	$msg = $markdown->text($msg);
+	$msg = markdown($msg);
 
 	$msg = preg_replace("'\[reply=\"(.*?)\" id=\"(.*?)\"\]'si", '<blockquote><span class="quotedby"><small><i><a href=showprivate?id=\\2>Sent by \\1</a></i></small></span><hr>', $msg);
 	$msg = str_replace('[/reply]', '<hr></blockquote>', $msg);

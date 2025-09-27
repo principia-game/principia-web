@@ -16,8 +16,7 @@ $levelGraph = runningTotal('levels', 'time');
 $userGraph = runningTotal('users', 'joined');
 $commentGraph = runningTotal('comments', 'time');
 
-$twig = twigloader();
-echo $twig->render('statistics.twig', [
+twigloader()->display('statistics.twig', [
 	'level_graph' => $levelGraph,
 	'user_graph' => $userGraph,
 	'comment_graph' => $commentGraph,

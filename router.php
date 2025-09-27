@@ -91,8 +91,8 @@ if (isset($path[1]) && $path[1] != '') {
 } else
 	require('pages/index.php');
 
-if (DEBUG && false) {
+if (DEBUG && isset($_GET['debug'])) {
 	echo "<pre>== Twig perf dump ==\n";
 	$dumper = new \Twig\Profiler\Dumper\TextDumper();
-	echo $dumper->dump($profile).'</pre>';
+	echo $dumper->dump($twigProfiler).'</pre>';
 }

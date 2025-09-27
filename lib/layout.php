@@ -1,44 +1,5 @@
 <?php
 
-if (DEBUG)
-	$profile = new \Twig\Profiler\Profile();
-
-/**
- * Twig loader, initializes Twig with standard configurations and extensions.
- *
- * @param string $subfolder Subdirectory to use in the templates/ directory.
- * @return \Twig\Environment Twig object.
- */
-function twigloader() {
-	global $log, $footerlinks, $path, $submodule, $profile;
-
-	$loader = new \Twig\Loader\FilesystemLoader('templates/');
-
-	$twig = new \Twig\Environment($loader, [
-		'cache' => TPL_CACHE,
-		'auto_reload' => true,
-	]);
-
-	// Add principia-web specific extension
-	$twig->addExtension(new PrincipiaExtension());
-
-	if (DEBUG)
-		$twig->addExtension(new \Twig\Extension\ProfilerExtension($profile));
-
-	$twig->addGlobal('userdata', $GLOBALS['userdata']);
-	$twig->addGlobal('log', $log);
-	$twig->addGlobal('glob_lpp', LPP);
-	$twig->addGlobal('footerlinks', $footerlinks);
-	$twig->addGlobal('domain', DOMAIN);
-	$twig->addGlobal('uri', $_SERVER['REQUEST_URI'] ?? null);
-	if ($submodule == 'forum')
-		$twig->addGlobal('pagename', '/forum/'.($path[2] ?? ''));
-	else
-		$twig->addGlobal('pagename', '/'.($path[1] ?? ''));
-
-	return $twig;
-}
-
 function comments($cmnts, $type, $id, $showheader = true) {
 	return twigloader()->render('components/comment.twig', [
 		'cmnts' => $cmnts, 'type' => $type, 'id' => $id, 'showheader' => $showheader
@@ -52,14 +13,7 @@ function pagination($levels, $pp, $url, $current) {
 }
 
 function error($title, $message = '') {
-	global $submodule;
-
 	if ($title >= 400 && $title < 500) http_response_code($title);
-
-	if ($submodule == 'forum')
-		$twig = twigloaderForum();
-	else
-		$twig = twigloader();
 
 	if (!$message) {
 		// Placeholder messages if there is no message.
@@ -69,7 +23,7 @@ function error($title, $message = '') {
 		};
 	}
 
-	echo $twig->render('_error.twig', ['err_title' => $title, 'err_message' => $message]);
+	twigloader()->display('_error.twig', ['err_title' => $title, 'err_message' => $message]);
 	die();
 }
 
@@ -110,4 +64,3 @@ function relativeTime($time) {
 
 	return $relativeTime->timeAgo($time);
 }
-

@@ -22,6 +22,8 @@ function query($query,$params = []) {
 
 	if (!$sql) connectSql();
 
+	$query = str_replace("@userfields", userfields(), $query);
+
 	$res = $sql->prepare($query);
 	$res->execute($params);
 	return $res;

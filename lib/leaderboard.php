@@ -5,9 +5,7 @@
  * @param mixed $lid
  */
 function getLeaderboard($lid) {
-	global $userfields;
-
-	return query("SELECT l.*, $userfields
+	return query("SELECT l.*, @userfields
 		FROM leaderboard l JOIN users u ON l.user = u.id WHERE l.level = ?
 		ORDER BY l.score DESC LIMIT 8",
 	[$lid]);

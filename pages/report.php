@@ -14,7 +14,7 @@ if (isset($_POST['url'])) {
 }
 
 if (!IS_ARCHIVE)
-	$admin = fetch("SELECT $userfields FROM users u WHERE u.id = 1");
+	$admin = fetch("SELECT @userfields FROM users u WHERE u.id = 1");
 
 $url = $_GET['url'] ?? null;
 

@@ -1,10 +1,8 @@
 <?php
 
 function getComments($type, $id) {
-	global $userfields;
-
 	$typeNum = cmtTypeToNum($type);
-	return query("SELECT c.*, $userfields
+	return query("SELECT c.*, @userfields
 			FROM comments c JOIN users u ON c.author = u.id WHERE c.type = ? AND c.level = ?
 			ORDER BY c.id DESC",
 		[$typeNum, $id]);

@@ -27,8 +27,6 @@ foreach (glob("lib/*.php") as $file)
 if (!$internal)
 	securityHeaders();
 
-$userfields = userfields();
-
 if (!isCli()) {
 	// Shorter variables for common $_SERVER values.
 	$ipaddr = $_SERVER['REMOTE_ADDR'];

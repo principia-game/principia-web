@@ -4,7 +4,7 @@ if (isset($_GET['id'])) redirectPerma('/level/%d', $_GET['id']);
 
 $lid = (int)($path[2] ?? 0);
 
-$level = fetch("SELECT l.*, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
+$level = fetch("SELECT l.*, @userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level) error('404');
 

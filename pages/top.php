@@ -1,7 +1,7 @@
 <?php
 $page = $_GET['page'] ?? 1;
 
-$levels = query("SELECT l.id, l.title, $userfields
+$levels = query("SELECT l.id, l.title, @userfields
 		FROM levels l JOIN users u ON l.author = u.id
 		WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC "
 		.paginate($page, LPP));

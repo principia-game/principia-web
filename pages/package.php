@@ -1,7 +1,7 @@
 <?php
 $pid = $path[2] ?? 0;
 
-$pkg = fetch("SELECT p.*, $userfields FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
+$pkg = fetch("SELECT p.*, @userfields FROM packages p JOIN users u ON p.author = u.id WHERE p.id = ?", [$pid]);
 
 if (!$pkg) error('404');
 

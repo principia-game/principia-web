@@ -12,8 +12,8 @@ if (IS_ARCHIVE) {
 
 // Cache all index page queries unless explicitly flushed.
 
-$latestfeatured = $cache->hit('idx_feat', function () use ($userfields) {
-	return fetchArray(query("SELECT l.id,l.title, $userfields FROM featured f JOIN levels l on f.level = l.id JOIN users u ON l.author = u.id ORDER BY f.id DESC LIMIT 4"));
+$latestfeatured = $cache->hit('idx_feat', function () {
+	return fetchArray(query("SELECT l.id,l.title, @userfields FROM featured f JOIN levels l on f.level = l.id JOIN users u ON l.author = u.id ORDER BY f.id DESC LIMIT 4"));
 });
 
 $newsdata = News::retrieveList(5);
@@ -24,8 +24,8 @@ $latestcustom = $cache->hit('idx_anp', fn() => fetchArray(latestLevels(1)));
 $latestadvent = $cache->hit('idx_adv', fn() => fetchArray(latestLevels(2)));
 $latestpuzzle = $cache->hit('idx_puz', fn() => fetchArray(latestLevels(3)));
 
-$latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
-	return fetchArray(query("SELECT c.*, l.title level_name, $userfields FROM comments c
+$latestcomments = $cache->hit('idx_cmnts', function () {
+	return fetchArray(query("SELECT c.*, l.title level_name, @userfields FROM comments c
 			JOIN users u ON c.author = u.id JOIN levels l ON c.level = l.id
 			WHERE c.type = 1 AND c.deleted = 0 ORDER BY c.time DESC LIMIT 8"));
 });

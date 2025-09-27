@@ -28,9 +28,7 @@ function incrementLevelView(&$level) {
 }
 
 function getLevelDerivatives($lid) {
-	global $userfields;
-
-	return query("SELECT l.id id,l.title title, $userfields
+	return query("SELECT l.id id,l.title title, @userfields
 		FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
 		ORDER BY l.id DESC",
 	[$lid]);
@@ -41,11 +39,9 @@ function getLevelDerivatives($lid) {
  * @param $level Level data
  */
 function getParentLevel($level) {
-	global $userfields;
-
 	if (!$level['parent']) return null;
 
-	return fetch("SELECT l.id id, l.title title, $userfields
+	return fetch("SELECT l.id id, l.title title, @userfields
 			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
 		[$level['parent']]);
 }
@@ -67,7 +63,7 @@ function getUserLevelCount($uid) {
  * @param $amount Amount of random levels
  */
 function randomLevels($amount) {
-	global $cache, $userfields;
+	global $cache;
 
 	$publicLevels = $cache->hit((IS_ARCHIVE ? 'archive:' : '').'public_levels', fn() =>
 		fetchArray(query("SELECT id FROM levels WHERE visibility = 0"))
@@ -84,7 +80,7 @@ function randomLevels($amount) {
 			$randomLevelIds[] = $randomId;
 	}
 
-	$randomLevels = fetchArray(query("SELECT $userfields, l.id, l.title
+	$randomLevels = fetchArray(query("SELECT @userfields, l.id, l.title
 		FROM levels l JOIN users u ON l.author = u.id
 		WHERE l.id IN (".implode(",", $randomLevelIds).")"));
 
@@ -95,9 +91,7 @@ function randomLevels($amount) {
 }
 
 function latestLevels($cat) {
-	global $userfields;
-
-	return query("SELECT l.id,l.title,$userfields
+	return query("SELECT l.id, l.title, @userfields
 			FROM levels l JOIN users u ON l.author = u.id
 			WHERE l.cat = ? AND l.visibility = 0
 			ORDER BY l.id DESC LIMIT 8",
@@ -105,9 +99,7 @@ function latestLevels($cat) {
 }
 
 function topLevels() {
-	global $userfields;
-
-	return query("SELECT l.id,l.title,$userfields
+	return query("SELECT l.id, l.title, @userfields
 			FROM levels l JOIN users u ON l.author = u.id
 			WHERE l.visibility = 0
 			ORDER BY l.likes DESC, l.id DESC LIMIT 8");

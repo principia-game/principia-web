@@ -2,7 +2,7 @@
 
 $lid = $_GET['id'] ?? 0;
 
-$level = fetch("SELECT l.*, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
+$level = fetch("SELECT l.*, @userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ?", [$lid]);
 
 if (!$level || (!IS_ADMIN && $userdata['id'] != $level['author']))
 	error('403');

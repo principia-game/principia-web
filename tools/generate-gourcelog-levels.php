@@ -8,7 +8,7 @@ function skriv($text) {
 	file_put_contents('gource.log', $text . PHP_EOL, FILE_APPEND);
 }
 
-$levels = query("SELECT l.id,l.title,l.time,$userfields FROM levels l JOIN users u ON l.author = u.id ORDER BY l.id ASC");
+$levels = query("SELECT l.id,l.title,l.time,@userfields FROM levels l JOIN users u ON l.author = u.id ORDER BY l.id ASC");
 
 while ($level = $levels->fetch()) {
 	skriv(sprintf(

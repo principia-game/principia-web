@@ -19,7 +19,7 @@ if (isset($path[2])) {
 	}
 	$count = fetch($query);
 
-	$latestComments = query("SELECT c.*, $userfields FROM comments c JOIN users u ON c.author = u.id WHERE c.deleted = 0 ORDER BY c.time DESC LIMIT 7");
+	$latestComments = query("SELECT c.*, @userfields FROM comments c JOIN users u ON c.author = u.id WHERE c.deleted = 0 ORDER BY c.time DESC LIMIT 7");
 
 	twigloader()->display('admin/index.twig', [
 		'latest_registered_users' => $latestRegisteredUsers,

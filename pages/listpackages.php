@@ -1,7 +1,7 @@
 <?php
 $page = $_GET['page'] ?? 1;
 
-$packages = query("SELECT p.id, p.title, $userfields
+$packages = query("SELECT p.id, p.title, @userfields
 		FROM packages p JOIN users u ON p.author = u.id ORDER BY p.id DESC ".paginate($page, LPP));
 $count = result("SELECT COUNT(*) FROM packages");
 

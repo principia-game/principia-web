@@ -17,9 +17,7 @@ function removeLevelNotifications($lid, $uid) {
  * @param mixed $uid User ID
  */
 function getNotifications($uid) {
-	global $userfields;
-
-	return fetchArray(query("SELECT n.*, l.id l_id, l.title l_title, $userfields
+	return fetchArray(query("SELECT n.*, l.id l_id, l.title l_title, @userfields
 			FROM notifications n LEFT JOIN levels l ON n.level = l.id JOIN users u ON n.sender = u.id
 			WHERE n.recipient = ?",
 		[$uid]));

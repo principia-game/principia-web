@@ -157,7 +157,7 @@ div.menu {
 	float: right;
 }
 
-.header_message, .skit, .welcome-back {
+.header_message, .landing, .welcome-back {
 	border-bottom: 1px solid $grid;
 }
 
@@ -518,7 +518,7 @@ div.level {
 
 // Welcome Thing on Index \\
 
-.skit {
+.landing {
 	display: block;
 	text-align: center;
 	font-size: 1.25em;

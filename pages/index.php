@@ -1,5 +1,15 @@
 <?php
 
+if (IS_ARCHIVE) {
+	twigloader()->display('archive/index.twig', [
+		'top_levels' => topLevels(),
+		'custom_levels' => latestLevels(1),
+		'adventure_levels' => latestLevels(2),
+		'random_levels' => randomLevels(8)
+	]);
+	return;
+}
+
 // Cache all index page queries unless explicitly flushed.
 
 $latestfeatured = $cache->hit('idx_feat', function () use ($userfields) {
@@ -8,23 +18,11 @@ $latestfeatured = $cache->hit('idx_feat', function () use ($userfields) {
 
 $newsdata = News::retrieveList(5);
 
-$toplevels = $cache->hit('idx_top', function () use ($userfields) {
-	return fetchArray(query("SELECT l.id,l.title, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.visibility = 0 ORDER BY l.likes DESC, l.id DESC LIMIT 8"));
-});
+$toplevels = $cache->hit('idx_top', fn() => fetchArray(topLevels()));
 
-$latestquery = "SELECT l.id,l.title, $userfields FROM levels l JOIN users u ON l.author = u.id WHERE l.cat = %d AND l.visibility = 0 ORDER BY l.id DESC LIMIT 8";
-
-$latestcustom = $cache->hit('idx_anp', function () use ($latestquery) {
-	return fetchArray(query(sprintf($latestquery, 1)));
-});
-
-$latestadvent = $cache->hit('idx_adv', function () use ($latestquery) {
-	return fetchArray(query(sprintf($latestquery, 2)));
-});
-
-$latestpuzzle = $cache->hit('idx_puz', function () use ($latestquery) {
-	return fetchArray(query(sprintf($latestquery, 3)));
-});
+$latestcustom = $cache->hit('idx_anp', fn() => fetchArray(latestLevels(1)));
+$latestadvent = $cache->hit('idx_adv', fn() => fetchArray(latestLevels(2)));
+$latestpuzzle = $cache->hit('idx_puz', fn() => fetchArray(latestLevels(3)));
 
 $latestcomments = $cache->hit('idx_cmnts', function () use ($userfields) {
 	return fetchArray(query("SELECT c.*, l.title level_name, $userfields FROM comments c

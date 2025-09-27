@@ -13,13 +13,6 @@
 	<p>A recent enough version of the open source version of Principia is required to play levels.</p>
 </div>
 
-<h1 class="center">Featured levels</h1>
-<div class="level-list scrollable">
-{% for featured_level in featured_levels %}
-	{{ level(featured_level) }}
-{% endfor %}
-</div>
-
 <h2 class="header">Top rated levels <a href="/top">More</a></h2>
 <div class="level-list scrollable">
 {% for top_level in top_levels %}

@@ -93,3 +93,22 @@ function randomLevels($amount) {
 
 	return $randomLevels;
 }
+
+function latestLevels($cat) {
+	global $userfields;
+
+	return query("SELECT l.id,l.title,$userfields
+			FROM levels l JOIN users u ON l.author = u.id
+			WHERE l.cat = ? AND l.visibility = 0
+			ORDER BY l.id DESC LIMIT 8",
+		[$cat]);
+}
+
+function topLevels() {
+	global $userfields;
+
+	return query("SELECT l.id,l.title,$userfields
+			FROM levels l JOIN users u ON l.author = u.id
+			WHERE l.visibility = 0
+			ORDER BY l.likes DESC, l.id DESC LIMIT 8");
+}

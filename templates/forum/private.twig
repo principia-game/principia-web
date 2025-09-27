@@ -1,6 +1,10 @@
 {% extends "_layout.twig" %}
 
-{% set title = headtitle %}
+{% if sent %}
+	{% set title = "Private messages (sent)" %}
+{% else %}
+	{% set title = "Private messages" %}
+{% endif %}
 {% set noindex = true %}
 
 	{% block content %}
@@ -30,6 +34,9 @@
 	{{ if_empty_query("There are no private messages.", 5) }}
 {% endfor %}
 </table>
-{{ fpagelist | raw }}
+
+{% set le_url = '/forum/private?view=' ~ view ~ '&page=%s' %}
+{{ pagination(pmsgc, constant('TPP'), le_url, page) }}
+
 {{ render_page_bar(topbot) }}
 	{% endblock %}

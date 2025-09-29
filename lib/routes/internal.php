@@ -12,7 +12,7 @@ $paths = [
 	'get_package' => 'get_package',
 	'login' => 'login',
 	'register' => 'register',
-	'submit_level' => 'submit_level',
+	'submit_score' => 'submit_score',
 	'upload' => 'upload',
 	'version_code' => function() {
 		internalAuth();

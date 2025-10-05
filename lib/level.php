@@ -1,5 +1,9 @@
 <?php
 
+function getLevelById($lid) {
+	return fetch("SELECT l.*, @userfields FROM @levels l JOIN @users u ON l.author = u.id WHERE l.id = ?", [$lid]);
+}
+
 function likeLevel($lid, $user) {
 	global $cachectrl;
 
@@ -29,7 +33,7 @@ function incrementLevelView(&$level) {
 
 function getLevelDerivatives($lid) {
 	return query("SELECT l.id id,l.title title, @userfields
-		FROM levels l JOIN users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
+		FROM @levels l JOIN @users u ON l.author = u.id WHERE l.parent = ? AND l.visibility = 0
 		ORDER BY l.id DESC",
 	[$lid]);
 }
@@ -42,7 +46,7 @@ function getParentLevel($level) {
 	if (!$level['parent']) return null;
 
 	return fetch("SELECT l.id id, l.title title, @userfields
-			FROM levels l JOIN users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
+			FROM @levels l JOIN @users u ON l.author = u.id WHERE l.id = ? AND l.visibility = 0",
 		[$level['parent']]);
 }
 
@@ -54,7 +58,7 @@ function getUserLevelCount($uid) {
 	global $cache;
 
 	return $cache->hit((IS_ARCHIVE ? 'archive:' : '').'levelcount_'.$uid, function () use ($uid) {
-		return result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$uid]);
+		return result("SELECT COUNT(*) FROM @levels l WHERE l.author = ? AND l.visibility = 0", [$uid]);
 	});
 }
 
@@ -66,7 +70,7 @@ function randomLevels($amount) {
 	global $cache;
 
 	$publicLevels = $cache->hit((IS_ARCHIVE ? 'archive:' : '').'public_levels', fn() =>
-		fetchArray(query("SELECT id FROM levels WHERE visibility = 0"))
+		fetchArray(query("SELECT id FROM @levels WHERE visibility = 0"))
 	, IS_ARCHIVE ? 0 : 3600);
 
 	if (count($publicLevels) < $amount)
@@ -81,7 +85,7 @@ function randomLevels($amount) {
 	}
 
 	$randomLevels = fetchArray(query("SELECT @userfields, l.id, l.title
-		FROM levels l JOIN users u ON l.author = u.id
+		FROM @levels l JOIN @users u ON l.author = u.id
 		WHERE l.id IN (".implode(",", $randomLevelIds).")"));
 
 	// Don't make the random levels get ordered by ID
@@ -90,17 +94,36 @@ function randomLevels($amount) {
 	return $randomLevels;
 }
 
-function latestLevels($cat) {
+function latestLevels($cat, $page = 1, $limit = LPP) {
 	return query("SELECT l.id, l.title, @userfields
-			FROM levels l JOIN users u ON l.author = u.id
+			FROM @levels l JOIN @users u ON l.author = u.id
 			WHERE l.cat = ? AND l.visibility = 0
-			ORDER BY l.id DESC LIMIT 8",
+			ORDER BY l.id DESC "
+			.paginate($page, $limit),
 		[$cat]);
 }
 
-function topLevels() {
+function topLevels($page = 1, $limit = LPP) {
 	return query("SELECT l.id, l.title, @userfields
-			FROM levels l JOIN users u ON l.author = u.id
+			FROM @levels l JOIN @users u ON l.author = u.id
 			WHERE l.visibility = 0
-			ORDER BY l.likes DESC, l.id DESC LIMIT 8");
+			ORDER BY l.likes DESC, l.id DESC "
+			.paginate($page, $limit));
+}
+
+function popularLevels($page = 1, $limit = LPP) {
+	return query("SELECT l.id, l.title, @userfields
+			FROM @levels l JOIN @users u ON l.author = u.id
+			WHERE l.visibility = 0
+			ORDER BY l.downloads DESC, l.id DESC "
+			.paginate($page, $limit));
+}
+
+function getLevelsByAuthor($uid, $page = 1, $limit = LPP) {
+	return query("SELECT l.id, l.title, @userfields
+			FROM @levels l JOIN @users u ON l.author = u.id
+			WHERE l.author = ? AND l.visibility = 0
+			ORDER BY l.id DESC "
+			.paginate($page, $limit),
+		[$uid]);
 }

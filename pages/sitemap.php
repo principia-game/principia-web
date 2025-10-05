@@ -4,7 +4,7 @@ if (IS_ARCHIVE) {
 
 	$sitemap = new Sitemap('https://archive.principia-web.se/');
 
-	$levels = query("SELECT id FROM levels WHERE visibility = 0".paginate($page, 5000));
+	$levels = query("SELECT id FROM @levels WHERE visibility = 0".paginate($page, 5000));
 	while ($level = $levels->fetch()) {
 		$sitemap->add('level/'.$level['id']);
 	}

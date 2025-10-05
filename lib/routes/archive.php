@@ -1,6 +1,4 @@
 <?php
-query("USE `".DB_NAME_ARCHIVE."`");
-
 $pages = [
 	'latest' => 'pages/latest.php',
 	'level' => 'pages/level.php',

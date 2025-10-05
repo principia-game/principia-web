@@ -3,10 +3,7 @@ $arg = $path[2] ?? null;
 
 if (isset($_GET['id'])) redirectPerma('/user/%d', $_GET['id']);
 
-if (is_numeric($arg))
-	$user = fetch("SELECT * FROM users WHERE id = ?", [$arg]);
-else
-	$user = fetch("SELECT * FROM users WHERE name = ?", [$arg]);
+$user = is_numeric($arg) ? getUserById($arg) : getUserByName($arg);
 
 if (!isset($user) || !$user) error('404');
 
@@ -41,13 +38,10 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 	]);
 } else { // general profile details stuff
 
-	$levels = query("SELECT l.id id,l.title title, @userfields
-			FROM levels l JOIN users u ON l.author = u.id
-			WHERE l.author = ? AND l.visibility = 0 ORDER BY l.id DESC ".paginate($page, LPP),
-		[$id]);
+	$levels = getLevelsByAuthor($id, $page);
 
 	$count = $cache->hit((IS_ARCHIVE ? ':archive' : '').'levelcount_'.$id, function () use ($id) {
-		return result("SELECT COUNT(*) FROM levels l WHERE l.author = ? AND l.visibility = 0", [$id]);
+		return result("SELECT COUNT(*) FROM @levels l WHERE l.author = ? AND l.visibility = 0", [$id]);
 	});
 
 	if (isset($userdata['id']) && $id == $userdata['id'])

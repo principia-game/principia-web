@@ -1,5 +1,13 @@
 <?php
 
+function getUserById($uid) {
+	return fetch("SELECT * FROM @users WHERE id = ?", [$uid]);
+}
+
+function getUserByName($name) {
+	return fetch("SELECT * FROM @users WHERE name = ?", [$name]);
+}
+
 function tcount($c) {
 	return $c > 1 ? '<span class="num_trophees">'.$c.'</span>' : '';
 }

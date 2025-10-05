@@ -17,25 +17,32 @@ function connectSql() {
 	}
 }
 
-function query($query,$params = []) {
+function query($query, $params = [], $placeholders = []) {
 	global $sql;
 
 	if (!$sql) connectSql();
 
 	$query = str_replace("@userfields", userfields(), $query);
 
+	$archivePrefix = IS_ARCHIVE ? 'archive_' : '';
+	$query = str_replace('@levels', $archivePrefix.'levels', $query);
+	$query = str_replace('@users', $archivePrefix.'users', $query);
+
+	if (!empty($placeholders))
+		$query = vsprintf($query, $placeholders);
+
 	$res = $sql->prepare($query);
 	$res->execute($params);
 	return $res;
 }
 
-function fetch($query,$params = []) {
-	$res = query($query,$params);
+function fetch($query, $params = [], $placeholders = []) {
+	$res = query($query, $params, $placeholders);
 	return $res->fetch();
 }
 
-function result($query,$params = []) {
-	$res = query($query,$params);
+function result($query, $params = [], $placeholders = []) {
+	$res = query($query, $params, $placeholders);
 	return $res->fetchColumn();
 }
 

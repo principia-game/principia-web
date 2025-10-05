@@ -10,7 +10,7 @@ if ($query) {
 	$levels = query(
 			"WITH cte AS (
 				SELECT l.id, l.title, @userfields, COUNT(*) OVER () AS cnt
-				FROM levels l JOIN users u ON l.author = u.id
+				FROM @levels l JOIN @users u ON l.author = u.id
 				WHERE (
 					(MATCH (l.title) AGAINST (? {$boolean})) OR
 					(MATCH (l.description) AGAINST (? {$boolean})) AND ?

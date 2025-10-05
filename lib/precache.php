@@ -46,6 +46,3 @@ class PreCache {
 		$this->updated = true;
 	}
 }
-
-if (!isCli())
-	$precache = new PreCache($cache);

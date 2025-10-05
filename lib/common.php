@@ -28,6 +28,8 @@ if (!$internal)
 	securityHeaders();
 
 if (!isCli()) {
+	$precache = new PreCache($cache);
+
 	// Shorter constants for common $_SERVER values.
 	define('HTTP_IP', $_SERVER['REMOTE_ADDR']);
 	define('HTTP_UA', $_SERVER['HTTP_USER_AGENT'] ?? null);

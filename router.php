@@ -5,6 +5,13 @@ $path = explode('/', $uri);
 $internal = (isset($path[1]) && (in_array($path[1], ['internal', 'principia-version-code'])));
 define('IS_ARCHIVE', (isset($path[1]) && $path[1] != '' && $path[1] == 'archive') || (isset($_GET['search_in']) && $_GET['search_in'] == 'archive'));
 
+// temp
+if ($_SERVER['HTTP_HOST'] == 'archive.principia-web.se') {
+	chdir('lib/routes/');
+	require('lib/routes/legacy_archive.php');
+	exit;
+}
+
 require('lib/common.php');
 
 function notFound() {

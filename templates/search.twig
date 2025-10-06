@@ -7,13 +7,18 @@
 	{% block content %}
 <h1 class="header">
 	Search levels
-	{% if not constant('IS_ARCHIVE') %}<a href="/forum/search">Search the forums</a>{% endif %}
+	<a href="/forum/search">Search the forums</a>
 </h1>
-
-{{ blarg('search', 'Go to the non-archive search page', 'Go to the archive search page') }}
 
 <form>
 	<input type="text" name="query" value="{{ query }}" style="width:360px">
+
+	<p>
+		Search in:
+		<label><input type="radio" name="search_in" value="main" {% if search_in == 'main' %}checked{% endif %}> Current levels</label>
+		&ndash;
+		<label><input type="radio" name="search_in" value="archive" {% if search_in == 'archive' %}checked{% endif %}> Level archive</label>
+	</p>
 
 	<p><label><input type="checkbox" name="descr" value="1" {% if descr == 1 %}checked{% endif %}> Also search descriptions</label></p>
 
@@ -36,24 +41,18 @@
 	</div>
 
 	{% set le_url = '/search?query=' ~ query ~ '&page=%s' %}
+	{% if search_in == 'archive' %}
+		{% set le_url = le_url ~ '&search_in=archive' %}
+	{% endif %}
 	{% if descr == 1 %}
 		{% set le_url = le_url ~ '&descr=1' %}
 	{% endif %}
 	{% if boolean == 1 %}
 		{% set le_url = le_url ~ '&boolean=1' %}
 	{% endif %}
-	{{ pagination(level_count, glob_lpp, archive_prefix() ~ le_url, page) }}
+	{{ pagination(level_count, glob_lpp, le_url, page) }}
 
-	{% if constant('IS_ARCHIVE') %}
-		<br><br>
-	{% else %}
-		<p>
-			Want more or can't find what you're looking for?
-			<a href="https://archive.principia-web.se/search?query={{ query }}">
-				Search for '{{ query }}' the official community site archive.
-			</a>
-		</p>
-	{% endif %}
+	<br><br>
 {% endif %}
 
 	{% endblock %}

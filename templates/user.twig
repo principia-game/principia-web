@@ -77,18 +77,19 @@
 </p>
 
 {% if userpagedata.archivename %}
-	<h3><a href="https://archive.principia-web.se/user/{{ userpagedata.archivename }}">
+	<h3><a href="/archive/user/{{ userpagedata.archivename }}">
 		View this user's levels on the official community site archive
 	</a></h3>
 {% endif %}
 
 {% else %}
-	<h1>{{ name }}</h1>
+	<h1>{{ name }}
+		{% if constant('IS_ARCHIVE') %}<span style="padding-left: 5px" title="This user is part of the official community site archive.">{{ icon("archive") }}</span>{% endif %}
+	</h1>
 
 	{% if name == "zardOz" %}
 		<p>R.I.P. zardOz...</p>
 	{% endif %}
-
 {% endif %}
 
 <h2>Levels</h2>

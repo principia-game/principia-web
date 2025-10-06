@@ -1,7 +1,7 @@
 {% extends "_layout.twig" %}
 
 {% if constant('IS_ARCHIVE') %}
-	{% set img_url = "/thumbs/" ~ lid ~ "-0-0.jpg" %}
+	{% set img_url = "/archive/thumbs/" ~ lid ~ "-0-0.jpg" %}
 	{% set play_domain = "principia://archive.principia-web.se" %}
 {% else %}
 	{% set img_url = "/thumbs/" ~ lid ~ ".jpg" %}
@@ -20,7 +20,8 @@
 	<div class="header_message">Your level has been successfully entered into the <b>{{ contest_entered.title }}</b> contest!</div>
 {% endif %}
 
-<h1>{{ level.title }}</h1>
+<h1>{{ level.title }}
+	{% if constant('IS_ARCHIVE') %}<span style="padding-left: 5px" title="This level is part of the official community site archive.">{{ icon("archive") }}</span>{% endif %}</h1>
 
 <span class="misc">
 	By {{ userlink(level, 'u_') }}

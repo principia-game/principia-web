@@ -7,7 +7,7 @@ Principia was originally developed as a paid commercial game by the Swedish inde
 
 In August 2022, Principia's source code was finally released onto [GitHub](https://github.com/Bithack/principia) and is now being further developed as an open source project by the community that grew up playing it. Principia is now free for everyone to download, use and modify under the terms of the BSD 3-Clause license. The game is currently available play on Windows, Linux, Android, as well as experimental ports to other platforms.
 
-There are tens of thousands of user made creations by the community to play and enjoy. [Browse the latest](/browse) that the community has made right now, or browse the full collection of 25000+ levels from 2013 to 2018 on the [Principia official community site archive](https://archive.principia-web.se).
+There are tens of thousands of user made creations by the community to play and enjoy. [Browse the latest](/browse) that the community has made right now, or browse the full collection of 25000+ levels from 2013 to 2018 on the [Principia official community site archive](/archive/).
 
 ## [Download Principia!](/download)
 

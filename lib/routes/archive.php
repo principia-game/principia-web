@@ -4,7 +4,6 @@ $pages = [
 	'level' => 'pages/level.php',
 	'popular' => 'pages/popular.php',
 	'random' => 'pages/random.php',
-	'search' => 'pages/search.php',
 	'sitemap' => 'pages/sitemap.php',
 	'top' => 'pages/top.php',
 	'user' => 'pages/user.php',

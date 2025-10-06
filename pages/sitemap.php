@@ -1,20 +1,19 @@
 <?php
+
+$sitemap = new Sitemap('https://principia-web.se/');
+
 if (IS_ARCHIVE) {
 	$page = $_GET['page'] ?? 1;
 
-	$sitemap = new Sitemap('https://archive.principia-web.se/');
-
 	$levels = query("SELECT id FROM @levels WHERE visibility = 0".paginate($page, 5000));
 	while ($level = $levels->fetch()) {
-		$sitemap->add('level/'.$level['id']);
+		$sitemap->add('archive/level/'.$level['id']);
 	}
 
 	$sitemap->output();
 
 	return;
 }
-
-$sitemap = new Sitemap('https://principia-web.se/');
 
 $sitemap->add('');
 $sitemap->add('about');

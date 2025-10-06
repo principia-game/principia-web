@@ -1,6 +1,7 @@
 <?php
 $query = (isset($_GET['query']) ? trim($_GET['query']) : '');
 $page = $_GET['page'] ?? 1;
+$searchIn = $_GET['search_in'] ?? 'main';
 $descr = $_GET['descr'] ?? 0;
 $booleanmode = $_GET['boolean'] ?? 0;
 
@@ -25,6 +26,7 @@ twigloader()->display('search.twig', [
 	'query' => $query,
 	'page' => $page,
 	'levels' => $levels ?? null,
+	'search_in' => $searchIn,
 	'descr' => $descr,
 	'boolean' => $booleanmode
 ]);

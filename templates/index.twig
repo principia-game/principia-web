@@ -49,7 +49,7 @@
 
 	{% include 'includes/social_links.twig' %}
 
-	<p>And the <a href="https://archive.principia-web.se">Official community site archive</a>, an archive of old levels spanning from 2013 to 2018.</p>
+	<p>And the <a href="/archive/">Official community site archive</a>, an archive of old levels spanning from 2013 to 2018.</p>
 
 	<p><a href="https://apparatus.voxelmanip.se">Apparatus</a> player? Check out <a href="/wiki/Principia_for_Apparatus_Players">Principia for Apparatus Players</a> on the Principia Wiki!</a>
 </div>
@@ -117,11 +117,7 @@
 	{% endfor %}
 </div>
 
-<div class="intermission center">
-	<a href="https://archive.principia-web.se">
-		<img src="/assets/archive_banner.webp" alt="Browse the community site archive - A full collection of levels uploaded by the community between 2013-2018">
-	</a>
-</div>
+{% include 'includes/browse_the_archive.twig' %}
 
 <h2 class="header">Latest comments</h2>
 <div class="comments">

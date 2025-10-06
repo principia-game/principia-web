@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<title>{{ title }}{% if not no_tagline %} - Principia{% if constant('IS_ARCHIVE') %} Archive{% endif %}{% endif %}</title>
+<title>{{ title }}{% if not no_tagline %} - Principia{% endif %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {# inline font styling - update from /static/css/fonts.css #}
@@ -15,7 +15,7 @@
 {% if image %}<meta property="og:image" content="{{ image }}">{% endif %}
 {% if description %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
 <meta property="og:description" content="{{ description }}">{% endif %}
-<meta property="og:site_name" content="Principia{% if constant('IS_ARCHIVE') %} Community Site Archive{% endif %}">
+<meta property="og:site_name" content="Principia">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ domain }}{{ uri }}">
 <link rel="canonical" href="{{ domain }}{{ pagename }}">

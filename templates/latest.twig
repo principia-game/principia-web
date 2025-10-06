@@ -14,7 +14,7 @@
 	{% set title = term ~ " levels (Page " ~ page ~ ")" %}
 {% endif %}
 {% if type != 'all' %}
-	{% set pagename = '/latest/' ~ type %}
+	{% set pagename = archive_prefix() ~ '/latest/' ~ type %}
 {% endif %}
 
 	{% block content %}
@@ -30,13 +30,15 @@
 	</p>
 {% endif %}
 
+{{ blarg('latest', 'Go to the non-archive latest levels page', 'Go to the archive latest levels page') }}
+
 <p>Filter by level type:</p>
 
 <div class="latest-buttons">
-	<a class="play-btn {% if type == 'custom' %}blue{% else %}green{% endif %}" href="/latest/custom">Custom</a>
-	<a class="play-btn {% if type == 'adventure' %}blue{% else %}green{% endif %}" href="/latest/adventure">Adventure</a>
-	<a class="play-btn {% if type == 'puzzle' %}blue{% else %}green{% endif %}" href="/latest/puzzle">Puzzle</a>
-	<a class="play-btn {% if type == 'all' %}blue{% else %}green{% endif %}" href="/latest">All</a>
+	<a class="play-btn {% if type == 'custom' %}blue{% else %}green{% endif %}" href="{{ '/latest/custom' | archive_prefix }} ">Custom</a>
+	<a class="play-btn {% if type == 'adventure' %}blue{% else %}green{% endif %}" href="{{ '/latest/adventure' | archive_prefix }}">Adventure</a>
+	<a class="play-btn {% if type == 'puzzle' %}blue{% else %}green{% endif %}" href="{{ '/latest/puzzle' | archive_prefix }}">Puzzle</a>
+	<a class="play-btn {% if type == 'all' %}blue{% else %}green{% endif %}" href="{{ '/latest' | archive_prefix }}">All</a>
 </div>
 
 <div class="level-list">
@@ -52,7 +54,7 @@
 {% else %}
 	{% set le_url = '/latest/' ~ type ~ '?page=%s' %}
 {% endif %}
-{{ pagination(level_count, glob_lpp, le_url, page) }}
+{{ pagination(level_count, glob_lpp, archive_prefix() ~ le_url, page) }}
 
 <br><br>
 	{% endblock %}

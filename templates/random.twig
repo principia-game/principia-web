@@ -8,6 +8,8 @@
 
 <p>I'm feeling lucky! Here are some randomly picked levels. Refresh the page to see more.</p>
 
+{{ blarg('random', 'Go to the non-archive random levels page', 'Go to the archive random levels page') }}
+
 <div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}

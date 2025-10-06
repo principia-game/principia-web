@@ -11,7 +11,7 @@
 {% set title = level.title %}
 {% set description = level.description %}
 {% set image = domain ~ img_url %}
-{% set pagename = "/level/" ~ lid %}
+{% set pagename = archive_prefix() ~ "/level/" ~ lid %}
 
 	{% block content %}
 {% if already_entered %}
@@ -55,13 +55,15 @@
 				<a class="play-btn blue" href="{{ play_domain }}/sandbox/db/{{ lid }}">Edit</a>
 			{%- endif -%}
 
-			{%- if userdata.rank > 2 and level.author != userdata.id -%}
-				<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
-			{%- endif -%}
+			{%- if not constant('IS_ARCHIVE') -%}
+				{%- if userdata.rank > 2 and level.author != userdata.id -%}
+					<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
+				{%- endif -%}
 
-			{%- if log and not has_liked -%}
-				<button class="play-btn green" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
-			{% endif %}
+				{%- if log and not has_liked -%}
+					<button class="play-btn green" id="btn_like" onclick="vote(this, {{ level.id }})">Like</button>
+				{% endif %}
+			{%- endif -%}
 			{% if level.likes > 0 %}
 				<span class="likemsg">{{ level.likes }} player{% if level.likes != 1 %}s{% endif %} liked this.</span>
 			{% endif %}
@@ -71,7 +73,7 @@
 
 		<div class="protocol-issues" id="protocol-issues">
 			<strong>Issues trying to play levels?</strong>
-			<a href="{{ '/wiki/Troubleshoot_Playing_Levels' | main_site }}">Troubleshoot issues playing levels</a>
+			<a href="/wiki/Troubleshoot_Playing_Levels">Troubleshoot issues playing levels</a>
 		</div>
 
 		<p>
@@ -91,7 +93,7 @@
 		Level ID: {{ level.id }}
 	</p>
 
-	{% if userdata.id == level.author or userdata.rank > 1 %}
+	{% if not constant('IS_ARCHIVE') and (userdata.id == level.author or userdata.rank > 1) %}
 	<form method="POST"><p>
 		<a href="/level/{{ lid }}?togglelock">{% if level.visibility == 1 %}Unlock level{% else %}Lock level{% endif %}</a>
 		- <a href="/editlevel?id={{ lid }}">Modify metadata</a>

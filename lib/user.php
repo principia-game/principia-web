@@ -33,7 +33,7 @@ function userlink($user, $pre = '') {
 		if ($silver) $trophy .= '<span class="trophee silver">'.tcount($silver).'</span>';
 
 		return sprintf(
-			'<a class="user" href="/user/%d"><span class="t_user">%s%s</span></a>',
+			'<a class="user" href="/archive/user/%d"><span class="t_user">%s%s</span></a>',
 		$user[$pre.'id'], $user[$pre.'name'], $trophy);
 	}
 

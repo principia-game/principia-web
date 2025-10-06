@@ -12,7 +12,7 @@ assert($lid == $level['id']);
 
 $contestStatus = 0;
 
-if ($log) {
+if (!IS_ARCHIVE && $log) {
 	// like
 	$hasLiked = result("SELECT COUNT(*) FROM likes WHERE user = ? AND level = ?", [$userdata['id'], $lid]) == 1 ? true : false;
 	if (isset($_POST['vote'])) {

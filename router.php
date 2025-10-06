@@ -3,11 +3,11 @@ $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $path = explode('/', $uri);
 
 $internal = (isset($path[1]) && (in_array($path[1], ['internal', 'principia-version-code'])));
-define('IS_ARCHIVE', $_SERVER['HTTP_HOST'] == 'principia-web-archive.uwu' || $_SERVER['HTTP_HOST'] == 'archive.principia-web.se');
+define('IS_ARCHIVE', $_SERVER['HTTP_HOST'] == 'principia-web-archive.uwu' || $_SERVER['HTTP_HOST'] == 'archive.principia-web.se' || (isset($path[1]) && $path[1] != '' && $path[1] == 'archive'));
 
 require('lib/common.php');
 
-if (IS_ARCHIVE) {
+if ($_SERVER['HTTP_HOST'] == 'principia-web-archive.uwu' || $_SERVER['HTTP_HOST'] == 'archive.principia-web.se') {
 	require('lib/routes/archive.php');
 	return;
 }
@@ -30,6 +30,10 @@ if (isset($path[1]) && $path[1] != '') {
 			adminerBootstrap();
 		else
 			notFound();
+	}
+	elseif ($path[1] == 'archive') {
+		array_shift($path);
+		require('lib/routes/archive.php');
 	}
 	elseif ($path[1] == 'forum') {
 		$submodule = 'forum';

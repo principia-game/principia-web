@@ -22,19 +22,13 @@ const LATEST_VERSION_CODE = 39;
 
 // technically not a constant but let's just say it is
 
-if (IS_ARCHIVE) {
-	$footerlinks = [
-		'https://principia-web.se' => 'Go back'
-	];
-} else {
-	$footerlinks = [
-		'/about' => "About",
-		'/browse' => "Browse",
-		'/wiki/FAQ' => 'FAQ',
-		'/rules' => 'Rules',
-		'/privacy' => 'Privacy Policy'
-	];
-}
+$footerlinks = [
+	'/about' => "About",
+	'/browse' => "Browse",
+	'/wiki/FAQ' => 'FAQ',
+	'/rules' => 'Rules',
+	'/privacy' => 'Privacy Policy'
+];
 
 if (isset($path[1]) && $path[1] != 'report')
 	$footerlinks['/report?url='.$_SERVER['REQUEST_URI']] = 'Report';

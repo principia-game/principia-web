@@ -31,7 +31,7 @@ function level($level, $featured = '', $pkg = false) {
 	if (!$pkg) {
 		if (!isset($level['visibility']) || $level['visibility'] != 1) {
 			if (IS_ARCHIVE)
-				$img = "thumbs/low/".$level['id']."-0-0.jpg";
+				$img = "archive/thumbs/low/".$level['id']."-0-0.jpg";
 			else
 				$img = "thumbs/low/".$level['id'].".jpg";
 		} else
@@ -39,7 +39,7 @@ function level($level, $featured = '', $pkg = false) {
 	} else
 		$img = "assets/package_thumb.svg";
 
-	$page = ($pkg ? 'package' : 'level');
+	$page = (IS_ARCHIVE ? 'archive/' : '') . ($pkg ? 'package' : 'level');
 	$label = $featured ? "<span class=\"featured small\">{$featured}</span>" : '';
 	$title = esc(strlen($level['title']) > 60 ? substr($level['title'], 0, 60).'...' : $level['title']);
 	$author = userlink($level, 'u_');
@@ -63,4 +63,12 @@ function relativeTime($time) {
 	]);
 
 	return $relativeTime->timeAgo($time);
+}
+
+function blarg($url, $msgArchive, $msgMain) {
+	if (IS_ARCHIVE) {
+		return sprintf('<p><a href="/%s">%s</a></p>', $url, $msgArchive);
+	} else {
+		return sprintf('<p><a href="/archive/%s">%s</a></p>', $url, $msgMain);
+	}
 }

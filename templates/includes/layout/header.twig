@@ -5,27 +5,24 @@
 		</a>
 		<a href="/popular">Popular</a>
 		<a href="/top">Top</a>
-		<a href="/latest">{% if constant('IS_ARCHIVE') %}Browse{% else %}New{% endif %}</a>
-		{% if constant('IS_ARCHIVE') %}<a href="/random">Random picks</a>{% endif %}
-		<a href="{{ '/download' | main_site }}" class="download">Download</a>
-		<a href="{{ '/forum/' | main_site }}">Forum</a>
-		<a href="{{ '/wiki/' | main_site }}">Wiki</a>
+		<a href="/latest">New</a>
+		<a href="/download" class="download">Download</a>
+		<a href="/forum/">Forum</a>
+		<a href="/wiki/">Wiki</a>
 		<a href="/search">{{ icon("search") }}</a>
-		{% if not constant('IS_ARCHIVE') %}
-			<div class="nav-right">
-				{% if log %}
-					{% if userdata.rank > 1 %}
-						<a href="/admin">{{ icon("shield") }}</a>
-					{% endif %}
-					{{ userlink(userdata) }}
-					{% if userdata.notifications %}
-						<span class="notifs">[{{ userdata.notifications }}]</span>
-					{% endif %}
-				{% else %}
-					<a href="/login">Log in</a>
+		<div class="nav-right">
+			{% if log %}
+				{% if userdata.rank > 1 %}
+					<a href="/admin">{{ icon("shield") }}</a>
 				{% endif %}
-			</div>
-		{% endif %}
+				{{ userlink(userdata) }}
+				{% if userdata.notifications %}
+					<span class="notifs">[{{ userdata.notifications }}]</span>
+				{% endif %}
+			{% else %}
+				<a href="/login">Log in</a>
+			{% endif %}
+		</div>
 	</div>
 </nav>
 {% if submodule == 'forum' %}

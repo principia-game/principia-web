@@ -2,7 +2,7 @@
 
 {% set title = name %}
 {% set description = userpagedata.about|replace({"\r":'',"\n":' '}) %}
-{% set pagename = "/user/" ~ id %}
+{% set pagename = archive_prefix() ~ "/user/" ~ id %}
 
 	{% block content %}
 {% if action == 'ban' %}
@@ -106,7 +106,7 @@
 {% else %}
 	{% set forceuser = "" %}
 {% endif %}
-{% set le_url = '/user/' ~ id ~ '?page=%s' ~ forceuser %}
+{% set le_url = archive_prefix() ~ '/user/' ~ id ~ '?page=%s' ~ forceuser %}
 {{ pagination(level_count, glob_lpp, le_url, page) }}
 
 {% if not constant('IS_ARCHIVE') %}

@@ -8,6 +8,8 @@
 
 <p><em>These {% if constant('IS_ARCHIVE') %}were{% else %}are{% endif %} the most popular levels of all time, with the most downloads total.</em></p>
 
+{{ blarg('popular', 'Go to the non-archive popular levels page', 'Go to the archive popular levels page') }}
+
 <div class="level-list">
 {% for level in levels %}
 	{{ level(level) }}
@@ -16,7 +18,7 @@
 {% endfor %}
 </div>
 
-{{ pagination(level_count, glob_lpp, "/popular?page=%s", page) }}
+{{ pagination(level_count, glob_lpp, archive_prefix() ~ "/popular?page=%s", page) }}
 
 <br><br>
 	{% endblock %}

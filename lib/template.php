@@ -36,6 +36,11 @@ class Template {
 		$this->addFunction('icon', function ($name) {
 			return file_get_contents("templates/icons/{$name}.svg");
 		}, ['is_safe' => ['html']]);
+
+		$this->addFunction('archive_prefix', function () {
+			return IS_ARCHIVE ? '/archive' : '';
+		});
+		$this->addFunction('blarg', 'blarg');
 	}
 
 	private function addFilters() {
@@ -54,7 +59,9 @@ class Template {
 
 		$this->addFilter('ipv6_to_ipv4');
 
-		$this->addFilter('main_site', 'mainSite');
+		$this->addFilter('archive_prefix', function ($path) {
+			return (IS_ARCHIVE ? '/archive' : '') . $path;
+		});
 	}
 
 	private function addGlobals() {
@@ -67,7 +74,7 @@ class Template {
 		if ($GLOBALS['path'][1] == 'forum')
 			$this->addGlobal('pagename', '/forum/'.($GLOBALS['path'][2] ?? ''));
 		else
-			$this->addGlobal('pagename', '/'.($GLOBALS['path'][1] ?? ''));
+			$this->addGlobal('pagename', '/'.(IS_ARCHIVE ? 'archive/' : '').($GLOBALS['path'][1] ?? ''));
 	}
 
 	public function addFunction($name, $callable = null, $options = null) {

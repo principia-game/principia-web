@@ -10,6 +10,8 @@
 	{% if not constant('IS_ARCHIVE') %}<a href="/forum/search">Search the forums</a>{% endif %}
 </h1>
 
+{{ blarg('search', 'Go to the non-archive search page', 'Go to the archive search page') }}
+
 <form>
 	<input type="text" name="query" value="{{ query }}" style="width:360px">
 
@@ -33,14 +35,14 @@
 	{% endfor %}
 	</div>
 
-	{% set le_url = 'search?query=' ~ query ~ '&page=%s' %}
+	{% set le_url = '/search?query=' ~ query ~ '&page=%s' %}
 	{% if descr == 1 %}
 		{% set le_url = le_url ~ '&descr=1' %}
 	{% endif %}
 	{% if boolean == 1 %}
 		{% set le_url = le_url ~ '&boolean=1' %}
 	{% endif %}
-	{{ pagination(level_count, glob_lpp, le_url, page) }}
+	{{ pagination(level_count, glob_lpp, archive_prefix() ~ le_url, page) }}
 
 	{% if constant('IS_ARCHIVE') %}
 		<br><br>

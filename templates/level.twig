@@ -2,10 +2,12 @@
 
 {% if constant('IS_ARCHIVE') %}
 	{% set img_url = "/archive/thumbs/" ~ lid ~ "-0-0.jpg" %}
-	{% set play_domain = "principia://archive.principia-web.se" %}
+	{% set play_domain = "principia://principia-web.se" %}
+	{% set play_id = lid + constant('ARCHIVE_LVL_OFFSET') %}
 {% else %}
 	{% set img_url = "/thumbs/" ~ lid ~ ".jpg" %}
 	{% set play_domain = "principia://principia-web.se" %}
+	{% set play_id = lid %}
 {% endif %}
 
 {% set title = level.title %}
@@ -49,16 +51,16 @@
 
 	<div class="info">
 		{% if not level.visibility == 1 %}
-			<a class="play-btn green" id="protocol-button" href="{{ play_domain }}/play/lvl/db/{{ lid }}" onclick="/**/">Play</a>
-			{%- if level.author == userdata.id -%}
-				<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ lid }}">Edit</a>
+			<a class="play-btn green" id="protocol-button" href="{{ play_domain }}/play/lvl/db/{{ play_id }}" onclick="/**/">Play</a>
+			{%- if not constant('IS_ARCHIVE') and level.author == userdata.id -%}
+				<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ play_id }}">Edit</a>
 			{%- else -%}
-				<a class="play-btn blue" href="{{ play_domain }}/sandbox/db/{{ lid }}">Edit</a>
+				<a class="play-btn blue" href="{{ play_domain }}/sandbox/db/{{ play_id }}">Edit</a>
 			{%- endif -%}
 
 			{%- if not constant('IS_ARCHIVE') -%}
 				{%- if userdata.rank > 2 and level.author != userdata.id -%}
-					<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ lid }}">Edit <span class="text-for-ants">[Admin]</span></a>
+					<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ play_id }}">Edit <span class="text-for-ants">[Admin]</span></a>
 				{%- endif -%}
 
 				{%- if log and not has_liked -%}

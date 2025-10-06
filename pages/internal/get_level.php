@@ -1,9 +1,12 @@
 <?php
 $level = $_GET['i'] ?? null;
-if (IS_ARCHIVE)
+if ($level > ARCHIVE_LVL_OFFSET) {
+	$level -= ARCHIVE_LVL_OFFSET;
+	$isArchive = true;
 	$levelpath = sprintf('data/archive/levels/%d.plvl', $level);
-else
+} else {
 	$levelpath = sprintf('data/levels/%d.plvl', $level);
+}
 
 if (extractPrincipiaVersion(HTTP_UA) < LATEST_VERSION_CODE) {
 	header("x-error-message: Please update your version of Principia to be able to play levels.");
@@ -14,7 +17,7 @@ if (extractPrincipiaVersion(HTTP_UA) < LATEST_VERSION_CODE) {
 if (!$level || !file_exists($levelpath))
 	offerFile('static/assets/null.plvl', 'not-found');
 
-if (!IS_ARCHIVE)
+if (!isset($isArchive))
 	query("UPDATE levels SET downloads = downloads + 1 WHERE id = ?", [$level]);
 
 offerFile($levelpath, $level.'.plvl');

@@ -23,7 +23,7 @@ function userlink($user, $pre = '') {
 	if ($user[$pre.'customcolor'])
 		$user[$pre.'name'] = sprintf('<span style="color:#%s">%s</span>', $user[$pre.'customcolor'], $user[$pre.'name']);
 
-	if (IS_ARCHIVE) {
+	if (IS_ARCHIVE && !isset($user[$pre.'rank'])) {
 		$trophy = '';
 		$black = $user[$pre.'t_black'] ?? 0;
 		$gold = $user[$pre.'t_gold'] ?? 0;

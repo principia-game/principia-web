@@ -15,7 +15,7 @@
 				{% if userdata.rank > 1 %}
 					<a href="/admin">{{ icon("shield") }}</a>
 				{% endif %}
-				{{ userlink(userdata) }}
+				{{ userlink(userdata, '', false) }}
 				{% if userdata.notifications %}
 					<span class="notifs">[{{ userdata.notifications }}]</span>
 				{% endif %}

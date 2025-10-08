@@ -13,7 +13,8 @@ function cmtTypeToNum($type) {
 		'level'		=> 1,
 		'contest'	=> 3,
 		'user'		=> 4,
-		'package'	=> 6
+		'package'	=> 6,
+		'archive/level' => 7
 	};
 }
 
@@ -22,6 +23,7 @@ function cmtNumToType($num) {
 		1 => 'level',
 		3 => 'contest',
 		4 => 'user',
-		6 => 'package'
+		6 => 'package',
+		7 => 'archive/level'
 	};
 }

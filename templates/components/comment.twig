@@ -24,7 +24,7 @@
 				{% endif %}
 				<span class="date" title="{{ cmnt.time | date('Y-m-d H:i:s') }}">{{ cmnt.time | relative_time }}</span>
 
-				{{ userlink(cmnt, 'u_') }}: <span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
+				{{ userlink(cmnt, 'u_', false) }}: <span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
 			</div>
 		{% endif %}
 	{% endfor %}

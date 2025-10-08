@@ -146,7 +146,5 @@
 	{{ level(parentlevel) }}
 {% endif %}
 
-{% if not constant('IS_ARCHIVE') %}
-	{{ comments(comments, 'level', level.id) }}
-{% endif %}
+{{ comments(comments, constant('IS_ARCHIVE') ? 'archive/level' : 'level', level.id) }}
 	{% endblock %}

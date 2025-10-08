@@ -53,7 +53,8 @@ $context = [
 	'lid' => $lid,
 	'level' => $level,
 	'derivatives' => fetchArray(getLevelDerivatives($lid)),
-	'parentlevel' => getParentLevel($level)
+	'parentlevel' => getParentLevel($level),
+	'comments' => getComments(IS_ARCHIVE ? 'archive/level' : 'level', $lid),
 ];
 
 if (!IS_ARCHIVE) {
@@ -61,9 +62,6 @@ if (!IS_ARCHIVE) {
 		'contests' => fetchArray(getCurrentContests()),
 		'contest_entered' => $contestStatus == 1,
 		'already_entered' => $contestStatus == 2,
-		'comments' => getComments('level', $lid),
-		'derivatives' => fetchArray(getLevelDerivatives($lid)),
-		'parentlevel' => getParentLevel($level),
 		'leaderboard' => fetchArray(getLeaderboard($lid))
 	]);
 }

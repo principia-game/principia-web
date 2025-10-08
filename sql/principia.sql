@@ -7,6 +7,42 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+CREATE TABLE `archive_levels` (
+  `id` mediumint(8) unsigned NOT NULL,
+  `cat` tinyint(3) unsigned DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `author` int(10) unsigned DEFAULT NULL,
+  `time` int(10) unsigned DEFAULT NULL,
+  `parent` mediumint(8) unsigned DEFAULT NULL,
+  `revision` int(10) unsigned NOT NULL DEFAULT 1,
+  `revision_time` int(10) unsigned DEFAULT NULL,
+  `likes` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `visibility` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `downloads` mediumint(8) unsigned NOT NULL DEFAULT 0,
+  `thumbs` tinyint(3) unsigned NOT NULL DEFAULT 1,
+  `platform` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT 'N/A',
+  PRIMARY KEY (`id`),
+  KEY `downloads_visibility` (`downloads`,`visibility`),
+  KEY `likes_visibility` (`likes`,`visibility`),
+  KEY `parent` (`parent`),
+  KEY `visibility` (`visibility` DESC),
+  KEY `author` (`author`),
+  FULLTEXT KEY `title` (`title`),
+  FULLTEXT KEY `description` (`description`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `archive_users` (
+  `id` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `customcolor` varchar(6) DEFAULT NULL,
+  `trophies` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `bans` (
   `user` int(10) unsigned NOT NULL,
   `banner` int(10) unsigned NOT NULL,
@@ -24,7 +60,7 @@ CREATE TABLE `comments` (
   `level` int(10) unsigned NOT NULL,
   `author` int(10) unsigned NOT NULL,
   `time` int(10) unsigned NOT NULL,
-  `message` text NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `author` (`author`),
@@ -182,6 +218,7 @@ CREATE TABLE `users` (
   `rank` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `threads` int(10) unsigned NOT NULL DEFAULT 0,
+  `trophies` int(10) unsigned DEFAULT NULL,
   `archivename` varchar(128) DEFAULT NULL,
   `customcolor` char(6) DEFAULT NULL,
   `timezone` varchar(64) DEFAULT NULL,
@@ -311,4 +348,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2024-12-18 21:44:22
+-- 2025-10-08 22:09:20 UTC

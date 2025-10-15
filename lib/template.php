@@ -24,6 +24,7 @@ class Template {
 
 	private function addFunctions() {
 		$this->addFunction('level');
+		$this->addFunction('package');
 		$this->addFunction('userlink');
 		$this->addFunction('comments');
 		$this->addFunction('pagination');

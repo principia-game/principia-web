@@ -6,8 +6,8 @@
 <h1>Packages</h1>
 
 <div class="level-list">
-{% for package in packages %}
-	{{ level(package, '', true) }}
+{% for pkg in packages %}
+	{{ package(pkg) }}
 {% else %}
 	No packages.
 {% endfor %}

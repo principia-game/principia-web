@@ -27,27 +27,44 @@ function error($title, $message = '') {
 	die();
 }
 
-function level($level, $featured = '', $pkg = false) {
-	if (!$pkg) {
-		if (!isset($level['visibility']) || $level['visibility'] != 1) {
-			if (IS_ARCHIVE)
-				$img = "archive/thumbs/low/".$level['id']."-0-0.jpg";
-			else
-				$img = "thumbs/low/".$level['id'].".jpg";
-		} else
-			$img = "assets/locked_thumb.svg";
-	} else
-		$img = "assets/package_thumb.svg";
+function level($level, $featured = '') {
+	$isArchive = IS_ARCHIVE || $level['id'] > ARCHIVE_LVL_OFFSET;
+	if ($level['id']  > ARCHIVE_LVL_OFFSET)
+		$level['id'] -= ARCHIVE_LVL_OFFSET;
 
-	$page = (IS_ARCHIVE ? 'archive/' : '') . ($pkg ? 'package' : 'level');
+	if (!isset($level['visibility']) || $level['visibility'] != 1) {
+		if ($isArchive)
+			$img = "/archive/thumbs/low/".$level['id']."-0-0.jpg";
+		else
+			$img = "/thumbs/low/".$level['id'].".jpg";
+	} else
+		$img = "/assets/locked_thumb.svg";
+
+	$page = ($isArchive ? 'archive/' : '') . 'level';
 	$label = $featured ? "<span class=\"featured small\">{$featured}</span>" : '';
 	$title = esc(strlen($level['title']) > 60 ? substr($level['title'], 0, 60).'...' : $level['title']);
-	$author = userlink($level, 'u_');
+	$author = userlink($level, 'u_', $isArchive);
 
 	return <<<HTML
-<div class="level" id="l-{$level['id']}">
+<div class="level">
 	<a class="lvlbox_top" href="/{$page}/{$level['id']}">
-		<img src="/{$img}" alt="" loading="lazy">$label
+		<img src="{$img}" alt="" loading="lazy">$label
+		<div class="lvltitle">$title</div>
+	</a>
+	{$author}
+</div>
+HTML;
+}
+
+function package($pkg) {
+	$img = "assets/package_thumb.svg";
+	$title = esc(strlen($pkg['title']) > 60 ? substr($pkg['title'], 0, 60).'...' : $pkg['title']);
+	$author = userlink($pkg, 'u_');
+
+	return <<<HTML
+<div class="level">
+	<a class="lvlbox_top" href="/package/{$pkg['id']}">
+		<img src="/{$img}" alt="" loading="lazy">
 		<div class="lvltitle">$title</div>
 	</a>
 	{$author}

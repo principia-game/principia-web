@@ -66,12 +66,12 @@ registerSpecialPage('pageindex', function () {
 
 // Special:Sitemap - Generates a newline separated sitemap for Google Search Console et al.
 registerSpecialPage('sitemap', function () {
-	$sitemap = new Sitemap('https://principia-web.se/');
+	$sitemap = new Sitemap('https://principia-web.se/wiki/');
 
 	$pages = glob(WIKI_PAGES.'*.md');
 
 	foreach ($pages as $page)
-		$sitemap->add('wiki/'.filepathToSlug($page));
+		$sitemap->add(filepathToSlug($page));
 
 	$sitemap->output();
 });

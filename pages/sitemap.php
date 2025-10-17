@@ -1,55 +1,62 @@
 <?php
 
-$sitemap = new Sitemap('https://principia-web.se/');
+$s = new Sitemap('https://principia-web.se/');
 
 if (IS_ARCHIVE) {
-	$page = $_GET['page'] ?? 1;
+	$s->setPrefix('archive/');
 
-	$levels = query("SELECT id FROM @levels WHERE visibility = 0".paginate($page, 5000));
-	while ($level = $levels->fetch()) {
-		$sitemap->add('archive/level/'.$level['id']);
-	}
+	$s->add('');
 
-	$sitemap->output();
+	$s->add(['latest', 'latest/custom', 'latest/adventure', 'latest/puzzle']);
 
+	$levels = query("SELECT id FROM archive_levels WHERE visibility = 0");
+	while ($level = $levels->fetch())
+		$s->add('level/'.$level['id']);
+
+	$s->add(['popular', 'random', 'top']);
+
+	$users = query("SELECT id FROM archive_users ORDER BY id");
+	while ($user = $users->fetch())
+		$s->add('user/'.$user['id']);
+
+	$s->add('userlist');
+
+	$s->output();
 	return;
 }
 
-$sitemap->add('');
-$sitemap->add('about');
-$sitemap->add('browse');
-$sitemap->add('classic-puzzles');
-$sitemap->add('credits');
+$s = new Sitemap('https://principia-web.se/');
+$s->add(['', 'about', 'browse', 'classic-puzzles', 'credits']);
 
 $contests = query("SELECT id FROM contests");
 while ($contest = $contests->fetch()) {
-	$sitemap->add('contest/'.$contest['id']);
+	$s->add('contest/'.$contest['id']);
 }
 
-$sitemap->add('contests');
-$sitemap->add('donate');
-$sitemap->add('forgotpassword');
+$s->add(['contests', 'donate', 'download', 'forgotpassword', 'image-to-lua']);
+
+$s->add(['latest', 'latest/custom', 'latest/adventure', 'latest/puzzle']);
 
 $levels = query("SELECT id FROM levels WHERE visibility = 0");
-while ($level = $levels->fetch()) {
-	$sitemap->add('level/'.$level['id']);
-}
+while ($level = $levels->fetch())
+	$s->add('level/'.$level['id']);
 
-$sitemap->add('news');
+$s->add(['listpackages', 'login', 'news', 'news/feed']);
 
 $latestnews = News::getLatestArticle();
-for ($i = 1; $i < $latestnews['id']+1; $i++) {
-	$sitemap->add('news/'.$i);
-}
+for ($i = 1; $i < $latestnews['id']+1; $i++)
+	$s->add('news/'.$i);
 
-$sitemap->add('privacy');
-$sitemap->add('rules');
+$packages = query("SELECT id FROM packages");
+while ($package = $packages->fetch())
+	$s->add('package/'.$package['id']);
+
+$s->add(['popular', 'privacy', 'random', 'register', 'rules', 'search', 'sitemaps', 'top']);
 
 $users = query("SELECT id FROM users ORDER BY id");
-while ($user = $users->fetch()) {
-	$sitemap->add('user/'.$user['id']);
-}
+while ($user = $users->fetch())
+	$s->add('user/'.$user['id']);
 
-$sitemap->add('userlist');
+$s->add('userlist');
 
-$sitemap->output();
+$s->output();

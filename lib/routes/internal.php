@@ -1,6 +1,11 @@
 <?php
 
 $paths = [
+	// Compatibility route for internal endpoints on the archive subdomain
+	'archive_level' => function() {
+		$_GET['i'] += ARCHIVE_LVL_OFFSET;
+		require('pages/internal/get_level.php');
+	},
 	'derive_level' => 'get_level',
 	'edit_level' => 'get_level',
 	'get_featured' => function() {

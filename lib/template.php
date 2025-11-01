@@ -66,6 +66,7 @@ class Template {
 	}
 
 	private function addGlobals() {
+		$this->addGlobal('submodule', 'main');
 		$this->addGlobal('userdata', $GLOBALS['userdata']);
 		$this->addGlobal('log', $GLOBALS['log']);
 		$this->addGlobal('glob_lpp', LPP);

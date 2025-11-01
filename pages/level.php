@@ -59,6 +59,7 @@ $context = [
 
 if (!IS_ARCHIVE) {
 	$context = array_merge($context, [
+		'has_liked' => $hasLiked,
 		'contests' => fetchArray(getCurrentContests()),
 		'contest_entered' => $contestStatus == 1,
 		'already_entered' => $contestStatus == 2,

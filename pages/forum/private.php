@@ -4,7 +4,7 @@ needsLogin();
 if (getUserCountry() == 'GB')
 	error(451, "The principia-web PM system is not available for users accessing the website from the United Kingdom, due to the Online Safety Act.");
 
-$page = $_GET['page'] ?? 1;
+$page = (int)($_GET['page'] ?? 1);
 $view = $_GET['view'] ?? 'read';
 $sent = $view == 'sent';
 

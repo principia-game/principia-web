@@ -11,6 +11,11 @@ if (!$log) {
 	die();
 }
 
+if ($level > ARCHIVE_LVL_OFFSET) {
+	header("x-error-message: You cannot submit scores for archived levels (yet).");
+	die();
+}
+
 $output = exec(sprintf(
 	'./tools/progress-get %s %d',
 $progfile['tmp_name'], $level));

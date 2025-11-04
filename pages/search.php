@@ -1,14 +1,15 @@
 <?php
 $query = (isset($_GET['query']) ? trim($_GET['query']) : '');
-$page = $_GET['page'] ?? 1;
+$page = (int)($_GET['page'] ?? 1);
 $searchIn = $_GET['search_in'] ?? 'main';
-$descr = $_GET['descr'] ?? 0;
-$booleanmode = $_GET['boolean'] ?? 0;
+$descr = (int)($_GET['descr'] ?? 0);
+$booleanmode = (int)($_GET['boolean'] ?? 0);
 
 if ($query) {
 	$boolean = $booleanmode ? ' IN BOOLEAN MODE' : '';
 
-	$levels = query(
+	try {
+		$levels = query(
 			"WITH cte AS (
 				SELECT l.id, l.title, @userfields, COUNT(*) OVER () AS cnt
 				FROM @levels l JOIN @users u ON l.author = u.id
@@ -20,6 +21,10 @@ if ($query) {
 
 			SELECT * FROM cte ".paginate($page, LPP),
 		[$query, $query, $descr]);
+	} catch (PDOException $e) {
+		// Likely a malformed boolean query
+		$levels = null;
+	}
 }
 
 twigloader()->display('search.twig', [

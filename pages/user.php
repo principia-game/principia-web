@@ -9,7 +9,7 @@ if (!isset($user) || !$user) error('404');
 
 $id = $user['id'];
 
-$page = $_GET['page'] ?? 1;
+$page = (int)($_GET['page'] ?? 1);
 $forceuser = isset($_GET['forceuser']);
 
 if (isset($_GET['markread']))

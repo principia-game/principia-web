@@ -1,6 +1,6 @@
 <?php
 $type = (isset($path[2]) && typeToCat($path[2]) ? $path[2] : 'all');
-$page = $_GET['page'] ?? 1;
+$page = (int)($_GET['page'] ?? 1);
 
 $where = ($type != 'all' ? "WHERE l.cat = ".typeToCat($type)." AND l.visibility = 0" : 'WHERE visibility = 0');
 

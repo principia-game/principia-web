@@ -1,5 +1,5 @@
 <?php
-$page = $_GET['page'] ?? 1;
+$page = (int)($_GET['page'] ?? 1);
 
 $levels = popularLevels($page);
 

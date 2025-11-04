@@ -73,7 +73,7 @@ class Template {
 		$this->addGlobal('footerlinks', $GLOBALS['footerlinks']);
 		$this->addGlobal('domain', DOMAIN);
 		$this->addGlobal('uri', $_SERVER['REQUEST_URI'] ?? null);
-		if ($GLOBALS['path'][1] == 'forum')
+		if (($GLOBALS['path'][1] ?? '') == 'forum')
 			$this->addGlobal('pagename', '/forum/'.($GLOBALS['path'][2] ?? ''));
 		else
 			$this->addGlobal('pagename', '/'.(IS_ARCHIVE ? 'archive/' : '').($GLOBALS['path'][1] ?? ''));

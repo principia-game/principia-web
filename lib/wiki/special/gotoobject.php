@@ -154,6 +154,7 @@ $pagename = match ($id) {
 	144 => "Impact_sensor",
 	145 => "Lobber",
 	146 => "HP_Control",
+	147 => "Laser_Duplicate",
 	148 => "Multi-emitter",
 	149 => "Simple_Motor",
 	150 => "Angular_vel._meter",

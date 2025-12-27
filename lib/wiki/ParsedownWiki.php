@@ -208,7 +208,7 @@ class ParsedownWiki extends \Parsedown {
 	protected function setContentsListAsString(array $Content) {
 		$text  = trim(strip_tags($this->line($Content['text'])));
 		$id    = $Content['id'];
-		$level = (integer) trim($Content['level'], 'h');
+		$level = (int) trim($Content['level'], 'h');
 		$link  = sprintf("[%s](#%s)", $text, $id);
 
 		if ($this->firstHeadLevel === 0)

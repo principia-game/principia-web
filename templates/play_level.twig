@@ -3,10 +3,16 @@
 {% set title = "Play in browser" %}
 
 	{% block content %}
+{% if constant('IS_ARCHIVE') %}
+	{% set play_id = lid + constant('ARCHIVE_LVL_OFFSET') %}
+{% else %}
+	{% set play_id = lid %}
+{% endif %}
+
 <h1>Play in browser (Level: {{ level.title }})</h1>
 
 <p>
-	<a href="../">&larr; Back to level page</a>
+	<a href="{% if constant('IS_ARCHIVE') %}/archive/level/{{ lid }}{% else %}/level/{{ lid }}{% endif %}">&larr; Back to level page</a>
 </p>
 
 <p>
@@ -14,17 +20,15 @@
 </p>
 
 <p>
-	Keep in mind that the web port of Principia is <strong>highly experimental</strong> and many features may not work as expected.
-	Mobile devices are not supported at this time.
+	Keep in mind that the web port of Principia is <strong>highly experimental</strong> with bugs and graphical glitches, performance will be worse than when running a native version of the game, and many features may not work as expected.
+	Mobile devices are not supported.
 </p>
 
 <p>
-	{% if constant('IS_ARCHIVE') %}
-		{% set play_id = lid + constant('ARCHIVE_LVL_OFFSET') %}
-	{% else %}
-		{% set play_id = lid %}
-	{% endif %}
+	Please be patient when playing a level in the web browser for the first time, as it needs to download all the game data (about 18MB in total) before starting.
+</p>
 
+<p>
 	<a href="/~web/?play={{ play_id }}" target="_blank">Open level in a new tab</a>
 </p>
 

@@ -6,7 +6,7 @@ function securityHeaders() {
 		."script-src 'self' 'unsafe-inline';"
 		."img-src 'self' data: *.principia-web.se principia-web.se *.voxelmanip.se voxelmanip.se *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com *.postimg.cc postimg.cc;"
 		."media-src 'self' *.voxelmanip.se voxelmanip.se;"
-		."frame-src *.youtube-nocookie.com itch.io;"
+		."frame-src 'self' *.principia-web.se principia-web.se *.youtube-nocookie.com itch.io;"
 		."style-src 'self' 'unsafe-inline';");
 
 	header("Referrer-Policy: strict-origin-when-cross-origin");

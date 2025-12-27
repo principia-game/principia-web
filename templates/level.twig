@@ -93,7 +93,10 @@
 	<p>
 		{% if not constant('IS_ARCHIVE') %}Views: {{ level.views }} -{% endif %}
 		Downloads: {{ level.downloads }} -
-		Level ID: {{ level.id }}
+		Level ID: {{ level.id }} -
+		{% if log and not android_webview_version() %}
+			<a href="{{ lid }}/play">Play in browser (very experimental!)</a>
+		{% endif %}
 	</p>
 
 	{% if not constant('IS_ARCHIVE') and (userdata.id == level.author or userdata.rank > 1) %}

@@ -10,6 +10,18 @@ if (!$level) error('404');
 
 assert($lid == $level['id']);
 
+if (isset($path[3]) && $path[3] == 'play') {
+	header("Cross-Origin-Resource-Policy: same-origin");
+	header("Cross-Origin-Embedder-Policy: require-corp");
+	header("Cross-Origin-Opener-Policy: same-origin");
+
+	twigloader()->display('play_level.twig', [
+		'lid' => $lid,
+		'level' => $level]);
+
+	return;
+}
+
 $contestStatus = 0;
 
 if (!IS_ARCHIVE && $log) {

@@ -1,0 +1,56 @@
+{% extends "_layout_minimal.twig" %}
+
+{% set title = "Play in browser" %}
+
+	{% block content %}
+<h1>Play in browser (Level: {{ level.title }})</h1>
+
+<p>
+	<a href="../">&larr; Back to level page</a>
+</p>
+
+<p>
+	This is an experimental way to play Principia levels directly in your web browser using WebAssembly.
+</p>
+
+<p>
+	Keep in mind that the web port of Principia is <strong>highly experimental</strong> and many features may not work as expected.
+	Mobile devices are not supported at this time.
+</p>
+
+<p>
+	{% if constant('IS_ARCHIVE') %}
+		{% set play_id = lid + constant('ARCHIVE_LVL_OFFSET') %}
+	{% else %}
+		{% set play_id = lid %}
+	{% endif %}
+
+	<a href="/~web/?play={{ play_id }}" target="_blank">Open level in a new tab</a>
+</p>
+
+<style>
+.iframe-wrapper {
+	position: relative;
+
+	left: 50%;
+	transform: translateX(-50%);
+
+	width: min(1280px, 100vw);
+	aspect-ratio: 16 / 9;
+
+	max-height: 100vh;
+
+	margin: 75px 0;
+}
+
+.iframe-wrapper iframe {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+</style>
+
+<div class="iframe-wrapper">
+	<iframe src="/~web/?play={{ play_id }}" width="1280" height="720" style="border: none;"></iframe>
+</div>
+	{% endblock %}

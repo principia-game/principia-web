@@ -697,6 +697,31 @@ $basic-colours: (
 	}
 }
 
+/// Web game frame \\\
+
+.game-wrapper {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	width: unquote("min(1280px, 100vw)");
+	aspect-ratio: 16 / 9;
+	max-height: 100vh;
+	margin: 75px 0;
+
+	.game-wrapper iframe {
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+}
+
+.beta {
+	color: gold;
+	font-weight: bold;
+}
+
+/// Forms \\\
+
 textarea, input[type=text], input[type=password], input[type=email], input[type=color], input[type=file], .jscolor {
 	border: 1px solid $grid;
 	background-color: $input_bg;

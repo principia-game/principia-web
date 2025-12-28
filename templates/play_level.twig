@@ -1,6 +1,6 @@
 {% extends "_layout_minimal.twig" %}
 
-{% set title = "Play in browser" %}
+{% set title = "Play in browser (BETA)" %}
 
 	{% block content %}
 {% if constant('IS_ARCHIVE') %}
@@ -9,7 +9,11 @@
 	{% set play_id = lid %}
 {% endif %}
 
-<h1>Play in browser (Level: {{ level.title }})</h1>
+<h1>Play in browser <span class="beta">(BETA)</span></h1>
+
+<p>
+	Playing <strong>{{ level.title }}</strong> by {{ userlink(level, 'u_') }}
+</p>
 
 <p>
 	<a href="{% if constant('IS_ARCHIVE') %}/archive/level/{{ lid }}{% else %}/level/{{ lid }}{% endif %}">&larr; Back to level page</a>
@@ -32,29 +36,7 @@
 	<a href="/~web/?play={{ play_id }}" target="_blank">Open level in a new tab</a>
 </p>
 
-<style>
-.iframe-wrapper {
-	position: relative;
-
-	left: 50%;
-	transform: translateX(-50%);
-
-	width: min(1280px, 100vw);
-	aspect-ratio: 16 / 9;
-
-	max-height: 100vh;
-
-	margin: 75px 0;
-}
-
-.iframe-wrapper iframe {
-	width: 100%;
-	height: 100%;
-	border: 0;
-}
-</style>
-
-<div class="iframe-wrapper">
+<div class="game-wrapper">
 	<iframe src="/~web/?play={{ play_id }}" width="1280" height="720" style="border: none;"></iframe>
 </div>
 	{% endblock %}

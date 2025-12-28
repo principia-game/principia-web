@@ -1,4 +1,6 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+
 $level = $_GET['i'] ?? null;
 if ($level > ARCHIVE_LVL_OFFSET) {
 	$level -= ARCHIVE_LVL_OFFSET;

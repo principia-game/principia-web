@@ -83,7 +83,7 @@
 			{% if constant('IS_ARCHIVE') %}
 				{{ level.description | replace({'&gt;': '>', '&lt;': '<'}) | nl2br }}
 			{% else %}
-				{{ level.description | markdown }}
+				{{ level.description | markdown_nl }}
 			{% endif %}
 		</p>
 	</div>

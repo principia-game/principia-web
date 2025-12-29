@@ -10,6 +10,16 @@ function markdown($text) {
 }
 
 /**
+ * Markdown function for non-inline text, sanitized and preserving new lines.
+ */
+function markdownNl($text) {
+	$markdown = new Parsedown();
+	$markdown->setSafeMode(true);
+	$markdown->setBreaksEnabled(true);
+	return $markdown->text($text);
+}
+
+/**
  * Markdown function for inline text, sanitized.
  */
 function markdownInline($text) {

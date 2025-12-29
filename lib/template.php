@@ -56,6 +56,7 @@ class Template {
 		$this->addFilter('cmt_num_to_type', 'cmtNumToType');
 
 		$this->addFilter('markdown', 'markdown');
+		$this->addFilter('markdown_nl', 'markdownNl');
 		$this->addFilter('markdown_inline', 'markdownInline');
 		$this->addFilter('markdown_unsafe', 'markdownUnsafe');
 

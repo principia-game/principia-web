@@ -11,6 +11,7 @@ if (isset($path[2])) {
 	$latestSeenUsers = query("SELECT id, name, customcolor, lastview FROM users ORDER BY lastview DESC LIMIT 7");
 
 	$latestPastes = getPastes(1, 10);
+	$latestFiles = getUploadedFiles(1, 10);
 
 	$latestComments = query("SELECT c.*, @userfields FROM comments c JOIN users u ON c.author = u.id WHERE c.deleted = 0 ORDER BY c.time DESC LIMIT 7");
 
@@ -18,6 +19,7 @@ if (isset($path[2])) {
 		'latest_registered_users' => $latestRegisteredUsers,
 		'latest_seen_users' => $latestSeenUsers,
 		'latest_pastes' => $latestPastes,
+		'latest_files' => $latestFiles,
 		'latest_comments' => $latestComments
 	]);
 }

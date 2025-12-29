@@ -72,6 +72,25 @@
 	{% endfor %}
 </table>
 
+<h3>Latest files</h3>
+
+<table class="c1">
+	<tr class="h">
+		<td style="width:120px">ID</td>
+		<td>Title</td>
+		<td class="nom" style="width:175px">Author</td>
+		<td class="nom" style="width:175px">Created</td>
+	</tr>
+	{% for file in latest_files %}
+		<tr>
+			<td><a href="{{ upload_url(file.fileid, file.filename) }}">{{ file.filename }}</a></td>
+			<td>{{ file.title | e }}</td>
+			<td class="nom center">{{ userlink(file, 'u_') }}</td>
+			<td class="nom right">{{ file.date | relative_time }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
 <h3>Latest comments</h3>
 <div class="comments">
 	{% for cmnt in latest_comments %}

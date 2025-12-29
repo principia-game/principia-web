@@ -19,6 +19,13 @@ function totalUserUploadSize($userId) {
 	return $totalSize;
 }
 
+function getUploadedFiles($page = 1, $limit = 20) {
+	return query("SELECT f.*, @userfields
+			FROM uploader_files f JOIN users u ON u.id = f.user
+			ORDER BY date DESC"
+		.paginate($page, $limit));
+}
+
 function sizeunit($bytes, $precision = 2) {
 	$units = ['B', 'kB', 'MB', 'GB', 'TB'];
 	$bytes = max($bytes, 0);

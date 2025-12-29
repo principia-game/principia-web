@@ -219,6 +219,21 @@ CREATE TABLE `reports` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+CREATE TABLE `uploader_files` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `fileid` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `filename` varchar(256) NOT NULL,
+  `description` varchar(256) NOT NULL,
+  `user` int(10) unsigned NOT NULL,
+  `date` int(10) unsigned NOT NULL,
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key` (`fileid`),
+  KEY `user` (`user`),
+  CONSTRAINT `uploader_files_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -363,4 +378,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2025-12-29 17:51:46 UTC
+-- 2025-12-29 20:44:25 UTC

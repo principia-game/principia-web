@@ -1,4 +1,24 @@
 
+.form {
+	margin: 20px 0;
+
+	label {
+		width: 120px;
+		display: inline-block;
+		font-weight: bold;
+	}
+
+	.input-group {
+		margin-bottom: 15px;
+		display: flex;
+		align-items: center;
+
+		input[type=text], input[type=password], input[type=email], textarea {
+			flex: 1 1 auto;
+		}
+	}
+}
+
 /// Common register and login form styles \\\
 
 .reglog {
@@ -61,6 +81,7 @@ input[type=submit], button.btn, a.btn {
 textarea {
 	line-height: 1.5;
 	outline: none;
+	box-sizing: border-box;
 }
 
 // For image to lua

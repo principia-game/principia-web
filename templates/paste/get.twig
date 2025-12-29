@@ -1,0 +1,18 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Paste: " ~ paste.title %}
+{% set pagename = "/paste" %}
+
+	{% block content %}
+<h1>Paste: {{ paste.title | default("Untitled") }}</h1>
+
+<p>
+	Uploaded by
+	{{ userlink(paste, 'u_') }}
+
+	on {{ paste.created_at | date("j M Y, H:i") }}
+	<br>
+</p>
+
+<pre>{{ paste.content }}</pre>
+	{% endblock %}

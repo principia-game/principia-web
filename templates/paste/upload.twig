@@ -1,0 +1,33 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Pastebin" %}
+
+	{% block content %}
+<h1>Pastebin</h1>
+
+<p>This is a simple pastebin service for Principia players to upload text snippets, such as Lua code snippets or other kinds of notes.</p>
+
+<form method="POST">
+	<textarea name="paste_content" rows="20" style="width:100%"></textarea>
+
+	<div class="form">
+		<div class="input-group">
+			<label>Title:</label>
+			<input type="text" name="title" placeholder="(optional)">
+		</div>
+		<div class="input-group">
+			<label>Visibility:</label>
+			<select name="visibility" style="width:150px">
+				<option value="0">Public</option>
+				<option value="1" selected>Unlisted</option>
+				<option value="2">Private</option>
+			</select>
+		</div>
+		<hr>
+		<div class="input-group">
+			<label></label>
+			<input type="submit" value="Post paste">
+		</div>
+	</div>
+</form>
+	{% endblock %}

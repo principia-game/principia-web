@@ -34,9 +34,14 @@
 &ndash; <a href="/user/{{ id }}?forceuser">View user page as viewer</a>
 &ndash; <a href="javascript:document.logout.submit()">Log out</a></p>
 
-{% if userdata.rank > 2 %}
-	<p><a href="/admin">Admin panel</a></p>
-{% endif %}
+<p>
+	{% if can_upload_pastes %}
+		<a href="/paste">Upload a new paste</a>
+	{% endif %}
+	{% if userdata.rank > 2 %}
+		&ndash; <a href="/admin">Admin panel</a>
+	{% endif %}
+</p>
 
 <form action="/login" method="post" name="logout">
 	<input type="hidden" name="logout" value="yes">

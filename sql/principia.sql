@@ -192,6 +192,21 @@ CREATE TABLE `passwordresets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+CREATE TABLE `pastes` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `pasteid` char(10) NOT NULL,
+  `user` int(10) unsigned NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  `visibility` tinyint(3) unsigned NOT NULL,
+  `title` varchar(256) DEFAULT NULL,
+  `content` mediumtext NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `pasteid` (`pasteid`),
+  KEY `user` (`user`),
+  CONSTRAINT `1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `reports` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `url` varchar(256) NOT NULL,
@@ -348,4 +363,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2025-10-08 22:09:20 UTC
+-- 2025-12-29 17:51:46 UTC

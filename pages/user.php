@@ -34,7 +34,8 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		'name' => $userdata['name'],
 		'forceuser' => $forceuser,
 		'notifs' => $notifications ?? [],
-		'action' => $action ?? null
+		'action' => $action ?? null,
+		'can_upload_pastes' => userCanUploadPastes($userdata)
 	]);
 } else { // general profile details stuff
 

@@ -53,6 +53,25 @@
 	</table>
 </div>
 
+<h3>Latest pastes</h3>
+
+<table class="c1">
+	<tr class="h">
+		<td style="width:120px">ID</td>
+		<td>Title</td>
+		<td class="nom" style="width:175px">Author</td>
+		<td class="nom" style="width:175px">Created</td>
+	</tr>
+	{% for paste in latest_pastes %}
+		<tr>
+			<td><a href="/paste/{{ paste.pasteid }}" class="mono">{{ paste.pasteid }}</a></td>
+			<td>{{ paste.title | e }}</td>
+			<td class="nom center">{{ userlink(paste, 'u_') }}</td>
+			<td class="nom right">{{ paste.time | relative_time }}</td>
+		</tr>
+	{% endfor %}
+</table>
+
 <h3>Latest comments</h3>
 <div class="comments">
 	{% for cmnt in latest_comments %}

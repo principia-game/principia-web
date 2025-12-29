@@ -73,11 +73,11 @@ function ipv6_to_ipv4($ip) {
  * Generate an alphanumeric case sensitive string used for unique non-guessable IDs
  */
 function generateId($length = 10) {
-    $alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    $max = strlen($alphabet) - 1;
-    $id = '';
-    for ($i = 0; $i < $length; $i++)
-        $id .= $alphabet[random_int(0, $max)];
+	$alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	$max = strlen($alphabet) - 1;
+	$id = '';
+	for ($i = 0; $i < $length; $i++)
+		$id .= $alphabet[random_int(0, $max)];
 
-    return $id;
+	return $id;
 }

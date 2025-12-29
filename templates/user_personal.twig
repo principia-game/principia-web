@@ -36,7 +36,10 @@
 
 <p>
 	{% if can_upload_pastes %}
-		<a href="/paste">Upload a new paste</a>
+		<a href="/paste">Create a paste</a>
+	{% endif %}
+	{% if can_upload_files %}
+		&ndash; <a href="/uploader">Go to uploader</a>
 	{% endif %}
 	{% if userdata.rank > 2 %}
 		&ndash; <a href="/admin">Admin panel</a>

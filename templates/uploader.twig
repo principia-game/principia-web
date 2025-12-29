@@ -1,0 +1,48 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Uploader" %}
+
+	{% block content %}
+<h1>Uploader</h1>
+
+<p>This is a simple file uploader for Principia players to upload and share files, e.g. for sharing screenshots and other images on the <a href="/forum">forum</a>.</p>
+
+<p><strong>Disclaimer:</strong> This is not a general-purpose file hosting service. Files uploaded here may be removed without notice if they are not relevant to Principia or linked to on the community site.</p>
+
+<p>Currently the maximum file size is 2 MB, and each user may upload up to 100MB worth of files.</p>
+
+<form class="form" method="POST" enctype="multipart/form-data">
+	<div class="input-group">
+		<label>File:</label>
+		<input type="file" name="uploadedfile" size="40">
+	</div>
+	<div class="input-group">
+		<label>Description:</label>
+		<input type="text" name="description" size="45" maxlength="256">
+	</div>
+	<hr>
+	<div class="input-group">
+		<label></label>
+		<input type="submit" name="action" value="Upload">
+	</div>
+</form>
+
+<table class="c1">
+	<tr class="h">
+		<td style="width:320px">File</td>
+		<td>Description</td>
+		<td class="nom" style="width:175px">Uploaded by</td>
+		<td class="nom" style="width:150px">Date</td>
+		<td style="width:100px">Size</td>
+	</tr>
+	{% for file in files %}
+		<tr class="n1">
+			<td><a href="{{ upload_url(file.fileid, file.filename) }}">{{ file.filename }}</a></td>
+			<td>{{ file.description }}</td>
+			<td class="nom center">{{ userlink(file, 'u_') }}</td>
+			<td class="nom center">{{ file.date | date('Y-m-d H:i') }}</td>
+			<td class="center">{{ get_size(file.fileid, file.filename) }}</td>
+		</tr>
+	{% endfor %}
+</table>
+	{% endblock %}

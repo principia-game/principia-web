@@ -42,6 +42,9 @@ class Template {
 			return IS_ARCHIVE ? '/archive' : '';
 		});
 		$this->addFunction('blarg', 'blarg');
+
+		$this->addFunction('get_size', 'getSize');
+		$this->addFunction('upload_url', 'uploadUrl');
 	}
 
 	private function addFilters() {

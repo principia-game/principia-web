@@ -1,0 +1,48 @@
+
+/// Comments stuff \\\
+
+.comment-box {
+	margin: 20px 5px;
+
+	.comment-input {
+		width: 99%;
+		padding: 5px;
+		min-height: 70px;
+	}
+
+	.submit {
+		padding-left: 5px;
+
+		em {
+			padding-left: 10px;
+		}
+	}
+}
+
+.comments .comment {
+	padding: 7px 8px;
+	border-bottom: 1px solid $grid;
+	overflow-wrap: break-word;
+	max-height: 130px;
+	overflow: auto;
+	line-height: 1.4;
+
+	&:nth-child(odd)  { background-color: $funbg0; }
+	&:nth-child(even) { background-color: $funbg2; }
+
+	&.deleted {
+		background-color: $bg_red;
+	}
+
+	p {
+		margin: 0;
+		margin-bottom: 0.1em;
+	}
+	span.date, span.delete {
+		float: right;
+		margin-left: 10px;
+	}
+	span.delete {
+		margin-left: 5px;
+	}
+}

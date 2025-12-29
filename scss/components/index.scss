@@ -1,0 +1,90 @@
+
+/// Styling for stuff on the index and related pages \\\
+
+.landing {
+	display: block;
+	text-align: center;
+	font-size: 1.25em;
+
+	video {
+		border-radius: 15px;
+		max-width: 100%;
+		width: 800px;
+	}
+
+	a {
+		font-weight: bold;
+	}
+}
+
+.buttonbar {
+	margin-bottom: 30px;
+	font-size: 1.25em;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	gap: 30px 0;
+
+	a {
+		display: inline-block;
+		color: $text;
+		width: 150px;
+		font-weight: bold;
+
+		&:hover {
+			filter: brightness(1.25);
+			text-decoration: none;
+		}
+
+		&:active {
+			filter: brightness(0.75);
+		}
+	}
+	img {
+		height: 90px;
+		padding: 10px;
+	}
+	span {
+		display: block;
+	}
+}
+
+.donate-nag {
+	text-align: center;
+	margin-top: 40px;
+
+	img {
+		max-width: 100%;
+		aspect-ratio: 700/100;
+	}
+}
+
+.intermission {
+	text-align: center;
+	margin: 2em 0;
+	padding: 1.5em 0;
+	border-top: 1px solid $grid;
+	border-bottom: 1px solid $grid;
+
+	img {
+		max-width: 100%;
+	}
+}
+
+.gallery {
+	display: grid;
+	gap: 16px;
+	grid-template-columns: 1fr;
+
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 2px;
+	}
+}
+
+@media (min-width: 600px) {
+	.gallery {
+		grid-template-columns: 1fr 1fr;
+	}
+}

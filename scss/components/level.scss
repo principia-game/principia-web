@@ -1,0 +1,185 @@
+
+/// Level boxes and lists of level boxes \\\
+
+.level-list {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	gap: 15px 5px;
+
+	@media screen and (max-width: 1000px) {
+		&.scrollable {
+			flex-flow: row nowrap;
+			justify-content: unset;
+			overflow-x: scroll;
+			padding-bottom: 15px;
+		}
+	}
+}
+
+div.level {
+	background-color: $bg_box2;
+	display: inline-block;
+	position: relative;
+	width: 240px;
+	height: 210px;
+
+	border: 1px solid $btn_border;
+	border-radius: 4px;
+
+	.lvlbox_top {
+		color: $text;
+		font-size: 13pt;
+		text-decoration: none;
+		display: block;
+		height: 100%;
+
+		span.featured {
+			position: absolute;
+			top: 4px;
+			right: 4px;
+			color: #ffffee;
+			background-color: rgba(1, 0, 1, 0.5);
+		}
+
+		img {
+			width: 240px;
+			height: 135px;
+			border-radius: 3px 3px 0px 0px;
+		}
+
+		.lvltitle {
+			margin: 0 4px;
+			display: block;
+		}
+	}
+
+	.user {
+		position: absolute;
+		top: 187px;
+		padding: 0 4px;
+		font-size: 11.2pt;
+	}
+	.likes {
+		float: right;
+		text-align: right;
+	}
+
+	&:hover {
+		background-color: $btn_bg;
+	}
+}
+
+/// Stuff for level page \\\
+// (TODO: Rename these classes, both things are called "levelboxes", what a mess)
+
+.lvl-box {
+	margin-top: 1em;
+	min-height: 280px;
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
+	align-items: flex-start;
+
+	.img {
+		position: relative;
+		width: 48%;
+
+		img {
+			width: 100%;
+		}
+
+		.revision {
+			background-color: rgba(200, 255, 200, 0.5);
+			color: #000;
+			font-size: 0.8em;
+			font-weight: bold;
+			padding: 4px;
+			position: absolute;
+			top: 0%;
+			left: 0%;
+		}
+	}
+
+	.info {
+		width: 48%;
+		padding: 1em;
+		background-color: $bg_box2;
+
+		.likemsg {
+			display: inline-block;
+			margin-right: 1em;
+		}
+
+		.protocol-issues {
+			display: none;
+			margin: 15px 0;
+			padding: 15px;
+			background-color: #6b4040;
+			color: #fff;
+		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.lvl-box {
+		flex-flow: row-reverse wrap;
+		gap: 10px 0px;
+
+		.img, .info {
+			width: 100%;
+		}
+		.info {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+.lvl-data {
+	background-color: $bg_box2;
+	padding: 0.5em;
+
+	p {
+		margin: 0;
+		padding: 0.5em 1em;
+	}
+}
+
+// Play & Edit buttons \\
+.play-btn {
+	border: none;
+	color: $btn_text;
+	display: inline-block;
+	font-weight: bold;
+	margin-right: 0.5em;
+	padding: 10px 20px;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&:active {
+		color: $btn_text;
+	}
+
+	&.green {
+		background-color: $btn_play;
+
+		&:hover {
+			background-color: lighten($btn_play, 15%);
+		}
+	}
+
+	&.blue {
+		background-color: $btn_edit;
+
+		&:hover {
+			background-color: lighten($btn_edit, 15%);
+		}
+	}
+}
+
+.latest-buttons {
+	margin-bottom: 15px;
+}

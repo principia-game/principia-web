@@ -1,0 +1,75 @@
+
+/// Userlinks \\\
+
+.user {
+	font-weight: bold;
+
+	&, &:hover, &:active {
+		text-decoration: none;
+	}
+
+	.t_user {
+		color: $t_user;
+	}
+}
+
+/// Stuff for the user page \\\
+
+.user_about {
+	margin-bottom: 1.5em;
+}
+
+.user_pic {
+	float: right;
+	border: 1px solid $grid;
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1px;
+
+	img {
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
+
+.user_stats {
+	margin-left: 10px;
+	border: 1px solid $grid;
+	width: 300px;
+	float: right;
+
+	.topthing {
+		background: #3367aa;
+		padding: 7px;
+	}
+
+	.row {
+		border-top: 1px solid $grid;
+		padding: 10px;
+		display: block;
+
+		.pad {
+			float: right;
+		}
+	}
+}
+
+// sensitive info (censor things like IPs unless hovered)
+.sensitive {
+	color: #636363;
+	background-color: #636363;
+
+	&:hover {
+		color: unset;
+		background-color: unset;
+	}
+}
+
+.pronouns {
+	font-weight: normal;
+	font-size: 14pt;
+	margin-left: 5px;
+}

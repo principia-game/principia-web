@@ -1,0 +1,17 @@
+
+/// Styling used for printing \\\
+
+@media print {
+	body {
+		font-family: serif;
+	}
+
+	a {
+		color: #01004b !important;
+		text-decoration: underline;
+	}
+
+	.banner, header, footer, .donate-nag, .wikilinks {
+		display: none !important;
+	}
+}

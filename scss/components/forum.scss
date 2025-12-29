@@ -1,5 +1,7 @@
-/// forum specific styling uwu \\\
 
+/// Forum-specific styling \\\
+
+// Acmlmboard-style forum table
 table.c1 {
 	border: $grid 1px solid;
 	border-spacing: 0px;
@@ -143,13 +145,3 @@ table.c1 {
 		}
 	}
 }
-
-.clearfix:after {
-	content: "";
-	display: table;
-	clear: both;
-}
-
-.autowidth { width: auto !important; }
-.wbreak { word-break: break-word; }
-.fullwidth { width: 100% !important; }

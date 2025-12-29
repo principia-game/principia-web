@@ -1,0 +1,37 @@
+
+/// Settings \\\
+
+.settings, .wikitable {
+	border-collapse: collapse;
+
+	.a {
+		text-align: center;
+		width: 200px;
+		height: 35px;
+	}
+
+	td, th {
+		border-bottom: 1px solid $grid;
+		padding: 10px 5px;
+	}
+
+	tr th {
+		background-color: $funhead;
+		font-size: 12pt;
+	}
+
+	tr {
+		&:nth-child(odd)  { background-color: $funbg0; }
+		&:nth-child(even) { background-color: $funbg2; }
+	}
+
+	.fotnot {
+		margin-top: 8px;
+		font-size: 10.5pt;
+	}
+}
+
+.settings {
+	width: 100%;
+	margin-bottom: 1em;
+}

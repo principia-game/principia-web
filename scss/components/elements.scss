@@ -1,0 +1,66 @@
+
+/// Basic element styles \\\
+
+body {
+	background-color: $bg;
+	color: $text;
+	margin: 0;
+
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+button, body {
+	font-family: $fonts;
+	font-size: 11.75pt;
+}
+
+a {
+	color: $link;
+	text-decoration: none;
+
+	&:hover { text-decoration: underline; }
+	&:active { color: $link_active; }
+}
+
+p, blockquote, ul li, ol li {
+	line-height: 1.6;
+}
+
+code {
+	display: inline-block;
+}
+
+ul li, ol li {
+	margin-top: 0.6em;
+}
+
+hr {
+	border-top: 1px solid $grid;
+	border-bottom: 0;
+}
+
+h1 { font-size: 1.75em; }
+h2 { font-size: 1.50em; }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.00em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.67em; }
+
+svg {
+	fill: $text;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+}
+
+figure {
+	text-align: center;
+	margin: 10px 0;
+
+	figcaption {
+		font-style: italic;
+		margin-top: 3px;
+	}
+}

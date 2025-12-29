@@ -1,0 +1,116 @@
+
+/// Stuff for the common layout of the site \\\
+
+.banner {
+	padding: 10px;
+	font-weight: bold;
+
+	&.b-red {
+		background-color: #9c0d0d;
+		color: #fff;
+	}
+
+	&.b-green {
+		background-color: #0d9c0d;
+		color: #fff;
+	}
+}
+
+header, footer {
+	background-color: $bg_box;
+	margin-top: 0px;
+	overflow: hidden;
+}
+
+header {
+	border-bottom: 1px solid $grid;
+}
+
+.content {
+	flex: 1;
+}
+
+.container {
+	max-width: 1080px;
+	margin: auto;
+	padding: 0 7px;
+}
+
+footer {
+	text-align: center;
+	line-height: 1.5;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+nav {
+	margin: auto;
+	max-width: 1280px;
+	padding: 10px 0;
+}
+
+footer, nav.nav-forum {
+	border-top: 1px solid $grid;
+}
+
+div.menu {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px 5px;
+	text-align: center;
+	width: 100%;
+
+	a, .nav-right a {
+		color: $btn_text;
+		font-size: 1.1em;
+		font-weight: bold;
+		text-decoration: none;
+		padding: 10px 10px;
+		border-radius: 5px;
+
+		&:hover:not(.picon) {
+			background-color: $bg_box2;
+		}
+	}
+
+	.picon {
+		padding-top: 0;
+		padding-bottom: 0;
+
+		img {
+			display: inline-block;
+			vertical-align: middle;
+			width: 32px;
+			height: 32px;
+		}
+	}
+
+	.nav-right {
+		margin-left: auto;
+		display: flex;
+	}
+
+	.download, .notifs {
+		color: #20aa20;
+	}
+
+	[href="/search"] svg {
+		width: 18px;
+		height: 18px;
+	}
+}
+
+.header a {
+	float: right;
+}
+
+.header_message, .landing, .welcome-back {
+	border-bottom: 1px solid $grid;
+}
+
+.header_message {
+	padding: 15px;
+}
+

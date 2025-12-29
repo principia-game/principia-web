@@ -1,0 +1,98 @@
+
+/// Generic classes \\\
+
+.left	{ text-align: left; }
+.center	{ text-align: center; }
+.right	{ text-align: right; }
+
+.clear_right { clear: right; }
+.float-right { float: right; }
+
+.noborder { border: 0; }
+
+.text-for-ants { font-size: 8pt; }
+
+.mono { font-family: monospace; }
+
+.error {
+	color: red;
+	font-weight: bold;
+}
+
+$basic-colours: (
+	"red": #9c0d0d,
+	"green": #0d9c0d,
+	"blue": #0d0d9c,
+	"cyan": #0d9c9c,
+	"magenta": #9c0d9c,
+	"yellow": #9c9c0d,
+);
+
+@mixin map-colors-to-boxes($basic-colours: $basic-colours) {
+	@each $name, $hex in $basic-colours {
+		.bg-#{$name} {
+			background-color: $hex;
+			color: #fff;
+		}
+	}
+}
+
+@include map-colors-to-boxes;
+
+/// Two columns that collapse on mobile (for tables) \\\
+
+.two-columns {
+	display: block;
+
+	table, .column {
+		margin: 15px 0px;
+	}
+
+	@media only screen and (min-width: 1024px) {
+		display: flex;
+		align-items: flex-start;
+
+		table, .column {
+			margin: 0px 10px;
+		}
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.i2l-two-columns {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	.i2l-two-columns div {
+		flex: 1;
+	}
+}
+
+// Misc.
+
+.news img {
+	max-width: 100%;
+}
+
+.img-responsive {
+	max-width: 100%;
+}
+
+.latestnews li b {
+	display: inline-block;
+	width: 105px;
+}
+
+.desc { font-weight: bold; }
+
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.autowidth { width: auto !important; }
+.wbreak { word-break: break-word; }
+.fullwidth { width: 100% !important; }
+

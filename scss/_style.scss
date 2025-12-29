@@ -11,50 +11,11 @@
 @import "components/generic";
 @import "components/index";
 @import "components/level";
+@import "components/pagination";
 @import "components/print";
+@import "components/prism";
 @import "components/settings";
 @import "components/trophee";
 @import "components/user";
+@import "components/web-game";
 @import "components/wiki";
-
-// Import prism.js styling
-@import "_prism";
-
-
-// Pagination \\
-.pagination {
-	margin-top: 2em;
-	text-align: center;
-
-	div, a.btn {
-		font-size: 14pt;
-		width: 120px;
-		padding: 10px;
-		margin: 0 15px;
-		display: inline-block;
-	}
-}
-
-
-/// Web game frame \\\
-
-.game-wrapper {
-	position: relative;
-	left: 50%;
-	transform: translateX(-50%);
-	width: unquote("min(1280px, 100vw)");
-	aspect-ratio: 16 / 9;
-	max-height: 100vh;
-	margin: 75px 0;
-
-	iframe {
-		width: 100%;
-		height: 100%;
-		border: 0;
-	}
-}
-
-.beta {
-	color: gold;
-	font-weight: bold;
-}

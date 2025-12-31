@@ -1,12 +1,13 @@
 
 function vote(el, id) {
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "/level/"+id, true);
-	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("vote=yes");
-
-	el.innerHTML = 'Liked!';
-	el.disabled = 'disabled';
+	fetch("/level/" + id, {
+		method: "POST",
+		headers: {"Content-Type": "application/x-www-form-urlencoded"},
+		body: "vote=yes"
+	}).then(() => {
+		el.innerHTML = 'Liked!';
+		el.disabled = true;
+	});
 }
 
 if (protocolButton = document.getElementById('protocol-button')) {
@@ -52,7 +53,8 @@ function toggleDarkMode() {
 	}
 }
 
-document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+if (darkModeToggle = document.getElementById('dark-mode-toggle'))
+	darkModeToggle.addEventListener('click', toggleDarkMode);
 
 
 // Contest countdown

@@ -54,6 +54,10 @@
 	overflow-y: auto;
 	border: 1px solid #444;
 
+	.comment {
+		max-height: unset;
+	}
+
 	.comment:last-child {
 		border-bottom: none;
 	}

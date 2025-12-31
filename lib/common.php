@@ -7,6 +7,7 @@ require_once('lib/profiler.php');
 $profiler = new Profiler();
 
 if (!isset($internal)) $internal = false;
+if (!isset($slimApi)) $slimApi = false;
 
 require_once('data/config.php');
 
@@ -44,7 +45,7 @@ if (!isCli()) {
 	define('HTTP_RF', '');
 }
 
-$userId = authenticateCookie();
+$userId = $slimApi ? -1 : authenticateCookie();
 $log = $userId != -1;
 
 $userdata = initSession($userId, $log);

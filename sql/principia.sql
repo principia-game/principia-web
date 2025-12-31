@@ -54,6 +54,17 @@ CREATE TABLE `bans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+CREATE TABLE `chat_messages` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user` int(10) unsigned NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `time` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `comments` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` tinyint(3) unsigned NOT NULL DEFAULT 1,
@@ -378,4 +389,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2025-12-29 20:44:25 UTC
+-- 2025-12-31 19:04:20 UTC

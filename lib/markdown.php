@@ -25,6 +25,7 @@ function markdownNl($text) {
 function markdownInline($text) {
 	$markdown = new Parsedown();
 	$markdown->setSafeMode(true);
+	$markdown->setBreaksEnabled(true);
 	return $markdown->line($text);
 }
 

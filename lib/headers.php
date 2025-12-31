@@ -44,3 +44,9 @@ function sendUserHeaders($userid, $username, $notificationCount) {
 	header("x-principia-user-name: ".$username);
 	header("x-principia-unread: ".$notificationCount);
 }
+
+function jsonResponse($data) {
+	header('Content-Type: application/json');
+	echo json_encode($data);
+	die();
+}

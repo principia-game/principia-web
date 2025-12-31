@@ -2,7 +2,11 @@
 $uri = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
 $path = explode('/', $uri);
 
-$internal = (isset($path[1]) && (in_array($path[1], ['internal', 'principia-version-code'])));
+$internal = isset($path[1]) && (in_array($path[1], ['internal', 'principia-version-code'])
+		|| (isset($path[1]) == 'chat' && isset($path[2]) && in_array($path[2], ['fetch', 'send'])));
+
+$slimApi = isset($path[1]) && $path[1] == 'chat' && isset($path[2]) && in_array($path[2], ['fetch']);
+
 define('IS_ARCHIVE', (isset($path[1]) && $path[1] != '' && $path[1] == 'archive') || (isset($_GET['search_in']) && $_GET['search_in'] == 'archive'));
 
 require('lib/common.php');

@@ -39,3 +39,8 @@ function newLevelHook($level) {
 
 	$webhook->embed($mbd)->send();
 }
+
+function newChatMessageHook($message) {
+	$webhook = new Client(WEBHOOK_CHAT);
+	$webhook->message(sprintf("<%s> %s", $message['u_name'], $message['message']))->send();
+}

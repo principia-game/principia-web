@@ -45,14 +45,15 @@ class AudioNotify {
 		this.audio.preload = 'auto';
 		this.audio.volume = 0.85;
 
-		let shouldPlay = localStorage.getItem('chatPlaySound');
+		let shouldPlay = localStorage !== null ? localStorage.getItem('chatPlaySound') : true;
 		this.shouldPlay = shouldPlay === null ? true : (shouldPlay == 1);
 
 		const checkbox = document.getElementById('soundToggle');
 		checkbox.checked = shouldPlay === null ? true : (shouldPlay == 1);
 		checkbox.addEventListener('change', () => {
 			this.shouldPlay = checkbox.checked;
-			localStorage.setItem('chatPlaySound', this.shouldPlay ? 1 : 0);
+			if (localStorage !== null)
+				localStorage.setItem('chatPlaySound', this.shouldPlay ? 1 : 0);
 		});
 	}
 

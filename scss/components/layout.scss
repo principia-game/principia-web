@@ -62,6 +62,10 @@ div.menu {
 	text-align: center;
 	width: 100%;
 
+	@media (max-width: 860px) {
+		column-gap: 0;
+	}
+
 	a, .nav-right a {
 		color: $btn_text;
 		font-size: 1.1em;

@@ -1,0 +1,20 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Videos" %}
+
+	{% block content %}
+<h1>Videos</h1>
+
+<div class="level-list">
+{% for video in videos %}
+	<div class="level">
+		<a class="lvlbox_top" href="/video/{{ video.youtube_id }}">
+			{% set img = "https://i.ytimg.com/vi_webp/" ~ video.youtube_id ~ "/mqdefault.webp" %}
+			<img src="{{ img }}" alt="" loading="lazy">
+			<div class="lvltitle">{{ video.title | replace({'Principia Level Showcase - ': ''}) }}</div>
+		</a>
+		{{ userlink(video, 'u_') }}
+	</div>
+{% endfor %}
+</div>
+	{% endblock %}

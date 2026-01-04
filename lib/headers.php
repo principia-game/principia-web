@@ -4,7 +4,7 @@ function securityHeaders() {
 	header("Content-Security-Policy:"
 		."default-src 'self';"
 		."script-src 'self' 'unsafe-inline';"
-		."img-src 'self' data: *.principia-web.se principia-web.se *.voxelmanip.se voxelmanip.se *.imgur.com imgur.com *.github.com github.com *.githubusercontent.com *.postimg.cc postimg.cc;"
+		."img-src 'self' data: *.principia-web.se principia-web.se *.voxelmanip.se voxelmanip.se i.ytimg.com;"
 		."media-src 'self' *.voxelmanip.se voxelmanip.se;"
 		."frame-src 'self' *.principia-web.se principia-web.se *.youtube-nocookie.com itch.io;"
 		."style-src 'self' 'unsafe-inline';");

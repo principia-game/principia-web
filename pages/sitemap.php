@@ -59,4 +59,9 @@ while ($user = $users->fetch())
 
 $s->add('userlist');
 
+$s->add('videos');
+$videos = query("SELECT youtube_id FROM videos");
+while ($video = $videos->fetch())
+	$s->add('video/'.$video['youtube_id']);
+
 $s->output();

@@ -34,6 +34,7 @@ function visIdToName($id) {
 		0 => 'Public',
 		1 => 'Locked',
 		2 => 'Unlisted',
+		3 => 'Deleted',
 		default => 'N/A'
 	};
 }
@@ -43,6 +44,7 @@ function visIdToColour($id) {
 		0 => 'bg-green',
 		1 => 'bg-yellow',
 		2 => 'bg-cyan',
+		3 => 'bg-red',
 		default => ''
 	};
 }

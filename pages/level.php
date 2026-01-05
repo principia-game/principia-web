@@ -8,6 +8,8 @@ $level = getLevelById($lid);
 
 if (!$level) error('404');
 
+if ($level['visibility'] == 3) error('404');
+
 assert($lid == $level['id']);
 
 if (isset($path[3]) && $path[3] == 'play') {

@@ -12,14 +12,16 @@
 		<th style="width:80px">Levels</th>
 	</tr>
 	{% for user in users %}
-	<tr>
-		<td>{{ user.id }}</td>
-		<td>{{ userlink(user) }}
-			{% if user.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
-			{% if user.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}</td>
-		{% if not constant('IS_ARCHIVE') %}<td class="center">{{ user.joined | date('Y-m-d H:i') }}</td>{% endif %}
-		<td class="center">{{ levelcounts[user.id] | default('N/A') }}</td>
-	</tr>
+		{% if not (user.name starts with 'deleted_user_') %}
+			<tr>
+				<td>{{ user.id }}</td>
+				<td>{{ userlink(user) }}
+					{% if user.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
+					{% if user.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}</td>
+				{% if not constant('IS_ARCHIVE') %}<td class="center">{{ user.joined | date('Y-m-d H:i') }}</td>{% endif %}
+				<td class="center">{{ levelcounts[user.id] | default('N/A') }}</td>
+			</tr>
+		{% endif %}
 	{% endfor %}
 </table>
 	{% endblock %}

@@ -7,6 +7,9 @@ $user = is_numeric($arg) ? getUserById($arg) : getUserByName($arg);
 
 if (!isset($user) || !$user) error('404');
 
+if (str_starts_with($user['name'], 'deleted_user_'))
+	error('404');
+
 $id = $user['id'];
 
 $page = (int)($_GET['page'] ?? 1);

@@ -57,6 +57,9 @@ if (isset($_POST['action'])) {
 	if (!$passwordmanager)
 		$error[] = "Please save your account credentials in a password manager before registering.";
 
+	if (str_starts_with($name, 'deleted_user_'))
+		$error[] = "The username you have chosen is not allowed. Please choose a different username.";
+
 	if ($error == []) {
 		$token = register($name, $pass, $mail, HTTP_IP);
 

@@ -42,6 +42,9 @@ if (result("SELECT COUNT(*) FROM users WHERE ip = ?", [HTTP_IP]))
 if (isTor())
 	sendError("Registrations from Tor have been blocked due to abuse.");
 
+if (str_starts_with($name, 'deleted_user_'))
+	sendError("The username you have chosen is not allowed. Please choose a different username.");
+
 // All possible invalid credentials have been checked, it should be successful now.
 register($name, $pass, $mail, HTTP_IP);
 

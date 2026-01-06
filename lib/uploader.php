@@ -6,9 +6,9 @@ const UPLOADER_USER_MAX_TOTAL_SIZE = 100*1024*1024;
 
 function userCanUploadFiles($user) {
 	return $user['rank'] > 0 // not banned
-		&& getUserLevelCount($user['id']) >= 10 // 10 uploaded levels
+		&& getUserLevelCount($user['id']) >= 2 // 2 uploaded levels
 		&& $user['posts'] >= 1 // 1 forum post
-		&& $user['joined'] < time() - 365*24*3600; // 1 year
+		&& $user['joined'] < time() - 6*30*24*3600; // 6 months
 }
 
 function totalUserUploadSize($userId) {

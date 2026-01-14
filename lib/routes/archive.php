@@ -1,5 +1,6 @@
 <?php
 $pages = [
+	'contest' => 'pages/contest.php',
 	'latest' => 'pages/latest.php',
 	'level' => 'pages/level.php',
 	'popular' => 'pages/popular.php',

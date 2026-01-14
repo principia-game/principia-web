@@ -7,6 +7,10 @@ if (IS_ARCHIVE) {
 
 	$s->add('');
 
+	$contests = query("SELECT id FROM archive_contests");
+	while ($contest = $contests->fetch())
+		$s->add('contest/'.$contest['id']);
+
 	$s->add(['latest', 'latest/custom', 'latest/adventure', 'latest/puzzle']);
 
 	$levels = query("SELECT id FROM archive_levels WHERE visibility = 0");

@@ -27,6 +27,8 @@ function query($query, $params = [], $placeholders = []) {
 	$archivePrefix = IS_ARCHIVE ? 'archive_' : '';
 	$query = str_replace('@levels', $archivePrefix.'levels', $query);
 	$query = str_replace('@users', $archivePrefix.'users', $query);
+	$query = str_replace('@contests', $archivePrefix.'contests', $query);
+	$query = str_replace('@contests_entries', $archivePrefix.'contests_entries', $query);
 
 	if (!empty($placeholders))
 		$query = vsprintf($query, $placeholders);

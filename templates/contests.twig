@@ -4,9 +4,24 @@
 
 	{% block content %}
 <h1 class="header">Latest Contests</h1>
+
 <ul>
 	{% for contest in contests %}
-		<li><a href="/contest/{{ contest.id }}">{{ contest.title }}</li>
+		<li><a href="/contest/{{ contest.id }}">{{ contest.title }}</a></li>
+	{% else %}
+		<li>No contests.</li>
+	{% endfor %}
+</ul>
+
+<hr style="margin-top:3em">
+
+<h2>Contest archive</h2>
+
+<p>This is a list of past contests that were run on the old community site between 2013 and 2014, with their entries and rankings preserved.</p>
+
+<ul>
+	{% for contest in archived_contests %}
+		<li><a href="/archive/contest/{{ contest.id }}">{{ contest.title }}</li>
 	{% else %}
 		<li>No contests.</li>
 	{% endfor %}

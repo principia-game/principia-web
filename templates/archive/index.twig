@@ -15,7 +15,7 @@
 	<p>For more information about Principia itself, see the <a href="https://principia-web.se">current Principia website</a>.</p>
 </div>
 
-<h2 class="header">Top rated levels <a href="/archive/top">More</a></h2>
+<h2 class="header">Top rated levels <a href="/levels?archive=1&sort=top">More</a></h2>
 <div class="level-list scrollable">
 {% for top_level in top_levels %}
 	{{ level(top_level) }}
@@ -29,14 +29,14 @@
 {% endfor %}
 </div>
 
-<h2 class="header">Custom levels <a href="/archive/latest/custom">More</a></h2>
+<h2 class="header">Custom levels <a href="/levels?archive=1&type=custom">More</a></h2>
 <div class="level-list scrollable">
 {% for custom_level in custom_levels %}
 	{{ level(custom_level) }}
 {% endfor %}
 </div>
 
-<h2 class="header">Adventure levels <a href="/archive/latest/adventure">More</a></h2>
+<h2 class="header">Adventure levels <a href="/levels?archive=1&type=adventure">More</a></h2>
 <div class="level-list scrollable">
 {% for adventure_level in adventure_levels %}
 	{{ level(adventure_level) }}

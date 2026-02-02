@@ -11,13 +11,11 @@ if (IS_ARCHIVE) {
 	while ($contest = $contests->fetch())
 		$s->add('contest/'.$contest['id']);
 
-	$s->add(['latest', 'latest/custom', 'latest/adventure', 'latest/puzzle']);
-
 	$levels = query("SELECT id FROM archive_levels WHERE visibility = 0");
 	while ($level = $levels->fetch())
 		$s->add('level/'.$level['id']);
 
-	$s->add(['popular', 'random', 'top']);
+	$s->add(['random']);
 
 	$users = query("SELECT id FROM archive_users ORDER BY id");
 	while ($user = $users->fetch())
@@ -39,7 +37,9 @@ while ($contest = $contests->fetch()) {
 
 $s->add(['contests', 'donate', 'download', 'forgotpassword', 'image-to-lua']);
 
-$s->add(['latest', 'latest/custom', 'latest/adventure', 'latest/puzzle']);
+$s->add(['levels', 'levels?type=custom', 'levels?type=adventure', 'levels?type=puzzle']);
+$s->add(['levels?sort=old', 'levels?sort=top', 'levels?sort=pop']);
+$s->add(['levels?archive=1', 'levels?archive=1&type=custom', 'levels?archive=1&type=adventure', 'levels?archive=1&type=puzzle']);
 
 $levels = query("SELECT id FROM levels WHERE visibility = 0");
 while ($level = $levels->fetch())
@@ -55,7 +55,7 @@ $packages = query("SELECT id FROM packages");
 while ($package = $packages->fetch())
 	$s->add('package/'.$package['id']);
 
-$s->add(['popular', 'privacy', 'random', 'register', 'rules', 'search', 'sitemaps', 'top']);
+$s->add(['privacy', 'random', 'register', 'rules', 'search', 'sitemaps']);
 
 $users = query("SELECT id FROM users ORDER BY id");
 while ($user = $users->fetch())

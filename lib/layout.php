@@ -81,11 +81,3 @@ function relativeTime($time) {
 
 	return $relativeTime->timeAgo($time);
 }
-
-function blarg($url, $msgArchive, $msgMain) {
-	if (IS_ARCHIVE) {
-		return sprintf('<p><a href="/%s">%s</a></p>', $url, $msgArchive);
-	} else {
-		return sprintf('<p><a href="/archive/%s">%s</a></p>', $url, $msgMain);
-	}
-}

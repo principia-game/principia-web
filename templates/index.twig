@@ -83,7 +83,7 @@
 {% endif %}
 
 <h2 class="header">
-	Top rated levels <a href="/top">More</a>
+	Top rated levels <a href="/levels?sort=top">More</a>
 </h2>
 <div class="level-list scrollable">
 	{% for top_level in top_levels %}
@@ -92,7 +92,7 @@
 </div>
 
 <h2 class="header">
-	Latest custom levels <a href="/latest/custom">More</a>
+	Latest custom levels <a href="/levels?type=custom">More</a>
 </h2>
 <div class="level-list scrollable">
 	{% for custom_level in custom_levels %}
@@ -101,7 +101,7 @@
 </div>
 
 <h2 class="header">
-	Latest adventures <a href="/latest/adventure">More</a>
+	Latest adventures <a href="/levels?type=adventure">More</a>
 </h2>
 <div class="level-list scrollable">
 	{% for adventure_level in adventure_levels %}
@@ -110,7 +110,7 @@
 </div>
 
 <h2 class="header">
-	Latest puzzles <a href="/latest/puzzle">More</a>
+	Latest puzzles <a href="/levels?type=puzzle">More</a>
 </h2>
 <div class="level-list scrollable">
 	{% for puzzle_level in puzzle_levels %}

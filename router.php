@@ -7,7 +7,10 @@ $internal = isset($path[1]) && (in_array($path[1], ['internal', 'principia-versi
 
 $slimApi = isset($path[1]) && $path[1] == 'chat' && isset($path[2]) && in_array($path[2], ['fetch']);
 
-define('IS_ARCHIVE', (isset($path[1]) && $path[1] != '' && $path[1] == 'archive') || (isset($_GET['search_in']) && $_GET['search_in'] == 'archive'));
+define('IS_ARCHIVE',
+	(isset($path[1]) && $path[1] != '' && $path[1] == 'archive')
+	|| (isset($_GET['search_in']) && $_GET['search_in'] == 'archive')
+	|| (isset($_GET['archive']) && $_GET['archive'] == 1));
 
 require('lib/common.php');
 

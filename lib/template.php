@@ -41,7 +41,6 @@ class Template {
 		$this->addFunction('archive_prefix', function () {
 			return IS_ARCHIVE ? '/archive' : '';
 		});
-		$this->addFunction('blarg', 'blarg');
 
 		$this->addFunction('get_size', 'getSize');
 		$this->addFunction('upload_url', 'uploadUrl');
@@ -65,10 +64,6 @@ class Template {
 		$this->addFilter('relative_time', 'relativeTime');
 
 		$this->addFilter('ipv6_to_ipv4');
-
-		$this->addFilter('archive_prefix', function ($path) {
-			return (IS_ARCHIVE ? '/archive' : '') . $path;
-		});
 	}
 
 	private function addGlobals() {

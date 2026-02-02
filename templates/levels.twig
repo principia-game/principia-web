@@ -1,0 +1,74 @@
+{% extends "_layout.twig" %}
+
+{% if page == 1 %}
+	{% set title = "Browse Levels" %}
+{% else %}
+	{% set title = "Browse Levels (page " ~ page ~ ")" %}
+{% endif %}
+
+{% set pagename = uri %}
+
+{% set description = "Browse through a collection of player created levels for Principia." %}
+
+	{% block content %}
+<h1>Browse levels {% if page != 1 %}(Page {{ page }}){% endif %}</h1>
+
+<form>
+<p>
+	Browse in:
+	<label><input type="radio" name="archive" value="0" {% if archive == 0 %}checked{% endif %} onchange="this.form.submit()"> Current levels</label>
+	&nbsp;&ndash;
+	<label><input type="radio" name="archive" value="1" {% if archive == 1 %}checked{% endif %} onchange="this.form.submit()"> Level archive</label>
+</p>
+
+<p><label>
+	Sort by:
+
+	<select name="sort" onchange="this.form.submit()">
+		<option value="new" {% if sort == 'new' %}selected{% endif %}>Latest</option>
+		<option value="old" {% if sort == 'old' %}selected{% endif %}>Oldest</option>
+		<option value="top" {% if sort == 'top' %}selected{% endif %}>Most likes</option>
+		<option value="pop" {% if sort == 'pop' %}selected{% endif %}>Most downloads</option>
+	</select>
+</label>
+
+<span style="display: inline-block; width: 40px;"></span>
+
+<label>
+	Filter by level type:
+
+	<select name="type" onchange="this.form.submit()">
+		<option value="all" {% if type == 'all' %}selected{% endif %}>(All)</option>
+		<option value="custom" {% if type == 'custom' %}selected{% endif %}>Custom</option>
+		<option value="adventure" {% if type == 'adventure' %}selected{% endif %}>Adventure</option>
+		<option value="puzzle" {% if type == 'puzzle' %}selected{% endif %}>Puzzle</option>
+	</select>
+</label></p>
+
+</form>
+
+<div class="level-list">
+{% for level in levels %}
+	{{ level(level) }}
+{% else %}
+	There are no {% if type != 'all' %}{{ type }}{% endif %} levels. You could create one!
+{% endfor %}
+</div>
+
+{# todo: add all different combinations of archive, sort and type queries to the url #}
+{% set le_url = '/levels?' %}
+{% if archive == 1 %}
+	{% set le_url = le_url ~ 'archive=1&' %}
+{% endif %}
+{% if sort and sort != 'new' %}
+	{% set le_url = le_url ~ 'sort=' ~ sort ~ '&' %}
+{% endif %}
+{% if type and type != 'all' %}
+	{% set le_url = le_url ~ 'type=' ~ type ~ '&' %}
+{% endif %}
+{% set le_url = le_url ~ 'page=%s' %}
+
+{{ pagination(level_count, glob_lpp, le_url, page) }}
+
+<br><br>
+	{% endblock %}

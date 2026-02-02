@@ -100,6 +100,8 @@ function updateRowQuery($fields) {
 		$placeholders[] = $fieldv;
 	}
 
+	// 100% safe from SQL injection because no arbitrary user input is ever put directly
+	// into the query, rather it is passed as a prepared statement placeholder.
 	return ['fieldquery' => $fieldquery, 'placeholders' => $placeholders];
 }
 

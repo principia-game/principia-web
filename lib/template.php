@@ -45,6 +45,8 @@ class Template {
 
 		$this->addFunction('get_size', 'getSize');
 		$this->addFunction('upload_url', 'uploadUrl');
+
+		$this->addFunction('avatar_url', 'avatarUrl');
 	}
 
 	private function addFilters() {

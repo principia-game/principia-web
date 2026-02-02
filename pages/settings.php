@@ -52,28 +52,16 @@ if (isset($_POST['action'])) {
 			$error .= "- The image filesize too big.<br>";
 
 		if (!$error) {
-			if (move_uploaded_file($fname['tmp_name'], 'data/userpic/'.$userdata['id']))
-				$fields['avatar'] = 1;
+			if (move_uploaded_file($fname['tmp_name'], 'data/userpic/'.$userdata['id'].'.png'))
+				$fields['avatar'] = time();
 			else
 				trigger_error("Avatar uploading broken, check data/userpic/ permissions", E_USER_ERROR);
 		}
 	}
 
-	// Temp variables for dynamic query construction.
-	$fieldquery = '';
-	$placeholders = [];
-
-	// Construct a query containing all fields.
-	foreach ($fields as $fieldk => $fieldv) {
-		if ($fieldquery) $fieldquery .= ',';
-		$fieldquery .= $fieldk.'=?';
-		$placeholders[] = $fieldv;
-	}
-
-	// 100% safe from SQL injection because no arbitrary user input is ever put directly
-	// into the query, rather it is passed as a prepared statement placeholder.
-	$placeholders[] = $userdata['id'];
-	query("UPDATE users SET $fieldquery WHERE id = ?", $placeholders);
+	$update = updateRowQuery($fields);
+	$update['placeholders'][] = $userdata['id'];
+	query("UPDATE users SET ".$update['fieldquery']." WHERE id = ?", $update['placeholders']);
 
 	redirect("/user/%s?edited", $userdata['id']);
 }

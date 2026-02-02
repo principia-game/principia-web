@@ -44,7 +44,7 @@
 </div>
 
 {% if userpagedata.avatar %}
-	<div class="user_pic"><img src="/userpic/{{ id }}"></div>
+	<div class="user_pic"><img src="{{ avatar_url(userpagedata) }}" alt="(Avatar)"></div>
 {% endif %}
 
 <h1>{{ name }}

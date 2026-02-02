@@ -7,6 +7,26 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+CREATE TABLE `archive_contests` (
+  `id` int(10) unsigned NOT NULL,
+  `title` varchar(128) NOT NULL,
+  `description` text NOT NULL,
+  `image` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `archive_contests_entries` (
+  `contest` int(10) unsigned NOT NULL,
+  `level` mediumint(8) unsigned NOT NULL,
+  `ranking` varchar(15) DEFAULT NULL,
+  KEY `contest` (`contest`),
+  KEY `level` (`level`),
+  CONSTRAINT `archive_contests_entries_ibfk_1` FOREIGN KEY (`contest`) REFERENCES `archive_contests` (`id`),
+  CONSTRAINT `archive_contests_entries_ibfk_2` FOREIGN KEY (`level`) REFERENCES `archive_levels` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `archive_levels` (
   `id` mediumint(8) unsigned NOT NULL,
   `cat` tinyint(3) unsigned DEFAULT NULL,
@@ -255,7 +275,7 @@ CREATE TABLE `users` (
   `joined` int(10) unsigned NOT NULL DEFAULT 0,
   `lastview` int(10) unsigned NOT NULL DEFAULT 0,
   `lastpost` int(10) unsigned NOT NULL DEFAULT 0,
-  `avatar` tinyint(1) unsigned NOT NULL DEFAULT 0,
+  `avatar` int(10) unsigned DEFAULT NULL,
   `rank` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `threads` int(10) unsigned NOT NULL DEFAULT 0,
@@ -269,6 +289,18 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `token` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `videos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `youtube_id` char(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `author` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  CONSTRAINT `videos_ibfk_1` FOREIGN KEY (`author`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -389,4 +421,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2025-12-31 19:04:20 UTC
+-- 2026-02-02 20:07:01 UTC

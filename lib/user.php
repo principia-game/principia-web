@@ -58,3 +58,9 @@ function userfields_post() {
 	return commasep($out);
 }
 
+function avatarUrl($user, $pf = '') {
+	if (!$user[$pf.'avatar'])
+		return null;
+
+	return sprintf('/userpic/%d.png?v=%d', $user[$pf.'id'], $user[$pf.'avatar']);
+}

@@ -1,0 +1,21 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Level list" %}
+{% set description = "Exhaustive list of all levels in a massive bullet list." %}
+
+	{% block content %}
+<h1>Level list</h1>
+
+{% if constant('IS_ARCHIVE') %}
+	<a href="/levellist">List current levels</a>
+{% else %}
+	<a href="/archive/levellist">List levels in the archive</a>
+{% endif %}
+
+<ul>
+{% for level in levels %}
+	<li><a href="level/{{ level.id }}">{{ level.title }}</a> by {{ userlink(level, 'u_') }}</li>
+{% endfor %}
+</ul>
+
+	{% endblock %}

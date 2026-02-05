@@ -2,6 +2,7 @@
 $pages = [
 	'contest' => 'pages/contest.php',
 	'latest' => 'pages/latest.php',
+	'levellist' => 'pages/levellist.php',
 	'level' => 'pages/level.php',
 	'popular' => 'pages/popular.php',
 	'random' => 'pages/random.php',

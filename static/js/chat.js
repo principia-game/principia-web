@@ -101,12 +101,14 @@ class Chat {
 	constructor() {
 		const inputField = document.getElementById('chatInput');
 
-		document.getElementById('sendBtn')
-			.addEventListener('click', () => this.sendMessage(inputField));
-		inputField.addEventListener('keydown', event => {
-			if (event.key === 'Enter' && !event.shiftKey)
-				this.sendMessage(inputField);
-		});
+		if (inputField) {
+			document.getElementById('sendBtn')
+				.addEventListener('click', () => this.sendMessage(inputField));
+			inputField.addEventListener('keydown', event => {
+				if (event.key === 'Enter' && !event.shiftKey)
+					this.sendMessage(inputField);
+			});
+		}
 
 		// start polling
 		this.fetchMessages();

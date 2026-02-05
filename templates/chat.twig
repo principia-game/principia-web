@@ -6,29 +6,29 @@
 <h1>Chat</h1>
 
 <p>
-    Welcome to the Principia community site chat, for short conversations mostly about Principia.
-    Please use the <a href="/forum/">forum</a> for bigger discussions and questions.
+	Welcome to the Principia community site chat, for short conversations mostly about Principia.
+	Please use the <a href="/forum/">forum</a> for bigger discussions and questions.
 </p>
 
+<div class="comments chat" id="messages"></div>
+
 {% if log %}
-    <div class="comments chat" id="messages"></div>
-
-    <div class="comment-box chatbox">
-        <textarea id="chatInput" class="comment-input"></textarea>
-        <button id="sendBtn" class="btn">Send</button>
-    </div>
-
-    <div class="chat-options">
-        <label>
-            <input type="checkbox" id="soundToggle">
-            Play sound on new message
-        </label>
-    </div>
-
-    <div id="chat-info" data-userid="{{ userdata.id }}" data-username="{{ userdata.name }}"></div>
-
-    <script src="/js/chat.js?v=2"></script>
+	<div class="comment-box chatbox">
+		<textarea id="chatInput" class="comment-input"></textarea>
+		<button id="sendBtn" class="btn">Send</button>
+	</div>
 {% else %}
-    <p>You must <a href="/login?redirect=/chat">log in</a> to use the chat.</p>
+	<p>You must <a href="/login?redirect=/chat">log in</a> to send messages in the chat.</p>
 {% endif %}
-    {% endblock %}
+
+<div class="chat-options">
+	<label>
+		<input type="checkbox" id="soundToggle">
+		Play sound on new message
+	</label>
+</div>
+
+<div id="chat-info" data-userid="{{ userdata.id }}" data-username="{{ userdata.name }}"></div>
+
+<script src="/js/chat.js?v=2"></script>
+	{% endblock %}

@@ -1,7 +1,17 @@
 <?php
 
-if (!internalKey() || !$log || IS_BANNED || !isset($_FILES['level'])) {
-	header("x-error-message: You cannot upload levels.");
+if (!internalKey() || !isset($_FILES['level'])) {
+	header("x-error-message: Invalid request.");
+	die();
+}
+
+if (!$log) {
+	header("x-error-message: You need to be logged in to upload levels.");
+	die();
+}
+
+if (IS_BANNED) {
+	header("x-error-message: You are banned and cannot upload levels.");
 	die();
 }
 

@@ -9,7 +9,11 @@ $orderby = match ($sort) {
 	'top' => 'ORDER BY l.likes DESC',
 	'pop' => 'ORDER BY l.downloads DESC',
 	'new' => 'ORDER BY l.id DESC',
+	default => 'ORDER BY l.id DESC'
 };
+
+if (typeToCat($type) == null)
+	$type = 'all';
 
 $where = ($type != 'all' ? "WHERE l.cat = ".typeToCat($type)." AND l.visibility = 0" : 'WHERE visibility = 0');
 

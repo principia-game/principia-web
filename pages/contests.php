@@ -1,6 +1,6 @@
 <?php
 
-$contestdata = query("SELECT id,title FROM contests ORDER BY id DESC");
+$contestdata = query("SELECT id,title FROM contests WHERE time_from >= NOW() ORDER BY id DESC");
 
 $archivedContests = query("SELECT id,title FROM archive_contests ORDER BY id DESC");
 

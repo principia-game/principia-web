@@ -29,6 +29,7 @@ $pagename = match ($id) {
 	15 => "Seesaw_base",
 	16 => "Open_Pivot",
 	17 => "Ball_Pipeline",
+	18 => "Gearbox",
 	19 => "Damper",
 	20 => "DC_Motor",
 	21 => "Servo_Motor",

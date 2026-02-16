@@ -120,7 +120,9 @@
 
 {% include 'includes/browse_the_archive.twig' %}
 
-<h2 class="header">Latest comments</h2>
+<h2 class="header">
+	Latest comments <a href="/comments">More</a>
+</h2>
 <div class="comments">
 	{% for cmnt in latest_comments %}
 		<div class="comment" id="comment-{{ cmnt.id }}">

@@ -1,0 +1,23 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Comments" %}
+{% set description = "Latest comments that have been posted onto the website." %}
+
+	{% block content %}
+<h2 class="header">Latest comments</h2>
+
+<div class="comments">
+	{% for cmnt in comments %}
+		<div class="comment" id="comment-{{ cmnt.id }}">
+			<p>
+				{{ userlink(cmnt, 'u_') }}
+				commented on <a href="/level/{{ cmnt.level }}">{{ cmnt.level_name }}</a>:
+				<span class="date">{{ cmnt.time | relative_time }}</span>
+			</p>
+			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
+		</div>
+	{% endfor %}
+</div>
+
+<br>
+	{% endblock %}

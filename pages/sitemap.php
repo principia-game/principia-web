@@ -11,6 +11,8 @@ if (IS_ARCHIVE) {
 	while ($contest = $contests->fetch())
 		$s->add('contest/'.$contest['id']);
 
+	$s->add(['levellist']);
+
 	$levels = query("SELECT id FROM archive_levels WHERE visibility = 0");
 	while ($level = $levels->fetch())
 		$s->add('level/'.$level['id']);
@@ -40,6 +42,8 @@ $s->add(['contests', 'donate', 'download', 'forgotpassword', 'image-to-lua']);
 $s->add(['levels', 'levels?type=custom', 'levels?type=adventure', 'levels?type=puzzle']);
 $s->add(['levels?sort=old', 'levels?sort=top', 'levels?sort=pop']);
 $s->add(['levels?archive=1', 'levels?archive=1&type=custom', 'levels?archive=1&type=adventure', 'levels?archive=1&type=puzzle']);
+
+$s->add(['levellist']);
 
 $levels = query("SELECT id FROM levels WHERE visibility = 0");
 while ($level = $levels->fetch())

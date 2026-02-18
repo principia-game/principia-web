@@ -13,73 +13,91 @@
 
 {% if not constant('IS_ARCHIVE') %}
 
-<div class="user_stats">
-	<div class="topthing"><b>General information</b></div>
-
-	{% if level_count > 0 %}
-		<div class="row">
-			<b>Levels Uploaded</b>: {{ level_count }}
-		</div>
-	{% endif %}
-
-	{% if userpagedata.posts > 0 %}
-		<div class="row">
-			<b>Threads</b>: {{ userpagedata.threads }} (<a href="/forum/forum?user={{ id }}">Show</a>)
-			<span class="pad"><b>Posts</b>: {{ userpagedata.posts }} (<a href="/forum/thread?user={{ id }}">Show</a>)</span>
-		</div>
-	{% endif %}
-
-	<div class="row">
-		<b>Registered on</b>: {{ userpagedata.joined | date('Y-m-d H:i:s') }}
-	</div>
-	<div class="row">
-		<b>Last view</b>: {{ userpagedata.lastview | relative_time }}
-	</div>
-
-	{% if userdata.rank > 2 %}
-		<div class="row right">
-			<span class="sensitive">{{ userpagedata.ip | ipv6_to_ipv4 }}</span>
-		</div>
-	{% endif %}
-</div>
-
 {% if userpagedata.avatar %}
-	<div class="user_pic"><img src="{{ avatar_url(userpagedata) }}" alt="(Avatar)"></div>
+	{% set avatar = avatar_url(userpagedata) %}
+{% else %}
+	{% set avatar = "/assets/no_avatar.png" %}
 {% endif %}
+<div class="user_header">
+	<div class="user_pic">
+		<img src="{{ avatar }}" alt="(Avatar)">
+	</div>
 
-<h1>{{ name }}
-	{% if userpagedata.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
-	{% if userpagedata.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}
-	{% if userpagedata.rank < 0 %}<span title="User has been banned.">{{ icon("gavel") }}</span>{% endif %}
-	{% if userpagedata.pronouns %}<span class="pronouns">({{ userpagedata.pronouns }})</span>{% endif %}</h1>
+	<div class="user_meta">
+		<h1>{{ name }}
+			{% if userpagedata.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
+			{% if userpagedata.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}
+			{% if userpagedata.rank < 0 %}<span title="User has been banned.">{{ icon("gavel") }}</span>{% endif %}
+			{% if userpagedata.pronouns %}<span class="pronouns">({{ userpagedata.pronouns }})</span>{% endif %}
+		</h1>
 
-<div class="user_about">
-	<h3>About this user</h3>
-	{{ userpagedata.about | default("*This user hasn't written anything about themselves yet...*") | markdown }}
+		<div class="meta_row">
+			<span class="meta_item">
+				<b>Levels</b>: {{ level_count }}
+			</span>
+
+			<span class="meta_item">
+				<b>Threads</b>: {{ userpagedata.threads }}
+				(<a href="/forum/forum?user={{ id }}">Show</a>)
+			</span>
+			<span class="meta_item">
+				<b>Posts</b>: {{ userpagedata.posts }}
+				(<a href="/forum/thread?user={{ id }}">Show</a>)
+			</span>
+		</div>
+
+		<div class="meta_row">
+			<span class="meta_item">
+				<b>Registered</b>:
+				{{ userpagedata.joined | date('Y-m-d') }}
+			</span>
+			<span class="meta_item">
+				<b>Last view</b>:
+				{{ userpagedata.lastview | relative_time }}
+			</span>
+			{% if userdata.rank > 2 %}
+				<span class="meta_item">
+					<b>IP</b>:
+					<span class="sensitive">{{ userpagedata.ip | ipv6_to_ipv4 }}</span>
+				</span>
+			{% endif %}
+		</div>
+	</div>
 </div>
 
-<p class="clear_right">
-	{% if log %}
-		<strong>User actions:</strong>
+<h3>About this user</h3>
+{{ userpagedata.about | default("*This user hasn't written anything about themselves yet...*") | markdown }}
 
-		{% if userdata.id != id %}
-			<a href="/forum/sendprivate?uid={{ id }}">Send private message</a>
-		{% else %}
-			<a href="/user/{{ id }}">Go to personal user page</a>
-		{% endif %}
-		{% if userdata.rank > 2 %}
-			&ndash; <a href="/resetpassword?grf={{ id }}">Generate password reset for user</a>
-		{% endif %}
-		{% if userdata.rank > 1 %}
-			&ndash; <a href="/admin/ban_user?id={{ id }}">{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
-		{% endif %}
-	{% endif %}
-</p>
+<hr>
 
 {% if userpagedata.archivename %}
 	<h3><a href="/archive/user/{{ userpagedata.archivename }}">
 		View this user's levels on the official community site archive
 	</a></h3>
+{% endif %}
+
+{% if log %}
+	<p>
+		<strong>User actions:</strong>
+
+		{% if userdata.id != id %}
+			<a href="/forum/sendprivate?uid={{ id }}">
+				Send private message</a>
+		{% else %}
+			<a href="/user/{{ id }}">
+				Go to personal user page</a>
+		{% endif %}
+		{% if userdata.rank > 2 %}
+			&ndash;
+			<a href="/resetpassword?grf={{ id }}">
+				Generate password reset for user</a>
+		{% endif %}
+		{% if userdata.rank > 1 %}
+			&ndash;
+			<a href="/admin/ban_user?id={{ id }}">
+				{% if userpagedata.rank < 0 %}Unb{% else %}B{% endif %}an user</a>
+		{% endif %}
+	</p>
 {% endif %}
 
 {% else %}

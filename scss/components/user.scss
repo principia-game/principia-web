@@ -15,44 +15,42 @@
 
 /// Stuff for the user page \\\
 
-.user_about {
-	margin-bottom: 1.5em;
-}
-
-.user_pic {
-	float: right;
-	border: 1px solid $grid;
-	width: 100px;
-	height: 100px;
+.user_header {
 	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 1px;
+	gap: 0.85rem;
+	align-items: flex-start;
 
-	img {
-		max-width: 100%;
-		max-height: 100%;
+	.user_pic {
+		border: 1px solid $grid;
+		width: 120px;
+		aspect-ratio: 1 / 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 5px;
+
+		@media (max-width: 540px) {
+			width: 80px;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
 	}
-}
 
-.user_stats {
-	margin-left: 10px;
-	border: 1px solid $grid;
-	width: 300px;
-	float: right;
+	.user_meta {
+		flex: 1 1 auto;
 
-	.topthing {
-		background: #3367aa;
-		padding: 7px;
-	}
+		h1 {
+			margin: 0.5em 0 0.5em 0;
+		}
 
-	.row {
-		border-top: 1px solid $grid;
-		padding: 10px;
-		display: block;
-
-		.pad {
-			float: right;
+		.meta_row {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+			margin-bottom: 1rem;
 		}
 	}
 }

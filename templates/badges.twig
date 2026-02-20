@@ -14,7 +14,7 @@
 		<th>Name</th>
 		<th>Description</th>
 	</tr>
-	{% for badge in badges %}
+	{% for badge in constant('ALL_BADGES') %}
 	<tr>
 		<td class="center"><img src="/icons/badges/{{ badge.name }}.svg" alt="" width=48 height=48></td>
 		<td>{{ badge.title }}</td>

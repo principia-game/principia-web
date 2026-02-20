@@ -1,0 +1,26 @@
+{% extends "_layout.twig" %}
+
+{% set title = (user.name | possessive) ~ " Badges" %}
+{% set description = "List the available badges for user " ~ user.name %}
+
+	{% block content %}
+<p><a href="/user/{{ user.id }}">&larr; Go back</a></p>
+
+<h1>{{ user.name | possessive }} Badges</h1>
+
+<div class="badges">
+	{% for badge in badges %}
+	<div class="badge">
+		<img src="/icons/badges/{{ badge.name }}.svg" alt="">
+		<h3>{{ badge.title }}</h3>
+
+		{% if badge.comment %}
+			<p class="comment">{{ badge.comment | raw }}</p>
+		{% endif %}
+
+		<p class="description">{{ badge.description }}</p>
+	</div>
+	{% endfor %}
+</div>
+	{% endblock %}
+

@@ -81,3 +81,10 @@ function generateId($length = 10) {
 
 	return $id;
 }
+
+function possessive($name) {
+	if (str_ends_with($name, 's'))
+		return $name . "'";
+	else
+		return $name . "'s";
+}

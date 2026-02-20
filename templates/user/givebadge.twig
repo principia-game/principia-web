@@ -1,0 +1,25 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Give badge to " ~ user.name %}
+
+	{% block content %}
+<h1>Give badge to {{ user.name }}</h1>
+
+<form method="POST">
+	<p>
+		<label for="badge">Badge:</label>
+		<select name="badge" id="badge">
+			{% for badge in constant('ALL_BADGES') %}
+				<option value="{{ loop.index }}">{{ badge.title }}</option>
+			{% endfor %}
+		</select>
+	</p>
+
+	<p>
+		<label for="comment">Comment (optional):</label><br>
+		<input type="text" name="comment" id="comment" size="60">
+	</p>
+
+	<p><input type="submit" name="action" value="Give badge"></p>
+</form>
+	{% endblock %}

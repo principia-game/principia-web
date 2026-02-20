@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg1"
+   width="64"
+   height="64"
+   version="1.1"
+   viewBox="0 0 16.933 16.933"
+   sodipodi:docname="featured_level.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.391796"
+     inkscape:cx="19.354269"
+     inkscape:cy="42.237845"
+     inkscape:window-width="1920"
+     inkscape:window-height="1002"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <circle
+     id="path2-8"
+     cx="8.4666996"
+     cy="8.4666996"
+     r="7.5405998"
+     style="stroke-width:1.85209;stroke-dasharray:none;fill:#005fb0;stroke:#003560;stroke-linejoin:round;paint-order:stroke fill markers;stroke-opacity:1;fill-opacity:1"
+     transform="matrix(0.99998414,0,0,0.99998212,1.4702424e-5,1.6556705e-5)" />
+  <title
+     id="title1">star-shooting-outline</title>
+  <path
+     d="M 13.66793,6.5751835 10.608725,6.3198558 9.4124682,3.5017953 8.2162106,6.3198558 5.1570073,6.5751835 7.4738692,8.594163 6.783539,11.587171 9.4124682,9.9984647 12.041397,11.587171 11.346338,8.594163 13.66793,6.5751835 m -3.243607,2.236481 0.18913,0.8085372 L 9.8994816,9.1899285 9.4124682,8.8967736 8.9254539,9.1899285 8.2114821,9.6202017 8.3958857,8.8116645 8.5282776,8.2537266 8.0980037,7.8801913 7.4644128,7.3317107 8.2965915,7.2607862 8.8639865,7.213503 9.0862163,6.6886629 9.4124682,5.9226799 9.73872,6.6886629 9.9609498,7.213503 10.528345,7.26079 11.355796,7.33172 10.726933,7.8802003 10.29193,8.2537357 10.424319,8.8116735 M 3.3413443,8.7029138 C 3.1999682,8.4664993 3.2604903,8.1780731 3.4784653,8.0362251 L 4.7692877,7.1851329 5.511629,7.8281811 3.9985765,8.8258487 c -0.080381,0.052004 -0.1702182,0.080384 -0.2600559,0.080384 -0.1513053,0 -0.3026106,-0.075648 -0.3971763,-0.2033154 M 3.4784653,12.561202 6.249243,10.740811 6.1026664,11.426412 5.9419038,12.074188 3.998577,13.355555 c -0.080381,0.05201 -0.1702182,0.07565 -0.260056,0.07565 -0.1513053,0 -0.3026106,-0.07565 -0.3971763,-0.212773 -0.1413762,-0.2175 -0.080854,-0.510653 0.1371209,-0.65723 M 6.2539717,8.4664993 6.6889742,8.8494903 6.5613106,9.4121567 3.9985776,11.0907 c -0.080381,0.05201 -0.1702182,0.07565 -0.260056,0.07565 -0.1513052,0 -0.3026105,-0.07093 -0.3971762,-0.212773 -0.1413761,-0.217501 -0.080854,-0.510656 0.137121,-0.652504 z"
+     id="path1"
+     style="stroke-width:0.472829;fill:#91cbff;fill-opacity:1" />
+</svg>

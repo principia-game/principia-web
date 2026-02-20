@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="svg1"
+   width="64"
+   height="64"
+   version="1.1"
+   viewBox="0 0 16.933 16.933"
+   sodipodi:docname="anniversary_five.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="8.783592"
+     inkscape:cx="34.723835"
+     inkscape:cy="28.632933"
+     inkscape:window-width="1920"
+     inkscape:window-height="1002"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1" />
+  <circle
+     id="path2-8"
+     cx="8.4666996"
+     cy="8.4666996"
+     r="7.5405998"
+     style="stroke-width:1.85209;stroke-dasharray:none;fill:#2977a1;stroke:#2b4f63;stroke-linejoin:round;paint-order:stroke fill markers;stroke-opacity:1;fill-opacity:1"
+     transform="matrix(0.99998414,0,0,0.99998212,1.4702424e-5,1.6556705e-5)" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.5831px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:Roboto;text-align:end;text-anchor:end;fill:#96c1f7;fill-opacity:1;stroke-width:0.264578"
+     x="11.251799"
+     y="12.176786"
+     id="text1"><tspan
+       sodipodi:role="line"
+       id="tspan1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Roboto;-inkscape-font-specification:Roboto;fill:#96c1f7;fill-opacity:1;stroke-width:0.264578"
+       x="11.251799"
+       y="12.176786">5</tspan></text>
+</svg>

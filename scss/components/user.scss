@@ -19,6 +19,14 @@
 	display: flex;
 	gap: 0.85rem;
 	align-items: flex-start;
+	flex-wrap: wrap;
+
+	.user_main_meta {
+		display: flex;
+		gap: 0.5rem;
+		flex: 1 auto;
+		align-items: flex-start;
+	}
 
 	.user_pic {
 		border: 1px solid $grid;
@@ -27,7 +35,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-top: 5px;
+		margin-top: 15px;
 
 		@media (max-width: 540px) {
 			width: 80px;
@@ -40,6 +48,7 @@
 	}
 
 	.user_meta {
+		margin-top: 7px;
 		flex: 1 1 auto;
 
 		h1 {
@@ -51,6 +60,50 @@
 			gap: 1rem;
 			flex-wrap: wrap;
 			margin-bottom: 1rem;
+		}
+	}
+
+	.user_sidebar {
+		flex: 0 0 255px;
+		border: 1px solid $grid;
+		padding: 0.1rem;
+		margin-top: 4px;
+		box-sizing: border-box;
+
+		h3 {
+			margin: 0.5rem 0 0.5rem 0.5rem;
+			font-size: 1rem;
+		}
+
+		.badges-collapsed {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: left;
+			gap: 0.1rem;
+
+			.badge {
+				display: inline-block;
+
+				img {
+					width: 48px;
+					height: 48px;
+				}
+			}
+		}
+	}
+
+	@media (max-width: 800px) {
+		// Keep the avatar + meta on one row; move only the badges sidebar below
+
+		.user_sidebar {
+			order: 2;
+			flex-basis: 100%;
+			width: 100%;
+			margin-top: 0.75rem;
+
+			.badges-collapsed {
+				justify-content: space-around
+			}
 		}
 	}
 }
@@ -70,4 +123,33 @@
 	font-weight: normal;
 	font-size: 14pt;
 	margin-left: 5px;
+}
+
+.badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem 0.25rem;
+	justify-content: space-around;
+	margin-top: 2rem;
+
+	.badge {
+		text-align: center;
+		display: inline-block;
+		width: 200px;
+
+		img {
+			width: 96px;
+			height: 96px;
+		}
+
+		h3 {
+			margin-top: 0;
+			margin-bottom: 0.65rem;
+			border-bottom: 1px solid $grid;
+		}
+
+		p { margin-top: 0; }
+		.comment { font-style: italic; }
+		.description { font-size: 11pt; }
+	}
 }

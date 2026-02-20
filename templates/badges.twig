@@ -1,0 +1,29 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Badges" %}
+{% set description = "List the available badges" %}
+
+	{% block content %}
+<h1>Badges</h1>
+
+<p>This is a list of possible badges that users can have.</p>
+
+<table class="settings">
+	<tr>
+		<th>Badge</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	{% for badge in badges %}
+	<tr>
+		<td class="center"><img src="/icons/badges/{{ badge.name }}.svg" alt="" width=48 height=48></td>
+		<td>{{ badge.title }}</td>
+		<td>{{ badge.description }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<h2>Receiving a badge</h2>
+
+<p>Most badges are manually given to users by staff once they have met the criteria. If you think you deserve a certain badge but do not have it yet, please <a href="/user/1">send a PM to ROllerozxa</a>.</p>
+	{% endblock %}

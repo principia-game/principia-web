@@ -64,6 +64,8 @@ class Template {
 		$this->addFilter('relative_time', 'relativeTime');
 
 		$this->addFilter('ipv6_to_ipv4');
+
+		$this->addFilter('possessive', 'possessive');
 	}
 
 	private function addGlobals() {

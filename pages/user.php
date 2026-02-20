@@ -1,8 +1,6 @@
 <?php
 $arg = $path[2] ?? null;
 
-if (isset($_GET['id'])) redirectPerma('/user/%d', $_GET['id']);
-
 $user = is_numeric($arg) ? getUserById($arg) : getUserByName($arg);
 
 if (!isset($user) || !$user) error('404');
@@ -11,6 +9,22 @@ if (str_starts_with($user['name'], 'deleted_user_'))
 	error('404');
 
 $id = $user['id'];
+
+if (isset($path[3]) && $path[3] != '') {
+	if ($path[3] == 'badges') {
+		require('pages/user/badges.php');
+		return;
+	}
+
+	if ($path[3] == 'givebadge') {
+		require('pages/user/givebadge.php');
+		return;
+	}
+
+	error('404');
+}
+
+if (isset($_GET['id'])) redirectPerma('/user/%d', $_GET['id']);
 
 $page = (int)($_GET['page'] ?? 1);
 $forceuser = isset($_GET['forceuser']);
@@ -54,6 +68,8 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 
 	clearMentions('user', $id);
 
+	$badges = getUserBadges($id, 10);
+
 	twigloader()->display('user.twig', [
 		'id' => $id,
 		'name' => $user['name'],
@@ -63,6 +79,7 @@ if (isset($userdata['id']) && $userdata['id'] == $id && !$forceuser) {
 		'page' => $page,
 		'level_count' => $count,
 		'action' => $action ?? null,
-		'comments' => !IS_ARCHIVE ? getComments('user', $id) : null
+		'comments' => !IS_ARCHIVE ? getComments('user', $id) : null,
+		'badges' => $badges
 	]);
 }

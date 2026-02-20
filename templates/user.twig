@@ -19,48 +19,62 @@
 	{% set avatar = "/assets/no_avatar.png" %}
 {% endif %}
 <div class="user_header">
-	<div class="user_pic">
-		<img src="{{ avatar }}" alt="(Avatar)">
-	</div>
-
-	<div class="user_meta">
-		<h1>{{ name }}
-			{% if userpagedata.rank > 1 %}<span title="User is a moderator.">{{ icon("shield") }}</span>{% endif %}
-			{% if userpagedata.rank > 3 %}<span title="User is a root administrator.">{{ icon("root") }}</span>{% endif %}
-			{% if userpagedata.rank < 0 %}<span title="User has been banned.">{{ icon("gavel") }}</span>{% endif %}
-			{% if userpagedata.pronouns %}<span class="pronouns">({{ userpagedata.pronouns }})</span>{% endif %}
-		</h1>
-
-		<div class="meta_row">
-			<span class="meta_item">
-				<b>Levels</b>: {{ level_count }}
-			</span>
-
-			<span class="meta_item">
-				<b>Threads</b>: {{ userpagedata.threads }}
-				(<a href="/forum/forum?user={{ id }}">Show</a>)
-			</span>
-			<span class="meta_item">
-				<b>Posts</b>: {{ userpagedata.posts }}
-				(<a href="/forum/thread?user={{ id }}">Show</a>)
-			</span>
+	<div class="user_main_meta">
+		<div class="user_pic">
+			<img src="{{ avatar }}" alt="(Avatar)">
 		</div>
 
-		<div class="meta_row">
-			<span class="meta_item">
-				<b>Registered</b>:
-				{{ userpagedata.joined | date('Y-m-d') }}
-			</span>
-			<span class="meta_item">
-				<b>Last view</b>:
-				{{ userpagedata.lastview | relative_time }}
-			</span>
-			{% if userdata.rank > 2 %}
+		<div class="user_meta">
+			<h1>{{ name }}
+				{% if userpagedata.pronouns %}<span class="pronouns">({{ userpagedata.pronouns }})</span>{% endif %}
+			</h1>
+
+			<div class="meta_row">
 				<span class="meta_item">
-					<b>IP</b>:
-					<span class="sensitive">{{ userpagedata.ip | ipv6_to_ipv4 }}</span>
+					<b>Levels</b>: {{ level_count }}
 				</span>
-			{% endif %}
+
+				<span class="meta_item">
+					<b>Threads</b>: {{ userpagedata.threads }}
+					(<a href="/forum/forum?user={{ id }}">Show</a>)
+				</span>
+				<span class="meta_item">
+					<b>Posts</b>: {{ userpagedata.posts }}
+					(<a href="/forum/thread?user={{ id }}">Show</a>)
+				</span>
+			</div>
+
+			<div class="meta_row">
+				<span class="meta_item">
+					<b>Registered</b>:
+					{{ userpagedata.joined | date('Y-m-d') }}
+				</span>
+				<span class="meta_item">
+					<b>Last view</b>:
+					{{ userpagedata.lastview | relative_time }}
+				</span>
+				{% if userdata.rank > 2 %}
+					<span class="meta_item">
+						<b>IP</b>:
+						<span class="sensitive">{{ userpagedata.ip | ipv6_to_ipv4 }}</span>
+					</span>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	<div class="user_sidebar">
+		<h3>Badges
+			{% if badges %}<a href="/user/{{ id }}/badges" style="float: right;">(View all)</a>{% endif %}
+		</h3>
+
+		<div class="badges-collapsed">
+			{% for badge in badges %}
+			<div class="badge">
+				<img src="/icons/badges/{{ badge.name }}.svg" alt="{{ badge.name }}" title="{{ badge.title }}">
+			</div>
+			{% else %}
+				<p class="center fullwidth"> ~ dust ~ </p>
+			{% endfor %}
 		</div>
 	</div>
 </div>
@@ -91,6 +105,9 @@
 			&ndash;
 			<a href="/resetpassword?grf={{ id }}">
 				Generate password reset for user</a>
+			&ndash;
+			<a href="/user/{{ id }}/givebadge">
+				Give badge</a>
 		{% endif %}
 		{% if userdata.rank > 1 %}
 			&ndash;

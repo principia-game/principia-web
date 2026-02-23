@@ -37,7 +37,7 @@ while ($contest = $contests->fetch()) {
 	$s->add('contest/'.$contest['id']);
 }
 
-$s->add(['contests', 'donate', 'download', 'forgotpassword', 'image-to-lua']);
+$s->add(['contests', 'donate', 'download', 'featured', 'forgotpassword', 'image-to-lua']);
 
 $s->add(['levels', 'levels?type=custom', 'levels?type=adventure', 'levels?type=puzzle']);
 $s->add(['levels?sort=old', 'levels?sort=top', 'levels?sort=pop']);

@@ -1,0 +1,14 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Featured levels" %}
+{% set description = "List of levels that have been featured on the front page of the website." %}
+
+	{% block content %}
+<h1>Featured levels</h1>
+
+<div class="level-list">
+{% for level in featured_levels %}
+	{{ level(level) }}
+{% endfor %}
+</div>
+	{% endblock %}

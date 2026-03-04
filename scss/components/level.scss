@@ -25,7 +25,8 @@ div.level {
 	height: 210px;
 
 	border: 1px solid $btn_border;
-	border-radius: 4px;
+	border-radius: 8px;
+	transition: transform .15s ease, box-shadow .15s ease, background-color .12s ease;
 
 	.lvlbox_top {
 		color: $text;
@@ -67,6 +68,8 @@ div.level {
 
 	&:hover {
 		background-color: $btn_bg;
+		transform: translateY(-2px);
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
 	}
 }
 
@@ -74,20 +77,18 @@ div.level {
 // (TODO: Rename these classes, both things are called "levelboxes", what a mess)
 
 .lvl-box {
-	margin-top: 1em;
-	min-height: 280px;
-	width: 100%;
+	margin: 1em 0;
+	padding: 0 5px;
 	display: flex;
-	flex-flow: row wrap;
-	justify-content: space-between;
 	align-items: flex-start;
+	gap: 10px;
 
 	.img {
+		flex: 1;
 		position: relative;
-		width: 48%;
 
 		img {
-			width: 100%;
+			max-width: 100%;
 		}
 
 		.revision {
@@ -95,17 +96,17 @@ div.level {
 			color: #000;
 			font-size: 0.8em;
 			font-weight: bold;
-			padding: 4px;
+			padding: 5px 8px;
 			position: absolute;
-			top: 0%;
-			left: 0%;
+			top: 0;
+			left: 0;
 		}
 	}
 
 	.info {
-		width: 48%;
-		padding: 1em;
-		background-color: $bg_box2;
+		flex: 1;
+		box-sizing: border-box;
+		padding: 0.85em;
 
 		.likemsg {
 			display: inline-block;
@@ -116,6 +117,7 @@ div.level {
 			display: none;
 			margin: 15px 0;
 			padding: 15px;
+			border-radius: 8px;
 			background-color: #6b4040;
 			color: #fff;
 		}
@@ -129,6 +131,7 @@ div.level {
 
 		.img, .info {
 			width: 100%;
+			flex: unset;
 		}
 		.info {
 			margin-bottom: 20px;
@@ -136,8 +139,16 @@ div.level {
 	}
 }
 
+.lvl-box .info, .lvl-data {
+	background-color: $bg_box2;
+	border-radius: 6px;
+	border: 1px solid $btn_border;
+}
+
 .lvl-data {
 	background-color: $bg_box2;
+	border: 1px solid $btn_border;
+	border-radius: 6px;
 	padding: 0.5em;
 
 	p {
@@ -149,33 +160,32 @@ div.level {
 // Play & Edit buttons \\
 .play-btn {
 	border: none;
-	color: $btn_text;
+	border-radius: 6px;
 	display: inline-block;
 	font-weight: bold;
 	margin-right: 0.5em;
 	padding: 10px 20px;
+	transition: background-color .12s ease;
 
 	&:hover {
 		text-decoration: none;
 	}
 
-	&:active {
+	&, &:active {
 		color: $btn_text;
 	}
 
 	&.green {
 		background-color: $btn_play;
 
-		&:hover {
-			background-color: lighten($btn_play, 15%);
-		}
+		&:hover  { background-color: lighten($btn_play, 15%); }
+		&:active { background-color: darken($btn_play, 5%); }
 	}
 
 	&.blue {
 		background-color: $btn_edit;
 
-		&:hover {
-			background-color: lighten($btn_edit, 15%);
-		}
+		&:hover  { background-color: lighten($btn_edit, 15%); }
+		&:active { background-color: darken($btn_edit, 5%); }
 	}
 }

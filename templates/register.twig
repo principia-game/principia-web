@@ -5,7 +5,7 @@
 
 	{% block content %}
 {% if error %}
-	<div class="header_message">The following errors occured when trying to register: <br>- {{ error | join('<br>- ') | raw }}</div>
+	<div class="header_message">The following errors occurred when trying to register: <ul><li> {{ error | join('<li>') | raw }}</ul></div>
 {% endif %}
 
 <h1 class="center">Register</h1>

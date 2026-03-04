@@ -20,12 +20,12 @@
 }
 
 .comments .comment {
-	padding: 7px 8px;
+	padding: 8px 10px;
 	border-bottom: 1px solid $grid;
 	overflow-wrap: break-word;
-	max-height: 130px;
+	max-height: 200px;
 	overflow: auto;
-	line-height: 1.4;
+	line-height: 1.5;
 
 	&:nth-child(odd)  { background-color: $funbg0; }
 	&:nth-child(even) { background-color: $funbg2; }

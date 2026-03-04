@@ -9,6 +9,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	color-scheme: dark light;
 }
 
 button, body {
@@ -19,8 +20,9 @@ button, body {
 a {
 	color: $link;
 	text-decoration: none;
+	transition: color .08s ease;
 
-	&:hover { text-decoration: underline; }
+	&:hover { text-decoration: underline; text-underline-offset: 2px; }
 	&:active { color: $link_active; }
 }
 
@@ -39,6 +41,7 @@ ul li, ol li {
 hr {
 	border-top: 1px solid $grid;
 	border-bottom: 0;
+	margin: 1.25em 0;
 }
 
 h1 { font-size: 1.75em; }

@@ -15,16 +15,94 @@ There are tens of thousands of user made creations by the community to play and 
 (Clicking on an image will give you a lossless PNG version of each)
 
 <div class="gallery">
-	<a href="/branding/screenshot-1.png"><img src="/branding/screenshot-1.jpg"></a>
-	<a href="/branding/screenshot-2.png"><img src="/branding/screenshot-2.jpg"></a>
-	<a href="/branding/screenshot-3.png"><img src="/branding/screenshot-3.jpg"></a>
-	<a href="/branding/screenshot-4.png"><img src="/branding/screenshot-4.jpg"></a>
-	<a href="/branding/screenshot-5.png"><img src="/branding/screenshot-5.jpg"></a>
-	<a href="/branding/screenshot-6.png"><img src="/branding/screenshot-6.jpg"></a>
-	<a href="/branding/screenshot-7.png"><img src="/branding/screenshot-7.jpg"></a>
-	<a href="/branding/screenshot-8.png"><img src="/branding/screenshot-8.jpg"></a>
-	<a href="/branding/screenshot-9.png"><img src="/branding/screenshot-9.jpg"></a>
-	<a href="/branding/screenshot-10.png"><img src="/branding/screenshot-10.jpg"></a>
+	<div>
+		<a href="/branding/screenshot-1.png" target="_blank">
+			<img src="/branding/screenshot-1.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/8416">Armed Robot L</a>
+			by Doughnuts108
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-2.png" target="_blank">
+			<img src="/branding/screenshot-2.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/1294">Art adventure</a>
+			by skyforce
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-3.png" target="_blank">
+			<img src="/branding/screenshot-3.jpg">
+		</a>
+		<div class="caption">
+			The Principia sandbox, showing the creation of an adventure level.
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-4.png" target="_blank">
+			<img src="/branding/screenshot-4.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/6265">Blue Eyes White Dragon</a>
+			by Demon666
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-5.png" target="_blank">
+			<img src="/branding/screenshot-5.jpg">
+		</a>
+		<div class="caption">
+			A procedural adventure level with some planks and beams placed down.
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-6.png" target="_blank">
+			<img src="/branding/screenshot-6.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/8978">Failed Skiing</a>
+			by TheEnderPT
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-7.png" target="_blank">
+			<img src="/branding/screenshot-7.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/2064">CAT 390D EXCAVATOR</a>
+			by Tetsu
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-8.png" target="_blank">
+			<img src="/branding/screenshot-8.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/2108">Simple Calculator</a>
+			by Rubicon
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-9.png" target="_blank">
+			<img src="/branding/screenshot-9.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/1862">Perfect Suspension and Brake Truck</a>
+			by Leis
+		</div>
+	</div>
+	<div>
+		<a href="/branding/screenshot-10.png" target="_blank">
+			<img src="/branding/screenshot-10.jpg">
+		</a>
+		<div class="caption">
+			<a href="/archive/level/2660">Lua Pong Game</a>
+			by Cralant
+		</div>
+	</div>
 </div>
 
 ## About principia-web

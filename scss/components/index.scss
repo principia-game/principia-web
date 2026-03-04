@@ -79,7 +79,19 @@
 	img {
 		width: 100%;
 		height: auto;
-		border-radius: 2px;
+		border-radius: 6px;
+		transition: opacity .15s ease;
+
+		&:hover {
+			opacity: 0.9;
+		}
+	}
+
+	.caption {
+		margin-top: 0.6em;
+		margin-bottom: 0.75em;
+		text-align: center;
+		font-style: italic;
 	}
 }
 

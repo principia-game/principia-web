@@ -13,7 +13,7 @@ if (IS_ARCHIVE) {
 // Cache all index page queries unless explicitly flushed.
 
 $latestfeatured = $cache->hit('idx_feat', function () {
-	return fetchArray(query("SELECT l.id,l.title, @userfields FROM featured f JOIN levels l on f.level = l.id JOIN users u ON l.author = u.id ORDER BY f.id DESC LIMIT 4"));
+	return fetchArray(query("SELECT l.id,l.title, @userfields FROM featured f JOIN levels l on f.level = l.id JOIN users u ON l.author = u.id ORDER BY f.id DESC LIMIT 8"));
 });
 
 $newsdata = News::retrieveList(5);

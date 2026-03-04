@@ -100,7 +100,7 @@
 				commented on <a href="/{{ cmnt.type | cmt_num_to_type }}/{{ cmnt.level }}">{{ cmnt.type | cmt_num_to_type | title }} {{ cmnt.level }}</a>:
 				<span class="date">{{ cmnt.time | relative_time }}</span>
 			</p>
-			<span class="comment-text">{{ cmnt.message | markdown_inline | replace({'\n':'<br>'}) | raw }}</span>
+			<span class="comment-text">{{ cmnt.message | markdown_inline | raw }}</span>
 		</div>
 	{% endfor %}
 </div>

@@ -77,7 +77,7 @@ if (!$action) {
 	foreach ($userdata as $field => $val)
 		$post['u'.$field] = $val;
 
-	$post['date'] = $post['ulastpost'] = time();
+	$post['date'] = time();
 	$post['text'] = $_POST['message'];
 	$post['headerbar'] = $title.' (Message preview)';
 

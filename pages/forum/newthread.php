@@ -17,47 +17,23 @@ $title = $_POST['title'] ?? '';
 $message = $_POST['message'] ?? '';
 
 if ($action == 'Submit') {
+	$lastpost = fetch("SELECT id, user, date FROM z_posts WHERE user = ? ORDER BY id DESC LIMIT 1", [$userdata['id']]);
+
 	if (strlen(trim($title)) < 15)
 		$error = "You need to enter a longer title.";
 	if (strlen(trim($message)) == 0)
 		$error = "You need to enter a message to your thread.";
-	if ($userdata['lastpost'] > time() - (10*60) && $action == 'Submit' && !IS_ROOT)
+	if ($lastpost['date'] > time() - (10*60) && $action == 'Submit' && !IS_ROOT)
 		$error = "Don't post threads so fast, wait a little longer.";
 
 	if (!$error) {
-		insertInto('z_threads', [
-			'title' => $title,
+		$tid = newThread([
 			'forum' => $fid,
-			'user' => $userdata['id'],
-			'lastdate' => time(),
-			'lastuser' => $userdata['id']
-		]);
-
-		$tid = insertId();
-		insertInto('z_posts', [
-			'user' => $userdata['id'],
-			'thread' => $tid,
-			'date' => time()
-		]);
-
-		$pid = insertId();
-		insertInto('z_poststext', ['id' => $pid, 'text' => $message]);
-
-		query("UPDATE z_forums SET threads = threads + 1, posts = posts + 1, lastdate = ?,lastuser = ?,lastid = ? WHERE id = ?",
-			[time(), $userdata['id'], $pid, $fid]);
-
-		query("UPDATE z_threads SET lastid = ? WHERE id = ?", [$pid, $tid]);
-
-		query("UPDATE users SET posts = posts + 1, threads = threads + 1, lastpost = ? WHERE id = ?",
-			[time(), $userdata['id']]);
-
-		newForumPostHook([
-			'id' => $pid,
 			'title' => $title,
-			'content' => $message,
+			'message' => $message,
 			'u_id' => $userdata['id'],
 			'u_name' => $userdata['name']
-		], 'thread');
+		]);
 
 		redirect("thread?id=$tid");
 	}
@@ -72,7 +48,7 @@ if ($action == 'Preview') {
 	foreach ($userdata as $field => $val)
 		$post['u'.$field] = $val;
 
-	$post['date'] = $post['ulastpost'] = time();
+	$post['date'] = time();
 	$post['text'] = $message;
 	$post['headerbar'] = 'Post preview';
 

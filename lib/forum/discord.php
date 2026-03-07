@@ -7,20 +7,22 @@ use \DiscordWebhooks\Embed;
  * Trigger the new forum post webhook.
  */
 function newForumPostHook($post, $mode = 'reply') {
-	$post['content'] = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\](.*)\[\/quote\]'si", '', $post['content']);
+	$content = $post['message'];
+
+	$content = preg_replace("'\[quote=\"(.*?)\" id=\"(.*?)\"\](.*)\[\/quote\]'si", '', $content);
 
 	// dirty description truncating
-	if (strlen($post['content']) > 250) {
-		$post['content'] = wordwrap($post['content'], 250);
-		$post['content'] = substr($post['content'], 0, strpos($post['content'], "\n")) . '...';
+	if (strlen($content) > 250) {
+		$content = wordwrap($content, 250);
+		$content = substr($content, 0, strpos($content, "\n")) . '...';
 	}
 
 	$webhook = new Client(WEBHOOK_FORUM);
 	$mbd = new Embed();
 
 	$mbd->title($post['title'].($mode == 'thread' ? ' (New Thread)' : ''))
-		->description($post['content'])
-		->url(sprintf("%s/forum/thread?pid=%s#%s", DOMAIN, $post['id'], $post['id']))
+		->description($content)
+		->url(sprintf("%s/forum/thread?pid=%s#%s", DOMAIN, $post['pid'], $post['pid']))
 		->timestamp(date(DATE_ATOM))
 		->color("235AA3")
 		->footer("New forum posts")

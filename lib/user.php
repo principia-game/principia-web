@@ -49,7 +49,7 @@ function userfields($tbl = null, $pf = null) {
 }
 
 function userfields_post() {
-	$fields = ['posts', 'joined', 'lastpost', 'lastview', 'avatar', 'signature'];
+	$fields = ['posts', 'joined', 'avatar', 'signature'];
 	$out = [];
 
 	foreach ($fields as $f)

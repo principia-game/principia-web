@@ -31,30 +31,13 @@ if ($action == 'Submit') {
 		$error = "Your post is too short to be meaningful. Please try to write something longer.";
 
 	if (!$error) {
-		query("UPDATE users SET posts = posts + 1, lastpost = ? WHERE id = ?",
-			[time(), $userdata['id']]);
-
-		insertInto('z_posts', ['user' => $userdata['id'], 'thread' => $tid, 'date' => time()]);
-
-		$pid = insertId();
-		insertInto('z_poststext', ['id' => $pid, 'text' => $message]);
-
-		query("UPDATE z_threads SET posts = posts + 1,lastdate = ?, lastuser = ?, lastid = ? WHERE id = ?",
-			[time(), $userdata['id'], $pid, $tid]);
-
-		query("UPDATE z_forums SET posts = posts + 1,lastdate = ?, lastuser = ?, lastid = ? WHERE id = ?",
-			[time(), $userdata['id'], $pid, $thread['forum']]);
-
-		// nuke entries of this thread in the "threadsread" table
-		query("DELETE FROM z_threadsread WHERE tid = ? AND NOT (uid = ?)", [$thread['id'], $userdata['id']]);
-
-		newForumPostHook([
-			'id' => $pid,
+		$pid = newPost([
+			'thread' => $tid,
 			'title' => $thread['title'],
-			'content' => $message,
+			'message' => $message,
 			'u_id' => $userdata['id'],
 			'u_name' => $userdata['name']
-		], 'reply');
+		]);
 
 		redirect("thread?pid=$pid#$pid");
 	}
@@ -92,7 +75,7 @@ if ($action == 'Preview') {
 	foreach ($userdata as $field => $val)
 		$post['u'.$field] = $val;
 
-	$post['date'] = $post['ulastpost'] = time();
+	$post['date'] = time();
 	$post['text'] = $message;
 	$post['headerbar'] = 'Post preview';
 

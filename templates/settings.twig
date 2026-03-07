@@ -45,7 +45,18 @@
 			<span style="float:left;margin-right:10px">
 				<img src="{% if userdata.avatar %}{{ avatar_url(userdata) }}{% else %}/assets/no_avatar.png{% endif %}" alt="(Avatar)" height="64">
 			</span>
-			<strong>Upload new:</strong><br><input type="file" name="avatar" style="margin-top:10px" size=240> <span class="fotnot">(max 180x180, &lt;80KB)</span>
+			{% if android_webview_version() %}
+				<div class="fotnot">
+					Avatar upload isn't supported in the Android client.
+					<br><br>
+					Please log into the community site in your browser to update your avatar.
+				</div>
+			{% else %}
+				<strong>Upload new:</strong>
+				<br>
+				<input type="file" name="avatar" style="margin-top:10px" size="240">
+				<span class="fotnot">(max 180x180, &lt;80KB)</span>
+			{% endif %}
 		</td>
 	</tr>
 
@@ -78,11 +89,6 @@
 		<th></th>
 		<th class="left">Options</th>
 	</tr>
-	<tr>
-		<td class="a">Theme</td>
-		<td class="b">
-			(Dark mode toggling has been moved to the footer, and works even when not logged in!)
-		</td>
 	<tr>
 		<td class="a">Timezone</td>
 		<td class="b">

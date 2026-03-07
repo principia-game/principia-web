@@ -43,7 +43,13 @@
 			</span>
 		{% endif %}
 		{% if not level.visibility == 1 %}
-			<a href="{{ img_url }}"><img src="{{ img_url }}" alt=""></a>
+			{% if constant('IS_ARCHIVE') and level.thumbs > 0 %}
+				{% for i in 1..(level.thumbs) %}
+					<a href="/archive/thumbs/{{ level.id }}-{{ i -1 }}-0.jpg" target="_blank"><img src="/archive/thumbs/{{ level.id }}-{{ i -1 }}-0.jpg" alt=""></a>
+				{% endfor %}
+			{% else %}
+				<a href="{{ img_url }}" target="_blank"><img src="{{ img_url }}" alt=""></a>
+			{% endif %}
 		{% else %}
 			<img src="/assets/locked_thumb.svg" alt="Locked level">
 		{% endif %}

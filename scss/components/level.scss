@@ -86,6 +86,8 @@ div.level {
 	.img {
 		flex: 1;
 		position: relative;
+		overflow-y: scroll;
+		max-height: 320px;
 
 		img {
 			max-width: 100%;

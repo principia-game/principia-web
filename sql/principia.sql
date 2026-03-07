@@ -274,7 +274,6 @@ CREATE TABLE `users` (
   `token` char(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `joined` int(10) unsigned NOT NULL DEFAULT 0,
   `lastview` int(10) unsigned NOT NULL DEFAULT 0,
-  `lastpost` int(10) unsigned NOT NULL DEFAULT 0,
   `avatar` int(10) unsigned DEFAULT NULL,
   `rank` tinyint(4) NOT NULL DEFAULT 1,
   `posts` int(10) unsigned NOT NULL DEFAULT 0,
@@ -289,6 +288,17 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `token` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `user_badges` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user` int(10) unsigned NOT NULL,
+  `badge` smallint(5) unsigned NOT NULL,
+  `comment` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `user_badges_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -391,7 +401,7 @@ CREATE TABLE `z_threads` (
   `forum` int(5) unsigned NOT NULL DEFAULT 0,
   `title` varchar(100) NOT NULL,
   `user` int(10) unsigned DEFAULT NULL,
-  `posts` int(10) unsigned NOT NULL DEFAULT 1,
+  `posts` int(10) unsigned NOT NULL DEFAULT 0,
   `views` int(10) unsigned NOT NULL DEFAULT 0,
   `lastdate` int(10) unsigned DEFAULT NULL,
   `lastuser` int(10) unsigned DEFAULT NULL,
@@ -421,4 +431,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2026-02-02 20:07:01 UTC
+-- 2026-03-07 18:15:13 UTC

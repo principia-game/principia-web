@@ -105,6 +105,15 @@ There are tens of thousands of user made creations by the community to play and 
 	</div>
 </div>
 
+## The Principia Logo
+The Principia logo features a silouette of the titular miniature robot featured in the adventure mode, layered on top of the background used in the game's menus. The frame is taken from the logo of Principia's prequel, Apparatus.
+
+It may be a bit dated and imperfect, but remains a recognisable symbol for the game to this day.
+
+<img src="/assets/icon-256.png" style="max-width:128px">
+
+[Download 256x256 PNG](/assets/icon-256.png)
+
 ## About principia-web
 This website is the community site for Principia, providing a platform for sharing user created levels and interacting with the Principia community.
 

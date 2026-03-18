@@ -32,17 +32,18 @@ function newPost($data) {
 	query("UPDATE users SET posts = posts + 1 WHERE id = ?",
 		[$data['u_id']]);
 
-	if (!isset($data['forum'])) {
+	if (!isset($data['newthread'])) {
 		// nuke entries of this thread in the "threadsread" table
 		query("DELETE FROM z_threadsread WHERE tid = ? AND NOT (uid = ?)", [$data['thread'], $data['u_id']]);
 	}
 
-	newForumPostHook($data, isset($data['forum']) ? 'thread' : 'reply');
+	newForumPostHook($data, isset($data['newthread']) ? 'thread' : 'reply');
 
 	return $pid;
 }
 
 function newThread($data) {
+	$data['newthread'] = true;
 	if (!isset($data['time']))
 		$data['time'] = time();
 

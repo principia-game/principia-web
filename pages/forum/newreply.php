@@ -33,6 +33,7 @@ if ($action == 'Submit') {
 	if (!$error) {
 		$pid = newPost([
 			'thread' => $tid,
+			'forum' => $thread['forum'],
 			'title' => $thread['title'],
 			'message' => $message,
 			'u_id' => $userdata['id'],

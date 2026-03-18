@@ -52,6 +52,7 @@
 .chat {
 	height: 400px;
 	overflow-y: auto;
+	resize: vertical;
 	border: 1px solid #444;
 
 	.comment {

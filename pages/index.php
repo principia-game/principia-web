@@ -10,6 +10,9 @@ if (IS_ARCHIVE) {
 	return;
 }
 
+if (IS_ADMIN && isset($_GET['purgecache']))
+	$cachectrl->invIndex();
+
 // Cache all index page queries unless explicitly flushed.
 
 $latestfeatured = $cache->hit('idx_feat', function () {

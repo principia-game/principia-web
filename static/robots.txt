@@ -1,2 +1,5 @@
 User-agent: *
 Disallow: /report
+Disallow: /wasm/principia.js
+Disallow: /wasm/principia.wasm
+Disallow: /wasm/principia.data

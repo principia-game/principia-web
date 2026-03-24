@@ -4,6 +4,9 @@ if (isset($_GET['id'])) redirectPerma('/level/%d', $_GET['id']);
 
 $lid = (int)($path[2] ?? 0);
 
+if ($lid > ARCHIVE_LVL_OFFSET)
+	redirect('/archive/level/%d', $lid - ARCHIVE_LVL_OFFSET);
+
 $level = getLevelById($lid);
 
 if (!$level) error('404');

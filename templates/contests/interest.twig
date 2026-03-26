@@ -1,0 +1,32 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Contest interest" %}
+
+	{% block content %}
+<h1 class="header">Contest interest</h1>
+
+<p>In order to gauge interest in whether to run a new contest, please apply your interest by signing here. It is not a commitment to participate, but the statistic is used in order to hopefully ensure that contests will have a sufficient amount of participants to make them interesting.</p>
+
+<p>If enough people express interest during a week, a contest will be run on Monday the following week and then last for two weeks. The counter will reset at the end of Sunday.</p>
+
+{% if contest_already_running %}
+	<p><em>A contest is already running.</em></p>
+{% else %}
+	<p><strong>{{ interested_users }}</strong> {% if interested_users == 1 %}person has{% else %}people have{% endif %} expressed interest so far.</p>
+
+	{% if log %}
+		{% if not already_interested %}
+			<form method="POST">
+				<input type="checkbox" id="interest" name="interest" value="yes">
+				<label for="interest">I am interested in participating in a contest beginning next week.</label>
+				<br><br>
+				<input type="submit" value="Submit">
+			</form>
+		{% else %}
+			<p><em>Thank you for expressing your interest in a new contest.</em></p>
+		{% endif %}
+	{% else %}
+		<p><em>(Please <a href="/login">log in</a> to express interest.)</em></p>
+	{% endif %}
+{% endif %}
+	{% endblock %}

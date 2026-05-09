@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+	<title>Principia levels feed</title>
+	<subtitle>Latest levels uploaded on the Principia community site</subtitle>
+	<link href="https://principia-web.se/feeds/levels" rel="self" />
+	<link href="https://principia-web.se" />
+	{% for level in levels %}
+		<entry>
+			<title>{{ level.title }}</title>
+			<link href="https://principia-web.se/level/{{ level.id }}" />
+			<id>https://principia-web.se/level/{{ level.id }}</id>
+			<published>{{ level.time | date('Y-m-d\\TH:i:sP') }}</published>
+			<content type="html">
+				{{ level.description | markdown_nl | e('html') }}
+
+				(&lt;a href="https://principia-web.se/level/{{ level.id }}"&gt;Link to level&lt;/a&gt;)
+			</content>
+			<author>
+				<name>{{ level.u_name }}</name>
+				<uri>https://principia-web.se/user/{{ level.u_id }}</uri>
+			</author>
+			<category term="{{ level.cat | cat_to_type }}" />
+			<media:thumbnail url="https://principia-web.se/thumbs/{{ level.id }}.jpg" />
+			<media:content medium="image" url="https://principia-web.se/thumbs/{{ level.id }}.jpg" />
+		</entry>
+	{% endfor %}
+</feed>

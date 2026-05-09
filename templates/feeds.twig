@@ -1,0 +1,55 @@
+{% extends "_layout.twig" %}
+
+{% set title = "RSS Feeds" %}
+{% set description = "List of RSS feeds available" %}
+
+	{% block content %}
+<h1>RSS Feeds</h1>
+
+<p>This page contains a list of RSS feeds available for consuming Principia content in a feed reader of your choice.</p>
+
+<ul>
+	<li>
+		<a href="/feeds/news">News feed</a> &ndash; Latest news articles
+	</li>
+	<li>
+		<a href="/feeds/levels">Levels feed</a> &ndash; Latest levels uploaded
+	</li>
+	{#<li><a href="/feeds/forum">Forum feed</a> - Latest forum posts</li>#}
+	{#<li><a href="/feeds/videos">Videos feed</a> - Latest videos published about Principia</li>#}
+</ul>
+
+<p>External feeds:</p>
+
+<ul>
+	<li>
+		<a href="https://hachyderm.io/@principia.rss">Mastodon RSS feed</a>
+		&ndash; Latest posts on the Principia Mastodon account
+	</li>
+	<li>
+		<a href="https://tube.fediverse.games/feeds/videos.xml?videoChannelId=3530">PeerTube RSS feed</a>
+		&ndash; Latest videos on the Principia PeerTube channel
+	</li>
+</ul>
+
+<p>Source repository commit feeds:</p>
+
+<ul>
+	<li>
+		Main Principia repository:
+		  <a href="https://github.com/Bithack/principia/commits/master.atom">GitHub</a>
+		&ndash; <a href="https://codeberg.org/principia/principia.rss">Codeberg</a>
+	</li>
+	<li>
+		Principia website repository:
+		  <a href="https://github.com/principia-game/principia-web/commits/master.atom">GitHub</a>
+		&ndash; <a href="https://codeberg.org/principia/principia-web.rss">Codeberg</a>
+	</li>
+	<li>
+		Principia Wiki repository:
+		  <a href="https://github.com/principia-game/wiki/commits/master.atom">GitHub</a>
+		&ndash; <a href="https://codeberg.org/principia/wiki.rss">Codeberg</a>
+	</li>
+</ul>
+
+	{% endblock %}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+	<title>Principia news feed</title>
+	<subtitle>News about Principia</subtitle>
+	<author><name>ROllerozxa</name></author>
+	<link href="https://principia-web.se/feeds/news" rel="self" />
+	<link href="https://principia-web.se" />
+	{% for post in news %}
+		<entry>
+			<title>{{ post.title }}</title>
+			<link href="https://principia-web.se/news/{{ post.id }}" />
+			<id>https://principia-web.se/news/{{ post.id }}</id>
+			<published>{{ post.time | date('Y-m-d\\TH:i:sP') }}</published>
+			<content type="html">
+				{% if post.redirect %}
+					{{ '<a href="' ~ post.redirect ~ '">Open link in your browser</a>' }}
+				{% else %}
+					{{ post.text | markdown_unsafe | e('html') }}
+				{% endif %}
+			</content>
+			{% if post.cover %}
+				<media:thumbnail url="https://principia-web.se/news/images/{{ post.id }}/cover.webp" />
+				<media:content medium="image" url="https://principia-web.se/news/images/{{ post.id }}/cover.webp" />
+			{% endif %}
+		</entry>
+	{% endfor %}
+</feed>

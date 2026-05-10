@@ -2,7 +2,6 @@
 	"require": {
 		"kaitai-io/kaitai_struct_php_runtime": "dev-master",
 		"twig/twig": "^3.0",
-		"erusev/parsedown": "9999999-dev",
-		"nopjmp/discord-webhooks": "dev-master"
+		"erusev/parsedown": "9999999-dev"
 	}
 }

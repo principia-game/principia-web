@@ -17,7 +17,7 @@ function newForumPostHook($post, $mode = 'reply') {
 		$content = substr($content, 0, strpos($content, "\n")) . '...';
 	}
 
-	$webhook = new Client(WEBHOOK_FORUM);
+	$webhook = new Client();
 	$mbd = new Embed();
 
 	$mbd->title($post['title'].($mode == 'thread' ? ' (New Thread)' : ''))
@@ -31,5 +31,9 @@ function newForumPostHook($post, $mode = 'reply') {
 			sprintf("%s/user/%s", DOMAIN, $post['u_id'])
 		);
 
-	$webhook->embed($mbd)->send();
+	try {
+		$webhook->embed($mbd)->send(WEBHOOK_FORUM_DISC)->send(WEBHOOK_FORUM_FLUX);
+	} catch (Exception $e) {
+		trigger_error("Failed to send new forum post webhook: " . $e->getMessage(), E_USER_WARNING);
+	}
 }

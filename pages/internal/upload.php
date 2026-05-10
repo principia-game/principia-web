@@ -121,6 +121,11 @@ if ($updatelevel) {
 // Print the ID of the uploaded level. This is required to display the "Level published!" box.
 header('x-notify-message: '.$cid);
 
+if (function_exists('fastcgi_finish_request')) {
+	// flush all response data to client and finish request, user does not need to wait for everything else
+	fastcgi_finish_request();
+}
+
 // Send new level info to discord webhook
 if (!$updatelevel) {
 	newLevelHook([

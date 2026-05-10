@@ -22,7 +22,7 @@ function newLevelHook($level) {
 		$level['description'] = substr($level['description'], 0, strpos($level['description'], "\n")) . '...';
 	}
 
-	$webhook = new Client(WEBHOOK_LEVEL);
+	$webhook = new Client();
 	$mbd = new Embed();
 
 	$mbd->title($level['name'])
@@ -37,10 +37,20 @@ function newLevelHook($level) {
 			sprintf("%s/user/%s", DOMAIN, $level['u_id'])
 		);
 
-	$webhook->embed($mbd)->send();
+	try {
+		$webhook->embed($mbd)->send(WEBHOOK_LEVEL_DISC)->send(WEBHOOK_LEVEL_FLUX);
+	} catch (Exception $e) {
+		trigger_error("Failed to send new level webhook: " . $e->getMessage(), E_USER_WARNING);
+	}
 }
 
 function newChatMessageHook($message) {
-	$webhook = new Client(WEBHOOK_CHAT);
-	$webhook->message(sprintf("<%s> %s", $message['u_name'], $message['message']))->send();
+	$webhook = new Client();
+	$webhook->message(sprintf("<%s> %s", $message['u_name'], $message['message']));
+
+	try {
+		$webhook->send(WEBHOOK_CHAT_DISC)->send(WEBHOOK_CHAT_FLUX);
+	} catch (Exception $e) {
+		trigger_error("Failed to send new chat message webhook: " . $e->getMessage(), E_USER_WARNING);
+	}
 }

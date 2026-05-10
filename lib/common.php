@@ -22,6 +22,8 @@ if (DEBUG) {
 }
 
 require_once('vendor/autoload.php');
+require_once('lib/discord-webhooks/Client.php');
+require_once('lib/discord-webhooks/Embed.php');
 foreach (glob("lib/*.php") as $file)
 	require_once($file);
 

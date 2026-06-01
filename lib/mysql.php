@@ -22,9 +22,10 @@ function query($query, $params = [], $placeholders = []) {
 
 	if (!$sql) connectSql();
 
-	$query = str_replace("@userfields", userfields(), $query);
+	if (function_exists('userfields'))
+		$query = str_replace("@userfields", userfields(), $query);
 
-	$archivePrefix = IS_ARCHIVE ? 'archive_' : '';
+	$archivePrefix = defined('IS_ARCHIVE') && IS_ARCHIVE ? 'archive_' : '';
 	$query = str_replace('@levels', $archivePrefix.'levels', $query);
 	$query = str_replace('@users', $archivePrefix.'users', $query);
 	$query = str_replace('@contests', $archivePrefix.'contests', $query);

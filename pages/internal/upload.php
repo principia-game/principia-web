@@ -25,6 +25,14 @@ if ($level->version() > lvleditGetBuiltVersion()) {
 	trigger_error('lvledit version mismatch !!', E_USER_ERROR);
 }
 
+$flags = $level->flags();
+// check for the presence of the Luasocket flag (LVL_ENABLE_LUASOCKET)
+if (($flags & (1 << 37)) != 0) {
+	header("x-error-message: Levels that have the Luasocket level flag enabled are not allowed to be uploaded.");
+	trigger_error('User attempted to upload a level with Luasocket enabled, rejecting upload.', E_USER_NOTICE);
+	die();
+}
+
 $platform = extractPlatform(HTTP_UA);
 
 $cid = $level->communityId();

@@ -121,12 +121,32 @@ CREATE TABLE `contests_entries` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+CREATE TABLE `contests_interest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(10) unsigned NOT NULL,
+  `time` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user` (`user`),
+  CONSTRAINT `contests_interest_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 CREATE TABLE `featured` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `level` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `level` (`level`),
   CONSTRAINT `featured_ibfk_1` FOREIGN KEY (`level`) REFERENCES `levels` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `imgui` (
+  `id` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `status` tinyint(3) unsigned NOT NULL DEFAULT 0,
+  `added_in` char(10) DEFAULT NULL,
+  `commit` char(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -431,4 +451,4 @@ CREATE TABLE `z_threadsread` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2026-03-07 18:15:13 UTC
+-- 2026-07-10 17:55:33 UTC

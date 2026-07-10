@@ -1,0 +1,80 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Are we Imgui Yet?" %}
+{% set description = "Page tracking the current progress of the Dear Imgui dialog migration." %}
+
+	{% block content %}
+<h1>Are we Imgui Yet?</h1>
+
+<table class="settings autowidth" style="float:right;margin-left:20px">
+	<tr>
+		<th colspan=2>Legend</th>
+	</tr>
+	<tr>
+		<td class="imgui-status-0"></td>
+		<td>Not implemented</td>
+	</tr>
+	<tr>
+		<td class="imgui-status-1"></td>
+		<td>Dialog exists but is not finished</td>
+	</tr>
+	<tr>
+		<td class="imgui-status-2"></td>
+		<td>Fully implemented and included in latest nightly</td>
+	</tr>
+	<tr>
+		<td class="imgui-status-3"></td>
+		<td>Fully implemented and included in latest stable release</td>
+	</tr>
+</table>
+
+<p>
+	Principia is currently in the process of having all dialogs in the game migrated from GTK to Dear Imgui. Due to the amount of dialogs used in the game, this is a long process and will gradually happen over time, until there are no GTK dialogs left in the game.
+</p>
+
+<p>
+	This page tracks the current progress of each dialog in the game.
+</p>
+
+<p>
+	&nbsp;
+</p>
+
+<h2>Current progress</h2>
+
+<div class="imgui-progress-bar">
+	{% for status in dialog_status_counts -%}
+		<div class="bar imgui-status-{{ status.status }}" style="width:{{ status.count / num_dialogs * 100 }}%;">
+			{{ status.count }}&nbsp;({{ (status.count / num_dialogs * 100) | round(1) }}%)
+		</div>
+	{%- endfor %}
+</div>
+
+<br>
+
+<table class="settings">
+	<tr>
+		<th colspan="2">Dialog</th>
+		<th style="width:100px">Added in</th>
+		<th style="width:100px">Commit</th>
+		<th class="nom">Notes</th>
+	</tr>
+	{% for dialog in dialogs %}
+	<tr>
+		<td style="width:32px" class="imgui-status-{{ dialog.status }}"></td>
+		<td style="width:250px">
+			{{ dialog.name }}
+		</td>
+		<td class="center">
+			{% if dialog.status == 2 %}(Nightly){% else %}{{ dialog.added_in }}{% endif %}
+		</td>
+		<td class="center">
+			<a href="https://github.com/Bithack/principia/commit/{{ dialog.commit }}" target="_blank">
+				{{ dialog.commit | slice(0, 7) }}
+			</a>
+		</td>
+		<td class="nom">{{ dialog.notes }}</td>
+	</tr>
+	{% endfor %}
+</table>
+	{% endblock %}

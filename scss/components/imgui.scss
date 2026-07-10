@@ -1,0 +1,27 @@
+
+.imgui-progress-bar {
+	width: 100%;
+	border: 1px solid $grid;
+	box-sizing: border-box;
+	overflow-x: scroll;
+	display: flex;
+	flex-flow: row nowrap;
+
+	.bar {
+		display: inline-block;
+		text-align: center;
+		font-weight: bold;
+		padding: 10px 0;
+		font-size: 0.85em;
+	}
+}
+
+.imgui-status-0 { background-color: #f00; }
+.imgui-status-1 { background-color: #f80; }
+.imgui-status-2 { background-color: #dfff00;}
+.imgui-status-3 { background-color: #0f0; }
+
+.imgui-status-0, .imgui-status-1, .imgui-status-2, .imgui-status-3 {
+	color: white;
+	text-shadow: 0px -1px black, 1px -1px black, 1px 0px black, 1px 1px black, 0px 1px black, -1px 1px black, -1px 0px black, -1px -1px black;
+}

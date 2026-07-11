@@ -11,10 +11,6 @@
 <h1>Download Principia</h1>
 
 <p>
-	This page contains downloads and instructions for obtaining Principia on all supported platforms.
-</p>
-
-<p>
 	The latest version of Principia is <strong>{{ version }}</strong>.
 	You can see what is new in this release in the <a href="/wiki/Changelog#{{ version }}">Changelog</a>.
 <p>
@@ -31,10 +27,6 @@
 	</td>
 	<td colspan="2">
 		<p>
-			Windows 10 and above is supported, older versions may work but are not supported. See <a href="/wiki/Windows_Compatibility">Windows Compatibility</a> for more info.
-		</p>
-
-		<p>
 			<strong>
 				<a href="{{ dlurl }}/principia_{{ version }}_win64.exe">
 					Principia {{ version }} for Windows - Installer, 64-bit (recommended)
@@ -49,7 +41,7 @@
 		</p>
 
 		<p>
-			Administrator privileges are required to run the installer.
+			Windows 10 and above is supported, older versions may work but are not supported.
 			The portable build has some limitations to it that are important to know about, see <a href="/wiki/Windows_Portable">Windows Portable</a> for more info.
 		</p>
 	</td>
@@ -61,19 +53,16 @@
 	</td>
 	<td colspan="2">
 		<p>
-			Works with Android 5.0 and above.
-			APK contains native libraries for both 32-bit and 64-bit ARM devices as well as x86_64.
-		</p>
-
-		<p>
 			<strong>
 				<a href="{{ dlurl }}/principia_{{ version }}.apk">
-					Principia {{ version }} for Android
+					Principia {{ version }} for Android 5.0+ - Direct APK download
 				</a>
 			</strong>
 		</p>
 
-		<p>Principia is also available for Android on F-Droid:</p>
+		<p>
+			Principia is also available on F-Droid:
+		</p>
 
 		<p>
 			<a href="https://f-droid.org/packages/com.bithack.principia/">
@@ -82,7 +71,7 @@
 		</p>
 
 		<p>
-			Keep in mind that the F-Droid build uses a different signing key, which means that if you want to switch to or from F-Droid's builds you will need to fully uninstall Principia before installing the new version. Please back up your user data before doing so.
+			Keep in mind that the F-Droid build uses a different signing key, which means that if you want to switch distribution channels you'll need to fully uninstall Principia before installing the new version. Please back up your user data before doing so.
 		</p>
 	</td>
 </tr>
@@ -99,15 +88,6 @@
 	</td>
 	<td>
 		<p>
-			<strong>GTK+3</strong>, <strong>FUSE2</strong>, <strong>xdg-utils</strong> and functional OpenGL drivers
-			are required to be installed on your system!
-		</p>
-
-		<p>
-			A distro equivalent to Debian 11 Bullseye or newer is required.
-		</p>
-
-		<p>
 			<strong>
 				<a href="{{ dlurl }}/principia_{{ version }}_x86_64.AppImage">
 					Principia {{ version }} for Linux - AppImage, 64-bit
@@ -116,11 +96,13 @@
 		</p>
 
 		<p>
-			An AppImage is a single file containing the game's files that you run.
-			For more information on how to run an AppImage see
+			A glibc-based distro equivalent to Debian 11 Bullseye or newer is required. <strong>GTK3</strong>, <strong>xdg-utils</strong> and functional OpenGL drivers need to be installed.
+		</p>
+
+		<p>
+			How to run an AppImage? See
 			<a href="https://docs.appimage.org/introduction/quickstart.html#ref-how-to-run-appimage">
-				AppImage quickstart
-			</a>
+				AppImage quickstart</a>.
 		</p>
 	</td>
 </tr>
@@ -131,13 +113,19 @@
 	</td>
 	<td>
 		<p>
-			Principia is available in the AUR either as the stable <a href="https://aur.archlinux.org/packages/principia"><code>principia</code></a>
-			package or the <a href="https://aur.archlinux.org/packages/principia-git"><code>principia-git</code></a> package tracking the master branch.
-			Use your favourite AUR helper, as such:
+			Principia is available in the AUR. Build manually with <code>makepkg -si</code> or use your favourite AUR helper to install Principia.
 		</p>
 
-		<p><code>yay -S principia</code></p>
+		<ul>
+			<li>
+				<a href="https://aur.archlinux.org/packages/principia"><code>principia</code></a> - stable release
+			</li>
+			<li>
+				<a href="https://aur.archlinux.org/packages/principia-git"><code>principia-git</code></a> - latest master branch
+			</li>
+		</ul>
 
+		{#
 		<p>
 			A custom binary repository is also available. To add:
 		</p>
@@ -147,42 +135,7 @@
 		<p>
 			A <code>principia</code> binary package for the latest version is available in the repository as well as
 			a <code>principia-git</code> package which gets updated every now and then.
-		</p>
-	</td>
-</tr>
-
-{#<tr>
-	<td class="plat">
-		<a href="#debian"><img src="/icons/debian.svg"></a><br>Debian
-	</td>
-	<td>
-		<p>
-			For Debian-based distributions, we have an MPR package tracking the latest master.
-		</p>
-
-		<p>
-			Install <a href="https://www.makedeb.org/">makedeb</a> (if you do not already have it),
-			and make the <a href="https://mpr.makedeb.org/packages/principia-git">principia-git</a> MPR package like such:
-		</p>
-
-		<p><code>git clone https://mpr.makedeb.org/principia-git<br>
-cd principia-git/<br>
-makedeb -si</code></p>
-	</td>
-</tr>#}
-
-<tr>
-	<td class="plat" id="chromeos">
-		<a href="#chromeos"><img src="/icons/chrome.svg"></a><br>Chrome OS
-	</td>
-	<td>
-		<p>
-			Install and enable the <a href="https://chromeos.dev/en/linux/setup">Linux container environment</a> found on most recent Chrome OS devices.
-		</p>
-
-		<p>
-			From there, you can run the AppImage if it is an x86_64 device. Otherwise build from source following the instructions for Debian.
-		</p>
+		</p>#}
 	</td>
 </tr>
 
@@ -193,6 +146,17 @@ makedeb -si</code></p>
 	<td>
 		<p>
 			A package for Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia">is available in nixpkgs</a>.
+		</p>
+	</td>
+</tr>
+
+<tr>
+	<td class="plat" id="alpine">
+		<a href="#alpine"><img src="/icons/alpine.svg"></a><br>Alpine
+	</td>
+	<td>
+		<p>
+			A package for Principia <a href="https://pkgs.alpinelinux.org/packages?name=principia&branch=edge&arch=">is available in the testing repository of Alpine edge</a>.
 		</p>
 	</td>
 </tr>
@@ -214,11 +178,6 @@ makedeb -si</code></p>
 	</td>
 	<td>
 		<p>
-			Compilation instructions can be found on the
-			<a href="/wiki/Compiling_Principia">Compiling Principia</a> wiki page.
-		</p>
-
-		<p>
 			<strong>
 				<a href="https://github.com/Bithack/principia/archive/refs/tags/{{ version }}.tar.gz">
 					Principia {{ version }} source code (.tar.gz)
@@ -227,10 +186,30 @@ makedeb -si</code></p>
 		</p>
 
 		<p>
+			Compilation instructions can be found on the
+			<a href="/wiki/Compiling_Principia">Compiling Principia</a> wiki page.
+		</p>
+
+		<p>
 			Alternatively clone the source repository and build from source <strong>(this will clone latest master)</strong>:
 		</p>
 
 		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
+	</td>
+</tr>
+
+<tr>
+	<td class="plat" id="web">
+		<a href="#web"><img src="/icons/chrome.svg"></a><br>Web
+	</td>
+	<td colspan="2">
+		<p>
+			Principia can run in your web browser now!
+		</p>
+
+		<p>
+			The web version of Principia is still experimental, but you can play any level from the community site with the "Play in browser <span class="beta">(BETA)</span>" link under the level thumbnail, directly in your web browser without downloading anything.
+		</p>
 	</td>
 </tr>
 
@@ -322,8 +301,6 @@ makedeb -si</code></p>
 </tr>
 
 </table>
-
-<p>The downloads for Principia are currently hosted by <a href="https://github.com">Github</a>. Special thanks to <a href="https://voxelmanip.se">ROllerozxa</a> for hosting the Principia downloads prior to 2024.02.29.</p>
 
 <p>For an archive of old Principia versions prior to the open sourcing, as well as Apparatus and Tesla Plushies, see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview">Bithack Game Archive Index</a>.</p>
 

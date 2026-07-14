@@ -29,6 +29,11 @@ $paths = [
 ];
 
 if (isset($paths[$path[2]])) {
+	if ($_SERVER['HTTP_HOST'] === 'principia-web.uwu')
+		header("Access-Control-Allow-Origin: https://principia-web.uwu");
+
+	header("Access-Control-Expose-Headers: X-Error-Message, X-Notify-Message, X-Error-Action, X-Principia-User-Id, X-Principia-User-Name, X-Principia-Unread");
+	header("Access-Control-Allow-Credentials: true");
 
 	if (!is_string($paths[$path[2]])) {
 		$paths[$path[2]]();

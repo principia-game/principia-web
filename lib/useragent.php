@@ -7,6 +7,9 @@
  * @param string $ua User agent
  */
 function extractPlatform($ua) {
+	if (str_contains($ua, 'Mozilla'))
+		return 'Web';
+
 	preg_match('/Principia\/[\d\.]+ \(([\w\s]+)\)/', $ua, $matches);
 	return $matches[1] ?? 'N/A';
 }

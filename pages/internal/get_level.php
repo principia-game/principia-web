@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+internalAuth();
 
 $level = $_GET['i'] ?? null;
 if ($level > ARCHIVE_LVL_OFFSET) {

@@ -9,27 +9,19 @@
 	{% set play_id = lid %}
 {% endif %}
 
+<p>
+	<a href="{% if constant('IS_ARCHIVE') %}/archive/level/{{ lid }}{% else %}/level/{{ lid }}{% endif %}">&larr; Back to level page</a>
+</p>
+
 <h1>Play in browser <span class="beta">(BETA)</span></h1>
 
 <p>
 	Playing <strong>{{ level.title }}</strong> by {{ userlink(level, 'u_') }}
 </p>
 
-<p>
-	<a href="{% if constant('IS_ARCHIVE') %}/archive/level/{{ lid }}{% else %}/level/{{ lid }}{% endif %}">&larr; Back to level page</a>
-</p>
 
 <p>
-	This is an experimental way to play Principia levels directly in your web browser using WebAssembly.
-</p>
-
-<p>
-	Keep in mind that the web port of Principia is <strong>highly experimental</strong> with bugs and graphical glitches, performance will be worse than when running a native version of the game, and many features may not work as expected.
-	Mobile devices are not supported.
-</p>
-
-<p>
-	Please be patient when playing a level in the web browser for the first time, as it needs to download all the game data (about 18MB in total) before starting.
+	This is an experimental way to play Principia levels directly in your web browser using WebAssembly. Performance will be worse than when running the native version of the game, and some features may not work as expected. Mobile devices are not supported.
 </p>
 
 <p>

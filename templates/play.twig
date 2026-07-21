@@ -1,0 +1,18 @@
+{% extends "_layout_minimal.twig" %}
+
+{% set title = "Play in browser" %}
+{% set description = "Play Principia in your browser!" %}
+
+	{% block content %}
+<h1 class="center">
+	Play Principia in your browser <span class="beta">(BETA)</span>
+</h1>
+
+<p class="center">
+	<a href="/wasm/" target="_blank">Open game in a new fullscreen tab</a>
+</p>
+
+<div class="game-wrapper">
+	<iframe src="/wasm/" width="1280" height="720"></iframe>
+</div>
+	{% endblock %}

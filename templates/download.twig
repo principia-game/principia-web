@@ -125,17 +125,11 @@
 			</li>
 		</ul>
 
-		{#
 		<p>
-			A custom binary repository is also available. To add:
+			A <a href="https://arch.principia-web.se/">custom binary repository</a> is also available which contains prebuilt versions of the following packages. To add:
 		</p>
 
 		<p><code>echo -e '\n[principia]\nSigLevel = Optional DatabaseOptional\nServer = https://arch.principia-web.se/$arch' | sudo tee -a /etc/pacman.conf</code></p>
-
-		<p>
-			A <code>principia</code> binary package for the latest version is available in the repository as well as
-			a <code>principia-git</code> package which gets updated every now and then.
-		</p>#}
 	</td>
 </tr>
 
@@ -261,7 +255,7 @@
 		</p>
 
 		<p>
-			Note these builds are not officially maintained and use the experimental Dear Imgui dialog backend, which means that a lot of dialogs are unimplemented and will not work.
+			Note these builds are not officially maintained and use the experimental Dear Imgui dialog backend, which may still have issues.
 		</p>
 	</td>
 </tr>

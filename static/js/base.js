@@ -112,7 +112,6 @@ function playLevel(button) {
 		window.location.href = button.dataset.playWeb;
 	else {
 		pendingPlayBtn = button;
-		$('remember-choice').checked = true;
 		$("play-choice-dialog").showModal();
 	}
 }

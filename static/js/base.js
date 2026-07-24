@@ -1,4 +1,6 @@
 
+$ = function (el) {	return document.getElementById(el); }
+
 function vote(el, id) {
 	fetch("/level/" + id, {
 		method: "POST",
@@ -79,6 +81,57 @@ function startCountdown(elementId, deadline) {
 		}
 	}, 250);
 }
+
+
+// Play choice dialog
+let pendingPlayBtn = null;
+
+function selectPlayMode(mode) {
+	if ($('remember-choice').checked) {
+		document.cookie = `play_mode=${encodeURIComponent(mode)};`
+			+`max-age=${60 * 60 * 24 * 365}; path=/; SameSite=Lax`;
+	}
+
+	$("play-choice-dialog").close();
+
+	if (mode === "native")
+		window.location.href = pendingPlayBtn.dataset.playNative;
+	else
+		window.location.href = pendingPlayBtn.dataset.playWeb;
+
+	pendingPlayBtn = null;
+}
+
+function playLevel(button) {
+	const match = document.cookie.match(/(?:^|;\s*)play_mode=([^;]*)/);
+	const mode = match ? decodeURIComponent(match[1]) : null;
+
+	if (mode === "native")
+		window.location.href = button.dataset.playNative;
+	else if (mode === "web")
+		window.location.href = button.dataset.playWeb;
+	else {
+		pendingPlayBtn = button;
+		$('remember-choice').checked = true;
+		$("play-choice-dialog").showModal();
+	}
+}
+
+document.querySelectorAll("[data-play-button]").forEach(function (button) {
+	button.addEventListener("click", function (event) {
+		event.preventDefault();
+		playLevel(button);
+	});
+});
+
+$("play-choice-dialog")
+	.querySelectorAll("[data-play-mode]")
+	.forEach(function (option) {
+		option.addEventListener("click", function () {
+			const mode = option.dataset.playMode;
+			selectPlayMode(mode);
+		});
+	});
 
 
 // Forum thread.php code

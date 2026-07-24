@@ -101,6 +101,22 @@
 	</tr>
 
 	<tr>
+		<td class="a">Play button behaviour</td>
+		<td class="b">
+			Open in:
+
+			<input type="radio" name="playmode" id="play-native" value="native" {% if playbutton == 'native' %}checked{% endif %}>
+			<label for="play-native">Native app</label>
+
+			<input type="radio" name="playmode" id="play-web" value="web" {% if playmode == 'web' %}checked{% endif %}>
+			<label for="play-web">Web client</label>
+
+			<input type="radio" name="playmode" id="play-ask" value="ask" {% if playmode != 'native' and playmode != 'web' %}checked{% endif %}>
+			<label for="play-ask">Ask every time</label>
+		</td>
+	</tr>
+
+	<tr>
 		<td class="a"></td>
 		<td class="b"><a href="/userexport">Export your user data</a></td>
 	</tr>

@@ -37,6 +37,13 @@ if (isset($_POST['action'])) {
 		}
 	}
 
+	// play button behaviour
+	$playmode = $_POST['playmode'] ?? null;
+	if ($playmode == 'native' || $playmode == 'web')
+		setcookie('play_mode', $playmode, time() + 60*60*24*365*10, '/');
+	else
+		setcookie('play_mode', '');
+
 	// avatars
 	$fname = $_FILES['avatar'] ?? null;
 	if ($fname && $fname['size'] > 0) {
@@ -72,5 +79,6 @@ foreach (timezone_identifiers_list() as $tz)
 
 twigloader()->display('settings.twig', [
 	'error' => $error ?? null,
-	'timezones' => $timezones
+	'timezones' => $timezones,
+	'playmode' => $_COOKIE['play_mode'] ?? null,
 ]);

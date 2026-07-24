@@ -29,6 +29,7 @@ class Template {
 		$this->addFunction('comments');
 		$this->addFunction('pagination');
 		$this->addFunction('android_webview_version', 'androidWebviewVersion');
+		$this->addFunction('is_mobile_ua', 'isMobileUA');
 		$this->addFunction('profiler_stats', function () {
 			global $profiler;
 			$profiler->getStats();

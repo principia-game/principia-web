@@ -1,4 +1,8 @@
 
+@function color_alpha($color, $opacity) {
+	@return rgba(red($color), green($color), blue($color), $opacity);
+}
+
 // Put these at the top
 @import "components/elements";
 @import "components/layout";

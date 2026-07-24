@@ -8,11 +8,26 @@
 {% set dlurl = 'https://github.com/Bithack/principia/releases/download/'~ version %}
 
 	{% block content %}
+{% if not is_mobile_ua() %}
+	<div class="header_message">
+		<p>
+			Want to try Principia without installing anything?
+			Check out the new <a href="/play">web version</a> of Principia, which runs right in your browser!
+		</p>
+
+		<p>
+			You can also play any level on the community site right in your browser by selecting the web version when pressing Play.
+		</p>
+	</div>
+{% endif %}
+
 <h1>Download Principia</h1>
 
 <p>
 	The latest version of Principia is <strong>{{ version }}</strong>.
 	You can see what is new in this release in the <a href="/wiki/Changelog#{{ version }}">Changelog</a>.
+</p>
+
 <p>
 	<strong>Problems</strong>, <em>crashes</em> or <u>bugs</u>? Ask in <a href="/discord">the Discord server</a>,
 	<a href="/matrix">the Matrix space</a> or on <a href="/forum/">the forums</a>, or

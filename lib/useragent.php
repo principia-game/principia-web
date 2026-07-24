@@ -31,3 +31,7 @@ function androidWebviewVersion() {
 	preg_match('/Principia WebView\/([0-9]+) \(Android\)/', HTTP_UA, $matches);
 	return $matches[1] ?? null;
 }
+
+function isMobileUA() {
+	return str_contains(HTTP_UA, 'Mobile');
+}

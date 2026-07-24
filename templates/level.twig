@@ -30,6 +30,44 @@
 	&ndash; {{ level.cat | cat_to_type | title }} level
 	&ndash; uploaded {{ level.time | date('j M Y') }} from {{ level.platform }}</span>
 
+<dialog class="play-choice-dialog" id="play-choice-dialog">
+	<h2 class="center">Where to play?</h2>
+
+	<div class="choice-options">
+		<button type="button" class="choice-option" data-play-mode="native">
+			<span class="choice-icon" aria-hidden="true">
+				{{ icon("principia") }}
+			</span>
+
+			<h2 class="play-choice-title">Native</h2>
+
+			<p>
+				Requires you to have installed Principia on your device.
+			</p>
+		</button>
+
+		<button type="button" class="choice-option" data-play-mode="web"
+				{% if is_mobile_ua() %}style="opacity:0.35"{% endif %}>
+			<span class="choice-icon" aria-hidden="true">
+				{{ icon("web") }}
+			</span>
+
+			<h2 class="play-choice-title">Web</h2>
+
+			<p>
+				Play Principia in your browser! Experimental, mobile devices not supported.
+			</p>
+		</button>
+	</div>
+
+	<div class="remember-choice">
+		<label>
+			<input type="checkbox" id="remember-choice" name="remember-choice" checked>
+			Remember my choice
+		</label>
+	</div>
+</dialog>
+
 <div class="lvl-box">
 	<div class="img">
 		{% if level.revision > 1 %}
@@ -57,7 +95,12 @@
 
 	<div class="info">
 		{% if not level.visibility == 1 %}
-			<a class="play-btn green" id="protocol-button" href="{{ play_domain }}/play/lvl/db/{{ play_id }}" onclick="/**/">Play</a>
+			<a class="play-btn green" id="protocol-button" href="{{ play_domain }}/play/lvl/db/{{ play_id }}"
+				{% if not android_webview_version() %}data-play-button="true"{% endif %}
+				data-play-web="/level/{{ play_id }}/play"
+				data-play-native="{{ play_domain }}/play/lvl/db/{{ play_id }}"
+				onclick="/**/">Play</a>
+
 			{%- if not constant('IS_ARCHIVE') and level.author == userdata.id -%}
 				<a class="play-btn blue" href="{{ play_domain }}/edit/db/{{ play_id }}">Edit</a>
 			{%- else -%}
@@ -99,10 +142,7 @@
 	<p>
 		{% if not constant('IS_ARCHIVE') %}Views: {{ level.views }} -{% endif %}
 		Downloads: {{ level.downloads }} -
-		Level ID: {{ level.id }} -
-		{% if not android_webview_version() %}
-			<a href="{{ lid }}/play">Play in browser <span class="beta">(BETA)</span></a>
-		{% endif %}
+		Level ID: {{ level.id }}
 	</p>
 
 	{% if not constant('IS_ARCHIVE') and (userdata.id == level.author or userdata.rank > 1) %}

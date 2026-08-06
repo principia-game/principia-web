@@ -1,7 +1,11 @@
 {% extends "_layout.twig" %}
 
 {% set title = pagetitle %}
-{% set pagename = '/wiki/' ~ pagetitle_slugified %}
+{% if pagetitle == 'Main Page' %}
+	{% set pagename = '/wiki/' %}
+{% else %}
+	{% set pagename = '/wiki/' ~ pagetitle_slugified %}
+{% endif %}
 
 	{% block content %}
 {% if pagetitle != 'Main Page' %}

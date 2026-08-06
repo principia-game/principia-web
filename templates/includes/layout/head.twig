@@ -14,7 +14,7 @@
 <meta property="og:title" content="{{ title }}">
 {% if image is defined %}<meta property="og:image" content="{{ image }}">{% endif %}
 {% if description is defined %}<meta name="description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">
-<meta property="og:description" content="{{ description }}">{% endif %}
+<meta property="og:description" content="{{ description|length > 200 ? description|slice(0, 200) ~ '...' : description }}">{% endif %}
 <meta property="og:site_name" content="Principia">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{{ domain }}{{ uri }}">

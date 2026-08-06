@@ -1,0 +1,74 @@
+{% extends "_layout.twig" %}
+
+{% set title = "August 2026 Donation Drive" %}
+{% set description = "Support the development of Principia by donating during the August 2026 donation drive." %}
+
+	{% block content %}
+<h1>August 2026 Donation Drive</h1>
+
+<p>
+	Principia is a highly advanced physics-based sandbox game featuring circuitry, robotics, Lua scripting and more.
+	Being originally developed as a proprietary game between 2012 and 2014, it was later abandoned due to financial issues.
+	In 2022, the game's source code was released allowing the community to continue development and maintain the game.
+	<a href="/about">Read more on the About Principia page</a>.
+</p>
+
+<p>
+	It has now gone 4 years since the game was released as open source, with ROllerozxa serving as the project maintainer for the majority of that time.
+	He's the primary driving force for the game's development, being the sole person working on the game at this point as well as maintaining the community site and wiki.
+	You can read more about the game's journey as an open source project in the <a href="/news/32">Four years of Open Source Principia</a> news article.
+</p>
+
+<p>
+	This campaign seeks to raise financial support for the project to allow continued development of the game and cover the costs associated with running the community site.
+</p>
+
+<h2>The goal</h2>
+
+<p>
+	The initial goal to be reached is {{ goal | number_format(2) }} Swedish krona. This corresponds to around 1 year of infrastructure costs.
+</p>
+
+<div class="campaign-progress">
+    <div class="bar">
+        <div class="bar-fill" style="width: {{ donation_progress }}%;"></div>
+    </div>
+
+    <div class="labels">
+        <span class="step" style="left: {{ donation_progress }}%;">
+            {{ total_donations | number_format(2) }} SEK
+        </span>
+    </div>
+</div>
+
+<p class="center"><em>(The donation progress bar is manually updated, so it may not be fully accurate at all times.)</em></p>
+
+<p>
+	If the initial goal is reached, the <a href="https://rollerozxa.itch.io/principia-luascript-api-cheatsheet">Principia LuaScript Cheatsheet</a> will be released freely (CC-BY 4.0).
+
+	Additional goals may be announced if the initial goal is reached.
+</p>
+
+<p>Thanks to the people who have donated so far:</p>
+
+<ul class="donators-list">
+	{% if total_donations == 0 %}
+		<li><em>No donations yet... Be the first one!</em></li>
+	{% else %}
+		{% for donator in donators %}
+			<li>{{ donator.name }} - {{ donator.amount }} SEK</li>
+		{% endfor %}
+	{% endif %}
+</ul>
+
+<h2>Donate</h2>
+
+<p>The primary ways of donating are either through Liberapay or Ko-Fi. Liberapay is primarily intended for recurring donations, but you can still make a one-time donation by cancelling after the first payment.</p>
+
+<a href="https://liberapay.com/ROllerozxa/donate" target="_blank">
+	<img alt="Donate using Liberapay" title="Donate using Liberapay" src="/assets/donate-liberapay.svg" width="170"></a>
+
+<a href="https://ko-fi.com/rollerozxa" target="_blank">
+	<img alt="Donate using Ko-fi" title="Donate using Ko-fi" src="/assets/donate-kofi.svg" width="170">
+</a>
+	{% endblock %}

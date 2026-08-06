@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sass --style=compressed --no-source-map \
+sass --style=compressed --watch --no-source-map \
 	--silence-deprecation color-functions \
 	--silence-deprecation global-builtin \
 	--silence-deprecation import \

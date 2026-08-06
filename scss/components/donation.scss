@@ -1,0 +1,60 @@
+
+.campaign-progress {
+	width: 100%;
+	max-width: 700px;
+	margin: auto;
+
+	.bar {
+		position: relative;
+		height: 26px;
+		background: #d6d6d6;
+		border-radius: 15px;
+		overflow: hidden;
+
+		.bar-fill {
+			position: relative;
+			height: 100%;
+			background:
+				repeating-linear-gradient(
+					-45deg,
+					rgba(255,255,255,0.22) 0px,
+					rgba(255,255,255,0.22) 12px,
+					rgba(255,255,255,0.04) 12px,
+					rgba(255,255,255,0.04) 24px),
+				linear-gradient(#4975b6, #2d4d92);
+		}
+	}
+
+	.labels {
+		position: relative;
+		height: 1.8em;
+		margin-top: 8px;
+		font-size: 0.9rem;
+	}
+
+	.step {
+		position: absolute;
+		transform: translateX(-50%);
+		white-space: nowrap;
+		font-weight: 700;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -9px;
+			left: 50%;
+			width: 2px;
+			height: 7px;
+			background: #666;
+			transform: translateX(-50%);
+		}
+	}
+}
+
+ul.donators-list {
+	column-count: 3;
+
+	li {
+		margin: 0;
+	}
+}

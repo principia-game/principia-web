@@ -1,0 +1,49 @@
+{% extends "_layout.twig" %}
+
+{% set title = "LuaScript API Cheatsheet" %}
+{% set description = "Printable cheatsheet reference for the Principia LuaScript API, available in colour and greyscale versions." %}
+
+	{% block content %}
+<h1 class="center">Principia LuaScript API Cheatsheet</h1>
+
+<p class="center">By <a href="/user/1">ROllerozxa</a></p>
+
+<img class="img-responsive" src="/assets/luascript_cheatsheet.webp">
+
+<p>This is a reference overview of the Principia LuaScript API in the form of a printable cheatsheet document. It contains lists of all methods and their arguments along with some other notes. Useful to have printed out on your desk or similar when doing Principia Lua scripting.
+
+<p>The cheatsheet is in A4 format. Two PDFs are available, one colour version and one black-and-white version that is optimised for printing with greyscale printers.</p>
+
+<p>It currently documents the API as it exists in Principia 2026.08.16. Information has been sourced from the API reference on the Principia Wiki as well as the game's source code, it has been checked for correctness but mistakes may still happen. Updates to the sheet can be made if issues with it are discovered, please let me know if you find any.</p>
+
+<p>For more information about LuaScript see the full reference documentation on the <a href="https://principia-web.se/wiki/LuaScript">Principia Wiki</a>.</p>
+
+<h2>Download</h2>
+
+{% set revision = 1 %}
+
+<p>The Principia LuaScript API cheatsheet is available on <a href="https://rollerozxa.itch.io/principia-luascript-api-cheatsheet">itch.io</a> for a small fee.</p>
+
+<p>The cheatsheet will be released for free if we hit the goal in the <a href="/august-2026-donation-drive">August 2026 donation drive</a>.</p>
+
+{#
+
+<ul>
+	<li><a href="https://github.com/principia-game/luascript-cheatsheet/releases/download/rev-{{ revision }}/cheatsheet.pdf">Colour version PDF (revision {{ revision }})</a></li>
+	<li><a href="https://github.com/principia-game/luascript-cheatsheet/releases/download/rev-{{ revision }}/cheatsheet_grey.pdf">Greyscale version PDF (revision {{ revision }})</a></li>
+</ul>
+
+<p>
+	The PDF may open directly in your browser's PDF viewer. If you want to specifically download it, right-click the link and click "Save link as..." on desktop.
+
+<h2>Source files</h2>
+
+<p>The source files for the cheatsheet is available <a href="https://github.com/principia-game/luascript-cheatsheet">in the GitHub repository</a>.</p>
+
+#}
+
+<h2>Updates/Errata</h2>
+
+<p>None yet.</p>
+
+	{% endblock %}

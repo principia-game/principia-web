@@ -1,6 +1,6 @@
 <?php
 
-$dialogs = query("SELECT * FROM imgui ORDER BY status DESC, name ASC");
+$dialogs = query("SELECT * FROM imgui ORDER BY status DESC, added_in DESC, name ASC");
 
 $numDialogs = result("SELECT COUNT(*) FROM imgui");
 $dialogStatusCounts = query("SELECT status, COUNT(*) AS count FROM imgui GROUP BY status ORDER BY status DESC");

@@ -17,12 +17,13 @@
 
 	<p>The contest was started at <strong>{{ contest.time_from | date('j F Y') }}</strong>.</p>
 
+	{# TODO: Fix this for timezones
 	{% if contest.time_to|date("U") < "now"|date("U") %}
 		<p>
 			The contest ended at <strong>{{ contest.time_to | date('j F Y H:i:s') }}</strong>.
 			The results may be published with some delay.
 		</p>
-	{% else %}
+	{% else %}#}
 		<p>
 			The contest will end at <strong>{{ contest.time_to | date('j F Y H:i:s') }} GMT</strong>.
 			Time left: <strong id="countdown"></strong>
@@ -33,7 +34,7 @@ window.onload = function() {
 	startCountdown("countdown", "{{ contest.time_to | date('j F Y H:i:s', false) }}");
 };
 		</script>
-	{% endif %}
+	{#{% endif %}#}
 {% endif %}
 
 <h2>Entries</h2>

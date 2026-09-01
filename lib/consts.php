@@ -18,7 +18,7 @@ const GETTINGSTARTED_LINKS = [
 	'https://principia-web.se/donate' => 'Donate',
 ];
 
-const LATEST_VERSION_CODE = 40;
+const LATEST_VERSION_CODE = 44;
 
 // technically not a constant but let's just say it is
 

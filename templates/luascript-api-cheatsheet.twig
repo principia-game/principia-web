@@ -20,13 +20,13 @@
 
 <h2>Download</h2>
 
-{% set revision = 1 %}
+<p>
+	The cheatsheet was originally released back in 2024 on itch.io as a paid product to support the game.
+	It has since been made free to download thanks to supporters in the
+	<a href="/august-2026-donation-drive">August 2026 Donation Drive</a> who reached the funding goal.
+</p>
 
-<p>The Principia LuaScript API cheatsheet is available on <a href="https://rollerozxa.itch.io/principia-luascript-api-cheatsheet">itch.io</a> for a small fee.</p>
-
-<p>The cheatsheet will be released for free if we hit the goal in the <a href="/august-2026-donation-drive">August 2026 donation drive</a>.</p>
-
-{#
+{% set revision = 2 %}
 
 <ul>
 	<li><a href="https://github.com/principia-game/luascript-cheatsheet/releases/download/rev-{{ revision }}/cheatsheet.pdf">Colour version PDF (revision {{ revision }})</a></li>
@@ -38,12 +38,12 @@
 
 <h2>Source files</h2>
 
-<p>The source files for the cheatsheet is available <a href="https://github.com/principia-game/luascript-cheatsheet">in the GitHub repository</a>.</p>
-
-#}
+<p>The source files for the cheatsheet is available <a href="https://github.com/principia-game/luascript-cheatsheet">in the GitHub repository</a> under the CC-BY 4.0 license.</p>
 
 <h2>Updates/Errata</h2>
 
-<p>None yet.</p>
-
+<ul>
+	<li><strong>rev. 2</strong>: Remove notes about set_ambient_light and set_diffuse_light being broken as they have been fixed in 2025.04.05</li>
+	<li><strong>rev. 1</strong>: Initial release</li>
+</ul>
 	{% endblock %}

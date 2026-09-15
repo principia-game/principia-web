@@ -97,7 +97,7 @@
 		{% if not level.visibility == 1 %}
 			<a class="play-btn green" id="protocol-button" href="{{ play_domain }}/play/lvl/db/{{ play_id }}"
 				{% if not android_webview_version() %}data-play-button="true"{% endif %}
-				data-play-web="/level/{{ play_id }}/play"
+				data-play-web="{{ pagename }}/play"
 				data-play-native="{{ play_domain }}/play/lvl/db/{{ play_id }}"
 				onclick="/**/">Play</a>
 

@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 	{% include 'includes/layout/head.twig' %}
+	
+	{% block custom_head %}{% endblock %}
 </head>
 <body>
 	{{ custom_header() | raw }}

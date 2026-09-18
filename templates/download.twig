@@ -8,19 +8,6 @@
 {% set dlurl = 'https://github.com/Bithack/principia/releases/download/'~ version %}
 
 	{% block content %}
-{% if not is_mobile_ua() %}
-	<div class="header_message">
-		<p>
-			Want to try Principia without installing anything?
-			Check out the new <a href="/play">web version</a> of Principia, which runs right in your browser!
-		</p>
-
-		<p>
-			You can also play any level on the community site right in your browser by selecting the web version when pressing Play.
-		</p>
-	</div>
-{% endif %}
-
 <h1>Download Principia</h1>
 
 <p>
@@ -34,285 +21,443 @@
 	<a href="https://github.com/Bithack/principia/issues">open an issue on Github</a>.
 </p>
 
-<table class="dl">
+{% macro platform_tab(platform, icon, text, active = false) %}
+	<button class="tab{% if active %} active{% endif %}" type="button" data-platform="{{ platform }}">
+		{{ icon | raw }}
+		<span>{{ text }}</span>
+	</button>
+{% endmacro %}
 
-<tr>
-	<td class="plat" id="windows">
-		<a href="#windows"><img src="/icons/windows.svg"></a><br>Windows
-	</td>
-	<td colspan="2">
-		<p>
-			<strong>
-				<a href="{{ dlurl }}/principia_{{ version }}_win64.exe">
-					Principia {{ version }} for Windows - Installer, 64-bit (recommended)
+<div class="platform-tabs" aria-label="Platform">
+	{{ _self.platform_tab("windows", '<img src="/icons/windows.svg" alt="">', "Windows", true) }}
+	{{ _self.platform_tab("linux", '<img src="/icons/linux.svg?v=2" alt="">', "Linux", false) }}
+	{{ _self.platform_tab("android", '<img src="/icons/android.svg?v=2" alt="">', "Android", false) }}
+	{{ _self.platform_tab("web", '<img src="/icons/chrome.svg" alt="">', "Web", false) }}
+	{{ _self.platform_tab("macos", icon("apple"), "macOS", false) }}
+	{{ _self.platform_tab("haiku", '<img src="/icons/haiku.svg" alt="">', "Haiku", false) }}
+	{{ _self.platform_tab("other", icon("dots-horizontal"), "More", false) }}
+</div>
+
+<!-- Windows -->
+<section class="dl-panel active" data-platform-panel="windows">
+	<div class="panel-head">
+		<img src="/icons/windows.svg" alt="">
+		<div>
+			<h2>Windows</h2>
+			<p>Windows 10 and above (older may work but is not supported)</p>
+		</div>
+	</div>
+
+	<div class="download-btns">
+		<a class="download-btn primary" href="{{ dlurl }}/principia_{{ version }}_win64.exe">
+			<span class="btn-icon">{{ icon("download") }}</span>
+			<span class="btn-content">
+				<strong>Windows Installer</strong>
+				<small>64-bit - Recommended</small>
+			</span>
+		</a>
+
+		<a class="download-btn" href="{{ dlurl }}/principia_{{ version }}_win64.7z">
+			<span class="btn-icon">{{ icon("download") }}</span>
+			<span class="btn-content">
+				<strong>Portable version</strong>
+				<small>64-bit - No installation required</small>
+			</span>
+		</a>
+	</div>
+
+	<p>
+		The portable build has some limitations that are important to know about.
+		See <a href="/wiki/Windows_Portable">Windows Portable</a> for more information.
+	</p>
+
+	{#
+
+	<hr>
+
+	<div class="download-btns">
+		<a class="download-btn primary" href="{{ dlurl }}/principia_{{ version }}_win32.exe">
+			<span class="btn-icon">{{ icon("download") }}</span>
+			<span class="btn-content">
+				<strong>Windows Installer</strong>
+				<small>32-bit - For older devices</small>
+			</span>
+		</a>
+
+		<a class="download-btn" href="{{ dlurl }}/principia_{{ version }}_win32.7z">
+			<span class="btn-icon">{{ icon("download") }}</span>
+			<span class="btn-content">
+				<strong>Portable version</strong>
+				<small>32-bit - For older devices</small>
+			</span>
+		</a>
+	</div>#}
+</section>
+
+<!-- Android -->
+<section class="dl-panel" data-platform-panel="android">
+	<div class="panel-head">
+		<img src="/icons/android.svg?v=2" alt="">
+		<div>
+			<h2>Android</h2>
+			<p>Android 5.0 and newer</p>
+		</div>
+	</div>
+
+	<a class="download-btn primary" href="{{ dlurl }}/principia_{{ version }}.apk">
+		<span class="btn-icon">{{ icon("download") }}</span>
+		<span class="btn-content">
+			<strong>Direct APK download</strong>
+			<small>Universal APK (ARM 32-bit, ARM 64-bit & x86_64)</small>
+		</span>
+	</a>
+
+	<hr>
+
+	<h3>F-Droid</h3>
+	<p>
+		Principia is also available on F-Droid.
+	</p>
+
+	<a href="https://f-droid.org/packages/com.bithack.principia/">
+		<img src="/assets/fdroid.png" alt="Get it on F-Droid" height="80">
+	</a>
+
+	<p>
+		Keep in mind that the F-Droid build uses a different signing key,
+		which means that if you want to switch distribution channels you'll need to
+		fully uninstall Principia before installing the new version.
+		Please back up your user data before doing so.
+	</p>
+</section>
+
+<!-- Linux -->
+<section class="dl-panel" data-platform-panel="linux">
+	<div class="panel-head">
+		<img src="/icons/linux.svg?v=2" alt="">
+		<div>
+			<h2>Linux</h2>
+			<p>Choose the installation method for your distribution</p>
+		</div>
+	</div>
+
+	<!-- AppImage -->
+	<div class="dl-subsection first-child">
+		<div class="sub-icon">
+			<img src="/icons/appimage.svg" alt="AppImage">
+		</div>
+
+		<div class="sub-content">
+			<h3>AppImage</h3>
+			<p>
+				Cross-distribution binary in one file.
+			</p>
+
+			<div class="download-btns">
+				<a class="download-btn primary" href="{{ dlurl }}/principia_{{ version }}_x86_64.AppImage">
+					<span class="btn-icon">{{ icon("download") }}</span>
+					<span class="btn-content">
+						<strong>AppImage</strong>
+						<small>x86_64 - for glibc-based distributions released ~2021 & onward</small>
+					</span>
 				</a>
-			</strong>
-		</p>
 
-		<p>
-			<a href="{{ dlurl }}/principia_{{ version }}_win64.7z">
-				Principia {{ version }} for Windows - Portable, 64-bit
+				{#
+				<a class="download-btn" href="{{ dlurl }}/principia_{{ version }}_aarch64.AppImage">
+					<span class="btn-icon">{{ icon("download") }}</span>
+					<span class="btn-content">
+						<strong>AppImage</strong>
+						<small>aarch64 - for glibc-based distributions released ~2021 & onward</small>
+					</span>
+				</a>#}
+			</div>
+
+			<p class="download-note">
+				<strong>xdg-utils</strong> and functional OpenGL drivers must also
+				be installed.
+
+				<a href="https://docs.appimage.org/introduction/quickstart.html#ref-how-to-run-appimage">
+					How to run an AppImage?
+				</a>
+			</p>
+		</div>
+	</div>
+
+	<!-- Arch Linux -->
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			<img src="/icons/arch.svg" alt="Arch Linux">
+		</div>
+
+		<div class="sub-content">
+			<h3>Arch Linux</h3>
+			<p>Packages for Principia are available in the Arch User Repository (AUR):</p>
+
+			<ul>
+				<li>
+					<a href="https://aur.archlinux.org/packages/principia"><code>principia</code></a> - stable release
+				</li>
+				<li>
+					<a href="https://aur.archlinux.org/packages/principia-git"><code>principia-git</code></a> - latest master branch
+				</li>
+			</ul>
+
+			<p>
+				A <a href="https://arch.principia-web.se/">custom binary repository</a> with prebuilt packages is also available. To add:
+			</p>
+
+			<pre><code>echo -e '\n[principia]\nSigLevel = Optional DatabaseOptional\nServer = https://arch.principia-web.se/$arch' | sudo tee -a /etc/pacman.conf</code></pre>
+		</div>
+	</div>
+
+	<!-- NixOS -->
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			<img src="/icons/nix.svg" alt="NixOS">
+		</div>
+
+		<div class="sub-content">
+			<h3>NixOS</h3>
+			<p>A package for Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia">is available in nixpkgs</a>.</p>
+		</div>
+	</div>
+
+	<!-- Alpine -->
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			<img src="/icons/alpine.svg" alt="Alpine Linux">
+		</div>
+
+		<div class="sub-content">
+			<h3>Alpine</h3>
+
+			<p>
+				A package for Principia <a href="https://pkgs.alpinelinux.org/packages?name=principia&branch=edge&arch=">is available in the testing repository of Alpine edge</a>.
+			</p>
+		</div>
+	</div>
+
+	<!-- Slackware -->
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			<img src="/icons/slackware.svg" alt="Slackware">
+		</div>
+
+		<div class="sub-content">
+			<h3>Slackware</h3>
+
+			<p>
+				A package for Principia <a href="https://slackbuilds.org/repository/15.0/games/principia/">is available in SlackBuilds</a>.
+			</p>
+		</div>
+	</div>
+
+	<!-- Other -->
+	<div class="dl-subsection">
+		<div class="sub-icon generic">
+			?
+		</div>
+
+		<div class="sub-content">
+			<h3>Other</h3>
+			<p>Build Principia from source.</p>
+
+			<p class="download-note">
+				Compilation instructions can be found on the
+				<a href="/wiki/Compiling_Principia">
+					Compiling Principia
+				</a>
+				wiki page.
+			</p>
+
+			<div class="download-btns">
+				<a class="download-btn" href="https://github.com/Bithack/principia/archive/refs/tags/{{ version }}.tar.gz">
+					<span class="btn-icon">{{ icon("download") }}</span>
+					<span class="btn-content">
+						<strong>Principia source code</strong>
+						<small>.tar.gz</small>
+					</span>
+				</a>
+			</div>
+
+			<p>Alternatively clone the Git repository and build from source <strong>(this will clone latest master)</strong>:</p>
+
+			<pre><code>git clone --depth 1 https://github.com/Bithack/principia</code></pre>
+		</div>
+	</div>
+
+</section>
+
+<!-- Web -->
+<section class="dl-panel" data-platform-panel="web">
+	<div class="panel-head">
+		<img src="/icons/chrome.svg" alt="">
+		<div>
+			<h2>Web</h2>
+			<p>Play Principia directly in your browser</p>
+		</div>
+	</div>
+
+	<a class="download-btn primary" href="/play">
+		<span class="btn-icon">{{ icon("play") }}</span>
+		<span class="btn-content">
+			<strong>Play Principia in your browser</strong>
+			<small>Build levels in your browser</small>
+		</span>
+	</a>
+
+	<p>
+		The web version of Principia is still experimental.
+	</p>
+
+	<p>
+		You can play
+		community levels directly in your browser by choosing Web when
+		pressing play on the community site.
+	</p>
+
+	<div class="web-instructions">
+		<img src="/assets/web_play_1.webp" class="instruction img-responsive" style="width: 500px">
+		<img src="/assets/web_play_2.webp" class="instruction img-responsive" style="width: 500px">
+	</div>
+</section>
+
+<!-- macOS -->
+<section class="dl-panel" data-platform-panel="macos">
+	<div class="panel-head">
+		{{ icon("apple") }}
+		<div>
+			<h2>macOS</h2>
+			<p>Experimental port</p>
+		</div>
+	</div>
+
+	<p>
+		A very experimental port to macOS is available. If you have Mac hardware
+		and are willing to test whether Principia works on macOS, feedback is
+		appreciated.
+	</p>
+
+	<a class="download-btn primary" href="https://nightly.link/Bithack/principia/workflows/macos/master/principia-macos.zip">
+		<span class="btn-icon">{{ icon("download") }}</span>
+		<span class="btn-content">
+			<strong>Download macOS build</strong>
+			<small>Latest nightly build</small>
+		</span>
+	</a>
+
+	<p class="download-note">
+		Alternatively, compile from source using the
+		<a href="/wiki/Compiling_Principia#macos">macOS compilation instructions</a>.
+	</p>
+</section>
+
+
+<!-- Haiku -->
+<section class="dl-panel" data-platform-panel="haiku">
+	<div class="panel-head">
+		<img src="/icons/haiku.svg" alt="">
+		<div>
+			<h2>Haiku</h2>
+			<p>Experimental port</p>
+		</div>
+	</div>
+
+	<p>
+		An experimental port to Haiku OS is available for Principia.
+	</p>
+
+	<p>
+		For instructions on how to compile and run Principia on Haiku OS see
+		<a href="/wiki/Compiling_Principia#haiku-os">Compiling Principia</a>.
+	</p>
+</section>
+
+<!-- More -->
+<section class="dl-panel" data-platform-panel="other">
+	<div class="panel-head">
+		{{ icon("dots-horizontal") }}
+		<div>
+			<h2>More</h2>
+			<p>Other download options</p>
+		</div>
+	</div>
+
+	<div class="dl-subsection first-child">
+		<div class="sub-icon">
+			<img src="/icons/windows_colorful.svg" alt="">
+		</div>
+
+		<div class="sub-content">
+			<h3>Windows XP</h3>
+			<p>Experimental builds of Principia are available for Windows XP.</p>
+
+			<a class="download-btn primary" href="https://github.com/rollerozxa/principia-xp/releases">
+				<span class="btn-icon">{{ icon("download") }}</span>
+				<span class="btn-content">
+					<strong>Go to Windows XP releases</strong>
+					<small>Installer & portable available</small>
+				</span>
 			</a>
-		</p>
+		</div>
+	</div>
 
-		<p>
-			Windows 10 and above is supported, older versions may work but are not supported.
-			The portable build has some limitations to it that are important to know about, see <a href="/wiki/Windows_Portable">Windows Portable</a> for more info.
-		</p>
-	</td>
-</tr>
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			{{ icon("itch") }}
+		</div>
 
-<tr>
-	<td class="plat" id="android">
-		<a href="#android"><img src="/icons/android.svg?v=2"></a><br>Android
-	</td>
-	<td colspan="2">
-		<p>
-			<strong>
-				<a href="{{ dlurl }}/principia_{{ version }}.apk">
-					Principia {{ version }} for Android 5.0+ - Direct APK download
-				</a>
-			</strong>
-		</p>
+		<div class="sub-content">
+			<h3>itch.io</h3>
+			<p>
+				Principia is available to download on itch.io, either for free or for a fee to support the project.
+			</p>
 
-		<p>
-			Principia is also available on F-Droid:
-		</p>
-
-		<p>
-			<a href="https://f-droid.org/packages/com.bithack.principia/">
-				<img src="/assets/fdroid.png" alt="Get it on F-Droid" height="80">
+			<a href="https://rollerozxa.itch.io/principia">
+				<img src="/assets/itch.svg" alt="Available on itch.io" style="width:250px" class="img-responsive">
 			</a>
-		</p>
+		</div>
+	</div>
 
-		<p>
-			Keep in mind that the F-Droid build uses a different signing key, which means that if you want to switch distribution channels you'll need to fully uninstall Principia before installing the new version. Please back up your user data before doing so.
-		</p>
-	</td>
-</tr>
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			{{ icon("wizard-hat")}}
+		</div>
 
-<tr>
-	<td class="plat" rowspan="7" id="linux">
-		<a href="#linux"><img src="/icons/linux.svg?v=2"></a><br>Linux
-	</td>
-</tr>
+		<div class="sub-content">
+			<h3>Nightly builds</h3>
+			<p>
+				Whenever a new commit is pushed the game is automatically built by CI for all supported platforms.
+				These nightly builds contain changes that have not yet made it into a full release,
+				but are also less tested than the release builds.
+			</p>
 
-<tr>
-	<td class="plat" id="appimage">
-		<a href="#appimage"><img src="/icons/appimage.svg"></a><br>AppImage
-	</td>
-	<td>
-		<p>
-			<strong>
-				<a href="{{ dlurl }}/principia_{{ version }}_x86_64.AppImage">
-					Principia {{ version }} for Linux - AppImage, 64-bit
-				</a>
-			</strong>
-		</p>
+			<p>
+				For more information and downloads see the <a href="/wiki/Nightly_Builds">Nightly Builds page</a>.
+			</p>
+		</div>
+	</div>
 
-		<p>
-			A glibc-based distro equivalent to Debian 11 Bullseye or newer is required. <strong>xdg-utils</strong> and functional OpenGL drivers need to be installed.
-		</p>
+	<div class="dl-subsection">
+		<div class="sub-icon">
+			{{ icon("root")}}
+		</div>
 
-		<p>
-			How to run an AppImage? See
-			<a href="https://docs.appimage.org/introduction/quickstart.html#ref-how-to-run-appimage">
-				AppImage quickstart</a>.
-		</p>
-	</td>
-</tr>
+		<div class="sub-content">
+			<h3>Source code</h3>
 
-<tr>
-	<td class="plat" id="archlinux">
-		<a href="#archlinux"><img src="/icons/arch.svg"></a><br>Arch Linux
-	</td>
-	<td>
-		<p>
-			Principia is available in the AUR. Build manually with <code>makepkg -si</code> or use your favourite AUR helper to install Principia.
-		</p>
+			<p>
+				The source code for Principia is hosted on <a href="https://github.com/Bithack/principia">Github</a>
+				with a read-only mirror available on <a href="https://codeberg.org/principia/principia">Codeberg</a>.
+			</p>
 
-		<ul>
-			<li>
-				<a href="https://aur.archlinux.org/packages/principia"><code>principia</code></a> - stable release
-			</li>
-			<li>
-				<a href="https://aur.archlinux.org/packages/principia-git"><code>principia-git</code></a> - latest master branch
-			</li>
-		</ul>
+			<p>
+				For instructions on how to compile Principia from source see the
+				<a href="/wiki/Compiling_Principia">Compiling Principia</a> page on the Principia Wiki.
+			</p>
+		</div>
+	</div>
+</section>
 
-		<p>
-			A <a href="https://arch.principia-web.se/">custom binary repository</a> is also available which contains prebuilt versions of the following packages. To add:
-		</p>
-
-		<p><code>echo -e '\n[principia]\nSigLevel = Optional DatabaseOptional\nServer = https://arch.principia-web.se/$arch' | sudo tee -a /etc/pacman.conf</code></p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="nixos">
-		<a href="#nixos"><img src="/icons/nix.svg"></a><br>NixOS
-	</td>
-	<td>
-		<p>
-			A package for Principia <a href="https://search.nixos.org/packages?channel=unstable&show=principia">is available in nixpkgs</a>.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="alpine">
-		<a href="#alpine"><img src="/icons/alpine.svg"></a><br>Alpine
-	</td>
-	<td>
-		<p>
-			A package for Principia <a href="https://pkgs.alpinelinux.org/packages?name=principia&branch=edge&arch=">is available in the testing repository of Alpine edge</a>.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="slackware">
-		<a href="#slackware"><img src="/icons/slackware.svg"></a><br>Slackware
-	</td>
-	<td>
-		<p>
-			A package for Principia <a href="https://slackbuilds.org/repository/15.0/games/principia/">is available in SlackBuilds</a>.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="generic-linux">
-		<div class="generic">?</div> <br>Other
-	</td>
-	<td>
-		<p>
-			<strong>
-				<a href="https://github.com/Bithack/principia/archive/refs/tags/{{ version }}.tar.gz">
-					Principia {{ version }} source code (.tar.gz)
-				</a>
-			</strong>
-		</p>
-
-		<p>
-			Compilation instructions can be found on the
-			<a href="/wiki/Compiling_Principia">Compiling Principia</a> wiki page.
-		</p>
-
-		<p>
-			Alternatively clone the source repository and build from source <strong>(this will clone latest master)</strong>:
-		</p>
-
-		<p><code>git clone --depth 1 https://github.com/Bithack/principia</code></p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="web">
-		<a href="#web"><img src="/icons/chrome.svg"></a><br>Web
-	</td>
-	<td colspan="2">
-		<p>
-			Principia can run in your web browser now!
-		</p>
-
-		<p>
-			The web version of Principia is still experimental, but you can play any level from the community site with the "Play in browser <span class="beta">(BETA)</span>" link under the level thumbnail, directly in your web browser without downloading anything.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="macos">
-		<a href="#macos">{{ icon("apple") }}</a><br>macOS
-	</td>
-	<td colspan="2">
-		<p>
-			A very experimental port to macOS is available for Principia.
-			If you have Mac hardware and are willing to test if Principia works on macOS this would be very appreciated.
-		</p>
-
-		<p>
-			Nightly builds for macOS are built on every commit which you can
-			<a href="https://nightly.link/Bithack/principia/workflows/macos/master/principia-macos.zip">download from here</a>.
-			Alternatively compile from source with the instructions found at <a href="/wiki/Compiling_Principia#macos">Compiling Principia</a>.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="haiku">
-		<a href="#haiku"><img src="/icons/haiku.svg"></a><br>Haiku
-	</td>
-	<td colspan="2">
-		<p>
-			An experimental port to Haiku OS is available for Principia.
-		</p>
-
-		<p>
-			For instructions on how to compile and run Principia on Haiku OS see
-			<a href="/wiki/Compiling_Principia#haiku-os">Compiling Principia</a>.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="winxp">
-		<a href="#winxp"><img src="/icons/windows_colorful.svg"></a><br>WinXP
-	</td>
-	<td colspan="2">
-		<p>
-			There are experimental builds of Principia that should run on Windows XP, both 32-bit and 64-bit editions.
-		</p>
-
-		<p>
-			<a href="https://github.com/rollerozxa/principia-xp/releases">Principia for Windows XP releases</a>
-		</p>
-
-		<p>
-			Note these builds are not officially maintained and use the experimental Dear Imgui dialog backend, which may still have issues.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="nightly">
-		<a href="#nightly">{{ icon("wizard-hat") }}</a><br>Nightly
-	</td>
-	<td colspan="2">
-		<p>
-			Whenever a new commit is pushed the game is automatically built by CI for all supported platforms.
-			These nightly builds contain changes that have not yet made it into a full release,
-			but are also less tested than the release builds.
-		</p>
-
-		<p>
-			For more information and downloads see the <a href="/wiki/Nightly_Builds">Nightly Builds</a> page.
-		</p>
-	</td>
-</tr>
-
-<tr>
-	<td class="plat" id="source">
-		<a href="#source">{{ icon("root") }}</a><br>Source
-	</td>
-	<td colspan="2">
-		<p>
-			The source code for Principia is hosted on <a href="https://github.com/Bithack/principia">Github</a>
-			with a read-only mirror available on <a href="https://codeberg.org/principia/principia">Codeberg</a>.
-		</p>
-
-		<p>
-			For instructions on how to compile Principia from source see the
-			<a href="/wiki/Compiling_Principia">Compiling Principia</a> page on the Principia Wiki.
-		</p>
-	</td>
-</tr>
-
-</table>
-
-<p>For an archive of old Principia versions prior to the open sourcing, as well as Apparatus and Tesla Plushies, see the <a href="https://docs.google.com/spreadsheets/d/1G2YX0BV9_FSrIOvbCQtgYLE1XirCr8UaAfXUzuxjefE/htmlview">Bithack Game Archive Index</a>.</p>
-
-<div style="height:100px"></div>
-
+<script src="/js/downloads.js"></script>
 	{% endblock %}

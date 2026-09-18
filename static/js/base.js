@@ -123,6 +123,7 @@ document.querySelectorAll("[data-play-button]").forEach(function (button) {
 	});
 });
 
+
 $("play-choice-dialog")
 	.querySelectorAll("[data-play-mode]")
 	.forEach(function (option) {

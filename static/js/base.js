@@ -123,16 +123,15 @@ document.querySelectorAll("[data-play-button]").forEach(function (button) {
 	});
 });
 
-
-$("play-choice-dialog")
-	.querySelectorAll("[data-play-mode]")
-	.forEach(function (option) {
-		option.addEventListener("click", function () {
-			const mode = option.dataset.playMode;
-			selectPlayMode(mode);
+if ($("play-choice-dialog"))
+	$("play-choice-dialog")
+		.querySelectorAll("[data-play-mode]")
+		.forEach(function (option) {
+			option.addEventListener("click", function () {
+				const mode = option.dataset.playMode;
+				selectPlayMode(mode);
+			});
 		});
-	});
-
 
 // Forum thread.php code
 function submitmod(act) {

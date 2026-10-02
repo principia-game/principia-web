@@ -54,3 +54,15 @@ if (hash && Array.from(tabs).some(function (tab) { return tab.dataset.platform =
     selectPlatform(hash, false);
 else
     selectPlatform(getDefaultPlatform(), false);
+
+// Handle Android warning
+
+const acknowledgeAndroidButton = document.getElementById("acknowledge-android");
+const androidDownloadContainer = document.getElementById("android-download-container");
+
+androidDownloadContainer.hidden = true;
+
+acknowledgeAndroidButton.addEventListener("click", function () {
+    androidDownloadContainer.hidden = false;
+    acknowledgeAndroidButton.hidden = true;
+});

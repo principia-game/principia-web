@@ -245,3 +245,17 @@ $download_color: #62aafc;
 	flex-flow: row wrap;
 	gap: 0.5em 0;
 }
+
+.android-warning {
+	padding: 14px 18px;
+	border-left: 4px solid red;
+	background-color: $redbg;
+	border-bottom: 1px solid $grid;
+
+	.warning {
+		font-weight: bold;
+		font-size: 1.25em;
+		margin-bottom: 0.75em;
+		margin-top: 0.25em;
+	}
+}

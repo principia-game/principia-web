@@ -28,6 +28,8 @@ $funbg1: #ebebeb;
 $funbg2: #e8e8e8;
 $funbg3: #d4d4d4;
 
+$redbg: #fcc;
+
 @function hover($opacity) {
 	@return rgba(0,0,0, $opacity);
 }

@@ -102,6 +102,44 @@
 		</div>
 	</div>
 
+	<div class="android-warning">
+		<p class="warning">
+			⚠️ Starting in 2027, Google will block installation of Principia on Android devices with Google Play.
+		</p>
+
+		<p>
+			To install Principia onto an Android device running Google Play services going forward,
+			you will need to accept installation of apps from unverified developers.
+		</p>
+
+		<p>
+			When Google asks you whether someone is instructing you to install the app, answer "No" to proceed.
+			You will be required to restart and then wait for 24 hours before you can install Principia
+			if this is your first time installing an app from an unverified developer.
+		</p>
+
+		<p>
+			Installation from a computer with ADB bypasses this restriction.
+		</p>
+
+		<p>
+			For users in Brazil, Indonesia, Singapore, and Thailand, you may already be blocked from installing
+			Principia as part of Google's early rollout beginning in September of 2026.
+		</p>
+
+		<p>
+			This is entirely out of our control and not something we can fix.
+		</p>
+
+		<button class="btn" id="acknowledge-android">
+			Okay, I understand
+		</button>
+	</div>
+
+	<div id="android-download-container">
+
+	<hr>
+
 	<a class="download-btn primary" href="{{ dlurl }}/principia_{{ version }}.apk">
 		<span class="btn-icon">{{ icon("download") }}</span>
 		<span class="btn-content">
@@ -127,6 +165,8 @@
 		fully uninstall Principia before installing the new version.
 		Please back up your user data before doing so.
 	</p>
+
+	</div>
 </section>
 
 <!-- Linux -->
@@ -348,6 +388,10 @@
 		Alternatively, compile from source using the
 		<a href="/wiki/Compiling_Principia#macos">macOS compilation instructions</a>.
 	</p>
+
+	<h3>iOS</h3>
+
+	<p>There is currently no version of Principia available for iOS.</p>
 </section>
 
 
@@ -457,5 +501,5 @@
 	</div>
 </section>
 
-<script src="/js/downloads.js"></script>
+<script src="/js/downloads.js?v=2"></script>
 	{% endblock %}

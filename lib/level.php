@@ -11,6 +11,14 @@ function likeLevel($lid, $user) {
 
 	insertInto('likes', ['user' => $user, 'level' => $lid]);
 	$cachectrl->invIndexTop();
+
+	// Check if the user has unlocked the "Well Liked" badge
+	$level = getLevelById($lid);
+	if ($level['likes'] >= 20) {
+		$hasBadge = result("SELECT COUNT(*) FROM user_badges WHERE user = ? AND badge = 14", [$level['author']]) == 1;
+		if (!$hasBadge)
+			insertInto('user_badges', ['user' => $level['author'], 'badge' => 14]);
+	}
 }
 
 function toggleLevelLock($level, $visibility) {

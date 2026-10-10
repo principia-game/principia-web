@@ -39,12 +39,14 @@ const ALL_BADGES = [
 	[
 		'name' => 'anniversary_five',
 		'title' => '5 Years',
-		'description' => 'Has been registered on the current iteration of the community site for 5 years.'
+		'description' => 'Has been registered on the current iteration of the community site for 5 years.',
+		'hidden' => true
 	],
 	[
 		'name' => 'anniversary_ten',
 		'title' => '10 Years',
-		'description' => 'Has been registered on the current iteration of the community site for 10 years.'
+		'description' => 'Has been registered on the current iteration of the community site for 10 years.',
+		'hidden' => true
 	],
 	[
 		'name' => 'met_rollerozxa',

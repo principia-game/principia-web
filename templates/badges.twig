@@ -15,11 +15,13 @@
 		<th>Description</th>
 	</tr>
 	{% for badge in constant('ALL_BADGES') %}
+	{% if badge.hidden != true %}
 	<tr>
 		<td class="center"><img src="/icons/badges/{{ badge.name }}.svg" alt="" width=48 height=48></td>
 		<td>{{ badge.title }}</td>
 		<td>{{ badge.description }}</td>
 	</tr>
+	{% endif %}
 	{% endfor %}
 </table>
 

@@ -1,0 +1,77 @@
+{% extends "_layout.twig" %}
+
+{% set title = "Are we Imgui Yet? (Android Edition)" %}
+{% set description = "Page tracking the current progress of the Dear Imgui dialog migration on Android." %}
+
+	{% block content %}
+<h1>Are we Imgui Yet? (Android Edition)</h1>
+
+<table class="settings autowidth" style="float:right;margin-left:20px">
+	<tr>
+		<th colspan=2>Legend</th>
+	</tr>
+	<tr>
+		<td class="imgui-status-0"></td>
+		<td>Not replaced</td>
+	</tr>
+	<tr>
+		<td class="imgui-status-2"></td>
+		<td>Fully replaced and included in latest nightly</td>
+	</tr>
+	<tr>
+		<td class="imgui-status-3"></td>
+		<td>Fully replaced and included in latest stable release</td>
+	</tr>
+</table>
+
+<p>
+	Previously the desktop version of Principia had its GTK-based dialogs replaced with new Dear Imgui-based dialogs.
+	Now that these dialogs have been working well in the desktop version of Principia, it is time for the Android version to also get these new dialogs.
+</p>
+
+<p>
+	The Android version has been using its own set of dialogs using native Android tooling, which have a lot of limitations and missing features over the desktop dialogs.
+</p>
+
+<p>
+	This page tracks the current progress of each dialog in the game.
+</p>
+
+<h2>Current progress</h2>
+
+<div class="imgui-progress-bar">
+	{% for status in dialog_status_counts -%}
+		<div class="bar imgui-status-{{ status.status }}" style="width:{{ status.count / num_dialogs * 100 }}%;">
+			{{ status.count }}&nbsp;({{ (status.count / num_dialogs * 100) | round(1) }}%)
+		</div>
+	{%- endfor %}
+</div>
+
+<br>
+
+<table class="settings">
+	<tr>
+		<th colspan="2">Dialog</th>
+		<th style="width:100px">Added in</th>
+		<th style="width:100px">Commit</th>
+		<th class="nom">Notes</th>
+	</tr>
+	{% for dialog in dialogs %}
+	<tr>
+		<td style="width:32px" class="imgui-status-{{ dialog.status }}"></td>
+		<td style="width:250px">
+			{{ dialog.name }}
+		</td>
+		<td class="center">
+			{% if dialog.status == 2 %}(Nightly){% else %}{{ dialog.added_in }}{% endif %}
+		</td>
+		<td class="center">
+			<a href="https://github.com/Bithack/principia/commit/{{ dialog.commit }}" target="_blank">
+				{{ dialog.commit | slice(0, 7) }}
+			</a>
+		</td>
+		<td class="nom">{{ dialog.notes }}</td>
+	</tr>
+	{% endfor %}
+</table>
+	{% endblock %}

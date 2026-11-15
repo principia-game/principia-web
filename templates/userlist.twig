@@ -1,9 +1,20 @@
 {% extends "_layout.twig" %}
 
-{% set title = "User list" %}
+{% if constant('IS_ARCHIVE') %}
+	{% set title = "User list (archive)" %}
+{% else %}
+	{% set title = "User list" %}
+{% endif %}
 
 	{% block content %}
-<h1>User list</h1>
+<h1>User list {% if constant('IS_ARCHIVE') %}(archive){% endif %}</h1>
+
+{% if constant('IS_ARCHIVE') %}
+	<p><a href="/userlist">View current list of users</a></p>
+{% else %}
+	<p><a href="/archive/userlist">View list of users in the archive</a></p>
+{% endif %}
+
 <table class="settings">
 	<tr>
 		<th style="width:50px">ID</th>
